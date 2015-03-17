@@ -1,7 +1,7 @@
 Packages availabe in R
 ========
 
-Pacakge         | Functions    | Use
+Package         | Functions    | Use
 ----------------| -------------|------------ |
 adegenet        | Content Cell |
 ape             | Content Cell |
