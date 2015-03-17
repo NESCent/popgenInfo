@@ -1,9 +1,9 @@
 Packages availabe in R
 ========
 
-Package         | Functions    | Use
+Package         | Dev pages    | Title
 ----------------| -------------|------------ |
-adegenet        | Content Cell |
+adegenet        | [www](https://github.com/thibautjombart/adegenet) | adegenet: a R Package for the Multivariate Analysis of Genetic Markers
 ape             | Content Cell |
 pegas           | Content Cell |
 coalescentMCMC  | Content CELL | 
