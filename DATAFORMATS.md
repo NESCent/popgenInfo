@@ -1,7 +1,2 @@
-Data formats availabe in R
+Data classes
 ========
-
-Data            | Packages     | Functions
-----------------| -------------|------------
-SNP             | adegenet     |             
-SSR             |  | 
