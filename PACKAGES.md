@@ -6,8 +6,11 @@ adegenet        | Content Cell |
 ape             | Content Cell |
 pegas           | Content Cell |
 coalescentMCMC  | Content CELL | 
-poppr           | poppr        | summary function greating indices of heterozygosity, evenness, and linkage to aid in the decision of a path to further analyze a specified dataset
-                | clonecorrect | removes any duplicated multilocus genotypes from any specified population hierarchy
+poppr           | poppr        | Summary function greating indices of heterozygosity, evenness, and linkage to aid in the decision of a path to further analyze a specified dataset
+                | clonecorrect | Removes any duplicated multilocus genotypes from any specified population hierarchy
+                | ia           | Calculate the Index of Association and Standardized Index of Association. Obtain p-values from one-sided permutation tests.
+                | clonecorrect | Removes any duplicated multilocus genotypes from any specified population hierarchy.
+                | mlg          |
 OutFLANK        | Content Cell |
 phangorn        | Content Cell |
 strataG         | Content Cell |
