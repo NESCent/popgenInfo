@@ -9,7 +9,7 @@ This site provides resources for conducting population genetic analyses in R usi
 
 | Use | Develop |
 |-----------------|----------|
-| [Population differentiation]() | [Available packages]() | 
+| [Population differentiation]() | [Available packages](PACKAGES.md) | 
 | [xxx]() | [Data formats]() | 
 
 
