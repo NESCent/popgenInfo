@@ -3,6 +3,7 @@
 This site provides resoruces for condcuting population gentics analysese in R using exisiting Packages.
 
 | Getting Started | Learning |
+|-----------------|----------|
 | [xxx]() | [xxx]() | 
 | [xxx]() | [xxx]() | 
 
