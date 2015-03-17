@@ -1,1 +1,1 @@
-Creating and submitting worflow vignettes
+Creating and submitting workflow vignettes
