@@ -9,6 +9,7 @@ This site provides resources for conducting population genetic analyses in R usi
 | [R tutorials CRAN page](http://cran.r-project.org/other-docs.html) | [xxx]() |
 | [RStudio](http://www.rstudio.com/) | [xxx]() |
 | [Comprehensive list of resources for getting started in R] (http://scs.math.yorku.ca/index.php/R:_Getting_started_with_R) |
+| [swirl: learn R interactively] (http://swirlstats.com/) |
 | [Loading packages](LOAD_PACKAGES.md) | [xxx]() | 
 [xxx]() |
 
