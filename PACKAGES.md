@@ -1,19 +1,15 @@
 Packages availabe in R
+========
 
-Pacakge         | Functions    | Use
-----------------| -------------|------------ |
-adegenet        | Content Cell |
-ape             | Content Cell |
-pegas           | Content Cell |
-coalescentMCMC  | Content CELL | 
-poppr           | poppr        | summary function greating indices of heterozygosity, evenness, and linkage to aid in the decision of a path to further analyze a specified dataset
-                 clonecorrect  | removes any duplicated multilocus genotypes from any specified population hierarchy
-OutFLANK        | Content Cell |
-phangorn        | Content Cell |
-strataG         | Content Cell |
-hierfstat       | Content Cell |
-rmetasim        | Content Cell |
-                | Content Cell |
-                | Content Cell |
-                | Content Cell |
-                | Content Cell |
+Package    | Title
+-----------|------------
+[adegenet](https://github.com/thibautjombart/adegenet) | *adegenet*: a R Package for the Multivariate Analysis of Genetic | [ape](http://ape-package.ird.fr/) | analysis of phylogenetics and evolution |
+[pegas](https://github.com/emmanuelparadis/pegas)| population and evolutionary genetic analysis system |
+[coalescentMCMC](https://github.com/emmanuelparadis/coalescentMCMC) | MCMC Algorithms for the Coalescent
+[poppr](https://github.com/grunwaldlab/poppr) | *poppr*, An R package for genetic analysis of populations with mixed 
+[OutFLANK](https://github.com/whitlock/OutFLANK) | *OutFLANK*, an R package for performing Fst-outlier tests based on inferred |
+[phangorn](https://github.com/KlausVigo/phangorn) | Phylogenetic Analysis in R: Estimation of phylogenetic trees and networks  |
+[strataG](https://github.com/EricArcher/strataG)  | Summaries and Population Structure Analyses of Haplotypic and Genotypic  |
+[hierfstat](http://www2.unil.ch/popgen/softwares/hierfstat.htm) | Estimation and tests of hierarchical F-statistics |
+[rmetasim](https://github.com/stranda/rmetasim) | Forward-time population-genetic simulations with complex demography |
+
