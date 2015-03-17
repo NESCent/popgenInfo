@@ -9,7 +9,7 @@ This site provides resoruces for condcuting population gentics analysese in R us
 
 | Use | Develop |
 |-----------------|----------|
-| [Population differentiation]() | [Available pacakges]() | 
+| [Population differentiation]() | [Available packages]() | 
 | [xxx]() | [Data formats]() | 
 
 
