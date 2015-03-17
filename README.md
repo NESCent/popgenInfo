@@ -5,7 +5,7 @@ This site provides resources for conducting population genetic analyses in R usi
 | Getting Started | Learning |
 |-----------------|----------|
 | [xxx]() | [xxx]() | 
-| [xxx]() | [xxx]() | 
+| [Install R](http://cran.r-project.org/) | [xxx]() | 
 
 | Use | Develop |
 |-----------------|----------|
