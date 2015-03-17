@@ -1,6 +1,6 @@
-# Population Genetics in R | Resources for users and developers
+# Resources for Population Genetics in R
 
-This site provides resources for conducting population gentics analysis in R using existing packages.
+This site provides resources for conducting population genetic analyses in R using existing packages.
 
 | Getting Started | Learning |
 |-----------------|----------|
