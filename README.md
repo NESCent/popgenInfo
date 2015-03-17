@@ -9,8 +9,8 @@ This site provides resoruces for condcuting population gentics analysese in R us
 
 | Use | Develop |
 |-----------------|----------|
-| [xxx]() | [xxx]() | 
-| [xxx]() | [xxx]() | 
+| [Population differentiation]() | [Availabel pacakges]() | 
+| [xxx]() | [Data formats]() | 
 
 
 
