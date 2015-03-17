@@ -1,4 +1,4 @@
-Installing R
+Loading packages
 ===================
 
 Installing required R packages:
