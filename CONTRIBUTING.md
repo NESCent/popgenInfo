@@ -1,3 +1,9 @@
-Creating and submitting workflow vignettes
+#Creating and submitting workflow vignettes
 
-Who should contribute 
+##What is a workflow vignette?
+
+##Who should contribute?
+
+##How do I write a workflow?
+
+##How do I submit a workflow?
