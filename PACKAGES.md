@@ -10,7 +10,7 @@ poppr           | poppr        | Summary function greating indices of heterozygo
                 | clonecorrect | Removes any duplicated multilocus genotypes from any specified population hierarchy
                 | ia           | Calculate the Index of Association and Standardized Index of Association. Obtain p-values from one-sided permutation tests.
                 | clonecorrect | Removes any duplicated multilocus genotypes from any specified population hierarchy.
-                | mlg          |
+                | mlg          | Create counts, vectors, and matrices of multilocus genotypes.
 OutFLANK        | Content Cell |
 phangorn        | Content Cell |
 strataG         | Content Cell |
