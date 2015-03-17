@@ -1,3 +1,5 @@
 # Population Genetics in R | Resources for users and developers
 
-Executable vignettes for population genetics workflows in R
+This site provides resoruces for condcuting population gentics analysese in R using exisiting Packages.
+
+
