@@ -13,7 +13,7 @@ install.packages(c("adegenet", "pegas", "poppr"))  # to install a group of packa
 
 You can next invoke (i.e., load) a package by typing or cutting and pasting:
 ```
-library("poppr")
+library("adegenet")
 ````
 
 
