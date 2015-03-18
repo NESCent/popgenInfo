@@ -14,7 +14,7 @@ Write the workflow vignette in [R markdown] (http://rmarkdown.rstudio.com/). The
 ##How do I submit a workflow?
 1. Set up a github account if you don't already have one (see [here](https://guides.github.com/activities/hello-world/) for a quick tutorial on using Github. Download the appropriate Git for your computer, see [here](https://help.github.com/articles/set-up-git/) and set it up.
 2. Fork this repository on Github using the *Fork* button.
-3. Clone the repository to your machine using `git clone https://github.com/NESCent/popgenInfo.git` on the command line. The URL used here is in the HTTPS clone url section on the popgenInfo github page. 
+3. Clone the repository to your machine using `git clone https://github.com/NESCent/popgenInfo.git` on the command line. The URL used here is in the HTTPS clone url section on the popgenInfo github page. **Mention synching up**
 4. Then, move to the popgenInfo directory using `cd popgenInfo`.
 5. Create a branch for your changes using `git checkout -b Your_branch_name`.
 6. Move your file into the branches **use** directory using `cp yourfilename.Rmd Your_branch_name/`.
