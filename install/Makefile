@@ -7,7 +7,7 @@ html: $(HTML_FILES)
 %.html: %.Rmd
 	R --slave -e "rmarkdown::render('$<')"
 
-.PHONY clean
+.PHONY: clean
 
 clean:
 	$(RM) $(HTML_FILES)
