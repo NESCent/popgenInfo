@@ -1,4 +1,4 @@
-Packages availabe in R
+Packages available in R
 ========
 
 Package    | Title
