@@ -12,7 +12,6 @@ Anyone who is confident in population genetics analysis in R is encouraged to co
 Write the workflow vignette in [R markdown] (http://rmarkdown.rstudio.com/). The workflow should include example analysis and explanations using data that can be readily accessed in the public domain e.g. the data that comes as part of some packages so that users can replicate the analysis themselves. 
 
 ##How do I submit a workflow?
-Submit the workflow by issuing a pull request in the 'use' directory in this repository. Once the request is approved, the file will be automatically sent to a remote server that compiles the document into a html file. Then open the WORKFLOW.md file, add the name of your tutorial and a link to the tutorial e.g. 'use/Tutorial_name.html' 
+Submit the workflow by issuing a pull request in the 'use' directory in this repository. Once the request is approved, the file will be automatically sent to a remote server that compiles the document into a html file. Then open the WORKFLOW.md file, add the name of your tutorial and a link to the tutorial e.g. the link will be like 'use/Tutorial_name.html'. Finally make a pull request to have the file changes included.
 
 
-A link will then be added to the vignette on the main README.md page in the 'Using R' table and it will also be linked in the 'use' directory README under the biological question and data type that it addresses. 
