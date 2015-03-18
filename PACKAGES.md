@@ -12,4 +12,5 @@ Package    | Title
 [strataG](https://github.com/EricArcher/strataG)  | Summaries and Population Structure Analyses of Haplotypic and Genotypic  |
 [hierfstat](http://www2.unil.ch/popgen/softwares/hierfstat.htm) | Estimation and tests of hierarchical F-statistics |
 [rmetasim](https://github.com/stranda/rmetasim) | Forward-time population-genetic simulations with complex demography |
+other | ... |
 
