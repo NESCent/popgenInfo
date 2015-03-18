@@ -2,7 +2,7 @@
 
 This site provides resources for conducting population genetic analyses in R using existing packages. See [here](SUBMISSIONS.md) for instructions on how to contribute workflow vignettes.
 
-| Getting Started | Learning |
+| Getting Started in R | Learning |
 |-----------------|----------|
 | [Install R](http://cran.r-project.org/) | [xxx]() | 
 | [R Reference Card](http://cran.r-project.org/doc/contrib/Short-refcard.pdf) | [xxx]() |
