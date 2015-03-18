@@ -12,7 +12,7 @@ Anyone who is confident in population genetics analysis in R is encouraged to co
 Write the workflow vignette in [R markdown] (http://rmarkdown.rstudio.com/). The workflow should include example analysis and explanations using data that can be readily accessed in the public domain e.g. the data that comes as part of some packages so that users can replicate the analysis themselves. 
 
 ##How do I submit a workflow?
-1. Set up a github account if you don't already have one (see [here](https://guides.github.com/activities/hello-world/) for a quick tutorial on using Github. Download the appropriate Git for your computer, see [here](https://help.github.com/articles/set-up-git/) and set it up.
+1. Set up a github account if you don't already have one (see [here](https://guides.github.com/activities/hello-world/)) for a quick tutorial on using Github. Download the appropriate Git for your computer, see [here](https://help.github.com/articles/set-up-git/) and set it up.
 2. Fork this repository on Github using the *Fork* button.
 3. Clone the repository to your machine using `git clone https://github.com/NESCent/popgenInfo.git` on the command line. The URL used here is in the HTTPS clone url section on the popgenInfo github page. **Mention synching up**
 4. Then, move to the popgenInfo directory using `cd popgenInfo`.
