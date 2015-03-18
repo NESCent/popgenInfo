@@ -6,7 +6,7 @@ Workflow vignettes are documents that outline a population genetics based bioinf
 The analysis outlined in the vignettes should be fast to run, ideally approximately two minutes. For example, if you are running permutations, set these to a small number in the workflow and encourage the user to increase the number themselves, in order to reduce the time required. 
 
 ##Who should contribute?
-Anyone who is confident in population genetics analysis in R.
+Anyone who is confident in population genetics analysis in R is encouraged to contribute.
 
 ##How do I write a workflow vignette?
 Write the workflow vignette in [R markdown] (http://rmarkdown.rstudio.com/). The workflow should include example analysis and explanations using data that can be readily accessed in the public domain e.g. the data that comes as part of some packages so that users can replicate the analysis themselves. 
