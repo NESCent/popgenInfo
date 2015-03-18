@@ -12,9 +12,9 @@ This site provides resources for conducting population genetic analyses in R usi
 | [swirl: learn R interactively] (http://swirlstats.com/) |
 | [Loading packages](LOAD_PACKAGES.md) | [xxx]() | 
 
-| [Get started]() | [Learn]() |
-| ----| --- |
-| [Using R]() | [Developer](DEVELOPER.md) |
+| [Get started]() | [Learn]()                 |
+| ----------------| ------------------------- |
+| [Using R]()     | [Developer](DEVELOPER.md) |
 
 
 
