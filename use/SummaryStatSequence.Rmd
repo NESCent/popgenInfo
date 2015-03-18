@@ -1,0 +1,135 @@
+---
+title: "Calculating Basic Population Genetic Statistics from Sequence Data"
+author: "Margarita M. López-Uribe"
+date: "March 18, 2015"
+output: html_document
+---
+
+Introduction
+=========
+In this vignette, you will see general information on how to calculate basic population genetic statistics from sequence data using R packages. These basic statistics serve as exploratory analyses that will tell you 1) the levels of genetic diversity in your overall population and subpopulations, 2) general patterns of the distribution of genetic diversity across subpopulations, and 3) possible violations of the data to the Wright-Fischer Model (Ref).
+
+The first section of this tutorial provides information on how to analyze raw sequence data (link to section 1). The second section will discuss how to analyze multilocus sequence data after converting sequences to genotypic data (link to section 2).
+
+
+Discuss what kind of questions we are asking
+Links to theoretical background
+Links to data information
+Link to the data to download for the vignette
+
+### Assumptions
+  - Sample Size (hudson's Snn)
+  - No linkage
+
+Resources/Packages
+=========
+```{r, packages, message=FALSE}
+library(adegenet)
+library(ape)
+library(pegas)
+library(hierfstat)
+library(mmod)
+library(genetics)
+```
+
+Section I - Workflow for Raw Sequence Data
+========
+### Import data
+To import raw sequence data into R, the most widely used formats are [FASTA](http://www.ncbi.nlm.nih.gov/BLAST/fasta.html) and nexus. Before you import your data into R, please make sure the sequences are aligned. Sequence alignments can be done in software such as Clustal or Muscle. Both are are part of the software SeaView and you can save the output alignments in FASTA format. (maybe an R option can be library(Biostrings) but I have not used it yet). In all cases, we will convert the sequence data file into [genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind) objects, which is the standard file format for population genetic analyses in R.
+
+To import raw sequence data into R:
+```{r, data_import_FASTA}
+
+myData1<- read.FASTA("Ebom_mt.fas") # this creates a DNAbin object
+class(myData1)
+```
+
+To convert DNAbin objects to genind objects:
+```{r, data_import_DNAbin}
+#library(mmod)
+tmp<-as.matrix(myData1) # converts the list of sequences into a matrix
+myData2<- as.genind.DNAbin(tmp, rep(c("CRIC","CRIS","PANI","PANP"), each=2))
+```
+
+### Genetic diversity indices
+```{r, pi}
+myData2_bypop<-c(myData2)
+myData1_pi<-nuc.div(myData1) # nucleotide diversity from a sample of DNA sequences in DNAbin format
+myData1_pi
+myData2_summ<-summary(myData2) # to visualize summary descriptors of your sequence data file
+par(mfrow=c(2,2))
+plot(myData2_summ$pop.eff, myData2_summ$pop.nall, xlab="Sample size",
+ylab="Number of alleles",main="Alleles numbers and sample sizes",
+type="n")
+text(myData2_summ$pop.eff,myData2_summ$pop.nall,lab=names(myData2_summ$pop.eff))
+barplot(myData2_summ$loc.nall, ylab="Number of alleles",
+main="Number of alleles per locus")
+barplot(myData2_summ$Hexp-myData2_summ$Hobs, main="Heterozygosity: expected-observed",
+ylab="Hexp - Hobs")
+barplot(myData2_summ$pop.eff, main="Sample sizes per population",
+ylab="Number of genotypes",las=3)
+```
+
+Note that no observed heterozygosity is expected because sequences come from mitochondrial data.
+
+### Testing for Hardy-Weinberg Equilibrium
+```{r, HWE1, message=FALSE, warning=FALSE}
+#library(genetics)
+myData2_HWE<- HWE.test.genind(myData2) # this will test for Hardy-Weingber equilibrium
+myData2_HWE # p-values lower than 0.05 indicate deviations from HWE
+```
+Note: If you have loci in your dataset that deviate from HWE, your dataset may violate assumptions for downstream populaiton genetic analyses.
+
+### F statistics
+```{r, Fstats}
+myData2_loci<- as.loci(myData2) 
+Fst(myData2_loci) # this function calculates overall Fit, Fst, and Fis of the dataset
+```
+
+### Testing for Population Differentiation
+
+#### Testing for Population Differentiation from diploid data
+```{r, Fst1}
+myData2_bs<- chao_bootstrap(myData2, nreps=100) # subsample your dataset multiple times to estimate significance of genetic differentation statistics 
+summarise_bootstrap(myData2_bs, Gst_Nei) # estimate Gst_Nei and whether or not it is significant
+summarise_bootstrap(myData2_bs, Gst_Hedrick) # estimate Hedrick's Gst and whether or not it is significant
+summarise_bootstrap(myData2_bs, D_Jost) # estimate Jost's D and whether or not it is significant
+myData2_GenDiff<-diff_stats(myData2) # general test for genetic differenation per locus and across all subpopulations using Gst, Gst' and Jost D (estimated and based on the harmonic mean between loci)
+```
+
+#### Testing for Population Differentiation from haploid data
+```{r, Fst2}
+#library(mmod)
+myData2_Phist<- Phi_st_Meirmans(myData2) 
+myData2_Phist # test fo population differentation for haploid data
+```
+
+
+
+Section II - Workflow for Multilocus Sequence Data converted to Genotype Data
+========
+### Import data
+
+```{r, data_import_show_2, eval=FALSE}
+myData<- import2genind("nancycats.dat")
+```
+
+```{r, data_import_for_realz2, echo=FALSE}
+data(gtrunchier)
+head(gtrunchier)
+```
+#Analysis
+Testing for Hardy-Weinberg Equilibrium:
+```{r, HWE2, echo=FALSE}
+#library(genetics)
+myData2_HWE<- HWE.test.genind(myData2, res="matrix") # this will generate a matrix of p-values for HWE
+idx <- which(myData2_HWE<0.05,TRUE) # which tests are significant? you may need to modify the alpha value after Bomferroni correction
+idx
+
+```
+
+Conclusions
+========
+
+### What did we learn today?
+### What is next?
