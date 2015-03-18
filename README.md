@@ -4,7 +4,7 @@ This site provides resources for conducting population genetic analyses in R usi
 
 | [Get started](GETSTARTED.md) | [Learn](LEARN.md)                         |
 | :--------------:|:-------------------------:        |
-| [**Using R**]()     | [**Developer**](DEVELOPER.md) |
+| [**Using R**](USINGR.md)     | [**Developer**](DEVELOPER.md) |
 
 
 
