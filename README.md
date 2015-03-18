@@ -17,6 +17,7 @@ This site provides resources for conducting population genetic analyses in R usi
 |-----------------|----------|
 | [Population differentiation]() | [Available packages](PACKAGES.md) | 
 | [xxx]() | [Data formats](DATAFORMATS.md) | 
+| [xxx]() | [How to write an R package](https://github.com/jtleek/rpackages) | 
 
 
 
