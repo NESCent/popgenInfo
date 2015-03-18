@@ -11,8 +11,9 @@ This site provides resources for conducting population genetic analyses in R usi
 | [Comprehensive list of resources for getting started in R] (http://scs.math.yorku.ca/index.php/R:_Getting_started_with_R) |
 | [swirl: learn R interactively] (http://swirlstats.com/) |
 | [Loading packages](LOAD_PACKAGES.md) | [xxx]() | 
-[xxx]() |
 
+| | |
+| ----| --- |
 | Get started | Learn |
 | Using R | [Developer](DEVELOPER.md) |
 
