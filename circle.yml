@@ -1,0 +1,8 @@
+machine:
+    services:
+        - docker
+
+test:
+    override:
+        - docker run -v $(pwd):/build -w /build rocker/hadleyverse Rscript -e "sessionInfo()"
+        - echo "Success!"
