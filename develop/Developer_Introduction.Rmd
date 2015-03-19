@@ -8,8 +8,8 @@ output: html_document
 Introduction
 =======
 
-
-
+You are reading this introduction because you are interested in contributing an
+R package to the population genetics community. 
 
 Resources
 =======
