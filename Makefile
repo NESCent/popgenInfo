@@ -4,6 +4,7 @@ all: clean html
 
 SUBDIRS  := use install develop
 export BUILDDIR := $(CURDIR)/build
+export DATADIR  := $(CURDIR)/data
 
 html: cpsources $(SUBDIRS)
 	$(MAKE) -C $(BUILDDIR) html
