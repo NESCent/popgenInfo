@@ -17,13 +17,13 @@ Assumptions
 
 Data
 ==========
-Links to information about the data e.g. package vignettes.    
-Link to the data to download for the workflow.  
-Format data needs to be (import data and show a section to demonstrate if needed).  
+Links to information about the data if needed e.g. package vignettes.    
+Link to the data to download for the workflow if it is public data. Can download into R here and show the code.   
+Format the users data needs to be in for this to work (import data and show a section to demonstrate if needed).  
 
 Resources/Packages required
 =============
-Packages required and links to packages.  
+Packages required. Say where these can be found, can link to the list of packages on our repository page here also.   
 
 Loading the required packages:  
 ```{r, packages, message=FALSE}
@@ -31,9 +31,9 @@ library(hierfstat)
 library(adegenet)
 ```
 
-Analysis divided into sections if required
+Analysis divided into sections  
 ==========================================
-##Example Sections
+Example Sections
 ##Section 1: Load the data
 ```{r, loaddata, eval=FALSE}
 nancycats <- import2genind("nancycats.dat")
