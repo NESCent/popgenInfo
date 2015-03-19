@@ -22,6 +22,8 @@ dockerImage:
 
 clean:
 	$(RM) $(HTML_FILES)
+	$(RM) -r $(patsubst %.Rmd, %_files, $(wildcard *.Rmd))
+	$(RM) -r $(patsubst %.md, %_files, $(wildcard *.md))
 
 distclean: clean
 	$(RM) *.Rmd
