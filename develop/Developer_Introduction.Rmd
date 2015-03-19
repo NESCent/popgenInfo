@@ -8,9 +8,11 @@ output: html_document
 Introduction
 =======
 
- - Motivation for developer
- - Benefit to users
- 
+
+
+
+Resources
+=======
 
 
 
