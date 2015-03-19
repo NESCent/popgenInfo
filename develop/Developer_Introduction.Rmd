@@ -37,3 +37,10 @@ have examples utilizing existing packages in these tutorials.
 Conclusions
 =======
 
+R is an open source language with a strong community of developers contributing
+new methods and analyses. The population genetics community has worked hard to 
+create data classes that can be used efficiently between packages, expanding the
+number of analyses that can be done by users in a reproducible manner. This 
+interoperability also means that it is more likely for your method to be utilized
+as the users would not have to manually change file formats, lowering the 
+barrier to integrate your method into their workflow.
