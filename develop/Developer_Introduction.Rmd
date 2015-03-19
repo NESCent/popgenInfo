@@ -15,9 +15,25 @@ method of data visualization. In either case, it is important to understand what
 methods currently exist in population genetics and how you can utilize common 
 classes to ensure interoperability between different packages. 
 
+The goal of these series of tutorials is to introduce you to:
+
+ - The current ecology of packages in R
+    - Types of analyses that they each perform
+    - Types of genetic data that can be handled by each
+    - Classes implemented
+    - Functions for conversion
+
 Resources
 =======
 
- - [Hadley Wickham's Guide For Creating R Packages](http://r-pkgs.had.co.nz/)
+Below are some resources that can get you started writing R packages. We will 
+have examples utilizing existing packages in these tutorials.
 
+ - [Hadley Wickham's Guide For Creating R Packages](http://r-pkgs.had.co.nz/)
+ - [S4 Classes in detail](http://adv-r.had.co.nz/S4.html)
+ - [S3 Classes in detail](http://adv-r.had.co.nz/S3.html)
+ - [A not so short introduction to S4](http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf)
+
+Conclusions
+=======
 
