@@ -51,7 +51,7 @@ Conclusions
 
 ### What did we learn today?
 
-$F_st$ sucks.
+$F_{st}$ sucks.
 
 ### What's next?
 
