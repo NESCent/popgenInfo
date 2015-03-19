@@ -1,0 +1,17 @@
+---
+title: "Introduction for Developers of Population Genetic R Packages"
+author: "Zhian N. Kamvar"
+date: "March 19, 2015"
+output: html_document
+---
+
+Introduction
+=======
+
+ - Motivation for developer
+ - Benefit to users
+ 
+
+
+
+
