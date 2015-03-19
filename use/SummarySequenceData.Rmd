@@ -24,7 +24,7 @@ Link to the data to download for the vignette
 Resources/Packages
 =========
 ```{r, packages, message=FALSE}
-library(adegenet)
+library(adegenet) # to store the data
 library(ape)
 library(pegas)
 library(hierfstat)
