@@ -39,7 +39,7 @@ To import raw sequence data into R, the most widely used formats are [FASTA](htt
 
 To import raw sequence data into R:
 ```{r, data_import_FASTA_locus1}
-myData1<- read.FASTA("Ebom_mt.fas") # this creates a DNAbin object
+myData1<- read.FASTA("../data/Ebom_mt.fas") # this creates a DNAbin object
 class(myData1)
 ```
 
@@ -111,7 +111,7 @@ Section II - Workflow for Multilocus Sequence Data
 
 To import raw sequence data from more loci into R:
 ```{r, data_import_FASTA_locus2}
-myData2<- read.FASTA("Ebom_CAD.fas") # this creates a DNAbin object
+myData2<- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
 class(myData2)
 tmp2<-as.matrix(myData2) # converts the list of sequences into a matrix
 allData<-cbind(tmp1,tmp2)
