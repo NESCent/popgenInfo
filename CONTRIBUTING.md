@@ -24,8 +24,7 @@ Write the workflow vignette in [R markdown] (http://rmarkdown.rstudio.com/). The
 10. Then run `git push origin`. **(Am I missing something here?)**
 11. To do a pull request, navigate to your branch on github. Click `Compare & review`.
 12. Once you have reviewed the changes, click `Create pull request`. Once the request is approved, the file will be automatically sent to a remote server that compiles the document into a html file.
-13. Then open the [`WORKFLOWS.md`](WORKFLOWS.md) file using the edit button if on the github website ( or alter it in the repository has already been cloned on your own machine) and add the name of your tutorial along with a link to the tutorial e.g. the link will be 'use/Tutorial_name.html'. Finally click `Propose file change` and then `Create pull request` to request that the file changes be included if you are altering it on github.
+13. Then open the [`WORKFLOWS.md`](WORKFLOWS.md) file using the edit button if on the github website ( or alter it in the repository that has already been cloned on your own machine) and add the name of your tutorial along with a link to the tutorial e.g. the link will be 'use/Tutorial_name.html'. Finally click `Propose file change` and then `Create pull request` to request that the file changes be included if you are altering it on github.
 
-##Submitting Data
-**to do**
-**Dataset needs to be < 200 kb in size. If it is larger and your analysis will make sense on a subset of the dataset, then please subset it to a smaller size for both submission and use in the workflow. 
+##How do I submit datasets?
+The dataset used in a workflow needs to be < 200 kb in size. If your dataset is larger and your analysis will make sense on a subset of the dataset, then please subset it to a smaller size for both submission and use in the workflow. 
