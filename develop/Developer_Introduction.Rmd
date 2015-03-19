@@ -34,13 +34,12 @@ have examples utilizing existing packages in these tutorials.
  - [S3 Classes in detail](http://adv-r.had.co.nz/S3.html)
  - [A not so short introduction to S4](http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf)
 
-Conclusions
+A word on modularity
 =======
 
 R is an open source language with a strong community of developers contributing
 new methods and analyses. The population genetics community has worked hard to 
 create data classes that can be used efficiently between packages, expanding the
-number of analyses that can be done by users in a reproducible manner. This 
-interoperability also means that it is more likely for your method to be utilized
-as the users would not have to manually change file formats, lowering the 
-barrier to integrate your method into their workflow.
+number of analyses that can be done by users in a reproducible manner. Utilizing
+common data types within your R package lowers the barrier between users current
+workflow and your new method or visualization. 
