@@ -1,61 +1,59 @@
 ---
-title: "Calculating F statistics for microsatellites"
-author: "POPGEN CREW"
-date: "March 18, 2015"
+title: "Template Workflow"
+author: "Author name"
+date: "date"
 output: html_document
 ---
 
 Introduction
-=======
+=========
+Explain the purpose of the vignette.  
+Give a brief explanation of the questions that will be answered and some background information.
 
- - Scientific question that we want to ask?
- - Links to theoretical background.
- - Links to data information.
- - Link to the data.
+Assumptions
+============
+- Assumption 1
+- Assumption 2
 
-### Assumptions
+Data
+==========
+Links to information about the data if needed e.g. package vignettes.    
+Link to the data to download for the workflow if it is public data. Can download into R here and show the code.   
+Format the users data needs to be in for this to work (import data and show a section to demonstrate if needed).  
 
- - sample size
-   - hudson's Snn
+Resources/Packages required
+=============
+Packages required. Say where these can be found, can link to the list of packages on our repository page here also.   
 
-Resources/Packages
-=======
-
-
-```{r}
+Loading the required packages:  
+```{r, packages, message=FALSE}
 library(hierfstat)
 library(adegenet)
 ```
 
-Workflow
-=======
-
-### Import data
-
-```{r, data_import_show, eval = FALSE}
+Analysis divided into sections  
+==========================================
+Example Sections
+##Section 1: Load the data
+```{r, loaddata, eval=FALSE}
 nancycats <- import2genind("nancycats.dat")
-nancycats
+head(nancycats)
 ```
 
-```{r, data_import_for_realz, echo = FALSE}
-data(nancycats)
-nancycats
-```
+##Section 2: Exploratory Data analysis/Checking assumptions  
+  
+##Section 3: Summary statistics  
+  
+##Section N: Conclusions drawn from the analysis  
 
-### Analysis
+Whats next
+=======================
+Information on further analysis that could be done, other workflows 
 
+###Session Information
 
-
-Conclusions
-=======
-
-### What did we learn today?
-
-$F_st$ sucks.
-
-### What's next?
-
-Check your assumptions
+```{r,sessioninfo, echo=FALSE}
+sessionInfo()
 
 
 
