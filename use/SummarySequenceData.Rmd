@@ -12,19 +12,10 @@ In this vignette, you will see general information on how to calculate basic pop
 The first section of this tutorial provides information on how to analyze sequence data from one locus (link to section 1). The second section will discuss how to analyze multilocus sequence data (link to section 2).
 
 
-Discuss what kind of questions we are asking
-Links to theoretical background
-Links to data information
-Link to the data to download for the vignette
-
-### Assumptions
-  - Sample Size (hudson's Snn)
-  - No linkage
-
 Resources/Packages
 =========
 ```{r, packages, message=FALSE}
-library(adegenet)
+library(adegenet) # to store the data
 library(ape)
 library(pegas)
 library(hierfstat)
@@ -34,11 +25,21 @@ library(genetics)
 
 Section I - Workflow for Raw Sequence Data
 ========
-### Import data
-To import raw sequence data into R, the most widely used formats are [FASTA](http://www.ncbi.nlm.nih.gov/BLAST/fasta.html) and nexus. Before you import your data into R, please make sure the sequences are aligned. Sequence alignments can be done in software such as Clustal or Muscle. Both are are part of the software SeaView. Alignments can be saved in FASTA format. (maybe an R option can be library(Biostrings) but I have not used it yet). In all cases, we will convert the sequence data file into [genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind) objects, which is the standard file format for population genetic analyses in R.
 
-To import raw sequence data into R:
-```{r, data_import_FASTA_locus1}
+### Import data
+To import our raw sequence data into R, the most widely used formats are [FASTA](http://www.ncbi.nlm.nih.gov/BLAST/fasta.html) and nexus. Before you import your data into R, please make sure the sequences are aligned. Sequence alignments can be done in software such as Clustal or Muscle. Both are are part of the software SeaView. Alignments can be saved in FASTA format. Another R option could be `library(Biostrings)` but it is not discussed here. In all cases, we will convert the sequence data file into [genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind) objects, which is the standard file format for population genetic analyses in R.
+
+Dataset "Ebom_mt.fas" can be downloaded [here]().
+Dataset "Ebom_CAD.fas" can be downloaded [here]().
+
+Import the previously aligned sequence data into R.
+The 'Ebom_mt.fas' file contains alignments of two concatenated mitochondrial genes. 
+```{r, data_import_FASTA_locus1, eval = FALSE}
+myData1 <- read.FASTA("Ebom_mt.fas") # this creates a DNAbin object
+class(myData1)
+```
+
+```{r, data_import_FASTA_locus1_real, echo = FALSE}
 myData1<- read.FASTA("../data/Ebom_mt.fas") # this creates a DNAbin object
 class(myData1)
 ```
@@ -110,9 +111,15 @@ Section II - Workflow for Multilocus Sequence Data
 ### Import data
 
 To import raw sequence data from more loci into R:
-```{r, data_import_FASTA_locus2}
-myData2<- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
+```{r, data_import_FASTA_locus2, eval=FALSE}
+myData2<- read.FASTA("Ebom_CAD.fas") # this creates a DNAbin object
 class(myData2)
+tmp2<-as.matrix(myData2) # converts the list of sequences into a matrix
+allData<-cbind(tmp1,tmp2)
+```
+
+```{r, data_import_FASTA_locus2_real, echo = FALSE}
+myData1<- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
 tmp2<-as.matrix(myData2) # converts the list of sequences into a matrix
 allData<-cbind(tmp1,tmp2)
 ```
@@ -133,7 +140,7 @@ allData_HWE
 
 ```
 
-### F statistics
+For example, testing for overal Genetic Differentiation:
 ```{r, Fstats2}
 allData_loci<- as.loci(allDatab) 
 Fst(allData_loci) # this function calculates overall Fit, Fst, and Fis of the dataset
