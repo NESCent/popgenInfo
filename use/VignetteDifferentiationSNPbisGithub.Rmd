@@ -1,0 +1,158 @@
+========================================================
+
+title:"Calculating genetic differentiation and clustering methods from SNP data "
+author: "Stéphanie Manel"
+date:"March 19, 2015"
+output:html_document
+
+Introduction
+========================================================
+
+Genetic structure of SNP data:
+Fst per population
+Pairewise Fst
+AMOVA (Hierrachical Fst)
+no apriori clustering
+ 
+
+Links to theretical background (http://eckertdata.blogspot.fr/)
+Links to data : (../data/) 
+
+###Assumptions
+-sample size:  550x3086
+-The data set is a table of allele with extra columns.
+
+
+
+Ressources/Packages
+========================================================
+
+library(adegenet)
+
+```{r,packages, message=FALSE}
+library(adegenet)
+library(hierfstat)
+
+
+```
+
+
+Workflow
+========================================================
+## Import data
+
+The SNP dataset is stored in a txt file (genotype=AA..). We will  import the dataset in R as a dataframe, and then  convert the SNP data file into [genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind) objects. 
+
+The first columns of the dataset contains the label of the indviduals, the three following are related to regions. The  other columns are for the genotypes as (AA or AT...)
+
+
+To import SNP data (txt file) into R:
+
+```{r,data_import_df,eval=FALSE}
+
+#You should be in the right directory
+
+Mydata<-read.table("../data//Master_Pinus_data_genotype.txt",header=T)   
+dim(Mydata)  
+ 
+
+ 
+ind<-as.character(Mydata$tree_id) #use later with adegent (individual labels)
+population<-as.character(Mydata$state) #use later with adegenet (population labels)
+county<-Mydata$county 
+
+dim(Mydata) #550 individuals x 3082 SNPs
+```
+
+#Data conversion
+
+```{r,data_conversion,eval=FALSE }
+
+ 
+#To convert MydataR to genind objects (adegent): Mydata2 needs to contain only genotypes
+locus<-Mydata[,-c(1,2,3,4,500:ncol(Mydata))] #We decrease the number of snp to make the calcul faster
+Mydata1<-df2genind(locus,ploidy=2,ind.names=ind,pop=population)
+Mydata1
+
+#conversion from genind object into hierfstat file
+Mydata2<-genind2hierfstat(Mydata1) 
+
+
+```
+
+## Fst  (osberved and expected heterozygosity)  (package hierfstat)
+
+```{r,Basicstatiscis_with Fst,eval=F}
+
+basic.stats(Mydata2) # Fst following Nei (1987)
+
+wc(Mydata2) # Weir and Cockrham estimate
+
+```
+
+## Hierarchical Fst tests (=AMOVA for SNP dataset)
+
+```{r,Hierarchical_Fst,eval=FALSE}
+
+county<-Mydata$county
+
+loci<-Mydata2[,-c(1)]
+varcomp.glob(levels=data.frame(population,county),loci,diploid=TRUE) #Hierarchical Fst (=AMOVA for SNPsor biallelic markers)
+
+#We can make permutation on the different levels
+
+test.g(loci,level=population)#Significant effet of the population on genetic differentiation. Individuals are randomly permutated among states
+#The states do  not influence genetic differentiation. This was expected!
+
+
+test.between(loci,test.lev=population,rand.unit=county,nperm=100) #permutation of all individuals among populations 
+
+ 
+
+
+
+```
+
+
+## Pairwise Fst (package hierfstat)
+
+```{r,pairewise_Fst,eval=FALSE}
+pp.fst(loci,diploid=TRUE) 
+
+#No test at the moment
+
+```
+
+## Unsupervised clustering  
+#i.e. We dont know the populations and we are looking for.
+
+```{r,clustering_without_a_priori,eval=FALSE}
+#using  Kmeans and DIAPC in adegenet 
+grp<-find.clusters(Mydata1,max.n.clust=10)
+#As recommanded by T.  Jombart, use the maximum number possible of PCA axis
+#In this example, we have cleraly no group and the BIC increase with the number of gorup
+names(grp)
+```
+
+#Also we have no cluster here we can have a look on the description of the cluster using K=2 with the DIAPC analysis
+
+```{r,description_of_clusters,eval=FALSE}
+dapc1<-dapc(Mydata1,grp$grp)
+```
+
+
+Conclusion
+========================================================
+ 
+###This is a bad example since there is no stucture.
+ 
+ 
+Reference
+========================================================
+
+Eckert, A. J., A. D. Bower, S. C. González-Martínez, J. L. Wegrzyn, G. Coop and D. B. Neale. 2010. Back to nature: Ecological genomics of loblolly pine (Pinus taeda, Pinaceae). Molecular Ecology 19: 3789-3805.
+
+
+Thierry de Meeûs, Jérôme Goudet "A step-by-step tutorial to use HierFstat to analyse populations hierarchically structured at multiple levels.", Infect. Genet. Evol., vol. 7, no. 6, 2007 
+
+
