@@ -7,6 +7,11 @@ general:
         ignore:
             - gh-pages
 
+checkout:
+    post:
+        - git config user.name "Hilmar Lapp"
+        - git config user.email "hlapp@drycafe.net"
+
 test:
     override:
         - make html
