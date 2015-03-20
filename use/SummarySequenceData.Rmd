@@ -118,7 +118,7 @@ allData<-cbind(tmp1,tmp2)
 ```
 
 ```{r, data_import_FASTA_locus2_real, echo = FALSE}
-myData1<- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
+myData2<- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
 tmp2<-as.matrix(myData2) # converts the list of sequences into a matrix
 allData<-cbind(tmp1,tmp2)
 ```
