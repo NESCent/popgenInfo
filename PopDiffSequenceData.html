@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Margarita M. López-Uribe" />
+
+<meta name="date" content="2015-03-19" />
+
+<title>Population Differentiation for Sequence Data</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/readable.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<!---
+
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-right: 50px;
+  padding-left: -50px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+ offset scroll position for anchor links (for fixed navbar)  
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+</style>
+-->
+
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; }
+code > span.dt { color: #204a87; }
+code > span.dv { color: #0000cf; }
+code > span.bn { color: #0000cf; }
+code > span.fl { color: #0000cf; }
+code > span.ch { color: #4e9a06; }
+code > span.st { color: #4e9a06; }
+code > span.co { color: #8f5902; font-style: italic; }
+code > span.ot { color: #8f5902; }
+code > span.al { color: #ef2929; }
+code > span.fu { color: #000000; }
+code > span.er { font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- HOME -->
+      <a class="navbar-brand" href="index.html"><b>Population Genetics in R</b></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!-- Table of contents -->
+        <li class="dropdown">
+          <a href="chapters" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">For Users<span class="caret"></span></a>
+          <ol class="dropdown-menu">
+              <li><a href = "Required Packages">GETTINGSTARTED.html</a></li>
+              <li class="divider"></li>  
+              <li>What genetic marker do you have?</li>
+              <li class="divider"></li>  
+              <li><a href = "SNP">SNP.html</a></li>
+          </ol>
+        </li>
+        <!-- Appendices dropdown -->
+        <li class="dropdown">
+          <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">For Package Developers<span class="caret"></span></a>
+          <ul class = "dropdown-menu", role = "menu">
+           <li><a href = "DEVELOPER.html">Introduction</a></li>  
+          </ul>
+        </li>
+        <!-- Author button -->
+        <li class="dropdown">
+          <a href="about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">For Contributers<span class="caret"></span></a>
+          <ul class = "dropdown-menu", role = "menu">
+           <li><a href = "CONTRIBUTING.html">How to contribute</a></li>  
+           <li><a href = "https://github.com/NESCent/popgenInfo">This webpage on github</a></li>  
+		  </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- 
+
+old rmarkdown version: 
+
+devtools::install_github("rstudio/rmarkdown", ref = "b96214b9ac86b437067a0aa21442203f52face83")
+
+
+ -->
+<!-- <div class="container">
+<div class="row">
+<div class="span10 offset1"> -->
+
+<div id="header">
+<h1 class="title">Population Differentiation for Sequence Data</h1>
+<h4 class="author"><em>Margarita M. López-Uribe</em></h4>
+<h4 class="date"><em>March 19, 2015</em></h4>
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#resourcespackages">Resources/Packages</a></li>
+<li><a href="#import-data">Import data</a></li>
+<li><a href="#pairwise-population-differentiation">Pairwise population differentiation</a></li>
+<li><a href="#amova-analysis-of-molecular-variance">AMOVA (Analysis of Molecular Variance)</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Now, we will discuss in more detail how to assess population genetic structure from sequence data. Assuming that you have a priori information about how the individuals are grouped in subpopulations, one can do the following analyses: 1) quantify pairwise subpopulation structure and their significance, 2) test for hierarchical structure among groups of subpopulations, and 3) use population clustering algorithms to corroborate the a priori grouping hypothesis. We will go into each of these analyses in this vignette.</p>
+</div>
+<div id="resourcespackages" class="section level1">
+<h1>Resources/Packages</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(adegenet)
+<span class="kw">library</span>(ape)
+<span class="kw">library</span>(pegas)
+<span class="kw">library</span>(hierfstat)
+<span class="kw">library</span>(mmod)
+<span class="kw">library</span>(genetics)</code></pre>
+</div>
+<div id="import-data" class="section level1">
+<h1>Import data</h1>
+<p>Refer to vignette on “Summary Statistics for Sequence Data” (add link) for detailed instructions on how to upload one locus or multilocus FASTA files for this type of analyses. Here is the code:</p>
+<pre class="sourceCode r"><code class="sourceCode r">myData1&lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_mt.fas&quot;</span>) 
+tmp1&lt;-<span class="kw">as.matrix</span>(myData1)
+myData2&lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_CAD.fas&quot;</span>) 
+tmp2&lt;-<span class="kw">as.matrix</span>(myData2)
+allData&lt;-<span class="kw">cbind</span>(tmp1,tmp2)
+tmp3&lt;-<span class="kw">as.matrix</span>(allData) 
+allDatab&lt;-<span class="kw">as.genind.DNAbin</span>(tmp3, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;CA&quot;</span>,<span class="st">&quot;Ch&quot;</span>,<span class="st">&quot;Am&quot;</span>,<span class="st">&quot;AF&quot;</span>), <span class="dt">each=</span><span class="dv">5</span>)) </code></pre>
+</div>
+<div id="pairwise-population-differentiation" class="section level1">
+<h1>Pairwise population differentiation</h1>
+<div id="overall-f-statistics" class="section level3">
+<h3>Overall F-statistics</h3>
+<pre class="sourceCode r"><code class="sourceCode r">allData_loci&lt;-<span class="st"> </span><span class="kw">as.loci</span>(allDatab) 
+<span class="kw">Fst</span>(allData_loci) <span class="co"># this function calculates overall Fit, Fst, and Fis of the dataset</span></code></pre>
+<pre><code>##    Fit          Fst Fis
+## L1   1 1.040834e-16   1</code></pre>
+</div>
+<div id="pairwise-fst" class="section level3">
+<h3>Pairwise Fst</h3>
+<pre class="sourceCode r"><code class="sourceCode r">allData_loci&lt;-<span class="st"> </span><span class="kw">as.loci</span>(allDatab) 
+<span class="kw">Fst</span>(allData_loci) <span class="co"># this function calculates overall Fit, Fst, and Fis of the dataset</span></code></pre>
+<pre><code>##    Fit          Fst Fis
+## L1   1 1.040834e-16   1</code></pre>
+</div>
+</div>
+<div id="amova-analysis-of-molecular-variance" class="section level1">
+<h1>AMOVA (Analysis of Molecular Variance)</h1>
+<p>Analysis of Molecular Variance (AMOVA) is a method for estimating population differentiation from molecular data taking into accound the mutational distance between alleles. Unlike Fst, which quantifies genetic differentiation based on allele frequencies, AMOVA treats molecular data as vectors and estimates Eucledian distances between alleles. Furtheremore, it is possible to test hypotheses about differentiation by grouping subpopulations in a hierarchical structure (Ref).</p>
+<pre class="sourceCode r"><code class="sourceCode r">allData_dist&lt;-<span class="kw">dist.dna</span>(allData) <span class="co"># this calculates pairwise Eucledian distances among individuals</span>
+groups &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;West&quot;</span>, <span class="dv">10</span>), <span class="kw">rep</span>(<span class="st">&quot;East&quot;</span>, <span class="dv">10</span>)))
+populations &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;CA&quot;</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&quot;Ch&quot;</span>, <span class="dv">5</span>),<span class="kw">rep</span>(<span class="st">&quot;Am&quot;</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&quot;AF&quot;</span>, <span class="dv">5</span>)))
+<span class="kw">amova</span>(allData_dist ~<span class="st"> </span>groups, <span class="dt">nperm =</span> <span class="dv">100</span>)</code></pre>
+<pre><code>## 
+##  Analysis of Molecular Variance
+## 
+## Call: amova(formula = allData_dist ~ groups, nperm = 100)
+## 
+##                 SSD          MSD df
+## groups 5.954551e-05 5.954551e-05  1
+## Error  6.516226e-04 3.620126e-05 18
+## Total  7.111681e-04 3.742990e-05 19
+## 
+## Variance components:
+##            sigma2 P.value
+## groups 2.3344e-06  0.2277
+## Error  3.6201e-05        
+## 
+## Variance coefficients:
+##  a 
+## 10</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">amova</span>(allData_dist ~<span class="st"> </span>populations, <span class="dt">nperm =</span> <span class="dv">100</span>)</code></pre>
+<pre><code>## 
+##  Analysis of Molecular Variance
+## 
+## Call: amova(formula = allData_dist ~ populations, nperm = 100)
+## 
+##                      SSD          MSD df
+## populations 0.0003002557 1.000852e-04  3
+## Error       0.0004109125 2.568203e-05 16
+## Total       0.0007111681 3.742990e-05 19
+## 
+## Variance components:
+##                 sigma2 P.value
+## populations 1.4881e-05       0
+## Error       2.5682e-05        
+## 
+## Variance coefficients:
+## a 
+## 5</code></pre>
+</div>
+
+<!-- </div>
+</div>
+</div>
+ -->
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

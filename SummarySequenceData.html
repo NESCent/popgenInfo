@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Margarita M. López-Uribe" />
+
+<meta name="date" content="2015-03-18" />
+
+<title>Calculating Basic Population Genetic Statistics from Sequence Data</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/readable.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<!---
+
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-right: 50px;
+  padding-left: -50px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+ offset scroll position for anchor links (for fixed navbar)  
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+</style>
+-->
+
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; }
+code > span.dt { color: #204a87; }
+code > span.dv { color: #0000cf; }
+code > span.bn { color: #0000cf; }
+code > span.fl { color: #0000cf; }
+code > span.ch { color: #4e9a06; }
+code > span.st { color: #4e9a06; }
+code > span.co { color: #8f5902; font-style: italic; }
+code > span.ot { color: #8f5902; }
+code > span.al { color: #ef2929; }
+code > span.fu { color: #000000; }
+code > span.er { font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- HOME -->
+      <a class="navbar-brand" href="index.html"><b>Population Genetics in R</b></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!-- Table of contents -->
+        <li class="dropdown">
+          <a href="chapters" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">For Users<span class="caret"></span></a>
+          <ol class="dropdown-menu">
+              <li><a href = "Required Packages">GETTINGSTARTED.html</a></li>
+              <li class="divider"></li>  
+              <li>What genetic marker do you have?</li>
+              <li class="divider"></li>  
+              <li><a href = "SNP">SNP.html</a></li>
+          </ol>
+        </li>
+        <!-- Appendices dropdown -->
+        <li class="dropdown">
+          <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">For Package Developers<span class="caret"></span></a>
+          <ul class = "dropdown-menu", role = "menu">
+           <li><a href = "DEVELOPER.html">Introduction</a></li>  
+          </ul>
+        </li>
+        <!-- Author button -->
+        <li class="dropdown">
+          <a href="about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">For Contributers<span class="caret"></span></a>
+          <ul class = "dropdown-menu", role = "menu">
+           <li><a href = "CONTRIBUTING.html">How to contribute</a></li>  
+           <li><a href = "https://github.com/NESCent/popgenInfo">This webpage on github</a></li>  
+		  </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- 
+
+old rmarkdown version: 
+
+devtools::install_github("rstudio/rmarkdown", ref = "b96214b9ac86b437067a0aa21442203f52face83")
+
+
+ -->
+<!-- <div class="container">
+<div class="row">
+<div class="span10 offset1"> -->
+
+<div id="header">
+<h1 class="title">Calculating Basic Population Genetic Statistics from Sequence Data</h1>
+<h4 class="author"><em>Margarita M. López-Uribe</em></h4>
+<h4 class="date"><em>March 18, 2015</em></h4>
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#resourcespackages">Resources/Packages</a></li>
+<li><a href="#section-i---workflow-for-raw-sequence-data">Section I - Workflow for Raw Sequence Data</a></li>
+<li><a href="#section-ii---workflow-for-multilocus-sequence-data">Section II - Workflow for Multilocus Sequence Data</a></li>
+<li><a href="#analyses">Analyses</a></li>
+<li><a href="#conclusions">Conclusions</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>In this vignette, you will see general information on how to calculate basic population genetic statistics from sequence data using R packages. These basic statistics serve as exploratory analyses that will tell you 1) the levels of genetic diversity in your overall population and subpopulations, 2) general patterns of the distribution of genetic diversity across subpopulations, and 3) possible violations of the data to the Wright-Fischer Model (Ref).</p>
+<p>The first section of this tutorial provides information on how to analyze sequence data from one locus (link to section 1). The second section will discuss how to analyze multilocus sequence data (link to section 2).</p>
+</div>
+<div id="resourcespackages" class="section level1">
+<h1>Resources/Packages</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(adegenet) <span class="co"># to store the data</span>
+<span class="kw">library</span>(ape)
+<span class="kw">library</span>(pegas)
+<span class="kw">library</span>(hierfstat)
+<span class="kw">library</span>(mmod)
+<span class="kw">library</span>(genetics)</code></pre>
+</div>
+<div id="section-i---workflow-for-raw-sequence-data" class="section level1">
+<h1>Section I - Workflow for Raw Sequence Data</h1>
+<div id="import-data" class="section level3">
+<h3>Import data</h3>
+<p>To import our raw sequence data into R, the most widely used formats are <a href="http://www.ncbi.nlm.nih.gov/BLAST/fasta.html">FASTA</a> and nexus. Before you import your data into R, please make sure the sequences are aligned. Sequence alignments can be done in software such as Clustal or Muscle. Both are are part of the software SeaView. Alignments can be saved in FASTA format. Another R option could be <code>library(Biostrings)</code> but it is not discussed here. In all cases, we will convert the sequence data file into <a href="http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind">genind</a> objects, which is the standard file format for population genetic analyses in R.</p>
+<p>Dataset “Ebom_mt.fas” can be downloaded <a href="">here</a>. Dataset “Ebom_CAD.fas” can be downloaded <a href="">here</a>.</p>
+<p>Import the previously aligned sequence data into R. The ‘Ebom_mt.fas’ file contains alignments of two concatenated mitochondrial genes.</p>
+<pre class="sourceCode r"><code class="sourceCode r">myData1 &lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_mt.fas&quot;</span>) <span class="co"># this creates a DNAbin object</span>
+<span class="kw">class</span>(myData1)</code></pre>
+<pre><code>## [1] &quot;DNAbin&quot;</code></pre>
+<p>To convert DNAbin objects to genind objects:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(mmod)</span>
+tmp1&lt;-<span class="kw">as.matrix</span>(myData1) <span class="co"># converts the list of sequences into a matrix</span>
+myData1b&lt;-<span class="kw">as.genind.DNAbin</span>(tmp1, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;CA&quot;</span>,<span class="st">&quot;Ch&quot;</span>,<span class="st">&quot;Am&quot;</span>,<span class="st">&quot;AF&quot;</span>), <span class="dt">each=</span><span class="dv">5</span>))</code></pre>
+</div>
+<div id="genetic-diversity-indices" class="section level3">
+<h3>Genetic diversity indices:</h3>
+<p>Calculate nucleotide diversity and summary descriptors for the data:</p>
+<pre class="sourceCode r"><code class="sourceCode r">myData1_pi&lt;-<span class="kw">nuc.div</span>(myData1) <span class="co"># nucleotide diversity from a sample of DNA sequences in DNAbin format</span>
+myData1_pi</code></pre>
+<pre><code>## [1] 0.009457949</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">myData1_summ&lt;-<span class="kw">summary</span>(myData1b) <span class="co"># to visualize summary descriptors of your sequence data file</span></code></pre>
+<pre><code>## 
+##  # Total number of genotypes:  20 
+## 
+##  # Population sample sizes:  
+## CA Ch Am AF 
+##  5  5  5  5 
+## 
+##  # Number of alleles per locus:  
+## L1 
+## 17 
+## 
+##  # Number of alleles per population:  
+## 1 2 3 4 
+## 4 4 5 4 
+## 
+##  # Percentage of missing data:  
+## [1] 0
+## 
+##  # Observed heterozygosity:  
+## L1 
+##  0 
+## 
+##  # Expected heterozygosity:  
+##    L1 
+## 0.935</code></pre>
+<p>Make some plots:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(myData1_summ$pop.eff, myData1_summ$pop.nall, <span class="dt">xlab=</span><span class="st">&quot;Sample size&quot;</span>,
+<span class="dt">ylab=</span><span class="st">&quot;Number of alleles&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Alleles numbers and sample sizes&quot;</span>,
+<span class="dt">type=</span><span class="st">&quot;n&quot;</span>)
+<span class="kw">text</span>(myData1_summ$pop.eff,myData1_summ$pop.nall,<span class="dt">lab=</span><span class="kw">names</span>(myData1_summ$pop.eff))
+<span class="kw">barplot</span>(myData1_summ$loc.nall, <span class="dt">ylab=</span><span class="st">&quot;Number of alleles&quot;</span>,
+<span class="dt">main=</span><span class="st">&quot;Number of alleles per locus&quot;</span>)
+<span class="kw">barplot</span>(myData1_summ$Hexp-myData1_summ$Hobs, <span class="dt">main=</span><span class="st">&quot;Heterozygosity: expected-observed&quot;</span>,
+<span class="dt">ylab=</span><span class="st">&quot;Hexp - Hobs&quot;</span>)
+<span class="kw">barplot</span>(myData1_summ$pop.eff, <span class="dt">main=</span><span class="st">&quot;Sample sizes per population&quot;</span>,
+<span class="dt">ylab=</span><span class="st">&quot;Number of genotypes&quot;</span>,<span class="dt">las=</span><span class="dv">3</span>)</code></pre>
+<p><img src="SummarySequenceData_files/figure-html/plot-1.png" title="" alt="" width="960" /></p>
+<p>Note that no observed heterozygosity is expected because sequences come from mitochondrial data.</p>
+</div>
+<div id="testing-for-hardy-weinberg-equilibrium" class="section level3">
+<h3>Testing for Hardy-Weinberg Equilibrium</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(genetics)</span>
+myData1_HWE&lt;-<span class="st"> </span><span class="kw">HWE.test.genind</span>(myData1b) <span class="co"># this will test for Hardy-Weingber equilibrium</span>
+myData1_HWE <span class="co"># p-values lower than 0.05 indicate deviations from HWE</span></code></pre>
+<pre><code>## $L1
+## $L1$P1
+## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  tab
+## X-squared = 15, df = 6, p-value = 0.02026
+## 
+## 
+## $L1$P2
+## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  tab
+## X-squared = 15, df = 6, p-value = 0.02026
+## 
+## 
+## $L1$P3
+## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  tab
+## X-squared = 20, df = 10, p-value = 0.02925
+## 
+## 
+## $L1$P4
+## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  tab
+## X-squared = 15, df = 6, p-value = 0.02026</code></pre>
+<p>Note: If you have loci in your dataset that deviate from HWE, your dataset may violate assumptions for downstream population genetic analyses.</p>
+</div>
+<div id="f-statistics" class="section level3">
+<h3>F statistics</h3>
+<pre class="sourceCode r"><code class="sourceCode r">myData1_loci&lt;-<span class="st"> </span><span class="kw">as.loci</span>(myData1b) 
+<span class="kw">Fst</span>(myData1_loci) <span class="co"># this function calculates overall Fit, Fst, and Fis of the dataset</span></code></pre>
+<pre><code>##    Fit   Fst Fis
+## L1   1 0.075   1</code></pre>
+</div>
+<div id="testing-for-population-differentiation" class="section level3">
+<h3>Testing for Population Differentiation</h3>
+<div id="testing-for-population-differentiation-from-diploid-data" class="section level4">
+<h4>Testing for Population Differentiation from diploid data</h4>
+<pre class="sourceCode r"><code class="sourceCode r">myData1_bs&lt;-<span class="st"> </span><span class="kw">chao_bootstrap</span>(myData1b, <span class="dt">nreps=</span><span class="dv">100</span>) <span class="co"># subsample your dataset multiple times to estimate significance of genetic differentation statistics </span>
+<span class="kw">summarise_bootstrap</span>(myData1_bs, Gst_Nei) <span class="co"># estimate Gst_Nei and whether or not it is significant</span></code></pre>
+<pre><code>## 
+## Estimates for each locus
+## Locus    Mean     95% CI
+## L1   0.2024  (0.1579-0.2628)
+## 
+## Global Estimate based on average heterozygosity
+## 0.2024   (0.1579-0.2628)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(myData1_bs, Gst_Hedrick) <span class="co"># estimate Hedrick&#39;s Gst and whether or not it is significant</span></code></pre>
+<pre><code>## 
+## Estimates for each locus
+## Locus    Mean     95% CI
+## L1   1   (1-1)
+## 
+## Global Estimate based on average heterozygosity
+## 1    (1-1)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(myData1_bs, D_Jost) <span class="co"># estimate Jost&#39;s D and whether or not it is significant</span></code></pre>
+<pre><code>## 
+## Estimates for each locus
+## Locus    Mean     95% CI
+## L1   1   (1-1)
+## 
+## Global Estimate based on average heterozygosity
+## 1    (1-1)
+## 
+## Global Estimate based on harmonic mean of statistic
+## 1    (1-1)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">myData1_GenDiff&lt;-<span class="kw">diff_stats</span>(myData1b) <span class="co"># general test for genetic differentiation per locus and across all subpopultions using Gst, Gst&#39; and Jost D (estimated and based on the harmonic mean between loci)</span>
+myData1_GenDiff</code></pre>
+<pre><code>## $per.locus
+##           Hs        Ht       Gst Gprime_st D
+## L1 0.8222222 0.9555556 0.1395349         1 1
+## 
+## $global
+##        Hs        Ht   Gst_est Gprime_st     D_het    D_mean 
+## 0.8222222 0.9555556 0.1395349 1.0000000 1.0000000 1.0000000</code></pre>
+</div>
+<div id="testing-for-population-differentiation-from-haploid-data" class="section level4">
+<h4>Testing for Population Differentiation from haploid data</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(mmod)</span>
+myData1_Phist&lt;-<span class="st"> </span><span class="kw">Phi_st_Meirmans</span>(myData1b) 
+myData1_Phist <span class="co"># test fo population differentation for haploid data</span></code></pre>
+<pre><code>## $per.locus
+## L1 
+##  1 
+## 
+## $global
+## [1] 1</code></pre>
+</div>
+</div>
+</div>
+<div id="section-ii---workflow-for-multilocus-sequence-data" class="section level1">
+<h1>Section II - Workflow for Multilocus Sequence Data</h1>
+<div id="import-data-1" class="section level3">
+<h3>Import data</h3>
+<p>To import raw sequence data from more loci into R:</p>
+<pre class="sourceCode r"><code class="sourceCode r">myData2&lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_CAD.fas&quot;</span>) <span class="co"># this creates a DNAbin object</span>
+<span class="kw">class</span>(myData2)
+tmp2&lt;-<span class="kw">as.matrix</span>(myData2) <span class="co"># converts the list of sequences into a matrix</span>
+allData&lt;-<span class="kw">cbind</span>(tmp1,tmp2)</code></pre>
+<p>To convert DNAbin objects to genind objects:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(mmod)</span>
+tmp3&lt;-<span class="kw">as.matrix</span>(allData) <span class="co"># converts the list of sequences into a matrix</span>
+allDatab&lt;-<span class="kw">as.genind.DNAbin</span>(tmp3, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;CA&quot;</span>,<span class="st">&quot;Ch&quot;</span>,<span class="st">&quot;Am&quot;</span>,<span class="st">&quot;AF&quot;</span>), <span class="dt">each=</span><span class="dv">5</span>)) <span class="co">#bins data from multiple loci into one DNAbin object - MAKE SURE SEQUENCES IN THE FASTA FILE HAVE THE SAME NAME</span></code></pre>
+</div>
+</div>
+<div id="analyses" class="section level1">
+<h1>Analyses</h1>
+<p>For example, testing for Genetic Differentiation:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(genetics)</span>
+allData_HWE&lt;-<span class="st"> </span><span class="kw">HWE.test.genind</span>(allDatab, <span class="dt">res=</span><span class="st">&quot;matrix&quot;</span>) <span class="co"># this will generate a matrix of p-values for HWE</span></code></pre>
+<pre><code>## Warning in chisq.test(tab, ...): Chi-squared approximation may be
+## incorrect</code></pre>
+<pre><code>## Warning in chisq.test(tab, ...): Chi-squared approximation may be
+## incorrect</code></pre>
+<pre><code>## Warning in chisq.test(tab, ...): Chi-squared approximation may be
+## incorrect</code></pre>
+<pre><code>## Warning in chisq.test(tab, ...): Chi-squared approximation may be
+## incorrect</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">allData_HWE</code></pre>
+<pre><code>##            L1
+## P1 0.02925269
+## P2 0.02925269
+## P3 0.02925269
+## P4 0.02925269</code></pre>
+<p>For example, testing for overal Genetic Differentiation:</p>
+<pre class="sourceCode r"><code class="sourceCode r">allData_loci&lt;-<span class="st"> </span><span class="kw">as.loci</span>(allDatab) 
+<span class="kw">Fst</span>(allData_loci) <span class="co"># this function calculates overall Fit, Fst, and Fis of the dataset</span></code></pre>
+<pre><code>##    Fit          Fst Fis
+## L1   1 1.040834e-16   1</code></pre>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<div id="what-did-we-learn-today" class="section level3">
+<h3>What did we learn today?</h3>
+<p>In this vignette, we learned how to explore the patterns of genetic diveristy in our dataset. Now, you know the level of genetic differentiation in your population and subpopulations, and whether or now they are genetically different. Also, you have an idea of potential violations of the dataset to the null Wright-Fischer model.</p>
+</div>
+<div id="what-is-next" class="section level3">
+<h3>What is next?</h3>
+<p>You may now want to move into looking into population differentation in more detail (link to vignette). You may also want to explore demographic parameter estimation (e.g. deviations from neutrality,effective population size).</p>
+</div>
+</div>
+
+<!-- </div>
+</div>
+</div>
+ -->
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
