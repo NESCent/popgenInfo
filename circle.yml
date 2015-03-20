@@ -1,0 +1,8 @@
+machine:
+    services:
+        - docker
+
+general:
+    branches:
+        ignore:
+            - gh-pages
