@@ -1,13 +1,12 @@
-HTML_FILES := $(patsubst %.Rmd, %.html ,$(wildcard *.Rmd))
+TARGETS := $(filter-out README.md, $(wildcard *.Rmd *.md))
+
+BUILDDIR ?= ../build
 
 all: clean html
 
-html: $(HTML_FILES)
-
-%.html: %.Rmd
-	R --slave -e "rmarkdown::render('$<')"
+html: $(TARGETS)
+	-cp -p $^ $(BUILDDIR)
 
 .PHONY: clean
 
 clean:
-	$(RM) $(HTML_FILES)

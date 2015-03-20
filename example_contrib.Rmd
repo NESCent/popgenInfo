@@ -18,7 +18,7 @@ Assumptions
 Data
 ==========
 Links to information about the data if needed e.g. package vignettes.    
-Link to the data to download for the workflow if it is public data. Can download into R here and show the code.   
+Link to the data to download for the workflow if it is public data or in this repository. Can download into R here and show the code.   
 Format the users data needs to be in for this to work (import data and show a section to demonstrate if needed).  
 
 Resources/Packages required
