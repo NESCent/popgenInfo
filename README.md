@@ -1,6 +1,6 @@
 # Resources for Population Genetics in R
 
-Build status: [![Circle CI](https://circleci.com/gh/NESCent/popgenInfo.svg?style=svg)](https://circleci.com/gh/NESCent/popgenInfo)
+Build status: [![Circle CI](https://circleci.com/gh/NESCent/popgenInfo/tree/master.svg?style=svg)](https://circleci.com/gh/NESCent/popgenInfo/tree/master)
 
 This site provides resources for conducting population genetic analyses in R using existing packages. 
 
