@@ -51,11 +51,15 @@ tmp1<-as.matrix(myData1) # converts the list of sequences into a matrix
 myData1b<-as.genind.DNAbin(tmp1, rep(c("CA","Ch","Am","AF"), each=5))
 ```
 
-### Genetic diversity indices
+### Genetic diversity indices:
+Calculate nucleotide diversity and summary descriptors for the data:
 ```{r, pi}
 myData1_pi<-nuc.div(myData1) # nucleotide diversity from a sample of DNA sequences in DNAbin format
 myData1_pi
 myData1_summ<-summary(myData1b) # to visualize summary descriptors of your sequence data file
+```
+Make some plots:
+```{r,plot}
 par(mfrow=c(2,2))
 plot(myData1_summ$pop.eff, myData1_summ$pop.nall, xlab="Sample size",
 ylab="Number of alleles",main="Alleles numbers and sample sizes",
