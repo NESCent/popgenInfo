@@ -46,6 +46,7 @@ class(myData1)
 
 To convert DNAbin objects to genind objects:
 ```{r, data_import_DNAbin}
+#library(mmod)
 tmp1<-as.matrix(myData1) # converts the list of sequences into a matrix
 myData1b<-as.genind.DNAbin(tmp1, rep(c("CA","Ch","Am","AF"), each=5))
 ```
