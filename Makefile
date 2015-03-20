@@ -12,6 +12,7 @@ html: cpsources $(SUBDIRS)
 deploy: html
 	$(MAKE) -C $(BUILDDIR) deploy
 	git stash save --keep-index --include-untracked
+	$(MAKE) -C $(BUILDDIR) clean
 
 .PHONY: $(SUBDIRS)
 
