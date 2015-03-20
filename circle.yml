@@ -21,7 +21,6 @@ deployment:
         branch: master
         commands:
             - make deploy
-            - git stash save --keep-index --include-untracked
             - git checkout gh-pages
             - tar xvf site.tar
             - git add --all
