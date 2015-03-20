@@ -10,3 +10,17 @@ general:
 test:
     override:
         - make html
+
+deployment:
+    production:
+        branch: master
+        commands:
+            - make deploy
+            - git stash save --keep-index --include-untracked
+            - git checkout gh-pages
+            - tar xvf site.tar
+            - git add --all
+            - git commit -m "Website rebuild"
+            - git push origin gh-pages
+            - git checkout master
+            - git stash pop --index
