@@ -154,7 +154,7 @@ Conclusions
 ========
 
 ### What did we learn today?
-In this vignette, we learned how to explore the patterns of genetic diveristy in ou dataset. Now, you know the level of genetic differentiation in your population and subpopulations, and whether or now they are genetically different. Also, you have an idea of potentiall violations of the dataset to the null Wright-Fischer model. 
+In this vignette, we learned how to explore the patterns of genetic diveristy in our dataset. Now, you know the level of genetic differentiation in your population and subpopulations, and whether or now they are genetically different. Also, you have an idea of potential violations of the dataset to the null Wright-Fischer model. 
 
 ### What is next?
 You may now want to move into looking into population differentation in more detail (link to vignette). You may also want to explore demographic parameter estimation (e.g. deviations from neutrality,effective population size).
