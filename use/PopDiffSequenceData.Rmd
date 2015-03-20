@@ -23,7 +23,7 @@ library(genetics)
 Import data
 ========
 Refer to vignette on "Summary Statistics for Sequence Data" (add link) for detailed instructions on how to upload one locus or multilocus FASTA files for this type of analyses. Here is the code:
-```{r, data_import_FASTA}
+```{r, data_import_FASTA, eval=FALSE}
 myData1<- read.FASTA("Ebom_mt.fas") 
 tmp1<-as.matrix(myData1)
 myData2<- read.FASTA("Ebom_CAD.fas") 
@@ -31,6 +31,16 @@ tmp2<-as.matrix(myData2)
 allData<-cbind(tmp1,tmp2)
 tmp3<-as.matrix(allData) 
 allDatab<-as.genind.DNAbin(tmp3, rep(c("CA","Ch","Am","AF"), each=5)) 
+```
+
+```{r, data_import_FASTA_real, echo = FALSE}
+myData1<- read.FASTA("../data/Ebom_mt.fas") # this creates a DNAbin object
+tmp1<-as.matrix(myData1) # converts the list of sequences into a matrix
+myData2<- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
+tmp2<-as.matrix(myData2) # converts the list of sequences into a matrix
+allData<-cbind(tmp1,tmp2)
+tmp3<-as.matrix(allData) 
+allDatab<-as.genind.DNAbin(tmp3, rep(c("CA","Ch","Am","AF"), each=5))
 ```
 
 Pairwise population differentiation
