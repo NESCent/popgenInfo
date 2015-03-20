@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title></title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/readable.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<!---
+
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-right: 50px;
+  padding-left: -50px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+ offset scroll position for anchor links (for fixed navbar)  
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+</style>
+-->
+
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- HOME -->
+      <a class="navbar-brand" href="index.html"><b>Population Genetics in R</b></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!-- Table of contents -->
+        <li class="dropdown">
+          <a href="chapters" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chapters <span class="caret"></span></a>
+            <ol class="dropdown-menu">
+            </ol>
+        </li>
+        <!-- Appendices dropdown -->
+        <li class="dropdown">
+          <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Appendices <span class="caret"></span></a>
+          <ul class = "dropdown-menu", role = "menu">
+          </ul>
+        </li>
+        <!-- Author button -->
+        <li class="dropdown">
+          <a href="about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About<span class="caret"></span></a>
+          <ul class = "dropdown-menu", role = "menu">
+		  </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- 
+
+old rmarkdown version: 
+
+devtools::install_github("rstudio/rmarkdown", ref = "b96214b9ac86b437067a0aa21442203f52face83")
+
+
+ -->
+<!-- <div class="container">
+<div class="row">
+<div class="span10 offset1"> -->
+
+
+<div id="TOC">
+<ul>
+<li><a href="#creating-and-submitting-workflow-vignettes">Creating and submitting workflow vignettes</a><ul>
+<li><a href="#what-is-a-workflow-vignette">What is a workflow vignette?</a></li>
+<li><a href="#who-should-contribute">Who should contribute?</a></li>
+<li><a href="#how-do-i-write-a-workflow-vignette">How do I write a workflow vignette?</a></li>
+<li><a href="#how-do-i-submit-a-workflow">How do I submit a workflow?</a></li>
+<li><a href="#how-do-i-submit-datasets">How do I submit datasets?</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="creating-and-submitting-workflow-vignettes" class="section level1">
+<h1>Creating and submitting workflow vignettes</h1>
+<div id="what-is-a-workflow-vignette" class="section level2">
+<h2>What is a workflow vignette?</h2>
+<p>Workflow vignettes are documents that outline a population genetics based bioinformatics workflow involving one or more R packages. These workflows are based around biological questions/topics and the type of data used. They are generally more extensive than those found in package vignettes and are intended to provide R users with the necessary code and examples to solve biological questions.</p>
+<p>The analysis outlined in the vignettes should be fast to run, ideally approximately two minutes or less. For example, if you are running permutations, set these to a small number in the workflow and encourage the user to increase the number themselves in order to reduce the time required.</p>
+</div>
+<div id="who-should-contribute" class="section level2">
+<h2>Who should contribute?</h2>
+<p>Anyone who is confident in population genetics analysis in R is encouraged to contribute.</p>
+</div>
+<div id="how-do-i-write-a-workflow-vignette" class="section level2">
+<h2>How do I write a workflow vignette?</h2>
+<p>Write the workflow vignette in [R markdown] (<a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>). The workflow should include example analysis and explanations using data that can be readily accessed in the public domain e.g. the data that comes as part of some packages so that users can replicate the analysis themselves. If no public data is available to address a particular biological question that you want to write a workflow for, this data can be uploaded to this repository also.</p>
+</div>
+<div id="how-do-i-submit-a-workflow" class="section level2">
+<h2>How do I submit a workflow?</h2>
+<ol style="list-style-type: decimal">
+<li>Set up a github account if you don’t already have one (see <a href="https://guides.github.com/activities/hello-world/">here</a>) for a quick tutorial on using Github. Download the appropriate Git for your computer, see <a href="https://help.github.com/articles/set-up-git/">here</a> and set it up.</li>
+<li>Fork this repository on Github using the <code>Fork</code> button.</li>
+<li>Clone the repository to your machine using <code>git clone https://github.com/NESCent/popgenInfo.git</code> on the command line. The URL used here is in the HTTPS clone url section on the popgenInfo github page. Keep your clone synced up by following Step 3 of <a href="https://help.github.com/articles/fork-a-repo/">this tutorial</a>.</li>
+<li>Then, move to the popgenInfo directory using <code>cd popgenInfo</code>.</li>
+<li>Create a branch for your changes using <code>git checkout -b Your_branch_name</code>.</li>
+<li>Move your file into the branches <strong>use</strong> directory using <code>cp yourfilename.Rmd Your_branch_name/use/</code>.</li>
+<li>Move into the use directory using <code>cd Your_branch_name/use/</code>.</li>
+<li>Add the file to git using <code>git add yourfilename.Rmd</code>.</li>
+<li>Then commit this using <code>git commit</code> and add some short text describing what your file is.</li>
+<li>Then run <code>git push origin</code>. <strong>(Am I missing something here?)</strong></li>
+<li>To do a pull request, navigate to your branch on github. Click <code>Compare &amp; review</code>.</li>
+<li>Once you have reviewed the changes, click <code>Create pull request</code>. Once the request is approved, the file will be automatically sent to a remote server that compiles the document into a html file.</li>
+<li>Then open the <a href="WORKFLOWS.md"><code>WORKFLOWS.md</code></a> file using the edit button if on the github website (or alter it your branch of the repository that has already been cloned on your own machine) and add the name of your tutorial along with a link to the tutorial e.g. the link will be ‘use/Tutorial_name.html’. Finally click <code>Propose file change</code> and then <code>Create pull request</code> to request that the file changes be included if you are altering it on github.</li>
+</ol>
+</div>
+<div id="how-do-i-submit-datasets" class="section level2">
+<h2>How do I submit datasets?</h2>
+<p>If uploading your dataset to this repository, the dataset used in a workflow needs to be &lt; 200 kb in size. If your dataset is larger and your analysis will make sense on a subset of the dataset, then please subset it to a smaller size for both submission and use in the workflow. Submit data to the ‘data’ file in your branch in the same way as for your R markdown file.</p>
+</div>
+</div>
+
+<!-- </div>
+</div>
+</div>
+ -->
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
