@@ -2,6 +2,7 @@ HTML_FILES := $(patsubst %.Rmd, %.html, $(wildcard *.Rmd))
 HTML_FILES := $(HTML_FILES) $(patsubst %.md, %.html, $(wildcard *.md))
 
 DATADIR ?= $(CURDIR)/../data
+SITEARCH = ../site.tar
 
 all: clean html
 
@@ -12,6 +13,9 @@ html: dockerImage $(HTML_FILES)
 
 %.html: %.md
 	docker run -v $(DATADIR):/data -v $$(pwd):/build -w /build rocker/popgen Rscript -e "rmarkdown::render('$<')"
+
+deploy: html
+	tar cf $(SITEARCH) include libs *.html *_files
 
 .PHONY: dockerImage
 

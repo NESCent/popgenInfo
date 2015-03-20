@@ -9,6 +9,9 @@ export DATADIR  := $(CURDIR)/data
 html: cpsources $(SUBDIRS)
 	$(MAKE) -C $(BUILDDIR) html
 
+deploy: html
+	$(MAKE) -C $(BUILDDIR) deploy
+
 .PHONY: $(SUBDIRS)
 
 $(SUBDIRS):
