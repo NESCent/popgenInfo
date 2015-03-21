@@ -1,7 +1,7 @@
 ## Start with the hadleyverse image from Rocker, then add population
 ## genetics images on top.
 
-FROM rocker/hadleyverse
+FROM rocker/hadleyverse:latest
 MAINTAINER Hilmar Lapp hilmar.lapp@duke.edu
 
 ## Install population genetics and related packages from CRAN
