@@ -27,4 +27,3 @@ deployment:
             - git commit -m "Website rebuild"
             - git push origin gh-pages
             - git checkout master
-            - git stash pop --index
