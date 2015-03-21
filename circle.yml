@@ -7,6 +7,15 @@ general:
         ignore:
             - gh-pages
 
+dependencies:
+    cache_directories:
+        - "~/docker"
+
+    override:
+        - if [[ -e ~/docker/popgenImage.tar ]]; then docker load -i ~/docker/popgenImage.tar; fi
+        - cd build && docker build -t rocker/popgen - < Dockerfile
+        - mkdir -p ~/docker; docker save rocker/popgen > ~/docker/popgenImage.tar
+
 checkout:
     post:
         - git config user.name "Hilmar Lapp"
