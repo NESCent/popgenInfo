@@ -1,5 +1,7 @@
 HTML_FILES := $(patsubst %.Rmd, %.html, $(wildcard *.Rmd))
 HTML_FILES := $(HTML_FILES) $(patsubst %.md, %.html, $(wildcard *.md))
+HTML_DIRS  := $(patsubst %.Rmd, %_files, $(wildcard *.Rmd))
+HTML_DIRS  := $(HTML_DIRS) $(patsubst %.md, %_files, $(wildcard *.md))
 
 DATADIR ?= $(CURDIR)/../data
 SITEARCH = ../site.tar
@@ -16,6 +18,7 @@ html: dockerImage $(HTML_FILES)
 
 deploy: html
 	tar cf $(SITEARCH) include libs *.html *_files
+	git stash save --keep-index --include-untracked
 
 .PHONY: dockerImage
 
@@ -26,9 +29,7 @@ dockerImage:
 
 clean:
 	$(RM) $(HTML_FILES)
-	$(RM) -r $(patsubst %.Rmd, %_files, $(wildcard *.Rmd))
-	$(RM) -r $(patsubst %.md, %_files, $(wildcard *.md))
+	$(RM) -r $(HTML_DIRS)
 
 distclean: clean
-	$(RM) *.Rmd
-	$(RM) *.md
+	$(RM) *.Rmd *.md
