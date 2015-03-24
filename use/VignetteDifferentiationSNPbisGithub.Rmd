@@ -2,7 +2,7 @@
 title: Calculating genetic differentiation and clustering methods from SNP data
 author: Stéphanie Manel
 date: March 19, 2015
-output:html_document
+output: html_document
 ---
 
 Introduction

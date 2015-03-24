@@ -1,7 +1,7 @@
 ---
-title: "Calculating Basic Population Genetic Statistics from SNP Data"
-author: "StÈphanie Manel"
-date: "March 19, 2015"
+title: Calculating Basic Population Genetic Statistics from SNP Data
+author: St√©phanie Manel
+date: March 19, 2015
 output: html_document
 ---
 
@@ -138,4 +138,4 @@ You may now want to move into looking into population differentation in more det
 Reference
 ========================================================
 
-Eckert, A. J., A. D. Bower, S. C. Gonz·lez-MartÌnez, J. L. Wegrzyn, G. Coop and D. B. Neale. 2010. Back to nature: Ecological genomics of loblolly pine (Pinus taeda, Pinaceae). Molecular Ecology 19: 3789-3805.
+Eckert, A. J., A. D. Bower, S. C. Gonz√°lez-Mart√≠nez, J. L. Wegrzyn, G. Coop and D. B. Neale. 2010. Back to nature: Ecological genomics of loblolly pine (Pinus taeda, Pinaceae). Molecular Ecology 19: 3789-3805.
