@@ -1,4 +1,6 @@
-# Get started using R
+---
+title: "Get started using R"
+---
 
 * [Install R](http://cran.r-project.org/)
 * [R Reference Card](http://cran.r-project.org/doc/contrib/Short-refcard.pdf)

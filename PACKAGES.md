@@ -1,5 +1,6 @@
-Packages available in R
-========
+---
+title: "Packages available in R"
+---
 
 Package    | Title
 -----------|------------

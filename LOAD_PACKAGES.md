@@ -1,5 +1,6 @@
-Loading packages
-===================
+---
+title: "Loading packages"
+---
 
 Installing required R packages:
 -----
