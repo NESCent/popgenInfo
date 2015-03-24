@@ -10,7 +10,7 @@
 
 
 
-<title></title>
+<title>Creating and submitting workflow vignettes</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -125,30 +125,30 @@ img {
       <ul class="nav navbar-nav">
         <!-- Table of contents -->
         <li class="dropdown">
-          <a href="chapters" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users<span class="caret"></span></a>
+          <a href="chapters" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users <span class="caret"></span></a>
           <ol class="dropdown-menu">
               <li><a href="GETSTARTED.html">Getting Started</a></li>
               <li class="divider"></li>
-              <li>For marker data:</li>
-              <li class="divider"></li>
+              <li class="dropdown-header">For marker data:</li>
+              <!-- <li class="divider"></li> -->
               <li><a href="SNP.html">SNPs</a></li>
               <li class="divider"></li>
-              <li>For sequence data:</li>
-              <li class="divider"></li>  
+              <li class="dropdown-header">For sequence data:</li>
+              <!-- <li class="divider"></li>   -->
               <li><a href="SummarySequenceData.html">Summary statistics</a></li>
               <li><a href="PopDiffSequenceData.html">Population differentiation</a></li>
           </ol>
         </li>
         <!-- Appendices dropdown -->
         <li class="dropdown">
-          <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Package Developers<span class="caret"></span></a>
+          <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Package Developers <span class="caret"></span></a>
           <ul class = "dropdown-menu", role = "menu">
            <li><a href = "DEVELOPER.html">Introduction</a></li>  
           </ul>
         </li>
         <!-- Author button -->
         <li class="dropdown">
-          <a href="about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contribute!<span class="caret"></span></a>
+          <a href="about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contribute! <span class="caret"></span></a>
           <ul class = "dropdown-menu", role = "menu">
            <li><a href = "CONTRIBUTING.html">How to contribute</a></li>  
            <li><a href="https://github.com/NESCent/popgenInfo">Source repository</a></li>  
@@ -162,21 +162,20 @@ img {
 <div class="row">
 <div class="span10 offset1"> -->
 
+<div id="header">
+<h1 class="title">Creating and submitting workflow vignettes</h1>
+</div>
 
 <div id="TOC">
 <ul>
-<li><a href="#creating-and-submitting-workflow-vignettes">Creating and submitting workflow vignettes</a><ul>
 <li><a href="#what-is-a-workflow-vignette">What is a workflow vignette?</a></li>
 <li><a href="#who-should-contribute">Who should contribute?</a></li>
 <li><a href="#how-do-i-write-a-workflow-vignette">How do I write a workflow vignette?</a></li>
 <li><a href="#how-do-i-submit-a-workflow">How do I submit a workflow?</a></li>
 <li><a href="#how-do-i-submit-datasets">How do I submit datasets?</a></li>
-</ul></li>
 </ul>
 </div>
 
-<div id="creating-and-submitting-workflow-vignettes" class="section level1">
-<h1>Creating and submitting workflow vignettes</h1>
 <div id="what-is-a-workflow-vignette" class="section level2">
 <h2>What is a workflow vignette?</h2>
 <p>Workflow vignettes are documents that outline a population genetics based bioinformatics workflow involving one or more R packages. These workflows are based around biological questions/topics and the type of data used. They are generally more extensive than those found in package vignettes and are intended to provide R users with the necessary code and examples to solve biological questions.</p>
@@ -188,7 +187,7 @@ img {
 </div>
 <div id="how-do-i-write-a-workflow-vignette" class="section level2">
 <h2>How do I write a workflow vignette?</h2>
-<p>Write the workflow vignette in [R markdown] (<a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a>). The workflow should include example analysis and explanations using data that can be readily accessed in the public domain e.g. the data that comes as part of some packages so that users can replicate the analysis themselves. If no public data is available to address a particular biological question that you want to write a workflow for, this data can be uploaded to this repository also.</p>
+<p>Write the workflow vignette in <a href="http://rmarkdown.rstudio.com/">R markdown</a>. The workflow should include example analysis and explanations using data that can be readily accessed in the public domain e.g. the data that comes as part of some packages so that users can replicate the analysis themselves. If no public data is available to address a particular biological question that you want to write a workflow for, this data can be uploaded to this repository also.</p>
 </div>
 <div id="how-do-i-submit-a-workflow" class="section level2">
 <h2>How do I submit a workflow?</h2>
@@ -210,7 +209,6 @@ img {
 <div id="how-do-i-submit-datasets" class="section level2">
 <h2>How do I submit datasets?</h2>
 <p>We encourage contributors to use existing datasets for their workflows. If uploading your dataset to this repository, submit data files to the <strong>data</strong> directory in your branch in the same way as for your R markdown file. The dataset used in a workflow needs to be &lt; 200 kb in size. If your dataset is larger and your analysis will make sense on a subset of the dataset, then please subset it to a smaller size for both submission and use in the workflow.</p>
-</div>
 </div>
 
 <!-- </div>
