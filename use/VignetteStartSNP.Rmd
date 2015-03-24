@@ -1,0 +1,141 @@
+---
+title: "Calculating Basic Population Genetic Statistics from SNP Data"
+author: "Stéphanie Manel"
+date: "March 19, 2015"
+output: html_document
+---
+
+Introduction
+========================================================
+
+In this vignette, you will  calculate basic population genetic statistics from SNP data using R packages. This statistics serve as exploratory analysis and requires to work at population level. We will caculate: i) Genetic diversity, ii) Test Hardy Weinberg  iii) Fis and global Fst. 
+
+The dataset used for those analysis concerns the plant species: lodgepole pine (Pinus contorta, Pinaceae). You can have more information on this data set and the species on the web site of A. Eckert:  (http://eckertdata.blogspot.fr/)
+But here the daset is used as a test dataset with no idea of interpreting the results in a biological way. We will work on a subset of the dataset to make  the calcul faster.
+
+ 
+
+Ressources/Packages
+========================================================
+
+
+
+```{r,packages, message=FALSE}
+library(adegenet)
+library(hierfstat)
+library(pegas)
+library(genetics)
+
+```
+
+
+Workflow for SNP data
+========================================================
+### Import data
+
+The data are stored in a txt file (genotype=AA..). We will  import the dataset in R as a dataframe, and then  convert the SNP data file into [genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind) objects. 
+
+Dataset "Master_Pinus_data_genotype.txt" can be downloaded [here]().
+
+The  txt file is a matrix of (550 rows x 3086 columns). It contains 4 extracolumns: first column is the label of the individuals, the three other are description of the region, all the other columns are for the genotypes as (AA or AT...).
+
+
+
+```{r,data_import_df,eval=FALSE}
+
+#You should be in the right directory
+Mydata<-read.table("../data/Master_Pinus_data_genotype.txt,header=T")
+dim(Mydata) #Matrix of dimension 550x3086
+
+```
+
+To convert RData to genind objects:
+
+We need to create a matrix with genotypes only. We will work on a subset of data.
+
+```{r,data_conversion,eval=FALSE }
+
+ 
+#To convert MydataR to genind object  (adegent): Mydata2 needs to contain only genotypes
+
+locus<-Mydata[,-c(1,2,3,4,16:3086)] #We remove the extracolumns and we keep only 20 SNP (to make calcul more fast)  
+ind<-as.character(Mydata$tree_id) #individual label
+population<-as.character(Mydata$state) #population label
+Mydata1<-df2genind(locus,ploidy=2,ind.names=ind,pop=population)
+Mydata1
+
+Mydata1@loc.nall
+
+
+#conversion from genind object into fasta file
+Mydata2<-genind2hierfstat(Mydata1) 
+
+#to convert genind object into a   pegas file (i.e. dataframe)
+
+Mydata3 <- genind2loci(Mydata1)
+
+```
+
+### Genetic diversity (osberved and expected heterozygosity) 
+
+with adegenet
+
+```{r,Genetic_Diversity,eval=FALSE}
+
+div<-summary(Mydata1)
+div
+names(div)
+
+plot(div$Hobs,xlab="Loci number", ylab="Observed Heterozygosity",main="Observed heterozygosity per locus")
+plot(div$Hobs,div$Hexp,xlab="Hobs", ylab="Hexp",main="Expected heterozygosity in function of observed heterozygosity per locus")
+bartlett.test(list(div$Hexp,div$Hobs)) #a test : H0: Hexp = Hobs
+```
+We observed that heterozygosity vary among loci
+We observed no difference between expected and observed heterozygosity
+
+
+Basic statistics with hierfstat
+
+```{r,basic_statistics, eval=FALSE}
+basicstat<-basic.stats(Mydata2, diploid = TRUE, digits = 2) 
+names(basicstat)  #populations are states.  
+#The fuction provides the observed heterozygosity (Ho), mean gene diversities within population (Hs), Fis, and Fst 
+basicstat
+boot.ppfis(Mydata2) #confidence intervall for Fis
+ 
+
+
+#PCA on the centered matrix of individual's allele frequencies
+x<-indpca(Mydata2) 
+plot(x,cex=0.7)
+
+```
+
+
+
+### Testing for Hardy-Weinberg Equilibrium  
+
+```{r,Hardy-Weinberg_test,eval=FALSE}
+
+# with PEGAS
+hw.test(Mydata3, B = 1000)
+```
+
+We get for each loci a test of significance of the null hypothesis: H0 the loci is in HW equilibrium in the population. All but one loci are in HW equilibrium.
+
+
+
+Conclusion
+========================================================
+### What did we learn today?
+
+In this vignette, we learned how to explore the patterns of genetic diversity  and how to estimate the level of genetic differentiation in one population. Also, you have an idea of potential violations of the dataset to the null Wright-Fischer model. 
+
+### What is next?
+You may now want to move into looking into population differentation in more detail (See vignetteDifferentiationSNPbisGithub.Rmd)
+ 
+ 
+Reference
+========================================================
+
+Eckert, A. J., A. D. Bower, S. C. González-Martínez, J. L. Wegrzyn, G. Coop and D. B. Neale. 2010. Back to nature: Ecological genomics of loblolly pine (Pinus taeda, Pinaceae). Molecular Ecology 19: 3789-3805.
