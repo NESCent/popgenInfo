@@ -174,10 +174,10 @@ img {
 
 <div id="installing-required-r-packages" class="section level2">
 <h2>Installing required R packages:</h2>
-<p>Use the following script to install any packages:</p>
+<p>Before a package can be loaded, it needs to be installed. Use the <code>install.packages()</code> function to install any packages that are on <a href="http://cran.r-project.org/">CRAN</a>.</p>
 <pre><code>install.packages(&quot;adegenet&quot;)  # to install a single package
 install.packages(c(&quot;adegenet&quot;, &quot;pegas&quot;, &quot;poppr&quot;))  # to install a group of packages</code></pre>
-<p>You can next invoke (i.e., load) a package by typing or cutting and pasting:</p>
+<p>Once installed, you can make a package’s functions available for use by loading it using the <code>library()</code> function:</p>
 <pre><code>library(&quot;adegenet&quot;)</code></pre>
 </div>
 
