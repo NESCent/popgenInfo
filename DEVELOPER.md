@@ -1,5 +1,6 @@
-Workflows for developing R packages
-=========================
+---
+title: "Workflows for developing R packages"
+---
 
 * [Available packages](PACKAGES.md)
 * [Data formats](DATAFORMATS.md)

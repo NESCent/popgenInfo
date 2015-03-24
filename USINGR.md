@@ -1,4 +1,6 @@
-# Using R for population genetics
+---
+title: "Using R for population genetics"
+---
 
 ## Workflows to address specific biological questions
 

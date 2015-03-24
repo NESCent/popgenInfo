@@ -1,4 +1,6 @@
-# Learn how to use R for population genetics
+---
+title: "Learn how to use R for population genetics"
+---
 
 ## Primers in population genetics for specific R packages
 

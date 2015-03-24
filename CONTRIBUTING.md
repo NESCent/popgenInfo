@@ -1,4 +1,6 @@
-#Creating and submitting workflow vignettes
+---
+title: "Creating and submitting workflow vignettes"
+---
 
 ##What is a workflow vignette?
 Workflow vignettes are documents that outline a population genetics based bioinformatics workflow involving one or more R packages. These workflows are based around biological questions/topics and the type of data used. They are generally more extensive than those found in package vignettes and are intended to provide R users with the necessary code and examples to solve biological questions. 
@@ -9,7 +11,7 @@ The analyses outlined in the vignettes should be fast to run, ideally approximat
 Anyone who is confident in population genetics analysis in R is encouraged to contribute.
 
 ##How do I write a workflow vignette?
-Write the workflow vignette in [R markdown] (http://rmarkdown.rstudio.com/). The workflow should include example analysis and explanations using data that can be readily accessed in the public domain  e.g. the data that comes as part of some packages so that users can replicate the analysis themselves. If no public data is available to address a particular biological question that you want to write a workflow for, this data can be uploaded to this repository also.
+Write the workflow vignette in [R markdown](http://rmarkdown.rstudio.com/). The workflow should include example analysis and explanations using data that can be readily accessed in the public domain  e.g. the data that comes as part of some packages so that users can replicate the analysis themselves. If no public data is available to address a particular biological question that you want to write a workflow for, this data can be uploaded to this repository also.
 
 ##How do I submit a workflow?
 1. Set up a github account if you don't already have one, see [here](https://guides.github.com/activities/hello-world/) for a quick tutorial on using Github. Download the appropriate Git for your computer, see [here](https://help.github.com/articles/set-up-git/), and set it up.
