@@ -29,7 +29,7 @@ Overall, workflow submission will follow the guidelines in [GitHub flow](https:/
 10. Then run `git push origin Your_branch_name`.
 11. To do a pull request, navigate to your branch on github. Click `Compare & review` or the pull request icon.
 12. Once you have reviewed the changes, click `Create pull request`. Once the request is approved, the file will be automatically sent to a remote server that compiles the document into a html file.
-13. Then open the [`WORKFLOWS.md`](https://github.com/nescent/popgenInfo/WORKFLOWS.md) file using the edit button if on the github website (or alter it your branch of the repository that has already been cloned on your own machine) and add the name of your tutorial along with a link to the tutorial e.g. the link will be `Tutorial_name.html`. Finally click `Propose file change` and then `Create pull request` to request that the file changes be included if you are altering it on github.
+13. Then open the [`WORKFLOWS.md`](https://github.com/nescent/popgenInfo/tree/master/WORKFLOWS.md) file using the edit button if on the github website (or alter it your branch of the repository that has already been cloned on your own machine) and add the name of your tutorial along with a link to the tutorial e.g. the link will be `Tutorial_name.html`. Finally click `Propose file change` and then `Create pull request` to request that the file changes be included if you are altering it on github.
 
 ## How do I submit datasets?
 
