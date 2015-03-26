@@ -25,8 +25,6 @@ Ressources/Packages
 ```{r,packages, message=FALSE}
 library(adegenet)
 library(hierfstat)
-
-
 ```
 
 
@@ -40,80 +38,78 @@ Dataset "Master_Pinus_data_genotype.txt" can be downloaded [here]().
 
 The  txt file is a matrix of (550 rows x 3086 columns). It contains 4 extracolumns: first column is the label of the individuals, the three other are description of the region, all the other columns are for the genotypes as (AA or AT...).
 
-```{r,data_import_df,eval=FALSE}
-
-#You should be in the right directory
-Mydata<-read.table("../data/Master_Pinus_data_genotype.txt",header=T)   
+```{r, data_import_df}
+# You should be in the right directory
+Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header = T)   
 dim(Mydata)  
-ind<-as.character(Mydata$tree_id) #use later with adegent (individual labels)
-population<-as.character(Mydata$state) #use later with adegenet (population labels)
-county<-Mydata$county 
+ind <- as.character(Mydata$tree_id) #use later with adegent (individual labels)
+population <- as.character(Mydata$state) #use later with adegenet (population labels)
+county <- Mydata$county 
 dim(Mydata) #550 individuals x 3082 SNPs
 ```
 
 Data conversion
 
-```{r,data_conversion,eval=FALSE }
- 
-#To convert MydataR to genind objects (adegent): Mydata2 needs to contain only genotypes
-locus<-Mydata[,-c(1,2,3,4,25:ncol(Mydata))] #We decrease the number of snp to make the calcul faster: 20 SNPs
-Mydata1<-df2genind(locus,ploidy=2,ind.names=ind,pop=population)
+```{r,data_conversion}
+# To convert MydataR to genind objects (adegent): Mydata2 needs to contain only genotypes
+locus <- Mydata[, -c(1, 2, 3, 4, 25:ncol(Mydata))] # We decrease the number of snp to make the calcul faster: 20 SNPs
+Mydata1 <- df2genind(locus, ploidy = 2, ind.names = ind, pop = population)
 Mydata1
 
 #conversion from genind object into hierfstat file
-Mydata2<-genind2hierfstat(Mydata1) 
+Mydata2 <- genind2hierfstat(Mydata1) 
 
 
 ```
 
 ### Fst  (observed and expected heterozygosity)  (package hierfstat)
 
-```{r,Basicstatiscis_with Fst,eval=F}
+```{r,Basicstatiscis_with Fst}
 basic.stats(Mydata2) # Fst following Nei (1987)
 wc(Mydata2) # Weir and Cockrham estimate
 ```
 
 ## Hierarchical Fst tests (=AMOVA for SNP dataset)
 
-```{r,Hierarchical_Fst,eval=FALSE}
-loci<-Mydata2[,-c(1)] #Remove the population column
-varcomp.glob(levels=data.frame(population,county),loci,diploid=TRUE) #Hierarchical Fst (=AMOVA for SNPsor biallelic markers)
-#We can make permutation on the different levels
-test.g(loci,level=population) #Testing the effet of the population on genetic differentiation. Individuals are randomly permutated among states
-#The states  influence  genetic differentiation at 5% level.
-test.between(loci,test.lev=population,rand.unit=county,nperm=30) # Counties are permuted among states
-#The states  influence significantly genetic structuring
+```{r,Hierarchical_Fst}
+loci <- Mydata2[, -c(1)] #Remove the population column
+varcomp.glob(levels = data.frame(population, county), loci, diploid = TRUE) # Hierarchical Fst (=AMOVA for SNPsor biallelic markers)
+# We can make permutation on the different levels
+test.g(loci, level = population) # Testing the effet of the population on genetic differentiation. Individuals are randomly permutated among states
+# The states influence  genetic differentiation at 5% level.
+test.between(loci, test.lev = population, rand.unit = county, nperm = 30) # Counties are permuted among states
+#The states influence significantly genetic structuring
 ```
 
 
 ## Pairwise Fst (package hierfstat)
 
-```{r,pairewise_Fst,eval=FALSE}
-loci1<-na.omit(loci)
-pp.fst(loci1,diploid=TRUE) #Do not work with missing values
-#No test at the moment
-
+```{r,pairewise_Fst}
+loci1 <- na.omit(loci)
+pp.fst(loci1, diploid = TRUE) # Do not work with missing values
+# No test at the moment
 ```
 
 
 ### Unsupervised clustering  
 We dont know the populations and we are looking for.
 
-```{r,clustering_without_a_priori,eval=FALSE}
-#using  Kmeans and DIAPC in adegenet 
-grp<-find.clusters(Mydata1,max.n.clust=10,n.pca=20,choose.n.clust=F) 
-#As recommanded by T.  Jombart, we used the maximum number possible of PCA axis which is 20 here.See detailed tutorial on this method for more information (http://adegenet.r-forge.r-project.org/)
-#In this example, we used choose.n.clust=F but it is nice to use the option T and then you will be able to choose the number of clusters. 
+```{r,clustering_without_a_priori}
+# using Kmeans and DIAPC in adegenet 
+grp <- find.clusters(Mydata1, max.n.clust = 10, n.pca = 20, choose.n.clust = F) 
+# As recommanded by T. Jombart, we used the maximum number possible of PCA axis which is 20 here. See detailed tutorial on this method for more information (http://adegenet.r-forge.r-project.org/)
+# In this example, we used choose.n.clust=F but it is nice to use the option T and then you will be able to choose the number of clusters. 
 names(grp)
 grp$grp
 ```
 
 The K means procedure detected 5 groups. We will use this group in the discriminant analysis. On your own dataset, you need to spend more time to estimate the number of cluster.
 
-```{r,description_of_clusters,eval=FALSE}
-dapc1<-dapc(Mydata1,grp$grp,n.pca=20,n.da=6) #we fixe the number of pca axis, and the number of axis retained by the DA
-scatter(dapc1) #plot of the group
+```{r,description_of_clusters}
+dapc1 <- dapc(Mydata1, grp$grp, n.pca = 20, n.da = 6) # we fixe the number of pca axis, and the number of axis retained by the DA
+scatter(dapc1) # plot of the group
 ```
+
 Five groups were finally detected and represented by the discriminant analysis. The 11 states are not the good level for population analysis. But we need to remeber that we use only 20 SNP to condut the analysis.
 
 Conclusion
