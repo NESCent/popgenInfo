@@ -11,7 +11,8 @@ This site provides resources for conducting population genetic analyses in R usi
 
 Any member of the R user community proficient in population genetics is welcome to contibute to this site. See [here](CONTRIBUTING.md) for instructions on how to contribute workflow vignettes using [R markdown](R_MARKDOWN.md).
 
-This site was developed during the [Population Genetics R hackathon] held at NESCent on March 16-20, 2015. 
+This site was developed during the [Population Genetics in R hackathon]
+held at [NESCent] March 16-20, 2015.
 
 ## Prerequisites and how this works ##
 
@@ -38,6 +39,7 @@ ability to run GNU `make`.
 For further details on the mechanics of the build and deploy process,
 see the documentation in the top-level [Makefile](Makefile).
 
+[NESCent]: http://nescent.org
 [Population Genetics R hackathon]: https://github.com/NESCent/r-popgen-hackathon
 [R markdown]: http://rmarkdown.rstudio.com/
 [Circle CI]: http://circleci.com
