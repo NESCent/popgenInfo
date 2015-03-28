@@ -18,6 +18,9 @@ html: dockerImage $(HTML_FILES)
 
 deploy: html
 	tar cf $(SITEARCH) include libs *.html *_files
+## The following shouldn't have to be run from within Docker, but
+## there is a weird permission error for .png images (rendered plots)
+## on the Circle CI server if run outside of the container.
 	docker run -v $(REPODIR):/repo -w /repo/build rocker/popgen make distclean
 
 .PHONY: dockerImage
