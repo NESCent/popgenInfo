@@ -17,7 +17,11 @@ package up and running.
 Table of Contents
 =======
 
-The following topics are available. If you want to see a topic that is not 
+The following topics are covered. These will generally be short introductions 
+utilizing examples from R packages currently available for population genetics
+with links to longer discussions on specific subjects.
+
+If you want to see a topic that is not 
 covered, [contribute](CONTRIBUTING.html) or 
 [submit an issue](https://github.com/NESCent/popgenInfo/issues). 
 
@@ -49,8 +53,7 @@ workflow and your new method or visualization.
 Resources for writing R packages
 =======
 
-Below are some resources that can get you started writing R packages. We will 
-have examples utilizing existing packages in these tutorials.
+Below are some resources that can get you started writing R packages. 
 
  - [Hadley Wickham's Guide For Creating R Packages](http://r-pkgs.had.co.nz/)
  - [Jeff Leek's R Package Development](https://github.com/jtleek/rpackages)
