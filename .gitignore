@@ -18,3 +18,8 @@ site.tar
 develop/*html
 use/*html
 install/*html
+
+# ignore derivative directories and files
+develop/*_file/
+use/*_file/
+install/*_file/
