@@ -10,10 +10,12 @@ Introduction
 
 You are reading this introduction because you are interested in contributing an
 R package to the population genetics community. You might have some R scripts
-lying around that implement a specific calculation, or possibly have a new
-method of data visualization. In either case, it is important to understand what
-methods currently exist in population genetics and how you can utilize common 
-classes to ensure interoperability between different packages. 
+lying around that implement a specific calculation, or possibly implements a new
+method of data visualization. Despite what you might have heard, developing a 
+package is not as hard as it may seem. What's more, a new package implementing
+your method will help the larger population genetics community. The following
+series of tutorials will help point you toward the resources you need to get your
+package up and running.
 
 The goal of these series of tutorials is to introduce you to:
 
