@@ -20,6 +20,6 @@ use/*html
 install/*html
 
 # ignore derivative directories and files
-develop/*_file/
-use/*_file/
-install/*_file/
+develop/*_files/
+use/*_files/
+install/*_files/
