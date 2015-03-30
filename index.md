@@ -1,4 +1,6 @@
-# Population Genetics in R
+---
+title: "Population Genetics in R"
+---
 
 Please use the menu bar above to navigate through this site.
 

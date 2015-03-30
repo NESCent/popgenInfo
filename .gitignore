@@ -10,3 +10,6 @@
 # RStudio files
 .Rproj.user/
 .Rproj.user
+
+# This is used for website deployment
+site.tar

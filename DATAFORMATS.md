@@ -1,5 +1,6 @@
-Data classes
-========
+---
+title: "Data classes"
+---
 
 Class (package) | Strengths | Weaknesses
 --- | --- | ---
