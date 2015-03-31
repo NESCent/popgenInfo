@@ -47,8 +47,8 @@ R is an open source language with a strong community of developers contributing
 new methods and analyses. The population genetics community has worked hard to 
 create data classes that can be used efficiently between packages, expanding the
 number of analyses that can be done by users in a reproducible manner. Utilizing
-common data types within your R package lowers the barrier between users current
-workflow and your new method or visualization. 
+common data types within your R package lowers the barrier between current
+workflows and your new method or visualization. 
 
 Resources for writing R packages
 =======
