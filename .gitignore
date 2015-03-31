@@ -13,3 +13,13 @@
 
 # This is used for website deployment
 site.tar
+
+# ignore html files in directories except for build
+develop/*html
+use/*html
+install/*html
+
+# ignore derivative directories and files
+develop/*_files/
+use/*_files/
+install/*_files/
