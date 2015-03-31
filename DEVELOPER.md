@@ -7,7 +7,7 @@ Introduction
 
 You are reading this introduction because you are interested in contributing an
 R package to the population genetics community. You might have some R scripts
-lying around that implement a specific calculation, or possibly implements a new
+lying around that implement a specific calculation, or possibly a new
 method of data visualization. Despite what you might have heard, developing a 
 package is not as hard as it may seem. What's more, a new package implementing
 your method will help the larger population genetics community. The following
