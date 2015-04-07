@@ -1,0 +1,17 @@
+---
+title: "Developer Manual Template"
+author: "Contributor"
+date: "March 19, 2015"
+output: html_document
+---
+
+Introduction
+=======
+
+ - Motivation for developer
+ - Benefit to users
+ 
+
+
+
+

@@ -29,8 +29,8 @@ Section I - Workflow for Raw Sequence Data
 ### Import data
 To import our raw sequence data into R, the most widely used formats are [FASTA](http://www.ncbi.nlm.nih.gov/BLAST/fasta.html) and nexus. Before you import your data into R, please make sure the sequences are aligned. Sequence alignments can be done in software such as Clustal or Muscle. Both are are part of the software SeaView. Alignments can be saved in FASTA format. Another R option could be `library(Biostrings)` but it is not discussed here. In all cases, we will convert the sequence data file into [genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind) objects, which is the standard file format for population genetic analyses in R.
 
-Dataset "Ebom_mt.fas" can be downloaded [here]().
-Dataset "Ebom_CAD.fas" can be downloaded [here]().
+Dataset "Ebom_mt.fas" can be downloaded [here](../data/Ebom_mt.fas).
+Dataset "Ebom_CAD.fas" can be downloaded [here](../data/Ebom_CAD.fas).
 
 Import the previously aligned sequence data into R.
 The 'Ebom_mt.fas' file contains alignments of two concatenated mitochondrial genes. 
