@@ -227,7 +227,7 @@ img {
 <div id="import-data" class="section level3">
 <h3>Import data</h3>
 <p>To import our raw sequence data into R, the most widely used formats are <a href="http://www.ncbi.nlm.nih.gov/BLAST/fasta.html">FASTA</a> and nexus. Before you import your data into R, please make sure the sequences are aligned. Sequence alignments can be done in software such as Clustal or Muscle. Both are are part of the software SeaView. Alignments can be saved in FASTA format. Another R option could be <code>library(Biostrings)</code> but it is not discussed here. In all cases, we will convert the sequence data file into <a href="http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind">genind</a> objects, which is the standard file format for population genetic analyses in R.</p>
-<p>Dataset “Ebom_mt.fas” can be downloaded <a href="">here</a>. Dataset “Ebom_CAD.fas” can be downloaded <a href="">here</a>.</p>
+<p>Dataset “Ebom_mt.fas” can be downloaded <a href="../data/Ebom_mt.fas">here</a>. Dataset “Ebom_CAD.fas” can be downloaded <a href="../data/Ebom_CAD.fas">here</a>.</p>
 <p>Import the previously aligned sequence data into R. The ‘Ebom_mt.fas’ file contains alignments of two concatenated mitochondrial genes.</p>
 <pre class="sourceCode r"><code class="sourceCode r">myData1 &lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_mt.fas&quot;</span>) <span class="co"># this creates a DNAbin object</span>
 <span class="kw">class</span>(myData1)</code></pre>
@@ -338,10 +338,10 @@ myData1_HWE <span class="co"># p-values lower than 0.05 indicate deviations from
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## L1   0.2103  (0.1533-0.2806)
+## L1   0.2104  (0.1579-0.3054)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.2103   (0.1533-0.2806)</code></pre>
+## 0.2104   (0.1579-0.3054)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(myData1_bs, Gst_Hedrick) <span class="co"># estimate Hedrick&#39;s Gst and whether or not it is significant</span></code></pre>
 <pre><code>## 
 ## Estimates for each locus
