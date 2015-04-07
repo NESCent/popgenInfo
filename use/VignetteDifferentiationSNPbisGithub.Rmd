@@ -52,10 +52,18 @@ columns: first column is the label of the individuals, the three other are
 description of the region, all the other columns are for the genotypes as (AA or
 AT...).
 
-```{r, data_import_df}
+```{r, data_import_df_show, eval = FALSE}
+# You should be in the right directory
+Mydata <- read.table("Master_Pinus_data_genotype.txt", header = T)   
+dim(Mydata) 
+```
+```{r, data_import_df_do, echo = FALSE}
 # You should be in the right directory
 Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header = T)   
-dim(Mydata)  
+dim(Mydata) 
+```
+
+```{r, data_manipulate}
 ind <- as.character(Mydata$tree_id) #use later with adegent (individual labels)
 population <- as.character(Mydata$state) #use later with adegenet (population labels)
 county <- Mydata$county 
