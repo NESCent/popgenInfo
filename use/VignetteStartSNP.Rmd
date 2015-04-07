@@ -10,11 +10,14 @@ Introduction
 
 In this vignette, you will  calculate basic population genetic statistics from
 SNP data using R packages. This statistics serve as exploratory analysis and
-requires to work at population level. We will calculate: i) Genetic diversity,
-ii) Test Hardy Weinberg  iii) Fis and global Fst.
+requires to work at population level. We will calculate: 
+
+ i. Genetic diversity,
+ ii. Test Hardy Weinberg 
+ iii. $F_{is}$ and global $F_{st}$.
 
 The dataset used for those analysis concerns the plant species: lodgepole pine
-(Pinus contorta, Pinaceae). You can have more information on this data set and
+(*Pinus contorta*, *Pinaceae*). You can have more information on this data set and
 the species on the web site of A. Eckert:  (http://eckertdata.blogspot.fr/) But
 here the dataset is used as a test dataset with no idea of interpreting the
 results in a biological way. We will work on a subset of the dataset to make
