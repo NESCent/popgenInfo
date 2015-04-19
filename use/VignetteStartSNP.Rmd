@@ -56,17 +56,14 @@ extra columns: first column is the label of the individuals, the three other are
 description of the region, all the other columns are for the genotypes as (AA or
 AT...).
 
-
+When you import the data in R, you need to be in the in the right directory.
 
 ```{r, data_import_df_show, eval = FALSE}
-
-#You should be in the right directory
 Mydata <- read.table("Master_Pinus_data_genotype.txt", header = T)
 dim(Mydata) #Matrix of dimension 550x3086
 ```
 
 ```{r, data_import_df_do, echo = FALSE}
-#You should be in the right directory
 Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header=T)
 dim(Mydata) #Matrix of dimension 550x3086
 ```
@@ -74,28 +71,19 @@ dim(Mydata) #Matrix of dimension 550x3086
 To convert RData to a genind object:
 
 We need to create a matrix with genotypes only. We will work on a subset of data.
+To convert MydataR to genind object (adegent), we create the object locus which contains only genotypes
+We remove the extra columns and we keep only 20 SNP (to make calculation faster).
+It is also possible to convert Mydata1 into fstat file (Mydata2), or into pega object (Mydata3).
 
 ```{r,data_conversion}
-
- 
-#To convert MydataR to genind object (adegent): Mydata2 needs to contain only genotypes
-
-locus <- Mydata[, -c(1,2,3,4,16:3086)] # We remove the extra columns and we keep only 20 SNP (to make calculation faster)  
+locus <- Mydata[, -c(1,2,3,4,16:3086)] #   
 ind <- as.character(Mydata$tree_id) #individual label
 population <- as.character(Mydata$state) #population label
 Mydata1 <- df2genind(locus,ploidy=2,ind.names=ind,pop=population)
 Mydata1
-
 Mydata1@loc.nall
-
-
-#conversion from genind object into fasta file
 Mydata2 <- genind2hierfstat(Mydata1) 
-
-#to convert genind object into a pegas loci object (i.e. dataframe)
-
 Mydata3 <- genind2loci(Mydata1)
-
 ```
 
 ### Genetic diversity (osberved and expected heterozygosity) 
@@ -107,7 +95,6 @@ with adegenet
 div <- summary(Mydata1)
 div
 names(div)
-
 plot(div$Hobs,xlab="Loci number", ylab="Observed Heterozygosity",main="Observed heterozygosity per locus")
 plot(div$Hobs,div$Hexp,xlab="Hobs", ylab="Hexp",main="Expected heterozygosity in function of observed heterozygosity per locus")
 bartlett.test(list(div$Hexp,div$Hobs)) #a test : H0: Hexp = Hobs
@@ -117,17 +104,15 @@ We observed no difference between expected and observed heterozygosity.
 
 
 Basic statistics with hierfstat
+Populations are states. 
+The fuction "basicstat" provides the observed heterozygosity (Ho), mean gene diversities within population (Hs), Fis, and Fst 
+The function "boot.ppfis" provides confidence interval for Fis
+The fuction "indpca"  does an PCA on the centered matrix of individual's allele frequencies
 
 ```{r,basic_statistics}
 basicstat <- basic.stats(Mydata2, diploid = TRUE, digits = 2) 
-names(basicstat)  #populations are states.  
-#The fuction provides the observed heterozygosity (Ho), mean gene diversities within population (Hs), Fis, and Fst 
-basicstat
-boot.ppfis(Mydata2) #confidence interval for Fis
- 
-
-
-#PCA on the centered matrix of individual's allele frequencies
+names(basicstat)   
+boot.ppfis(Mydata2) 
 x <- indpca(Mydata2) 
 plot(x, cex=0.7)
 
@@ -136,10 +121,10 @@ plot(x, cex=0.7)
 
 
 ### Testing for Hardy-Weinberg Equilibrium  
+We use the pegas package.
 
 ```{r,Hardy-Weinberg_test}
 
-# with PEGAS
 hw.test(Mydata3, B = 1000)
 ```
 
