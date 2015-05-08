@@ -44,8 +44,8 @@ in R as a data frame, and then  convert the SNP data file into
 [genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind)
 objects.
 
-Dataset "Master_Pinus_data_genotype.txt" can be downloaded [here](https://github
-.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt).
+Dataset "Master_Pinus_data_genotype.txt" can be downloaded 
+[here](https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt).
 
 The  text file is a matrix of (550 rows x 3086 columns). It contains 4 extra
 columns: first column is the label of the individuals, the three other are
