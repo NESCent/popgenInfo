@@ -44,7 +44,7 @@ Workflow for SNP data
 ### Import data
 
 The data are stored in a text file (genotype=AA..). We will  import the dataset
-in R as a dataframe, and then  convert the SNP data file into a
+in R as a data frame, and then  convert the SNP data file into a
 [genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind)
 object.
 
@@ -59,26 +59,27 @@ AT...).
 When you import the data in R, you need to be in the in the right directory.
 
 ```{r, data_import_df_show, eval = FALSE}
-Mydata <- read.table("Master_Pinus_data_genotype.txt", header = T)
-dim(Mydata) #Matrix of dimension 550x3086
+Mydata <- read.table("Master_Pinus_data_genotype.txt", header = TRUE)
+dim(Mydata) # Matrix of dimension 550x3086
 ```
 
 ```{r, data_import_df_do, echo = FALSE}
-Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header=T)
+Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header = TRUE)
 dim(Mydata) #Matrix of dimension 550x3086
 ```
 
 To convert RData to a genind object:
 
-We need to create a matrix with genotypes only. We will work on a subset of data.
-To convert MydataR to genind object (adegent), we create the object locus which contains only genotypes
-We remove the extra columns and we keep only 20 SNP (to make calculation faster).
-It is also possible to convert Mydata1 into fstat file (Mydata2), or into pega object (Mydata3).
+We need to create a matrix with genotypes only. We will work on a subset of
+data. To convert MydataR to genind object (adegent), we create the object locus
+which contains only genotypes We remove the extra columns and we keep only 20
+SNP (to make calculation faster). It is also possible to convert Mydata1 into
+fstat file (Mydata2), or into loci object (pegas) (Mydata3).
 
 ```{r,data_conversion}
-locus <- Mydata[, -c(1,2,3,4,16:3086)] #   
-ind <- as.character(Mydata$tree_id) #individual label
-population <- as.character(Mydata$state) #population label
+locus <- Mydata[, -c(1,2,3,4,16:3086)]    
+ind <- as.character(Mydata$tree_id) # individual label
+population <- as.character(Mydata$state) # population label
 Mydata1 <- df2genind(locus,ploidy=2,ind.names=ind,pop=population)
 Mydata1
 Mydata1@loc.nall
@@ -95,19 +96,24 @@ with adegenet
 div <- summary(Mydata1)
 div
 names(div)
-plot(div$Hobs,xlab="Loci number", ylab="Observed Heterozygosity",main="Observed heterozygosity per locus")
-plot(div$Hobs,div$Hexp,xlab="Hobs", ylab="Hexp",main="Expected heterozygosity in function of observed heterozygosity per locus")
-bartlett.test(list(div$Hexp,div$Hobs)) #a test : H0: Hexp = Hobs
+
+plot(div$Hobs, xlab="Loci number", ylab="Observed Heterozygosity", 
+	 main="Observed heterozygosity per locus")
+
+plot(div$Hobs,div$Hexp, xlab="Hobs", ylab="Hexp", 
+	 main="Expected heterozygosity in function of observed heterozygosity per locus")
+
+bartlett.test(list(div$Hexp, div$Hobs)) # a test : H0: Hexp = Hobs
 ```
 We observed that heterozygosity varies among loci.
 We observed no difference between expected and observed heterozygosity.
 
 
-Basic statistics with hierfstat
-Populations are states. 
-The fuction "basicstat" provides the observed heterozygosity (Ho), mean gene diversities within population (Hs), Fis, and Fst 
-The function "boot.ppfis" provides confidence interval for Fis
-The fuction "indpca"  does an PCA on the centered matrix of individual's allele frequencies
+Basic statistics with hierfstat. Populations are states. The fuction `basicstat`
+provides the observed heterozygosity ($H_o$), mean gene diversities within
+population ($H_s$), $F_{is}$, and $F_{st}$ The function `boot.ppfis` provides
+confidence interval for $F_{is}$ The fuction `indpca`  does an PCA on the
+centered matrix of individual's allele frequencies.
 
 ```{r,basic_statistics}
 basicstat <- basic.stats(Mydata2, diploid = TRUE, digits = 2) 
@@ -118,10 +124,8 @@ plot(x, cex=0.7)
 
 ```
 
-
-
 ### Testing for Hardy-Weinberg Equilibrium  
-We use the pegas package.
+We used the pegas package.
 
 ```{r,Hardy-Weinberg_test}
 
@@ -147,7 +151,7 @@ Wright-Fischer model.
 
 You may now want to move into looking into population differentiation in more
 detail (See [Calculating genetic differentiation and clustering methods from SNP
-data](vignetteDifferentiationSNPbisGithub.html))
+data](DifferentiationSNP.html))
  
  
 Reference

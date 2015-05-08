@@ -74,9 +74,10 @@ dim(Mydata) #550 individuals x 3082 SNPs
 
 Data conversion
 
-To convert MydataR to genind objects (adegent), the object locus needs to contain only genotypes.
-We decrease the number of snp to make the calculations faster and keep only 20 SNPs in the object locus.
-We convert Mydata1 in a fstat object (Mydata2)
+To convert MydataR to genind objects (adegent), the object locus needs to
+contain only genotypes. We decrease the number of snp to make the calculations
+faster and keep only 20 SNPs in the object locus. We convert Mydata1 in a fstat
+object (Mydata2)
 
 ```{r,data_conversion}
 
@@ -96,17 +97,19 @@ wc(Mydata2) # Weir and Cockrham estimate
 ```
 
 ### Hierarchical $F_{st}$ tests (=AMOVA for SNP dataset)
-The function varcomp.glob produces a Hierarchical Fst (=AMOVA for SNPsor biallelic markers)
-It is possible to make permutations on the different levels:
-The function "test.g" tests the effect of the population on genetic differentiation. Individuals are randomly permuted among states.
-The states influence  genetic differentiation at 5% level.
-With the function "test.between", the counties are permuted among states. The states influence significantly genetic structuring.
+The function `varcomp.glob` produces a Hierarchical Fst (=AMOVA for SNPs or
+biallelic markers) It is possible to make permutations on the different levels:
+The function `test.g` tests the effect of the population on genetic
+differentiation. Individuals are randomly permuted among states. The states
+influence  genetic differentiation at 5% level. With the function
+`test.between`, the counties are permuted among states. The states influence
+significantly genetic structuring.
 
 
 ```{r,Hierarchical_Fst}
-loci <- Mydata2[, -c(1)] #Remove the population column
+loci <- Mydata2[, -c(1)] # Remove the population column
 varcomp.glob(levels = data.frame(population, county), loci, diploid = TRUE) 
-test.g(loci, level = population) # 
+test.g(loci, level = population) 
 test.between(loci, test.lev = population, rand.unit = county, nperm = 30) 
 ```
 
@@ -122,20 +125,23 @@ pp.fst(loci1, diploid = TRUE) # Do not work with missing values
 
 ## Unsupervised clustering  
 
-We don't know the populations and we are looking for.
-As recommanded by T. Jombart, with the function "gpr" we used the maximum  possible number of PCA axis which is 20 here. See detailed tutorial on this method for more information (http://adegenet.r-forge.r-project.org/)
-In this example, we used choose.n.clust=F but it is nice to use the option T and then you will be able to choose the number of clusters. 
+We don't know the populations and we are looking for. As recommended by T.
+Jombart, with the function `gpr` we used the maximum  possible number of PCA
+axis which is 20 here. See detailed tutorial on this method for more information
+(http://adegenet.r-forge.r-project.org/) In this example, we used
+`choose.n.clust = FALSE` but it is nice to use the option `TRUE` and then you
+will be able to choose the number of clusters.
 
 ```{r,clustering_without_a_priori}
 # using Kmeans and DIAPC in adegenet 
-grp <- find.clusters(Mydata1, max.n.clust = 10, n.pca = 20, choose.n.clust = F) 
+grp <- find.clusters(Mydata1, max.n.clust = 10, n.pca = 20, choose.n.clust = FALSE) 
 names(grp)
 grp$grp
 ```
 
-The K means procedure detected 5 groups. We will use this number of  group in the
-discriminant analysis (function "dapc"). On your own dataset, you need to spend more time to
-estimate the number of cluster.
+The K means procedure detected 5 groups. We will use this number of  group in
+the discriminant analysis (function `dapc`). On your own dataset, you need to
+spend more time to estimate the number of cluster.
 
 ```{r,description_of_clusters}
 dapc1 <- dapc(Mydata1, grp$grp, n.pca = 20, n.da = 6) 
@@ -144,7 +150,7 @@ scatter(dapc1) # plot of the group
 
 Five groups were finally detected and represented by the discriminant analysis.
 The 11 states are not the good level for population analysis. But we need to
-remember that we use only 20 SNP to conduct the analysis.
+remember that we used only 20 SNPs to conduct the analysis.
 
 Conclusions
 ========================================================
@@ -159,8 +165,8 @@ individual level assuming no population.
 
 ### What is next?
 
-You may now want to move to the estimation of genetic distances  (See vignette
-DistancesSNP)
+You may now want to move to the estimation of genetic distances (See vignette
+DistancesSNP, coming soon)
   
  
  
