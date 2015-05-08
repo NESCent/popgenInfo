@@ -16,7 +16,7 @@
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.1/css/readable.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-3.3.1/css/spacelab.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
@@ -224,7 +224,7 @@ img {
 </div>
 <div id="import-data" class="section level1">
 <h1>Import data</h1>
-<p>Refer to vignette on “Summary Statistics for Sequence Data” (add link) for detailed instructions on how to upload one locus or multilocus FASTA files for this type of analyses. Here is the code:</p>
+<p>Refer to vignette on <a href="SummarySequenceData.html">Summary Statistics for SequenceData</a> for detailed instructions on how to upload one locus or multilocus FASTA files for this type of analyses. Here is the code:</p>
 <pre class="sourceCode r"><code class="sourceCode r">myData1&lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_mt.fas&quot;</span>) 
 tmp1&lt;-<span class="kw">as.matrix</span>(myData1)
 myData2&lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_CAD.fas&quot;</span>) 
@@ -252,8 +252,8 @@ allDatab&lt;-<span class="kw">as.genind.DNAbin</span>(tmp3, <span class="kw">rep
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
 <h1>AMOVA (Analysis of Molecular Variance)</h1>
-<p>Analysis of Molecular Variance (AMOVA) is a method for estimating population differentiation from molecular data taking into accound the mutational distance between alleles. Unlike Fst, which quantifies genetic differentiation based on allele frequencies, AMOVA treats molecular data as vectors and estimates Eucledian distances between alleles. Furtheremore, it is possible to test hypotheses about differentiation by grouping subpopulations in a hierarchical structure (Ref).</p>
-<pre class="sourceCode r"><code class="sourceCode r">allData_dist&lt;-<span class="kw">dist.dna</span>(allData) <span class="co"># this calculates pairwise Eucledian distances among individuals</span>
+<p>Analysis of Molecular Variance (AMOVA) is a method for estimating population differentiation from molecular data taking into account the mutational distance between alleles. Unlike <span class="math">\(F_{st}\)</span>, which quantifies genetic differentiation based on allele frequencies, AMOVA treats molecular data as vectors and estimates Euclidean distances between alleles. Furthermore, it is possible to test hypotheses about differentiation by grouping subpopulations in a hierarchical structure (Ref).</p>
+<pre class="sourceCode r"><code class="sourceCode r">allData_dist&lt;-<span class="kw">dist.dna</span>(allData) <span class="co"># this calculates pairwise Euclidean distances among individuals</span>
 groups &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;West&quot;</span>, <span class="dv">10</span>), <span class="kw">rep</span>(<span class="st">&quot;East&quot;</span>, <span class="dv">10</span>)))
 populations &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;CA&quot;</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&quot;Ch&quot;</span>, <span class="dv">5</span>),<span class="kw">rep</span>(<span class="st">&quot;Am&quot;</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&quot;AF&quot;</span>, <span class="dv">5</span>)))
 <span class="kw">amova</span>(allData_dist ~<span class="st"> </span>groups, <span class="dt">nperm =</span> <span class="dv">100</span>)</code></pre>
@@ -269,7 +269,7 @@ populations &lt;-<span class="st"> </span><span class="kw">factor</span>(<span c
 ## 
 ## Variance components:
 ##            sigma2 P.value
-## groups 2.3344e-06  0.1188
+## groups 2.3344e-06  0.1881
 ## Error  3.6201e-05        
 ## 
 ## Variance coefficients:
