@@ -2,11 +2,12 @@ html_document:
   toc: true
   toc_depth: 2
   self_contained: false
-  theme: readable
+  theme: spacelab 
   highlight: tango
   fig_width: 10
   fig_height: 6
   lib_dir: libs
+  #css: sandstone.css
   includes:
     in_header: include/in_header.html
     before_body: include/before_body.html
