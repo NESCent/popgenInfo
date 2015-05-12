@@ -14,5 +14,6 @@ If you are new to the R environment, the following papes may help you get starte
 To contribute vignettes, you will need to use Github (a web-based interface for version control work). For more information about git and github, check out these websites:
 
 * [How to contribute to a project using Github](http://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project)
+* [Git basics](http://nicercode.github.io/git/rstudio.html)
 * [Version control with Git](http://swcarpentry.github.io/git-novice/)
 
