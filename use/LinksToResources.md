@@ -1,8 +1,5 @@
 ---
 title: "Links to useful resources"
-author: "Margarita M. López-Uribe"
-date: "May 12, 2015"
-output: html_document
 ---
 
 
@@ -30,3 +27,8 @@ Below are some resources that can get you started writing R packages.
  - [S4 Classes in detail](http://adv-r.had.co.nz/S4.html)
  - [S3 Classes in detail](http://adv-r.had.co.nz/S3.html)
  - [A not so short introduction to S4](http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf)
+ 
+ 
+# Contributors
+
+Margarita M. López-Uribe, Zhian N. Kamvar
