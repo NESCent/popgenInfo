@@ -39,13 +39,15 @@ install.packages("devtools", repos = "http://cran.rstudio.com/")
 You might also need some background noise to avoid distraction. I recommend 
 [the sound of a space ship control room](http://mynoise.net/NoiseMachines/spaceshipNoiseGenerator.php).
 
-## Tutorials
+## Tutorials and helpful links
 
 - [Package Structure](http://r-pkgs.had.co.nz/package.html) (Hadley Wickham)
 - [Writing an R package from scratch (cat themed)](http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) (Hilary Parker)
 - [Developing R packages](https://github.com/jtleek/rpackages) (Jeff Leek)
 - [Creating Packages](http://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf) (Freidrich Leisch)
 - [Writing R Extensions](http://cran.r-project.org/doc/manuals/r-release/R-exts.html) (CRAN)
+
+- [CRAN GitHub repository](http://cran.github.io) (Source code for all packages on CRAN)
 
 # Creating your new package
 
@@ -114,7 +116,9 @@ optional. Files like `NEWS` or `ChangeLog` give updates to changes in your
 package, and folders like `inst/` and `src/` allow you to include extra data or
 compiled code, respectively. See [CRAN's
 description](http://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-structure) 
-for details.
+for details. A good way to see what you can put in your package is to browse
+through the [CRAN GitHub repository](http://cran.github.io) and see what other
+packages have.
 
 
 ## Creating a package
@@ -161,6 +165,8 @@ options(devtools.desc.license = "GPL-3")
 options(devtools.desc = list("Maintainer" = "'Zhian N. Kamvar' <kamvarz@science.oregonstate.edu>"))
 options()[grep("devtools", names(options()))]
 ```
+> It is much easier to edit the DESCRIPTION file by hand afterward. This simply
+> demonstrates how you can get started.
 
 Now we can create a new package called *myFirstPackage* in our current working
 directory by typing:
@@ -176,15 +182,21 @@ path <- file.path(tempdir(), "myFirstPackage")
 create(path)
 ```
 
-Now all you have to do is add in your R files and document your functions
-with *roxygen2*. 
+You can also use `check()` to see if your package passes [`R CMD
+check`](http://r-pkgs.had.co.nz/check.html):
+
+```{r, devtools_check, eval = FALSE}
+check("myFirstPackage")
+```
+
+Now all you have to do is add in your R files and document your functions. 
 
 # Conclusions
 
 This chapter describes the first steps to creating an R package and introduces
 further resources for doing so. One of the best ways to learn how to write R
 packages is to look at the source code for R packages that have already been
-published on CRAN. It's easy to do this by searching the [CRAN github
+published on CRAN. It's easy to do this by searching the [CRAN GitHub
 repository](http://cran.github.io)
 
 # Contributors
