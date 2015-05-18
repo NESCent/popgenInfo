@@ -2,8 +2,7 @@
 title: "Creating a new R package for population genetics"
 ---
 
-Motivation
-=========
+# Motivation
 
 R packages are, at their core, standardized collections of functions, data sets,
 and/or data formats. The advantage to packages is that they can be used across
@@ -16,8 +15,7 @@ community. This short vignette will point you to the tools you will need in
 order to get started on writing an R package for the population genetics
 community and submit it to [CRAN](http://cran.r-project.org).
 
-Tools/Resources
-=========
+# Tools/Resources
 
 Recently, many resources have emerged for developing R packages. We will use 
 Hadley Wickham's [R packages](http://r-pkgs.had.co.nz/) for reference, but it's 
@@ -43,14 +41,13 @@ You might also need some background noise to avoid distraction. I recommend
 
 ## Tutorials
 
-- [Package Structure (Wickham)](http://r-pkgs.had.co.nz/package.html)
-- [Writing an R package from scratch (cat themed) (Parker)](http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)
-- [Developing R packages (Leek)](https://github.com/jtleek/rpackages)
-- [Creating Packages (Leisch)](http://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf)
-- [Writing R Extensions (CRAN)](http://cran.r-project.org/doc/manuals/r-release/R-exts.html)
+- [Package Structure](http://r-pkgs.had.co.nz/package.html) (Hadley Wickham)
+- [Writing an R package from scratch (cat themed)](http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) (Hilary Parker)
+- [Developing R packages](https://github.com/jtleek/rpackages) (Jeff Leek)
+- [Creating Packages](http://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf) (Freidrich Leisch)
+- [Writing R Extensions](http://cran.r-project.org/doc/manuals/r-release/R-exts.html) (CRAN)
 
-Creating your new package
-====================
+# Creating your new package
 
 ## What is in an R package?
 
@@ -76,24 +73,30 @@ packageDescription("poppr")
 ### `R/`
 
 This is the folder in which all of your `.R` files live. There are different
-philosophies on how to order your files in this folder. Some like to have 
-[a separate R file for each function](https://github.com/dwinter/mmod/tree/master/R), while others like to
-have [all functions in a single R file](https://github.com/liamrevell/Rphylip/tree/master/Rphylip/R). 
-However you want to organize the files in this directory is up to you.
+philosophies on how to order your files in this folder. Some like to have [a
+separate R file for each
+function](https://github.com/dwinter/mmod/tree/master/R), while others like to
+have [all functions in a single R
+file](https://github.com/liamrevell/Rphylip/tree/master/Rphylip/R). However you
+want to organize the files in this directory is up to you.
 
 ### `NAMESPACE`
 
-This file lists the functions exported by your package (eg `export("myFun")`)
-and functions your package imports from other packages (eg `importFrom("pegas",
-"amova")`). With the modern tools available, you should not need to touch this
-file.
+[The NAMESPACE file](http://r-pkgs.had.co.nz/namespace.html) lists the functions
+exported by your package (eg `export("myFun")`) and functions your package
+imports from other packages (eg `importFrom("pegas", "amova")`). If you choose
+to use modern tools such as [*roxygen2*
+](http://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html), you
+should not need to touch this file.
 
-### `man\`
+### `man/`
 
 All R packages need documentation. This folder contains all of the documents
-that will become manual pages for your R functions. They are written in a form
-similar to Latex, but completely different. Using the 
-[*roxygen2*](http://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) 
+that will become manual pages for your R functions. They are written in the [Rd
+format](http://cran.r-project.org/doc/manuals/r-release/R-exts.html#Rd-format),
+which is similar to [$\LaTeX$](http://latex-project.org/). If you choose to do
+so, using the [*roxygen2*
+](http://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html)
 package will help immensely with writing documentation. Much like the
 `NAMESPACE` file, you will not need to touch any files in this folder.
 
@@ -102,7 +105,9 @@ package will help immensely with writing documentation. Much like the
 There are other folders/files that you can include, but they are completely
 optional. Files like `NEWS` or `ChangeLog` give updates to changes in your
 package, and folders like `inst/` and `src/` allow you to include extra data or
-compiled code, respectively. See [CRAN'sdescription](http://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-structure) for details.
+compiled code, respectively. See [CRAN's
+description](http://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-structure) 
+for details.
 
 
 ## Creating a package
@@ -126,7 +131,7 @@ options()[grep("devtools", names(options()))]
 ```
 
 After looking at the documentation, we know that we want to change the values
-`devtools.desc.author`, `devtools.desc.licesne`, `devtools.name`. We will also
+`devtools.desc.author`, `devtools.desc.license`, `devtools.name`. We will also
 add a "Maintainer" field to the DESCRIPTION file (tells users who to blame). The
 others don't matter for now. We can add them in thusly (Note, I am using my
 name; you should obviously use your own):
@@ -167,8 +172,7 @@ create(path)
 Now all you have to do is add in your R files and document your functions
 with *roxygen2*. 
 
-Conclusions
-===========
+# Conclusions
 
 This chapter describes the first steps to creating an R package and introduces
 further resources for doing so. One of the best ways to learn how to write R
@@ -176,7 +180,6 @@ packages is to look at the source code for R packages that have already been
 published on CRAN. It's easy to do this by searching the [CRAN github
 repository](http://cran.github.io)
 
-Contributors
-=========
+# Contributors
 
 Zhian N. Kamvar
