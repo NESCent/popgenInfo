@@ -94,7 +94,7 @@ should not need to touch this file.
 All R packages need documentation. This folder contains all of the documents
 that will become manual pages for your R functions. They are written in the [Rd
 format](http://cran.r-project.org/doc/manuals/r-release/R-exts.html#Rd-format),
-which is similar to [$\LaTeX$](http://latex-project.org/). If you choose to do
+which is similar to [LaTeX](http://latex-project.org/). If you choose to do
 so, using the [*roxygen2*
 ](http://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html)
 package will help immensely with writing documentation. Much like the
