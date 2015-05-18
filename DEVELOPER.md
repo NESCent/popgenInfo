@@ -31,7 +31,7 @@ covered, [contribute](CONTRIBUTING.html) or
     - [Classes implemented](DATAFORMATS.html)
     - Functions for conversion
 - Package development
-    - Basics
+    - [Basics](package_basics.html)
     - Documentation
     - Tests
     - Compiled code

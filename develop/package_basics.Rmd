@@ -1,0 +1,204 @@
+---
+title: "Creating a new R package for population genetics"
+---
+
+# Motivation
+
+R packages are, at their core, standardized collections of functions, data sets,
+and/or data formats. The advantage to packages is that they can be used across
+all platforms, meaning that your analyses or visualizations can be easily shared
+among collaborators (including your future self). If you're reading this, then
+there is a good chance that you have written code that performs an analysis,
+does visualization, or helps you manage data. It is very likely that these tools
+you have authored will be of benefit to the larger population genetics
+community. This short vignette will point you to the tools you will need in
+order to get started on writing an R package for the population genetics
+community and submit it to [CRAN](http://cran.r-project.org).
+
+# Tools/Resources
+
+Recently, many resources have emerged for developing R packages. We will use 
+Hadley Wickham's [R packages](http://r-pkgs.had.co.nz/) for reference, but it's 
+valuable to check out other tutorials.
+
+## Tools
+
+Writing R packages has become much easier with the advent of the IDE
+[Rstudio](http://rstudio.org) and the package
+[devtools](https://github.com/devtools). Using both of these in conjunction will
+make developing your package much easier as they are designed to work together.
+
+- [Download Rstudio here](http://rstudio.org/download)
+
+You can install `devtools` by typing in your R console:
+
+```{r, devtools_install, eval = FALSE}
+install.packages("devtools", repos = "http://cran.rstudio.com/")
+```
+
+You might also need some background noise to avoid distraction. I recommend 
+[the sound of a space ship control room](http://mynoise.net/NoiseMachines/spaceshipNoiseGenerator.php).
+
+## Tutorials and helpful links
+
+- [Package Structure](http://r-pkgs.had.co.nz/package.html) (Hadley Wickham)
+- [Writing an R package from scratch (cat themed)](http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) (Hilary Parker)
+- [Developing R packages](https://github.com/jtleek/rpackages) (Jeff Leek)
+- [Creating Packages](http://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf) (Freidrich Leisch)
+- [Writing R Extensions](http://cran.r-project.org/doc/manuals/r-release/R-exts.html) (CRAN)
+
+- [CRAN GitHub repository](http://cran.github.io) (Source code for all packages on CRAN)
+
+# Creating your new package
+
+## What is in an R package?
+
+There are four files/folders needed to create an R package:
+
+- `DESCRIPTION`
+- `R/`
+- `NAMESPACE`
+- `man/`
+
+These are detailed below.
+
+### `DESCRIPTION` 
+
+This file simply lists all the metadata needed for the package. It lists things
+such as Authors, Packages it needs to run, etc. You can view any package's
+DESCRIPTION file by typing `packageDescription("package_name")`
+
+```{r, pkgDesc}
+packageDescription("poppr")
+``` 
+ 
+### `R/`
+
+This is the folder in which all of your `.R` files live. There are different
+philosophies on how to order your files in this folder. Some like to have [a
+separate R file for each
+function](https://github.com/dwinter/mmod/tree/master/R), while others like to
+have [all functions in a single R
+file](https://github.com/liamrevell/Rphylip/tree/master/Rphylip/R). However you
+want to organize the files in this directory is up to you.
+
+### `NAMESPACE`
+
+[The NAMESPACE file](http://r-pkgs.had.co.nz/namespace.html) lists the functions
+exported by your package (eg `export("myFun")`) and functions your package
+imports from other packages (eg `importFrom("pegas", "amova")`). 
+
+> **Exporting functions is important.** If an R package is like a car, exported
+> functions would be things like the steering wheel and pedals while non-
+> exported functions would be anything under the hood. Having non-exported
+> functions make it easier to improve your package. In keeping with the analogy,
+> a driver will not notice if you change the alternator, but s/he will certainly
+> notice the steering wheel is different.
+
+If you choose to use modern tools such as [*roxygen2*
+](http://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) for
+documentation, you should not need to touch this file.
+
+### `man/`
+
+All R packages need documentation. This folder contains all of the documents
+that will become manual pages for your R functions. They are written in the [Rd
+format](http://cran.r-project.org/doc/manuals/r-release/R-exts.html#Rd-format),
+which is similar to [LaTeX](http://latex-project.org/). If you choose to do
+so, using the [*roxygen2*
+](http://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html)
+package will help immensely with writing documentation.
+
+### Others
+
+There are other folders/files that you can include, but they are completely
+optional. Files like `NEWS` or `ChangeLog` give updates to changes in your
+package, and folders like `inst/` and `src/` allow you to include extra data or
+compiled code, respectively. See [CRAN's
+description](http://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-structure) 
+for details. A good way to see what you can put in your package is to browse
+through the [CRAN GitHub repository](http://cran.github.io) and see what other
+packages have.
+
+
+## Creating a package
+
+Packages can be automatically created with the function `create()` from
+*devtools*, the function `kitten()` from *pkgKitten*, or `package.skeleton()`,
+which comes in default R. As a rule, I avoid things that remind me of my own
+mortality, so with this tutorial, I will use `create()`.
+
+
+### Setting up your information
+
+Devtools will create a pre-set package for you, but it will be easier for you
+if you set it up with your name and information, so that the DESCRIPTION file
+is automatically generated with the right information. Below are the default
+options for devtools. You can use `?devtools` to find out more information:
+
+```{r, devtools_setup}
+library("devtools")
+options()[grep("devtools", names(options()))]
+```
+
+After looking at the documentation, we know that we want to change the values
+`devtools.desc.author`, `devtools.desc.license`, `devtools.name`. We will also
+add a "Maintainer" field to the DESCRIPTION file (tells users who to blame). The
+others don't matter for now. We can add them in thusly (Note, I am using my
+name; you should obviously use your own):
+
+```{r, devtools_options}
+authors_at_r <- paste0(
+  "'",
+  person(
+    "Zhian N.", 
+    "Kamvar", 
+    email = "kamvarz@science.oregonstate.edu", 
+    role  = c("aut", "cre")
+    ),
+  "'"
+)
+
+options(devtools.desc.author = authors_at_r)
+options(devtools.name = "Zhian N. Kamvar")
+options(devtools.desc.license = "GPL-3")
+options(devtools.desc = list("Maintainer" = "'Zhian N. Kamvar' <kamvarz@science.oregonstate.edu>"))
+options()[grep("devtools", names(options()))]
+```
+> It is much easier to edit the DESCRIPTION file by hand afterward. This simply
+> demonstrates how you can get started.
+
+Now we can create a new package called *myFirstPackage* in our current working
+directory by typing:
+
+```{r, devtools_create, eval = FALSE}
+library("devtools")
+create("myFirstPackage")
+```
+
+```{r, devtools_create_real, echo = FALSE, message = FALSE}
+library("devtools")
+path <- file.path(tempdir(), "myFirstPackage")
+create(path)
+```
+
+You can also use `check()` to see if your package passes [`R CMD
+check`](http://r-pkgs.had.co.nz/check.html):
+
+```{r, devtools_check, eval = FALSE}
+check("myFirstPackage")
+```
+
+Now all you have to do is add in your R files and document your functions. 
+
+# Conclusions
+
+This chapter describes the first steps to creating an R package and introduces
+further resources for doing so. One of the best ways to learn how to write R
+packages is to look at the source code for R packages that have already been
+published on CRAN. It's easy to do this by searching the [CRAN GitHub
+repository](http://cran.github.io)
+
+# Contributors
+
+Zhian N. Kamvar, Hilmar Lapp
