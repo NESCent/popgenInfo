@@ -205,25 +205,32 @@ img {
 <div id="TOC">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#resourcespackages">Resources/Packages</a></li>
-<li><a href="#workflow-for-snp-data">Workflow for SNP data</a></li>
-<li><a href="#conclusion">Conclusion</a></li>
-<li><a href="#reference">Reference</a></li>
+<li><a href="#load-necessary-resources-and-packages">Load necessary resources and packages</a></li>
+<li><a href="#workflow-for-snp-data">Workflow for SNP data</a><ul>
+<li><a href="#import-data">Import data</a></li>
+<li><a href="#genetic-diversity-osberved-and-expected-heterozygosity">Genetic diversity (osberved and expected heterozygosity)</a></li>
+<li><a href="#testing-for-hardy-weinberg-equilibrium">Testing for Hardy-Weinberg Equilibrium</a></li>
+</ul></li>
+<li><a href="#conclusion">Conclusion</a><ul>
+<li><a href="#what-did-we-learn-today">What did we learn today?</a></li>
+<li><a href="#what-is-next">What is next?</a></li>
+</ul></li>
+<li><a href="#references">References</a></li>
 </ul>
 </div>
 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>In this vignette, you will calculate basic population genetic statistics from SNP data using R packages. This statistics serve as exploratory analysis and requires to work at population level. We will calculate:</p>
-<ol style="list-style-type: lower-roman">
+<p>In this vignette, you will calculate basic population genetic statistics from SNP data using R packages. These statistics serve as exploratory analysis and require to work at the population level. We will calculate:</p>
+<ol style="list-style-type: decimal">
 <li>Genetic diversity,</li>
 <li>Test Hardy Weinberg</li>
 <li><span class="math">\(F_{is}\)</span> and global <span class="math">\(F_{st}\)</span>.</li>
 </ol>
-<p>The dataset used for those analysis concerns the plant species: lodgepole pine (<em>Pinus contorta</em>, <em>Pinaceae</em>). You can have more information on this data set and the species on the web site of A. Eckert: (<a href="http://eckertdata.blogspot.fr/" class="uri">http://eckertdata.blogspot.fr/</a>) But here the dataset is used as a test dataset with no idea of interpreting the results in a biological way. We will work on a subset of the dataset to make the calculations faster.</p>
+<p>The dataset used for these analyses are for lodgepole pine (<em>Pinus contorta</em>, Pinaceae), a plant species. More information on the dataset and the species is available from <a href="http://eckertdata.blogspot.fr/">A. Eckert’s website</a>. Here we use the dataset with no presupposed idea of interpreting the results in a biological way. To make the calculations faster, we work only with a subset of the full dataset.</p>
 </div>
-<div id="resourcespackages" class="section level1">
-<h1>Resources/Packages</h1>
+<div id="load-necessary-resources-and-packages" class="section level1">
+<h1>Load necessary resources and packages</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(adegenet)
 <span class="kw">library</span>(hierfstat)
 <span class="kw">library</span>(pegas)
@@ -231,20 +238,19 @@ img {
 </div>
 <div id="workflow-for-snp-data" class="section level1">
 <h1>Workflow for SNP data</h1>
-<div id="import-data" class="section level3">
-<h3>Import data</h3>
-<p>The data are stored in a text file (genotype=AA..). We will import the dataset in R as a data frame, and then convert the SNP data file into a <a href="http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind">genind</a> object.</p>
+<div id="import-data" class="section level2">
+<h2>Import data</h2>
+<p>The data are stored in a text file (genotype=AA..). We will import the dataset into R as a data frame, and then convert the SNP data file into a <a href="http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind">genind</a> object.</p>
 <p>The dataset “Master_Pinus_data_genotype.txt” can be downloaded <a href="https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt">here</a>.</p>
 <p>The text file is a matrix of (550 rows x 3086 columns). It contains 4 extra columns: first column is the label of the individuals, the three other are description of the region, all the other columns are for the genotypes as (AA or AT…).</p>
-<p>When you import the data in R, you need to be in the in the right directory.</p>
+<p>When you import the data into R, the data file needs to be in your working directory, or adjust the path in the <code>read.table()</code> invocation below accordingly.</p>
 <pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Master_Pinus_data_genotype.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
 <span class="kw">dim</span>(Mydata) <span class="co"># Matrix of dimension 550x3086</span></code></pre>
 <pre><code>## [1]  550 3086</code></pre>
-<p>To convert RData to a genind object:</p>
-<p>We need to create a matrix with genotypes only. We will work on a subset of data. To convert MydataR to genind object (adegent), we create the object locus which contains only genotypes We remove the extra columns and we keep only 20 SNP (to make calculation faster). It is also possible to convert Mydata1 into fstat file (Mydata2), or into loci object (pegas) (Mydata3).</p>
+<p>To work with the data, we need to convert the R object returned by <code>read.table()</code> to a <code>genind</code> object. To achieve this, we create a matrix with only genotypes, and keep only a subset of the first 11 SNP loci (to make calculations faster). The result can then be converted to a <code>genind</code> object (for package <code>adegent</code>). The <code>genind</code> object can then easily be converted into <code>fstat</code> (package <code>hierfstat</code>) and <code>loci</code> objects (package <code>pegas</code>).</p>
 <pre class="sourceCode r"><code class="sourceCode r">locus &lt;-<span class="st"> </span>Mydata[, -<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">16</span>:<span class="dv">3086</span>)]    
-ind &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$tree_id) <span class="co"># individual label</span>
-population &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$state) <span class="co"># population label</span>
+ind &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$tree_id) <span class="co"># labels of the individuals</span>
+population &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$state) <span class="co"># labels of the populations</span>
 Mydata1 &lt;-<span class="st"> </span><span class="kw">df2genind</span>(locus,<span class="dt">ploidy=</span><span class="dv">2</span>,<span class="dt">ind.names=</span>ind,<span class="dt">pop=</span>population)
 Mydata1</code></pre>
 <pre><code>## 
@@ -277,8 +283,8 @@ Mydata1</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">Mydata2 &lt;-<span class="st"> </span><span class="kw">genind2hierfstat</span>(Mydata1) 
 Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata1)</code></pre>
 </div>
-<div id="genetic-diversity-osberved-and-expected-heterozygosity" class="section level3">
-<h3>Genetic diversity (osberved and expected heterozygosity)</h3>
+<div id="genetic-diversity-osberved-and-expected-heterozygosity" class="section level2">
+<h2>Genetic diversity (osberved and expected heterozygosity)</h2>
 <p>with adegenet</p>
 <pre class="sourceCode r"><code class="sourceCode r">div &lt;-<span class="st"> </span><span class="kw">summary</span>(Mydata1)</code></pre>
 <pre><code>## 
@@ -375,54 +381,54 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0181  0.3025
-## 2  -0.0531  0.0411
-## 3   0.0062  0.0962
-## 4  -0.0471  0.0987
-## 5  -0.0440  0.0685
-## 6  -0.5000  0.1982
-## 7  -0.2419  0.1606
-## 8  -0.2185 -0.0693
-## 9  -0.1528  0.3603
-## 10  0.0419  0.3382
-## 11 -0.4187 -0.1633</code></pre>
+## 1  -0.0267  0.3010
+## 2  -0.0507  0.0551
+## 3   0.0085  0.0900
+## 4  -0.0512  0.0923
+## 5  -0.0392  0.0647
+## 6  -0.4045  0.2218
+## 7  -0.2561  0.1422
+## 8  -0.2108 -0.0589
+## 9  -0.1139  0.3118
+## 10  0.0326  0.3465
+## 11 -0.4282 -0.1700</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex=</span><span class="fl">0.7</span>)</code></pre>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
 </div>
-<div id="testing-for-hardy-weinberg-equilibrium" class="section level3">
-<h3>Testing for Hardy-Weinberg Equilibrium</h3>
+<div id="testing-for-hardy-weinberg-equilibrium" class="section level2">
+<h2>Testing for Hardy-Weinberg Equilibrium</h2>
 <p>We used the pegas package.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata3, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0.10037.01.257 0.75465490  1  0.38500645    0.466
-## X0.10040.02.394 0.16628227  1  0.68343723    0.748
-## X0.10044.01.392 2.96053195  1  0.08531987    0.087
-## X0.10048.01.60  6.39076800  1  0.01147154    0.006
-## X0.10051.02.166 1.12035389  1  0.28984227    0.279
-## X0.10054.01.402 1.54582494  1  0.21375285    0.228
-## X0.10067.03.111 0.04868128  1  0.82537403    0.535
-## X0.10079.02.168 0.01579313  1  0.89999259    0.579
+## X0.10037.01.257 0.75465490  1  0.38500645    0.427
+## X0.10040.02.394 0.16628227  1  0.68343723    0.719
+## X0.10044.01.392 2.96053195  1  0.08531987    0.101
+## X0.10048.01.60  6.39076800  1  0.01147154    0.017
+## X0.10051.02.166 1.12035389  1  0.28984227    0.303
+## X0.10054.01.402 1.54582494  1  0.21375285    0.249
+## X0.10067.03.111 0.04868128  1  0.82537403    0.590
+## X0.10079.02.168 0.01579313  1  0.89999259    0.569
 ## X0.10112.01.169 0.41126025  1  0.52133054    1.000
-## X0.10113.01.119 0.74248768  1  0.38886515    0.440
-## X0.10116.01.165 1.87098306  1  0.17136253    0.246</code></pre>
+## X0.10113.01.119 0.74248768  1  0.38886515    0.455
+## X0.10116.01.165 1.87098306  1  0.17136253    0.229</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
-<div id="what-did-we-learn-today" class="section level3">
-<h3>What did we learn today?</h3>
+<div id="what-did-we-learn-today" class="section level2">
+<h2>What did we learn today?</h2>
 <p>In this vignette, we learned how to explore the patterns of genetic diversity and how to estimate the level of genetic differentiation in one population. Also, you have an idea of potential violations of the dataset to the null Wright-Fischer model.</p>
 </div>
-<div id="what-is-next" class="section level3">
-<h3>What is next?</h3>
+<div id="what-is-next" class="section level2">
+<h2>What is next?</h2>
 <p>You may now want to move into looking into population differentiation in more detail (See <a href="DifferentiationSNP.html">Calculating genetic differentiation and clustering methods from SNP data</a>)</p>
 </div>
 </div>
-<div id="reference" class="section level1">
-<h1>Reference</h1>
-<p>Eckert, A. J., A. D. Bower, S. C. González-Martínez, J. L. Wegrzyn, G. Coop and D. B. Neale. 2010. Back to nature: Ecological genomics of loblolly pine (Pinus taeda, Pinaceae). Molecular Ecology 19: 3789-3805.</p>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>Eckert, A. J., A. D. Bower, S. C. González-Martínez, J. L. Wegrzyn, G. Coop and D. B. Neale. 2010. Back to nature: Ecological genomics of loblolly pine (Pinus taeda, Pinaceae). Molecular Ecology 19: 3789-3805. <a href="doi:[10.1111/j.1365-294X.2010.04698.x](http://dx.doi.org/10.1111/j.1365-294X.2010.04698.x)" class="uri">doi:[10.1111/j.1365-294X.2010.04698.x](http://dx.doi.org/10.1111/j.1365-294X.2010.04698.x)</a></p>
 </div>
 
 <!-- </div>
