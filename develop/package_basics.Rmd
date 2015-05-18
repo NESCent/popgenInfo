@@ -105,8 +105,7 @@ format](http://cran.r-project.org/doc/manuals/r-release/R-exts.html#Rd-format),
 which is similar to [LaTeX](http://latex-project.org/). If you choose to do
 so, using the [*roxygen2*
 ](http://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html)
-package will help immensely with writing documentation. Much like the
-`NAMESPACE` file, you will not need to touch any files in this folder.
+package will help immensely with writing documentation.
 
 ### Others
 
@@ -190,4 +189,4 @@ repository](http://cran.github.io)
 
 # Contributors
 
-Zhian N. Kamvar
+Zhian N. Kamvar, Hilmar Lapp
