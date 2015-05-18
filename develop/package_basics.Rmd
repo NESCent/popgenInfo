@@ -84,10 +84,18 @@ want to organize the files in this directory is up to you.
 
 [The NAMESPACE file](http://r-pkgs.had.co.nz/namespace.html) lists the functions
 exported by your package (eg `export("myFun")`) and functions your package
-imports from other packages (eg `importFrom("pegas", "amova")`). If you choose
-to use modern tools such as [*roxygen2*
-](http://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html), you
-should not need to touch this file.
+imports from other packages (eg `importFrom("pegas", "amova")`). 
+
+> **Exporting functions is important.** If an R package is like a car, exported
+> functions would be things like the steering wheel and pedals while non-
+> exported functions would be anything under the hood. Having non-exported
+> functions make it easier to improve your package. In keeping with the analogy,
+> a driver will not notice if you change the alternator, but s/he will certainly
+> notice the steering wheel is different.
+
+If you choose to use modern tools such as [*roxygen2*
+](http://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) for
+documentation, you should not need to touch this file.
 
 ### `man/`
 
