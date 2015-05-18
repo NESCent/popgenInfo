@@ -370,7 +370,7 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 ## data:  list(div$Hexp, div$Hobs)
 ## Bartlett&#39;s K-squared = 0.014, df = 1, p-value = 0.9058</code></pre>
 <p>We observed that heterozygosity varies among loci. We observed no difference between expected and observed heterozygosity.</p>
-<p>Basic statistics with hierfstat. Populations are states. The fuction <code>basicstat</code> provides the observed heterozygosity (<span class="math">\(H_o\)</span>), mean gene diversities within population (<span class="math">\(H_s\)</span>), <span class="math">\(F_{is}\)</span>, and <span class="math">\(F_{st}\)</span> The function <code>boot.ppfis</code> provides confidence interval for <span class="math">\(F_{is}\)</span> The fuction <code>indpca</code> does an PCA on the centered matrix of individual’s allele frequencies.</p>
+<p>Basic statistics with hierfstat. Populations are states. The function <code>basicstat</code> provides the observed heterozygosity (<span class="math">\(H_o\)</span>), mean gene diversities within population (<span class="math">\(H_s\)</span>), <span class="math">\(F_{is}\)</span>, and <span class="math">\(F_{st}\)</span> The function <code>boot.ppfis</code> provides confidence interval for <span class="math">\(F_{is}\)</span> The fuction <code>indpca</code> does an PCA on the centered matrix of individual’s allele frequencies.</p>
 <pre class="sourceCode r"><code class="sourceCode r">basicstat &lt;-<span class="st"> </span><span class="kw">basic.stats</span>(Mydata2, <span class="dt">diploid =</span> <span class="ot">TRUE</span>, <span class="dt">digits =</span> <span class="dv">2</span>) 
 <span class="kw">names</span>(basicstat)   </code></pre>
 <pre><code>## [1] &quot;n.ind.samp&quot; &quot;pop.freq&quot;   &quot;Ho&quot;         &quot;Hs&quot;         &quot;Fis&quot;       
@@ -381,17 +381,17 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0241  0.2849
-## 2  -0.0488  0.0416
-## 3   0.0120  0.0809
-## 4  -0.0448  0.1026
-## 5  -0.0275  0.0774
-## 6  -0.5131  0.2325
-## 7  -0.1969  0.1443
-## 8  -0.2184 -0.0264
-## 9  -0.1311  0.3256
-## 10  0.0439  0.3512
-## 11 -0.4334 -0.1386</code></pre>
+## 1  -0.0610  0.3204
+## 2  -0.0533  0.0433
+## 3   0.0080  0.1022
+## 4  -0.0363  0.0851
+## 5  -0.0325  0.0729
+## 6  -0.5318  0.2174
+## 7  -0.2806  0.1285
+## 8  -0.2168 -0.0535
+## 9  -0.1562  0.3543
+## 10  0.0182  0.3299
+## 11 -0.4266 -0.1666</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex=</span><span class="fl">0.7</span>)</code></pre>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
@@ -401,17 +401,17 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 <p>We used the pegas package.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata3, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0.10037.01.257 0.75465490  1  0.38500645    0.421
-## X0.10040.02.394 0.16628227  1  0.68343723    0.717
-## X0.10044.01.392 2.96053195  1  0.08531987    0.088
+## X0.10037.01.257 0.75465490  1  0.38500645    0.469
+## X0.10040.02.394 0.16628227  1  0.68343723    0.742
+## X0.10044.01.392 2.96053195  1  0.08531987    0.087
 ## X0.10048.01.60  6.39076800  1  0.01147154    0.013
-## X0.10051.02.166 1.12035389  1  0.28984227    0.292
-## X0.10054.01.402 1.54582494  1  0.21375285    0.219
-## X0.10067.03.111 0.04868128  1  0.82537403    0.564
-## X0.10079.02.168 0.01579313  1  0.89999259    0.600
+## X0.10051.02.166 1.12035389  1  0.28984227    0.307
+## X0.10054.01.402 1.54582494  1  0.21375285    0.236
+## X0.10067.03.111 0.04868128  1  0.82537403    0.584
+## X0.10079.02.168 0.01579313  1  0.89999259    0.598
 ## X0.10112.01.169 0.41126025  1  0.52133054    1.000
-## X0.10113.01.119 0.74248768  1  0.38886515    0.440
-## X0.10116.01.165 1.87098306  1  0.17136253    0.228</code></pre>
+## X0.10113.01.119 0.74248768  1  0.38886515    0.479
+## X0.10116.01.165 1.87098306  1  0.17136253    0.229</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
