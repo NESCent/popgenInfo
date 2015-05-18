@@ -174,7 +174,7 @@ This chapter describes the first steps to creating an R package and introduces
 further resources for doing so. One of the best ways to learn how to write R
 packages is to look at the source code for R packages that have already been
 published on CRAN. It's easy to do this by searching the [CRAN github
-repository](https://github.com/cran)
+repository](http://cran.github.io)
 
 Contributors
 =========
