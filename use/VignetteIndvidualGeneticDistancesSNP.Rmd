@@ -7,7 +7,7 @@ output: html_document
 
 Introduction
 =========
-In this vignette, we will estimate individal genetic distances from SNP data. It is useful when you have individal genotype data and you don't know the populations. 
+In this vignette, we will estimate individual genetic distances from SNP data. It is useful when you have individual genotype data and you don't know the populations. 
 
 
 
