@@ -45,12 +45,17 @@ or adjust the path in the `read.table()` invocation below accordingly.
 
 ```{r, data_import_df_show, eval = FALSE}
 
-Mydata<-read.table("Master_Pinus_data_genotype.txt", header = T)   
+Mydata <- read.table("Master_Pinus_data_genotype.txt", header = TRUE)   
 dim(Mydata) 
 ```
 
+```{r, data_import_df_run, echo = FALSE}
 
-```{r, data_manipulate,eval = FALSE}
+Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header = TRUE)   
+dim(Mydata) 
+```
+
+```{r, data_manipulate}
 ind <-as.character(Mydata$tree_id) #individual labels 
 population <- as.character(Mydata$state) #population labels
 county <- Mydata$county 
@@ -84,7 +89,7 @@ SNP loci (to make calculations faster). The result can then be converted to a `g
 The `genind` object can then easily be converted into  `loci` objects (package `pegas`) (i.e. Mydata2)
 
 
-```{r,data_conversion,eval=FALSE}
+```{r,data_conversion}
 locus <- Mydata[, -c(1, 2, 3, 4, 105:ncol(Mydata))] 
 Mydata1 <- df2genind(locus, ploidy = 2, ind.names = ind, pop = population)
 Mydata1
@@ -103,7 +108,7 @@ The analysis is applied on allele frequency within individuals.
 We can use the function dist in adegent which provides different options. We will use the euclidian distance among vector of allele frequencies.
 
 
-```{r,Individual_dist_adegenet,eval=FALSE}
+```{r,Individual_dist_adegenet}
 
 distgenEUCL<-dist(Mydata1, method = "euclidean", diag = FALSE, upper = FALSE, p = 2)
 hist(distgenEUCL)
@@ -115,7 +120,7 @@ hist(distgenEUCL)
 
  
 
-```{r,Individual_dist_ape,eval=FALSE}
+```{r,Individual_dist_ape}
 
 distgenDIFF<-dist.gene(Mydata2,method="pairwise",pairwise.deletion=FALSE,variance=FALSE)
 
@@ -125,7 +130,7 @@ hist(distgenDIFF)
 
 ##Section 4: number of allelic differences between two individuals (diss.dist(poppr))
 
-```{r,Individual_dist_poppr,eval=FALSE}
+```{r,Individual_dist_poppr}
 
 distgenDISS<-diss.dist(Mydata1,percent=FALSE,mat=FALSE)
 hist(distgenDISS)
@@ -141,7 +146,7 @@ Still to do
 
 ##Section 6: Conclusions drawn from the analysis  
 
-```{r,Compare_dist,eval=FALSE}
+```{r,Compare_dist}
 
 
 boxplot(distgenEUCL,distgenDIFF,distgenDISS)
