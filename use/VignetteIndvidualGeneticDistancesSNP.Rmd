@@ -117,13 +117,22 @@ hist(distgenEUCL)
 
  
 ##Section 3.  Individual genetic distance: number of loci for which individuals differ (dist.gene{ape})  
+The option pairwise.deletion=FALSE in the command distgen removes all loci with one missing values : you an see on the histogram that we get a maximum distance of 3 loci out of 100.
 
+We can see that we get 98 loci with at least one sample missing.
+Then using the option pairwise.deletion=TRUE in the command pairwise.deletion allows to keep loci with one missing value.
  
 
 ```{r,Individual_dist_ape}
 
 distgenDIFF<-dist.gene(Mydata2,method="pairwise",pairwise.deletion=FALSE,variance=FALSE)
+hist(distgenDIFF)
 
+missing_data <- info_table(Mydata1, type = "missing")
+sum(missing_data["Total", 1:100] > 0)
+barplot(missing_data["Total", 1:100], xlab = "Locus", ylab = "Percent Missing")
+
+distgenDIFF<-dist.gene(Mydata2,method="pairwise",pairwise.deletion=TRUE,variance=FALSE)
 hist(distgenDIFF)
 
 ```
@@ -159,7 +168,10 @@ The number of allelic differences between two individuals is a different mesure 
 Conclusion 
 ==========================================
 ###What we learn today?
-In this vignette, we explore different measures of individual genetic distances.
+In this vignette, we explore different measures of individual genetic distances. 
+It is important to investigate the different options of each command.
+Missing data can be handled in different way.
+
 
 ###What is next?
  
