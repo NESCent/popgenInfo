@@ -162,6 +162,7 @@ img {
               <!-- <li class="divider"></li> -->
               <li><a href="StartSNP.html">Basic statistics</a></li>
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
+              <li><a href="VignetteIndvidualGeneticDistancesSNP.html">Genetic Distance (individual-based)</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -381,17 +382,17 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0596  0.2859
-## 2  -0.0449  0.0428
-## 3   0.0006  0.0830
-## 4  -0.0465  0.0963
-## 5  -0.0325  0.0693
-## 6  -0.6063  0.2283
-## 7  -0.2452  0.1307
-## 8  -0.2297 -0.0430
-## 9  -0.1466  0.3588
-## 10  0.0178  0.3086
-## 11 -0.4418 -0.1402</code></pre>
+## 1  -0.0846  0.2831
+## 2  -0.0663  0.0551
+## 3   0.0030  0.0946
+## 4  -0.0465  0.0968
+## 5  -0.0469  0.0719
+## 6  -0.5104  0.2174
+## 7  -0.2791  0.1614
+## 8  -0.2137 -0.0634
+## 9  -0.1709  0.3388
+## 10 -0.0162  0.3519
+## 11 -0.4231 -0.1685</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex=</span><span class="fl">0.7</span>)</code></pre>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
@@ -401,17 +402,17 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 <p>We used the pegas package.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata3, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0.10037.01.257 0.75465490  1  0.38500645    0.477
-## X0.10040.02.394 0.16628227  1  0.68343723    0.748
-## X0.10044.01.392 2.96053195  1  0.08531987    0.094
-## X0.10048.01.60  6.39076800  1  0.01147154    0.012
-## X0.10051.02.166 1.12035389  1  0.28984227    0.329
-## X0.10054.01.402 1.54582494  1  0.21375285    0.245
-## X0.10067.03.111 0.04868128  1  0.82537403    0.557
-## X0.10079.02.168 0.01579313  1  0.89999259    0.590
+## X0.10037.01.257 0.75465490  1  0.38500645    0.456
+## X0.10040.02.394 0.16628227  1  0.68343723    0.715
+## X0.10044.01.392 2.96053195  1  0.08531987    0.086
+## X0.10048.01.60  6.39076800  1  0.01147154    0.010
+## X0.10051.02.166 1.12035389  1  0.28984227    0.297
+## X0.10054.01.402 1.54582494  1  0.21375285    0.214
+## X0.10067.03.111 0.04868128  1  0.82537403    0.564
+## X0.10079.02.168 0.01579313  1  0.89999259    0.559
 ## X0.10112.01.169 0.41126025  1  0.52133054    1.000
-## X0.10113.01.119 0.74248768  1  0.38886515    0.432
-## X0.10116.01.165 1.87098306  1  0.17136253    0.236</code></pre>
+## X0.10113.01.119 0.74248768  1  0.38886515    0.442
+## X0.10116.01.165 1.87098306  1  0.17136253    0.252</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
