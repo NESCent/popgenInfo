@@ -89,59 +89,63 @@ SNP loci (to make calculations faster). The result can then be converted to a `g
 The `genind` object can then easily be converted into  `loci` objects (package `pegas`) (i.e. Mydata2)
 
 
-```{r,data_conversion}
+```{r, data_conversion}
 locus <- Mydata[, -c(1, 2, 3, 4, 105:ncol(Mydata))] 
 Mydata1 <- df2genind(locus, ploidy = 2, ind.names = ind, pop = population)
 Mydata1
-Mydata2<-genind2loci(Mydata1)
+Mydata2 <-genind2loci(Mydata1)
 ```
 
 
 
 
 
-##Section 2. Individual genetic distance: euclidean distance (dist{adegenet})
+##Section 2. Individual genetic distance: euclidean distance (`dist` {base R})
 
 The unit of the observation is the individuals. x genotypes and 100 binary SNPs.
-Ploidy : 2
-The analysis is applied on allele frequency within individuals. 
-We can use the function dist in adegent which provides different options. We will use the euclidian distance among vector of allele frequencies.
+Ploidy : 2 The analysis is applied on allele frequency within individuals. We
+can use the function `dist()` from base R which provides different options. We
+will use the euclidean distance among vector of allele frequencies.
 
 
 ```{r,Individual_dist_adegenet}
 
-distgenEUCL<-dist(Mydata1, method = "euclidean", diag = FALSE, upper = FALSE, p = 2)
+distgenEUCL <- dist(Mydata1, method = "euclidean", diag = FALSE, upper = FALSE, p = 2)
 hist(distgenEUCL)
 
 ```
 
  
-##Section 3.  Individual genetic distance: number of loci for which individuals differ (dist.gene{ape})  
-The option pairwise.deletion=FALSE in the command distgen removes all loci with one missing values : you an see on the histogram that we get a maximum distance of 3 loci out of 100.
+## Section 3.  Individual genetic distance: number of loci for which individuals differ (`dist.gene` {ape})  
 
-We can see that we get 98 loci with at least one sample missing.
-Then using the option pairwise.deletion=TRUE in the command pairwise.deletion allows to keep loci with one missing value.
+The option `pairwise.deletion = FALSE` in the command `distgen()` removes all
+loci with one missing values : you an see on the histogram that we get a maximum
+distance of 3 loci out of 100.
+
+We can see that we get 98 loci with at least one sample missing. Then using the
+option `pairwise.deletion = TRUE` in the command `distgen()` allows you to keep
+loci with one missing value.
  
 
 ```{r,Individual_dist_ape}
 
-distgenDIFF<-dist.gene(Mydata2,method="pairwise",pairwise.deletion=FALSE,variance=FALSE)
+distgenDIFF <- dist.gene(Mydata2,method="pairwise",pairwise.deletion=FALSE,variance=FALSE)
 hist(distgenDIFF)
 
 missing_data <- info_table(Mydata1, type = "missing")
 sum(missing_data["Total", 1:100] > 0)
 barplot(missing_data["Total", 1:100], xlab = "Locus", ylab = "Percent Missing")
 
-distgenDIFF<-dist.gene(Mydata2,method="pairwise",pairwise.deletion=TRUE,variance=FALSE)
+distgenDIFF <- dist.gene(Mydata2,method="pairwise",pairwise.deletion=TRUE,variance=FALSE)
 hist(distgenDIFF)
 
 ```
 
-##Section 4: number of allelic differences between two individuals (diss.dist(poppr))
+##Section 4: number of allelic differences between two individuals (`diss.dist` {poppr})
 
 ```{r,Individual_dist_poppr}
 
-distgenDISS<-diss.dist(Mydata1,percent=FALSE,mat=FALSE)
+distgenDISS <- diss.dist(Mydata1,percent=FALSE,mat=FALSE)
 hist(distgenDISS)
 
 ```
@@ -153,24 +157,30 @@ hist(distgenDISS)
 ```{r,Compare_dist}
 
 
-boxplot(distgenEUCL,distgenDIFF,distgenDISS)
+boxplot(distgenEUCL, distgenDIFF, distgenDISS)
 
 
 ```
 
-The number of allelic differences between two individuals is a different mesure from euclidien distance or number of allelic differences between two individuals 
+The number of allelic differences between two individuals is a different measure
+from euclidean distance or number of allelic differences between two individuals
 
 Conclusion 
 ==========================================
-###What we learn today?
+### What did we learn today?
+
 In this vignette, we explore different measures of individual genetic distances. 
 It is important to investigate the different options of each command.
 Missing data can be handled in different way.
 
 
-###What is next?
-Other R packages can also be used to estimate individual genetic distances like gstudio for example. 
-The individuals genetic distances can then be used in  analysis as Mantel tests to test for isolation by distance or more complex analysis in landscape genetics to test for resistance by distance, cluster analysis, spatial network... See related vignettes. 
+### What is next?
+
+Other R packages can also be used to estimate individual genetic distances like
+gstudio for example. The individuals genetic distances can then be used in
+analysis as Mantel tests to test for isolation by distance or more complex
+analysis in landscape genetics to test for resistance by distance, cluster
+analysis, spatial network... See related vignettes.
 
  
 
