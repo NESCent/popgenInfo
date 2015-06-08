@@ -7,13 +7,16 @@ output: html_document
 
 Introduction
 =========
-In this vignette, we will estimate individual genetic distances from SNP data. It is useful when you have individual genotype data and you don't know the populations. 
+In this vignette, we will estimate individual genetic distances from SNP data.
+It is useful when you have individual genotype data and you don't know the
+populations.
 
 
 
 Assumptions
 ============
-We will use non evolutionary genetic distances, i.e. not based on Hardy-Weinberg assumptions: free from assumptions.
+We will use non evolutionary genetic distances, i.e. not based on Hardy-Weinberg
+assumptions: free from assumptions.
  
 
 Data
@@ -39,8 +42,9 @@ columns: first column is the label of the individuals, the three other are
 description of the region, all the other columns are for the genotypes as (AA or
 AT...).
 
-When you import the data into R, the data file needs to be in your working directory, 
-or adjust the path in the `read.table()` invocation below accordingly.
+When you import the data into R, the data file needs to be in your working
+directory, or adjust the path in the `read.table()` invocation below
+accordingly.
 
 
 ```{r, data_import_df_show, eval = FALSE}
@@ -56,7 +60,7 @@ dim(Mydata)
 ```
 
 ```{r, data_manipulate}
-ind <-as.character(Mydata$tree_id) #individual labels 
+ind <- as.character(Mydata$tree_id) #individual labels 
 population <- as.character(Mydata$state) #population labels
 county <- Mydata$county 
 dim(Mydata) #550 individuals x 3082 SNPs
@@ -68,6 +72,7 @@ Resources/Packages required
  
 
 Loading the required packages:  
+
 ```{r, packages, message=FALSE}
  
 library(poppr)
@@ -83,10 +88,12 @@ Analysis
 ##Section 1: Convert the data
   
 
-To work with the data, we need to convert the R object returned by `read.table()` to a `genind` object.
-To achieve this, we create a matrix with only genotypes, and keep only a subset of the first 100
-SNP loci (to make calculations faster). The result can then be converted to a `genind` object (for package `adegent`).
-The `genind` object can then easily be converted into  `loci` objects (package `pegas`) (i.e. Mydata2)
+To work with the data, we need to convert the R object returned by
+`read.table()` to a `genind` object. To achieve this, we create a matrix with
+only genotypes, and keep only a subset of the first 100 SNP loci (to make
+calculations faster). The result can then be converted to a `genind` object (for
+the package adegenet). The `genind` object can then easily be converted into
+`loci` objects (package pegas) (i.e. Mydata2)
 
 
 ```{r, data_conversion}
@@ -135,14 +142,14 @@ loci with one missing value.
 
 ```{r,Individual_dist_ape}
 
-distgenDIFF <- dist.gene(Mydata2,method="pairwise",pairwise.deletion=FALSE,variance=FALSE)
+distgenDIFF <- dist.gene(Mydata2, method="pairwise", pairwise.deletion=FALSE, variance=FALSE)
 hist(distgenDIFF)
 
 missing_data <- info_table(Mydata1, type = "missing")
 sum(missing_data["Total", 1:100] > 0)
 barplot(missing_data["Total", 1:100], xlab = "Locus", ylab = "Percent Missing")
 
-distgenDIFF <- dist.gene(Mydata2,method="pairwise",pairwise.deletion=TRUE,variance=FALSE)
+distgenDIFF <- dist.gene(Mydata2, method="pairwise", pairwise.deletion=TRUE, variance=FALSE)
 hist(distgenDIFF)
 
 ```
@@ -151,7 +158,7 @@ hist(distgenDIFF)
 
 ```{r,Individual_dist_poppr}
 
-distgenDISS <- diss.dist(Mydata1,percent=FALSE,mat=FALSE)
+distgenDISS <- diss.dist(Mydata1, percent=FALSE, mat=FALSE)
 hist(distgenDISS)
 
 ```
