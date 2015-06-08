@@ -1,8 +1,5 @@
 ---
 title: "IndividualDistanceSNP"
-author: "S. Manel"
-date: "Thursday, May 14, 2015"
-output: html_document
 ---
 
 Introduction
@@ -195,6 +192,10 @@ analysis as Mantel tests to test for isolation by distance or more complex
 analysis in landscape genetics to test for resistance by distance, cluster
 analysis, spatial network... See related vignettes.
 
- 
+
+Contributors
+======================
+- Stéphanie Manel
+- Zhian Kamvar (minor edits)
 
 
