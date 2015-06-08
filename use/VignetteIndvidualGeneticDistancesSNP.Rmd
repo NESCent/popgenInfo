@@ -176,7 +176,7 @@ boxplot(distgenEUCL, distgenDIFF, distgenDISS)
 ```
 
 The number of allelic differences between two individuals is a different measure
-from euclidean distance or number of allelic differences between two individuals
+from euclidean distance or number of locus differences between two individuals.
 
 Conclusion 
 ==========================================
@@ -184,7 +184,7 @@ Conclusion
 
 In this vignette, we explore different measures of individual genetic distances. 
 It is important to investigate the different options of each command.
-Missing data can be handled in different way.
+Missing data can be handled in different ways.
 
 
 ### What is next?
