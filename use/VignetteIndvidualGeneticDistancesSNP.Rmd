@@ -100,12 +100,18 @@ Mydata2 <-genind2loci(Mydata1)
 
 
 
-##Section 2. Individual genetic distance: euclidean distance (`dist` {base R})
+##Section 2. Individual genetic distance: euclidean distance (`dist` {adegenet})
 
-The unit of the observation is the individuals. x genotypes and 100 binary SNPs.
-Ploidy : 2 The analysis is applied on allele frequency within individuals. We
-can use the function `dist()` from base R which provides different options. We
-will use the euclidean distance among vector of allele frequencies.
+The unit of the observation is the individuals. 
+
+- `r nInd(Mydata1)` genotypes
+- 100 binary SNPs
+- Ploidy : 2 
+
+The analysis is applied on allele frequency within individuals as represented in
+the `genind` object. We can use the function `dist()` from adegenet which
+provides different options. We will use the euclidean distance among vector of
+allele frequencies.
 
 
 ```{r,Individual_dist_adegenet}
