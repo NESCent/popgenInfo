@@ -6,6 +6,7 @@ title: "Template Vignette"
 
 Explain the purpose of the vignette.  
 Give a brief explanation of the questions that will be answered and some background information.
+These vignettes are written in [Rmarkdown](http://rmarkdown.rstudio.com). You can find [details about markdown here](http://rmarkdown.rstudio.com/authoring_basics.html) and [details about code chunks here](http://rmarkdown.rstudio.com/authoring_rcodechunks.html).
 
 # Assumptions
 
@@ -38,12 +39,14 @@ Example Sections
 ## Section 1: Load the data
 
 
-```{r, loaddata_show, eval=FALSE}
+```{r, load_data_show, eval=FALSE}
 nancycats <- import2genind("nancycats.gtx")
 summary(nancycats)
 ```
 
-```{r, loaddata_evalutate, echo = FALSE}
+```{r, load_data_evalutate, echo=FALSE}
+# Note: the code chunk above will be shown to the reader, but it will not run.
+# This code chunk will run, but will not be shown to the reader.
 nancycats <- import2genind("../data/nancycats.gtx")
 summary(nancycats)
 ```
