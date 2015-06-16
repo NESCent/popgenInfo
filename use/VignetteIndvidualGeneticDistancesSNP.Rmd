@@ -1,0 +1,201 @@
+---
+title: "IndividualDistanceSNP"
+---
+
+Introduction
+=========
+In this vignette, we will estimate individual genetic distances from SNP data.
+It is useful when you have individual genotype data and you don't know the
+populations.
+
+
+
+Assumptions
+============
+We will use non evolutionary genetic distances, i.e. not based on Hardy-Weinberg
+assumptions: free from assumptions.
+ 
+
+Data
+==========
+The dataset used for those analysis concerns the plant: lodgepole pine (*Pinus
+contorta*, *Pinaceae*). You can have more information on this data set and the
+species on the web site of A. Eckert:  (http://eckertdata.blogspot.fr/). But
+here the dataset is used as a test dataset with no idea of interpreting the
+results in a biological way. We will work on a subset of the dataset to make
+the calculations faster.
+ 
+
+The data are stored in a text file (genotype=AA). We will  import the dataset
+in R as a data frame, and then  convert the SNP data file into
+[genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind)
+objects.
+
+The dataset "Master_Pinus_data_genotype.txt" can be downloaded 
+[here](https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt).
+
+The  text file is a matrix of (550 rows x 3086 columns). It contains 4 extra
+columns: first column is the label of the individuals, the three other are
+description of the region, all the other columns are for the genotypes as (AA or
+AT...).
+
+When you import the data into R, the data file needs to be in your working
+directory, or adjust the path in the `read.table()` invocation below
+accordingly.
+
+
+```{r, data_import_df_show, eval = FALSE}
+
+Mydata <- read.table("Master_Pinus_data_genotype.txt", header = TRUE)   
+dim(Mydata) 
+```
+
+```{r, data_import_df_run, echo = FALSE}
+
+Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header = TRUE)   
+dim(Mydata) 
+```
+
+```{r, data_manipulate}
+ind <- as.character(Mydata$tree_id) #individual labels 
+population <- as.character(Mydata$state) #population labels
+county <- Mydata$county 
+dim(Mydata) #550 individuals x 3082 SNPs
+```
+
+
+Resources/Packages required
+=============
+ 
+
+Loading the required packages:  
+
+```{r, packages, message=FALSE}
+ 
+library(poppr)
+library(pegas)
+library(ape)
+library(adegenet)
+library(ade4)
+```
+
+Analysis   
+==========================================
+ 
+##Section 1: Convert the data
+  
+
+To work with the data, we need to convert the R object returned by
+`read.table()` to a `genind` object. To achieve this, we create a matrix with
+only genotypes, and keep only a subset of the first 100 SNP loci (to make
+calculations faster). The result can then be converted to a `genind` object (for
+the package adegenet). The `genind` object can then easily be converted into
+`loci` objects (package pegas) (i.e. Mydata2)
+
+
+```{r, data_conversion}
+locus <- Mydata[, -c(1, 2, 3, 4, 105:ncol(Mydata))] 
+Mydata1 <- df2genind(locus, ploidy = 2, ind.names = ind, pop = population)
+Mydata1
+Mydata2 <-genind2loci(Mydata1)
+```
+
+
+
+
+
+##Section 2. Individual genetic distance: euclidean distance (`dist` {adegenet})
+
+The unit of the observation is the individuals. 
+
+- `r nInd(Mydata1)` genotypes
+- 100 binary SNPs
+- Ploidy : 2 
+
+The analysis is applied on allele frequency within individuals as represented in
+the `genind` object. We can use the function `dist()` from adegenet which
+provides different options. We will use the euclidean distance among vector of
+allele frequencies.
+
+
+```{r,Individual_dist_adegenet}
+
+distgenEUCL <- dist(Mydata1, method = "euclidean", diag = FALSE, upper = FALSE, p = 2)
+hist(distgenEUCL)
+
+```
+
+ 
+## Section 3.  Individual genetic distance: number of loci for which individuals differ (`dist.gene` {ape})  
+
+The option `pairwise.deletion = FALSE` in the command `distgen()` removes all
+loci with one missing values : you an see on the histogram that we get a maximum
+distance of 3 loci out of 100.
+
+We can see that we get 98 loci with at least one sample missing. Then using the
+option `pairwise.deletion = TRUE` in the command `distgen()` allows you to keep
+loci with one missing value.
+ 
+
+```{r,Individual_dist_ape}
+
+distgenDIFF <- dist.gene(Mydata2, method="pairwise", pairwise.deletion=FALSE, variance=FALSE)
+hist(distgenDIFF)
+
+missing_data <- info_table(Mydata1, type = "missing")
+sum(missing_data["Total", 1:100] > 0)
+barplot(missing_data["Total", 1:100], xlab = "Locus", ylab = "Percent Missing")
+
+distgenDIFF <- dist.gene(Mydata2, method="pairwise", pairwise.deletion=TRUE, variance=FALSE)
+hist(distgenDIFF)
+
+```
+
+##Section 4: number of allelic differences between two individuals (`diss.dist` {poppr})
+
+```{r,Individual_dist_poppr}
+
+distgenDISS <- diss.dist(Mydata1, percent=FALSE, mat=FALSE)
+hist(distgenDISS)
+
+```
+
+
+
+##Section 5: Conclusions drawn from the analysis  
+
+```{r,Compare_dist}
+
+
+boxplot(distgenEUCL, distgenDIFF, distgenDISS)
+
+
+```
+
+The number of allelic differences between two individuals is a different measure
+from euclidean distance or number of locus differences between two individuals.
+
+Conclusion 
+==========================================
+### What did we learn today?
+
+In this vignette, we explore different measures of individual genetic distances. 
+It is important to investigate the different options of each command.
+Missing data can be handled in different ways.
+
+
+### What is next?
+
+Other R packages can also be used to estimate individual genetic distances like
+gstudio for example. The individuals genetic distances can then be used in
+analysis as Mantel tests to test for isolation by distance or more complex
+analysis in landscape genetics to test for resistance by distance, cluster
+analysis, spatial network... See related vignettes.
+
+
+Contributors
+======================
+- Stéphanie Manel
+- Zhian Kamvar (minor edits)
+
+
