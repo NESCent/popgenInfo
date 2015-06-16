@@ -12,7 +12,7 @@ Anyone who is confident in population genetics analysis in R is encouraged to co
 
 ## How do I write a vignette?
 
-Contributed vignettes should be written in [R markdown](http://rmarkdown.rstudio.com/). A template can be found in [`TEMPLATE.Rmd`](https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd). The vignette should include example analysis and explanations using data that can be readily accessed in the public domain, e.g., the data that comes as part of some packages, so that users can replicate the analysis themselves. If no public data is available to address a particular biological question that you want to write a vignette for, this data can be uploaded to this repository also.
+Contributed vignettes should be written in [R markdown](http://rmarkdown.rstudio.com/). A template can be found in [`TEMPLATE.Rmd`](https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd) (See the [live page](TEMPLATE.html)). The vignette should include example analysis and explanations using data that can be readily accessed in the public domain, e.g., the data that comes as part of some packages, so that users can replicate the analysis themselves. If no public data is available to address a particular biological question that you want to write a vignette for, this data can be uploaded to this repository also.
 
 ## How do I submit a vignette?
 
