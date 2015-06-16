@@ -56,7 +56,7 @@ summary(nancycats)
 
 ## What's next
 
-Information on further analysis that could be done, other workflows [can be linked as well](https://github.com/NESCent/popgenInfo/blob/master/use/DifferentiationSNP.html) (note the HTML as opposed to Rmd link).
+Information on further analysis that could be done, other workflows [can be linked as well](DifferentiationSNP.html) (note the HTML as opposed to Rmd link).
 
 # Contributors
 
