@@ -1,17 +1,16 @@
 ---
-title: "Template Workflow"
-author: "Author name"
-date: "date"
-output: html_document
+title: "Template Vignette"
 ---
 
-Introduction
-=========
+# Introduction
+
 Explain the purpose of the vignette.  
 Give a brief explanation of the questions that will be answered and some background information.
 
-Assumptions
-============
+# Assumptions
+
+All biological analyses have assumptions.
+
 - Assumption 1
 - Assumption 2
 
