@@ -14,46 +14,62 @@ All biological analyses have assumptions.
 - Assumption 1
 - Assumption 2
 
-Data
-==========
-Links to information about the data if needed e.g. package vignettes.    
-Link to the data to download for the workflow if it is public data or in this repository. Can download into R here and show the code.   
-Format the users data needs to be in for this to work (import data and show a section to demonstrate if needed).  
+# Data
 
-Resources/Packages required
-=============
-Packages required. Say where these can be found, can link to the list of packages on our repository page here also.   
+Links to information about the data if needed e.g. package vignettes.
+You can use an [external link](https://github.com/cran/adegenet/blob/master/inst/files/nancycats.gtx)
+ or you can place the data [in the `data/` folder](https://github.com/NESCent/popgenInfo/tree/master/data/nancycats.gtx) (keep this < 200kb).
+
+# Resources/Packages required
+
+Packages required. Say where these can be found, can link to the list of packages on our repository page here also.
 
 Loading the required packages:  
+
 ```{r, packages, message=FALSE}
 library(hierfstat)
 library(adegenet)
 ```
 
-Analysis divided into sections  
-==========================================
+# Analysis divided into sections  
+
 Example Sections
-##Section 1: Load the data
-```{r, loaddata, eval=FALSE}
-nancycats <- import2genind("nancycats.dat")
-head(nancycats)
+
+## Section 1: Load the data
+
+
+```{r, loaddata_show, eval=FALSE}
+nancycats <- import2genind("nancycats.gtx")
+summary(nancycats)
 ```
 
-##Section 2: Exploratory Data analysis/Checking assumptions  
-  
-##Section 3: Summary statistics  
-  
-##Section N: Conclusions drawn from the analysis  
+```{r, loaddata_evalutate, echo = FALSE}
+nancycats <- import2genind("../data/nancycats.gtx")
+summary(nancycats)
+```
 
-Whats next
-=======================
+## Section 2: Exploratory Data analysis/Checking assumptions  
+  
+## Section 3: Summary statistics  
+  
+# Conclusions
+
+## What's next
+
 Information on further analysis that could be done, other workflows 
 
-###Session Information
+# Contributors
 
-```{r,sessioninfo, echo=FALSE}
-sessionInfo()
+- Author 1
+- Author 2
+- Contributor 1 (role)
 
+### Session Information
+
+```{r, sessioninfo, echo=FALSE}
+options(width = 100)
+devtools::session_info()
+```
 
 
 
