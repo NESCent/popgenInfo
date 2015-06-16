@@ -6,21 +6,21 @@ Vignettes are documents that outline topics in population genetics involving one
 
 The analyses outlined in the vignettes should be fast to run, ideally approximately two minutes or less. For example, if you are running permutations, set these to a small number in the workflow and encourage the user to increase the number themselves in order to reduce the time required. 
 
-## Who should contribute?
+# Who should contribute?
 
 Anyone who is confident in population genetics analysis in R is encouraged to contribute.
 
-## How do I write a vignette?
+# How do I write a vignette?
 
 Contributed vignettes should be written in [R markdown](http://rmarkdown.rstudio.com/). A template can be found in [`TEMPLATE.Rmd`](https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd) (See the [live page](TEMPLATE.html)). The vignette should include example analysis and explanations using data that can be readily accessed in the public domain, e.g., the data that comes as part of some packages, so that users can replicate the analysis themselves. If no public data is available to address a particular biological question that you want to write a vignette for, this data can be uploaded to this repository also.
 
-## How do I submit a vignette?
+# How do I submit a vignette?
 
 Overall, vignette submission will follow the guidelines in [GitHub flow](https://guides.github.com/introduction/flow/index.html). Please create a new branch for each vignette to be submitted. 
 
  
  
-### Step-by-step Process for submission:
+## Step-by-step Process for submission:
 
 1. Set up a github account if you don't already have one, see [here](https://guides.github.com/activities/hello-world/) for a quick tutorial on using Github. Download an appropriate Git client for your computer, see [here](https://help.github.com/articles/set-up-git/), and set it up.
 2. Fork the [source repository](http://github.com/NESCent/popgenInfo) on Github using the `Fork` button. 
@@ -34,12 +34,12 @@ Overall, vignette submission will follow the guidelines in [GitHub flow](https:/
 11. To do a pull request, navigate to your branch on github. Click `Compare & review` or the pull request icon.
 12. Once you have reviewed the changes, click `Create pull request`. Once the request is approved, the file will be automatically sent to a remote server that compiles the document into a html file.
 
-### Guidelines for approval
+## Guidelines for approval
 
  - Vignette must be able to successfully run examples with availble packages and data (this is automatically checked)
  - At least two people other than the vignette writer must approve the pull request
 
-### Best practices:
+## Best practices:
 
  - Use the [template](https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd) to get started
  - Give your vignette a unique name by using the date of your first commit (e.g. `2015-06-16_Parentage_Microsatellite.Rmd`) would be a vignette that was started on June 16th, 2015) 
@@ -47,6 +47,6 @@ Overall, vignette submission will follow the guidelines in [GitHub flow](https:/
  - Use small examples and encourage readers to explore with bigger examples
  - Submit your vignette early to get feedback
 
-## How do I submit datasets?
+# How do I submit datasets?
 
 We encourage contributors to use existing datasets for their vignettes. If uploading your dataset to this repository, submit data files to the **data/** directory in your branch in the same way as for your R markdown file. The dataset used in a vignette should be **< 200kb** in size. If your dataset is larger and your analysis will make sense on a subset of the dataset, then please subset it to a smaller size for both submission and use in the vignette. 
