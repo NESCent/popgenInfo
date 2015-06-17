@@ -44,7 +44,7 @@ nancycats <- import2genind("nancycats.gtx")
 summary(nancycats)
 ```
 
-```{r, load_data_evalutate, echo=FALSE}
+```{r, load_data_evaluate, echo=FALSE}
 # Note: the code chunk above will be shown to the reader, but it will not run.
 # This code chunk will run, but will not be shown to the reader.
 nancycats <- import2genind("../data/nancycats.gtx")
