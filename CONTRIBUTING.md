@@ -24,11 +24,11 @@ Overall, vignette submission will follow the guidelines in [GitHub flow](https:/
 
  
  
-## Step-by-step Process for submission
+## Step-by-step process for submission
 
 1. Set up a GitHub account if you don't already have one, see [here](https://guides.github.com/activities/hello-world/) for a quick tutorial on using GitHub. Download an appropriate Git client for your computer, see [here](https://help.github.com/articles/set-up-git/), and set it up.
-2. Fork the [source repository](http://github.com/NESCent/popgenInfo) on GitHub using the `Fork` button. 
-3. Clone the repository to your machine using `git clone https://github.com/YourAccount/popgenInfo.git` on the command line. The URL used here is in the HTTPS clone url section on the popgenInfo GitHub page. Keep your clone synced up by following Step 3 of [this tutorial](https://help.github.com/articles/fork-a-repo/). 
+2. Fork the [source repository](http://github.com/NESCent/popgenInfo) on GitHub using the `Fork` button (See [GitHub's tutorial](https://help.github.com/articles/fork-a-repo/)). 
+3. Clone the repository to your machine using `git clone https://github.com/YourAccount/popgenInfo.git` on the command line. Note: the https protocol is easier to follow, but it's possible to use ssh as well ([details here](https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork)). Follow [these instructions](https://help.github.com/articles/fork-a-repo/#step-3-configure-git-to-sync-your-fork-with-the-original-spoon-knife-repository) to keep your fork up to date with the master repository. 
 4. Then, from the command line, move to the popgenInfo directory using `cd popgenInfo`.
 5. Create a branch for your changes using `git checkout -b Your_branch_name`.
 6. Move your  vignette in `.Rmd` format into the **use/** directory.
@@ -50,6 +50,7 @@ Overall, vignette submission will follow the guidelines in [GitHub flow](https:/
  - List authors at the bottom of the vignette
  - Use small examples and encourage readers to explore with bigger examples
  - Submit your vignette early to get feedback
+ - Indicate whether or not your pull request is ready to be merged or if you want feedback
 
 # How do I submit datasets?
 
