@@ -67,7 +67,7 @@ Information on further analysis that could be done, other workflows [can be link
 - Author 2
 - Contributor 1 (role)
 
-### Session Information
+# Session Information
 
 ```{r, sessioninfo, echo=FALSE}
 options(width = 100)
