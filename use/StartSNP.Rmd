@@ -1,8 +1,5 @@
 ---
 title: Calculating Basic Population Genetic Statistics from SNP Data
-author: Stéphanie Manel
-date: March 19, 2015
-output: html_document
 ---
 
 # Introduction
@@ -149,3 +146,17 @@ data](DifferentiationSNP.html))
 Eckert, A. J., A. D. Bower, S. C. González-Martínez, J. L. Wegrzyn, G. Coop and
 D. B. Neale. 2010. Back to nature: Ecological genomics of loblolly pine (Pinus taeda, Pinaceae).
 Molecular Ecology 19: 3789-3805. doi:[10.1111/j.1365-294X.2010.04698.x](http://dx.doi.org/10.1111/j.1365-294X.2010.04698.x)
+
+
+# Contributors
+
+- Stéphanie Manel
+
+# Session Information
+
+Information about the R session used for this tutorial.
+
+```{r, sessioninfo}
+options(width = 100)
+devtools::session_info()
+```

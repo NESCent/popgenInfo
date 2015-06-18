@@ -198,4 +198,13 @@ Contributors
 - Stéphanie Manel
 - Zhian Kamvar (minor edits)
 
+# Session Information
+
+Information about the R session used for this tutorial.
+
+```{r, sessioninfo}
+options(width = 100)
+devtools::session_info()
+```
+
 

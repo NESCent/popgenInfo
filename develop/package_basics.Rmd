@@ -201,4 +201,14 @@ repository](http://cran.github.io)
 
 # Contributors
 
-Zhian N. Kamvar, Hilmar Lapp
+- Zhian N. Kamvar
+- Hilmar Lapp
+
+# Session Information
+
+Information about the R session used for this tutorial.
+
+```{r, sessioninfo}
+options(width = 100)
+devtools::session_info()
+```
