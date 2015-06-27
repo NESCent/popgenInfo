@@ -8,9 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
-<meta name="author" content="Margarita M. López-Uribe" />
 
-<meta name="date" content="2015-03-19" />
 
 <title>Population Differentiation for Sequence Data</title>
 
@@ -199,8 +197,6 @@ img {
 
 <div id="header">
 <h1 class="title">Population Differentiation for Sequence Data</h1>
-<h4 class="author"><em>Margarita M. López-Uribe</em></h4>
-<h4 class="date"><em>March 19, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -210,6 +206,8 @@ img {
 <li><a href="#import-data">Import data</a></li>
 <li><a href="#pairwise-population-differentiation">Pairwise population differentiation</a></li>
 <li><a href="#amova-analysis-of-molecular-variance">AMOVA (Analysis of Molecular Variance)</a></li>
+<li><a href="#contributors">Contributors</a></li>
+<li><a href="#session-information">Session Information</a></li>
 </ul>
 </div>
 
@@ -229,26 +227,26 @@ img {
 <div id="import-data" class="section level1">
 <h1>Import data</h1>
 <p>Refer to vignette on <a href="SummarySequenceData.html">Summary Statistics for SequenceData</a> for detailed instructions on how to upload one locus or multilocus FASTA files for this type of analyses. Here is the code:</p>
-<pre class="sourceCode r"><code class="sourceCode r">myData1&lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_mt.fas&quot;</span>) 
-tmp1&lt;-<span class="kw">as.matrix</span>(myData1)
-myData2&lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_CAD.fas&quot;</span>) 
-tmp2&lt;-<span class="kw">as.matrix</span>(myData2)
-allData&lt;-<span class="kw">cbind</span>(tmp1,tmp2)
-tmp3&lt;-<span class="kw">as.matrix</span>(allData) 
-allDatab&lt;-<span class="kw">as.genind.DNAbin</span>(tmp3, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;CA&quot;</span>,<span class="st">&quot;Ch&quot;</span>,<span class="st">&quot;Am&quot;</span>,<span class="st">&quot;AF&quot;</span>), <span class="dt">each=</span><span class="dv">5</span>)) </code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">myData1  &lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_mt.fas&quot;</span>) 
+tmp1     &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(myData1)
+myData2  &lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_CAD.fas&quot;</span>) 
+tmp2     &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(myData2)
+allData  &lt;-<span class="st"> </span><span class="kw">cbind</span>(tmp1,tmp2)
+tmp3     &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(allData) 
+allDatab &lt;-<span class="st"> </span><span class="kw">as.genind.DNAbin</span>(tmp3, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;CA&quot;</span>,<span class="st">&quot;Ch&quot;</span>,<span class="st">&quot;Am&quot;</span>,<span class="st">&quot;AF&quot;</span>), <span class="dt">each=</span><span class="dv">5</span>)) </code></pre>
 </div>
 <div id="pairwise-population-differentiation" class="section level1">
 <h1>Pairwise population differentiation</h1>
 <div id="overall-f-statistics" class="section level3">
 <h3>Overall F-statistics</h3>
-<pre class="sourceCode r"><code class="sourceCode r">allData_loci&lt;-<span class="st"> </span><span class="kw">as.loci</span>(allDatab) 
+<pre class="sourceCode r"><code class="sourceCode r">allData_loci &lt;-<span class="st"> </span><span class="kw">as.loci</span>(allDatab) 
 <span class="kw">Fst</span>(allData_loci) <span class="co"># this function calculates overall Fit, Fst, and Fis of the dataset</span></code></pre>
 <pre><code>##    Fit          Fst Fis
 ## L1   1 1.040834e-16   1</code></pre>
 </div>
 <div id="pairwise-fst" class="section level3">
 <h3>Pairwise Fst</h3>
-<pre class="sourceCode r"><code class="sourceCode r">allData_loci&lt;-<span class="st"> </span><span class="kw">as.loci</span>(allDatab) 
+<pre class="sourceCode r"><code class="sourceCode r">allData_loci &lt;-<span class="st"> </span><span class="kw">as.loci</span>(allDatab) 
 <span class="kw">Fst</span>(allData_loci) <span class="co"># this function calculates overall Fit, Fst, and Fis of the dataset</span></code></pre>
 <pre><code>##    Fit          Fst Fis
 ## L1   1 1.040834e-16   1</code></pre>
@@ -257,7 +255,7 @@ allDatab&lt;-<span class="kw">as.genind.DNAbin</span>(tmp3, <span class="kw">rep
 <div id="amova-analysis-of-molecular-variance" class="section level1">
 <h1>AMOVA (Analysis of Molecular Variance)</h1>
 <p>Analysis of Molecular Variance (AMOVA) is a method for estimating population differentiation from molecular data taking into account the mutational distance between alleles. Unlike <span class="math">\(F_{st}\)</span>, which quantifies genetic differentiation based on allele frequencies, AMOVA treats molecular data as vectors and estimates Euclidean distances between alleles. Furthermore, it is possible to test hypotheses about differentiation by grouping subpopulations in a hierarchical structure (Ref).</p>
-<pre class="sourceCode r"><code class="sourceCode r">allData_dist&lt;-<span class="kw">dist.dna</span>(allData) <span class="co"># this calculates pairwise Euclidean distances among individuals</span>
+<pre class="sourceCode r"><code class="sourceCode r">allData_dist &lt;-<span class="st"> </span><span class="kw">dist.dna</span>(allData) <span class="co"># this calculates pairwise Euclidean distances among individuals</span>
 groups &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;West&quot;</span>, <span class="dv">10</span>), <span class="kw">rep</span>(<span class="st">&quot;East&quot;</span>, <span class="dv">10</span>)))
 populations &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;CA&quot;</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&quot;Ch&quot;</span>, <span class="dv">5</span>),<span class="kw">rep</span>(<span class="st">&quot;Am&quot;</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&quot;AF&quot;</span>, <span class="dv">5</span>)))
 <span class="kw">amova</span>(allData_dist ~<span class="st"> </span>groups, <span class="dt">nperm =</span> <span class="dv">100</span>)</code></pre>
@@ -273,7 +271,7 @@ populations &lt;-<span class="st"> </span><span class="kw">factor</span>(<span c
 ## 
 ## Variance components:
 ##            sigma2 P.value
-## groups 2.3344e-06  0.1683
+## groups 2.3344e-06  0.1584
 ## Error  3.6201e-05        
 ## 
 ## Variance coefficients:
@@ -298,6 +296,68 @@ populations &lt;-<span class="st"> </span><span class="kw">factor</span>(<span c
 ## Variance coefficients:
 ## a 
 ## 5</code></pre>
+</div>
+<div id="contributors" class="section level1">
+<h1>Contributors</h1>
+<ul>
+<li>Margarita M. López-Uribe</li>
+</ul>
+</div>
+<div id="session-information" class="section level1">
+<h1>Session Information</h1>
+<p>Information about the R session used for this tutorial.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
+devtools::<span class="kw">session_info</span>()</code></pre>
+<pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
+<pre><code>##  setting  value                       
+##  version  R version 3.1.3 (2015-03-09)
+##  system   x86_64, linux-gnu           
+##  ui       X11                         
+##  language (EN)                        
+##  collate  en_US.UTF-8                 
+##  tz       &lt;NA&gt;</code></pre>
+<pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
+<pre><code>##  package    * version date       source        
+##  ade4         1.6-2   2013-11-20 CRAN (R 3.1.3)
+##  adegenet     1.4-2   2014-05-13 CRAN (R 3.1.3)
+##  ape          3.2     2014-12-05 CRAN (R 3.1.3)
+##  colorspace * 1.2-6   2015-03-11 CRAN (R 3.1.3)
+##  combinat     0.0-8   2012-10-29 CRAN (R 3.1.3)
+##  devtools   * 1.7.0   2015-01-17 CRAN (R 3.1.3)
+##  digest     * 0.6.8   2014-12-31 CRAN (R 3.1.3)
+##  evaluate   * 0.5.5   2014-04-29 CRAN (R 3.1.3)
+##  formatR    * 1.1     2015-03-29 CRAN (R 3.1.3)
+##  gdata        2.13.3  2014-04-06 CRAN (R 3.1.3)
+##  genetics     1.3.8.1 2013-09-03 CRAN (R 3.1.3)
+##  ggplot2    * 1.0.1   2015-03-17 CRAN (R 3.1.3)
+##  gtable     * 0.1.2   2012-12-05 CRAN (R 3.1.3)
+##  gtools       3.4.1   2014-05-28 CRAN (R 3.1.3)
+##  hierfstat    0.04-14 2014-09-29 CRAN (R 3.1.3)
+##  htmltools  * 0.2.6   2014-09-08 CRAN (R 3.1.3)
+##  httpuv     * 1.3.2   2014-10-23 CRAN (R 3.1.3)
+##  igraph     * 0.7.1   2014-04-22 CRAN (R 3.1.3)
+##  knitr      * 1.9     2015-01-20 CRAN (R 3.1.3)
+##  lattice    * 0.20-31 2015-03-30 CRAN (R 3.1.3)
+##  MASS         7.3-40  2015-03-21 CRAN (R 3.1.3)
+##  mime       * 0.3     2015-03-29 CRAN (R 3.1.3)
+##  mmod         1.2.1   2014-08-03 CRAN (R 3.1.3)
+##  munsell    * 0.4.2   2013-07-11 CRAN (R 3.1.3)
+##  mvtnorm      1.0-2   2014-12-18 CRAN (R 3.1.3)
+##  nlme       * 3.1-120 2015-02-20 CRAN (R 3.1.3)
+##  pegas        0.7     2015-03-05 CRAN (R 3.1.3)
+##  plyr       * 1.8.1   2014-02-26 CRAN (R 3.1.3)
+##  proto      * 0.3-10  2012-12-22 CRAN (R 3.1.3)
+##  R6         * 2.0.1   2014-10-29 CRAN (R 3.1.3)
+##  Rcpp       * 0.11.5  2015-03-06 CRAN (R 3.1.3)
+##  reshape2   * 1.4.1   2014-12-06 CRAN (R 3.1.3)
+##  RJSONIO    * 1.3-0   2014-07-28 CRAN (R 3.1.3)
+##  rmarkdown  * 0.5.1   2015-01-26 CRAN (R 3.1.3)
+##  rstudioapi * 0.2     2014-12-31 CRAN (R 3.1.3)
+##  scales     * 0.2.4   2014-04-22 CRAN (R 3.1.3)
+##  shiny      * 0.11.1  2015-02-11 CRAN (R 3.1.3)
+##  stringr    * 0.6.2   2012-12-06 CRAN (R 3.1.3)
+##  xtable     * 1.7-4   2014-09-12 CRAN (R 3.1.3)
+##  yaml       * 2.1.13  2014-06-12 CRAN (R 3.1.3)</code></pre>
 </div>
 
 <!-- </div>
