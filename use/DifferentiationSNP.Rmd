@@ -1,8 +1,5 @@
 ---
 title: Calculating genetic differentiation and clustering methods from SNP data
-author: Stephanie Manel
-date: March 19, 2015
-output: html_document
 ---
 
 Introduction
@@ -168,7 +165,9 @@ individual level assuming no population.
 You may now want to move to the estimation of genetic distances (See vignette
 DistancesSNP, coming soon)
   
- 
+# Contributors
+
+- Stephanie Manel 
  
 Reference
 ========================================================
@@ -179,3 +178,11 @@ Eckert, A. J., A. D. Bower, S. C. González-Martínez, J. L. Wegrzyn, G. Coop an
 Thierry de Meeûs, Jérôme Goudet "A step-by-step tutorial to use HierFstat to analyse populations hierarchically structured at multiple levels.", Infect. Genet. Evol., vol. 7, no. 6, 2007 
 
 
+# Session Information
+
+Information about the R session used for this tutorial.
+
+```{r, sessioninfo}
+options(width = 100)
+devtools::session_info()
+```

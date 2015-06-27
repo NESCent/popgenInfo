@@ -1,8 +1,5 @@
 ---
 title: "Calculating Basic Population Genetic Statistics from Sequence Data"
-author: "Margarita M. López-Uribe"
-date: "March 18, 2015"
-output: html_document
 ---
 
 Introduction
@@ -59,7 +56,7 @@ class(myData1)
 ```
 
 ```{r, data_import_FASTA_locus1_real, echo = FALSE}
-myData1<- read.FASTA("../data/Ebom_mt.fas") # this creates a DNAbin object
+myData1 <- read.FASTA("../data/Ebom_mt.fas") # this creates a DNAbin object
 class(myData1)
 ```
 
@@ -67,17 +64,17 @@ To convert DNAbin objects to genind objects:
 
 ```{r, data_import_DNAbin}
 #library(mmod)
-tmp1<-as.matrix(myData1) # converts the list of sequences into a matrix
-myData1b<-as.genind.DNAbin(tmp1, rep(c("CA","Ch","Am","AF"), each=5))
+tmp1 <- as.matrix(myData1) # converts the list of sequences into a matrix
+myData1b <- as.genind.DNAbin(tmp1, rep(c("CA","Ch","Am","AF"), each=5))
 ```
 
 ### Genetic diversity indices:
 Calculate nucleotide diversity and summary descriptors for the data:
 
 ```{r, pi}
-myData1_pi<-nuc.div(myData1) # nucleotide diversity from a sample of DNA sequences in DNAbin format
+myData1_pi <- nuc.div(myData1) # nucleotide diversity from a sample of DNA sequences in DNAbin format
 myData1_pi
-myData1_summ<-summary(myData1b) # to visualize summary descriptors of your sequence data file
+myData1_summ <- summary(myData1b) # to visualize summary descriptors of your sequence data file
 ```
 Make some plots:
 
@@ -103,14 +100,14 @@ mitochondrial data.
 ### Testing for Hardy-Weinberg Equilibrium
 ```{r, HWE1, message=FALSE, warning=FALSE}
 #library(genetics)
-myData1_HWE<- HWE.test.genind(myData1b) # this will test for Hardy-Weinberg equilibrium
+myData1_HWE <- HWE.test.genind(myData1b) # this will test for Hardy-Weinberg equilibrium
 myData1_HWE # p-values lower than 0.05 indicate deviations from HWE
 ```
 Note: If you have loci in your dataset that deviate from HWE, your dataset may violate assumptions for downstream population genetic analyses.
 
 ### F statistics
 ```{r, Fstats}
-myData1_loci<- as.loci(myData1b) 
+myData1_loci <- as.loci(myData1b) 
 Fst(myData1_loci) # this function calculates overall Fit, Fst, and Fis of the dataset
 ```
 
@@ -119,11 +116,11 @@ Fst(myData1_loci) # this function calculates overall Fit, Fst, and Fis of the da
 #### Testing for Population Differentiation from diploid data
 
 ```{r, Fst1}
-myData1_bs<- chao_bootstrap(myData1b, nreps=100) # subsample your dataset multiple times to estimate significance of genetic differentiation statistics 
+myData1_bs <- chao_bootstrap(myData1b, nreps=100) # subsample your dataset multiple times to estimate significance of genetic differentiation statistics 
 summarise_bootstrap(myData1_bs, Gst_Nei) # estimate Gst_Nei and whether or not it is significant
 summarise_bootstrap(myData1_bs, Gst_Hedrick) # estimate Hedrick's Gst and whether or not it is significant
 summarise_bootstrap(myData1_bs, D_Jost) # estimate Jost's D and whether or not it is significant
-myData1_GenDiff<-diff_stats(myData1b) # general test for genetic differentiation per locus and across all subpopultions using Gst, Gst' and Jost D (estimated and based on the harmonic mean between loci)
+myData1_GenDiff <- diff_stats(myData1b) # general test for genetic differentiation per locus and across all subpopultions using Gst, Gst' and Jost D (estimated and based on the harmonic mean between loci)
 myData1_GenDiff
 ```
 
@@ -131,7 +128,7 @@ myData1_GenDiff
 
 ```{r, Fst2}
 #library(mmod)
-myData1_Phist<- Phi_st_Meirmans(myData1b) 
+myData1_Phist <- Phi_st_Meirmans(myData1b) 
 myData1_Phist # test fo population differentation for haploid data
 ```
 
@@ -144,24 +141,24 @@ Section II - Workflow for Multilocus Sequence Data
 To import raw sequence data from more loci into R:
 
 ```{r, data_import_FASTA_locus2, eval=FALSE}
-myData2<- read.FASTA("Ebom_CAD.fas") # this creates a DNAbin object
+myData2 <- read.FASTA("Ebom_CAD.fas") # this creates a DNAbin object
 class(myData2)
-tmp2<-as.matrix(myData2) # converts the list of sequences into a matrix
-allData<-cbind(tmp1, tmp2)
+tmp2    <- as.matrix(myData2) # converts the list of sequences into a matrix
+allData <- cbind(tmp1, tmp2)
 ```
 
 ```{r, data_import_FASTA_locus2_real, echo = FALSE}
-myData2<- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
-tmp2<-as.matrix(myData2) # converts the list of sequences into a matrix
-allData<-cbind(tmp1,tmp2)
+myData2 <- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
+tmp2 <- as.matrix(myData2) # converts the list of sequences into a matrix
+allData <- cbind(tmp1,tmp2)
 ```
 
 To convert DNAbin objects to genind objects:
 
 ```{r, data_import_DNAbin_all}
 #library(mmod)
-tmp3<-as.matrix(allData) # converts the list of sequences into a matrix
-allDatab<-as.genind.DNAbin(tmp3, rep(c("CA","Ch","Am","AF"), each=5)) # bins data from multiple loci into one DNAbin object - MAKE SURE SEQUENCES IN THE FASTA FILE HAVE THE SAME NAME
+tmp3 <- as.matrix(allData) # converts the list of sequences into a matrix
+allDatab <- as.genind.DNAbin(tmp3, rep(c("CA","Ch","Am","AF"), each=5)) # bins data from multiple loci into one DNAbin object - MAKE SURE SEQUENCES IN THE FASTA FILE HAVE THE SAME NAME
 ```
 
 #Analyses
@@ -170,7 +167,7 @@ For example, testing for Genetic Differentiation:
 
 ```{r, HWE2, message=FALSE}
 #library(genetics)
-allData_HWE<- HWE.test.genind(allDatab, res="matrix") # this will generate a matrix of p-values for HWE
+allData_HWE <- HWE.test.genind(allDatab, res="matrix") # this will generate a matrix of p-values for HWE
 allData_HWE
 
 ```
@@ -178,7 +175,7 @@ allData_HWE
 For example, testing for overall Genetic Differentiation:
 
 ```{r, Fstats2}
-allData_loci<- as.loci(allDatab) 
+allData_loci <- as.loci(allDatab) 
 Fst(allData_loci) # this function calculates overall Fit, Fst, and Fis of the dataset
 ```
 
@@ -196,5 +193,18 @@ null Wright-Fischer model.
 ### What is next?
 
 You may now want to move into looking into population differentiation in more
-detail (link to vignette). You may also want to explore demographic parameter
+detail see [Population Differentiation for Sequence Data](PopDiffSequenceData.html). You may also want to explore demographic parameter
 estimation (e.g. deviations from neutrality, effective population size).
+
+# Contributors
+
+- Margarita M. López-Uribe
+
+# Session Information
+
+Information about the R session used for this tutorial.
+
+```{r, sessioninfo}
+options(width = 100)
+devtools::session_info()
+```

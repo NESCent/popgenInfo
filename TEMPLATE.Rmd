@@ -69,7 +69,9 @@ Information on further analysis that could be done, other workflows [can be link
 
 # Session Information
 
-```{r, sessioninfo, echo=FALSE}
+Information about the R session used for this tutorial.
+
+```{r, sessioninfo}
 options(width = 100)
 devtools::session_info()
 ```

@@ -1,8 +1,5 @@
 ---
 title: "Population Differentiation for Sequence Data"
-author: "Margarita M. López-Uribe"
-date: "March 19, 2015"
-output: html_document
 ---
 
 Introduction
@@ -36,23 +33,23 @@ instructions on how to upload one locus or multilocus FASTA files for this type
 of analyses. Here is the code:
 
 ```{r, data_import_FASTA, eval=FALSE}
-myData1<- read.FASTA("Ebom_mt.fas") 
-tmp1<-as.matrix(myData1)
-myData2<- read.FASTA("Ebom_CAD.fas") 
-tmp2<-as.matrix(myData2)
-allData<-cbind(tmp1,tmp2)
-tmp3<-as.matrix(allData) 
-allDatab<-as.genind.DNAbin(tmp3, rep(c("CA","Ch","Am","AF"), each=5)) 
+myData1  <- read.FASTA("Ebom_mt.fas") 
+tmp1     <- as.matrix(myData1)
+myData2  <- read.FASTA("Ebom_CAD.fas") 
+tmp2     <- as.matrix(myData2)
+allData  <- cbind(tmp1,tmp2)
+tmp3     <- as.matrix(allData) 
+allDatab <- as.genind.DNAbin(tmp3, rep(c("CA","Ch","Am","AF"), each=5)) 
 ```
 
 ```{r, data_import_FASTA_real, echo = FALSE}
-myData1<- read.FASTA("../data/Ebom_mt.fas") # this creates a DNAbin object
-tmp1<-as.matrix(myData1) # converts the list of sequences into a matrix
-myData2<- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
-tmp2<-as.matrix(myData2) # converts the list of sequences into a matrix
-allData<-cbind(tmp1,tmp2)
-tmp3<-as.matrix(allData) 
-allDatab<-as.genind.DNAbin(tmp3, rep(c("CA","Ch","Am","AF"), each=5))
+myData1 <- read.FASTA("../data/Ebom_mt.fas") # this creates a DNAbin object
+tmp1 <- as.matrix(myData1) # converts the list of sequences into a matrix
+myData2 <- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
+tmp2 <- as.matrix(myData2) # converts the list of sequences into a matrix
+allData <- cbind(tmp1,tmp2)
+tmp3 <- as.matrix(allData) 
+allDatab <- as.genind.DNAbin(tmp3, rep(c("CA","Ch","Am","AF"), each=5))
 ```
 
 Pairwise population differentiation
@@ -61,13 +58,13 @@ Pairwise population differentiation
 ### Overall F-statistics
 
 ```{r, Fstats1}
-allData_loci<- as.loci(allDatab) 
+allData_loci <- as.loci(allDatab) 
 Fst(allData_loci) # this function calculates overall Fit, Fst, and Fis of the dataset
 ```
 ### Pairwise Fst
 
 ```{r, Fstats2}
-allData_loci<- as.loci(allDatab) 
+allData_loci <- as.loci(allDatab) 
 Fst(allData_loci) # this function calculates overall Fit, Fst, and Fis of the dataset
 ```
 
@@ -83,10 +80,22 @@ hypotheses about differentiation by grouping subpopulations in a hierarchical
 structure (Ref).
 
 ```{r}
-allData_dist<-dist.dna(allData) # this calculates pairwise Euclidean distances among individuals
+allData_dist <- dist.dna(allData) # this calculates pairwise Euclidean distances among individuals
 groups <- factor(c(rep("West", 10), rep("East", 10)))
 populations <- factor(c(rep("CA", 5), rep("Ch", 5),rep("Am", 5), rep("AF", 5)))
 amova(allData_dist ~ groups, nperm = 100)
 amova(allData_dist ~ populations, nperm = 100)
 ```
 
+# Contributors
+
+- Margarita M. López-Uribe
+
+# Session Information
+
+Information about the R session used for this tutorial.
+
+```{r, sessioninfo}
+options(width = 100)
+devtools::session_info()
+```
