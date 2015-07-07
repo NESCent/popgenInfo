@@ -29,8 +29,10 @@ Overall, vignette submission will follow the guidelines in [GitHub flow](https:/
 1. Set up a GitHub account if you don't already have one, see [here](https://guides.github.com/activities/hello-world/) for a quick tutorial on using GitHub. Download an appropriate Git client for your computer, see [here](https://help.github.com/articles/set-up-git/), and set it up.
 2. Fork the [source repository](http://github.com/NESCent/popgenInfo) on GitHub using the `Fork` button (See [GitHub's tutorial](https://help.github.com/articles/fork-a-repo/)). 
 3. Clone the repository to your machine using `git clone https://github.com/YourAccount/popgenInfo.git` on the command line. Note: the https protocol is easier to follow, but it's possible to use ssh as well ([details here](https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork)). Follow [these instructions](https://help.github.com/articles/fork-a-repo/#step-3-configure-git-to-sync-your-fork-with-the-original-spoon-knife-repository) to keep your fork up to date with the master repository. 
-4. Then, from the command line, move to the popgenInfo directory using `cd popgenInfo`.
+4. Then, from the command line, move to the popgenInfo directory using `cd popgenInfo`. 
 5. Create a branch for your changes using `git checkout -b Your_branch_name`.
+6. If you are on windows or macintosh, you can open Rstudio by double-clicking on the `popgenInfo.Rproj` file in your file browser. If you are on linux, you can open it by typing `rstudio popgenInfo.Rproj`.
+7. If you haven't done so, create your vignette from the [`TEMPLATE.Rmd`](https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd) file and move any associated data to the **data/** directory.
 6. Move your  vignette in `.Rmd` format into the **use/** directory.
 8. Add the file to git using `git add use/yourfilename.Rmd`.
 9. Then commit this using `git commit` and add some short text describing what your file is.
