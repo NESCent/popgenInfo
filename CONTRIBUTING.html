@@ -212,6 +212,8 @@ img {
 <li>Clone the repository to your machine using <code>git clone https://github.com/YourAccount/popgenInfo.git</code> on the command line. Note: the https protocol is easier to follow, but it’s possible to use ssh as well (<a href="https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork">details here</a>). Follow <a href="https://help.github.com/articles/fork-a-repo/#step-3-configure-git-to-sync-your-fork-with-the-original-spoon-knife-repository">these instructions</a> to keep your fork up to date with the master repository.</li>
 <li>Then, from the command line, move to the popgenInfo directory using <code>cd popgenInfo</code>.</li>
 <li>Create a branch for your changes using <code>git checkout -b Your_branch_name</code>.</li>
+<li>If you are on windows or macintosh, you can open Rstudio by double-clicking on the <code>popgenInfo.Rproj</code> file in your file browser. If you are on linux, you can open it by typing <code>rstudio popgenInfo.Rproj</code>.</li>
+<li>If you haven’t done so, create your vignette from the <a href="https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd"><code>TEMPLATE.Rmd</code></a> file and move any associated data to the <strong>data/</strong> directory.</li>
 <li>Move your vignette in <code>.Rmd</code> format into the <strong>use/</strong> directory.</li>
 <li>Add the file to git using <code>git add use/yourfilename.Rmd</code>.</li>
 <li>Then commit this using <code>git commit</code> and add some short text describing what your file is.</li>
