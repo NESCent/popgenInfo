@@ -173,7 +173,17 @@ img {
         <li class="dropdown">
           <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Package Developers <span class="caret"></span></a>
           <ul class = "dropdown-menu", role = "menu">
-           <li><a href = "DEVELOPER.html">Introduction</a></li>  
+           <li><a href = "DEVELOPER_INTRO.html">Introduction</a></li>
+           <li><a href = "PACKAGES.html">Population genetic packages in R</a></li>  
+           <li><a href = "DATAFORMATS.html">Population genetic data types in R</a></li>
+           <li><a href = "PACKAGE_TUTORIALS.html">Developing R packages</a></li>
+           <li class="divider"></li>  
+           <li class="dropdown-header">Development Resources (external):</li>
+           <li><a href = "http://r-pkgs.had.co.nz/">Hadley Wickham's Guide For Creating R Packages</a></li>
+           <li><a href = "https://github.com/jtleek/rpackages">Jeff Leek's R Package Development</a></li>
+           <li><a href = "http://adv-r.had.co.nz/S4.html">S4 Classes in detail</a></li>
+           <li><a href = "http://adv-r.had.co.nz/S3.html">S3 Classes in detail</a></li>
+           <li><a href = "http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf">A not so short introduction to S4</a></li>
           </ul>
         </li>
         <!-- Author button -->
@@ -380,17 +390,17 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0605  0.3058
-## 2  -0.0578  0.0484
-## 3   0.0034  0.0804
-## 4  -0.0369  0.0865
-## 5  -0.0491  0.0734
-## 6  -0.6502  0.2023
-## 7  -0.2456  0.1553
-## 8  -0.2122 -0.0446
-## 9  -0.1397  0.3103
-## 10  0.0261  0.3717
-## 11 -0.4348 -0.1573</code></pre>
+## 1  -0.0428  0.3105
+## 2  -0.0546  0.0542
+## 3   0.0020  0.0944
+## 4  -0.0395  0.1013
+## 5  -0.0442  0.0669
+## 6  -0.4593  0.2127
+## 7  -0.2307  0.1590
+## 8  -0.2203 -0.0540
+## 9  -0.1844  0.2966
+## 10  0.0345  0.3848
+## 11 -0.4318 -0.1573</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex=</span><span class="fl">0.7</span>)</code></pre>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
@@ -400,17 +410,17 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 <p>We used the pegas package.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata3, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0.10037.01.257 0.75465490  1  0.38500645    0.476
-## X0.10040.02.394 0.16628227  1  0.68343723    0.722
-## X0.10044.01.392 2.96053195  1  0.08531987    0.093
-## X0.10048.01.60  6.39076800  1  0.01147154    0.014
-## X0.10051.02.166 1.12035389  1  0.28984227    0.287
-## X0.10054.01.402 1.54582494  1  0.21375285    0.232
-## X0.10067.03.111 0.04868128  1  0.82537403    0.548
-## X0.10079.02.168 0.01579313  1  0.89999259    0.607
+## X0.10037.01.257 0.75465490  1  0.38500645    0.437
+## X0.10040.02.394 0.16628227  1  0.68343723    0.723
+## X0.10044.01.392 2.96053195  1  0.08531987    0.097
+## X0.10048.01.60  6.39076800  1  0.01147154    0.015
+## X0.10051.02.166 1.12035389  1  0.28984227    0.275
+## X0.10054.01.402 1.54582494  1  0.21375285    0.227
+## X0.10067.03.111 0.04868128  1  0.82537403    0.590
+## X0.10079.02.168 0.01579313  1  0.89999259    0.602
 ## X0.10112.01.169 0.41126025  1  0.52133054    1.000
-## X0.10113.01.119 0.74248768  1  0.38886515    0.422
-## X0.10116.01.165 1.87098306  1  0.17136253    0.232</code></pre>
+## X0.10113.01.119 0.74248768  1  0.38886515    0.459
+## X0.10116.01.165 1.87098306  1  0.17136253    0.238</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
