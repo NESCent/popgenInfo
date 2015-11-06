@@ -27,7 +27,7 @@ nancycats is a genind, i.e. an object of the library adegenet
 # Resources/Packages required
 
 
-```{r, packages, message=FALSE}
+```{r, packages}
  
 library(adegenet)
 library(pegas)
@@ -39,14 +39,14 @@ library(pegas)
 ## Section 1: Load the data
 After loading the 'genind' object, we convert it into a `loci` objects (package pegas)
 
-```{r, load_data_show, eval=FALSE}
+```{r, load_data_show, eval=TRUE}
 nancycats  
 summary(nancycats)
 
 ```
 
 
-```{r, data_conversion, eval=FALSE}
+```{r, data_conversion}
 Mydata <- genind2loci(nancycats)
 
 ```
@@ -55,7 +55,7 @@ Mydata <- genind2loci(nancycats)
 ## Section 2: Genetic diversity (osberved and expected heterozygosity)   
 
 
-```{r, Genetic_diversity, eval=FALSE}
+```{r, Genetic_diversity}
 nancycats  
 div<-summary(nancycats)
 div
