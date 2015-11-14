@@ -40,7 +40,7 @@ library(pegas)
 After loading the 'genind' object, we convert it into a `loci` objects (package pegas)
 
 ```{r, load_data_show, eval=TRUE}
-nancycats  
+data(nancycats)  
 summary(nancycats)
 
 ```
