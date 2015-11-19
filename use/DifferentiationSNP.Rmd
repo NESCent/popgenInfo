@@ -79,7 +79,7 @@ object (Mydata2)
 ```{r,data_conversion}
 
 locus <- Mydata[, -c(1, 2, 3, 4, 25:ncol(Mydata))] 
-Mydata1 <- df2genind(locus, ploidy = 2, ind.names = ind, pop = population)
+Mydata1 <- df2genind(locus, ploidy = 2, ind.names = ind, pop = population,ncode=2)
 Mydata1
 Mydata2 <- genind2hierfstat(Mydata1) 
 
