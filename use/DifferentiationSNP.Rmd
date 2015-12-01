@@ -89,7 +89,8 @@ Mydata2 <- genind2hierfstat(Mydata1)
 ## $F_{st}$ (observed and expected heterozygosity)  (package hierfstat)
 
 ```{r,Basicstatiscis_with Fst}
-basic.stats(Mydata2) # Fst following Nei (1987)
+basic.stats(Mydata1) # Fst following Nei (1987) on genind object
+basic.stats(Mydata2) # same as previous, on hierfstat object
 wc(Mydata2) # Weir and Cockrham estimate
 ```
 
@@ -114,8 +115,7 @@ test.between(loci, test.lev = population, rand.unit = county, nperm = 30)
 ### Pairwise $F_{st}$ (package hierfstat)
 
 ```{r,pairewise_Fst}
-loci1 <- na.omit(loci)
-pp.fst(loci1, diploid = TRUE) # Do not work with missing values
+genet.dist(Mydata1, method="WC84")
 # No test at the moment
 ```
 
