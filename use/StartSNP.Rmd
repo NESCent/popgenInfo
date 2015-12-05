@@ -75,7 +75,7 @@ Mydata2 <- genind2hierfstat(Mydata1)
 Mydata3 <- genind2loci(Mydata1)
 ```
 
-## Genetic diversity (osberved and expected heterozygosity) 
+## Genetic diversity (observed and expected heterozygosity) 
 
 with adegenet
 
