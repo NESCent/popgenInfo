@@ -26,3 +26,6 @@ install/*_files/
 
 # ignore .Renviron file
 .Renviron
+
+# ignore OSX Desktop Services files
+.DS_Store
