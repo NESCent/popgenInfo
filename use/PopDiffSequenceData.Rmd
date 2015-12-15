@@ -87,3 +87,24 @@ allData_dist<-dist.multidna(allData2,pool=TRUE)
 strata(allData3)<-data.frame(regions=c(rep("West", 20), rep("East", 20)), populations=c(rep("CA", 10), rep("Ch", 10),rep("Am", 10), rep("AF", 10)))
 amova(allData_dist ~ populations, data=strata(allData3), nperm = 100)
 ```
+
+# Conclusions
+
+## What's next
+
+Information on further analysis that could be done, other workflows [can be linked as well](DifferentiationSNP.html) (note the HTML as opposed to Rmd link).
+
+# Contributors
+
+- Author 1
+- Author 2
+- Contributor 1 (role)
+
+# Session Information
+
+Information about the R session used for this tutorial.
+
+```{r, sessioninfo}
+options(width = 100)
+devtools::session_info()
+```
