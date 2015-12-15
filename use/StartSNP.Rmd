@@ -154,7 +154,7 @@ Molecular Ecology 19: 3789-3805. doi:[10.1111/j.1365-294X.2010.04698.x](http://d
 
 # Session Information
 
-Information about the R session used for this tutorial.
+This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.
 
 ```{r, sessioninfo}
 options(width = 100)

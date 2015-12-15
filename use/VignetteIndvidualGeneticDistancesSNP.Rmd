@@ -200,7 +200,7 @@ Contributors
 
 # Session Information
 
-Information about the R session used for this tutorial.
+This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.
 
 ```{r, sessioninfo}
 options(width = 100)
