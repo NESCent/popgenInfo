@@ -25,7 +25,7 @@ library(poppr)
 Import data
 ========
 We will first upload FASTA files for each gene independently, and then we will create a multidna object that concatenates both genes (allData1). Finally, this multidna object (allData2) will be converted into a genind object (allData3), which will be used for downstream analyses.
-```{r, data_import_FASTA, eval=TRUE}
+```{r, data_import_FASTA, eval=FALSE}
 myData1<- read.FASTA("Ebom_mt.fas") 
 tmp1<-as.matrix(myData1)
 tmp1
@@ -41,15 +41,19 @@ pop(allData3)<-(rep(c("CA","Ch","Am","AF"), each=10))
 allData3
 ```
 
-```{r, data_import_FASTA_real, eval = FALSE}
-myData1<- read.FASTA("../data/Ebom_mt.fas") # this creates a DNAbin object
+```{r, data_import_FASTA_real, eval = TRUE}
+myData1<- read.FASTA("data/Ebom_mt.fas") # this creates a DNAbin object
 tmp1<-as.matrix(myData1) # converts the list of sequences into a matrix
 tmp1
-myData2<- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
+myData2<- read.FASTA("data/Ebom_CAD.fas") # this creates a DNAbin object
 tmp2<-as.matrix(myData2) # converts the list of sequences into a matrix
 tmp2
-allData<-list(mt=tmp1[,1:1271], CAD=tmp2[,1:673]) #create a multidna object concatenating two genes: mt and CAD
-pop(allData3)<-(rep(c("CA","Ch","Am","AF"), each=10)) #assign populations to each individual
+allData1<-list(mt=tmp1[,1:1271], CAD=tmp2[,1:673])
+tmp3<-as.matrix(allData1)
+allData2<-new("multidna",allData1)
+plot(allData2, cex=0.2)
+allData3<-multidna2genind(allData2,mlst=TRUE)
+pop(allData3)<-(rep(c("CA","Ch","Am","AF"), each=10))
 allData3
 ```
 
@@ -67,7 +71,7 @@ pairwise_Gst_Hedrick(allData3, linearized=FALSE)#Calculates pairwise Gst. If lin
 pairwise_D(allData3, linearized=FALSE, hsht_mean="harmonic") #Calculates pairwise Gst. If linearized =TRUE, it calculates 1/(1-D)  
 ```
 ### Testing for significance
-To estimate if populations are significantly different, we will generate 1000 replicates of the dataset using the function chao_bootstrap(). Then, summary statistics (meand and 95% CI) will be calculated for each of the different parameters of population differentiation. 
+To estimate if populations are significantly different, we will generate 100 replicates of the dataset using the function chao_bootstrap(). Then, summary statistics (meand and 95% CI) will be calculated for each of the different parameters of population differentiation. 
 ```{r, Fstats3}
 bs<-chao_bootstrap(allData3, nreps=100)
 summarise_bootstrap(bs, Gst_Nei) #for Nei's Gst
@@ -78,12 +82,8 @@ summarise_bootstrap(bs, D_Jost) #for Jost's D
 AMOVA (Analysis of Molecular Variance)
 ========
 Analysis of Molecular Variance (AMOVA) is a method for estimating population differentiation from molecular data taking into account the mutational distance between alleles. Unlike Fst, which quantifies genetic differentiation based on allele frequencies, AMOVA treats molecular data as vectors and estimates Euclidean distances between alleles. Furthermore, it is possible to test hypotheses about differentiation by grouping subpopulations in a hierarchical structure (Ref).
-```{r}
-allData4<-genind2hierfstat(allData3)
-allData_dist<-dist.multidna(allData2) # this calculates pairwise Eucledian distances among individuals
-levels <- factor(c(rep("West", 20), rep("East", 20)))
-populations <- factor(c(rep("CA", 10), rep("Ch", 10),rep("Am", 10), rep("AF", 10)))
-varcomp.glob(levels=levels)
-amova(allData_dist ~ populations, nperm = 100)
-amova(allData_dist ~ levels, nperm = 100)
-#poppr.amova(allData3, ~populations/groups)
+```{r, eval = TRUE}
+allData_dist<-dist.multidna(allData2,pool=TRUE)
+strata(allData3)<-data.frame(regions=c(rep("West", 20), rep("East", 20)), populations=c(rep("CA", 10), rep("Ch", 10),rep("Am", 10), rep("AF", 10)))
+amova(allData_dist ~ populations, data=strata(allData3), nperm = 100)
+```
