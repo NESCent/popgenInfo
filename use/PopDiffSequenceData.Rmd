@@ -42,10 +42,10 @@ allData3
 ```
 
 ```{r, data_import_FASTA_real, eval = TRUE}
-myData1<- read.FASTA("data/Ebom_mt.fas") # this creates a DNAbin object
+myData1<- read.FASTA("../data/Ebom_mt.fas") # this creates a DNAbin object
 tmp1<-as.matrix(myData1) # converts the list of sequences into a matrix
 tmp1
-myData2<- read.FASTA("data/Ebom_CAD.fas") # this creates a DNAbin object
+myData2<- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
 tmp2<-as.matrix(myData2) # converts the list of sequences into a matrix
 tmp2
 allData1<-list(mt=tmp1[,1:1271], CAD=tmp2[,1:673])
