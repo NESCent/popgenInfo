@@ -64,12 +64,13 @@ SNP loci (to make calculations faster). The result can then be converted to a `g
 The `genind` object can then easily be converted into `fstat` (package `hierfstat`) and `loci` objects (package `pegas`).
 
 ```{r,data_conversion}
-locus <- Mydata[, -c(1,2,3,4,16:3086)]    
+locus <- Mydata[, -c(1,2,3,4,17:3086)]    
+colnames(locus) <- gsub("\\.", "_", colnames(locus)) # locus names can't have "."
 ind <- as.character(Mydata$tree_id) # labels of the individuals
 population <- as.character(Mydata$state) # labels of the populations
-Mydata1 <- df2genind(locus,ploidy=2,ind.names=ind,pop=population)
+Mydata1 <- df2genind(locus, ploidy=2, ind.names=ind, pop=population, sep="")
 Mydata1
-Mydata1@loc.nall
+nAll(Mydata1)
 Mydata2 <- genind2hierfstat(Mydata1) 
 Mydata3 <- genind2loci(Mydata1)
 ```
