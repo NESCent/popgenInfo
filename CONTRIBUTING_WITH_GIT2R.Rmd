@@ -1,0 +1,57 @@
+---
+title: "CONTRIBUTING_WITH_GIT2R.Rmd"
+author: "Zhian N. Kamvar"
+date: "December 16, 2015"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+## Motivation
+
+The **popgenInfo** project was designed to be an educational tool that can move
+at the same pace as method development by allowing people skilled in population
+genetics analysis to submit workflows that demonstrate the strengths of any
+given analysis in R. We use [git](https://git-scm.com/) and
+[GitHub](https://github.com) to accept contributions via pull requests using
+[GitHub flow](https://guides.github.com/introduction/flow/).
+
+The basic steps of this process are:
+
+1. **Fork** the [popgenInfo repository](https://github.com/NESCent/popgenInfo)
+2. **Clone** your fork to your local machine.
+3. Create a new **branch** and **commit** new changes or content.
+4. **Push** your changes to your fork.
+5. Open a **pull request** from your fork to NESCent.
+
+This particular tutorial will show you the basics of contributing to the
+popgenInfo website using the R package
+[*git2r*](https://cran.r-project.org/package=git2r), which was developed by the
+[rOpenSci project](https://ropensci.org/). This package allows for a nearly
+seamless and uniform interface for all contributors regardless of operating
+system.
+
+We assume that you have already done a few things:
+
+1. Signed up for a [GitHub account](https://github.com)
+2. Install [R](https://cran.r-project.org)
+3. Install [Rstudio](https://rstudio.com/desktop/download)
+
+If you have also installed [git](https://git-scm.com/), you can set up Rstudio
+to work with git to help you commit changes, pull, and push. For the purposes of
+this tutorial, these things are not necessary.
+
+# Session Information
+
+This shows us useful information for reproducibility. Of particular importance
+are the versions of R and the packages used to create this workflow. It is
+considered good practice to record this information with every analysis.
+
+```{r, sessioninfo}
+options(width = 100)
+devtools::session_info()
+```
