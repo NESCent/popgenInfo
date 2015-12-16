@@ -4,7 +4,7 @@ title: "Calculating genetic differentiation and clustering methods from SSR data
 
 # Introduction
 
-This workflow will show you how to assess population differentiation with microsatellite/SSR data.
+This workflow will show you how to assess population differentiation with microsatellite/SSR data. We will analyse F-statistics, AMOVA, and Discriminant Analysis of Principal Components (DAPC). For this, we will utilize the *hierfstat*, *adegenet*, and *mmod* packages.
 
 # Assumptions
 
