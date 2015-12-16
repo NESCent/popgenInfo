@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>Calculating Basic Population Genetic Statistics from microsatellite Data</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/spacelab.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<!---
+
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-right: 50px;
+  padding-left: -50px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+ offset scroll position for anchor links (for fixed navbar)  
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+</style>
+-->
+
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; }
+code > span.dt { color: #204a87; }
+code > span.dv { color: #0000cf; }
+code > span.bn { color: #0000cf; }
+code > span.fl { color: #0000cf; }
+code > span.ch { color: #4e9a06; }
+code > span.st { color: #4e9a06; }
+code > span.co { color: #8f5902; font-style: italic; }
+code > span.ot { color: #8f5902; }
+code > span.al { color: #ef2929; }
+code > span.fu { color: #000000; }
+code > span.er { font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- HOME -->
+      <a class="navbar-brand" href="index.html"><b>Population Genetics in R</b></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!-- Table of contents -->
+        <li class="dropdown">
+          <a href="chapters" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users <span class="caret"></span></a>
+          <ol class="dropdown-menu">
+              <li><a href="GETSTARTED.html">Getting Started</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">For SNP data:</li>
+              <!-- <li class="divider"></li> -->
+              <li><a href="StartSNP.html">Basic statistics</a></li>
+              <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
+              <li><a href="VignetteIndvidualGeneticDistancesSNP.html">Genetic Distance (individual-based)</a></li>
+              <!-- <li><a href="SNP.html">SNPs</a></li> -->
+              <li class="divider"></li>
+              <li class="dropdown-header">For sequence data:</li>
+              <!-- <li class="divider"></li>   -->
+              <li><a href="SummarySequenceData.html">Summary statistics</a></li>
+              <li><a href="PopDiffSequenceData.html">Population differentiation</a></li>
+          </ol>
+        </li>
+        <!-- Appendices dropdown -->
+        <li class="dropdown">
+          <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Package Developers <span class="caret"></span></a>
+          <ul class = "dropdown-menu", role = "menu">
+           <li><a href = "DEVELOPER_INTRO.html">Introduction</a></li>
+           <li><a href = "PACKAGES.html">Population genetic packages in R</a></li>  
+           <li><a href = "DATAFORMATS.html">Population genetic data types in R</a></li>
+           <li><a href = "PACKAGE_TUTORIALS.html">Developing R packages</a></li>
+           <li class="divider"></li>  
+           <li class="dropdown-header">Development Resources (external):</li>
+           <li><a href = "http://r-pkgs.had.co.nz/">Hadley Wickham's Guide For Creating R Packages</a></li>
+           <li><a href = "https://github.com/jtleek/rpackages">Jeff Leek's R Package Development</a></li>
+           <li><a href = "http://adv-r.had.co.nz/S4.html">S4 Classes in detail</a></li>
+           <li><a href = "http://adv-r.had.co.nz/S3.html">S3 Classes in detail</a></li>
+           <li><a href = "http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf">A not so short introduction to S4</a></li>
+          </ul>
+        </li>
+        <!-- Author button -->
+        <li class="dropdown">
+          <a href="about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contribute! <span class="caret"></span></a>
+          <ul class = "dropdown-menu", role = "menu">
+           <li><a href = "CONTRIBUTING.html">How to contribute</a></li>  
+           <li><a href="https://github.com/NESCent/popgenInfo">Source repository</a></li>  
+		  </ul>
+        </li>
+        <li class = "button">
+          <a href="LinksToResources.html">Useful Links</a>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- <div class="container">
+<div class="row">
+<div class="span10 offset1"> -->
+
+<div id="header">
+<h1 class="title">Calculating Basic Population Genetic Statistics from microsatellite Data</h1>
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#assumptions">Assumptions</a></li>
+<li><a href="#data">Data</a></li>
+<li><a href="#resourcespackages-required">Resources/Packages required</a><ul>
+<li><a href="#section-1-load-the-data">Section 1: Load the data</a></li>
+<li><a href="#section-2-genetic-diversity-osberved-and-expected-heterozygosity">Section 2: Genetic diversity (osberved and expected heterozygosity)</a></li>
+<li><a href="#section-3-testing-for-hardy-weinberg-equilibrium">Section 3: Testing for Hardy-Weinberg Equilibrium</a></li>
+</ul></li>
+<li><a href="#conclusions">Conclusions</a></li>
+<li><a href="#what-did-we-learn-today">What did we learn today?</a><ul>
+<li><a href="#what-is-next">What is next?</a></li>
+</ul></li>
+<li><a href="#contributors">Contributors</a></li>
+<li><a href="#session-information">Session Information</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>In this vignette, you will calculate basic population genetic statistics from microsatellite data using R packages.</p>
+<ol style="list-style-type: decimal">
+<li>Genetic diversity,</li>
+<li>Test Hardy Weinberg</li>
+<li><span class="math">\(F_{is}\)</span> and global <span class="math">\(F_{st}\)</span></li>
+</ol>
+</div>
+<div id="assumptions" class="section level1">
+<h1>Assumptions</h1>
+<p>H0: we assume that the microsatellites are in Hardy-Weinberg equilibirum H1: they are not.</p>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>The dataset used for these analyses are a R dataset:nancycats It contains microsatellites genotypes of 237 cats from 17 colonies of Nancy (France). Each individuals of the 17 colonies are genotyped for 9 microsatellites.</p>
+<p>nancycats is a genind, i.e. an object of the library adegenet</p>
+</div>
+<div id="resourcespackages-required" class="section level1">
+<h1>Resources/Packages required</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(adegenet)</code></pre>
+<pre><code>## Loading required package: methods
+## Loading required package: ade4
+## 
+##    /// adegenet 2.0.0 is loaded ////////////
+## 
+##    &gt; overview: &#39;?adegenet&#39;
+##    &gt; tutorials/doc/questions: &#39;adegenetWeb()&#39; 
+##    &gt; bug reports/feature resquests: adegenetIssues()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pegas)</code></pre>
+<pre><code>## Loading required package: ape
+## 
+## Attaching package: &#39;pegas&#39;
+## 
+## The following object is masked from &#39;package:ape&#39;:
+## 
+##     mst
+## 
+## The following object is masked from &#39;package:ade4&#39;:
+## 
+##     amova</code></pre>
+<div id="section-1-load-the-data" class="section level2">
+<h2>Section 1: Load the data</h2>
+<p>After loading the ‘genind’ object, we convert it into a <code>loci</code> objects (package pegas)</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(nancycats)  
+<span class="kw">summary</span>(nancycats)</code></pre>
+<pre><code>## 
+##  # Total number of genotypes:  237 
+## 
+##  # Population sample sizes:  
+## P01 P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P14 P15 P16 P17 
+##  10  22  12  23  15  11  14  10   9  11  20  14  13  17  11  12  13 
+## 
+##  # Number of alleles per locus:  
+##  fca8 fca23 fca43 fca45 fca77 fca78 fca90 fca96 fca37 
+##    16    11    10     9    12     8    12    12    18 
+## 
+##  # Number of alleles per population:  
+## P01 P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P14 P15 P16 P17 
+##  36  53  50  67  48  56  42  54  43  46  70  52  44  61  42  40  35 
+## 
+##  # Percentage of missing data:  
+## [1] 2.344116
+## 
+##  # Observed heterozygosity:  
+##      fca8     fca23     fca43     fca45     fca77     fca78     fca90 
+## 0.6682028 0.6666667 0.6793249 0.7083333 0.6329114 0.5654008 0.6497890 
+##     fca96     fca37 
+## 0.6184211 0.4514768 
+## 
+##  # Expected heterozygosity:  
+##      fca8     fca23     fca43     fca45     fca77     fca78     fca90 
+## 0.8657224 0.7928751 0.7953319 0.7603095 0.8702576 0.6884669 0.8157881 
+##     fca96     fca37 
+## 0.7603493 0.6062686</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(nancycats)</code></pre>
+</div>
+<div id="section-2-genetic-diversity-osberved-and-expected-heterozygosity" class="section level2">
+<h2>Section 2: Genetic diversity (osberved and expected heterozygosity)</h2>
+<pre class="sourceCode r"><code class="sourceCode r">nancycats  </code></pre>
+<pre><code>## /// GENIND OBJECT /////////
+## 
+##  // 237 individuals; 9 loci; 108 alleles; size: 158.4 Kb
+## 
+##  // Basic content
+##    @tab:  237 x 108 matrix of allele counts
+##    @loc.n.all: number of alleles per locus (range: 8-18)
+##    @loc.fac: locus factor for the 108 columns of @tab
+##    @all.names: list of allele names for each locus
+##    @ploidy: ploidy of each individual  (range: 2-2)
+##    @type:  codom
+##    @call: genind(tab = truenames(nancycats)$tab, pop = truenames(nancycats)$pop)
+## 
+##  // Optional content
+##    @pop: population of each individual (group size range: 9-23)
+##    @other: a list containing: xy</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">div&lt;-<span class="kw">summary</span>(nancycats)</code></pre>
+<pre><code>## 
+##  # Total number of genotypes:  237 
+## 
+##  # Population sample sizes:  
+## P01 P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P14 P15 P16 P17 
+##  10  22  12  23  15  11  14  10   9  11  20  14  13  17  11  12  13 
+## 
+##  # Number of alleles per locus:  
+##  fca8 fca23 fca43 fca45 fca77 fca78 fca90 fca96 fca37 
+##    16    11    10     9    12     8    12    12    18 
+## 
+##  # Number of alleles per population:  
+## P01 P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P14 P15 P16 P17 
+##  36  53  50  67  48  56  42  54  43  46  70  52  44  61  42  40  35 
+## 
+##  # Percentage of missing data:  
+## [1] 2.344116
+## 
+##  # Observed heterozygosity:  
+##      fca8     fca23     fca43     fca45     fca77     fca78     fca90 
+## 0.6682028 0.6666667 0.6793249 0.7083333 0.6329114 0.5654008 0.6497890 
+##     fca96     fca37 
+## 0.6184211 0.4514768 
+## 
+##  # Expected heterozygosity:  
+##      fca8     fca23     fca43     fca45     fca77     fca78     fca90 
+## 0.8657224 0.7928751 0.7953319 0.7603095 0.8702576 0.6884669 0.8157881 
+##     fca96     fca37 
+## 0.7603493 0.6062686</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">div</code></pre>
+<pre><code>## $N
+## [1] 237
+## 
+## $pop.eff
+## P01 P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P14 P15 P16 P17 
+##  10  22  12  23  15  11  14  10   9  11  20  14  13  17  11  12  13 
+## 
+## $loc.n.all
+##  fca8 fca23 fca43 fca45 fca77 fca78 fca90 fca96 fca37 
+##    16    11    10     9    12     8    12    12    18 
+## 
+## $pop.nall
+## P01 P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P14 P15 P16 P17 
+##  36  53  50  67  48  56  42  54  43  46  70  52  44  61  42  40  35 
+## 
+## $NA.perc
+## [1] 2.344116
+## 
+## $Hobs
+##      fca8     fca23     fca43     fca45     fca77     fca78     fca90 
+## 0.6682028 0.6666667 0.6793249 0.7083333 0.6329114 0.5654008 0.6497890 
+##     fca96     fca37 
+## 0.6184211 0.4514768 
+## 
+## $Hexp
+##      fca8     fca23     fca43     fca45     fca77     fca78     fca90 
+## 0.8657224 0.7928751 0.7953319 0.7603095 0.8702576 0.6884669 0.8157881 
+##     fca96     fca37 
+## 0.7603493 0.6062686</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(div$Hobs, <span class="dt">xlab=</span><span class="st">&quot;Loci number&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Observed Heterozygosity&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Observed heterozygosity per locus&quot;</span>)</code></pre>
+<p><img src="startMicrosatellite_files/figure-html/Genetic_diversity-1.png" title="" alt="" width="960" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(div$Hobs,div$Hexp, <span class="dt">xlab=</span><span class="st">&quot;Hobs&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Hexp&quot;</span>, 
+   <span class="dt">main=</span><span class="st">&quot;Expected heterozygosity in function of observed heterozygosity per locus&quot;</span>)</code></pre>
+<p><img src="startMicrosatellite_files/figure-html/Genetic_diversity-2.png" title="" alt="" width="960" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bartlett.test</span>(<span class="kw">list</span>(div$Hexp, div$Hobs)) <span class="co">#  </span></code></pre>
+<pre><code>## 
+##  Bartlett test of homogeneity of variances
+## 
+## data:  list(div$Hexp, div$Hobs)
+## Bartlett&#39;s K-squared = 0.046962, df = 1, p-value = 0.8284</code></pre>
+<p>We get various information from the command summary. The one that interest us is the observed and expected heterozygotity per locus. We observed that heterozygosity varies among loci.</p>
+<p>The test of bartlett indicates that we have no difference between the mean observed and expected heterozygotity</p>
+</div>
+<div id="section-3-testing-for-hardy-weinberg-equilibrium" class="section level2">
+<h2>Section 3: Testing for Hardy-Weinberg Equilibrium</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre>
+<pre><code>##           chi^2  df  Pr(chi^2 &gt;) Pr.exact
+## fca8  395.80006 120 0.000000e+00        0
+## fca23 239.34221  55 0.000000e+00        0
+## fca43 434.33397  45 0.000000e+00        0
+## fca45  66.11849  36 1.622163e-03        0
+## fca77 270.52066  66 0.000000e+00        0
+## fca78 402.80002  28 0.000000e+00        0
+## fca90 217.19836  66 0.000000e+00        0
+## fca96 193.36764  66 1.965095e-14        0
+## fca37 291.00731 153 1.209777e-10        0</code></pre>
+<p>We get for each locus a test of significance of the null hypothesis: <span class="math">\(H_0\)</span> the locus is in HW equilibrium in the population/ <span class="math">\(H_1\)</span>. The locus is not in HW equilibrium.</p>
+<p>We can conclude from the p-values of each test that any locus is in HW equilibrium.</p>
+</div>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+</div>
+<div id="what-did-we-learn-today" class="section level1">
+<h1>What did we learn today?</h1>
+<p>In this vignette, we learned how to explore the patterns of genetic diversity in one population. Also, you have an idea of potential violations of the dataset to the null Wright-Fischer model.</p>
+<div id="what-is-next" class="section level2">
+<h2>What is next?</h2>
+<p>You may now want to move into looking into population differentiation (See <a href="DifferentiationMicrosatellites.html">Calculating genetic differentiation and clustering methods from microsatellites data</a>)</p>
+</div>
+</div>
+<div id="contributors" class="section level1">
+<h1>Contributors</h1>
+<ul>
+<li>Stéphanie Manel</li>
+</ul>
+</div>
+<div id="session-information" class="section level1">
+<h1>Session Information</h1>
+<p>Information about the R session used for this tutorial.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
+devtools::<span class="kw">session_info</span>()</code></pre>
+<pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
+<pre><code>##  setting  value                                 
+##  version  R version 3.2.3 RC (2015-12-03 r69731)
+##  system   x86_64, linux-gnu                     
+##  ui       X11                                   
+##  language (EN)                                  
+##  collate  en_US.UTF-8                           
+##  tz       &lt;NA&gt;                                  
+##  date     2015-12-16</code></pre>
+<pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
+<pre><code>##  package    * version date       source        
+##  ade4       * 1.7-3   2015-11-22 CRAN (R 3.2.3)
+##  adegenet   * 2.0.0   2015-07-07 CRAN (R 3.2.3)
+##  ape        * 3.4     2015-11-29 CRAN (R 3.2.3)
+##  assertthat   0.1     2013-12-06 CRAN (R 3.2.3)
+##  boot         1.3-17  2015-06-29 CRAN (R 3.2.1)
+##  coda         0.18-1  2015-10-16 CRAN (R 3.2.3)
+##  colorspace   1.2-6   2015-03-11 CRAN (R 3.2.3)
+##  DBI          0.3.1   2014-09-24 CRAN (R 3.2.3)
+##  deldir       0.1-9   2015-03-09 CRAN (R 3.2.3)
+##  devtools     1.9.1   2015-09-11 CRAN (R 3.2.3)
+##  digest       0.6.8   2014-12-31 CRAN (R 3.2.3)
+##  dplyr        0.4.3   2015-09-01 CRAN (R 3.2.3)
+##  evaluate     0.8     2015-09-18 CRAN (R 3.2.3)
+##  formatR      1.2.1   2015-09-18 CRAN (R 3.2.3)
+##  ggplot2      1.0.1   2015-03-17 CRAN (R 3.2.3)
+##  gtable       0.1.2   2012-12-05 CRAN (R 3.2.3)
+##  htmltools    0.2.6   2014-09-08 CRAN (R 3.2.3)
+##  httpuv       1.3.3   2015-08-04 CRAN (R 3.2.3)
+##  igraph       1.0.1   2015-06-26 CRAN (R 3.2.3)
+##  knitr        1.11    2015-08-14 CRAN (R 3.2.3)
+##  lattice      0.20-33 2015-07-14 CRAN (R 3.2.3)
+##  LearnBayes   2.15    2014-05-29 CRAN (R 3.2.3)
+##  magrittr     1.5     2014-11-22 CRAN (R 3.2.3)
+##  MASS         7.3-45  2015-11-10 CRAN (R 3.2.3)
+##  Matrix       1.2-3   2015-11-28 CRAN (R 3.2.2)
+##  memoise      0.2.1   2014-04-22 CRAN (R 3.2.3)
+##  mime         0.4     2015-09-03 CRAN (R 3.2.3)
+##  munsell      0.4.2   2013-07-11 CRAN (R 3.2.3)
+##  nlme         3.1-122 2015-08-19 CRAN (R 3.2.3)
+##  pegas      * 0.8-2   2015-09-25 CRAN (R 3.2.3)
+##  plyr         1.8.3   2015-06-12 CRAN (R 3.2.3)
+##  proto        0.3-10  2012-12-22 CRAN (R 3.2.3)
+##  R6           2.1.1   2015-08-19 CRAN (R 3.2.3)
+##  Rcpp         0.12.2  2015-11-15 CRAN (R 3.2.3)
+##  reshape2     1.4.1   2014-12-06 CRAN (R 3.2.3)
+##  rmarkdown    0.8.1   2015-10-10 CRAN (R 3.2.3)
+##  scales       0.3.0   2015-08-25 CRAN (R 3.2.3)
+##  seqinr       3.1-3   2014-12-17 CRAN (R 3.2.3)
+##  shiny        0.12.2  2015-08-05 CRAN (R 3.2.3)
+##  sp           1.2-1   2015-10-18 CRAN (R 3.2.3)
+##  spdep        0.5-88  2015-03-17 CRAN (R 3.2.3)
+##  stringi      1.0-1   2015-10-22 CRAN (R 3.2.3)
+##  stringr      1.0.0   2015-04-30 CRAN (R 3.2.3)
+##  xtable       1.8-0   2015-11-02 CRAN (R 3.2.3)
+##  yaml         2.1.13  2014-06-12 CRAN (R 3.2.3)</code></pre>
+</div>
+
+<!-- </div>
+</div>
+</div>
+ -->
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
