@@ -95,7 +95,7 @@ the package adegenet). The `genind` object can then easily be converted into
 
 ```{r, data_conversion}
 locus <- Mydata[, -c(1, 2, 3, 4, 105:ncol(Mydata))] 
-Mydata1 <- df2genind(locus, ploidy = 2, ind.names = ind, pop = population)
+Mydata1 <- df2genind(locus, ploidy = 2, ind.names = ind, pop = population, sep="")
 Mydata1
 Mydata2 <-genind2loci(Mydata1)
 ```

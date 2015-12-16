@@ -67,7 +67,7 @@ The `genind` object can then easily be converted into `fstat` (package `hierfsta
 locus <- Mydata[, -c(1,2,3,4,16:3086)]    
 ind <- as.character(Mydata$tree_id) # labels of the individuals
 population <- as.character(Mydata$state) # labels of the populations
-Mydata1 <- df2genind(locus,ploidy=2,ind.names=ind,pop=population)
+Mydata1 <- df2genind(locus, ploidy=2, ind.names=ind, pop=population, sep="")
 Mydata1
 Mydata1@loc.nall
 Mydata2 <- genind2hierfstat(Mydata1) 
