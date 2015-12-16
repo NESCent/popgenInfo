@@ -69,7 +69,7 @@ ind <- as.character(Mydata$tree_id) # labels of the individuals
 population <- as.character(Mydata$state) # labels of the populations
 Mydata1 <- df2genind(locus, ploidy=2, ind.names=ind, pop=population, sep="")
 Mydata1
-Mydata1@loc.nall
+nAll(Mydata1)
 Mydata2 <- genind2hierfstat(Mydata1) 
 Mydata3 <- genind2loci(Mydata1)
 ```
