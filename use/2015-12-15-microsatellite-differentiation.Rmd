@@ -1,0 +1,82 @@
+---
+title: "Template Vignette"
+---
+
+# Introduction
+
+Explain the purpose of the vignette.  
+Give a brief explanation of the questions that will be answered and some background information.
+These vignettes are written in [Rmarkdown](http://rmarkdown.rstudio.com). You can find [details about markdown here](http://rmarkdown.rstudio.com/authoring_basics.html) and [details about code chunks here](http://rmarkdown.rstudio.com/authoring_rcodechunks.html).
+
+# Assumptions
+
+All biological analyses have assumptions.
+
+- Assumption 1
+- Assumption 2
+
+# Data
+
+Links to information about the data if needed e.g. package vignettes.
+You can use an [external link](https://github.com/cran/adegenet/blob/master/inst/files/nancycats.gtx)
+ or you can place the data [in the `data/` folder](https://github.com/NESCent/popgenInfo/tree/master/data/nancycats.gtx) (keep this < 200kb).
+
+# Resources/Packages required
+
+Packages required. Say where these can be found, can link to the list of packages on our repository page here also.
+
+Loading the required packages:  
+
+```{r, packages, message=FALSE}
+library(hierfstat)
+library(adegenet)
+```
+
+# Analysis divided into sections  
+
+Example Sections
+
+## Section 1: Load the data
+
+
+```{r, load_data_show, eval=FALSE}
+nancycats <- import2genind("nancycats.gtx")
+summary(nancycats)
+```
+
+```{r, load_data_evaluate, echo=FALSE}
+# Note: the code chunk above will be shown to the reader, but it will not run.
+# This code chunk will run, but will not be shown to the reader.
+nancycats <- import2genind("../data/nancycats.gtx")
+summary(nancycats)
+```
+
+## Section 2: Exploratory Data analysis/Checking assumptions  
+  
+## Section 3: Summary statistics  
+  
+# Conclusions
+
+## What's next
+
+Information on further analysis that could be done, other workflows [can be linked as well](DifferentiationSNP.html) (note the HTML as opposed to Rmd link).
+
+# Contributors
+
+- Author 1
+- Author 2
+- Contributor 1 (role)
+
+# Session Information
+
+This shows us useful information for reproducibility. Of particular importance
+are the versions of R and the packages used to create this workflow. It is
+considered good practice to record this information with every analysis.
+
+```{r, sessioninfo}
+options(width = 100)
+devtools::session_info()
+```
+
+
+
