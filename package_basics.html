@@ -273,38 +273,49 @@ img {
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">packageDescription</span>(<span class="st">&quot;poppr&quot;</span>)</code></pre>
 <pre><code>## Package: poppr
 ## Type: Package
-## Title: Genetic Analysis of Populations With Mixed Reproduction
-## Version: 1.1.4
-## Date: 2015-02-03
+## Title: Genetic Analysis of Populations with Mixed Reproduction
+## Version: 2.1.0
+## Date: 2015-11-30
 ## Authors@R: c(person(c(&quot;Zhian&quot;, &quot;N.&quot;), &quot;Kamvar&quot;, role = c(&quot;cre&quot;,
 ##        &quot;aut&quot;), email = &quot;kamvarz@science.oregonstate.edu&quot;),
 ##        person(c(&quot;Javier&quot;, &quot;F.&quot;), &quot;Tabima&quot;, role = &quot;aut&quot;, email =
-##        &quot;tabimaj@onid.orst.edu&quot;), person(c(&quot;Niklaus&quot;, &quot;J.&quot;),
-##        &quot;Grunwald&quot;, role = &quot;ths&quot;, email =
-##        &quot;grunwaln@science.oregonstate.edu&quot;))
+##        &quot;tabimaj@onid.orst.edu&quot;), person(c(&quot;Sydney&quot;, &quot;E.&quot;),
+##        &quot;Everhart&quot;, role = c(&quot;ctb&quot;, &quot;dtc&quot;), email =
+##        &quot;everhart@unl.edu&quot;), person(c(&quot;Jonah&quot;, &quot;C.&quot;), &quot;Brooks&quot;,
+##        role = &quot;aut&quot;, email = &quot;brookjon@onid.orst.edu&quot;),
+##        person(c(&quot;Stacy&quot;, &quot;A.&quot;), &quot;Krueger-Hadfield&quot;, role = &quot;ctb&quot;,
+##        email = &quot;kruegersa@cofc.edu&quot;), person(c(&quot;Erik&quot;), &quot;Sotka&quot;,
+##        role = &quot;ctb&quot;, email = &quot;sotkae@cofc.edu&quot;),
+##        person(c(&quot;Niklaus&quot;, &quot;J.&quot;), &quot;Grunwald&quot;, role = &quot;ths&quot;, email
+##        = &quot;grunwaln@science.oregonstate.edu&quot;))
 ## Maintainer: Zhian N. Kamvar &lt;kamvarz@science.oregonstate.edu&gt;
 ## Encoding: UTF-8
-## URL: http://cran.r-project.org/package=poppr,
+## URL: http://github.com/grunwaldlab/poppr,
 ##        http://grunwaldlab.github.io/Population_Genetics_in_R/,
 ##        http://grunwaldlab.cgrb.oregonstate.edu/poppr-r-package-population-genetics
 ## Description: Population genetic analyses for hierarchical analysis
 ##        of partially clonal populations built upon the architecture
-##        of the adegenet package.
+##        of the &#39;adegenet&#39; package.
 ## MailingList: http://groups.google.com/group/poppr
 ## BugReports: https://github.com/grunwaldlab/poppr/issues
-## Depends: R (&gt;= 2.15.1), adegenet (&gt;= 1.4-2)
-## Imports: vegan, ggplot2, phangorn, ape (&gt;= 3.1-1), igraph,
-##        methods, ade4, pegas, reshape2
-## Suggests: testthat, knitr, polysat
+## Depends: R (&gt;= 2.15.1), adegenet (&gt;= 2.0.0)
+## Imports: stats, graphics, grDevices, utils, vegan, ggplot2,
+##        phangorn, ape (&gt;= 3.1-1), igraph, methods, ade4, pegas,
+##        reshape2, dplyr (&gt;= 0.4), boot, shiny
+## Suggests: testthat, knitr, rmarkdown, knitcitations, polysat,
+##        poweRlaw, cowplot
 ## License: GPL-2 | GPL-3
 ## VignetteBuilder: knitr
-## Packaged: 2015-02-04 04:19:12 UTC; zhian
-## Author: Zhian N. Kamvar [cre, aut], Javier F. Tabima [aut],
-##        Niklaus J. Grunwald [ths]
+## RoxygenNote: 5.0.1
 ## NeedsCompilation: yes
+## Packaged: 2015-11-30 23:41:31 UTC; zhian
+## Author: Zhian N. Kamvar [cre, aut], Javier F. Tabima [aut], Sydney
+##        E. Everhart [ctb, dtc], Jonah C. Brooks [aut], Stacy A.
+##        Krueger-Hadfield [ctb], Erik Sotka [ctb], Niklaus J.
+##        Grunwald [ths]
 ## Repository: CRAN
-## Date/Publication: 2015-02-06 18:45:38
-## Built: R 3.1.3; x86_64-pc-linux-gnu; 2015-04-08 02:00:57 UTC; unix
+## Date/Publication: 2015-12-01 08:01:21
+## Built: R 3.2.3; x86_64-pc-linux-gnu; 2015-12-16 15:07:06 UTC; unix
 ## 
 ## -- File: /usr/local/lib/R/site-library/poppr/Meta/package.rds</code></pre>
 </div>
@@ -341,7 +352,7 @@ img {
 ## list()
 ## 
 ## $devtools.desc.author
-## [1] &quot;person(\&quot;First\&quot;, \&quot;Last\&quot;, , \&quot;first.last@example.com\&quot;, role = c(\&quot;aut\&quot;, \&quot;cre\&quot;))&quot;
+## [1] &quot;person(\&quot;First\&quot;, \&quot;Last\&quot;, email = \&quot;first.last@example.com\&quot;, role = c(\&quot;aut\&quot;, \&quot;cre\&quot;))&quot;
 ## 
 ## $devtools.desc.license
 ## [1] &quot;What license is it under?&quot;
@@ -356,7 +367,7 @@ img {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/RtmpbzpcMm/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/Rtmp2rHMjW/R-lib&quot;</code></pre>
 <p>After looking at the documentation, we know that we want to change the values <code>devtools.desc.author</code>, <code>devtools.desc.license</code>, <code>devtools.name</code>. We will also add a “Maintainer” field to the DESCRIPTION file (tells users who to blame). The others don’t matter for now. We can add them in thusly (Note, I am using my name; you should obviously use your own):</p>
 <pre class="sourceCode r"><code class="sourceCode r">authors_at_r &lt;-<span class="st"> </span><span class="kw">paste0</span>(
   <span class="st">&quot;&#39;&quot;</span>,
@@ -395,7 +406,7 @@ img {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/RtmpbzpcMm/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/Rtmp2rHMjW/R-lib&quot;</code></pre>
 <blockquote>
 <p>It is much easier to edit the DESCRIPTION file by hand afterward. This simply demonstrates how you can get started.</p>
 </blockquote>
@@ -406,8 +417,8 @@ img {
 ## Title: What the Package Does (one line, title case)
 ## Version: 0.0.0.9000
 ## Authors@R: &#39;Zhian N. Kamvar &lt;kamvarz@science.oregonstate.edu&gt; [aut, cre]&#39;
-## Description: What the package does (one paragraph)
-## Depends: R (&gt;= 3.1.3)
+## Description: What the package does (one paragraph).
+## Depends: R (&gt;= 3.2.3)
 ## License: GPL-3
 ## LazyData: true
 ## Maintainer: &#39;Zhian N. Kamvar&#39; &lt;kamvarz@science.oregonstate.edu&gt;</code></pre>
@@ -430,29 +441,32 @@ img {
 </div>
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
-<p>Information about the R session used for this tutorial.</p>
+<p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
 devtools::<span class="kw">session_info</span>()</code></pre>
 <pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  setting  value                       
-##  version  R version 3.1.3 (2015-03-09)
-##  system   x86_64, linux-gnu           
-##  ui       X11                         
-##  language (EN)                        
-##  collate  en_US.UTF-8                 
-##  tz       &lt;NA&gt;</code></pre>
+<pre><code>##  setting  value                                 
+##  version  R version 3.2.3 RC (2015-12-03 r69731)
+##  system   x86_64, linux-gnu                     
+##  ui       X11                                   
+##  language (EN)                                  
+##  collate  en_US.UTF-8                           
+##  tz       &lt;NA&gt;                                  
+##  date     2015-12-16</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  package    * version date       source        
-##  devtools     1.7.0   2015-01-17 CRAN (R 3.1.3)
-##  digest     * 0.6.8   2014-12-31 CRAN (R 3.1.3)
-##  evaluate   * 0.5.5   2014-04-29 CRAN (R 3.1.3)
-##  formatR    * 1.1     2015-03-29 CRAN (R 3.1.3)
-##  htmltools  * 0.2.6   2014-09-08 CRAN (R 3.1.3)
-##  knitr      * 1.9     2015-01-20 CRAN (R 3.1.3)
-##  rmarkdown  * 0.5.1   2015-01-26 CRAN (R 3.1.3)
-##  rstudioapi * 0.2     2014-12-31 CRAN (R 3.1.3)
-##  stringr    * 0.6.2   2012-12-06 CRAN (R 3.1.3)
-##  yaml       * 2.1.13  2014-06-12 CRAN (R 3.1.3)</code></pre>
+<pre><code>##  package   * version date       source        
+##  devtools  * 1.9.1   2015-09-11 CRAN (R 3.2.3)
+##  digest      0.6.8   2014-12-31 CRAN (R 3.2.3)
+##  evaluate    0.8     2015-09-18 CRAN (R 3.2.3)
+##  formatR     1.2.1   2015-09-18 CRAN (R 3.2.3)
+##  htmltools   0.2.6   2014-09-08 CRAN (R 3.2.3)
+##  knitr       1.11    2015-08-14 CRAN (R 3.2.3)
+##  magrittr    1.5     2014-11-22 CRAN (R 3.2.3)
+##  memoise     0.2.1   2014-04-22 CRAN (R 3.2.3)
+##  rmarkdown   0.8.1   2015-10-10 CRAN (R 3.2.3)
+##  stringi     1.0-1   2015-10-22 CRAN (R 3.2.3)
+##  stringr     1.0.0   2015-04-30 CRAN (R 3.2.3)
+##  yaml        2.1.13  2014-06-12 CRAN (R 3.2.3)</code></pre>
 </div>
 
 <!-- </div>

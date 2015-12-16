@@ -267,32 +267,24 @@ county &lt;-<span class="st"> </span>Mydata$county
 <h2>Section 1: Convert the data</h2>
 <p>To work with the data, we need to convert the R object returned by <code>read.table()</code> to a <code>genind</code> object. To achieve this, we create a matrix with only genotypes, and keep only a subset of the first 100 SNP loci (to make calculations faster). The result can then be converted to a <code>genind</code> object (for the package adegenet). The <code>genind</code> object can then easily be converted into <code>loci</code> objects (package pegas) (i.e. Mydata2)</p>
 <pre class="sourceCode r"><code class="sourceCode r">locus &lt;-<span class="st"> </span>Mydata[, -<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">105</span>:<span class="kw">ncol</span>(Mydata))] 
-Mydata1 &lt;-<span class="st"> </span><span class="kw">df2genind</span>(locus, <span class="dt">ploidy =</span> <span class="dv">2</span>, <span class="dt">ind.names =</span> ind, <span class="dt">pop =</span> population)
+Mydata1 &lt;-<span class="st"> </span><span class="kw">df2genind</span>(locus, <span class="dt">ploidy =</span> <span class="dv">2</span>, <span class="dt">ind.names =</span> ind, <span class="dt">pop =</span> population, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)
 Mydata1</code></pre>
-<pre><code>## 
-##    #####################
-##    ### Genind object ### 
-##    #####################
-## - genotypes of individuals - 
+<pre><code>## /// GENIND OBJECT /////////
 ## 
-## S4 class:  genind
-## @call: df2genind(X = locus, ind.names = ind, pop = population, ploidy = 2)
+##  // 550 individuals; 100 loci; 200 alleles; size: 520.4 Kb
 ## 
-## @tab:  550 x 200 matrix of genotypes
+##  // Basic content
+##    @tab:  550 x 200 matrix of allele counts
+##    @loc.n.all: number of alleles per locus (range: 2-2)
+##    @loc.fac: locus factor for the 200 columns of @tab
+##    @all.names: list of allele names for each locus
+##    @ploidy: ploidy of each individual  (range: 2-2)
+##    @type:  codom
+##    @call: df2genind(X = locus, sep = &quot;&quot;, ind.names = ind, pop = population, 
+##     ploidy = 2)
 ## 
-## @ind.names: vector of  550 individual names
-## @loc.names: vector of  100 locus names
-## @loc.nall: number of alleles per locus
-## @loc.fac: locus factor for the  200 columns of @tab
-## @all.names: list of  100 components yielding allele names for each locus
-## @ploidy:  2
-## @type:  codom
-## 
-## Optional contents: 
-## @pop:  factor giving the population of each individual
-## @pop.names:  factor giving the population of each individual
-## 
-## @other: - empty -</code></pre>
+##  // Optional content
+##    @pop: population of each individual (group size range: 4-177)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">Mydata2 &lt;-<span class="kw">genind2loci</span>(Mydata1)</code></pre>
 </div>
 <div id="section-2.-individual-genetic-distance-euclidean-distance-dist-adegenet" class="section level2">
@@ -357,60 +349,79 @@ Mydata1</code></pre>
 </div>
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
-<p>Information about the R session used for this tutorial.</p>
+<p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
 devtools::<span class="kw">session_info</span>()</code></pre>
 <pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  setting  value                       
-##  version  R version 3.1.3 (2015-03-09)
-##  system   x86_64, linux-gnu           
-##  ui       X11                         
-##  language (EN)                        
-##  collate  en_US.UTF-8                 
-##  tz       &lt;NA&gt;</code></pre>
+<pre><code>##  setting  value                                 
+##  version  R version 3.2.3 RC (2015-12-03 r69731)
+##  system   x86_64, linux-gnu                     
+##  ui       X11                                   
+##  language (EN)                                  
+##  collate  en_US.UTF-8                           
+##  tz       &lt;NA&gt;                                  
+##  date     2015-12-16</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  package    * version date       source        
-##  ade4         1.6-2   2013-11-20 CRAN (R 3.1.3)
-##  adegenet     1.4-2   2014-05-13 CRAN (R 3.1.3)
-##  ape          3.2     2014-12-05 CRAN (R 3.1.3)
-##  cluster    * 2.0.1   2015-01-31 CRAN (R 3.1.2)
-##  colorspace * 1.2-6   2015-03-11 CRAN (R 3.1.3)
-##  devtools   * 1.7.0   2015-01-17 CRAN (R 3.1.3)
-##  digest     * 0.6.8   2014-12-31 CRAN (R 3.1.3)
-##  evaluate   * 0.5.5   2014-04-29 CRAN (R 3.1.3)
-##  formatR    * 1.1     2015-03-29 CRAN (R 3.1.3)
-##  ggplot2    * 1.0.1   2015-03-17 CRAN (R 3.1.3)
-##  gtable     * 0.1.2   2012-12-05 CRAN (R 3.1.3)
-##  htmltools  * 0.2.6   2014-09-08 CRAN (R 3.1.3)
-##  httpuv     * 1.3.2   2014-10-23 CRAN (R 3.1.3)
-##  igraph     * 0.7.1   2014-04-22 CRAN (R 3.1.3)
-##  knitr      * 1.9     2015-01-20 CRAN (R 3.1.3)
-##  lattice    * 0.20-31 2015-03-30 CRAN (R 3.1.3)
-##  MASS       * 7.3-40  2015-03-21 CRAN (R 3.1.3)
-##  Matrix     * 1.1-5   2015-01-18 CRAN (R 3.1.2)
-##  mgcv       * 1.8-6   2015-03-31 CRAN (R 3.1.3)
-##  mime       * 0.3     2015-03-29 CRAN (R 3.1.3)
-##  munsell    * 0.4.2   2013-07-11 CRAN (R 3.1.3)
-##  nlme       * 3.1-120 2015-02-20 CRAN (R 3.1.3)
-##  nnls       * 1.4     2012-03-19 CRAN (R 3.1.3)
-##  pegas        0.7     2015-03-05 CRAN (R 3.1.3)
-##  permute    * 0.8-3   2014-01-29 CRAN (R 3.1.3)
-##  phangorn   * 1.99-13 2015-04-08 CRAN (R 3.1.3)
-##  plyr       * 1.8.1   2014-02-26 CRAN (R 3.1.3)
-##  poppr        1.1.4   2015-02-06 CRAN (R 3.1.3)
-##  proto      * 0.3-10  2012-12-22 CRAN (R 3.1.3)
-##  R6         * 2.0.1   2014-10-29 CRAN (R 3.1.3)
-##  Rcpp       * 0.11.5  2015-03-06 CRAN (R 3.1.3)
-##  reshape2   * 1.4.1   2014-12-06 CRAN (R 3.1.3)
-##  RJSONIO    * 1.3-0   2014-07-28 CRAN (R 3.1.3)
-##  rmarkdown  * 0.5.1   2015-01-26 CRAN (R 3.1.3)
-##  rstudioapi * 0.2     2014-12-31 CRAN (R 3.1.3)
-##  scales     * 0.2.4   2014-04-22 CRAN (R 3.1.3)
-##  shiny      * 0.11.1  2015-02-11 CRAN (R 3.1.3)
-##  stringr    * 0.6.2   2012-12-06 CRAN (R 3.1.3)
-##  vegan      * 2.2-1   2015-01-12 CRAN (R 3.1.3)
-##  xtable     * 1.7-4   2014-09-12 CRAN (R 3.1.3)
-##  yaml       * 2.1.13  2014-06-12 CRAN (R 3.1.3)</code></pre>
+<pre><code>##  package      * version date       source        
+##  ade4         * 1.7-3   2015-11-22 CRAN (R 3.2.3)
+##  adegenet     * 2.0.0   2015-07-07 CRAN (R 3.2.3)
+##  ape          * 3.4     2015-11-29 CRAN (R 3.2.3)
+##  assertthat     0.1     2013-12-06 CRAN (R 3.2.3)
+##  BiocGenerics   0.16.1  2015-12-16 Bioconductor  
+##  Biostrings     2.38.2  2015-12-16 Bioconductor  
+##  boot           1.3-17  2015-06-29 CRAN (R 3.2.1)
+##  cluster        2.0.3   2015-07-21 CRAN (R 3.2.1)
+##  coda           0.18-1  2015-10-16 CRAN (R 3.2.3)
+##  colorspace     1.2-6   2015-03-11 CRAN (R 3.2.3)
+##  DBI            0.3.1   2014-09-24 CRAN (R 3.2.3)
+##  deldir         0.1-9   2015-03-09 CRAN (R 3.2.3)
+##  devtools       1.9.1   2015-09-11 CRAN (R 3.2.3)
+##  digest         0.6.8   2014-12-31 CRAN (R 3.2.3)
+##  dplyr          0.4.3   2015-09-01 CRAN (R 3.2.3)
+##  evaluate       0.8     2015-09-18 CRAN (R 3.2.3)
+##  formatR        1.2.1   2015-09-18 CRAN (R 3.2.3)
+##  ggplot2        1.0.1   2015-03-17 CRAN (R 3.2.3)
+##  gtable         0.1.2   2012-12-05 CRAN (R 3.2.3)
+##  htmltools      0.2.6   2014-09-08 CRAN (R 3.2.3)
+##  httpuv         1.3.3   2015-08-04 CRAN (R 3.2.3)
+##  igraph         1.0.1   2015-06-26 CRAN (R 3.2.3)
+##  IRanges        2.4.6   2015-12-16 Bioconductor  
+##  knitr          1.11    2015-08-14 CRAN (R 3.2.3)
+##  lattice        0.20-33 2015-07-14 CRAN (R 3.2.3)
+##  LearnBayes     2.15    2014-05-29 CRAN (R 3.2.3)
+##  magrittr       1.5     2014-11-22 CRAN (R 3.2.3)
+##  MASS           7.3-45  2015-11-10 CRAN (R 3.2.3)
+##  Matrix         1.2-3   2015-11-28 CRAN (R 3.2.2)
+##  memoise        0.2.1   2014-04-22 CRAN (R 3.2.3)
+##  mgcv           1.8-10  2015-12-12 CRAN (R 3.2.3)
+##  mime           0.4     2015-09-03 CRAN (R 3.2.3)
+##  munsell        0.4.2   2013-07-11 CRAN (R 3.2.3)
+##  nlme           3.1-122 2015-08-19 CRAN (R 3.2.3)
+##  nnls           1.4     2012-03-19 CRAN (R 3.2.3)
+##  pegas        * 0.8-2   2015-09-25 CRAN (R 3.2.3)
+##  permute        0.8-4   2015-05-19 CRAN (R 3.2.3)
+##  phangorn       2.0.1   2015-12-15 CRAN (R 3.2.3)
+##  plyr           1.8.3   2015-06-12 CRAN (R 3.2.3)
+##  poppr        * 2.1.0   2015-12-01 CRAN (R 3.2.3)
+##  proto          0.3-10  2012-12-22 CRAN (R 3.2.3)
+##  quadprog       1.5-5   2013-04-17 CRAN (R 3.2.3)
+##  R6             2.1.1   2015-08-19 CRAN (R 3.2.3)
+##  Rcpp           0.12.2  2015-11-15 CRAN (R 3.2.3)
+##  reshape2       1.4.1   2014-12-06 CRAN (R 3.2.3)
+##  rmarkdown      0.8.1   2015-10-10 CRAN (R 3.2.3)
+##  S4Vectors      0.8.5   2015-12-16 Bioconductor  
+##  scales         0.3.0   2015-08-25 CRAN (R 3.2.3)
+##  seqinr         3.1-3   2014-12-17 CRAN (R 3.2.3)
+##  shiny          0.12.2  2015-08-05 CRAN (R 3.2.3)
+##  sp             1.2-1   2015-10-18 CRAN (R 3.2.3)
+##  spdep          0.5-88  2015-03-17 CRAN (R 3.2.3)
+##  stringi        1.0-1   2015-10-22 CRAN (R 3.2.3)
+##  stringr        1.0.0   2015-04-30 CRAN (R 3.2.3)
+##  vegan          2.3-2   2015-11-19 CRAN (R 3.2.3)
+##  xtable         1.8-0   2015-11-02 CRAN (R 3.2.3)
+##  XVector        0.10.0  2015-12-16 Bioconductor  
+##  yaml           2.1.13  2014-06-12 CRAN (R 3.2.3)
+##  zlibbioc       1.16.0  2015-12-16 Bioconductor</code></pre>
 </div>
 
 <!-- </div>

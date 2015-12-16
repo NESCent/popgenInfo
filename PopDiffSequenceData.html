@@ -8,7 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
+<meta name="author" content="Margarita M. López-Uribe" />
 
+<meta name="date" content="2015-03-19" />
 
 <title>Population Differentiation for Sequence Data</title>
 
@@ -207,6 +209,8 @@ img {
 
 <div id="header">
 <h1 class="title">Population Differentiation for Sequence Data</h1>
+<h4 class="author"><em>Margarita M. López-Uribe</em></h4>
+<h4 class="date"><em>March 19, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -216,6 +220,9 @@ img {
 <li><a href="#import-data">Import data</a></li>
 <li><a href="#pairwise-population-differentiation">Pairwise population differentiation</a></li>
 <li><a href="#amova-analysis-of-molecular-variance">AMOVA (Analysis of Molecular Variance)</a></li>
+<li><a href="#conclusions">Conclusions</a><ul>
+<li><a href="#whats-next">What’s next</a></li>
+</ul></li>
 <li><a href="#contributors">Contributors</a></li>
 <li><a href="#session-information">Session Information</a></li>
 </ul>
@@ -227,147 +234,278 @@ img {
 </div>
 <div id="resourcespackages" class="section level1">
 <h1>Resources/Packages</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(adegenet)
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(apex)
+<span class="kw">library</span>(adegenet)
 <span class="kw">library</span>(ape)
 <span class="kw">library</span>(pegas)
 <span class="kw">library</span>(hierfstat)
 <span class="kw">library</span>(mmod)
-<span class="kw">library</span>(genetics)</code></pre>
+<span class="kw">library</span>(genetics)
+<span class="kw">library</span>(poppr)</code></pre>
 </div>
 <div id="import-data" class="section level1">
 <h1>Import data</h1>
-<p>Refer to vignette on <a href="SummarySequenceData.html">Summary Statistics for SequenceData</a> for detailed instructions on how to upload one locus or multilocus FASTA files for this type of analyses. Here is the code:</p>
-<pre class="sourceCode r"><code class="sourceCode r">myData1  &lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_mt.fas&quot;</span>) 
-tmp1     &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(myData1)
-myData2  &lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_CAD.fas&quot;</span>) 
-tmp2     &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(myData2)
-allData  &lt;-<span class="st"> </span><span class="kw">cbind</span>(tmp1,tmp2)
-tmp3     &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(allData) 
-allDatab &lt;-<span class="st"> </span><span class="kw">as.genind.DNAbin</span>(tmp3, <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;CA&quot;</span>,<span class="st">&quot;Ch&quot;</span>,<span class="st">&quot;Am&quot;</span>,<span class="st">&quot;AF&quot;</span>), <span class="dt">each=</span><span class="dv">5</span>)) </code></pre>
+<p>We will first upload FASTA files for each gene independently, and then we will create a multidna object that concatenates both genes (allData1). Finally, this multidna object (allData2) will be converted into a genind object (allData3), which will be used for downstream analyses.</p>
+<pre class="sourceCode r"><code class="sourceCode r">myData1&lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_mt.fas&quot;</span>) 
+tmp1&lt;-<span class="kw">as.matrix</span>(myData1)
+tmp1
+myData2&lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;Ebom_CAD.fas&quot;</span>) 
+tmp2&lt;-<span class="kw">as.matrix</span>(myData2)
+tmp2
+allData1&lt;-<span class="kw">list</span>(<span class="dt">mt=</span>tmp1[,<span class="dv">1</span>:<span class="dv">1271</span>], <span class="dt">CAD=</span>tmp2[,<span class="dv">1</span>:<span class="dv">673</span>])
+tmp3&lt;-<span class="kw">as.matrix</span>(allData1)
+allData2&lt;-<span class="kw">new</span>(<span class="st">&quot;multidna&quot;</span>,allData1)
+<span class="kw">plot</span>(allData2, <span class="dt">cex=</span><span class="fl">0.2</span>)
+allData3&lt;-<span class="kw">multidna2genind</span>(allData2,<span class="dt">mlst=</span><span class="ot">TRUE</span>)
+<span class="kw">pop</span>(allData3)&lt;-(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;CA&quot;</span>,<span class="st">&quot;Ch&quot;</span>,<span class="st">&quot;Am&quot;</span>,<span class="st">&quot;AF&quot;</span>), <span class="dt">each=</span><span class="dv">10</span>))
+allData3</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">myData1&lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;../data/Ebom_mt.fas&quot;</span>) <span class="co"># this creates a DNAbin object</span>
+tmp1&lt;-<span class="kw">as.matrix</span>(myData1) <span class="co"># converts the list of sequences into a matrix</span>
+tmp1</code></pre>
+<pre><code>## 40 DNA sequences in binary format stored in a matrix.
+## 
+## All sequences of same length: 1271 
+## 
+## Labels: EbomML016_CRIC EbomML088_CRIC EbomML178_CRIC EbomML202_CRIS EbomML312_CRIC EbomML313_CRIC ...
+## 
+## Base composition:
+##     a     c     g     t 
+## 0.342 0.097 0.105 0.456</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">myData2&lt;-<span class="st"> </span><span class="kw">read.FASTA</span>(<span class="st">&quot;../data/Ebom_CAD.fas&quot;</span>) <span class="co"># this creates a DNAbin object</span>
+tmp2&lt;-<span class="kw">as.matrix</span>(myData2) <span class="co"># converts the list of sequences into a matrix</span>
+tmp2</code></pre>
+<pre><code>## 40 DNA sequences in binary format stored in a matrix.
+## 
+## All sequences of same length: 673 
+## 
+## Labels: EbomML016_CRIC EbomML088_CRIC EbomML178_CRIC EbomML202_CRIS EbomML312_CRIC EbomML313_CRIC ...
+## 
+## Base composition:
+##     a     c     g     t 
+## 0.272 0.226 0.241 0.262</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">allData1&lt;-<span class="kw">list</span>(<span class="dt">mt=</span>tmp1[,<span class="dv">1</span>:<span class="dv">1271</span>], <span class="dt">CAD=</span>tmp2[,<span class="dv">1</span>:<span class="dv">673</span>])
+tmp3&lt;-<span class="kw">as.matrix</span>(allData1)
+allData2&lt;-<span class="kw">new</span>(<span class="st">&quot;multidna&quot;</span>,allData1)
+<span class="kw">plot</span>(allData2, <span class="dt">cex=</span><span class="fl">0.2</span>)</code></pre>
+<p><img src="PopDiffSequenceData_files/figure-html/data_import_FASTA_real-1.png" title="" alt="" width="960" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">allData3&lt;-<span class="kw">multidna2genind</span>(allData2,<span class="dt">mlst=</span><span class="ot">TRUE</span>)
+<span class="kw">pop</span>(allData3)&lt;-(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;CA&quot;</span>,<span class="st">&quot;Ch&quot;</span>,<span class="st">&quot;Am&quot;</span>,<span class="st">&quot;AF&quot;</span>), <span class="dt">each=</span><span class="dv">10</span>))
+allData3</code></pre>
+<pre><code>## /// GENIND OBJECT /////////
+## 
+##  // 40 individuals; 2 loci; 36 alleles; size: 51 Kb
+## 
+##  // Basic content
+##    @tab:  40 x 36 matrix of allele counts
+##    @loc.n.all: number of alleles per locus (range: 17-19)
+##    @loc.fac: locus factor for the 36 columns of @tab
+##    @all.names: list of allele names for each locus
+##    @ploidy: ploidy of each individual  (range: 1-1)
+##    @type:  codom
+##    @call: df2genind(X = xdfnum, ind.names = x@labels, ploidy = 1)
+## 
+##  // Optional content
+##    @pop: population of each individual (group size range: 10-10)</code></pre>
 </div>
 <div id="pairwise-population-differentiation" class="section level1">
 <h1>Pairwise population differentiation</h1>
 <div id="overall-f-statistics" class="section level3">
 <h3>Overall F-statistics</h3>
-<pre class="sourceCode r"><code class="sourceCode r">allData_loci &lt;-<span class="st"> </span><span class="kw">as.loci</span>(allDatab) 
-<span class="kw">Fst</span>(allData_loci) <span class="co"># this function calculates overall Fit, Fst, and Fis of the dataset</span></code></pre>
-<pre><code>##    Fit          Fst Fis
-## L1   1 1.040834e-16   1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">diff_stats</span>(allData3) <span class="co"># this function calculates overall Nei&#39;s Gst, Hedrick&#39;s Gst and  of the dataset</span></code></pre>
+<pre><code>## $per.locus
+##            Hs        Ht       Gst Gprime_st         D
+## mt  0.7421053 0.9117763 0.1860885 0.9058976 0.8772109
+## CAD 0.7263158 0.9190789 0.2097351 0.9550196 0.9391026
+## 
+## $global
+##        Hs        Ht   Gst_est Gprime_st     D_het    D_mean 
+## 0.7342105 0.9154276 0.1979590 0.9315893 0.9090759 0.9071022</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Phi_st_Meirmans</span>(allData3) <span class="co"># this function calculates overall PhiST, the Fst analog for DNA sequence data</span></code></pre>
+<pre><code>## $per.locus
+##        mt       CAD 
+## 0.8817688 0.9443099 
+## 
+## $global
+## [1] 0.8938182</code></pre>
 </div>
 <div id="pairwise-fst" class="section level3">
 <h3>Pairwise Fst</h3>
-<pre class="sourceCode r"><code class="sourceCode r">allData_loci &lt;-<span class="st"> </span><span class="kw">as.loci</span>(allDatab) 
-<span class="kw">Fst</span>(allData_loci) <span class="co"># this function calculates overall Fit, Fst, and Fis of the dataset</span></code></pre>
-<pre><code>##    Fit          Fst Fis
-## L1   1 1.040834e-16   1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairwise_Gst_Nei</span>(allData3, <span class="dt">linearized=</span><span class="ot">FALSE</span>) <span class="co">#Calculates pairwise Gst. If linearized =TRUE, it calculates 1/(1-Gst)  </span></code></pre>
+<pre><code>##            CA         Ch         Am
+## Ch 0.08227848                      
+## Am 0.12513019 0.15853659           
+## AF 0.14803625 0.18012422 0.15297092</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairwise_Gst_Hedrick</span>(allData3, <span class="dt">linearized=</span><span class="ot">FALSE</span>)<span class="co">#Calculates pairwise Gst. If linearized =TRUE, it calculates 1/(1-Gst&#39;)  </span></code></pre>
+<pre><code>##           CA        Ch        Am
+## Ch 0.6419753                    
+## Am 0.9828211 1.0000000          
+## AF 1.0000000 1.0000000 0.9002976</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairwise_D</span>(allData3, <span class="dt">linearized=</span><span class="ot">FALSE</span>, <span class="dt">hsht_mean=</span><span class="st">&quot;harmonic&quot;</span>) <span class="co">#Calculates pairwise Gst. If linearized =TRUE, it calculates 1/(1-D)  </span></code></pre>
+<pre><code>##           CA        Ch        Am
+## Ch 0.5636175                    
+## Am 0.9780685 1.0000000          
+## AF 1.0007468 1.0012306 0.8632757</code></pre>
+</div>
+<div id="testing-for-significance" class="section level3">
+<h3>Testing for significance</h3>
+<p>To estimate if populations are significantly different, we will generate 100 replicates of the dataset using the function chao_bootstrap(). Then, summary statistics (meand and 95% CI) will be calculated for each of the different parameters of population differentiation.</p>
+<pre class="sourceCode r"><code class="sourceCode r">bs&lt;-<span class="kw">chao_bootstrap</span>(allData3, <span class="dt">nreps=</span><span class="dv">100</span>)
+<span class="kw">summarise_bootstrap</span>(bs, Gst_Nei) <span class="co">#for Nei&#39;s Gst</span></code></pre>
+<pre><code>## 
+## Estimates for each locus
+## Locus    Mean     95% CI
+## mt   1.6737  (1.0743-2.5088)
+## CAD  1.6266  (1.096-2.4436)
+## 
+## Global Estimate based on average heterozygosity
+## 1.6339   (1.2583-2.0791)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, Gst_Hedrick) <span class="co">#for Hedrick&#39;s Gst</span></code></pre>
+<pre><code>## 
+## Estimates for each locus
+## Locus    Mean     95% CI
+## mt   1.0395  (1.0064-1.1092)
+## CAD  1.0189  (1.0036-1.0398)
+## 
+## Global Estimate based on average heterozygosity
+## 1.0292   (1.0087-1.0542)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, D_Jost) <span class="co">#for Jost&#39;s D</span></code></pre>
+<pre><code>## 
+## Estimates for each locus
+## Locus    Mean     95% CI
+## mt   0.9054  (0.847-0.9625)
+## CAD  0.9471  (0.8939-0.9859)
+## 
+## Global Estimate based on average heterozygosity
+## 0.9269   (0.8902-0.9593)
+## 
+## Global Estimate based on harmonic mean of statistic
+## 0.9253   (0.888-0.958)</code></pre>
 </div>
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
 <h1>AMOVA (Analysis of Molecular Variance)</h1>
-<p>Analysis of Molecular Variance (AMOVA) is a method for estimating population differentiation from molecular data taking into account the mutational distance between alleles. Unlike <span class="math">\(F_{st}\)</span>, which quantifies genetic differentiation based on allele frequencies, AMOVA treats molecular data as vectors and estimates Euclidean distances between alleles. Furthermore, it is possible to test hypotheses about differentiation by grouping subpopulations in a hierarchical structure (Ref).</p>
-<pre class="sourceCode r"><code class="sourceCode r">allData_dist &lt;-<span class="st"> </span><span class="kw">dist.dna</span>(allData) <span class="co"># this calculates pairwise Euclidean distances among individuals</span>
-groups &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;West&quot;</span>, <span class="dv">10</span>), <span class="kw">rep</span>(<span class="st">&quot;East&quot;</span>, <span class="dv">10</span>)))
-populations &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;CA&quot;</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&quot;Ch&quot;</span>, <span class="dv">5</span>),<span class="kw">rep</span>(<span class="st">&quot;Am&quot;</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&quot;AF&quot;</span>, <span class="dv">5</span>)))
-<span class="kw">amova</span>(allData_dist ~<span class="st"> </span>groups, <span class="dt">nperm =</span> <span class="dv">100</span>)</code></pre>
+<p>Analysis of Molecular Variance (AMOVA) is a method for estimating population differentiation from molecular data taking into account the mutational distance between alleles. Unlike Fst, which quantifies genetic differentiation based on allele frequencies, AMOVA treats molecular data as vectors and estimates Euclidean distances between alleles. Furthermore, it is possible to test hypotheses about differentiation by grouping subpopulations in a hierarchical structure (Ref).</p>
+<pre class="sourceCode r"><code class="sourceCode r">allData_dist&lt;-<span class="kw">dist.multidna</span>(allData2,<span class="dt">pool=</span><span class="ot">TRUE</span>)
+<span class="kw">strata</span>(allData3)&lt;-<span class="kw">data.frame</span>(<span class="dt">regions=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;West&quot;</span>, <span class="dv">20</span>), <span class="kw">rep</span>(<span class="st">&quot;East&quot;</span>, <span class="dv">20</span>)), <span class="dt">populations=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;CA&quot;</span>, <span class="dv">10</span>), <span class="kw">rep</span>(<span class="st">&quot;Ch&quot;</span>, <span class="dv">10</span>),<span class="kw">rep</span>(<span class="st">&quot;Am&quot;</span>, <span class="dv">10</span>), <span class="kw">rep</span>(<span class="st">&quot;AF&quot;</span>, <span class="dv">10</span>)))
+<span class="kw">amova</span>(allData_dist ~<span class="st"> </span>populations, <span class="dt">data=</span><span class="kw">strata</span>(allData3), <span class="dt">nperm =</span> <span class="dv">100</span>)</code></pre>
 <pre><code>## 
 ##  Analysis of Molecular Variance
 ## 
-## Call: amova(formula = allData_dist ~ groups, nperm = 100)
+## Call: amova(formula = allData_dist ~ populations, data = strata(allData3), 
+##     nperm = 100)
 ## 
-##                 SSD          MSD df
-## groups 5.954551e-05 5.954551e-05  1
-## Error  6.516226e-04 3.620126e-05 18
-## Total  7.111681e-04 3.742990e-05 19
+##                      SSD          MSD df
+## populations 0.0009468508 3.156169e-04  3
+## Error       0.0005930812 1.647448e-05 36
+## Total       0.0015399320 3.948544e-05 39
 ## 
 ## Variance components:
-##            sigma2 P.value
-## groups 2.3344e-06  0.1485
-## Error  3.6201e-05        
+##                 sigma2 P.value
+## populations 2.9914e-05       0
+## Error       1.6474e-05        
 ## 
 ## Variance coefficients:
 ##  a 
 ## 10</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">amova</span>(allData_dist ~<span class="st"> </span>populations, <span class="dt">nperm =</span> <span class="dv">100</span>)</code></pre>
-<pre><code>## 
-##  Analysis of Molecular Variance
-## 
-## Call: amova(formula = allData_dist ~ populations, nperm = 100)
-## 
-##                      SSD          MSD df
-## populations 0.0003002557 1.000852e-04  3
-## Error       0.0004109125 2.568203e-05 16
-## Total       0.0007111681 3.742990e-05 19
-## 
-## Variance components:
-##                 sigma2 P.value
-## populations 1.4881e-05       0
-## Error       2.5682e-05        
-## 
-## Variance coefficients:
-## a 
-## 5</code></pre>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<div id="whats-next" class="section level2">
+<h2>What’s next</h2>
+<p>Information on further analysis that could be done, other workflows <a href="DifferentiationSNP.html">can be linked as well</a> (note the HTML as opposed to Rmd link).</p>
+</div>
 </div>
 <div id="contributors" class="section level1">
 <h1>Contributors</h1>
 <ul>
-<li>Margarita M. López-Uribe</li>
+<li>Author 1</li>
+<li>Author 2</li>
+<li>Contributor 1 (role)</li>
 </ul>
 </div>
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
-<p>Information about the R session used for this tutorial.</p>
+<p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
 devtools::<span class="kw">session_info</span>()</code></pre>
 <pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  setting  value                       
-##  version  R version 3.1.3 (2015-03-09)
-##  system   x86_64, linux-gnu           
-##  ui       X11                         
-##  language (EN)                        
-##  collate  en_US.UTF-8                 
-##  tz       &lt;NA&gt;</code></pre>
+<pre><code>##  setting  value                                 
+##  version  R version 3.2.3 RC (2015-12-03 r69731)
+##  system   x86_64, linux-gnu                     
+##  ui       X11                                   
+##  language (EN)                                  
+##  collate  en_US.UTF-8                           
+##  tz       &lt;NA&gt;                                  
+##  date     2015-12-16</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  package    * version date       source        
-##  ade4         1.6-2   2013-11-20 CRAN (R 3.1.3)
-##  adegenet     1.4-2   2014-05-13 CRAN (R 3.1.3)
-##  ape          3.2     2014-12-05 CRAN (R 3.1.3)
-##  colorspace * 1.2-6   2015-03-11 CRAN (R 3.1.3)
-##  combinat     0.0-8   2012-10-29 CRAN (R 3.1.3)
-##  devtools   * 1.7.0   2015-01-17 CRAN (R 3.1.3)
-##  digest     * 0.6.8   2014-12-31 CRAN (R 3.1.3)
-##  evaluate   * 0.5.5   2014-04-29 CRAN (R 3.1.3)
-##  formatR    * 1.1     2015-03-29 CRAN (R 3.1.3)
-##  gdata        2.13.3  2014-04-06 CRAN (R 3.1.3)
-##  genetics     1.3.8.1 2013-09-03 CRAN (R 3.1.3)
-##  ggplot2    * 1.0.1   2015-03-17 CRAN (R 3.1.3)
-##  gtable     * 0.1.2   2012-12-05 CRAN (R 3.1.3)
-##  gtools       3.4.1   2014-05-28 CRAN (R 3.1.3)
-##  hierfstat    0.04-14 2014-09-29 CRAN (R 3.1.3)
-##  htmltools  * 0.2.6   2014-09-08 CRAN (R 3.1.3)
-##  httpuv     * 1.3.2   2014-10-23 CRAN (R 3.1.3)
-##  igraph     * 0.7.1   2014-04-22 CRAN (R 3.1.3)
-##  knitr      * 1.9     2015-01-20 CRAN (R 3.1.3)
-##  lattice    * 0.20-31 2015-03-30 CRAN (R 3.1.3)
-##  MASS         7.3-40  2015-03-21 CRAN (R 3.1.3)
-##  mime       * 0.3     2015-03-29 CRAN (R 3.1.3)
-##  mmod         1.2.1   2014-08-03 CRAN (R 3.1.3)
-##  munsell    * 0.4.2   2013-07-11 CRAN (R 3.1.3)
-##  mvtnorm      1.0-2   2014-12-18 CRAN (R 3.1.3)
-##  nlme       * 3.1-120 2015-02-20 CRAN (R 3.1.3)
-##  pegas        0.7     2015-03-05 CRAN (R 3.1.3)
-##  plyr       * 1.8.1   2014-02-26 CRAN (R 3.1.3)
-##  proto      * 0.3-10  2012-12-22 CRAN (R 3.1.3)
-##  R6         * 2.0.1   2014-10-29 CRAN (R 3.1.3)
-##  Rcpp       * 0.11.5  2015-03-06 CRAN (R 3.1.3)
-##  reshape2   * 1.4.1   2014-12-06 CRAN (R 3.1.3)
-##  RJSONIO    * 1.3-0   2014-07-28 CRAN (R 3.1.3)
-##  rmarkdown  * 0.5.1   2015-01-26 CRAN (R 3.1.3)
-##  rstudioapi * 0.2     2014-12-31 CRAN (R 3.1.3)
-##  scales     * 0.2.4   2014-04-22 CRAN (R 3.1.3)
-##  shiny      * 0.11.1  2015-02-11 CRAN (R 3.1.3)
-##  stringr    * 0.6.2   2012-12-06 CRAN (R 3.1.3)
-##  xtable     * 1.7-4   2014-09-12 CRAN (R 3.1.3)
-##  yaml       * 2.1.13  2014-06-12 CRAN (R 3.1.3)</code></pre>
+<pre><code>##  package      * version date       source        
+##  ade4         * 1.7-3   2015-11-22 CRAN (R 3.2.3)
+##  adegenet     * 2.0.0   2015-07-07 CRAN (R 3.2.3)
+##  ape          * 3.4     2015-11-29 CRAN (R 3.2.3)
+##  apex         * 1.0.1   2015-09-07 CRAN (R 3.2.3)
+##  assertthat     0.1     2013-12-06 CRAN (R 3.2.3)
+##  BiocGenerics   0.16.1  2015-12-16 Bioconductor  
+##  Biostrings     2.38.2  2015-12-16 Bioconductor  
+##  boot           1.3-17  2015-06-29 CRAN (R 3.2.1)
+##  cluster        2.0.3   2015-07-21 CRAN (R 3.2.1)
+##  coda           0.18-1  2015-10-16 CRAN (R 3.2.3)
+##  colorspace     1.2-6   2015-03-11 CRAN (R 3.2.3)
+##  combinat     * 0.0-8   2012-10-29 CRAN (R 3.2.3)
+##  DBI            0.3.1   2014-09-24 CRAN (R 3.2.3)
+##  deldir         0.1-9   2015-03-09 CRAN (R 3.2.3)
+##  devtools       1.9.1   2015-09-11 CRAN (R 3.2.3)
+##  digest         0.6.8   2014-12-31 CRAN (R 3.2.3)
+##  dplyr          0.4.3   2015-09-01 CRAN (R 3.2.3)
+##  evaluate       0.8     2015-09-18 CRAN (R 3.2.3)
+##  formatR        1.2.1   2015-09-18 CRAN (R 3.2.3)
+##  gdata        * 2.17.0  2015-07-04 CRAN (R 3.2.3)
+##  genetics     * 1.3.8.1 2013-09-03 CRAN (R 3.2.3)
+##  ggplot2        1.0.1   2015-03-17 CRAN (R 3.2.3)
+##  gtable         0.1.2   2012-12-05 CRAN (R 3.2.3)
+##  gtools       * 3.5.0   2015-05-29 CRAN (R 3.2.3)
+##  hierfstat    * 0.04-22 2015-12-04 CRAN (R 3.2.3)
+##  htmltools      0.2.6   2014-09-08 CRAN (R 3.2.3)
+##  httpuv         1.3.3   2015-08-04 CRAN (R 3.2.3)
+##  igraph         1.0.1   2015-06-26 CRAN (R 3.2.3)
+##  IRanges        2.4.6   2015-12-16 Bioconductor  
+##  knitr          1.11    2015-08-14 CRAN (R 3.2.3)
+##  lattice        0.20-33 2015-07-14 CRAN (R 3.2.3)
+##  LearnBayes     2.15    2014-05-29 CRAN (R 3.2.3)
+##  magrittr       1.5     2014-11-22 CRAN (R 3.2.3)
+##  MASS         * 7.3-45  2015-11-10 CRAN (R 3.2.3)
+##  Matrix         1.2-3   2015-11-28 CRAN (R 3.2.2)
+##  memoise        0.2.1   2014-04-22 CRAN (R 3.2.3)
+##  mgcv           1.8-10  2015-12-12 CRAN (R 3.2.3)
+##  mime           0.4     2015-09-03 CRAN (R 3.2.3)
+##  mmod         * 1.3.1   2015-08-27 CRAN (R 3.2.3)
+##  munsell        0.4.2   2013-07-11 CRAN (R 3.2.3)
+##  mvtnorm      * 1.0-3   2015-07-22 CRAN (R 3.2.3)
+##  nlme           3.1-122 2015-08-19 CRAN (R 3.2.3)
+##  nnls           1.4     2012-03-19 CRAN (R 3.2.3)
+##  pegas        * 0.8-2   2015-09-25 CRAN (R 3.2.3)
+##  permute        0.8-4   2015-05-19 CRAN (R 3.2.3)
+##  phangorn     * 2.0.1   2015-12-15 CRAN (R 3.2.3)
+##  plyr           1.8.3   2015-06-12 CRAN (R 3.2.3)
+##  poppr        * 2.1.0   2015-12-01 CRAN (R 3.2.3)
+##  proto          0.3-10  2012-12-22 CRAN (R 3.2.3)
+##  quadprog       1.5-5   2013-04-17 CRAN (R 3.2.3)
+##  R6             2.1.1   2015-08-19 CRAN (R 3.2.3)
+##  Rcpp           0.12.2  2015-11-15 CRAN (R 3.2.3)
+##  reshape2       1.4.1   2014-12-06 CRAN (R 3.2.3)
+##  rmarkdown      0.8.1   2015-10-10 CRAN (R 3.2.3)
+##  S4Vectors      0.8.5   2015-12-16 Bioconductor  
+##  scales         0.3.0   2015-08-25 CRAN (R 3.2.3)
+##  seqinr         3.1-3   2014-12-17 CRAN (R 3.2.3)
+##  shiny          0.12.2  2015-08-05 CRAN (R 3.2.3)
+##  sp             1.2-1   2015-10-18 CRAN (R 3.2.3)
+##  spdep          0.5-88  2015-03-17 CRAN (R 3.2.3)
+##  stringi        1.0-1   2015-10-22 CRAN (R 3.2.3)
+##  stringr        1.0.0   2015-04-30 CRAN (R 3.2.3)
+##  vegan          2.3-2   2015-11-19 CRAN (R 3.2.3)
+##  xtable         1.8-0   2015-11-02 CRAN (R 3.2.3)
+##  XVector        0.10.0  2015-12-16 Bioconductor  
+##  yaml           2.1.13  2014-06-12 CRAN (R 3.2.3)
+##  zlibbioc       1.16.0  2015-12-16 Bioconductor</code></pre>
 </div>
 
 <!-- </div>
