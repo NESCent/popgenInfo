@@ -1,12 +1,10 @@
 ---
-title: "Template Vignette"
+title: "Calculating genetic differentiation and clustering methods from SSR data"
 ---
 
 # Introduction
 
-Explain the purpose of the vignette.  
-Give a brief explanation of the questions that will be answered and some background information.
-These vignettes are written in [Rmarkdown](http://rmarkdown.rstudio.com). You can find [details about markdown here](http://rmarkdown.rstudio.com/authoring_basics.html) and [details about code chunks here](http://rmarkdown.rstudio.com/authoring_rcodechunks.html).
+This workflow will show you how to assess population differentiation with microsatellite/SSR data.
 
 # Assumptions
 
@@ -63,9 +61,7 @@ Information on further analysis that could be done, other workflows [can be link
 
 # Contributors
 
-- Author 1
-- Author 2
-- Contributor 1 (role)
+- Zhian N. Kamvar
 
 # Session Information
 
