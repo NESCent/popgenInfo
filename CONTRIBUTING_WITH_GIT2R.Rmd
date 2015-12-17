@@ -24,11 +24,11 @@ The basic steps of this process are:
 
 1. **Fork** the [popgenInfo repository](https://github.com/NESCent/popgenInfo)\*
 2. **Clone** your fork to your local machine.\*
+6. Checkout your master branch, **fetch** the changes from NESCent and **merge**
+   them into your fork.
 3. Create a new **branch** and **commit** new changes or content.
 4. **Push** your changes to your fork.
 5. Open a **pull request** from your fork to NESCent.
-6. Checkout your master branch, **fetch** the changes from NESCent and **merge**
-   them into your fork.
 
 \* These should only be done once.
 
@@ -298,7 +298,69 @@ push(repo, credentials = cred)
 ```
 
 Now, when you check your fork, it should be updated with the most recent
-changes.
+changes. From here, we can checkout a new branch and then proceed with adding 
+our changes or new workflow.
+
+# Step 4: Creating a New Branch
+
+When you add contributions, the best practice is to create a new branch off of
+the master. A **branch** is a term that indicates a sort of sandbox for a 
+repository that can become permenant. By default, git repositories all have a 
+"master" branch. When you want to experiment with something else, add new
+content, or simply just fix a typo, but you don't want to disturb the original
+copy, you create a new branch. In this step, we will create a branch, push it to
+our fork, and track it.
+
+## SETUP
+
+Most importantly we need to make sure that we are on the master branch and it is
+up to date. To double plus make sure that you are on the master branch, check it
+out:
+
+```{r chchcheckitout}
+checkout(repo, "master")
+repo
+```
+
+For reasons that will reveal themselves later, please run these function
+definitions:
+
+```{r fun}
+my_branch <- function(x) paste0("refs/heads/", x)
+my_origin <- function(x) paste0("origin/", x)
+```
+
+And, of course, don't forget your credentials:
+
+```{r cred}
+cred <- cred_token()
+```
+
+
+## Creation
+
+Assuming you've updated your master branch as shown above, we can create a
+branch from the master using the function `checkout()`. Let's assume that we
+want to create a vignette for analyzing spatial statistics. I'm going to lay out
+a few steps here because these are the steps you want to take when you create
+a brand new branch and make sure it exists on your computer and on your fork:
+
+1. save the branch name as a variable
+2. checkout the branch
+3. push the branch to the fork
+4. set your local repository to track the fork
+
+```{r checkout_branch, eval = FALSE}
+BRANCH <- "2015-12-16-spatial-stats"                     # 1
+checkout(repo, BRANCH, create = TRUE)                    # 2
+push(repo, name = "origin", refspec = my_branch(BRANCH)) # 3
+branch_set_upstream(head(repo), my_origin(BRANCH))       # 4
+```
+
+```{r checkout_branch_shadow, echo = FALSE}
+BRANCH <- "2015-12-16-spatial-stats"                     # 1
+checkout(repo, BRANCH, create = TRUE)                    # 2
+```
 
 
 # Session Information
