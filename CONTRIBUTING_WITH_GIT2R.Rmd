@@ -159,7 +159,48 @@ list.files()
 list.files(paste0(fork_dir, "/popgenInfo"))
 ```
 
-Now we have successfully cloned our repository into our computer using *git2r*.
+Now we have successfully cloned our repository into our computer using *git2r*. 
+Next, we will set up our credentials and keep our master branch up to date.
+
+## Setting up your clone
+
+To access the repository, all you have to do is open it by double-clicking on
+the "popgenInfo.Rproj" file. This will open Rstudio to this folder and set it as
+the working directory. After that, in your R console, type:
+
+```{r repository_show, eval = FALSE}
+library("git2r") # in case you're starting from here
+repo <- repository()
+repo
+```
+
+```{r repository_shadow, echo = FALSE}
+library("git2r") # in case you're starting from here
+repo <- repository(paste0(fork_dir, "/popgenInfo"))
+repo
+```
+
+This tells R that you have a repository in this folder and that you are
+referring to it as `repo`. The output of `repo` is a summary of your repository:
+
+ - **Local** This is the branch (master) and the path where the copy of your repository is.
+ - **Remote** This shows you the branch and the url of the remote repository
+ - **Head** This is a summary of the last *commit* containing the date and a description.
+
+In order to be able to synch your clone with your fork, GitHub needs to know 
+that you are really who you say you are. This means that you need to associate
+your name, email, and a secret key with this repository. The first two items
+are easily done within R. You can use the function `config()` to set and confirm
+your name and email:
+
+```{r, config}
+config(repo, 
+       user.name = "Zhian Kamvar",
+       user.email = "kamvarz@science.oregonstate.edu")
+config(repo)
+```
+
+The next thing we want to do is set credentials
 
 # Session Information
 
