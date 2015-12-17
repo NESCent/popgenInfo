@@ -165,7 +165,8 @@ list.files()
 ```
 
 ```{r go_shadow, echo = FALSE}
-list.files(paste0(fork_dir, "/popgenInfo"))
+fork_pgi <- paste0(fork_dir, "/popgenInfo")
+list.files(fork_pgi)
 ```
 
 Now we have successfully cloned our repository into our computer using *git2r*. 
@@ -185,7 +186,7 @@ repo
 
 ```{r repository_shadow, echo = FALSE}
 library("git2r") # in case you're starting from here
-repo <- repository(paste0(fork_dir, "/popgenInfo"))
+repo <- repository(fork_pgi)
 repo
 ```
 
@@ -236,7 +237,7 @@ cat(paste0("GITHUB_PAT=\"", my_pat, "\""), file = ".Renviron")
 ```
 
 ```{r renviron_shadow, echo = FALSE}
-cat(paste0("GITHUB_PAT=\"", my_pat, "\""), file = paste0(fork_dir, "/popgenInfo/.Renviron"))
+cat(paste0("GITHUB_PAT=\"", my_pat, "\""), file = paste0(fork_pgi, "/.Renviron"))
 ```
 
 The next time you open R from `popgenInfo.Rproj`, this token will be available
@@ -432,7 +433,44 @@ you made the changes (`git commit`).
 
 Let's say you've already copied the `TEMPLATE.Rmd` file to the **use/**
 directory and renamed it to `2015-12-16-spatial-stats.Rmd` and added some data
-called `spatial_data.csv`.
+called `spatial_data.csv`. When you place a file in your repository, git will
+not pay attention to any changes you do until you specifically add it. Until
+then it is "Untracked". You can see this by running `status()`:
+
+```{r add_stuff_shadow, echo = FALSE}
+file.copy(paste0(fork_pgi, "/TEMPLATE.Rmd"), 
+          paste0(fork_pgi, "/use/2015-12-16-spatial-stats.Rmd"))
+file.create(paste0(fork_pgi, "/data/spatial_data.csv"))
+```
+
+```{r status}
+status(repo)
+```
+
+Since we've just added the files, we can use `add()` to tell git we want to
+stage them for committing.
+
+```{r add}
+add(repo, "*") # adding all new or changed files
+status(repo)
+```
+
+When we have done this, we can commit to our changes by using `commit()`. A
+commit is basically placing a record of what you did and, importantly, why you
+did it. Your commit message should record this. Commit messages should be able
+to fit on a single line. Optionally, if you want to be able to add more detail,
+you can enter more lines below the message:
+
+```{r commit}
+msg <- " started spatial stats vignette and added data
+
+I copied the template to the use folder and placed
+spatial data in the data folder.
+"
+commit(repo, msg)
+status(repo)
+```
+
 
 
 # Session Information
