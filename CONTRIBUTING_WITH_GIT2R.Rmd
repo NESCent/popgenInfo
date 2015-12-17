@@ -351,15 +351,20 @@ a brand new branch and make sure it exists on your computer and on your fork:
 4. set your local repository to track the fork
 
 ```{r checkout_branch, eval = FALSE}
-BRANCH <- "2015-12-16-spatial-stats"                     # 1
-checkout(repo, BRANCH, create = TRUE)                    # 2
+BRANCH <- "2015-12-16-spatial-stats"                                         # 1
+checkout(repo, BRANCH, create = TRUE)                                        # 2
 push(repo, name = "origin", refspec = my_branch(BRANCH), credentials = cred) # 3
-branch_set_upstream(head(repo), my_origin(BRANCH))       # 4
+branch_set_upstream(head(repo), my_origin(BRANCH))                           # 4
 ```
+
+To examine these one by one:
+
+When we create the variable 
 
 ```{r checkout_branch_shadow, echo = FALSE}
 BRANCH <- "2015-12-16-spatial-stats"                     # 1
 checkout(repo, BRANCH, create = TRUE)                    # 2
+branch_set_upstream(head(repo), my_origin(BRANCH))
 ```
 
 Now if you 
