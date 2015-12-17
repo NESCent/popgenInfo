@@ -22,11 +22,15 @@ given analysis in R. We use [git](https://git-scm.com/) and
 
 The basic steps of this process are:
 
-1. **Fork** the [popgenInfo repository](https://github.com/NESCent/popgenInfo)
-2. **Clone** your fork to your local machine.
+1. **Fork** the [popgenInfo repository](https://github.com/NESCent/popgenInfo)\*
+2. **Clone** your fork to your local machine.\*
 3. Create a new **branch** and **commit** new changes or content.
 4. **Push** your changes to your fork.
 5. Open a **pull request** from your fork to NESCent.
+6. Checkout your master branch, **fetch** the changes from NESCent and **merge**
+   them into your fork.
+
+\* These should only be done once.
 
 This particular tutorial will show you the basics of contributing to the
 popgenInfo website using the R package
@@ -34,6 +38,8 @@ popgenInfo website using the R package
 [rOpenSci project](https://ropensci.org/). This package allows for a nearly
 seamless and uniform interface for all contributors regardless of operating
 system.
+
+## Requirements
 
 We assume that you have already done a few things:
 
@@ -44,6 +50,116 @@ We assume that you have already done a few things:
 If you have also installed [git](https://git-scm.com/), you can set up Rstudio
 to work with git to help you commit changes, pull, and push. For the purposes of
 this tutorial, these things are not necessary.
+
+# Step 1: Forking the repository.
+
+Go to 
+[https://github.com/NESCent/popgenInfo](https://github.com/NESCent/popgenInfo) 
+and [click on the "Fork" 
+button](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository).
+This will create a copy of the NESCent popgenInfo repository to your account.
+After you've forked the repository, you never have to fork it again!
+
+# Step 2: Clone your fork to your computer
+
+Just like forking, you only have to clone your fork to your computer once. It
+will live there until you decide to remove it.
+
+Now that you have your repository forked to your account, you will need to 
+**clone** it to your computer. For this, we will need two things:
+
+1. a place you want to store this repostiory (eg. a folder called `forks` in your `Documents`)
+2. git2r
+
+```{r, tmpdir_setup, echo = FALSE}
+fork_dir <- tempdir()
+setwd(fork_dir)
+```
+
+## Create your forks folder
+
+First, we need to make sure that we are working in the folder where we want to
+set up our fork. In this tutorial, we will use `setwd()` to do this via the R
+console, but it is possible to do this via Rstudio.
+
+If you are using Windows:
+
+```{r, eval = FALSE}
+fork_dir <- "~/forks"
+```
+
+If you are using OSX:
+
+```{r, eval = FALSE}
+fork_dir <- "~/Documents/forks"
+```
+
+Now, we create the directory and then move there:
+
+```{r, eval = FALSE}
+dir.create(fork_dir)
+```
+
+We can use the function `list.files()` to see what's inside the directory:
+
+```{r showdir, eval = FALSE}
+list.files()
+```
+
+```{r showshadow, echo = FALSE}
+list.files(fork_dir)
+```
+
+Currently, there's nothing here. We will use the `clone()` function from *git2r*
+to make a copy of our repository. If you type `help("clone", "git2r")` in your
+R console, you can see documentation about the function. We need two things
+from this function:
+
+1. The URL of the git repository
+2. The path to our folder where we want to store it
+
+The URL for the git repository is simply just the URL for your fork with `.git` 
+at the end of it. For mine, it's `https://github.com/zkamvar/popgenInfo.git`. To
+keep things simple, we will name the folder we want to put the repository in
+"popgenInfo".
+
+```{r clone, eval = FALSE}
+library("git2r")
+clone(url = "https://github.com/zkamvar/popgenInfo.git",
+      local_path = "popgenInfo")
+```
+
+```{r shadow_clone, echo = FALSE}
+library("git2r")
+clone(url = "https://github.com/zkamvar/popgenInfo.git",
+      local_path = paste0(fork_dir, "/popgenInfo"))
+```
+
+
+Now when we look at our directory, we can see that we have one folder called 
+"popgenInfo":
+
+```{r show_clone, eval = FALSE}
+list.files()
+```
+
+```{r show_shadow, echo = FALSE}
+list.files(fork_dir)
+```
+
+
+We can move into the folder with `setwd()` and look at all the files in there.
+
+```{r go_clone, eval = FALSE}
+setwd("popgenInfo")
+list.files()
+```
+
+```{r go_shadow, echo = FALSE}
+list.files(paste0(fork_dir, "/popgenInfo"))
+```
+
+Now we have successfully cloned our repository into our computer using *git2r*.
 
 # Session Information
 
