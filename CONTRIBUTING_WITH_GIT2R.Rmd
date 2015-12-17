@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introduction
 
-## Motivation
+## Background Motivation
 
 The **popgenInfo** project was designed to be an educational tool that can move
 at the same pace as method development by allowing people skilled in population
@@ -20,13 +20,23 @@ given analysis in R. We use [git](https://git-scm.com/) and
 [GitHub](https://github.com) to accept contributions via pull requests using
 [GitHub flow](https://guides.github.com/introduction/flow/).
 
-The basic steps of this process are:
+> **What is git?**
+> 
+> Git is a *version control* program. It allows you to keep track of all changes
+that happen when you are writing, analyzing data, or coding. You can think of it
+as a sort of electronic lab notebook. Just like you would record any weights or
+measures carefully in your bench lab notebook, so should you record any analyses
+you do on the computer. With git, you "add" and "commit" changes that you make.
+These are analogous to writing down the values of your measurements and noting 
+how you took them. 
+
+The basic steps of the process are:
 
 1. **Fork** the [popgenInfo repository](https://github.com/NESCent/popgenInfo)\*
 2. **Clone** your fork to your local machine.\*
 6. Checkout your master branch, **fetch** the changes from NESCent and **merge**
    them into your fork.
-3. Create a new **branch** and **commit** new changes or content.
+3. Create a new **branch** and then **add** and **commit** new changes or content.
 4. **Push** your changes to your fork.
 5. Open a **pull request** from your fork to NESCent.
 
@@ -397,8 +407,33 @@ repo
 repo
 ```
 
-We can now see from the output that we have a **Remote** set up. Once we have
-this, we can start making changes!
+We can now see from the output that we have a **Remote** set up. Once we have 
+this, we can start making changes! If you are adding a new vignette, please copy
+[`TEMPLATE.Rmd`](https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd)
+to the **use/** directory and give it a new name that is meaningful to your 
+contribution (good practice is to name it the same as your branch). If you are
+including any data, place it in the **data/** directory. Once you add these
+files, you need to to **add** these files and then you should **commit**, which
+we will show you how to do below.
+
+# Step 5: Adding content, committing, and pushing
+
+If you are using Rstudio, you can use it to integrate with git. This allows you 
+to do things like commit, push, and pull. Hadley Wickham, cheif scientist at 
+Rstudio has put up [this helpful tutorial on using git through 
+Rstudio](http://r-pkgs.had.co.nz/git.html#git-status). If you aren't using
+Rstudio, but you don't want to access the terminal (command line), this section
+will show you basic git commands with *git2r* that will allow you to work on
+your vignette and keep it up to date.
+
+Recall that usng git is analogous to keeping a good, detailed lab notebook. When
+you make any changes, you record those changes (`git add`) and then say *why*
+you made the changes (`git commit`).
+
+Let's say you've already copied the `TEMPLATE.Rmd` file to the **use/**
+directory and renamed it to `2015-12-16-spatial-stats.Rmd` and added some data
+called `spatial_data.csv`.
+
 
 # Session Information
 
