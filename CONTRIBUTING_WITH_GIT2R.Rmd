@@ -339,35 +339,61 @@ cred <- cred_token()
 
 ## Creation
 
-Assuming you've updated your master branch as shown above, we can create a
-branch from the master using the function `checkout()`. Let's assume that we
+Assuming you've updated your master branch as shown above, we can create a 
+branch from the master using the function `checkout()`. Let's assume that we 
 want to create a vignette for analyzing spatial statistics. I'm going to lay out
-a few steps here because these are the steps you want to take when you create
-a brand new branch and make sure it exists on your computer and on your fork:
+a few steps here all at once because these are the steps you want to take when
+you create a brand new branch and make sure it exists on your computer and on
+your fork:
 
 1. save the branch name as a variable
 2. checkout the branch
 3. push the branch to the fork
 4. set your local repository to track the fork
 
-```{r checkout_branch, eval = FALSE}
+In code, that would look like this:
+
+```{r checkout_branch_flow, eval = FALSE}
 BRANCH <- "2015-12-16-spatial-stats"                                         # 1
 checkout(repo, BRANCH, create = TRUE)                                        # 2
 push(repo, name = "origin", refspec = my_branch(BRANCH), credentials = cred) # 3
 branch_set_upstream(head(repo), my_origin(BRANCH))                           # 4
 ```
 
-To examine these one by one:
+To examine these one by one. First, you create a variable that will hold the
+name of the branch you want to create. We are using this convention to allow us
+to use this name multiple times. After that, we create that branch from our
+master branch. We can take a look at what our branch looks like at that point.
 
-When we create the variable 
-
+```{r checkout_branch, eval = FALSE}
+BRANCH <- "2015-12-16-spatial-stats"  # 1
+checkout(repo, BRANCH, create = TRUE) # 2
+repo
+```
 ```{r checkout_branch_shadow, echo = FALSE}
 BRANCH <- "2015-12-16-spatial-stats"                     # 1
 checkout(repo, BRANCH, create = TRUE)                    # 2
+branch_set_upstream(head(repo), NULL)
+repo
 branch_set_upstream(head(repo), my_origin(BRANCH))
 ```
 
-Now if you 
+Notice here that you now only have two lines in the output, **Local** and
+**Head**. This is because the branch doesn't exist on your GitHub fork. This is
+where the next two steps come in. We will push that branch and then make sure
+that our branch is tracking the copy on the fork.
+
+```{r push_branch, eval = FALSE}
+push(repo, name = "origin", refspec = my_branch(BRANCH), credentials = cred) # 3
+branch_set_upstream(head(repo), my_origin(BRANCH))                           # 4
+repo
+```
+```{r push_branch_shadow, echo = FALSE}
+repo
+```
+
+We can now see from the output that we have a **Remote** set up. Once we have
+this, we can start making changes!
 
 # Session Information
 
