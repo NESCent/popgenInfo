@@ -1,5 +1,5 @@
 ---
-title: "CONTRIBUTING_WITH_GIT2R.Rmd"
+title: "Contributing with git2r"
 author: "Zhian N. Kamvar"
 date: "December 16, 2015"
 output: html_document
@@ -73,7 +73,6 @@ Now that you have your repository forked to your account, you will need to
 
 ```{r, tmpdir_setup, echo = FALSE}
 fork_dir <- tempdir()
-setwd(fork_dir)
 ```
 
 ## Create your forks folder
@@ -226,7 +225,7 @@ will not be tracked by git, and will only exist on your computer:
 cat(paste0("GITHUB_PAT=\"", my_pat, "\""), file = ".Renviron")
 ```
 
-```{r renviron, echo = FALSE}
+```{r renviron_shadow, echo = FALSE}
 cat(paste0("GITHUB_PAT=\"", my_pat, "\""), file = paste0(fork_dir, "/popgenInfo/.Renviron"))
 ```
 
@@ -255,9 +254,40 @@ With all of this information set, we can begin working on our repository.
 
 The first thing we need to do is make sure that our master branch is up to date.
 Since other people are also contributing to this project, it is possible for
-changes to be made even within seconds of you forking the repository.
+changes to be made even within seconds of you forking the repository. In this
+section we will show you how you can keep your master branch up to date in your
+local repository and your fork on github. 
 
-Now that
+Let's assume that you've just opened a fresh Rstudio session with the
+`popgenInfo.Rproj` file. First, let's load *git2r* and access our repository.
+
+```{r git2r_show, eval = FALSE}
+library("git2r")
+repo <- repository()
+```
+
+Now that we have our repository loaded, we should make sure that we are on the
+**master branch**. We can do this using the `checkout()` function from *git2r*.
+
+```{r checkout_master}
+checkout(repo, "master")
+repo
+```
+
+Now, whether or not we suspect changes from NESCent, it's always good form to 
+update your local repository before creating any new branches. We can do it this
+by first **fetch**ing the NESCent master branch and then **merging** it into our
+master branch. We will use the *git2r* functions `fetch()` and `merge()` to
+accomplish this.
+
+```{r update_master}
+fetch(repo, name = "NESCent")
+merge(repo, "NESCent/master")
+repo
+```
+
+Since we will never work directly on the master branch, there should be no 
+conflicts from the NESCent branch and we now know that our branch is up to date.
 
 
 # Session Information
