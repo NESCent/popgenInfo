@@ -288,6 +288,17 @@ repo
 
 Since we will never work directly on the master branch, there should be no 
 conflicts from the NESCent branch and we now know that our branch is up to date.
+Assuming everything worked, we can push this to our fork on GitHub. We will use 
+*git2r*'s `push()` function to do this. We also need to supply our PAT in order
+for this to work. To do so, we will use the *git2r* function `cred_token()`:
+
+```{r push_repo, eval = FALSE}
+cred <- cred_token()
+push(repo, credentials = cred)
+```
+
+Now, when you check your fork, it should be updated with the most recent
+changes.
 
 
 # Session Information
