@@ -441,6 +441,10 @@ then it is "Untracked". You can see this by running `status()`:
 file.copy(paste0(fork_pgi, "/TEMPLATE.Rmd"), 
           paste0(fork_pgi, "/use/2015-12-16-spatial-stats.Rmd"))
 file.create(paste0(fork_pgi, "/data/spatial_data.csv"))
+set.seed(999)
+m <- matrix(rnorm(20), nrow = 5, ncol = 2, dimnames = list(NULL, c("x", "y")))
+write.table(m, file = paste0(fork_pgi, "/data/spatial_data.csv"), sep = ",", 
+            row.names = FALSE, col.names = TRUE)
 ```
 
 ```{r status}
@@ -472,11 +476,19 @@ status(repo) # should return nothing
 repo
 ```
 
+You can also see a summary of what you just did by looking at the summary of
+your commit:
+
+```{r summarycommit}
+summary(commits(repo)[[1]])
+```
+
+
 Now you can see that your commit message was recorded in the repository. Since
 we see that there is a **Remote** associated with this fork, we can simply use
 `push()` to push our changes up to the fork.
 
-```{r pushit}
+```{r pushit, eval = FALSE}
 push(repo)
 ```
 
