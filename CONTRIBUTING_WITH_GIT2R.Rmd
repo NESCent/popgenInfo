@@ -351,7 +351,8 @@ your fork:
 3. push the branch to the fork
 4. set your local repository to track the fork
 
-In code, that would look like this:
+In code, that would look like this if you wanted to create a new branch to
+include a vignette on spatial statistics called "2015-12-16-spatial-stats":
 
 ```{r checkout_branch_flow, eval = FALSE}
 BRANCH <- "2015-12-16-spatial-stats"                                         # 1
@@ -371,9 +372,13 @@ checkout(repo, BRANCH, create = TRUE) # 2
 repo
 ```
 ```{r checkout_branch_shadow, echo = FALSE}
-BRANCH <- "2015-12-16-spatial-stats"                     # 1
-checkout(repo, BRANCH, create = TRUE)                    # 2
-branch_set_upstream(head(repo), NULL)
+BRANCH <- "2015-12-16-spatial-stats"
+# Thu Dec 17 09:57:31 2015 ------------------------------
+# I have this branch created on my fork, but if I check it out normally, it will
+# automatically track the fork. Instead, I am creating this branch from the
+# nescent head so that it appears seamless when the user does this.
+branch_create(commits(repo)[[1]], BRANCH)
+checkout(repo, BRANCH, create = TRUE)
 repo
 branch_set_upstream(head(repo), my_origin(BRANCH))
 ```
