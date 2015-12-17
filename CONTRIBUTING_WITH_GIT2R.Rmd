@@ -438,9 +438,9 @@ not pay attention to any changes you do until you specifically add it. Until
 then it is "Untracked". You can see this by running `status()`:
 
 ```{r add_stuff_shadow, echo = FALSE}
-file.copy(paste0(fork_pgi, "/TEMPLATE.Rmd"), 
-          paste0(fork_pgi, "/use/2015-12-16-spatial-stats.Rmd"))
-file.create(paste0(fork_pgi, "/data/spatial_data.csv"))
+x <- file.copy(paste0(fork_pgi, "/TEMPLATE.Rmd"), 
+               paste0(fork_pgi, "/use/2015-12-16-spatial-stats.Rmd"))
+x <- file.create(paste0(fork_pgi, "/data/spatial_data.csv"))
 set.seed(999)
 m <- matrix(rnorm(20), nrow = 5, ncol = 2, dimnames = list(NULL, c("x", "y")))
 write.table(m, file = paste0(fork_pgi, "/data/spatial_data.csv"), sep = ",", 
