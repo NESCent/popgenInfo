@@ -45,11 +45,11 @@ The basic steps of the process are:
 
 1. **Fork** the [popgenInfo repository](https://github.com/NESCent/popgenInfo)\*
 2. **Clone** your fork to your local machine.\*
-6. Checkout your master branch, **fetch** the changes from NESCent and **merge**
+3. Checkout your master branch, **fetch** the changes from NESCent and **merge**
    them into your fork.
-3. Create a new **branch** and then **add** and **commit** new changes or content.
-4. **Push** your changes to your fork.
-5. Open a **pull request** from your fork to NESCent.
+4. Create a new **branch** and then **add** and **commit** new changes or content.
+5. **Push** your changes to your fork.
+6. Open a **pull request** from your fork to NESCent.
 
 \* These should only be done once.
 
