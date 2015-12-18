@@ -483,13 +483,16 @@ msg <- " started spatial stats vignette and added data
 I copied the template to the use folder and placed
 spatial data in the data folder.
 "
-commit(repo, msg)
+commit(repo, msg, session = TRUE)
 status(repo) # should return nothing
 repo
 ```
+> Note that we put `session = TRUE` in the commit function. This automatically
+puts your R session information in the commit, which gives more information
+about package versions you were working with when you were editing the vignette.
 
-You can also see a summary of what you just did by looking at the summary of
-your commit:
+You can see a summary of what you just did by looking at the summary of your
+commit:
 
 ```{r summarycommit}
 summary(commits(repo)[[1]])
@@ -533,9 +536,10 @@ like we showed above by **adding** and **committing** your changes followed by
 Once you are finished with all of your changes, you can create a pull request 
 from your GitHub fork to NESCent. Your pull request begins a process of open 
 peer review where content, accuracy, and style are considered. If changes are 
-suggested, you can make them on your fork and your pull request will be automatically updated with them. When all questions and concerns have been addressed, the 
-pull request may be merged into the NESCent repository as long as two of the
-maintainers approve.
+suggested, you can make them on your fork and your pull request will be
+automatically updated with them. When all questions and concerns have been
+addressed, the pull request may be merged into the NESCent repository as long as
+two of the maintainers approve.
 
 If it passes peer review and is published, you can update your fork: checkout
 your master branch, fetch the changes from NESCent, merge those changes, and
