@@ -1,0 +1,558 @@
+---
+title: "Contributing with git2r"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+## Background/Motivation
+
+The **popgenInfo** project was designed to be an educational tool that can move
+at the same pace as method development by allowing people skilled in population
+genetics analysis to submit workflows that demonstrate the strengths of any
+given analysis in R. We use [git](https://git-scm.com/) and
+[GitHub](https://github.com) to accept contributions via pull requests using
+[GitHub flow](https://guides.github.com/introduction/flow/).
+
+> **What is git?**
+> 
+> Git is a *version control* program. It allows you to keep track of all changes
+that happen when you are writing, analyzing data, or coding. You can think of it
+as a sort of electronic lab notebook. Just like you would record any weights or
+measures carefully in your bench lab notebook, so should you record any analyses
+you do on the computer. With git, you "add" and "commit" changes that you make.
+These are analogous to writing down the values of your measurements and noting 
+how you took them. 
+
+The basic steps of the process are:
+
+1. **Fork** the [popgenInfo repository](https://github.com/NESCent/popgenInfo)\*
+2. **Clone** your fork to your local machine.\*
+3. Checkout your master branch, **fetch** the changes from NESCent and **merge**
+   them into your fork.
+4. Create a new **branch** and then **add** and **commit** new changes or content.
+5. **Push** your changes to your fork.
+6. Open a **pull request** from your fork to NESCent.
+
+\* These should only be done once.
+
+This particular tutorial will show you the basics of contributing to the
+popgenInfo website using the R package
+[*git2r*](https://cran.r-project.org/package=git2r), which was developed by the
+[rOpenSci project](https://ropensci.org/). This package allows for a nearly
+seamless and uniform interface for all contributors regardless of operating
+system.
+
+## Requirements
+
+We assume that you have already done a few things:
+
+1. Signed up for a [GitHub account](https://github.com)
+2. Install [R](https://cran.r-project.org)
+3. Install [Rstudio](https://rstudio.com/desktop/download)
+
+If you have also installed [git](https://git-scm.com/), you can set up Rstudio
+to work with git to help you commit changes, pull, and push. For the purposes of
+this tutorial, these things are not necessary.
+
+# Step 1: Forking the repository.
+
+Go to 
+[https://github.com/NESCent/popgenInfo](https://github.com/NESCent/popgenInfo) 
+and [click on the "Fork" 
+button](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository).
+This will create a copy of the NESCent popgenInfo repository to your account.
+After you've forked the repository, you never have to fork it again!
+
+# Step 2: Clone your fork to your computer
+
+Now that you have your repository forked to your account, you will need to 
+**clone** it to your computer. Just like forking, you only have to clone your
+fork to your computer once. It will live there until you decide to remove it. We
+will need two things to clone our repository:
+
+1. a place you want to store this repostiory (eg. a folder called `forks` in your `Documents`)
+2. git2r
+
+```{r, tmpdir_setup, echo = FALSE}
+fork_dir <- tempdir()
+```
+
+## Create your forks folder
+
+First, we need to make sure that we are working in the folder where we want to
+set up our fork. In this tutorial, we will use `setwd()` to do this via the R
+console, but it is possible to do this via Rstudio.
+
+If you are using Windows:
+
+```{r, eval = FALSE}
+fork_dir <- "~/forks"
+```
+
+If you are using OSX:
+
+```{r, eval = FALSE}
+fork_dir <- "~/Documents/forks"
+```
+
+Now, we create the directory and then move there:
+
+```{r, eval = FALSE}
+dir.create(fork_dir)
+```
+
+We can use the function `list.files()` to see what's inside the directory:
+
+```{r showdir, eval = FALSE}
+list.files()
+```
+
+```{r showshadow, echo = FALSE}
+list.files(fork_dir)
+```
+
+Currently, there's nothing here. We will use the `clone()` function from *git2r*
+to make a copy of our repository. If you type `help("clone", "git2r")` in your
+R console, you can see documentation about the function. We need two things
+from this function:
+
+1. The URL of the git repository
+2. The path to our folder where we want to store it
+
+The URL for the git repository is simply just the URL for your fork with `.git` 
+at the end of it. For mine, it's `https://github.com/zkamvar/popgenInfo.git`. To
+keep things simple, we will name the folder we want to put the repository in
+"popgenInfo".
+
+```{r clone, eval = FALSE}
+library("git2r")
+clone(url = "https://github.com/zkamvar/popgenInfo.git",
+      local_path = "popgenInfo")
+```
+
+```{r shadow_clone, echo = FALSE}
+library("git2r")
+clone(url = "https://github.com/zkamvar/popgenInfo.git",
+      local_path = paste0(fork_dir, "/popgenInfo"))
+```
+
+
+Now when we look at our directory, we can see that we have one folder called 
+"popgenInfo":
+
+```{r show_clone, eval = FALSE}
+list.files()
+```
+
+```{r show_shadow, echo = FALSE}
+list.files(fork_dir)
+```
+
+
+We can move into the folder with `setwd()` and look at all the files in there.
+
+```{r go_clone, eval = FALSE}
+setwd("popgenInfo")
+list.files()
+```
+
+```{r go_shadow, echo = FALSE}
+fork_pgi <- paste0(fork_dir, "/popgenInfo")
+list.files(fork_pgi)
+```
+
+Now we have successfully cloned our repository into our computer using *git2r*. 
+Next, we will set up our credentials and keep our master branch up to date.
+
+## Setting up your clone
+
+To access the repository, all you have to do is open it by double-clicking on
+the "popgenInfo.Rproj" file. This will open Rstudio to this folder and set it as
+the working directory. After that, in your R console, type:
+
+```{r repository_show, eval = FALSE}
+library("git2r") # in case you're starting from here
+repo <- repository()
+repo
+```
+
+```{r repository_shadow, echo = FALSE}
+library("git2r") # in case you're starting from here
+repo <- repository(fork_pgi)
+repo
+```
+
+This tells R that you have a repository in this folder and that you are
+referring to it as `repo`. The output of `repo` is a summary of your repository:
+
+ - **Local** This is the branch (master) and the path where the copy of your repository is.
+ - **Remote** This shows you the branch and the url of the remote repository
+ - **Head** This is a summary of the last *commit* containing the date and a description.
+
+In order to be able to synch your clone with your fork, GitHub needs to know 
+that you are really who you say you are. This means that you need to associate
+your name, email, and a secret token with this repository. The first two items
+are easily done within R. You can use the function `config()` to set and confirm
+your name and email:
+
+```{r, config}
+config(repo, 
+       user.name = "Zhian Kamvar",
+       user.email = "kamvarz@science.oregonstate.edu")
+config(repo)
+```
+
+Next, we need to set our secret token. Known as a [**Personal Access Token
+(PAT)**](https://help.github.com/articles/creating-an-access-token-for-command-line-use/),
+this is a 40 character cryptographic token that is like a long and complicated
+password. They both allow access to your GitHub repository, but the difference
+between a PAT and a password is that a PAT can be stored as text on your
+computer (which you should NEVER do with passwords) because it is easy to
+generate and (most importantly) easy to remove. We can create a PAT from GitHub
+and then we will store this in a file called `.Renviron` that is read every time
+you restart your R session, allowing you to have this token whenever you need to
+push changes to your fork on GitHub. [The instructions to generate your PAT are
+here](https://help.github.com/articles/creating-an-access-token-for-command-line-use/).
+
+Here's an example of what a `.Renviron` file with a PAT will look like on the
+inside:
+
+```
+GITHUB_PAT="97cc6bf86c31a42fca2de32884cd1f1c4b1102ba"
+```
+
+Once you have created your PAT, make a text file called `.Renviron` inside of
+the repository and paste your PAT in that file as shown above. This will not be
+tracked by git, and will only exist on your computer.
+
+```{r renviron_shadow, echo = FALSE}
+cat(paste0("GITHUB_PAT=\"¯\\_(ツ)_/¯\""), file = paste0(fork_pgi, "/.Renviron"))
+```
+
+The next time you open R from `popgenInfo.Rproj`, this token will be available
+for GitHub to ensure that you are who you say you are. It is important to note
+that, if you change or delete that PAT, you must replace it here.
+
+In the next step, we will ensure that our fork is up to date with NESCent. In 
+order to do that, we need to tell our local copy that it can take updates from 
+NESCent. We do this by adding NESCent as a **remote** using the function 
+`remote_add()` and checking to make sure it worked with the function
+`remotes()`.
+
+```{r remote_add}
+remote_add(repo, 
+           name = "NESCent", 
+           url = "https://github.com/NESCent/popgenInfo.git")
+
+# Check our remotes
+remotes(repo)
+```
+
+With all of this information set, we can begin working on our repository.
+
+# Step 3: Keeping your fork up to date
+
+The first thing we need to do is make sure that our master branch is up to date.
+Since other people are also contributing to this project, it is possible for
+changes to be made even within seconds of you forking the repository. In this
+section we will show you how you can keep your master branch up to date in your
+local repository and your fork on github. 
+
+Let's assume that you've just opened a fresh Rstudio session with the
+`popgenInfo.Rproj` file. First, let's load *git2r* and access our repository.
+
+```{r git2r_show, eval = FALSE}
+library("git2r")
+repo <- repository()
+```
+
+Now that we have our repository loaded, we should make sure that we are on the
+**master branch**. We can do this using the `checkout()` function from *git2r*.
+
+```{r checkout_master}
+checkout(repo, "master")
+repo
+```
+
+Now, whether or not we suspect changes from NESCent, it's always good form to 
+update your local repository before creating any new branches. We can do it this
+by first **fetching** ALL changes that have happened on the NESCent popgenInfo
+repository, and then **merging** the NESCent master branch into our master
+branch. We will use the *git2r* functions `fetch()` and `merge()` to accomplish
+this.
+
+First, we fetch all of the changes that have happened. If there are no changes, 
+nothing will appear, but if there is new content on the master branch or new 
+branches on the repository, they will be downloaded and each branch will be 
+printed to your screen. For our purposes, we are only concerned with the changes
+on the **master** branch, which will look something like this: 
+`## [new]    b62a78c1fcd384a3ea23 refs/remotes/NESCent/master`.
+
+```{r update_master_fetch}
+fetch(repo, name = "NESCent")
+```
+
+It's important to note that our local repository is still unchanged at this
+point as we have just downloaded the updates from NESCent. To update our local
+repository, we should merge the changes from NESCent's master branch into our
+master branch:
+
+```{r update_master_merge}
+merge(repo, "NESCent/master")
+repo
+```
+
+If there were any changes, the **Head** field will have a more current commit
+than when we intialized it above.
+
+Since we will never work directly on the master branch, there should be no 
+conflicts from the NESCent branch and we now know that our branch is up to date.
+Assuming everything worked, we can push this to our fork on GitHub. We will use 
+*git2r*'s `push()` function to do this. We also need to supply our PAT in order
+for this to work. To do so, we will use the *git2r* function `cred_token()`:
+
+```{r push_repo, eval = FALSE}
+cred <- cred_token()
+push(repo, credentials = cred)
+```
+
+Now, when you check your fork, it should be updated with the most recent
+changes. From here, we can checkout a new branch and then proceed with adding 
+our changes or new workflow.
+
+# Step 4: Creating a New Branch
+
+When you add contributions, the best practice is to create a new branch off of
+the master. A **branch** is a term that indicates a sort of sandbox for a 
+repository that can become permenant. By default, git repositories all have a 
+"master" branch. When you want to experiment with something else, add new
+content, or simply just fix a typo, but you don't want to disturb the original
+copy, you create a new branch. In this step, we will create a branch, push it to
+our fork, and track it.
+
+## SETUP
+
+Most importantly we need to make sure that we are on the master branch and it is
+up to date. To double plus make sure that you are on the master branch, check it
+out:
+
+```{r chchcheckitout}
+checkout(repo, "master")
+repo
+```
+
+For reasons that will reveal themselves later, please run these function
+definitions:
+
+```{r fun}
+my_branch <- function(x) paste0("refs/heads/", x)
+my_origin <- function(x) paste0("origin/", x)
+```
+
+And, of course, don't forget your credentials:
+
+```{r cred}
+cred <- cred_token()
+```
+
+
+## Creation
+
+Assuming you've updated your master branch as shown above, we can create a 
+branch from the master using the function `checkout()`. Let's assume that we 
+want to create a vignette for analyzing spatial statistics. I'm going to lay out
+a few steps here all at once because these are the steps you want to take when
+you create a brand new branch and make sure it exists on your computer and on
+your fork:
+
+1. save the branch name as a variable
+2. checkout the branch
+3. push the branch to the fork
+4. set your local repository to track the fork
+
+In code, that would look like this if you wanted to create a new branch to
+include a vignette on spatial statistics called "2015-12-16-spatial-stats":
+
+```{r checkout_branch_flow, eval = FALSE}
+BRANCH <- "2015-12-16-spatial-stats"                                         # 1
+checkout(repo, BRANCH, create = TRUE)                                        # 2
+push(repo, name = "origin", refspec = my_branch(BRANCH), credentials = cred) # 3
+branch_set_upstream(head(repo), my_origin(BRANCH))                           # 4
+```
+
+To examine these one by one. First, you create a variable that will hold the
+name of the branch you want to create. We are using this convention to allow us
+to use this name multiple times. After that, we create that branch from our
+master branch. We can take a look at what our branch looks like at that point.
+
+```{r checkout_branch, eval = FALSE}
+BRANCH <- "2015-12-16-spatial-stats"  # 1
+checkout(repo, BRANCH, create = TRUE) # 2
+repo
+```
+```{r checkout_branch_shadow, echo = FALSE}
+BRANCH <- "2015-12-16-spatial-stats"
+# Thu Dec 17 09:57:31 2015 ------------------------------
+# I have this branch created on my fork, but if I check it out normally, it will
+# automatically track the fork. Instead, I am creating this branch from the
+# nescent head so that it appears seamless when the user does this.
+branch_create(commits(repo)[[1]], BRANCH)
+checkout(repo, BRANCH, create = TRUE)
+repo
+branch_set_upstream(head(repo), my_origin(BRANCH))
+```
+
+Notice here that you now only have two lines in the output, **Local** and
+**Head**. This is because the branch doesn't exist on your GitHub fork. This is
+where the next two steps come in. We will push that branch and then make sure
+that our branch is tracking the copy on the fork.
+
+```{r push_branch, eval = FALSE}
+push(repo, name = "origin", refspec = my_branch(BRANCH), credentials = cred) # 3
+branch_set_upstream(head(repo), my_origin(BRANCH))                           # 4
+repo
+```
+```{r push_branch_shadow, echo = FALSE}
+repo
+```
+
+We can now see from the output that we have a **Remote** set up. Once we have 
+this, we can start making changes! If you are adding a new vignette, please copy
+[`TEMPLATE.Rmd`](https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd)
+to the **use/** directory and give it a new name that is meaningful to your 
+contribution (good practice is to name it the same as your branch). If you are
+including any data, place it in the **data/** directory. Once you add these
+files, you need to to **add** these files and then you should **commit**, which
+we will show you how to do below.
+
+# Step 5: Adding content, committing, and pushing
+
+If you are using Rstudio, you can use it to integrate with git. This allows you 
+to do things like commit, push, and pull. Hadley Wickham, cheif scientist at 
+Rstudio has put up [this helpful tutorial on using git through 
+Rstudio](http://r-pkgs.had.co.nz/git.html#git-status). If you aren't using
+Rstudio, but you don't want to access the terminal (command line), this section
+will show you basic git commands with *git2r* that will allow you to work on
+your vignette and keep it up to date.
+
+Recall that using git is analogous to keeping a good, detailed lab notebook. When
+you make any changes, you record those changes (`git add`) and then say *why*
+you made the changes (`git commit`).
+
+Let's say you've already copied the `TEMPLATE.Rmd` file to the **use/**
+directory and renamed it to `2015-12-16-spatial-stats.Rmd` and added some data
+called `spatial_data.csv`. When you place a file in your repository, git will
+not pay attention to any changes you do until you specifically add it. Until
+then it is "Untracked". You can see this by running `status()`:
+
+```{r add_stuff_shadow, echo = FALSE}
+x <- file.copy(paste0(fork_pgi, "/TEMPLATE.Rmd"), 
+               paste0(fork_pgi, "/use/2015-12-16-spatial-stats.Rmd"))
+x <- file.create(paste0(fork_pgi, "/data/spatial_data.csv"))
+set.seed(999)
+m <- matrix(rnorm(20), nrow = 5, ncol = 2, dimnames = list(NULL, c("x", "y")))
+write.table(m, file = paste0(fork_pgi, "/data/spatial_data.csv"), sep = ",", 
+            row.names = FALSE, col.names = TRUE)
+```
+
+```{r status}
+status(repo)
+```
+
+Since we've just added the files, we can use `add()` to tell git we want to
+stage them for committing.
+
+```{r add}
+add(repo, "*") # adding all new or changed files
+status(repo)
+```
+
+When we have done this, we can commit to our changes by using `commit()`. A
+commit is basically placing a record of what you did and, importantly, why you
+did it. Your commit message should record this. Commit messages should be able
+to fit on a single line. Optionally, if you want to be able to add more detail,
+you can enter more lines below the message:
+
+```{r commit}
+msg <- " started spatial stats vignette and added data
+
+I copied the template to the use folder and placed
+spatial data in the data folder.
+"
+commit(repo, msg)
+status(repo) # should return nothing
+repo
+```
+
+You can also see a summary of what you just did by looking at the summary of
+your commit:
+
+```{r summarycommit}
+summary(commits(repo)[[1]])
+```
+
+
+Now you can see that your commit message was recorded in the repository. Since
+we see that there is a **Remote** associated with this fork, we can simply use
+`push()` to push our changes up to the fork.
+
+```{r pushit, eval = FALSE}
+push(repo)
+```
+
+# Conclusions
+
+From this tutorial, you should have learned how to:
+
+ - fork a repository on GitHub
+ - clone that fork
+ - set up credentials for *git2r*
+ - update your master branch from NESCent
+ - create a new branch
+ - add and commit changes
+ - push changes
+
+The skills demonstrated in this tutorial are not exclusive for **popgenInfo**,
+but they can be used when writing up your own reports or analyses. Using git may
+not feel comfortable at this moment, but just like it takes practice to learn
+how to keep a lab notebook, with practice, you will become comfortable using git
+to keep track of your workflows, making your science more reproducible.
+
+# What's Next?
+
+Now that you've successfully set up git, created a new branch, and created a new
+vignette, it's time to fill it with content. You can work in your vignette like
+you would write in any other Rmarkdown document and keep track of your changes
+like we showed above by **adding** and **committing** your changes followed by
+**pushing** these up to your fork. 
+
+Once you are finished with all of your changes, you can create a pull request 
+from your GitHub fork to NESCent. Your pull request begins a process of open 
+peer review where content, accuracy, and style are considered. If changes are 
+suggested, you can make them on your fork and your pull request will be automatically updated with them. When all questions and concerns have been addressed, the 
+pull request may be merged into the NESCent repository as long as two of the
+maintainers approve.
+
+If it passes peer review and is published, you can update your fork: checkout
+your master branch, fetch the changes from NESCent, merge those changes, and
+push them up to the master branch on your fork to make it even with NESCent.
+
+# Contributors
+
+ - Zhian N. Kamvar (Author)
+ - Hilmar Lapp (Reviewer)
+
+# Session Information
+
+This shows us useful information for reproducibility. Of particular importance
+are the versions of R and the packages used to create this workflow. It is
+considered good practice to record this information with every analysis.
+
+```{r, sessioninfo}
+options(width = 100)
+devtools::session_info()
+```
