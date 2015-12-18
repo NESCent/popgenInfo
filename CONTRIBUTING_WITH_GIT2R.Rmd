@@ -219,25 +219,26 @@ computer (which you should NEVER do with passwords) because it is easy to
 generate and (most importantly) easy to remove. We can create a PAT from GitHub
 and then we will store this in a file called `.Renviron` that is read every time
 you restart your R session, allowing you to have this token whenever you need to
-push changes to your fork on GitHub. 
-
-[The instructions to generate your PAT are
+push changes to your fork on GitHub. [The instructions to generate your PAT are
 here](https://help.github.com/articles/creating-an-access-token-for-command-line-use/).
-Once you have generated and copied your PAT, copy and paste it like this:
 
-```{r github_pat}
-my_pat <- "97cc6bf86c31a42fca2de32884cd1f1c4b1102ba" # replace this token with yours
+Here's an example of what a `.Renviron` file with a PAT will look like on the
+inside:
+
+```
+GITHUB_PAT="97cc6bf86c31a42fca2de32884cd1f1c4b1102ba"
+
+
+
+
 ```
 
-Now, you can create a file called `.Renviron` inside of the repository. This
-will not be tracked by git, and will only exist on your computer:
-
-```{r renviron, eval = FALSE}
-cat(paste0("GITHUB_PAT=\"", my_pat, "\""), file = ".Renviron")
-```
+Once you have created your PAT, make a text file called `.Renviron` inside of
+the repository and paste your PAT in that file as shown above. This will not be
+tracked by git, and will only exist on your computer.
 
 ```{r renviron_shadow, echo = FALSE}
-cat(paste0("GITHUB_PAT=\"", my_pat, "\""), file = paste0(fork_pgi, "/.Renviron"))
+cat(paste0("GITHUB_PAT=\"¯\\_(ツ)_/¯\""), file = paste0(fork_pgi, "/.Renviron"))
 ```
 
 The next time you open R from `popgenInfo.Rproj`, this token will be available
@@ -492,6 +493,40 @@ we see that there is a **Remote** associated with this fork, we can simply use
 push(repo)
 ```
 
+# Conclusions
+
+From this tutorial, you should have learned how to:
+
+ - fork a repository on GitHub
+ - clone that fork
+ - set up credentials for *git2r*
+ - update your master branch from NESCent
+ - create a new branch
+ - add and commit changes
+ - push changes
+
+The skills demonstrated in this tutorial are not exclusive for **popgenInfo**,
+but they can be used when writing up your own reports or analyses. Using git may
+not feel comfortable at this moment, but just like it takes practice to learn
+how to keep a lab notebook, with practice, you will become comfortable using git
+to keep track of your workflows, making your science more reproducible.
+
+# What's Next?
+
+Now that you've successfully set up git, created a new branch, and created a new
+vignette, it's time to fill it with content. You can work in your vignette like
+you would write in any other Rmarkdown document and keep track of your changes
+like we showed above by **add**ing and **commit**ting your changes followed by
+pushing these up to your fork. Once you are finished with all of your changes,
+you can create a pull request from your GitHub fork to NESCent. After it's
+reviewed by at least two of our maintainers, it gets merged into NESCent. From
+here, you can checkout your master branch, fetch the changes from NESCent, merge
+those changes, and push them up to the master branch on your fork to make it
+even with NESCent.
+
+# Contributors
+
+ - Zhian N. Kamvar (Author)
 
 # Session Information
 
