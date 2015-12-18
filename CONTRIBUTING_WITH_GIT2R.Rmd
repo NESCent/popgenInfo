@@ -533,8 +533,7 @@ like we showed above by **adding** and **committing** your changes followed by
 Once you are finished with all of your changes, you can create a pull request 
 from your GitHub fork to NESCent. Your pull request begins a process of open 
 peer review where content, accuracy, and style are considered. If changes are 
-suggested, you can make them on your fork and they will automatically be updated
-in your pull request. When all questions and concerns have been addressed, the 
+suggested, you can make them on your fork and your pull request will be automatically updated with them. When all questions and concerns have been addressed, the 
 pull request may be merged into the NESCent repository as long as two of the
 maintainers approve.
 
