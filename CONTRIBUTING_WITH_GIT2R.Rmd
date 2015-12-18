@@ -83,11 +83,10 @@ After you've forked the repository, you never have to fork it again!
 
 # Step 2: Clone your fork to your computer
 
-Just like forking, you only have to clone your fork to your computer once. It
-will live there until you decide to remove it.
-
 Now that you have your repository forked to your account, you will need to 
-**clone** it to your computer. For this, we will need two things:
+**clone** it to your computer. Just like forking, you only have to clone your
+fork to your computer once. It will live there until you decide to remove it. We
+will need two things to clone our repository:
 
 1. a place you want to store this repostiory (eg. a folder called `forks` in your `Documents`)
 2. git2r
