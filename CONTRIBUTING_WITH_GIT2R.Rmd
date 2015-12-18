@@ -1,19 +1,5 @@
 ---
 title: "Contributing with git2r"
-# output: 
-#   md_document:
-#     variant: markdown_strict+backtick_code_blocks+autolink_bare_uris
-#     fig_width: 10
-#     fig_height: 6
-#     toc: true
-#     toc_depth: 2
-#   html_document:
-#     toc: true
-#     toc_depth: 2
-#     theme: spacelab 
-#     highlight: tango
-#     fig_width: 10
-#     fig_height: 6
 ---
 
 ```{r setup, include=FALSE}
