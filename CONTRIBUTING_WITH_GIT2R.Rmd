@@ -1,8 +1,12 @@
 ---
 title: "Contributing with git2r"
-author: "Zhian N. Kamvar"
-date: "December 16, 2015"
-output: html_document
+# output: 
+#   md_document:
+#     variant: markdown_strict+backtick_code_blocks+autolink_bare_uris
+#     fig_width: 10
+#     fig_height: 6
+#     toc: true
+#     toc_depth: 2
 ---
 
 ```{r setup, include=FALSE}
