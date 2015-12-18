@@ -294,7 +294,7 @@ repo
 
 Now, whether or not we suspect changes from NESCent, it's always good form to 
 update your local repository before creating any new branches. We can do it this
-by first **fetch**ing the NESCent master branch and then **merging** it into our
+by first **fetching** the NESCent master branch and then **merging** it into our
 master branch. We will use the *git2r* functions `fetch()` and `merge()` to
 accomplish this.
 
@@ -522,7 +522,7 @@ to keep track of your workflows, making your science more reproducible.
 Now that you've successfully set up git, created a new branch, and created a new
 vignette, it's time to fill it with content. You can work in your vignette like
 you would write in any other Rmarkdown document and keep track of your changes
-like we showed above by **add**ing and **commit**ting your changes followed by
+like we showed above by **adding** and **committing** your changes followed by
 pushing these up to your fork. Once you are finished with all of your changes,
 you can create a pull request from your GitHub fork to NESCent. After it's
 reviewed by at least two of our maintainers, it gets merged into NESCent. From
