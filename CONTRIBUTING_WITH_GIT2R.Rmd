@@ -294,9 +294,10 @@ repo
 
 Now, whether or not we suspect changes from NESCent, it's always good form to 
 update your local repository before creating any new branches. We can do it this
-by first **fetching** the NESCent master branch and then **merging** it into our
-master branch. We will use the *git2r* functions `fetch()` and `merge()` to
-accomplish this.
+by first **fetching** all changes that have happened on the NESCent popgenInfo
+repository, and then **merging** the NESCent master branch into our master
+branch. We will use the *git2r* functions `fetch()` and `merge()` to accomplish
+this.
 
 ```{r update_master}
 fetch(repo, name = "NESCent")
