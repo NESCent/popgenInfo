@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introduction
 
-## Background Motivation
+## Background/Motivation
 
 The **popgenInfo** project was designed to be an educational tool that can move
 at the same pace as method development by allowing people skilled in population
