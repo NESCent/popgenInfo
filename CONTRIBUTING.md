@@ -22,7 +22,8 @@ Contributed vignettes should be written in [R markdown](http://rmarkdown.rstudio
 
 Overall, vignette submission will follow the guidelines in [GitHub flow](https://guides.github.com/introduction/flow/index.html). Please create a new branch for each vignette to be submitted. 
 
- 
+Since this process requires git, if you are having trouble installing git or accessing your command line, please take a look at our detailed tutorial on using git through R: [Contributing with git2r](CONTRIBUTING_WITH_GIT2R.html).
+
  
 ## Step-by-step process for submission
 
