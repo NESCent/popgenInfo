@@ -542,12 +542,19 @@ Now that you've successfully set up git, created a new branch, and created a new
 vignette, it's time to fill it with content. You can work in your vignette like
 you would write in any other Rmarkdown document and keep track of your changes
 like we showed above by **adding** and **committing** your changes followed by
-pushing these up to your fork. Once you are finished with all of your changes,
-you can create a pull request from your GitHub fork to NESCent. After it's
-reviewed by at least two of our maintainers, it gets merged into NESCent. From
-here, you can checkout your master branch, fetch the changes from NESCent, merge
-those changes, and push them up to the master branch on your fork to make it
-even with NESCent.
+**pushing** these up to your fork. 
+
+Once you are finished with all of your changes, you can create a pull request 
+from your GitHub fork to NESCent. Your pull request begins a process of open 
+peer review where content, accuracy, and style are considered. If changes are 
+suggested, you can make them on your fork and they will automatically be updated
+in your pull request. When all questions and concerns have been addressed, the 
+pull request may be merged into the NESCent repository as long as two of the
+maintainers approve.
+
+If it passes peer review and is published, you can update your fork: checkout
+your master branch, fetch the changes from NESCent, merge those changes, and
+push them up to the master branch on your fork to make it even with NESCent.
 
 # Contributors
 
