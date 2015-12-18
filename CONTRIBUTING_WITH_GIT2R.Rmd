@@ -453,7 +453,7 @@ Rstudio, but you don't want to access the terminal (command line), this section
 will show you basic git commands with *git2r* that will allow you to work on
 your vignette and keep it up to date.
 
-Recall that usng git is analogous to keeping a good, detailed lab notebook. When
+Recall that using git is analogous to keeping a good, detailed lab notebook. When
 you make any changes, you record those changes (`git add`) and then say *why*
 you made the changes (`git commit`).
 
