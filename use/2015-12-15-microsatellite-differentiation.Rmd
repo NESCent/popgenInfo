@@ -1,5 +1,5 @@
 ---
-title: "Calculating genetic differentiation and clustering methods from SSR data"
+title: "Calculating genetic differentiation from SSR data"
 ---
 
 # Introduction
@@ -212,15 +212,29 @@ res <- poppr.amova(microbov, ~Country/Breed, within = FALSE)
 randtest(res, nrepet = 99)
 ```
 
-## Discriminant Analyses of Principal Components
+## Discriminant Analyses of Principal Components (DAPC)
 
+Finally, we will use DAPC in order to assess which populations have significant 
+structure (Jombart et al., 2011). For this, we will use the function `dapc()`
+from *adegenet*. 
 
+> Warning: This analyis is sensitive to the number of principal components you
+choose, so by default, you should run this function with just the data set and
+without any options beforehand (`dapc(microbov)`).
+
+```{r dapc}
+setPop(microbov) <- ~Country/Breed
+bov_dapc <- dapc(microbov, n.pca = 100, n.da = 4) # 100 principal components; 4 discriminant functions
+scatter(bov_dapc)
+```
+
+From this output, we can see that there is a lot of differentiation based on
+geography, but also that African breeds are a lot more differentiated than
+European breeds.
 
 # Conclusions
 
-## What's next
-
-Information on further analysis that could be done, other workflows [can be linked as well](DifferentiationSNP.html) (note the HTML as opposed to Rmd link).
+We have assessed differentiation of these cattle breeds using tools in R. 
 
 # Contributors
 
@@ -240,6 +254,10 @@ Excoffier L., Smouse PE., Quattro JM. 1992. Analysis of molecular variance
 inferred from metric distances among dNA haplotypes: Application to human
 mitochondrial dNA restriction data. Genetics 131:479–491. Available at:
 http://www.genetics.org/content/131/2/479.abstract
+
+Jombart T., Devillard S., Balloux F. 2010. Discriminant analysis of principal
+components: A new method for the analysis of genetically structured populations.
+BMC genetics 11:94. Available at: http://www.biomedcentral.com/1471-2156/11/94
 
 # Session Information
 
