@@ -172,6 +172,7 @@ are:
 bov_dist  <- dist(microbov) # Euclidean distance
 bov_stra  <- strata(microbov)
 bov_amova <- pegas::amova(bov_dist ~ Country/Breed, data = bov_stra, nperm = 0)
+bov_amova
 ```
 If the population was panmictic, we would expect to see extremely small variance
 components for Country and Breed compared to Error (i.e. the variation from
@@ -182,6 +183,7 @@ set it to 10:
 
 ```{r pegas_amova_boot}
 bov_amova <- pegas::amova(bov_dist ~ Country/Breed, data = bov_stra, nperm = 10)
+bov_amova
 ```
 
 Now we have evidence that these are significantly different.
