@@ -192,16 +192,6 @@ Information on further analysis that could be done, other workflows [can be link
 
 - Zhian N. Kamvar (Author)
 
-# Session Information
-
-This shows us useful information for reproducibility. Of particular importance
-are the versions of R and the packages used to create this workflow. It is
-considered good practice to record this information with every analysis.
-
-```{r, sessioninfo}
-options(width = 100)
-devtools::session_info()
-```
 
 # References
 
@@ -216,3 +206,14 @@ Excoffier L., Smouse PE., Quattro JM. 1992. Analysis of molecular variance
 inferred from metric distances among dNA haplotypes: Application to human
 mitochondrial dNA restriction data. Genetics 131:479–491. Available at:
 http://www.genetics.org/content/131/2/479.abstract
+
+# Session Information
+
+This shows us useful information for reproducibility. Of particular importance
+are the versions of R and the packages used to create this workflow. It is
+considered good practice to record this information with every analysis.
+
+```{r, sessioninfo}
+options(width = 100)
+devtools::session_info()
+```
