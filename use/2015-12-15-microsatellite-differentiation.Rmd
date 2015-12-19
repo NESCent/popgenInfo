@@ -165,9 +165,13 @@ are:
 1. a distance matrix among samples
 2. a data frame with hierarchical population strata
 
+> Note: we are using the syntax `pegas::amova()` because there is another
+> function called `amova()` in the *ade4* package.
+
 ```{r pegas_amova}
-bov_dist <- dist(microbov) # Euclidean distance
-pegas::amova(bov_dist ~ Country/Breed, data = strata(microbov), nperm = 0)
+bov_dist  <- dist(microbov) # Euclidean distance
+bov_stra  <- strata(microbov)
+bov_amova <- pegas::amova(bov_dist ~ Country/Breed, data = bov_stra, nperm = 0)
 ```
 If the population was panmictic, we would expect to see extremely small variance
 components for Country and Breed compared to Error (i.e. the variation from
@@ -177,10 +181,40 @@ the `nperm` argument. Again, because these bootstraps take a long time, we'll
 set it to 10:
 
 ```{r pegas_amova_boot}
-pegas::amova(bov_dist ~ Country/Breed, data = strata(microbov), nperm = 10)
+bov_amova <- pegas::amova(bov_dist ~ Country/Breed, data = bov_stra, nperm = 10)
 ```
 
 Now we have evidence that these are significantly different.
+
+### Other implementations
+
+It is possible to do the same analyses in different packages, which I will list
+here.
+
+The *vegan* package has the function `adonis()` that implements a multivariate
+AMOVA and takes the same kind of arguments as the *pegas* implementation of
+`amova()`:
+
+```{r adonis, eval = FALSE}
+library("vegan")
+res <- adonis(bov_dist ~ Country/Breed, data = bov_stra, permutations = 99)
+```
+
+The package *ade4* implements the original model, but it requires an abundance 
+matrix of haplotypes per population. The advantage of this version is the fact 
+that it calculates $\phi$ statistics for you. The package *poppr* provides a 
+wrapper for the *ade4* version that will sanitize the data and allows for
+calculation of within sample variance.
+
+```{r, poppr.amova, eval = FALSE}
+library("poppr")
+res <- poppr.amova(microbov, ~Country/Breed, within = FALSE)
+randtest(res, nrepet = 99)
+```
+
+## Discriminant Analyses of Principal Components
+
+
 
 # Conclusions
 
