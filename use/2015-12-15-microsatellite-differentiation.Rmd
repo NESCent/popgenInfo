@@ -100,17 +100,39 @@ diff_bov
 
 The output in `$per.locus` are estimates of the following measures:
 
-| Variable  | Satistic       | Details/Authority  |
-|-----------|----------------|---------------------|
-| Hs        | Heterozygosity | With populations |
-| Ht        | Heterozygosity | Without populations |
-| Gst_est   | $G_{st}$       | Nei  |
-| Gprime_st | $G_{st}^"$     | Hedrick  |
-| D         | $D$            | Jost  |
+| Variable  | Satistic       | Details/Authority |
+|-----------|----------------|-------------------|
+|`Hs       `| $H_S$          | Heterozygosity with population structure |
+|`Ht       `| $H_T$          | Heterozygosity without population structure |
+|`Gst_est  `| $G_{st}$       | Nei |
+|`Gprime_st`| $G_{st}^"$     | Hedrick |
+|`D        `| $D$            | Jost |
+
+The `$global` refers to global estimates of these statistics. `D_het` and
+`D_mean` represent the harmonic mean and the mean, respectively.
 
 All of these describe population differentiation, but $D$ is can be interpreted
 as the amount of population differentiation from 0 (panmixia) to 1 (complete
 differentiation) (Hedrick and Miermans, 2011).
+
+You could choose to report the global versions of these statistics, but it
+might be additionally useful to show them as a boxplots with points showing 
+their estimates.
+
+```{r, plotting}
+per.locus <- melt(diff_bov$per.locus, varnames = c("Locus", "Statistic"))
+stats     <- c("Hs", "Ht", "Gst", "Gprime_st", "D", "D")
+glob      <- data.frame(Statistic = stats, value = diff_bov$global)
+head(per.locus)
+head(glob)
+
+ggplot(per.locus, aes(x = Statistic, y = value)) +
+  geom_boxplot() +
+  geom_point() +
+  geom_point(size = rel(3), color = "red", data = glob) +
+  ggtitle("Estimates of population differentiation")
+```
+
 
 
 ## Section 3: Summary statistics  
