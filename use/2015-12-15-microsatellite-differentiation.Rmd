@@ -6,46 +6,77 @@ title: "Calculating genetic differentiation and clustering methods from SSR data
 
 This workflow will show you how to assess population differentiation with
 microsatellite/SSR data. We will analyse F-statistics, AMOVA, and Discriminant
-Analysis of Principal Components (DAPC).
+Analysis of Principal Components (DAPC). We will analyze a data set of bovine 
+samples from France and West Africa. We want to know if differentiation exists 
+between Breeds or if it's based on geographic separation.
 
 # Data
 
-We are going to use the `microbov` data set from the *adegenet* package. This
-data set consists of 704 bovine samples over 30 microsatellite loci (Laloe et
-al., 2007; http://dx.doi.org/10.1051/gse:2007021). This data set also contains
-information about the Species, Breed, and Country of origin for each sample.
-These data are stored in the file called [`bovine_strata.csv` (click here to
-download)](https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv).
+We are going to use the `microbov` data set from the *adegenet* package. This 
+data set consists of 704 bovine samples over 30 microsatellite loci (Laloe et 
+al., 2007; http://dx.doi.org/10.1051/gse:2007021). This data set also contains 
+information about the Species, Breed, and Country/region of origin for each
+sample. These data are stored in the file called [`bovine_strata.csv` (click
+here to download)](https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv).
 
 # Resources/Packages required
 
-Packages required. Say where these can be found, can link to the list of packages on our repository page here also.
+We are going to use *mmod* for differentiation summary statistics, *pegas* for
+AMOVA, *adegenet* for DAPC, and we will use *reshape2* and *ggplot2* for
+plotting our results.
 
 Loading the required packages:  
 
 ```{r, packages, message=FALSE}
-library(hierfstat)
-library(adegenet)
+library("adegenet")
+library("pegas")
+library("mmod")
+library("reshape2")
+library("ggplot2")
 ```
 
-# Analysis divided into sections  
+# Analysis
 
-Example Sections
+## Section 1: Data preparation
 
-## Section 1: Load the data
-
+First, we need to load our data. Since the data is distributed with *adegenet*, 
+we can load it simply by using the function `data()`. Since we want to associate
+the different population strata with the data set, we also need to read in
+[`bovine_strata.csv`](https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv)
+as a data frame.
 
 ```{r, load_data_show, eval=FALSE}
-nancycats <- import2genind("nancycats.gtx")
-summary(nancycats)
+data("microbov", package = "adegenet")
+bovine_strata <- read.table("bovine_strata.csv", header = TRUE, sep = ",")
 ```
 
 ```{r, load_data_evaluate, echo=FALSE}
 # Note: the code chunk above will be shown to the reader, but it will not run.
 # This code chunk will run, but will not be shown to the reader.
-nancycats <- import2genind("../data/nancycats.gtx")
-summary(nancycats)
+data("microbov", package = "adegenet")
+bovine_strata <- read.table("../data/bovine_strata.csv", header = TRUE, sep = ",")
 ```
+
+The `microbov` data set is in a "genind" object. This is a way for adegenet to
+keep the genetic data and deomographic data together. Let's take a look at what
+our data looks like:
+
+```{r}
+microbov
+head(bovine_strata) # the function head shows the first 6 rows of a data frame
+```
+
+We can see that our data matches the description above. Now we need to set
+`bovine_strata` in `microbov`'s *strata* slot.
+
+```{r, set_strata}
+strata(microbov) <- bovine_strata
+microbov
+```
+
+If you look at the bottom of the output, you can see that the `microbov` object 
+now has three strata defined and we can use the function `setPop()` to set the
+population from any combination of these strata.
 
 ## Section 2: Exploratory Data analysis/Checking assumptions  
   
