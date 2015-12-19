@@ -94,7 +94,6 @@ We will first take a look at the summary statistics by using the function
 `diff_stats()`:
 
 ```{r}
-setPop(microbov) <- ~Country
 diff_bov <- diff_stats(microbov)
 diff_bov
 ```
