@@ -90,10 +90,13 @@ but you can read more by visiting the paper linked above and viewing the [*mmod*
 vignette](https://cran.r-project.org/web/packages/mmod/vignettes/mmod-demo.pdf),
 off of which this section is based.
 
-We will first take a look at the summary statistics by using the function 
-`diff_stats()`:
+### Estimation
+
+We will first take a look at the summary statistics for differentiation by breed
+using the function `diff_stats()`:
 
 ```{r}
+setPop(microbov) <- ~Breed # Use ~Country to analyze by country
 diff_bov <- diff_stats(microbov)
 diff_bov
 ```
@@ -109,11 +112,13 @@ The output in `$per.locus` are estimates of the following measures:
 |`D        `| $D$            | Jost |
 
 The `$global` refers to global estimates of these statistics. `D_het` and
-`D_mean` represent the harmonic mean and the mean, respectively.
+`D_mean` represent the average heterozygosity and harmonic mean, respectively.
 
 All of these describe population differentiation, but $D$ is can be interpreted
 as the amount of population differentiation from 0 (panmixia) to 1 (complete
 differentiation) (Hedrick and Miermans, 2011).
+
+### Plotting
 
 You could choose to report the global versions of these statistics, but it might
 be additionally useful to show them as a boxplots with points showing their
@@ -134,11 +139,49 @@ ggplot(per.locus, aes(x = Statistic, y = value)) +
   ggtitle("Estimates of population differentiation")
 ```
 
-We can see that we have evidence for moderate differentiation in these
-populations at the level of breed.
+### Confidence Intervals
 
-## Section 3: Summary statistics  
-  
+We can see that we have evidence for moderate differentiation in these 
+populations at the level of breed. Of course bootstrapping would be helpful to get confidence intervals, so 
+here we use the function `chao_bootstrap()` to simulate new data sets and
+`summarize_bootstrap()` to calculate statistical summarize based on those
+simulations. Since these can take a while, we're only going to perform 10
+replicates. You will want to increase that number for a more robust analysis:
+
+```{r bootstrap}
+set.seed(20151219) # Be sure to set a seed for any random analysis!
+bs_reps <- chao_bootstrap(microbov, nreps = 10)
+summarise_bootstrap(bs_reps, D_Jost) # Using the D_Jost function to summarize.
+```
+
+## Analysis of Molecular Variance
+
+AMOVA is a classical method of assessing population differentiation by 
+evaluating where the most variation exist in a hierarchical population structure
+(Excoffier et al., 1992). We can use this to assess population differentiation 
+in countries and breeds by using the `amova()` function in *pegas*. All we need
+are:
+
+1. a distance matrix among samples
+2. a data frame with hierarchical population strata
+
+```{r pegas_amova}
+bov_dist <- dist(microbov) # Euclidean distance
+pegas::amova(bov_dist ~ Country/Breed, data = strata(microbov), nperm = 0)
+```
+If the population was panmictic, we would expect to see extremely small variance
+components for Country and Breed compared to Error (i.e. the variation from
+individuals within populations). We don't see that and further suspect moderate
+differentiation. To test for this, you can have boostrap replicates by setting
+the `nperm` argument. Again, because these bootstraps take a long time, we'll
+set it to 10:
+
+```{r pegas_amova_boot}
+pegas::amova(bov_dist ~ Country/Breed, data = strata(microbov), nperm = 10)
+```
+
+Now we have evidence that these are significantly different.
+
 # Conclusions
 
 ## What's next
@@ -168,3 +211,8 @@ Genetics Selection Evolution 39:545–567. Available at:
 http://dx.doi.org/10.1051/gse:2007021
 
 Meirmans, P.G. and Hedrick, P.W., 2011. Assessing population structure: FST and related measures. Molecular Ecology Resources, 11:5-18. Available at: http://dx.doi.org/10.1111/j.1755-0998.2010.02927.x
+
+Excoffier L., Smouse PE., Quattro JM. 1992. Analysis of molecular variance
+inferred from metric distances among dNA haplotypes: Application to human
+mitochondrial dNA restriction data. Genetics 131:479–491. Available at:
+http://www.genetics.org/content/131/2/479.abstract
