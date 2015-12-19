@@ -4,20 +4,18 @@ title: "Calculating genetic differentiation and clustering methods from SSR data
 
 # Introduction
 
-This workflow will show you how to assess population differentiation with microsatellite/SSR data. We will analyse F-statistics, AMOVA, and Discriminant Analysis of Principal Components (DAPC). For this, we will utilize the *hierfstat*, *adegenet*, and *mmod* packages.
-
-# Assumptions
-
-All biological analyses have assumptions.
-
-- Assumption 1
-- Assumption 2
+This workflow will show you how to assess population differentiation with
+microsatellite/SSR data. We will analyse F-statistics, AMOVA, and Discriminant
+Analysis of Principal Components (DAPC).
 
 # Data
 
-Links to information about the data if needed e.g. package vignettes.
-You can use an [external link](https://github.com/cran/adegenet/blob/master/inst/files/nancycats.gtx)
- or you can place the data [in the `data/` folder](https://github.com/NESCent/popgenInfo/tree/master/data/nancycats.gtx) (keep this < 200kb).
+We are going to use the `microbov` data set from the *adegenet* package. This
+data set consists of 704 bovine samples over 30 microsatellite loci (Laloe et
+al., 2007; http://dx.doi.org/10.1051/gse:2007021). This data set also contains
+information about the Species, Breed, and Country of origin for each sample.
+These data are stored in the file called [`bovine_strata.csv` (click here to
+download)](https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv).
 
 # Resources/Packages required
 
@@ -74,5 +72,7 @@ options(width = 100)
 devtools::session_info()
 ```
 
+# References
 
+Laloe D., Jombart T., Dufour A-B., Moazami-Goudarzi K. 2007. Consensus genetic structuring and typological value of markers using multiple co-inertia analysis. Genetics Selection Evolution 39:545–567. Available at: http://dx.doi.org/10.1051/gse:2007021
 
