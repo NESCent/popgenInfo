@@ -174,7 +174,7 @@ img {
         <!-- Appendices dropdown -->
         <li class="dropdown">
           <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Package Developers <span class="caret"></span></a>
-          <ul class = "dropdown-menu", role = "menu">
+          <ul class = "dropdown-menu" role = "menu">
            <li><a href = "DEVELOPER_INTRO.html">Introduction</a></li>
            <li><a href = "PACKAGES.html">Population genetic packages in R</a></li>  
            <li><a href = "DATAFORMATS.html">Population genetic data types in R</a></li>
@@ -191,8 +191,10 @@ img {
         <!-- Author button -->
         <li class="dropdown">
           <a href="about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contribute! <span class="caret"></span></a>
-          <ul class = "dropdown-menu", role = "menu">
-           <li><a href = "CONTRIBUTING.html">How to contribute</a></li>  
+          <ul class = "dropdown-menu" role = "menu">
+           <li><a href = "CONTRIBUTING.html">Contribution Guidelines</a></li>  
+           <li><a href = "CONTRIBUTING_WITH_GIT2R.html">Contributing with git2r</a></li> 
+           <li class="divider"></li>  
            <li><a href="https://github.com/NESCent/popgenInfo">Source repository</a></li>  
 		  </ul>
         </li>
@@ -354,32 +356,32 @@ allData3</code></pre>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   1.5766  (1.1008-2.3999)
-## CAD  1.7094  (1.1882-2.7576)
+## mt   1.6631  (1.2029-2.8325)
+## CAD  1.6973  (1.1114-2.7027)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.6313   (1.2701-2.3084)</code></pre>
+## 1.6646   (1.2799-2.2864)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, Gst_Hedrick) <span class="co">#for Hedrick&#39;s Gst</span></code></pre>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   1.0352  (1.0046-1.0732)
-## CAD  1.0194  (1.005-1.0466)
+## mt   1.0396  (1.0097-1.0812)
+## CAD  1.0196  (1.0036-1.0591)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.028    (1.009-1.0589)</code></pre>
+## 1.0299   (1.0106-1.057)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, D_Jost) <span class="co">#for Jost&#39;s D</span></code></pre>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   0.9049  (0.839-0.955)
-## CAD  0.9516  (0.9021-0.9885)
+## mt   0.905   (0.8544-0.9549)
+## CAD  0.9506  (0.9046-0.9864)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9294   (0.8897-0.9682)
+## 0.9286   (0.893-0.9615)
 ## 
 ## Global Estimate based on harmonic mean of statistic
-## 0.9273   (0.8896-0.9636)</code></pre>
+## 0.9269   (0.8917-0.9612)</code></pre>
 </div>
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
@@ -436,7 +438,7 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  language (EN)                                  
 ##  collate  en_US.UTF-8                           
 ##  tz       &lt;NA&gt;                                  
-##  date     2015-12-19</code></pre>
+##  date     2015-12-21</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package      * version date       source        
 ##  ade4         * 1.7-3   2015-11-22 CRAN (R 3.2.3)
@@ -444,8 +446,8 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  ape          * 3.4     2015-11-29 CRAN (R 3.2.3)
 ##  apex         * 1.0.1   2015-09-07 CRAN (R 3.2.3)
 ##  assertthat     0.1     2013-12-06 CRAN (R 3.2.3)
-##  BiocGenerics   0.16.1  2015-12-16 Bioconductor  
-##  Biostrings     2.38.2  2015-12-16 Bioconductor  
+##  BiocGenerics   0.16.1  2015-12-21 Bioconductor  
+##  Biostrings     2.38.2  2015-12-21 Bioconductor  
 ##  boot           1.3-17  2015-06-29 CRAN (R 3.2.1)
 ##  cluster        2.0.3   2015-07-21 CRAN (R 3.2.1)
 ##  coda           0.18-1  2015-10-16 CRAN (R 3.2.3)
@@ -467,7 +469,7 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  htmltools      0.2.6   2014-09-08 CRAN (R 3.2.3)
 ##  httpuv         1.3.3   2015-08-04 CRAN (R 3.2.3)
 ##  igraph         1.0.1   2015-06-26 CRAN (R 3.2.3)
-##  IRanges        2.4.6   2015-12-16 Bioconductor  
+##  IRanges        2.4.6   2015-12-21 Bioconductor  
 ##  knitr          1.11    2015-08-14 CRAN (R 3.2.3)
 ##  lattice        0.20-33 2015-07-14 CRAN (R 3.2.3)
 ##  LearnBayes     2.15    2014-05-29 CRAN (R 3.2.3)
@@ -493,7 +495,7 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  Rcpp           0.12.2  2015-11-15 CRAN (R 3.2.3)
 ##  reshape2       1.4.1   2014-12-06 CRAN (R 3.2.3)
 ##  rmarkdown      0.8.1   2015-10-10 CRAN (R 3.2.3)
-##  S4Vectors      0.8.5   2015-12-16 Bioconductor  
+##  S4Vectors      0.8.5   2015-12-21 Bioconductor  
 ##  scales         0.3.0   2015-08-25 CRAN (R 3.2.3)
 ##  seqinr         3.1-3   2014-12-17 CRAN (R 3.2.3)
 ##  shiny          0.12.2  2015-08-05 CRAN (R 3.2.3)
@@ -503,9 +505,9 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  stringr        1.0.0   2015-04-30 CRAN (R 3.2.3)
 ##  vegan          2.3-2   2015-11-19 CRAN (R 3.2.3)
 ##  xtable         1.8-0   2015-11-02 CRAN (R 3.2.3)
-##  XVector        0.10.0  2015-12-16 Bioconductor  
+##  XVector        0.10.0  2015-12-21 Bioconductor  
 ##  yaml           2.1.13  2014-06-12 CRAN (R 3.2.3)
-##  zlibbioc       1.16.0  2015-12-16 Bioconductor</code></pre>
+##  zlibbioc       1.16.0  2015-12-21 Bioconductor</code></pre>
 </div>
 
 <!-- </div>
