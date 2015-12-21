@@ -14,7 +14,7 @@ between Breeds or if it's based on geographic separation.
 
 We are going to use the `microbov` data set from the *adegenet* package. This 
 data set consists of 704 bovine samples over 30 microsatellite loci (Laloe et 
-al., 2007; http://dx.doi.org/10.1051/gse:2007021). This data set also contains 
+al., 2007). This data set also contains 
 information about the Species, Breed, and Country/region of origin for each
 sample. These data are stored in the file called [`bovine_strata.csv` (click
 here to download)](https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv).
@@ -74,16 +74,16 @@ strata(microbov) <- bovine_strata
 microbov
 ```
 
-If you look at the bottom of the output, you can see that the `microbov` object 
-now has three strata defined and we can use the function `setPop()` to set the
-population from any combination of these strata.
+If you look at the bottom of the output, under "Optional content", you can see
+that the `microbov` object now has three strata defined and we can use the
+function `setPop()` to set the population from any combination of these strata.
 
 ## Summary Statistics
 
 Perhaps the best package for assessing summary statistics for population
 differentiation is [*mmod*](https://cran.r-project.org/package=mmod). This
 package provides differentiation statistics presented in (Miermans and Hedrick,
-2011, http://dx.doi.org/10.1111/j.1755-0998.2010.02927.x), which scale to the
+2011), which scale to the
 maximum value that can possibly attained, allowing for comparison across
 measurements. I will not go into terrible detail about these measures or *mmod*,
 but you can read more by visiting the paper linked above and viewing the [*mmod*
@@ -182,6 +182,7 @@ the `nperm` argument. Again, because these bootstraps take a long time, we'll
 set it to 10:
 
 ```{r pegas_amova_boot}
+set.seed(20151219)
 bov_amova <- pegas::amova(bov_dist ~ Country/Breed, data = bov_stra, nperm = 10)
 bov_amova
 ```
@@ -199,6 +200,7 @@ AMOVA and takes the same kind of arguments as the *pegas* implementation of
 
 ```{r adonis, eval = FALSE}
 library("vegan")
+set.seed(20151219)
 res <- adonis(bov_dist ~ Country/Breed, data = bov_stra, permutations = 99)
 ```
 
@@ -211,6 +213,7 @@ calculation of within sample variance.
 ```{r, poppr.amova, eval = FALSE}
 library("poppr")
 res <- poppr.amova(microbov, ~Country/Breed, within = FALSE)
+set.seed(20151219)
 randtest(res, nrepet = 99)
 ```
 
@@ -236,7 +239,13 @@ European breeds.
 
 # Conclusions
 
-We have assessed differentiation of these cattle breeds using tools in R. 
+We have assessed differentiation of these cattle breeds using tools in R. From 
+the diversity statistics, we can clearly see that there is moderate 
+differentiation among breeds. This is supported and further bolstered by the 
+results of AMOVA, showing us that there is significant differentiation among 
+countries and breeds. The DAPC analysis gives us a clear picture showing highly 
+differentiated African breeds with low diversity in the French breeds. Further
+steps could be to further assess factors such as inbreeding coefficients.
 
 # Contributors
 
@@ -250,7 +259,9 @@ structuring and typological value of markers using multiple co-inertia analysis.
 Genetics Selection Evolution 39:545–567. Available at:
 http://dx.doi.org/10.1051/gse:2007021
 
-Meirmans, P.G. and Hedrick, P.W., 2011. Assessing population structure: FST and related measures. Molecular Ecology Resources, 11:5-18. Available at: http://dx.doi.org/10.1111/j.1755-0998.2010.02927.x
+Meirmans, P.G. and Hedrick, P.W., 2011. Assessing population structure: FST and
+related measures. Molecular Ecology Resources, 11:5-18. Available at:
+http://dx.doi.org/10.1111/j.1755-0998.2010.02927.x
 
 Excoffier L., Smouse PE., Quattro JM. 1992. Analysis of molecular variance
 inferred from metric distances among dNA haplotypes: Application to human
