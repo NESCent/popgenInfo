@@ -34,7 +34,7 @@ myData1 <- read.FASTA("../data/Ebom_mt.fas")
 myData2 <- read.FASTA("../data/Ebom_CAD.fas")
 ```
 
-We create a list that contains both genes (allData1) and then create a multidna object (allData2). Finally, this multidna object (allData2) will be converted into a genind object (allData3), which will be used for downstream analyses.
+We create a list that contains both genes (`allData1`) and then create a multidna object (`allData2`). Finally, this multidna object (`allData2`) will be converted into a genind object (`allData3`), which will be used for downstream analyses.
 
 ```{r, data_manipulate_FASTA}
 # Creating multidna object
