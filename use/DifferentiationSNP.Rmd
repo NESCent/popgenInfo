@@ -33,9 +33,9 @@ library(hierfstat)
 ### Import data
 
 The data are stored in a text file (genotype=AA..). We will  import the dataset
-in R as a data frame, and then  convert the SNP data file into
-[genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind)
-objects.
+in R as a data frame, and then  convert the SNP data file into a
+"[genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind)"
+object.
 
 Dataset "Master_Pinus_data_genotype.txt" can be downloaded 
 [here](https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt).
@@ -48,12 +48,12 @@ AT...).
 When you import the data, you need to be in the right directory.
 
 ```{r, data_import_df_show, eval = FALSE}
-Mydata <- read.table("Master_Pinus_data_genotype.txt", header = T)   
+Mydata <- read.table("Master_Pinus_data_genotype.txt", header = TRUE)   
 dim(Mydata) 
 ```
 ```{r, data_import_df_do, echo = FALSE}
 # You should be in the right directory
-Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header = T)   
+Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header = TRUE)   
 dim(Mydata) 
 ```
 
@@ -66,10 +66,10 @@ dim(Mydata) # 550 individuals x 3082 SNPs
 
 ### Data conversion
 
-To convert Mydata to a genind object (adegenet), the input should only contain
-only genotypes. We decrease the number of snp to make the calculations faster
-and keep only 20 SNPs in the object locus. We convert Mydata1 in a hierfstat
-object (Mydata2)
+To convert `Mydata` to a "genind" object (*adegenet*), the input should only
+contain only genotypes. We decrease the number of SNPs to make the calculations
+faster and keep only 20 SNPs in the object `locus`. We then convert `Mydata1` to
+a "hierfstat" object (`Mydata2`).
 
 ```{r,data_conversion}
 
@@ -89,9 +89,9 @@ wc(Mydata2) # Weir and Cockerham's estimate
 
 ### Hierarchical $F_{st}$ tests (=AMOVA for SNP dataset)
 
-The function `varcomp.glob()` produces a Hierarchical Fst (=AMOVA for SNPs or
-biallelic markers) It is possible to make permutations on the different levels:
-The function `test.g()` tests the effect of the population on genetic
+The function `varcomp.glob()` produces a Hierarchical $F_{st}$ (=AMOVA for SNPs
+or biallelic markers) It is possible to make permutations on the different
+levels: The function `test.g()` tests the effect of the population on genetic
 differentiation. Individuals are randomly permuted among states. The states
 influence  genetic differentiation at a 5% level. With the function
 `test.between()`, the counties are permuted among states. The states influence
@@ -132,7 +132,7 @@ grp$grp
 
 The K means procedure detected 5 groups. We will use this number of  group in
 the discriminant analysis (function `dapc()`). On your own dataset, you need to
-spend more time to estimate the number of cluster.
+spend more time to estimate the number of clusters.
 
 ```{r,description_of_clusters}
 dapc1 <- dapc(Mydata1, grp$grp, n.pca = 20, n.da = 6) 
