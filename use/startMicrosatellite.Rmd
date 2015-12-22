@@ -1,5 +1,5 @@
 ---
-title: "Calculating Basic Population Genetic Statistics from microsatellite Data"
+title: "Calculating Basic Population Genetic Statistics from Microsatellite Data"
 ---
 
 # Introduction
@@ -67,7 +67,7 @@ We get various information from the command summary.
 The one that interest us is the observed and expected heterozygotity per locus.
 We observed that heterozygosity varies among loci.
 
-The results from the bartlett test indicates that we have no difference between the mean observed and expected heterozygotity
+The results from the Bartlett test indicates that we have no difference between the mean observed and expected heterozygotity
 
 ## Section 3: Testing for Hardy-Weinberg Equilibrium
 
