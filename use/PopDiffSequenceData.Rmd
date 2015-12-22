@@ -1,17 +1,17 @@
----
+- --
 title: "Population Differentiation for Sequence Data"
-author: "Margarita M. López-Uribe"
+author: ""
 date: "March 19, 2015"
 output: html_document
----
-Introduction
-=========
+- --
+# Introduction
+
 Now, we will discuss in more detail how to assess population genetic structure from sequence data. Assuming that you have a priori information about how the individuals are grouped in subpopulations, one can do the following analyses: 1) quantify pairwise subpopulation structure and their significance, 2) test for hierarchical structure among groups of subpopulations, and 3) use population clustering algorithms to corroborate the a priori grouping hypothesis. We will go into each of these analyses in this vignette.  
 
 
-Resources/Packages
-=========
-```{r, packages, message=FALSE}
+# Resources/Packages
+
+```{r, packages, message = FALSE}
 library(apex)
 library(adegenet)
 library(ape)
@@ -22,70 +22,82 @@ library(genetics)
 library(poppr)
 ```
 
-Import data
-========
-We will first upload FASTA files for each gene independently, and then we will create a multidna object that concatenates both genes (allData1). Finally, this multidna object (allData2) will be converted into a genind object (allData3), which will be used for downstream analyses.
-```{r, data_import_FASTA, eval=FALSE}
-myData1<- read.FASTA("Ebom_mt.fas") 
-tmp1<-as.matrix(myData1)
+# Import data
+
+We will first import FASTA files for each gene independently using the *ape* function `read.FASTA()`. 
+
+```{r data_import_FASTA, eval = FALSE}
+# Creating DNAbin objects
+myData1 <- read.FASTA("Ebom_mt.fas") 
+myData2 <- read.FASTA("Ebom_CAD.fas")
+```
+
+```{r data_import_FASTA_real, echo = FALSE}
+myData1 <- read.FASTA("../data/Ebom_mt.fas") 
+myData2 <- read.FASTA("../data/Ebom_CAD.fas")
+```
+
+We create a list that contains both genes (allData1) and then create a multidna object (allData2). Finally, this multidna object (allData2) will be converted into a genind object (allData3), which will be used for downstream analyses.
+
+```{r, data_manipulate_FASTA}
+# Creating multidna object
+tmp1 <- as.matrix(myData1)
 tmp1
-myData2<- read.FASTA("Ebom_CAD.fas") 
-tmp2<-as.matrix(myData2)
+tmp2 <- as.matrix(myData2)
 tmp2
-allData1<-list(mt=tmp1[,1:1271], CAD=tmp2[,1:673])
-tmp3<-as.matrix(allData1)
-allData2<-new("multidna",allData1)
-plot(allData2, cex=0.2)
-allData3<-multidna2genind(allData2,mlst=TRUE)
-pop(allData3)<-(rep(c("CA","Ch","Am","AF"), each=10))
+allData1 <- list(mt = tmp1, CAD = tmp2)
+allData2 <- new("multidna", allData1)
+plot(allData2, cex = 0.2)
+
+# Creating genind object
+allData3 <- multidna2genind(allData2, mlst = TRUE)
 allData3
 ```
 
-```{r, data_import_FASTA_real, eval = TRUE}
-myData1<- read.FASTA("../data/Ebom_mt.fas") # this creates a DNAbin object
-tmp1<-as.matrix(myData1) # converts the list of sequences into a matrix
-tmp1
-myData2<- read.FASTA("../data/Ebom_CAD.fas") # this creates a DNAbin object
-tmp2<-as.matrix(myData2) # converts the list of sequences into a matrix
-tmp2
-allData1<-list(mt=tmp1[,1:1271], CAD=tmp2[,1:673])
-tmp3<-as.matrix(allData1)
-allData2<-new("multidna",allData1)
-plot(allData2, cex=0.2)
-allData3<-multidna2genind(allData2,mlst=TRUE)
-pop(allData3)<-(rep(c("CA","Ch","Am","AF"), each=10))
+We also want to set the population strata.
+
+```{r set_populations}
+my_strata <- data.frame(regions = rep(c("West", "East"), each = 20), 
+                        populations = rep(c("CA", "Ch", "Am", "AF"), each = 10))
+strata(allData3) <- my_strata
+setPop(allData3) <- ~populations
 allData3
 ```
 
-Pairwise population differentiation
-========
-### Overall F-statistics
+
+# Pairwise population differentiation
+
+### Overall F- statistics
+
 ```{r, Fstats1}
 diff_stats(allData3) # this function calculates overall Nei's Gst, Hedrick's Gst and  of the dataset
 Phi_st_Meirmans(allData3) # this function calculates overall PhiST, the Fst analog for DNA sequence data
 ```
 ### Pairwise Fst
+
 ```{r, Fstats2}
-pairwise_Gst_Nei(allData3, linearized=FALSE) #Calculates pairwise Gst. If linearized =TRUE, it calculates 1/(1-Gst)  
-pairwise_Gst_Hedrick(allData3, linearized=FALSE)#Calculates pairwise Gst. If linearized =TRUE, it calculates 1/(1-Gst')  
-pairwise_D(allData3, linearized=FALSE, hsht_mean="harmonic") #Calculates pairwise Gst. If linearized =TRUE, it calculates 1/(1-D)  
+pairwise_Gst_Nei(allData3, linearized = FALSE) # Calculates pairwise Gst. If linearized = TRUE, it calculates 1/(1- Gst)  
+pairwise_Gst_Hedrick(allData3, linearized = FALSE)# Calculates pairwise Gst. If linearized = TRUE, it calculates 1/(1- Gst')  
+pairwise_D(allData3, linearized = FALSE, hsht_mean = "harmonic") # Calculates pairwise Gst. If linearized = TRUE, it calculates 1/(1- D)  
 ```
 ### Testing for significance
+
 To estimate if populations are significantly different, we will generate 100 replicates of the dataset using the function chao_bootstrap(). Then, summary statistics (meand and 95% CI) will be calculated for each of the different parameters of population differentiation. 
+
 ```{r, Fstats3}
-bs<-chao_bootstrap(allData3, nreps=100)
-summarise_bootstrap(bs, Gst_Nei) #for Nei's Gst
-summarise_bootstrap(bs, Gst_Hedrick) #for Hedrick's Gst
-summarise_bootstrap(bs, D_Jost) #for Jost's D
+bs <- chao_bootstrap(allData3, nreps = 100)
+summarise_bootstrap(bs, Gst_Nei)     # for Nei's Gst
+summarise_bootstrap(bs, Gst_Hedrick) # for Hedrick's Gst
+summarise_bootstrap(bs, D_Jost)      # for Jost's D
 ```
 
-AMOVA (Analysis of Molecular Variance)
-========
+# AMOVA (Analysis of Molecular Variance)
+
 Analysis of Molecular Variance (AMOVA) is a method for estimating population differentiation from molecular data taking into account the mutational distance between alleles. Unlike Fst, which quantifies genetic differentiation based on allele frequencies, AMOVA treats molecular data as vectors and estimates Euclidean distances between alleles. Furthermore, it is possible to test hypotheses about differentiation by grouping subpopulations in a hierarchical structure (Ref).
+
 ```{r, eval = TRUE}
-allData_dist<-dist.multidna(allData2,pool=TRUE)
-strata(allData3)<-data.frame(regions=c(rep("West", 20), rep("East", 20)), populations=c(rep("CA", 10), rep("Ch", 10),rep("Am", 10), rep("AF", 10)))
-amova(allData_dist ~ populations, data=strata(allData3), nperm = 100)
+allData_dist <- dist.multidna(allData2, pool = TRUE)
+amova(allData_dist ~ populations, data = strata(allData3), nperm = 100)
 ```
 
 # Conclusions
@@ -96,9 +108,8 @@ Information on further analysis that could be done, other workflows [can be link
 
 # Contributors
 
-- Author 1
-- Author 2
-- Contributor 1 (role)
+- Margarita M. López- Uribe (Author)
+- Zhian N. Kamvar (edits)
 
 # Session Information
 
