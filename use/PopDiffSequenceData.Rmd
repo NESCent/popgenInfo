@@ -1,6 +1,7 @@
 ---
 title: "Population Differentiation for Sequence Data"
 ---
+
 # Introduction
 
 Now, we will discuss in more detail how to assess population genetic structure from sequence data. Assuming that you have a priori information about how the individuals are grouped in subpopulations, one can do the following analyses: 1) quantify pairwise subpopulation structure and their significance, 2) test for hierarchical structure among groups of subpopulations, and 3) use population clustering algorithms to corroborate the a priori grouping hypothesis. We will go into each of these analyses in this vignette.  
@@ -34,7 +35,7 @@ myData1 <- read.FASTA("../data/Ebom_mt.fas")
 myData2 <- read.FASTA("../data/Ebom_CAD.fas")
 ```
 
-We create a list that contains both genes (`allData1`) and then create a multidna object (`allData2`). Finally, this multidna object (`allData2`) will be converted into a genind object (`allData3`), which will be used for downstream analyses.
+We create a list that contains both genes (`allData1`) and then create a "multidna" object (`allData2`). Finally, this "multidna" object (`allData2`) will be converted into a "genind" object (`allData3`), which will be used for downstream analyses.
 
 ```{r, data_manipulate_FASTA}
 # Creating multidna object
