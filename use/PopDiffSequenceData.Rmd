@@ -79,7 +79,7 @@ pairwise_D(allData3, linearized = FALSE, hsht_mean = "harmonic") # Calculates pa
 ```
 ### Testing for significance
 
-To estimate if populations are significantly different, we will generate 100 replicates of the dataset using the function chao_bootstrap(). Then, summary statistics (meand and 95% CI) will be calculated for each of the different parameters of population differentiation. 
+To estimate if populations are significantly different, we will generate 100 replicates of the dataset using the function `chao_bootstrap()`. Then, summary statistics (mean and 95% CI) will be calculated for each of the different parameters of population differentiation. 
 
 ```{r, Fstats3}
 bs <- chao_bootstrap(allData3, nreps = 100)
@@ -90,7 +90,7 @@ summarise_bootstrap(bs, D_Jost)      # for Jost's D
 
 # AMOVA (Analysis of Molecular Variance)
 
-Analysis of Molecular Variance (AMOVA) is a method for estimating population differentiation from molecular data taking into account the mutational distance between alleles. Unlike Fst, which quantifies genetic differentiation based on allele frequencies, AMOVA treats molecular data as vectors and estimates Euclidean distances between alleles. Furthermore, it is possible to test hypotheses about differentiation by grouping subpopulations in a hierarchical structure (Ref).
+Analysis of Molecular Variance (AMOVA) is a method for estimating population differentiation from molecular data taking into account the mutational distance between alleles. Unlike $F_{st}$, which quantifies genetic differentiation based on allele frequencies, AMOVA treats molecular data as vectors and estimates Euclidean distances between alleles. Furthermore, it is possible to test hypotheses about differentiation by grouping subpopulations in a hierarchical structure (Ref).
 
 ```{r, eval = TRUE}
 allData_dist <- dist.multidna(allData2, pool = TRUE)
