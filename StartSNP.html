@@ -65,6 +65,10 @@ body {
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
 .section h2 {
   padding-top: 55px;
   margin-top: -55px;
@@ -413,17 +417,17 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0305  0.0808
-## 2  -0.2343  0.1280
-## 3  -0.2308 -0.0381
-## 4  -0.0583  0.2884
-## 5  -0.4454 -0.1800
-## 6  -0.1329  0.3448
-## 7   0.0231  0.1027
-## 8  -0.4890  0.2178
-## 9  -0.0652  0.0644
-## 10  0.0225  0.2931
-## 11 -0.0527  0.0326</code></pre>
+## 1  -0.0282  0.0821
+## 2  -0.2256  0.1514
+## 3  -0.2114 -0.0547
+## 4  -0.0139  0.2840
+## 5  -0.4348 -0.1071
+## 6  -0.1322  0.3050
+## 7   0.0088  0.1017
+## 8  -0.3756  0.2034
+## 9  -0.0432  0.0811
+## 10  0.0388  0.3635
+## 11 -0.0596  0.0531</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex=</span><span class="fl">0.7</span>)</code></pre>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
@@ -433,18 +437,18 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 <p>We used the pegas package.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata3, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0_10037_01_257 0.75465490  1 0.385006451    0.487
-## X0_10040_02_394 0.16628227  1 0.683437231    0.725
-## X0_10044_01_392 2.96053195  1 0.085319867    0.112
-## X0_10048_01_60  6.39076800  1 0.011471539    0.018
-## X0_10051_02_166 1.12035389  1 0.289842265    0.296
-## X0_10054_01_402 1.54582494  1 0.213752853    0.210
-## X0_10067_03_111 0.04868128  1 0.825374035    0.548
-## X0_10079_02_168 0.01579313  1 0.899992594    0.613
+## X0_10037_01_257 0.75465490  1 0.385006451    0.471
+## X0_10040_02_394 0.16628227  1 0.683437231    0.755
+## X0_10044_01_392 2.96053195  1 0.085319867    0.096
+## X0_10048_01_60  6.39076800  1 0.011471539    0.008
+## X0_10051_02_166 1.12035389  1 0.289842265    0.297
+## X0_10054_01_402 1.54582494  1 0.213752853    0.235
+## X0_10067_03_111 0.04868128  1 0.825374035    0.554
+## X0_10079_02_168 0.01579313  1 0.899992594    0.621
 ## X0_10112_01_169 0.41126025  1 0.521330544    1.000
-## X0_10113_01_119 0.74248768  1 0.388865151    0.467
-## X0_10116_01_165 1.87098306  1 0.171362531    0.249
-## X0_10151_01_86  8.94232481  1 0.002786379    0.008</code></pre>
+## X0_10113_01_119 0.74248768  1 0.388865151    0.420
+## X0_10116_01_165 1.87098306  1 0.171362531    0.245
+## X0_10151_01_86  8.94232481  1 0.002786379    0.004</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
@@ -482,7 +486,7 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  language (EN)                                  
 ##  collate  en_US.UTF-8                           
 ##  tz       &lt;NA&gt;                                  
-##  date     2015-12-21</code></pre>
+##  date     2015-12-23</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-3   2015-11-22 CRAN (R 3.2.3)

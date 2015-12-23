@@ -67,6 +67,10 @@ body {
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
 .section h2 {
   padding-top: 55px;
   margin-top: -55px;
@@ -356,32 +360,32 @@ allData3</code></pre>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   1.6631  (1.2029-2.8325)
-## CAD  1.6973  (1.1114-2.7027)
+## mt   1.6611  (1.0831-2.4163)
+## CAD  1.6617  (1.0946-2.5662)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.6646   (1.2799-2.2864)</code></pre>
+## 1.6459   (1.2668-2.2119)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, Gst_Hedrick) <span class="co">#for Hedrick&#39;s Gst</span></code></pre>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   1.0396  (1.0097-1.0812)
-## CAD  1.0196  (1.0036-1.0591)
+## mt   1.0396  (1.0053-1.0902)
+## CAD  1.0178  (1.0012-1.0429)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.0299   (1.0106-1.057)</code></pre>
+## 1.0285   (1.0097-1.0524)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, D_Jost) <span class="co">#for Jost&#39;s D</span></code></pre>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   0.905   (0.8544-0.9549)
-## CAD  0.9506  (0.9046-0.9864)
+## mt   0.9036  (0.8404-0.9512)
+## CAD  0.9534  (0.8973-0.9934)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9286   (0.893-0.9615)
+## 0.929    (0.8871-0.9622)
 ## 
 ## Global Estimate based on harmonic mean of statistic
-## 0.9269   (0.8917-0.9612)</code></pre>
+## 0.9274   (0.8877-0.961)</code></pre>
 </div>
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
@@ -438,7 +442,7 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  language (EN)                                  
 ##  collate  en_US.UTF-8                           
 ##  tz       &lt;NA&gt;                                  
-##  date     2015-12-21</code></pre>
+##  date     2015-12-23</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package      * version date       source        
 ##  ade4         * 1.7-3   2015-11-22 CRAN (R 3.2.3)
