@@ -4,9 +4,12 @@ title: "Template Vignette"
 
 # Introduction
 
-Explain the purpose of the vignette.  
-Give a brief explanation of the questions that will be answered and some background information.
-These vignettes are written in [Rmarkdown](http://rmarkdown.rstudio.com). You can find [details about markdown here](http://rmarkdown.rstudio.com/authoring_basics.html) and [details about code chunks here](http://rmarkdown.rstudio.com/authoring_rcodechunks.html).
+Explain the purpose of the vignette. Give a brief explanation of the questions
+that will be answered and some background information. These vignettes are
+written in [Rmarkdown](http://rmarkdown.rstudio.com). You can find [details
+about markdown here](http://rmarkdown.rstudio.com/authoring_basics.html) and
+[details about code chunks
+here](http://rmarkdown.rstudio.com/authoring_rcodechunks.html).
 
 # Assumptions
 
@@ -15,29 +18,36 @@ All biological analyses have assumptions.
 - Assumption 1
 - Assumption 2
 
-# Data
+# Resources
 
-Links to information about the data if needed e.g. package vignettes.
-You can use an [external link](https://github.com/cran/adegenet/blob/master/inst/files/nancycats.gtx)
- or you can place the data [in the `data/` folder](https://github.com/NESCent/popgenInfo/tree/master/data/nancycats.gtx) (keep this < 200kb).
+## Data
 
-# Resources/Packages required
+Links to information about the data if needed e.g. package vignettes. You can
+use an [external
+link](https://github.com/cran/adegenet/blob/master/inst/files/nancycats.gtx) or
+you can place the data [in the `data/` folder](../data/nancycats.gtx)
+(keep this < 200kb).
 
-Packages required. Say where these can be found, can link to the list of packages on our repository page here also.
+## Packages
+
+Packages required. Say where these can be found, can link to the list of
+packages on our repository page here also.
 
 Loading the required packages:  
 
 ```{r, packages, message=FALSE}
-library(hierfstat)
-library(adegenet)
+library("hierfstat")
+library("adegenet")
 ```
 
-# Analysis divided into sections  
+# Analysis (divided into sections)
 
 Example Sections
 
 ## Section 1: Load the data
 
+We will import "nancycats.gtx" to a "genind" object (from the package
+*adegenet*) called `nancycats`.
 
 ```{r, load_data_show, eval=FALSE}
 nancycats <- import2genind("nancycats.gtx")
@@ -59,12 +69,13 @@ summary(nancycats)
 
 ## What's next
 
-Information on further analysis that could be done, other workflows [can be linked as well](DifferentiationSNP.html) (note the HTML as opposed to Rmd link).
+Information on further analysis that could be done, other workflows [can be
+linked as well](DifferentiationSNP.html) (note the HTML as opposed to Rmd link).
 
 # Contributors
 
-- Author 1
-- Author 2
+- Author 1 (Author)
+- Author 2 (Author)
 - Contributor 1 (role)
 
 # Session Information
