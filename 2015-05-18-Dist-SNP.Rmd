@@ -2,22 +2,22 @@
 title: "IndividualDistanceSNP"
 ---
 
-Introduction
-=========
+# Introduction
+
 In this vignette, we will estimate individual genetic distances from SNP data.
 It is useful when you have individual genotype data and you don't know the
 populations.
 
 
 
-Assumptions
-============
-We will use non evolutionary genetic distances, i.e. not based on Hardy-Weinberg
+# Assumptions
+
+We will use non-evolutionary genetic distances, i.e. not based on Hardy-Weinberg
 assumptions: free from assumptions.
  
 
-Data
-==========
+# Data
+
 The dataset used for those analysis concerns the plant: lodgepole pine (*Pinus
 contorta*, *Pinaceae*). You can have more information on this data set and the
 species on the web site of A. Eckert:  (http://eckertdata.blogspot.fr/). But
@@ -57,32 +57,30 @@ dim(Mydata)
 ```
 
 ```{r, data_manipulate}
-ind <- as.character(Mydata$tree_id) #individual labels 
-population <- as.character(Mydata$state) #population labels
+ind <- as.character(Mydata$tree_id) # individual labels 
+population <- as.character(Mydata$state) # population labels
 county <- Mydata$county 
-dim(Mydata) #550 individuals x 3082 SNPs
+dim(Mydata) # 550 individuals x 3082 SNPs
 ```
 
 
-Resources/Packages required
-=============
- 
+# Resources/Packages required
+
 
 Loading the required packages:  
 
-```{r, packages, message=FALSE}
- 
-library(poppr)
-library(pegas)
-library(ape)
-library(adegenet)
-library(ade4)
+```{r, packages, message = FALSE}
+library("poppr")
+library("pegas")
+library("ape")
+library("adegenet")
+library("ade4")
 ```
 
-Analysis   
-==========================================
+# Analysis   
+
  
-##Section 1: Convert the data
+## Section 1: Convert the data
   
 
 To work with the data, we need to convert the R object returned by
@@ -104,7 +102,7 @@ Mydata2 <-genind2loci(Mydata1)
 
 
 
-##Section 2. Individual genetic distance: euclidean distance (`dist` {adegenet})
+## Section 2. Individual genetic distance: euclidean distance (`dist` {adegenet})
 
 The unit of the observation is the individuals. 
 
@@ -151,7 +149,7 @@ hist(distgenDIFF)
 
 ```
 
-##Section 4: number of allelic differences between two individuals (`diss.dist` {poppr})
+## Section 4: number of allelic differences between two individuals (`diss.dist` {poppr})
 
 ```{r,Individual_dist_poppr}
 
@@ -162,7 +160,7 @@ hist(distgenDISS)
 
 
 
-##Section 5: Conclusions drawn from the analysis  
+## Section 5: Conclusions drawn from the analysis  
 
 ```{r,Compare_dist}
 
@@ -176,7 +174,7 @@ The number of allelic differences between two individuals is a different measure
 from euclidean distance or number of locus differences between two individuals.
 
 Conclusion 
-==========================================
+
 ### What did we learn today?
 
 In this vignette, we explore different measures of individual genetic distances. 
@@ -187,14 +185,14 @@ Missing data can be handled in different ways.
 ### What is next?
 
 Other R packages can also be used to estimate individual genetic distances like
-gstudio for example. The individuals genetic distances can then be used in
+*gstudio* for example. The individuals genetic distances can then be used in
 analysis as Mantel tests to test for isolation by distance or more complex
 analysis in landscape genetics to test for resistance by distance, cluster
 analysis, spatial network... See related vignettes.
 
 
-Contributors
-======================
+# Contributors
+
 - Stéphanie Manel
 - Zhian Kamvar (minor edits)
 
