@@ -25,8 +25,8 @@ All biological analyses have assumptions.
 Links to information about the data if needed e.g. package vignettes. You can
 use an [external
 link](https://github.com/cran/adegenet/blob/master/inst/files/nancycats.gtx) or
-you can place the data [in the `data/` folder](../data/nancycats.gtx)
-(keep this < 200kb).
+you can place the data [in the `data/` folder](https://github.com/nescent/popgenInfo/blob/master/data/nancycats.gtx)
+(please keep this < 200kb).
 
 ## Packages
 
