@@ -219,9 +219,11 @@ img {
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#assumptions">Assumptions</a></li>
+<li><a href="#resources">Resources</a><ul>
 <li><a href="#data">Data</a></li>
-<li><a href="#resourcespackages-required">Resources/Packages required</a></li>
-<li><a href="#analysis-divided-into-sections">Analysis divided into sections</a><ul>
+<li><a href="#packages">Packages</a></li>
+</ul></li>
+<li><a href="#analysis-divided-into-sections">Analysis (divided into sections)</a><ul>
 <li><a href="#section-1-load-the-data">Section 1: Load the data</a></li>
 <li><a href="#section-2-exploratory-data-analysischecking-assumptions">Section 2: Exploratory Data analysis/Checking assumptions</a></li>
 <li><a href="#section-3-summary-statistics">Section 3: Summary statistics</a></li>
@@ -236,7 +238,7 @@ img {
 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Explain the purpose of the vignette.<br />Give a brief explanation of the questions that will be answered and some background information. These vignettes are written in <a href="http://rmarkdown.rstudio.com">Rmarkdown</a>. You can find <a href="http://rmarkdown.rstudio.com/authoring_basics.html">details about markdown here</a> and <a href="http://rmarkdown.rstudio.com/authoring_rcodechunks.html">details about code chunks here</a>.</p>
+<p>Explain the purpose of the vignette. Give a brief explanation of the questions that will be answered and some background information. These vignettes are written in <a href="http://rmarkdown.rstudio.com">Rmarkdown</a>. You can find <a href="http://rmarkdown.rstudio.com/authoring_basics.html">details about markdown here</a> and <a href="http://rmarkdown.rstudio.com/authoring_rcodechunks.html">details about code chunks here</a>.</p>
 </div>
 <div id="assumptions" class="section level1">
 <h1>Assumptions</h1>
@@ -246,22 +248,26 @@ img {
 <li>Assumption 2</li>
 </ul>
 </div>
-<div id="data" class="section level1">
-<h1>Data</h1>
-<p>Links to information about the data if needed e.g. package vignettes. You can use an <a href="https://github.com/cran/adegenet/blob/master/inst/files/nancycats.gtx">external link</a> or you can place the data <a href="https://github.com/NESCent/popgenInfo/tree/master/data/nancycats.gtx">in the <code>data/</code> folder</a> (keep this &lt; 200kb).</p>
+<div id="resources" class="section level1">
+<h1>Resources</h1>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>Links to information about the data if needed e.g. package vignettes. You can use an <a href="https://github.com/cran/adegenet/blob/master/inst/files/nancycats.gtx">external link</a> or you can place the data <a href="../data/nancycats.gtx">in the <code>data/</code> folder</a> (keep this &lt; 200kb).</p>
 </div>
-<div id="resourcespackages-required" class="section level1">
-<h1>Resources/Packages required</h1>
+<div id="packages" class="section level2">
+<h2>Packages</h2>
 <p>Packages required. Say where these can be found, can link to the list of packages on our repository page here also.</p>
 <p>Loading the required packages:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(hierfstat)
-<span class="kw">library</span>(adegenet)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;hierfstat&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)</code></pre>
+</div>
 </div>
 <div id="analysis-divided-into-sections" class="section level1">
-<h1>Analysis divided into sections</h1>
+<h1>Analysis (divided into sections)</h1>
 <p>Example Sections</p>
 <div id="section-1-load-the-data" class="section level2">
 <h2>Section 1: Load the data</h2>
+<p>We will import “nancycats.gtx” to a “genind” object (from the package <em>adegenet</em>) called <code>nancycats</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">nancycats &lt;-<span class="st"> </span><span class="kw">import2genind</span>(<span class="st">&quot;nancycats.gtx&quot;</span>)
 <span class="kw">summary</span>(nancycats)</code></pre>
 <pre><code>## 
@@ -315,8 +321,8 @@ img {
 <div id="contributors" class="section level1">
 <h1>Contributors</h1>
 <ul>
-<li>Author 1</li>
-<li>Author 2</li>
+<li>Author 1 (Author)</li>
+<li>Author 2 (Author)</li>
 <li>Contributor 1 (role)</li>
 </ul>
 </div>
