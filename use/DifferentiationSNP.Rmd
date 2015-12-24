@@ -67,7 +67,7 @@ dim(Mydata) # 550 individuals x 3082 SNPs
 ### Data conversion
 
 To convert `Mydata` to a "genind" object (*adegenet*), the input should only
-contain only genotypes. We decrease the number of SNPs to make the calculations
+contain genotypes. We decrease the number of SNPs to make the calculations
 faster and keep only 20 SNPs in the object `locus`. We then convert `Mydata1` to
 a "hierfstat" object (`Mydata2`).
 
@@ -117,9 +117,9 @@ genet.dist(Mydata1, method="WC84")
 ## Unsupervised clustering  
 
 We don't know the populations and we are looking for. As recommended by T.
-Jombart, with the function `find.clusters()` we used the maximum  possible number of PCA
+Jombart, with the function `find.clusters()` we used the maximum possible number of PCA
 axis which is 20 here. See detailed tutorial on this method for more information
-(http://adegenet.r-forge.r-project.org/) In this example, we used
+(https://github.com/thibautjombart/adegenet/raw/master/tutorials/tutorial-basics.pdf) In this example, we used
 `choose.n.clust = FALSE` but it is nice to use the option `TRUE` and then you
 will be able to choose the number of clusters.
 
