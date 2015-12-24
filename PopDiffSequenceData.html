@@ -169,7 +169,7 @@ img {
               <!-- <li class="divider"></li> -->
               <li><a href="StartSNP.html">Basic statistics</a></li>
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
-              <li><a href="VignetteIndvidualGeneticDistancesSNP.html">Genetic Distance (individual-based)</a></li>
+              <li><a href="2015-05-18-Dist-SNP.html">Genetic Distance (individual-based)</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -363,32 +363,32 @@ allData3</code></pre>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   1.6982  (1.1522-2.8423)
-## CAD  1.6411  (1.034-2.5789)
+## mt   1.6594  (1.146-2.5155)
+## CAD  1.6862  (1.1299-2.496)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.6486   (1.2328-2.299)</code></pre>
+## 1.66 (1.2326-2.1705)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, Gst_Hedrick) <span class="co">#for Hedrick&#39;s Gst</span></code></pre>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   1.041   (1.0098-1.1093)
-## CAD  1.018   (1.0016-1.044)
+## mt   1.035   (1.0091-1.0886)
+## CAD  1.0205  (1.0029-1.0604)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.0292   (1.0118-1.0614)</code></pre>
+## 1.0279   (1.013-1.0709)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, D_Jost) <span class="co">#for Jost&#39;s D</span></code></pre>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   0.905   (0.8469-0.9524)
-## CAD  0.9507  (0.9086-0.9848)
+## mt   0.9137  (0.8535-0.9577)
+## CAD  0.9496  (0.887-0.9898)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9283   (0.8949-0.9575)
+## 0.9322   (0.89-0.9657)
 ## 
 ## Global Estimate based on harmonic mean of statistic
-## 0.9269   (0.8935-0.9559)</code></pre>
+## 0.9309   (0.8887-0.9655)</code></pre>
 </div>
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
