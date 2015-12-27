@@ -37,5 +37,3 @@ Class {type} (*package*) | Strengths | Weaknesses
 | | can be converted to `data.frame` or `matrix` with appropriate `as.` functions. | |
 | | has manipulation functions like `subset` which will select certain strata and/or loci, `merge` to combine mulitple `gtypes`, and `summary`. | |
 | | can create input files for Genepop, STRUCTURE, fastsimcoal, Arlequin, MEGA, and PHASE | |
-**vareff** (*VarEff*) | this format is the only input format for the package VarEff, which is the only R package I could find to estimate the effective population sizes from present to ancestral time using microsatellite markers under the coalescence - AKA skyline plots | it is very difficult to convert any genotype data format into the vareff format |
-**other** | | |
