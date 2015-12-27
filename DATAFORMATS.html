@@ -192,17 +192,18 @@ img {
 </div>
 
 
+<p>The following table describes specialized objects to store data represented in population genetics packages. Conversion between all types is possible. Anyone developing a package for population genetic analysis is encouraged to use or build upon these data structures. If a new data structure is needed, please provide a conversion method to one or more of the classes listed below.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Class (package)</th>
+<th align="left">Class {type} (<em>package</em>)</th>
 <th align="left">Strengths</th>
 <th align="left">Weaknesses</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><strong>DNAbin</strong> (ape)</td>
+<td align="left"><strong>DNAbin</strong> {S3} (<em>ape</em>)</td>
 <td align="left">stores all sets of sequences (aligned or not)</td>
 <td align="left">less compact than 2-bit coding (but by a factor 4 at most)</td>
 </tr>
@@ -222,7 +223,7 @@ img {
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>loci</strong> (pegas)</td>
+<td align="left"><strong>loci</strong> {S3} (<em>pegas</em>)</td>
 <td align="left">low memory usage</td>
 <td align="left">not really appropriate for some analyses (e.g., multivariate analyses)</td>
 </tr>
@@ -247,8 +248,8 @@ img {
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><strong>genind</strong> (adegenet)</td>
-<td align="left">stores allelic frequencies; ideal for multivariate analyses</td>
+<td align="left"><strong>genind</strong> {S4} (<em>adegenet</em>)</td>
+<td align="left">stores allelic counts; ideal for multivariate analyses</td>
 <td align="left">requires more memory</td>
 </tr>
 <tr class="odd">
@@ -258,18 +259,28 @@ img {
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">all levels of ploidy</td>
+<td align="left">additional slot for population strata</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>genpop</strong> (adegenet)</td>
+<td align="left"></td>
+<td align="left">all levels of ploidy</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>genpop</strong> {S4} (<em>adegenet</em>)</td>
 <td align="left">equivalent to genind at group level; ideal for multivariate analysis</td>
 <td align="left">requires more memory</td>
 </tr>
-<tr class="even">
-<td align="left"><strong>genlight</strong> (adegenet)</td>
+<tr class="odd">
+<td align="left"><strong>genlight</strong> {S4} (<em>adegenet</em>)</td>
 <td align="left">stores binary SNPs using bit-level coding; very memory efficient</td>
 <td align="left">more computationally intensive to handle; less functionalities</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">additional slots for individual data and population strata</td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
@@ -277,17 +288,27 @@ img {
 <td align="left">assumes bi-allelic loci</td>
 </tr>
 <tr class="even">
-<td align="left"><strong>genclone</strong> (poppr)</td>
-<td align="left">stores population metadata (<code>@hierarchy</code> slot); users don’t have keep track of multiple objects for the same data</td>
-<td align="left">inherits genind object; all the same weaknesses plus slightly more memory</td>
+<td align="left"><strong>genclone</strong> {S4} (<em>poppr</em>)</td>
+<td align="left">inherits genind object; gains all advantages</td>
+<td align="left">all the same weaknesses plus slightly more memory</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">stores multilocus genotype definitions (<code>@mlg</code> slot) for clonal populations</td>
+<td align="left">stores multilocus genotype/lineage definitions (<code>@mlg</code> slot) for clonal populations</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><strong>genambig</strong> (polysat)</td>
+<td align="left"><strong>snpclone</strong> {S4} (<em>poppr</em>)</td>
+<td align="left">inherits genlight object; gains all advantages</td>
+<td align="left">all the same weaknesses plus slightly more memory</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">stores multilocus genotype/lineage definitions (<code>@mlg</code> slot) for clonal populations</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>genambig</strong> {S4} (<em>polysat</em>)</td>
 <td align="left">stores microsatellite data with ambiguous ploidy</td>
 <td align="left">does not handle any other data type</td>
 </tr>
@@ -297,7 +318,7 @@ img {
 <td align="left">cannot easily be transferred to any other object</td>
 </tr>
 <tr class="even">
-<td align="left"><strong>phyDat</strong> (phangorn)</td>
+<td align="left"><strong>phyDat</strong> {S3} (<em>phangorn</em>)</td>
 <td align="left">very general inspired by R <code>data.frame</code>, <code>factor</code> and <code>contrasts</code>, can contain any discrete data type; nucleotides, amino acids and codons have some more support</td>
 <td align="left">designed having phylogenetic analysis in mind; requires alignments, where all sequences have same length</td>
 </tr>
@@ -317,7 +338,7 @@ img {
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><strong>gtype</strong> (strataG)</td>
+<td align="left"><strong>gtype</strong> {S3} (<em>strataG</em>)</td>
 <td align="left">a simple R <code>list</code> containing a <code>matrix</code> where the first column is a stratification scheme and columns afterward are either haplotypes or diploid loci. If haploid data, the <code>gtype</code> object can also contain a list of DNA sequences.</td>
 <td align="left">Can likely be made more efficient in terms of storage and preprocessing for other analytical routines in package</td>
 </tr>
@@ -334,16 +355,6 @@ img {
 <tr class="odd">
 <td align="left"></td>
 <td align="left">can create input files for Genepop, STRUCTURE, fastsimcoal, Arlequin, MEGA, and PHASE</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left"><strong>vareff</strong> (VarEff)</td>
-<td align="left">this format is the only input format for the package VarEff, which is the only R package I could find to estimate the effective population sizes from present to ancestral time using microsatellite markers under the coalescence - AKA skyline plots</td>
-<td align="left">it is very difficult to convert any genotype data format into the vareff format</td>
-</tr>
-<tr class="odd">
-<td align="left"><strong>other</strong></td>
-<td align="left"></td>
 <td align="left"></td>
 </tr>
 </tbody>
