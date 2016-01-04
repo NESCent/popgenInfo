@@ -2,8 +2,7 @@
 title: Calculating genetic differentiation and clustering methods from SNP data
 ---
 
-Introduction
-========================================================
+# Introduction
 
 In this vignette, we will discuss how to assess population genetic structure
 from SNP data at population level. We will estimate $F_{st}$ per population,
@@ -21,10 +20,7 @@ the calculations faster.
 
 
 
-Resources/Packages
-========================================================
-
- 
+# Resources/Packages 
 
 ```{r,packages, message=FALSE}
 library(adegenet)
@@ -32,14 +28,14 @@ library(hierfstat)
 ```
 
 
-Workflow
-========================================================
+# Workflow
+
 ### Import data
 
 The data are stored in a text file (genotype=AA..). We will  import the dataset
-in R as a data frame, and then  convert the SNP data file into
-[genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind)
-objects.
+in R as a data frame, and then  convert the SNP data file into a
+"[genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind)"
+object.
 
 Dataset "Master_Pinus_data_genotype.txt" can be downloaded 
 [here](https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt).
@@ -52,33 +48,33 @@ AT...).
 When you import the data, you need to be in the right directory.
 
 ```{r, data_import_df_show, eval = FALSE}
-Mydata <- read.table("Master_Pinus_data_genotype.txt", header = T)   
+Mydata <- read.table("Master_Pinus_data_genotype.txt", header = TRUE)   
 dim(Mydata) 
 ```
 ```{r, data_import_df_do, echo = FALSE}
 # You should be in the right directory
-Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header = T)   
+Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header = TRUE)   
 dim(Mydata) 
 ```
 
 ```{r, data_manipulate}
-ind <- as.character(Mydata$tree_id) #use later with adegent (individual labels)
-population <- as.character(Mydata$state) #use later with adegenet (population labels)
+ind <- as.character(Mydata$tree_id) # use later with adegenet (individual labels)
+population <- as.character(Mydata$state) # use later with adegenet (population labels)
 county <- Mydata$county 
-dim(Mydata) #550 individuals x 3082 SNPs
+dim(Mydata) # 550 individuals x 3082 SNPs
 ```
 
-Data conversion
+### Data conversion
 
-To convert MydataR to genind objects (adegent), the object locus needs to
-contain only genotypes. We decrease the number of snp to make the calculations
-faster and keep only 20 SNPs in the object locus. We convert Mydata1 in a fstat
-object (Mydata2)
+To convert `Mydata` to a "genind" object (*adegenet*), the input should only
+contain genotypes. We decrease the number of SNPs to make the calculations
+faster and keep only 20 SNPs in the object `locus`. We then convert `Mydata1` to
+a "hierfstat" object (`Mydata2`).
 
 ```{r,data_conversion}
 
 locus <- Mydata[, 5:24] 
-Mydata1 <- df2genind(locus, ploidy = 2, ind.names = ind, pop = population, sep="")
+Mydata1 <- df2genind(locus, ploidy = 2, ind.names = ind, pop = population, sep = "")
 Mydata1
 Mydata2 <- genind2hierfstat(Mydata1) 
 ```
@@ -88,16 +84,17 @@ Mydata2 <- genind2hierfstat(Mydata1)
 ```{r,Basicstatiscis_with Fst}
 basic.stats(Mydata1) # Fst following Nei (1987) on genind object
 basic.stats(Mydata2) # same as previous, on hierfstat object
-wc(Mydata2) # Weir and Cockrham estimate
+wc(Mydata2) # Weir and Cockerham's estimate
 ```
 
 ### Hierarchical $F_{st}$ tests (=AMOVA for SNP dataset)
-The function `varcomp.glob` produces a Hierarchical Fst (=AMOVA for SNPs or
-biallelic markers) It is possible to make permutations on the different levels:
-The function `test.g` tests the effect of the population on genetic
+
+The function `varcomp.glob()` produces a Hierarchical $F_{st}$ (=AMOVA for SNPs
+or biallelic markers) It is possible to make permutations on the different
+levels: The function `test.g()` tests the effect of the population on genetic
 differentiation. Individuals are randomly permuted among states. The states
-influence  genetic differentiation at 5% level. With the function
-`test.between`, the counties are permuted among states. The states influence
+influence  genetic differentiation at a 5% level. With the function
+`test.between()`, the counties are permuted among states. The states influence
 significantly genetic structuring.
 
 
@@ -120,22 +117,22 @@ genet.dist(Mydata1, method="WC84")
 ## Unsupervised clustering  
 
 We don't know the populations and we are looking for. As recommended by T.
-Jombart, with the function `gpr` we used the maximum  possible number of PCA
+Jombart, with the function `find.clusters()` we used the maximum possible number of PCA
 axis which is 20 here. See detailed tutorial on this method for more information
-(http://adegenet.r-forge.r-project.org/) In this example, we used
+(https://github.com/thibautjombart/adegenet/raw/master/tutorials/tutorial-basics.pdf) In this example, we used
 `choose.n.clust = FALSE` but it is nice to use the option `TRUE` and then you
 will be able to choose the number of clusters.
 
 ```{r,clustering_without_a_priori}
-# using Kmeans and DIAPC in adegenet 
+# using Kmeans and DAPC in adegenet 
 grp <- find.clusters(Mydata1, max.n.clust = 10, n.pca = 20, choose.n.clust = FALSE) 
 names(grp)
 grp$grp
 ```
 
 The K means procedure detected 5 groups. We will use this number of  group in
-the discriminant analysis (function `dapc`). On your own dataset, you need to
-spend more time to estimate the number of cluster.
+the discriminant analysis (function `dapc()`). On your own dataset, you need to
+spend more time to estimate the number of clusters.
 
 ```{r,description_of_clusters}
 dapc1 <- dapc(Mydata1, grp$grp, n.pca = 20, n.da = 6) 
@@ -146,8 +143,7 @@ Five groups were finally detected and represented by the discriminant analysis.
 The 11 states are not the good level for population analysis. But we need to
 remember that we used only 20 SNPs to conduct the analysis.
 
-Conclusions
-========================================================
+# Conclusions
  
 ### What did we learn today?
 
@@ -159,15 +155,15 @@ individual level assuming no population.
 
 ### What is next?
 
-You may now want to move to the estimation of genetic distances (See vignette
-DistancesSNP, coming soon)
+You may now want to move to the [estimation of genetic
+distances](VignetteIndividualGeneticDistancesSNP.html)
   
 # Contributors
 
-- Stephanie Manel 
+- Stephanie Manel (Author)
+- Zhian Kamvar (edits)
  
-Reference
-========================================================
+# References
 
 Eckert, A. J., A. D. Bower, S. C. González-Martínez, J. L. Wegrzyn, G. Coop and D. B. Neale. 2010. Back to nature: Ecological genomics of loblolly pine (Pinus taeda, Pinaceae). Molecular Ecology 19: 3789-3805.
 
