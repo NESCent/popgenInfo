@@ -99,8 +99,8 @@ We observed no difference between expected and observed heterozygosity.
 
 Basic statistics with *hierfstat*. Populations are states. The function `basic.stats()`
 provides the observed heterozygosity ($H_o$), mean gene diversities within
-population ($H_s$), $F_{is}$, and $F_{st}$ The function `boot.ppfis()` provides
-confidence interval for $F_{is}$ The fuction `indpca()` does an PCA on the
+population ($H_s$), $F_{is}$, and $F_{st}$. The function `boot.ppfis()` provides
+confidence interval for $F_{is}$. The fuction `indpca()` does an PCA on the
 centered matrix of individuals' allele frequencies.
 
 ```{r, basic_statistics}
