@@ -504,7 +504,7 @@ we see that there is a **Remote** associated with this fork, we can simply use
 `push()` to push our changes up to the fork.
 
 ```{r pushit, eval = FALSE}
-push(repo)
+push(repo, credentials = cred_token())
 ```
 
 # Conclusions
