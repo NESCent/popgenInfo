@@ -58,7 +58,7 @@ If you have also installed [git](https://git-scm.com/), you can set up Rstudio
 to work with git to help you commit changes, pull, and push. For the purposes of
 this tutorial, these things are not necessary.
 
-# Step 1: Forking the repository.
+# Step 1: Forking the repository (DO ONCE)
 
 Go to 
 [https://github.com/NESCent/popgenInfo](https://github.com/NESCent/popgenInfo) 
@@ -67,7 +67,7 @@ button](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository
 This will create a copy of the NESCent popgenInfo repository to your account.
 After you've forked the repository, you never have to fork it again!
 
-# Step 2: Clone your fork to your computer
+# Step 2: Clone your fork to your computer (DO ONCE)
 
 Now that you have your repository forked to your account, you will need to 
 **clone** it to your computer. Just like forking, you only have to clone your
@@ -504,7 +504,7 @@ we see that there is a **Remote** associated with this fork, we can simply use
 `push()` to push our changes up to the fork.
 
 ```{r pushit, eval = FALSE}
-push(repo)
+push(repo, credentials = cred_token())
 ```
 
 # Conclusions
