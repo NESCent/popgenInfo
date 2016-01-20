@@ -327,12 +327,13 @@ our changes or new workflow.
 # Step 4: Creating a New Branch
 
 When you add contributions, the best practice is to create a new branch off of
-the master. A **branch** is a term that indicates a sort of sandbox for a 
-repository that can become permenant. By default, git repositories all have a 
+the master. A **branch** is a term that indicates a sort of sandbox for a
+repository that can become permanent. By default, git repositories all have a
 "master" branch. When you want to experiment with something else, add new
 content, or simply just fix a typo, but you don't want to disturb the original
-copy, you create a new branch. In this step, we will create a branch, push it to
-our fork, and track it.
+copy, you create a new branch. Good practice is to name the branch in a way that
+succinctly describes what you are doing with the branch. In this step, we will
+create a branch, push it to our fork, and track it.
 
 ## SETUP
 
@@ -374,8 +375,15 @@ your fork:
 3. push the branch to the fork
 4. set your local repository to track the fork
 
-In code, that would look like this if you wanted to create a new branch to
-include a vignette on spatial statistics called "2015-12-16-spatial-stats":
+In the first step, we want to name the branch. Since we are creating a new
+vignette, it's ideal for the branch name to be the same as the vignette. As
+shown in the [Best Practices](CONTRIBUTING.html#best-practices) guidelines, you
+should name this vignette with the date and the subject. Since we are
+contributing a vignette on spatial stats and committing for the first time on
+2015-12-16, the new branch and vignette will be called "2015-12-16-spatial-
+stats".
+
+In code, the steps above would look like this:
 
 ```{r checkout_branch_flow, eval = FALSE}
 BRANCH <- "2015-12-16-spatial-stats"                                         # 1
@@ -384,7 +392,7 @@ push(repo, name = "origin", refspec = my_branch(BRANCH), credentials = cred) # 3
 branch_set_upstream(head(repo), my_origin(BRANCH))                           # 4
 ```
 
-To examine these one by one. First, you create a variable that will hold the
+Let's examine these one by one. First, you create a variable that will hold the
 name of the branch you want to create. We are using this convention to allow us
 to use this name multiple times. After that, we create that branch from our
 master branch. We can take a look at what our branch looks like at that point.
@@ -432,16 +440,16 @@ we will show you how to do below.
 # Step 5: Adding content, committing, and pushing
 
 If you are using Rstudio, you can use it to integrate with git. This allows you 
-to do things like commit, push, and pull. Hadley Wickham, cheif scientist at 
+to do things like commit, push, and pull. Hadley Wickham, chief scientist at 
 Rstudio has put up [this helpful tutorial on using git through 
 Rstudio](http://r-pkgs.had.co.nz/git.html#git-status). If you aren't using
 Rstudio, but you don't want to access the terminal (command line), this section
 will show you basic git commands with *git2r* that will allow you to work on
 your vignette and keep it up to date.
 
-Recall that using git is analogous to keeping a good, detailed lab notebook. When
-you make any changes, you record those changes (`git add`) and then say *why*
-you made the changes (`git commit`).
+Recall that using git is analogous to keeping a good, detailed lab notebook.
+When you make any changes, you record those changes (`git add`) and then say
+*why* you made the changes (`git commit`).
 
 Let's say you've already copied the `TEMPLATE.Rmd` file to the **use/**
 directory and renamed it to `2015-12-16-spatial-stats.Rmd` and added some data
