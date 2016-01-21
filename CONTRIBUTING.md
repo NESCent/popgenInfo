@@ -58,3 +58,7 @@ Since this process requires git, if you are having trouble installing git or acc
 # How do I submit datasets?
 
 We encourage contributors to use existing data sets for their vignettes. If uploading your data set to this repository, submit data files to the **data/** directory in your branch in the same way as for your R markdown file. The data set used in a vignette should be **< 200kb** in size. If your data set is larger and your analysis will make sense on a subset of the data set, then please subset it to a smaller size for both submission and use in the vignette. 
+
+# Code of Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.html). By participating in this project you agree to abide by its terms.

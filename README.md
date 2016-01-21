@@ -45,3 +45,6 @@ see the documentation in the top-level [Makefile](Makefile).
 [Circle CI]: http://circleci.com
 [Docker]: https://www.docker.com/whatisdocker/
 [Docker installation guides]: https://docs.docker.com/
+
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
