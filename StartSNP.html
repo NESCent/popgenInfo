@@ -420,17 +420,17 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0317  0.0827
-## 2  -0.2364  0.1442
-## 3  -0.2102 -0.0543
-## 4  -0.0842  0.2921
-## 5  -0.4375 -0.1538
-## 6  -0.1653  0.3241
-## 7   0.0063  0.1041
-## 8  -0.4946  0.2040
-## 9  -0.0463  0.0779
-## 10  0.0181  0.3225
-## 11 -0.0556  0.0432</code></pre>
+## 1  -0.0372  0.0741
+## 2  -0.2745  0.1603
+## 3  -0.2081 -0.0715
+## 4  -0.0570  0.2764
+## 5  -0.4389 -0.1700
+## 6  -0.1347  0.3513
+## 7   0.0094  0.1030
+## 8  -0.4411  0.1864
+## 9  -0.0447  0.0856
+## 10  0.0005  0.3364
+## 11 -0.0568  0.0501</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex =</span> <span class="fl">0.7</span>)</code></pre>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
@@ -440,18 +440,18 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 <p>We used the pegas package.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata3, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0_10037_01_257 0.75465490  1 0.385006451    0.439
-## X0_10040_02_394 0.16628227  1 0.683437231    0.739
-## X0_10044_01_392 2.96053195  1 0.085319867    0.082
-## X0_10048_01_60  6.39076800  1 0.011471539    0.010
-## X0_10051_02_166 1.12035389  1 0.289842265    0.282
-## X0_10054_01_402 1.54582494  1 0.213752853    0.232
-## X0_10067_03_111 0.04868128  1 0.825374035    0.556
-## X0_10079_02_168 0.01579313  1 0.899992594    0.578
+## X0_10037_01_257 0.75465490  1 0.385006451    0.467
+## X0_10040_02_394 0.16628227  1 0.683437231    0.755
+## X0_10044_01_392 2.96053195  1 0.085319867    0.093
+## X0_10048_01_60  6.39076800  1 0.011471539    0.013
+## X0_10051_02_166 1.12035389  1 0.289842265    0.278
+## X0_10054_01_402 1.54582494  1 0.213752853    0.230
+## X0_10067_03_111 0.04868128  1 0.825374035    0.578
+## X0_10079_02_168 0.01579313  1 0.899992594    0.614
 ## X0_10112_01_169 0.41126025  1 0.521330544    1.000
-## X0_10113_01_119 0.74248768  1 0.388865151    0.444
+## X0_10113_01_119 0.74248768  1 0.388865151    0.425
 ## X0_10116_01_165 1.87098306  1 0.171362531    0.238
-## X0_10151_01_86  8.94232481  1 0.002786379    0.010</code></pre>
+## X0_10151_01_86  8.94232481  1 0.002786379    0.007</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
@@ -489,7 +489,7 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       &lt;NA&gt;                        
-##  date     2016-01-21</code></pre>
+##  date     2016-01-26</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-3   2015-11-22 CRAN (R 3.2.3)

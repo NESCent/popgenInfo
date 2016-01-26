@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>Calculating genetic differentiation from SSR data</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/spacelab.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<!---
+
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-right: 50px;
+  padding-left: -50px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+ offset scroll position for anchor links (for fixed navbar)  
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+</style>
+-->
+
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; }
+code > span.dt { color: #204a87; }
+code > span.dv { color: #0000cf; }
+code > span.bn { color: #0000cf; }
+code > span.fl { color: #0000cf; }
+code > span.ch { color: #4e9a06; }
+code > span.st { color: #4e9a06; }
+code > span.co { color: #8f5902; font-style: italic; }
+code > span.ot { color: #8f5902; }
+code > span.al { color: #ef2929; }
+code > span.fu { color: #000000; }
+code > span.er { font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- HOME -->
+      <a class="navbar-brand" href="index.html"><b>Population Genetics in R</b></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!-- Table of contents -->
+        <li class="dropdown">
+          <a href="chapters" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users <span class="caret"></span></a>
+          <ol class="dropdown-menu">
+              <li><a href="GETSTARTED.html">Getting Started</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">For microsatellite data:</li>
+              <li><a href="startMicrosatellite.html">Basic Statistics</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">For SNP data:</li>
+              <!-- <li class="divider"></li> -->
+              <li><a href="StartSNP.html">Basic statistics</a></li>
+              <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
+              <li><a href="2015-05-18-Dist-SNP.html">Genetic Distance (individual-based)</a></li>
+              <!-- <li><a href="SNP.html">SNPs</a></li> -->
+              <li class="divider"></li>
+              <li class="dropdown-header">For sequence data:</li>
+              <!-- <li class="divider"></li>   -->
+              <li><a href="SummarySequenceData.html">Summary statistics</a></li>
+              <li><a href="PopDiffSequenceData.html">Population differentiation</a></li>
+          </ol>
+        </li>
+        <!-- Appendices dropdown -->
+        <li class="dropdown">
+          <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Package Developers <span class="caret"></span></a>
+          <ul class = "dropdown-menu" role = "menu">
+           <li><a href = "DEVELOPER_INTRO.html">Introduction</a></li>
+           <li><a href = "PACKAGES.html">Population genetic packages in R</a></li>  
+           <li><a href = "DATAFORMATS.html">Population genetic data types in R</a></li>
+           <li><a href = "PACKAGE_TUTORIALS.html">Developing R packages</a></li>
+           <li class="divider"></li>  
+           <li class="dropdown-header">Development Resources (external):</li>
+           <li><a href = "http://r-pkgs.had.co.nz/">Hadley Wickham's Guide For Creating R Packages</a></li>
+           <li><a href = "https://github.com/jtleek/rpackages">Jeff Leek's R Package Development</a></li>
+           <li><a href = "http://adv-r.had.co.nz/S4.html">S4 Classes in detail</a></li>
+           <li><a href = "http://adv-r.had.co.nz/S3.html">S3 Classes in detail</a></li>
+           <li><a href = "http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf">A not so short introduction to S4</a></li>
+          </ul>
+        </li>
+        <!-- Author button -->
+        <li class="dropdown">
+          <a href="about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contribute! <span class="caret"></span></a>
+          <ul class = "dropdown-menu" role = "menu">
+           <li><a href = "CONTRIBUTING.html">Contribution Guidelines</a></li>  
+           <li><a href = "CONTRIBUTING_WITH_GIT2R.html">Contributing with git2r</a></li> 
+           <li class="divider"></li>  
+           <li><a href="https://github.com/NESCent/popgenInfo">Source repository</a></li>  
+		  </ul>
+        </li>
+        <li class = "button">
+          <a href="LinksToResources.html">Useful Links</a>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- <div class="container">
+<div class="row">
+<div class="span10 offset1"> -->
+
+<div id="header">
+<h1 class="title">Calculating genetic differentiation from SSR data</h1>
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#data">Data</a></li>
+<li><a href="#resourcespackages-required">Resources/Packages required</a></li>
+<li><a href="#analysis">Analysis</a><ul>
+<li><a href="#data-preparation">Data preparation</a></li>
+<li><a href="#summary-statistics">Summary Statistics</a></li>
+<li><a href="#analysis-of-molecular-variance">Analysis of Molecular Variance</a></li>
+<li><a href="#discriminant-analyses-of-principal-components-dapc">Discriminant Analyses of Principal Components (DAPC)</a></li>
+</ul></li>
+<li><a href="#conclusions">Conclusions</a></li>
+<li><a href="#contributors">Contributors</a></li>
+<li><a href="#references">References</a></li>
+<li><a href="#session-information">Session Information</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>We will analyze a data set of bovine samples from France and West Africa using F-statistics, AMOVA, and Discriminant Analysis of Principal Components (DAPC). We will analyze a data set of bovine samples from France and West Africa. We want to know if differentiation exists between Breeds or if it’s based on geographic separation.</p>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>We are going to use the <code>microbov</code> data set from the <em>adegenet</em> package. This data set consists of 704 bovine samples over 30 microsatellite loci (Laloe et al., 2007). We will also need information about the Species, Breed, and Country/Region of origin for each sample. That data is stored in the file called <a href="https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv"><code>bovine_strata.csv</code> (click here to download)</a>.</p>
+</div>
+<div id="resourcespackages-required" class="section level1">
+<h1>Resources/Packages required</h1>
+<p>We are going to use <em>mmod</em> for differentiation summary statistics, <em>pegas</em> for AMOVA, <em>adegenet</em> for DAPC, and we will use <em>reshape2</em> and <em>ggplot2</em> for plotting our results.</p>
+<p>Loading the required packages:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;mmod&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;reshape2&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre>
+</div>
+<div id="analysis" class="section level1">
+<h1>Analysis</h1>
+<div id="data-preparation" class="section level2">
+<h2>Data preparation</h2>
+<p>First, we need to load our data. Since the data is distributed with <em>adegenet</em>, we can load it simply by using the function <code>data()</code>. Since we want to associate the different population strata with the data set, we also need to read in <a href="https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv"><code>bovine_strata.csv</code></a> as a data frame.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;microbov&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;adegenet&quot;</span>)
+bovine_strata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bovine_strata.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</code></pre>
+<p>The <code>microbov</code> data set is in a “genind” object. This is a way for adegenet to keep the genetic data and deomographic data together. Let’s take a look at what our data looks like:</p>
+<pre class="sourceCode r"><code class="sourceCode r">microbov</code></pre>
+<pre><code>## /// GENIND OBJECT /////////
+## 
+##  // 704 individuals; 30 loci; 373 alleles; size: 1.2 Mb
+## 
+##  // Basic content
+##    @tab:  704 x 373 matrix of allele counts
+##    @loc.n.all: number of alleles per locus (range: 5-22)
+##    @loc.fac: locus factor for the 373 columns of @tab
+##    @all.names: list of allele names for each locus
+##    @ploidy: ploidy of each individual  (range: 2-2)
+##    @type:  codom
+##    @call: genind(tab = truenames(microbov)$tab, pop = truenames(microbov)$pop)
+## 
+##  // Optional content
+##    @pop: population of each individual (group size range: 30-61)
+##    @other: a list containing: coun  breed  spe</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(bovine_strata) <span class="co"># the function head shows the first 6 rows of a data frame</span></code></pre>
+<pre><code>##   Country  Breed Species
+## 1      AF Borgou      BI
+## 2      AF Borgou      BI
+## 3      AF Borgou      BI
+## 4      AF Borgou      BI
+## 5      AF Borgou      BI
+## 6      AF Borgou      BI</code></pre>
+<p>We can see that our data matches the description above. Now we need to set <code>bovine_strata</code> in <code>microbov</code>’s <em>strata</em> slot.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">strata</span>(microbov) &lt;-<span class="st"> </span>bovine_strata
+microbov</code></pre>
+<pre><code>## /// GENIND OBJECT /////////
+## 
+##  // 704 individuals; 30 loci; 373 alleles; size: 1.2 Mb
+## 
+##  // Basic content
+##    @tab:  704 x 373 matrix of allele counts
+##    @loc.n.all: number of alleles per locus (range: 5-22)
+##    @loc.fac: locus factor for the 373 columns of @tab
+##    @all.names: list of allele names for each locus
+##    @ploidy: ploidy of each individual  (range: 2-2)
+##    @type:  codom
+##    @call: genind(tab = truenames(microbov)$tab, pop = truenames(microbov)$pop)
+## 
+##  // Optional content
+##    @pop: population of each individual (group size range: 30-61)
+##    @strata: a data frame with 3 columns ( Country, Breed, Species )
+##    @other: a list containing: coun  breed  spe</code></pre>
+<p>If you look at the bottom of the output, under “Optional content”, you can see that the <code>microbov</code> object now has three strata defined and we can use the function <code>setPop()</code> to set the population from any combination of these strata.</p>
+</div>
+<div id="summary-statistics" class="section level2">
+<h2>Summary Statistics</h2>
+<p>Perhaps the best package for assessing summary statistics for population differentiation is <a href="https://cran.r-project.org/package=mmod"><em>mmod</em></a>. This package provides differentiation statistics presented in (Miermans and Hedrick, 2011), which scale to the maximum value that can possibly attained, allowing for comparison across measurements. I will not go into terrible detail about these measures or <em>mmod</em>, but you can read more by visiting the paper linked above and viewing the <a href="https://cran.r-project.org/web/packages/mmod/vignettes/mmod-demo.pdf"><em>mmod</em> vignette</a>, off of which this section is based.</p>
+<div id="estimation" class="section level3">
+<h3>Estimation</h3>
+<p>We will first take a look at the summary statistics for differentiation by breed using the function <code>diff_stats()</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setPop</span>(microbov) &lt;-<span class="st"> </span><span class="er">~</span>Breed <span class="co"># Use ~Country to analyze by country</span>
+diff_bov &lt;-<span class="st"> </span><span class="kw">diff_stats</span>(microbov)
+diff_bov</code></pre>
+<pre><code>## $per.locus
+##                Hs        Ht        Gst Gprime_st          D
+## INRA63  0.5639660 0.7062861 0.20150495 0.4881151 0.34971094
+## INRA5   0.5755958 0.6036883 0.04653482 0.1170902 0.07092092
+## ETH225  0.7197762 0.7830126 0.08076038 0.3070142 0.24178276
+## ILSTS5  0.4638298 0.5425229 0.14505016 0.2868814 0.15725224
+## HEL5    0.6930155 0.7930340 0.12612126 0.4362548 0.34908154
+## HEL1    0.6224377 0.7619545 0.18310383 0.5128954 0.39591425
+## INRA35  0.4543576 0.4932161 0.07878581 0.1538388 0.07630278
+## ETH152  0.6118664 0.6844774 0.10608240 0.2906344 0.20044004
+## INRA23  0.7402153 0.8403193 0.11912609 0.4871659 0.41285825
+## ETH10   0.6048904 0.7638679 0.20812176 0.5561020 0.43110328
+## HEL9    0.6878710 0.7825445 0.12098162 0.4117292 0.32498065
+## CSSM66  0.7435578 0.8241031 0.09773687 0.4055186 0.33652218
+## INRA32  0.6164876 0.7458078 0.17339623 0.4784952 0.36128538
+## ETH3    0.6906295 0.7594622 0.09063352 0.3118679 0.23838521
+## BM2113  0.7937328 0.8924249 0.11058869 0.5699368 0.51264352
+## BM1824  0.6452860 0.7533117 0.14340108 0.4287573 0.32629621
+## HEL13   0.4645259 0.6267022 0.25877730 0.5083896 0.32449809
+## INRA37  0.6561603 0.7762477 0.15470239 0.4767948 0.37420069
+## BM1818  0.6776821 0.7521718 0.09903286 0.3268863 0.24761394
+## ILSTS6  0.6752309 0.7875664 0.14263628 0.4658179 0.37060026
+## MM12    0.6917685 0.7674169 0.09857535 0.3402572 0.26295773
+## CSRM60  0.6694685 0.7764891 0.13782616 0.4424126 0.34691049
+## ETH185  0.6673092 0.7730600 0.13679503 0.4362846 0.34056968
+## HAUT24  0.7604078 0.8362990 0.09074642 0.4031941 0.33937643
+## HAUT27  0.6939840 0.7413234 0.06385800 0.2225656 0.16574564
+## TGLA227 0.7938773 0.8922288 0.11023124 0.5685073 0.51123245
+## TGLA126 0.6361034 0.6884037 0.07597335 0.2224826 0.15398900
+## TGLA122 0.6985923 0.7714162 0.09440290 0.3333309 0.25887072
+## TGLA53  0.8190011 0.8895127 0.07926988 0.4665986 0.41739542
+## SPS115  0.5029455 0.5588352 0.10001100 0.2140502 0.12047328
+## 
+## $global
+##        Hs        Ht   Gst_est Gprime_st     D_het    D_mean 
+## 0.6544857 0.7455902 0.1221911 0.3756321 0.2825120 0.2347223</code></pre>
+<p>The output in <code>$per.locus</code> are estimates of the following measures:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Statistic</th>
+<th align="left">Details/Authority</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>Hs</code></td>
+<td align="left"><span class="math">\(H_S\)</span></td>
+<td align="left">Heterozygosity with population structure</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Ht</code></td>
+<td align="left"><span class="math">\(H_T\)</span></td>
+<td align="left">Heterozygosity without population structure</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Gst</code></td>
+<td align="left"><span class="math">\(G_{st}\)</span></td>
+<td align="left">Nei</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Gprime_st</code></td>
+<td align="left"><span class="math">\(G_{st}^&quot;\)</span></td>
+<td align="left">Hedrick</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>D</code></td>
+<td align="left"><span class="math">\(D\)</span></td>
+<td align="left">Jost</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>$global</code> refers to global estimates of these statistics. <code>D_het</code> and <code>D_mean</code> represent the average heterozygosity and harmonic mean, respectively.</p>
+<p>All of these describe population differentiation, but <span class="math">\(D\)</span> can be interpreted as the amount of population differentiation from 0 (panmixia) to 1 (complete differentiation) (Hedrick and Miermans, 2011).</p>
+</div>
+<div id="plotting" class="section level3">
+<h3>Plotting</h3>
+<p>You could choose to report the global versions of these statistics, but it might be additionally useful to show them as a boxplots with points showing their estimates in red. I prefer to use <em>ggplot2</em> here because it allows me to easily overlay the observations and estimates.</p>
+<pre class="sourceCode r"><code class="sourceCode r">per.locus &lt;-<span class="st"> </span><span class="kw">melt</span>(diff_bov$per.locus, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;Locus&quot;</span>, <span class="st">&quot;Statistic&quot;</span>))
+stats     &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hs&quot;</span>, <span class="st">&quot;Ht&quot;</span>, <span class="st">&quot;Gst&quot;</span>, <span class="st">&quot;Gprime_st&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;D&quot;</span>)
+glob      &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Statistic =</span> stats, <span class="dt">value =</span> diff_bov$global)
+<span class="kw">head</span>(per.locus)</code></pre>
+<pre><code>##    Locus Statistic     value
+## 1 INRA63        Hs 0.5639660
+## 2  INRA5        Hs 0.5755958
+## 3 ETH225        Hs 0.7197762
+## 4 ILSTS5        Hs 0.4638298
+## 5   HEL5        Hs 0.6930155
+## 6   HEL1        Hs 0.6224377</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(glob)</code></pre>
+<pre><code>##           Statistic     value
+## Hs               Hs 0.6544857
+## Ht               Ht 0.7455902
+## Gst_est         Gst 0.1221911
+## Gprime_st Gprime_st 0.3756321
+## D_het             D 0.2825120
+## D_mean            D 0.2347223</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(per.locus, <span class="kw">aes</span>(<span class="dt">x =</span> Statistic, <span class="dt">y =</span> value)) +
+<span class="st">  </span><span class="kw">geom_boxplot</span>() +
+<span class="st">  </span><span class="kw">geom_point</span>() +
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="kw">rel</span>(<span class="dv">3</span>), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">data =</span> glob) +
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Estimates of population differentiation&quot;</span>)</code></pre>
+<p><img src="2015-12-15-microsatellite-differentiation_files/figure-html/plotting-1.png" title="" alt="" width="960" /></p>
+</div>
+<div id="confidence-intervals" class="section level3">
+<h3>Confidence Intervals</h3>
+<p>We can see that we have evidence for moderate differentiation in these populations at the level of breed. Of course bootstrapping would be helpful to get confidence intervals, so here we use the function <code>chao_bootstrap()</code> to simulate new data sets and <code>summarize_bootstrap()</code> to calculate statistical summarize based on those simulations. Since these can take a while, we’re only going to perform 10 replicates. You will want to increase that number for a more robust analysis:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">20151219</span>) <span class="co"># Be sure to set a seed for any random analysis!</span>
+bs_reps &lt;-<span class="st"> </span><span class="kw">chao_bootstrap</span>(microbov, <span class="dt">nreps =</span> <span class="dv">10</span>)
+<span class="kw">summarise_bootstrap</span>(bs_reps, D_Jost) <span class="co"># Using the D_Jost function to summarize.</span></code></pre>
+<pre><code>## 
+## Estimates for each locus
+## Locus    Mean     95% CI
+## INRA63   0.3607  (0.3503-0.3797)
+## INRA5    0.0785  (0.0571-0.0942)
+## ETH225   0.264   (0.2453-0.2833)
+## ILSTS5   0.1685  (0.1493-0.1861)
+## HEL5 0.3664  (0.3493-0.3911)
+## HEL1 0.4111  (0.389-0.4267)
+## INRA35   0.0866  (0.0619-0.1154)
+## ETH152   0.203   (0.1739-0.2388)
+## INRA23   0.4279  (0.4133-0.4449)
+## ETH10    0.4334  (0.418-0.4512)
+## HEL9 0.3328  (0.3042-0.3663)
+## CSSM66   0.3555  (0.3338-0.3721)
+## INRA32   0.376   (0.3557-0.3946)
+## ETH3 0.2719  (0.2162-0.3024)
+## BM2113   0.5322  (0.51-0.5572)
+## BM1824   0.3313  (0.313-0.3606)
+## HEL13    0.3301  (0.3067-0.3525)
+## INRA37   0.3854  (0.3537-0.4309)
+## BM1818   0.2627  (0.2478-0.2725)
+## ILSTS6   0.3851  (0.3745-0.4023)
+## MM12 0.2714  (0.248-0.3046)
+## CSRM60   0.3653  (0.3449-0.3767)
+## ETH185   0.3668  (0.3476-0.3812)
+## HAUT24   0.3593  (0.3355-0.3935)
+## HAUT27   0.1877  (0.1634-0.2209)
+## TGLA227  0.5301  (0.5123-0.5463)
+## TGLA126  0.1622  (0.1403-0.1899)
+## TGLA122  0.2746  (0.2518-0.299)
+## TGLA53   0.4524  (0.4277-0.477)
+## SPS115   0.1355  (0.1216-0.1571)
+## 
+## Global Estimate based on average heterozygosity
+## 0.2969   (0.2921-0.3004)
+## 
+## Global Estimate based on harmonic mean of statistic
+## 0.2498   (0.2352-0.2588)</code></pre>
+</div>
+</div>
+<div id="analysis-of-molecular-variance" class="section level2">
+<h2>Analysis of Molecular Variance</h2>
+<p>AMOVA is a classical method of assessing population differentiation by evaluating where the most variation exists in a hierarchical population structure (Excoffier et al., 1992). We can use this to assess population differentiation in countries and breeds by using the <code>amova()</code> function in <em>pegas</em>. All we need are:</p>
+<ol style="list-style-type: decimal">
+<li>a distance matrix among samples</li>
+<li>a data frame with hierarchical population strata</li>
+</ol>
+<blockquote>
+<p>Note: we are using the syntax <code>pegas::amova()</code> because there is another function called <code>amova()</code> in the <em>ade4</em> package.</p>
+</blockquote>
+<pre class="sourceCode r"><code class="sourceCode r">bov_dist  &lt;-<span class="st"> </span><span class="kw">dist</span>(microbov) <span class="co"># Euclidean distance</span>
+bov_stra  &lt;-<span class="st"> </span><span class="kw">strata</span>(microbov)
+bov_amova &lt;-<span class="st"> </span>pegas::<span class="kw">amova</span>(bov_dist ~<span class="st"> </span>Country/Breed, <span class="dt">data =</span> bov_stra, <span class="dt">nperm =</span> <span class="dv">0</span>)
+bov_amova</code></pre>
+<pre><code>## 
+##  Analysis of Molecular Variance
+## 
+## Call: pegas::amova(formula = bov_dist ~ Country/Breed, data = bov_stra, 
+##     nperm = 0)
+## 
+##               SSD        MSD  df
+## Country  3358.968 3358.96844   1
+## Breed    4883.784  375.67569  13
+## Error   28483.616   41.34052 689
+## Total   36726.368   52.24234 703
+## 
+## Variance components:
+##   Country     Breed     Error 
+##  9.578926  7.156947 41.340516 
+## 
+## Variance coefficients:
+##         a         b         c 
+##  46.71477  48.10283 310.40625</code></pre>
+<p>If the population was panmictic, we would expect to see extremely small variance components for Country and Breed compared to Error (i.e. the variation from individuals within populations). We don’t see that and further suspect moderate differentiation. To test for this, you can boostrap replicates by setting the <code>nperm</code> argument. Again, because these bootstraps may take a long time, we’ll set it to 10:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">20151219</span>)
+bov_amova &lt;-<span class="st"> </span>pegas::<span class="kw">amova</span>(bov_dist ~<span class="st"> </span>Country/Breed, <span class="dt">data =</span> bov_stra, <span class="dt">nperm =</span> <span class="dv">10</span>)
+bov_amova</code></pre>
+<pre><code>## 
+##  Analysis of Molecular Variance
+## 
+## Call: pegas::amova(formula = bov_dist ~ Country/Breed, data = bov_stra, 
+##     nperm = 10)
+## 
+##               SSD        MSD  df
+## Country  3358.968 3358.96844   1
+## Breed    4883.784  375.67569  13
+## Error   28483.616   41.34052 689
+## Total   36726.368   52.24234 703
+## 
+## Variance components:
+##          sigma2 P.value
+## Country  9.5789       0
+## Breed    7.1569       0
+## Error   41.3405        
+## 
+## Variance coefficients:
+##         a         b         c 
+##  46.71477  48.10283 310.40625</code></pre>
+<p>Now we have evidence that these are significantly different.</p>
+<div id="other-implementations" class="section level3">
+<h3>Other implementations</h3>
+<p>It is possible to do the same analyses in different packages, which I will list here.</p>
+<p>The <em>vegan</em> package has the function <code>adonis()</code> that implements a multivariate AMOVA and takes the same kind of arguments as the <em>pegas</em> implementation of <code>amova()</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;vegan&quot;</span>)
+<span class="kw">set.seed</span>(<span class="dv">20151219</span>)
+res &lt;-<span class="st"> </span><span class="kw">adonis</span>(bov_dist ~<span class="st"> </span>Country/Breed, <span class="dt">data =</span> bov_stra, <span class="dt">permutations =</span> <span class="dv">99</span>)</code></pre>
+<p>The package <em>ade4</em> implements the original model, but it requires an abundance matrix of haplotypes per population. The advantage of this version is the fact that it calculates <span class="math">\(\phi\)</span> statistics for you. The package <em>poppr</em> provides a wrapper for the <em>ade4</em> version that will sanitize the data and allows for calculation of within sample variance.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;poppr&quot;</span>)
+res &lt;-<span class="st"> </span><span class="kw">poppr.amova</span>(microbov, ~Country/Breed, <span class="dt">within =</span> <span class="ot">FALSE</span>)
+<span class="kw">set.seed</span>(<span class="dv">20151219</span>)
+<span class="kw">randtest</span>(res, <span class="dt">nrepet =</span> <span class="dv">99</span>)</code></pre>
+</div>
+</div>
+<div id="discriminant-analyses-of-principal-components-dapc" class="section level2">
+<h2>Discriminant Analyses of Principal Components (DAPC)</h2>
+<p>Finally, we will use DAPC in order to assess which populations have significant structure (Jombart et al., 2011). For this, we will use the function <code>dapc()</code> from <em>adegenet</em>.</p>
+<blockquote>
+<p>Warning: This analyis is sensitive to the number of principal components you choose, so by default, you should run this function with just the data set and without any options beforehand (<code>dapc(microbov)</code>).</p>
+</blockquote>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setPop</span>(microbov) &lt;-<span class="st"> </span><span class="er">~</span>Country/Breed
+bov_dapc &lt;-<span class="st"> </span><span class="kw">dapc</span>(microbov, <span class="dt">n.pca =</span> <span class="dv">100</span>, <span class="dt">n.da =</span> <span class="dv">4</span>) <span class="co"># 100 principal components; 4 discriminant functions</span>
+<span class="kw">scatter</span>(bov_dapc)</code></pre>
+<p><img src="2015-12-15-microsatellite-differentiation_files/figure-html/dapc-1.png" title="" alt="" width="960" /></p>
+<p>From this output, we can see that there is a lot of differentiation based on geography, but also that African breeds are a lot more differentiated than European breeds.</p>
+</div>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<p>We have assessed differentiation of these cattle breeds using tools in R. From the diversity statistics, we can clearly see that there is moderate differentiation among breeds. This is supported and further bolstered by the results of AMOVA, showing us that there is significant differentiation among countries and breeds. The DAPC analysis gives us a clear picture showing highly differentiated African breeds with low diversity in the French breeds. Further steps could be to assess factors such as inbreeding coefficients.</p>
+</div>
+<div id="contributors" class="section level1">
+<h1>Contributors</h1>
+<ul>
+<li>Zhian N. Kamvar (Author)</li>
+</ul>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>Laloe D., Jombart T., Dufour A-B., Moazami-Goudarzi K. 2007. Consensus genetic structuring and typological value of markers using multiple co-inertia analysis. Genetics Selection Evolution 39:545–567. Available at: <a href="http://dx.doi.org/10.1051/gse:2007021" class="uri">http://dx.doi.org/10.1051/gse:2007021</a></p>
+<p>Meirmans, P.G. and Hedrick, P.W., 2011. Assessing population structure: FST and related measures. Molecular Ecology Resources, 11:5-18. Available at: <a href="http://dx.doi.org/10.1111/j.1755-0998.2010.02927.x" class="uri">http://dx.doi.org/10.1111/j.1755-0998.2010.02927.x</a></p>
+<p>Excoffier L., Smouse PE., Quattro JM. 1992. Analysis of molecular variance inferred from metric distances among dNA haplotypes: Application to human mitochondrial dNA restriction data. Genetics 131:479–491. Available at: <a href="http://www.genetics.org/content/131/2/479.abstract" class="uri">http://www.genetics.org/content/131/2/479.abstract</a></p>
+<p>Jombart T., Devillard S., Balloux F. 2010. Discriminant analysis of principal components: A new method for the analysis of genetically structured populations. BMC genetics 11:94. Available at: <a href="http://www.biomedcentral.com/1471-2156/11/94" class="uri">http://www.biomedcentral.com/1471-2156/11/94</a></p>
+</div>
+<div id="session-information" class="section level1">
+<h1>Session Information</h1>
+<p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
+devtools::<span class="kw">session_info</span>()</code></pre>
+<pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
+<pre><code>##  setting  value                       
+##  version  R version 3.2.3 (2015-12-10)
+##  system   x86_64, linux-gnu           
+##  ui       X11                         
+##  language (EN)                        
+##  collate  en_US.UTF-8                 
+##  tz       &lt;NA&gt;                        
+##  date     2016-01-26</code></pre>
+<pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
+<pre><code>##  package    * version date       source        
+##  ade4       * 1.7-3   2015-11-22 CRAN (R 3.2.3)
+##  adegenet   * 2.0.0   2015-07-07 CRAN (R 3.2.3)
+##  ape        * 3.4     2015-11-29 CRAN (R 3.2.3)
+##  assertthat   0.1     2013-12-06 CRAN (R 3.2.3)
+##  boot         1.3-17  2015-06-29 CRAN (R 3.2.1)
+##  coda         0.18-1  2015-10-16 CRAN (R 3.2.3)
+##  colorspace   1.2-6   2015-03-11 CRAN (R 3.2.3)
+##  DBI          0.3.1   2014-09-24 CRAN (R 3.2.3)
+##  deldir       0.1-9   2015-03-09 CRAN (R 3.2.3)
+##  devtools     1.9.1   2015-09-11 CRAN (R 3.2.3)
+##  digest       0.6.9   2016-01-08 CRAN (R 3.2.3)
+##  dplyr        0.4.3   2015-09-01 CRAN (R 3.2.3)
+##  evaluate     0.8     2015-09-18 CRAN (R 3.2.3)
+##  formatR      1.2.1   2015-09-18 CRAN (R 3.2.3)
+##  ggplot2    * 2.0.0   2015-12-18 CRAN (R 3.2.3)
+##  gtable       0.1.2   2012-12-05 CRAN (R 3.2.3)
+##  htmltools    0.3     2015-12-29 CRAN (R 3.2.3)
+##  httpuv       1.3.3   2015-08-04 CRAN (R 3.2.3)
+##  igraph       1.0.1   2015-06-26 CRAN (R 3.2.3)
+##  knitr        1.12    2016-01-07 CRAN (R 3.2.3)
+##  labeling     0.3     2014-08-23 CRAN (R 3.2.3)
+##  lattice      0.20-33 2015-07-14 CRAN (R 3.2.3)
+##  LearnBayes   2.15    2014-05-29 CRAN (R 3.2.3)
+##  magrittr     1.5     2014-11-22 CRAN (R 3.2.3)
+##  MASS         7.3-45  2015-11-10 CRAN (R 3.2.3)
+##  Matrix       1.2-3   2015-11-28 CRAN (R 3.2.2)
+##  memoise      0.2.1   2014-04-22 CRAN (R 3.2.3)
+##  mime         0.4     2015-09-03 CRAN (R 3.2.3)
+##  mmod       * 1.3.1   2015-08-27 CRAN (R 3.2.3)
+##  munsell      0.4.2   2013-07-11 CRAN (R 3.2.3)
+##  nlme         3.1-122 2015-08-19 CRAN (R 3.2.3)
+##  pegas      * 0.8-2   2015-09-25 CRAN (R 3.2.3)
+##  plyr         1.8.3   2015-06-12 CRAN (R 3.2.3)
+##  R6           2.1.1   2015-08-19 CRAN (R 3.2.3)
+##  Rcpp         0.12.3  2016-01-10 CRAN (R 3.2.3)
+##  reshape2   * 1.4.1   2014-12-06 CRAN (R 3.2.3)
+##  rmarkdown    0.9.2   2016-01-01 CRAN (R 3.2.3)
+##  scales       0.3.0   2015-08-25 CRAN (R 3.2.3)
+##  seqinr       3.1-3   2014-12-17 CRAN (R 3.2.3)
+##  shiny        0.12.2  2015-08-05 CRAN (R 3.2.3)
+##  sp           1.2-1   2015-10-18 CRAN (R 3.2.3)
+##  spdep        0.5-92  2015-12-22 CRAN (R 3.2.3)
+##  stringi      1.0-1   2015-10-22 CRAN (R 3.2.3)
+##  stringr      1.0.0   2015-04-30 CRAN (R 3.2.3)
+##  xtable       1.8-0   2015-11-02 CRAN (R 3.2.3)
+##  yaml         2.1.13  2014-06-12 CRAN (R 3.2.3)</code></pre>
+</div>
+
+<!-- </div>
+</div>
+</div>
+ -->
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
