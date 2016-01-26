@@ -27,43 +27,8 @@ Below are some resources that can get you started writing R packages.
 
 # Tutorials
 
+_A number of additional tutorials have been [tagged as candidates for community contribution](https://github.com/NESCent/popgenInfo/issues?utf8=✓&q=is%3Aopen+label%3A%22help+wanted%22+label%3Adocumentation)._
+
 ## Basics
 * [Creating a new R package for population genetics](package_basics.html)
-
-## Documentation
-
-This tutorial has not been completed yet, If you are interested in writing this
-example, please feel free to [`contribute!`](http://nescent.github.io/popgenInfo/CONTRIBUTING.html)
-
-## Tests
-
-This tutorial has not been completed yet, If you are interested in writing this
-example, please feel free to [`contribute!`](http://nescent.github.io/popgenInfo/CONTRIBUTING.html)
-
-## Compiled code
-
-This tutorial has not been completed yet, If you are interested in writing this
-example, please feel free to [`contribute!`](http://nescent.github.io/popgenInfo/CONTRIBUTING.html)
-
-## Class inheritance
-
-This tutorial has not been completed yet, If you are interested in writing this
-example, please feel free to [`contribute!`](http://nescent.github.io/popgenInfo/CONTRIBUTING.html)
-
-## S3 classes <!--(strataG example)-->
-
-This tutorial has not been completed yet, If you are interested in writing this
-example, please feel free to [`contribute!`](http://nescent.github.io/popgenInfo/CONTRIBUTING.html)
-
-## S4 classes <!--(genind example)-->
-
-This tutorial has not been completed yet, If you are interested in writing this
-example, please feel free to [`contribute!`](http://nescent.github.io/popgenInfo/CONTRIBUTING.html)
-
-## Submitting to CRAN
-
-This tutorial has not been completed yet, If you are interested in writing this
-example, please feel free to [`contribute!`](http://nescent.github.io/popgenInfo/CONTRIBUTING.html)
-
-    
 
