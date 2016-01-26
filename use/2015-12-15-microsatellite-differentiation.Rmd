@@ -4,20 +4,20 @@ title: "Calculating genetic differentiation from SSR data"
 
 # Introduction
 
-This workflow will show you how to assess population differentiation with
-microsatellite/SSR data. We will analyse F-statistics, AMOVA, and Discriminant
-Analysis of Principal Components (DAPC). We will analyze a data set of bovine 
-samples from France and West Africa. We want to know if differentiation exists 
-between Breeds or if it's based on geographic separation.
+We will analyze a data set of bovine samples from France and West Africa using
+F-statistics, AMOVA, and Discriminant Analysis of Principal Components (DAPC).
+We will analyze a data set of bovine samples from France and West Africa. We
+want to know if differentiation exists between Breeds or if it's based on
+geographic separation.
 
 # Data
 
 We are going to use the `microbov` data set from the *adegenet* package. This 
 data set consists of 704 bovine samples over 30 microsatellite loci (Laloe et 
-al., 2007). This data set also contains 
-information about the Species, Breed, and Country/region of origin for each
-sample. These data are stored in the file called [`bovine_strata.csv` (click
-here to download)](https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv).
+al., 2007). We will also need information about the Species, Breed, and
+Country/Region of origin for each sample. That data is stored in the file called
+[`bovine_strata.csv` (click here to
+download)](https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv).
 
 # Resources/Packages required
 
@@ -41,7 +41,7 @@ library("ggplot2")
 
 First, we need to load our data. Since the data is distributed with *adegenet*, 
 we can load it simply by using the function `data()`. Since we want to associate
-the different population strata with the data set, we also need to read in
+the different population strata with the data set, we also need to read in 
 [`bovine_strata.csv`](https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv)
 as a data frame.
 
@@ -103,7 +103,7 @@ diff_bov
 
 The output in `$per.locus` are estimates of the following measures:
 
-| Variable  | Satistic       | Details/Authority |
+| Variable  | Statistic      | Details/Authority |
 |-----------|----------------|-------------------|
 |`Hs       `| $H_S$          | Heterozygosity with population structure |
 |`Ht       `| $H_T$          | Heterozygosity without population structure |
@@ -114,7 +114,7 @@ The output in `$per.locus` are estimates of the following measures:
 The `$global` refers to global estimates of these statistics. `D_het` and
 `D_mean` represent the average heterozygosity and harmonic mean, respectively.
 
-All of these describe population differentiation, but $D$ is can be interpreted
+All of these describe population differentiation, but $D$ can be interpreted
 as the amount of population differentiation from 0 (panmixia) to 1 (complete
 differentiation) (Hedrick and Miermans, 2011).
 
@@ -142,11 +142,12 @@ ggplot(per.locus, aes(x = Statistic, y = value)) +
 ### Confidence Intervals
 
 We can see that we have evidence for moderate differentiation in these 
-populations at the level of breed. Of course bootstrapping would be helpful to get confidence intervals, so 
-here we use the function `chao_bootstrap()` to simulate new data sets and
-`summarize_bootstrap()` to calculate statistical summarize based on those
-simulations. Since these can take a while, we're only going to perform 10
-replicates. You will want to increase that number for a more robust analysis:
+populations at the level of breed. Of course bootstrapping would be helpful to
+get confidence intervals, so here we use the function `chao_bootstrap()` to
+simulate new data sets and `summarize_bootstrap()` to calculate statistical
+summarize based on those simulations. Since these can take a while, we're only
+going to perform 10 replicates. You will want to increase that number for a more
+robust analysis:
 
 ```{r bootstrap}
 set.seed(20151219) # Be sure to set a seed for any random analysis!
@@ -157,7 +158,7 @@ summarise_bootstrap(bs_reps, D_Jost) # Using the D_Jost function to summarize.
 ## Analysis of Molecular Variance
 
 AMOVA is a classical method of assessing population differentiation by 
-evaluating where the most variation exist in a hierarchical population structure
+evaluating where the most variation exists in a hierarchical population structure
 (Excoffier et al., 1992). We can use this to assess population differentiation 
 in countries and breeds by using the `amova()` function in *pegas*. All we need
 are:
@@ -177,8 +178,8 @@ bov_amova
 If the population was panmictic, we would expect to see extremely small variance
 components for Country and Breed compared to Error (i.e. the variation from
 individuals within populations). We don't see that and further suspect moderate
-differentiation. To test for this, you can have boostrap replicates by setting
-the `nperm` argument. Again, because these bootstraps take a long time, we'll
+differentiation. To test for this, you can boostrap replicates by setting
+the `nperm` argument. Again, because these bootstraps may take a long time, we'll
 set it to 10:
 
 ```{r pegas_amova_boot}
@@ -245,7 +246,7 @@ differentiation among breeds. This is supported and further bolstered by the
 results of AMOVA, showing us that there is significant differentiation among 
 countries and breeds. The DAPC analysis gives us a clear picture showing highly 
 differentiated African breeds with low diversity in the French breeds. Further
-steps could be to further assess factors such as inbreeding coefficients.
+steps could be to assess factors such as inbreeding coefficients.
 
 # Contributors
 
