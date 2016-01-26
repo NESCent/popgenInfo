@@ -1,0 +1,285 @@
+---
+title: "Calculating genetic differentiation from SSR data"
+---
+
+# Introduction
+
+We will analyze a data set of bovine samples from France and West Africa using
+F-statistics, AMOVA, and Discriminant Analysis of Principal Components (DAPC).
+We will analyze a data set of bovine samples from France and West Africa. We
+want to know if differentiation exists between Breeds or if it's based on
+geographic separation.
+
+# Data
+
+We are going to use the `microbov` data set from the *adegenet* package. This 
+data set consists of 704 bovine samples over 30 microsatellite loci (Laloe et 
+al., 2007). We will also need information about the Species, Breed, and
+Country/Region of origin for each sample. That data is stored in the file called
+[`bovine_strata.csv` (click here to
+download)](https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv).
+
+# Resources/Packages required
+
+We are going to use *mmod* for differentiation summary statistics, *pegas* for
+AMOVA, *adegenet* for DAPC, and we will use *reshape2* and *ggplot2* for
+plotting our results.
+
+Loading the required packages:  
+
+```{r, packages, message=FALSE}
+library("adegenet")
+library("pegas")
+library("mmod")
+library("reshape2")
+library("ggplot2")
+```
+
+# Analysis
+
+## Data preparation
+
+First, we need to load our data. Since the data is distributed with *adegenet*, 
+we can load it simply by using the function `data()`. Since we want to associate
+the different population strata with the data set, we also need to read in 
+[`bovine_strata.csv`](https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv)
+as a data frame.
+
+```{r, load_data_show, eval=FALSE}
+data("microbov", package = "adegenet")
+bovine_strata <- read.table("bovine_strata.csv", header = TRUE, sep = ",")
+```
+
+```{r, load_data_evaluate, echo=FALSE}
+# Note: the code chunk above will be shown to the reader, but it will not run.
+# This code chunk will run, but will not be shown to the reader.
+data("microbov", package = "adegenet")
+bovine_strata <- read.table("../data/bovine_strata.csv", header = TRUE, sep = ",")
+```
+
+The `microbov` data set is in a "genind" object. This is a way for adegenet to
+keep the genetic data and deomographic data together. Let's take a look at what
+our data looks like:
+
+```{r}
+microbov
+head(bovine_strata) # the function head shows the first 6 rows of a data frame
+```
+
+We can see that our data matches the description above. Now we need to set
+`bovine_strata` in `microbov`'s *strata* slot.
+
+```{r, set_strata}
+strata(microbov) <- bovine_strata
+microbov
+```
+
+If you look at the bottom of the output, under "Optional content", you can see
+that the `microbov` object now has three strata defined and we can use the
+function `setPop()` to set the population from any combination of these strata.
+
+## Summary Statistics
+
+Perhaps the best package for assessing summary statistics for population
+differentiation is [*mmod*](https://cran.r-project.org/package=mmod). This
+package provides differentiation statistics presented in (Miermans and Hedrick,
+2011), which scale to the
+maximum value that can possibly attained, allowing for comparison across
+measurements. I will not go into terrible detail about these measures or *mmod*,
+but you can read more by visiting the paper linked above and viewing the [*mmod*
+vignette](https://cran.r-project.org/web/packages/mmod/vignettes/mmod-demo.pdf),
+off of which this section is based.
+
+### Estimation
+
+We will first take a look at the summary statistics for differentiation by breed
+using the function `diff_stats()`:
+
+```{r}
+setPop(microbov) <- ~Breed # Use ~Country to analyze by country
+diff_bov <- diff_stats(microbov)
+diff_bov
+```
+
+The output in `$per.locus` are estimates of the following measures:
+
+| Variable  | Statistic      | Details/Authority |
+|-----------|----------------|-------------------|
+|`Hs       `| $H_S$          | Heterozygosity with population structure |
+|`Ht       `| $H_T$          | Heterozygosity without population structure |
+|`Gst      `| $G_{st}$       | Nei |
+|`Gprime_st`| $G_{st}^"$     | Hedrick |
+|`D        `| $D$            | Jost |
+
+The `$global` refers to global estimates of these statistics. `D_het` and
+`D_mean` represent the average heterozygosity and harmonic mean, respectively.
+
+All of these describe population differentiation, but $D$ can be interpreted
+as the amount of population differentiation from 0 (panmixia) to 1 (complete
+differentiation) (Hedrick and Miermans, 2011).
+
+### Plotting
+
+You could choose to report the global versions of these statistics, but it might
+be additionally useful to show them as a boxplots with points showing their
+estimates in red. I prefer to use *ggplot2* here because it allows me to easily 
+overlay the observations and estimates.
+
+```{r, plotting}
+per.locus <- melt(diff_bov$per.locus, varnames = c("Locus", "Statistic"))
+stats     <- c("Hs", "Ht", "Gst", "Gprime_st", "D", "D")
+glob      <- data.frame(Statistic = stats, value = diff_bov$global)
+head(per.locus)
+head(glob)
+
+ggplot(per.locus, aes(x = Statistic, y = value)) +
+  geom_boxplot() +
+  geom_point() +
+  geom_point(size = rel(3), color = "red", data = glob) +
+  ggtitle("Estimates of population differentiation")
+```
+
+### Confidence Intervals
+
+We can see that we have evidence for moderate differentiation in these 
+populations at the level of breed. Of course bootstrapping would be helpful to
+get confidence intervals, so here we use the function `chao_bootstrap()` to
+simulate new data sets and `summarize_bootstrap()` to calculate statistical
+summarize based on those simulations. Since these can take a while, we're only
+going to perform 10 replicates. You will want to increase that number for a more
+robust analysis:
+
+```{r bootstrap}
+set.seed(20151219) # Be sure to set a seed for any random analysis!
+bs_reps <- chao_bootstrap(microbov, nreps = 10)
+summarise_bootstrap(bs_reps, D_Jost) # Using the D_Jost function to summarize.
+```
+
+## Analysis of Molecular Variance
+
+AMOVA is a classical method of assessing population differentiation by 
+evaluating where the most variation exists in a hierarchical population structure
+(Excoffier et al., 1992). We can use this to assess population differentiation 
+in countries and breeds by using the `amova()` function in *pegas*. All we need
+are:
+
+1. a distance matrix among samples
+2. a data frame with hierarchical population strata
+
+> Note: we are using the syntax `pegas::amova()` because there is another
+> function called `amova()` in the *ade4* package.
+
+```{r pegas_amova}
+bov_dist  <- dist(microbov) # Euclidean distance
+bov_stra  <- strata(microbov)
+bov_amova <- pegas::amova(bov_dist ~ Country/Breed, data = bov_stra, nperm = 0)
+bov_amova
+```
+If the population was panmictic, we would expect to see extremely small variance
+components for Country and Breed compared to Error (i.e. the variation from
+individuals within populations). We don't see that and further suspect moderate
+differentiation. To test for this, you can boostrap replicates by setting
+the `nperm` argument. Again, because these bootstraps may take a long time, we'll
+set it to 10:
+
+```{r pegas_amova_boot}
+set.seed(20151219)
+bov_amova <- pegas::amova(bov_dist ~ Country/Breed, data = bov_stra, nperm = 10)
+bov_amova
+```
+
+Now we have evidence that these are significantly different.
+
+### Other implementations
+
+It is possible to do the same analyses in different packages, which I will list
+here.
+
+The *vegan* package has the function `adonis()` that implements a multivariate
+AMOVA and takes the same kind of arguments as the *pegas* implementation of
+`amova()`:
+
+```{r adonis, eval = FALSE}
+library("vegan")
+set.seed(20151219)
+res <- adonis(bov_dist ~ Country/Breed, data = bov_stra, permutations = 99)
+```
+
+The package *ade4* implements the original model, but it requires an abundance 
+matrix of haplotypes per population. The advantage of this version is the fact 
+that it calculates $\phi$ statistics for you. The package *poppr* provides a 
+wrapper for the *ade4* version that will sanitize the data and allows for
+calculation of within sample variance.
+
+```{r, poppr.amova, eval = FALSE}
+library("poppr")
+res <- poppr.amova(microbov, ~Country/Breed, within = FALSE)
+set.seed(20151219)
+randtest(res, nrepet = 99)
+```
+
+## Discriminant Analyses of Principal Components (DAPC)
+
+Finally, we will use DAPC in order to assess which populations have significant 
+structure (Jombart et al., 2011). For this, we will use the function `dapc()`
+from *adegenet*. 
+
+> Warning: This analyis is sensitive to the number of principal components you
+choose, so by default, you should run this function with just the data set and
+without any options beforehand (`dapc(microbov)`).
+
+```{r dapc}
+setPop(microbov) <- ~Country/Breed
+bov_dapc <- dapc(microbov, n.pca = 100, n.da = 4) # 100 principal components; 4 discriminant functions
+scatter(bov_dapc)
+```
+
+From this output, we can see that there is a lot of differentiation based on
+geography, but also that African breeds are a lot more differentiated than
+European breeds.
+
+# Conclusions
+
+We have assessed differentiation of these cattle breeds using tools in R. From 
+the diversity statistics, we can clearly see that there is moderate 
+differentiation among breeds. This is supported and further bolstered by the 
+results of AMOVA, showing us that there is significant differentiation among 
+countries and breeds. The DAPC analysis gives us a clear picture showing highly 
+differentiated African breeds with low diversity in the French breeds. Further
+steps could be to assess factors such as inbreeding coefficients.
+
+# Contributors
+
+- Zhian N. Kamvar (Author)
+
+
+# References
+
+Laloe D., Jombart T., Dufour A-B., Moazami-Goudarzi K. 2007. Consensus genetic
+structuring and typological value of markers using multiple co-inertia analysis.
+Genetics Selection Evolution 39:545–567. Available at:
+http://dx.doi.org/10.1051/gse:2007021
+
+Meirmans, P.G. and Hedrick, P.W., 2011. Assessing population structure: FST and
+related measures. Molecular Ecology Resources, 11:5-18. Available at:
+http://dx.doi.org/10.1111/j.1755-0998.2010.02927.x
+
+Excoffier L., Smouse PE., Quattro JM. 1992. Analysis of molecular variance
+inferred from metric distances among dNA haplotypes: Application to human
+mitochondrial dNA restriction data. Genetics 131:479–491. Available at:
+http://www.genetics.org/content/131/2/479.abstract
+
+Jombart T., Devillard S., Balloux F. 2010. Discriminant analysis of principal
+components: A new method for the analysis of genetically structured populations.
+BMC genetics 11:94. Available at: http://www.biomedcentral.com/1471-2156/11/94
+
+# Session Information
+
+This shows us useful information for reproducibility. Of particular importance
+are the versions of R and the packages used to create this workflow. It is
+considered good practice to record this information with every analysis.
+
+```{r, sessioninfo}
+options(width = 100)
+devtools::session_info()
+```
