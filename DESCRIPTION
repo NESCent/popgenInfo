@@ -4,7 +4,7 @@ Version: 0.1
 Authors@R: person("First", "Last", email = "first.last@example.com",
                   role = c("aut", "cre"))
 Depends: R (>= 3.1.0)
-URL: https://nescent.github.io/popgenInfo
+URL: https://github.com/NESCent/popgenInfo
 Imports:
   apex,
   ape,
