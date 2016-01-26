@@ -4,7 +4,8 @@ title: "Packages available in R"
 
 Package    | Title
 -----------|------------
-[adegenet](https://github.com/thibautjombart/adegenet) | *adegenet*: a R Package for the Multivariate Analysis of Genetic | [ape](http://ape-package.ird.fr/) | analysis of phylogenetics and evolution |
+[adegenet](https://github.com/thibautjombart/adegenet) |  multivariate analysis of genetic markers |
+[ape](http://ape-package.ird.fr/) | analysis of phylogenetics and evolution |
 [pegas](https://github.com/emmanuelparadis/pegas)| population and evolutionary genetic analysis system |
 [coalescentMCMC](https://github.com/emmanuelparadis/coalescentMCMC) | MCMC Algorithms for the Coalescent
 [poppr](https://github.com/grunwaldlab/poppr) | *poppr*, An R package for genetic analysis of populations with mixed 
@@ -13,6 +14,4 @@ Package    | Title
 [strataG](https://github.com/EricArcher/strataG)  | Summaries and Population Structure Analyses of Haplotypic and Genotypic  |
 [hierfstat](http://www2.unil.ch/popgen/softwares/hierfstat.htm) | Estimation and tests of hierarchical F-statistics |
 [rmetasim](https://github.com/stranda/rmetasim) | Forward-time population-genetic simulations with complex demography |
-[lea] (http://membres-timc.imag.fr/Olivier.Francois/LEA/software.htm)| R package for landscape ecological association studies
-other | ... |
-
+[lea](http://membres-timc.imag.fr/Olivier.Francois/LEA/software.htm)| R package for landscape ecological association studies |
