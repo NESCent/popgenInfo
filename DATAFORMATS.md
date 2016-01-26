@@ -3,8 +3,9 @@ title: "Data classes"
 ---
 
 The following table describes specialized objects to store data represented in
-population genetics packages. Conversion between all types is possible. Anyone
-developing a package for population genetic analysis is encouraged to use or
+population genetics packages. Conversion between all types is possible.
+
+Anyone developing a package for population genetic analysis is encouraged to use or
 build upon these data structures. If a new data structure is needed, please
 provide a conversion method to one or more of the classes listed below.
 
