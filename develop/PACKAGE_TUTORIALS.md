@@ -27,9 +27,8 @@ Below are some resources that can get you started writing R packages.
 
 # Tutorials
 
-## [Basics](package_basics.html)
-
-
+## Basics
+* [Creating a new R package for population genetics](package_basics.html)
 
 ## Documentation
 
