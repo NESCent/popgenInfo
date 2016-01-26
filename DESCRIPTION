@@ -18,7 +18,7 @@ Imports:
   genetics,
   hierfstat,
   pcadapt,
-  outFLANK,
+  OutFLANK,
   knitcitations,
   phangorn,
   phylobase,
@@ -27,5 +27,6 @@ Suggests:
   BioStrings,
   qvalue
 SystemRequirements: pandoc (>= 1.12.3) - http://johnmacfarlane.net/pandoc
-Remotes:
+Remotes: 
   whitlock/OutFLANK
+
