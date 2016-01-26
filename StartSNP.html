@@ -162,6 +162,7 @@ img {
               <li class="divider"></li>
               <li class="dropdown-header">For microsatellite data:</li>
               <li><a href="startMicrosatellite.html">Basic Statistics</a></li>
+              <li><a href="2015-12-15-microsatellite-differentiation.html">Population differentiation</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">For SNP data:</li>
               <!-- <li class="divider"></li> -->
@@ -420,17 +421,17 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0289  0.0844
-## 2  -0.2206  0.1664
-## 3  -0.2140 -0.0533
-## 4  -0.0324  0.3025
-## 5  -0.4309 -0.1193
-## 6  -0.1571  0.3687
-## 7   0.0252  0.0904
-## 8  -0.4840  0.1776
-## 9  -0.0423  0.0741
-## 10  0.0283  0.3284
-## 11 -0.0572  0.0431</code></pre>
+## 1  -0.0311  0.0889
+## 2  -0.2401  0.1425
+## 3  -0.2158 -0.0388
+## 4  -0.0526  0.2801
+## 5  -0.4348 -0.1402
+## 6  -0.1732  0.3082
+## 7   0.0182  0.0987
+## 8  -0.4796  0.2025
+## 9  -0.0370  0.0673
+## 10 -0.0144  0.3219
+## 11 -0.0524  0.0479</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex =</span> <span class="fl">0.7</span>)</code></pre>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
@@ -440,18 +441,18 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 <p>We used the pegas package.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata3, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0_10037_01_257 0.75465490  1 0.385006451    0.465
-## X0_10040_02_394 0.16628227  1 0.683437231    0.743
-## X0_10044_01_392 2.96053195  1 0.085319867    0.100
-## X0_10048_01_60  6.39076800  1 0.011471539    0.012
-## X0_10051_02_166 1.12035389  1 0.289842265    0.294
-## X0_10054_01_402 1.54582494  1 0.213752853    0.237
-## X0_10067_03_111 0.04868128  1 0.825374035    0.586
-## X0_10079_02_168 0.01579313  1 0.899992594    0.568
+## X0_10037_01_257 0.75465490  1 0.385006451    0.469
+## X0_10040_02_394 0.16628227  1 0.683437231    0.732
+## X0_10044_01_392 2.96053195  1 0.085319867    0.076
+## X0_10048_01_60  6.39076800  1 0.011471539    0.013
+## X0_10051_02_166 1.12035389  1 0.289842265    0.298
+## X0_10054_01_402 1.54582494  1 0.213752853    0.206
+## X0_10067_03_111 0.04868128  1 0.825374035    0.570
+## X0_10079_02_168 0.01579313  1 0.899992594    0.616
 ## X0_10112_01_169 0.41126025  1 0.521330544    1.000
-## X0_10113_01_119 0.74248768  1 0.388865151    0.441
-## X0_10116_01_165 1.87098306  1 0.171362531    0.218
-## X0_10151_01_86  8.94232481  1 0.002786379    0.002</code></pre>
+## X0_10113_01_119 0.74248768  1 0.388865151    0.451
+## X0_10116_01_165 1.87098306  1 0.171362531    0.258
+## X0_10151_01_86  8.94232481  1 0.002786379    0.007</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
