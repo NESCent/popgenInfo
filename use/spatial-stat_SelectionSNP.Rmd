@@ -15,33 +15,32 @@ The purpose of the vignette is to detect outlier SNP loci from a large number of
 
 # Data
 
-We will use a simulated data provided by Katie Lotterhos (Lotterhos et al. in prep) 
-THe initial data set is constituted of 509 individuals, 19 populations and 3084 SNP. 
-2 extra-columns: population labels, temperature
+We will use a simulated data provided by Katie Lotterhos (Lotterhos et al. in prep).  The initial data set is constituted of 509 individuals, 19 populations and 3084 SNP.It has  2 extra-columns: Population  and Temperature measures.
 SNP are in columns: each row contains one value at each SNP loci (separated by spaces or tabulations) corresponding to the number of reference alleles: 0 means zero copies of the reference allele, 1 means one copy of the reference allele (i.e. heterozygote), and 2 means two copies of the reference allele.   
 
 
 # Resources/Packages required
 
+- PCADAPT:http://membres-timc.imag.fr/Michael.Blum/PCAdapt.html
+- OutFlank:https://github.com/whitlock/OutFLANK
 
-PCADAPT:http://membres-timc.imag.fr/Michael.Blum/PCAdapt.html
-OutFlank:https://github.com/whitlock/OutFLANK
+Since OutFLANK is not yet on CRAN, you will need to install it from GitHub using the *devtools* R package. Additionally, OutFLANK depends on *qvalue* from [Bioconductor](http://www.bioconductor.org/packages/release/bioc/html/qvalue.html),  which must be installed beforehand.
 
+```{r, packages, eval = FALSE}
 
-Loading the required packages:  
-
-```{r, packages, eval=FALSE,message=FALSE}
 install.packages("devtools")
 library("devtools")
-library(pcadapt)
 source("https://bioconductor.org/biocLite.R")
 biocLite("qvalue")
 install_github("whitlock/OutFLANK")
-library(OutFLANK)
+
 
 ```
 
-```{r, loadpackage,echo=FALSE}
+Loading the required packages:
+
+```{r, loadpackage, message = FALSE}
+
 #Not shown on the screen 
 library(pcadapt)
 library(qvalue)
@@ -61,30 +60,34 @@ dim(sel)
 ```
 
 ```{r, load_data_evaluate, echo=FALSE}
+
 sel <- read.table("../data/SNPselection1.txt", h=T)
+dim(sel)
 
 ```
 
 
 
 ##section 2: PCAdapt 
+
 To run the function pcadapt, the user should specify the number K of principal components (PC) to work with: first perform with a large  number of principal components (e.g. higher than the number of populations), then use the 'scree plot' to chose the value of K.  It  displays the percentage of variance that is explained by each PC. The recommended value of K corresponds to the largest value of K before the plateau of  'scree plot' is reached. Then for a given SNP, a statistical test to define the SNP as outlier or not is based on the "loadings" that are defined as the correlation between the SNP and the PCs.The statictic test for detecting outlier SNPs is the Mahalanobis distance (between the K correlations of the SNP and each axis and mean correlations) and,which scaled by a constant, should have a chi-square distribution with K degrees of freedom under the assumption that there are no outlier. By default P-values of SNPs with a minor allele frequency smaller than 0.05 are not computed. A Manhattan plot displays log10 of the p-values.It is also possible to check the distribution of the p-values using a Q-Q plot. The authors suggest to use false discovery rate (q-value) to provide a list of outliers.
 
 ```{r, PCAdapt}
-genotype<-sel[,3:ncol(sel)]
+
+genotype <- sel[,3:ncol(sel)]
 dim(genotype)
 K <- 25 
-x <- pcadapt(data=genotype, K=K) 
+x <- pcadapt(data=genotype, K = K) 
 plot(x,option="screeplot") #19 groups seems to be the correct value
-plot(x,option="scores",pop=sel[,1]) #how populations are shared among the 19 groups
+plot(x,option="scores", pop = sel[,1]) #how populations are shared among the 19 groups
 
 K<-19
 x <- pcadapt(data=genotype, K=K, min.maf=0) 
 
 summary(x) #numerical quantities obtained after performing a PCA
-plot(x,option="manhattan")
-plot(x,option="qqplot",threshold=0.1)
-plot(x,option="stat.distribution") #Distribution of Mahalanobis distances.
+plot(x,option = "manhattan")
+plot(x,option = "qqplot",threshold=0.1)
+plot(x,option = "stat.distribution") #Distribution of Mahalanobis distances.
 
 qval <- qvalue(x$pvalues)$qvalues 
 alpha <- 0.1
@@ -92,7 +95,7 @@ outliers_pcadapt <- which(qval<alpha)
 print(outliers_pcadapt)
 length(outliers_pcadapt) # 14 outliers
 
-alpha<-0.05 #use of a more stringent threshold to detect outliers
+alpha <- 0.05 #use of a more stringent threshold to detect outliers
 outliers <- which(qval<alpha)
 print(outliers)
 length(outliers) #14 outliers
@@ -101,36 +104,36 @@ length(outliers) #14 outliers
 
 
 ##section 3: outFlank (https://github.com/whitlock/OutFLANK)
+
 A procedure to find Fst outliers based on an inferred distribution of neutral Fst: it uses likelihood on a trimmed distribution of Fst values to infer the distribution of Fst for neutral marker. This distribution is used to assign q-values to each locus to detect outliers loci potentially due to spatially heterogeneous selection. In practice, first the function MakeDiploidFSTMat allows to  calculate  the appropriate input dataframe among other parameters FST for each loci, and FST without sampling size correction (FSTNoCorr). Then the function outFlank estimate q-values and provides a list of outliers.   
 
 ```{r, outFLank}
 
-pop<-data.frame(sel[,1])
-ind<-paste("pop",pop[,1]) #vector with the name of population
+pop <- data.frame(sel[,1])
+ind <- paste("pop",pop[,1]) #vector with the name of population
 
 locinames <- as.character(seq(1:ncol(genotype))) #vector with the name of loci
 
 FstDataFrame <- MakeDiploidFSTMat(genotype, locinames, ind)
-plot(FstDataFrame$FST, FstDataFrame$FSTNoCorr, xlim=c(-0.01,0.3), ylim=c(-0.01,0.3),pch=20)
+plot(FstDataFrame$FST, FstDataFrame$FSTNoCorr, xlim=c(-0.01,0.3), ylim = c(-0.01,0.3),pch=20)
 abline(0,1) # Checking the effect of sample size on Fst since FSTCoCorr will be used in the follow
 hist(FstDataFrame$FSTNoCorr) 
 
 OF <- OutFLANK(FstDataFrame, NumberOfSamples=19, qthreshold = 0.05, RightTrimFraction = 0.05)
 
 # Plot the ditribution of Fst with the chi squared distribution
-OutFLANKResultsPlotter(OF, withOutliers = TRUE, NoCorr = TRUE, Hmin = 0.1, binwidth = 0.005, Zoom = FALSE, 
-                       RightZoomFraction = 0.05, titletext = NULL)
+OutFLANKResultsPlotter(OF, withOutliers = TRUE, NoCorr = TRUE, Hmin = 0.1, binwidth = 0.005, Zoom = FALSE, RightZoomFraction = 0.05, titletext = NULL)
 
 outliers_OF <- OF$results$LocusName[OF$results$OutlierFlag==TRUE]
 print(outliers_OF)
 length(outliers_OF)  # 11 outliers
 
-
 ```
 
 
 ## Section 4: Poisson regression : linking outliers and temperature
-We aim to test if the outliers detected with PCAdapt and OUTFLANCK (663  706  923 1163 1378 1639 1666 1825 2133 2556 2871) are correlated to the temperature. As the raw data are count of alleles, we used a GLM with an error model of poisson. We derive the relation for some of the outliers. You can do the test for all.
+
+We aim to test if the outliers detected with PCAdapt and OutFLANCK (663  706  923 1163 1378 1639 1666 1825 2133 2556 2871) are correlated to the temperature. As the raw data are count of alleles, we used a GLM with an error model of poisson. We derive the relation for some of the shared outliers. You can do the test for all.
 
 
 ```{r,Poisson regressions}
@@ -139,56 +142,25 @@ We aim to test if the outliers detected with PCAdapt and OUTFLANCK (663  706  92
 outliers <- outliers_pcadapt[which(outliers_pcadapt %in% outliers_OF)]
 length(outliers) # 11 outliers
 
-loc1<-genotype[,outliers[1]]
-temp<-sel[,2]
-loc1temp<-data.frame(loc1,temp)
-
-m0<-mean(loc1temp[loc1temp$loc1==0,2])
-m1<-mean(loc1temp[loc1temp$loc1==1,2])
-m2<-mean(loc1temp[loc1temp$loc1==2,2])
-boxplot(loc1temp[loc1temp$loc1==0,2],loc1temp[loc1temp$loc1==1,2],loc1temp[loc1temp$loc1==2,2])
+loc1 <- genotype[,outliers[1]]
+temp <- sel$Temperature
+loc1temp <- data.frame(loc1,temp)
  
 mod<-glm(loc1~temp,family=poisson)  
 summary(mod)  # This loci is significantly correlated to temperature
 
  
-loc2<-genotype[,outliers[2]]
-loc2temp<-data.frame(loc2,temp)
-boxplot(loc2temp[loc2temp$loc2==0,2],loc2temp[loc2temp$loc2==1,2],loc2temp[loc2temp$loc2==2,2])
- mod<-glm(loc2~temp,family=poisson)  
+loc2 <- genotype[,outliers[2]]
+loc2temp <- data.frame(loc2,temp)
+boxplot(loc2temp[loc2temp$loc2 == 0,2],loc2temp[loc2temp$loc2 == 1,2],loc2temp[loc2temp$loc2 == 2,2])
+mod <- glm(loc2~temp,family=poisson)  
 summary(mod) # This loci is significantly correlated to temperature
-
-loc3<-genotype[,outliers[3]]
-loc3temp<-data.frame(loc3,temp)
-boxplot(loc3temp[loc3temp$loc3==0,2],loc3temp[loc3temp$loc3==1,2],loc3temp[loc3temp$loc3==2,2])
- mod<-glm(loc3~temp,family=poisson)  
-summary(mod) # This loci is significantly correlated to temperature
-
-loc4<-genotype[,outliers[4]]
-loc4temp<-data.frame(loc4,temp)
-boxplot(loc4temp[loc4temp$loc4==0,2],loc4temp[loc4temp$loc4==1,2],loc4temp[loc4temp$loc4==2,2])
- mod<-glm(loc4~temp,family=poisson)  
-summary(mod) # This loci is significantly correlated to temperature
-
-loc5<-genotype[,outliers[5]]
-loctemp<-data.frame(loc5,temp)
-boxplot(loctemp[loctemp$loc5==0,2],loctemp[loctemp$loc5==1,2],loctemp[loctemp$loc5==2,2])
- mod<-glm(loc5~temp,family=poisson)  
-summary(mod) # This loci is significantly correlated to temperature
- 
-
-loc6<-genotype[,outliers[6]]
-loctemp<-data.frame(loc6,temp)
-boxplot(loctemp[loctemp$loc6==0,2],loctemp[loctemp$loc6==1,2],loctemp[loctemp$loc6==2,2])
- mod<-glm(loc6~temp,family=poisson)  
-summary(mod) # This loci is significantly correlated to temperature. You can do the same for the other one.
-
 
 # Test with a loci that is only selected by one method
 loc7<-genotype[,outliers_pcadapt[which(outliers_pcadapt %in% outliers_OF ==F)][1]]
 loctemp<-data.frame(loc7,temp)
-boxplot(loctemp[loctemp$loc7==0,2],loctemp[loctemp$loc7==1,2],loctemp[loctemp$loc7==2,2])
- mod<-glm(loc7~temp,family=poisson)  
+boxplot(loctemp[loctemp$loc7 == 0,2],loctemp[loctemp$loc7 == 1,2],loctemp[loctemp$loc7 == 2,2])
+mod <- glm(loc7~temp, family=poisson)  
 summary(mod) ## This loci is not significantly correlated to temperature
 
  
@@ -197,10 +169,12 @@ summary(mod) ## This loci is not significantly correlated to temperature
  
   
 # Conclusions
-PCA adapt detected 14 outliers.
-OUTFLANK  detected 11 outliers.
-11 outliers were detected by both methods
-Those common outliers are all significantly correlated with the temperatures as shown by poisson regressions. Such outliers can be potentially involved in local adaptation due to temperatures. However more analysis are necessary to confirm  that they are outliers, and which allele is potentially under selection.
+
+- *PCAdapt* detected 14 outliers 
+- *OutFLANK* detected 11 outliers 
+- 11 outliers were detected in common 
+- Those common outliers are all significantly correlated with the temperatures as shown by poisson regressions. Such outliers can be potentially involved in local adaptation due to temperatures. However more analysis are necessary to confirm  that they are outliers, and which allele is potentially under selection.
+
 
 
 ## What's next
@@ -209,22 +183,25 @@ Information on further analysis that could be done as LFFM (pakage LEA..).
 
 # Contributors
 
-- St?phanie Manel (Author) 
-- Alicia Dalongeville (Author)
+- Stephanie Manel (EPHE) (Author)  
+- Alicia Dalongeville (CEFE) (Author)
+- Zhian Kamvar (reviewer)
 
-References
--Duforet-Frebourg N, K Luu, G Laval, E Bazin, MGB Blum. Detecting genomic signatures of natural selection with principal component analysis: application to the 1000 Genomes data. Molecular Biology and Evolution (2016)  
+#References
 
--Whitlock MC, Lotterhos KE (2015) Reliable Detection of Loci Responsible for Local Adaptation: Inference of a Null Model through Trimming the Distribution of Fst. The American Naturalist 186, S24-S36.
+Duforet-Frebourg N, K Luu, G Laval, E Bazin, MGB Blum. (2016) Detecting genomic signatures of natural selection with principal component analysis: application to the 1000 Genomes data. Molecular Biology and Evolution (http://arxiv.org/abs/1504.04543)
 
+Whitlock MC, Lotterhos KE (2015) Reliable Detection of Loci Responsible for Local Adaptation: Inference of a Null Model through Trimming the Distribution of Fst. The American Naturalist 186, S24-S36. http://www.jstor.org/stable/10.1086/682949
 
 # Session Information
 
 Information about the R session used for this tutorial.
 
 ```{r, sessioninfo}
+
 options(width = 100)
 devtools::session_info()
+
 ```
 
 
