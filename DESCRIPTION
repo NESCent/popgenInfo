@@ -1,5 +1,5 @@
 Package: popgenInfo
-Title: popgenInfo is not really an R package, but this is here to list the dependencies for building the ggplot2 book.
+Title: popgenInfo is not really an R package, but this is here to list the dependencies for running all the vignettes.
 Version: 0.1
 Authors: Zhian N. Kamvar,
   Margarita M. López-Uribe,
