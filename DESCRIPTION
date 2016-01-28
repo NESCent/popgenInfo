@@ -1,8 +1,12 @@
 Package: popgenInfo
 Title: popgenInfo is not really an R package, but this is here to list the dependencies for building the ggplot2 book.
 Version: 0.1
-Authors@R: person("First", "Last", email = "first.last@example.com",
-                  role = c("aut", "cre"))
+Authors: Zhian N. Kamvar,
+  Margarita M. López-Uribe,
+  Simone Coughan,
+  Niklaus J. Grünwald,
+  Hilmar Lapp,
+  Stéphanie Manel
 Depends: R (>= 3.1.0)
 URL: https://github.com/NESCent/popgenInfo
 Imports:
@@ -29,4 +33,4 @@ Suggests:
 SystemRequirements: pandoc (>= 1.12.3) - http://johnmacfarlane.net/pandoc
 Remotes: 
   whitlock/OutFLANK
-
+Encoding: UTF-8
