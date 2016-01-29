@@ -2,19 +2,16 @@
 
 Build status: [![Circle CI](https://circleci.com/gh/NESCent/popgenInfo/tree/master.svg?style=svg)](https://circleci.com/gh/NESCent/popgenInfo/tree/master)
 
-This site provides resources for conducting population genetic analyses in R using existing packages. 
+## Introduction
 
-| [Get started](GETSTARTED.md) | [Learn](LEARN.md)                         |
-| :--------------:|:-------------------------:        |
-| [**Using R**](USINGR.md)     | [**Developer**](DEVELOPER.md) |
-
-
-Any member of the R user community proficient in population genetics is welcome to contibute to this site. See [here](CONTRIBUTING.md) for instructions on how to contribute workflow vignettes using [R markdown](R_MARKDOWN.md).
+This site provides resources for conducting population genetic analyses in R using existing packages. Any member of the R user community proficient in population genetics is welcome to contibute to this site. See [here](CONTRIBUTING.md) for instructions on how to contribute workflow vignettes using [R markdown](R_MARKDOWN.md).
 
 This site was developed during the [Population Genetics in R hackathon]
 held at [NESCent] March 16-20, 2015.
 
 ## Prerequisites and how this works ##
+
+### Building the Website with Docker
 
 The content of this resource is authored in Markdown and [R markdown]
 documents, which are rendered to HTML and published to a Github
@@ -38,6 +35,23 @@ ability to run GNU `make`.
 
 For further details on the mechanics of the build and deploy process,
 see the documentation in the top-level [Makefile](Makefile).
+
+### Authoring/Running Vignettes (without Docker)
+
+The vignettes presented on this website are authored in [R markdown] 
+utilizing packages listed in the [DESCRIPTION](DESCRIPTION) file. If
+you want to author a vignette and have a recent installation of R, 
+but do not have the time or authorization to install and run [Docker],
+you may obtain all the dependent packages by installing them from this
+repository using the R package [devtools](http://cran.r-project.org/package=devtools):
+
+```r
+install.packages("devtools", repos = "https://cran.r-project.org")
+source("https://bioconductor.org/biocLite.R")
+biocLite(c("qvalue", "Biostrings"))
+devtools::install_github("NESCent/popgenInfo")
+```
+
 
 [NESCent]: http://nescent.org
 [Population Genetics in R hackathon]: https://github.com/NESCent/r-popgen-hackathon
