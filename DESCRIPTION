@@ -1,0 +1,36 @@
+Package: popgenInfo
+Title: popgenInfo is not really an R package, but this is here to list the dependencies for running all the vignettes.
+Version: 0.1
+Authors: Zhian N. Kamvar,
+  Margarita M. López-Uribe,
+  Simone Coughan,
+  Niklaus J. Grünwald,
+  Hilmar Lapp,
+  Stéphanie Manel
+Depends: R (>= 3.1.0)
+URL: https://github.com/NESCent/popgenInfo
+Imports:
+  apex,
+  ape,
+  adegenet,
+  pegas,
+  coalescentMCMC,
+  mmod,
+  poppr,
+  strataG,
+  rmetasim,
+  genetics,
+  hierfstat,
+  pcadapt,
+  OutFLANK,
+  knitcitations,
+  phangorn,
+  phylobase,
+  phytools
+Suggests:
+  BioStrings,
+  qvalue
+SystemRequirements: pandoc (>= 1.12.3) - http://johnmacfarlane.net/pandoc
+Remotes: 
+  whitlock/OutFLANK
+Encoding: UTF-8
