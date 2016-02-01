@@ -4,9 +4,9 @@ Build status: [![Circle CI](https://circleci.com/gh/NESCent/popgenInfo/tree/mast
 
 ## Introduction
 
-This site provides resources for conducting population genetic analyses in R using existing packages. Any member of the R user community proficient in population genetics is welcome to contibute to this site. See [here](CONTRIBUTING.md) for instructions on how to contribute workflow vignettes using [R markdown](R_MARKDOWN.md).
+This site provides resources for conducting population genetic analyses in R using existing packages. Any member of the R user community proficient in population genetics is welcome to contibute to this site. See [instructions](CONTRIBUTING.md) on how to contribute workflow vignettes using [R markdown](R_MARKDOWN.md).
 
-This site was developed during the [Population Genetics in R hackathon]
+Development of this site started at the [Population Genetics in R hackathon]
 held at [NESCent] March 16-20, 2015.
 
 ## Prerequisites and how this works ##
