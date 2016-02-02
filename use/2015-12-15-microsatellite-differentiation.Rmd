@@ -251,6 +251,7 @@ steps could be to assess factors such as inbreeding coefficients.
 # Contributors
 
 - Zhian N. Kamvar (Author)
+- Simone Coughlan (Editor)
 
 
 # References
