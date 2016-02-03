@@ -131,9 +131,9 @@ length(outliers_OF)  # 11 outliers
 ```
 
 
-## Section 4: Poisson regression : linking outliers and temperature
+## Section 4: Logistic regression : linking outliers and temperature
 
-We aim to test if the outliers detected with PCAdapt and OutFLANCK (663  706  923 1163 1378 1639 1666 1825 2133 2556 2871) are correlated to the temperature. As the raw data are count of alleles, we used a GLM with an error model of poisson. We derive the relation for some of the shared outliers. You can do the test for all.
+We aim to test if the outliers detected with PCAdapt and OutFLANCK (663  706  923 1163 1378 1639 1666 1825 2133 2556 2871) are correlated to the temperature. We use a GLM with a binomial error to model the probability to have the allele "A" out of the two alleles. We derive the relation for some of the shared outliers. You can do the test for all.
 
 
 ```{r,Poisson regressions}
@@ -146,21 +146,21 @@ loc1 <- genotype[,outliers[1]]
 temp <- sel$Temperature
 loc1temp <- data.frame(loc1,temp)
  
-mod<-glm(loc1~temp,family=poisson)  
+mod<-glm(cbind(loc1, 2-loc1)~temp,family=binomial)  
 summary(mod)  # This loci is significantly correlated to temperature
 
  
 loc2 <- genotype[,outliers[2]]
 loc2temp <- data.frame(loc2,temp)
 boxplot(loc2temp[loc2temp$loc2 == 0,2],loc2temp[loc2temp$loc2 == 1,2],loc2temp[loc2temp$loc2 == 2,2])
-mod <- glm(loc2~temp,family=poisson)  
+mod <- glm(cbind(loc2,2-loc2)~temp,family=binomial)  
 summary(mod) # This loci is significantly correlated to temperature
 
 # Test with a loci that is only selected by one method
 loc7<-genotype[,outliers_pcadapt[which(outliers_pcadapt %in% outliers_OF ==F)][1]]
 loctemp<-data.frame(loc7,temp)
 boxplot(loctemp[loctemp$loc7 == 0,2],loctemp[loctemp$loc7 == 1,2],loctemp[loctemp$loc7 == 2,2])
-mod <- glm(loc7~temp, family=poisson)  
+mod <- glm(cbind(loc7, 2-loc7)~temp, family=binomial)  
 summary(mod) ## This loci is not significantly correlated to temperature
 
  
