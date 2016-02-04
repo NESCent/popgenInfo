@@ -100,11 +100,11 @@ amova(allData_dist ~ populations, data = strata(allData3), nperm = 100)
 
 # Conclusions
 
-Test
+In this vignette, we learned how to estimate different parameters of overall and pairwise population differentiation (Nei's Gst, Hedrick's Gst, Jost D) from DNA sequence data. We also learned how to do a hierarchical analysis of population structure using AMOVA.
 
 ## What's next
 
-Information on further analysis that could be done, other workflows [can be linked as well](DifferentiationSNP.html) (note the HTML as opposed to Rmd link).
+With these exploratory analyses, we understand how genetic diversity is distributed among populations. One could now move to testing specific hypotheses than could explain the patterns of population structure found with the F-statistics.
 
 # Contributors
 
