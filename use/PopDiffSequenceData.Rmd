@@ -100,6 +100,8 @@ amova(allData_dist ~ populations, data = strata(allData3), nperm = 100)
 
 # Conclusions
 
+Test
+
 ## What's next
 
 Information on further analysis that could be done, other workflows [can be linked as well](DifferentiationSNP.html) (note the HTML as opposed to Rmd link).
