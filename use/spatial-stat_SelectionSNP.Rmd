@@ -34,7 +34,7 @@ source("https://bioconductor.org/biocLite.R")
 biocLite("qvalue")
 install_github("whitlock/OutFLANK")
 
-
+library(ggplot2)
 ```
 
 Loading the required packages:
@@ -45,7 +45,7 @@ Loading the required packages:
 library(pcadapt)
 library(qvalue)
 library(OutFLANK)
-
+library(ggplot2)
 ```
 
  
@@ -136,7 +136,7 @@ length(outliers_OF)  # 11 outliers
 We aim to test if the outliers detected with PCAdapt and OutFLANCK (663  706  923 1163 1378 1639 1666 1825 2133 2556 2871) are correlated to the temperature. We use a GLM with a binomial error to model the probability to have the allele "A" out of the two alleles. We derive the relation for some of the shared outliers. You can do the test for all.
 
 
-```{r,Poisson regressions}
+```{r,Binomial regressions}
 
 # We keep the outliers loci selected by both pcadapt and outflank
 outliers <- outliers_pcadapt[which(outliers_pcadapt %in% outliers_OF)]
@@ -153,13 +153,26 @@ summary(mod)  # This loci is significantly correlated to temperature
 loc2 <- genotype[,outliers[2]]
 loc2temp <- data.frame(loc2,temp)
 boxplot(loc2temp[loc2temp$loc2 == 0,2],loc2temp[loc2temp$loc2 == 1,2],loc2temp[loc2temp$loc2 == 2,2])
+
+
+ggplot(loc2temp, aes(x = factor(loc2), y = temp)) + 
+  geom_boxplot() + 
+  xlab("Major allele count") +
+  ylab("Temperature (Centigrade)")
+
+
 mod <- glm(cbind(loc2,2-loc2)~temp,family=binomial)  
 summary(mod) # This loci is significantly correlated to temperature
 
 # Test with a loci that is only selected by one method
 loc7<-genotype[,outliers_pcadapt[which(outliers_pcadapt %in% outliers_OF ==F)][1]]
-loctemp<-data.frame(loc7,temp)
-boxplot(loctemp[loctemp$loc7 == 0,2],loctemp[loctemp$loc7 == 1,2],loctemp[loctemp$loc7 == 2,2])
+loc7temp<-data.frame(loc7,temp)
+
+ggplot(loc2temp, aes(x = factor(loc7), y = temp)) + 
+  geom_boxplot() + 
+  xlab("Major allele count") +
+  ylab("Temperature (Centigrade)")
+
 mod <- glm(cbind(loc7, 2-loc7)~temp, family=binomial)  
 summary(mod) ## This loci is not significantly correlated to temperature
 
