@@ -32,12 +32,13 @@ The basic steps of the process are:
 1. **Fork** the [popgenInfo repository](https://github.com/NESCent/popgenInfo)\*
 2. **Clone** your fork to your local machine.\*
 3. Checkout your master branch, **fetch** the changes from NESCent and **merge**
-   them into your fork.
+   them into your fork\^.
 4. Create a new **branch** and then **add** and **commit** new changes or content.
 5. **Push** your changes to your fork.
 6. Open a **pull request** from your fork to NESCent.
 
-\* These should only be done once.
+\* These should only be done once.    
+\^ Start here if you already have cloned your fork.
 
 This particular tutorial will show you the basics of contributing to the
 popgenInfo website using the R package
@@ -59,6 +60,8 @@ to work with git to help you commit changes, pull, and push. For the purposes of
 this tutorial, these things are not necessary.
 
 # Step 1: Forking the repository (DO ONCE)
+
+> If you have already forked and cloned the repository, go to Step 3.
 
 Go to 
 [https://github.com/NESCent/popgenInfo](https://github.com/NESCent/popgenInfo) 
