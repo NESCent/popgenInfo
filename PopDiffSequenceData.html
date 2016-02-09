@@ -222,6 +222,7 @@ img {
 <div id="TOC">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
+<li><a href="#data">Data</a></li>
 <li><a href="#resourcespackages">Resources/Packages</a></li>
 <li><a href="#import-data">Import data</a></li>
 <li><a href="#pairwise-population-differentiation">Pairwise population differentiation</a></li>
@@ -237,6 +238,10 @@ img {
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Now, we will discuss in more detail how to assess population genetic structure from sequence data. Assuming that you have a priori information about how the individuals are grouped in subpopulations, one can do the following analyses: 1) quantify pairwise subpopulation structure and their significance, 2) test for hierarchical structure among groups of subpopulations, and 3) use population clustering algorithms to corroborate the a priori grouping hypothesis. We will go into each of these analyses in this vignette.</p>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>Data used for the following analyses come from one mitochondrial gene (Cytochrome Oxidase I = <a href="https://github.com/nescent/popgenInfo/blob/master/data/Ebom_mt.fas">‘Ebom_mt.fas’</a>) and one nuclear gene (Calcium/Calmodulin-Dependent Protein Kinase II = <a href="https://github.com/nescent/popgenInfo/blob/master/data/Ebom_CAD.fas">‘Ebom_CAD.fas’</a>) of the orchid bee Eulaema bombiformis.</p>
 </div>
 <div id="resourcespackages" class="section level1">
 <h1>Resources/Packages</h1>
@@ -371,32 +376,32 @@ allData3</code></pre>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   1.6347  (1.0978-2.5374)
-## CAD  1.6847  (1.109-2.5455)
+## mt   1.6077  (1.0857-2.8358)
+## CAD  1.688   (1.1986-2.4059)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.6442   (1.171-2.3501)</code></pre>
+## 1.6323   (1.2368-2.0964)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, Gst_Hedrick) <span class="co"># for Hedrick&#39;s Gst</span></code></pre>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   1.0368  (1.0089-1.089)
-## CAD  1.0202  (1.0022-1.0537)
+## mt   1.0362  (1.0063-1.0874)
+## CAD  1.0204  (1.0055-1.0476)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.0286   (1.0089-1.0594)</code></pre>
+## 1.0287   (1.0094-1.0554)</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, D_Jost)      <span class="co"># for Jost&#39;s D</span></code></pre>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   0.9057  (0.8401-0.9571)
-## CAD  0.9512  (0.9119-0.9942)
+## mt   0.9051  (0.852-0.9509)
+## CAD  0.9508  (0.9052-0.9828)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9291   (0.894-0.9636)
+## 0.9289   (0.8944-0.9601)
 ## 
 ## Global Estimate based on harmonic mean of statistic
-## 0.9275   (0.89-0.9615)</code></pre>
+## 0.927    (0.8954-0.9589)</code></pre>
 </div>
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
@@ -452,7 +457,7 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       Zulu                        
-##  date     2016-02-04</code></pre>
+##  date     2016-02-09</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-3   2015-11-22 CRAN (R 3.2.3)
