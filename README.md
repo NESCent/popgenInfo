@@ -9,7 +9,7 @@ This site provides resources for conducting population genetic analyses in R usi
 Development of this site started at the [Population Genetics in R hackathon]
 held at [NESCent] March 16-20, 2015.
 
-## Prerequisites and how this works ##
+## Prerequisites and how this works
 
 ### Building the Website with Docker
 
@@ -24,7 +24,7 @@ changes, the rendering is done from within a [Docker] container that has
 everything preinstalled (see the [Dockerfile](build/Dockerfile)).
 
 As a consequence, contributors need not worry about installing the
-numerous necssary software components themselves, but to build the
+numerous necessary software components themselves. However, to build the
 site locally, one has to have docker set up to run. See
 [Docker installation guides], then click on the "Installation" tab and
 choose your OS to learn about how to get Docker installed and running
@@ -52,6 +52,15 @@ biocLite(c("qvalue", "Biostrings"))
 devtools::install_github("NESCent/popgenInfo")
 ```
 
+## License and How to contribute
+
+All content of this project is released under the MIT license. Please
+see the file LICENSE for details.
+
+We welcome contributions by the community. Please see the file
+[CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions. Note
+that this project has adopted a [Contributor Code of Conduct](CONDUCT.md).
+By participating you agree to abide by its terms.
 
 [NESCent]: http://nescent.org
 [Population Genetics in R hackathon]: https://github.com/NESCent/r-popgen-hackathon
@@ -59,6 +68,3 @@ devtools::install_github("NESCent/popgenInfo")
 [Circle CI]: http://circleci.com
 [Docker]: https://www.docker.com/whatisdocker/
 [Docker installation guides]: https://docs.docker.com/
-
-
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
