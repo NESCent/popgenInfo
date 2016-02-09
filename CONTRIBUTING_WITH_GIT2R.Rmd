@@ -29,13 +29,14 @@ how you took them.
 
 The basic steps of the process are:
 
-1. **Fork** the [popgenInfo repository](https://github.com/NESCent/popgenInfo)\*
-2. **Clone** your fork to your local machine.\*
-3. Checkout your master branch, **fetch** the changes from NESCent and **merge**
+i. **Fork** the [popgenInfo repository](https://github.com/NESCent/popgenInfo)\*    
+ii. **Clone** your fork to your local machine.\*
+
+1. Checkout your master branch, **fetch** the changes from NESCent and **merge**
    them into your fork\^.
-4. Create a new **branch** and then **add** and **commit** new changes or content.
-5. **Push** your changes to your fork.
-6. Open a **pull request** from your fork to NESCent.
+2. Create a new **branch** and then **add** and **commit** new changes or content.
+3. **Push** your changes to your fork.
+4. Open a **pull request** from your fork to NESCent.
 
 \* These should only be done once.    
 \^ Start here if you already have cloned your fork.
@@ -59,7 +60,7 @@ If you have also installed [git](https://git-scm.com/), you can set up Rstudio
 to work with git to help you commit changes, pull, and push. For the purposes of
 this tutorial, these things are not necessary.
 
-# Step 1: Forking the repository (DO ONCE)
+# Step i: Forking the repository (DO ONCE)
 
 > If you have already forked and cloned the repository, go to Step 3.
 
@@ -70,7 +71,7 @@ button](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository
 This will create a copy of the NESCent popgenInfo repository to your account.
 After you've forked the repository, you never have to fork it again!
 
-# Step 2: Clone your fork to your computer (DO ONCE)
+# Step ii: Clone your fork to your computer (DO ONCE)
 
 Now that you have your repository forked to your account, you will need to 
 **clone** it to your computer. Just like forking, you only have to clone your
@@ -257,7 +258,7 @@ remotes(repo)
 
 With all of this information set, we can begin working on our repository.
 
-# Step 3: Keeping your fork up to date
+# Step 1: Keeping your fork up to date
 
 The first thing we need to do is make sure that our master branch is up to date.
 Since other people are also contributing to this project, it is possible for
@@ -327,7 +328,7 @@ Now, when you check your fork, it should be updated with the most recent
 changes. From here, we can checkout a new branch and then proceed with adding 
 our changes or new workflow.
 
-# Step 4: Creating a New Branch
+# Step 2: Creating a New Branch
 
 When you add contributions, the best practice is to create a new branch off of
 the master. A **branch** is a term that indicates a sort of sandbox for a
@@ -440,7 +441,7 @@ including any data, place it in the **data/** directory. Once you add these
 files, you need to to **add** these files and then you should **commit**, which
 we will show you how to do below.
 
-# Step 5: Adding content, committing, and pushing
+# Step 3: Adding content, committing, and pushing
 
 If you are using Rstudio, you can use it to integrate with git. This allows you 
 to do things like commit, push, and pull. Hadley Wickham, chief scientist at 
