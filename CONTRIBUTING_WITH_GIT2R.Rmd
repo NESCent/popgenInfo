@@ -519,6 +519,56 @@ we see that there is a **Remote** associated with this fork, we can simply use
 push(repo, credentials = cred_token())
 ```
 
+# Step 4: Creating a Pull Request
+
+## Overview
+
+Now that you've successfully set up git, created a new branch, and created a new
+vignette, it's time to fill it with content. You can work in your vignette like
+you would write in any other Rmarkdown document and keep track of your changes
+like we showed above by **adding** and **committing** your changes followed by
+**pushing** these up to your fork. 
+
+Once you are finished with all of your changes, you can create a pull request 
+from your GitHub fork to NESCent. Your pull request begins a process of open 
+peer review where content, accuracy, and style are considered. If changes are 
+suggested, you can make them on your fork and your pull request will be
+automatically updated with them. When all questions and concerns have been
+addressed, the pull request may be merged into the NESCent repository as long as
+two of the maintainers approve.
+
+## Creating a pull request
+
+### Through R
+
+You can tell R to open a browser for you to create your pull request. The URL 
+for this is in the form of 
+https://github.com/**USER**/popgenInfo/pull/new/**BRANCH**. We can create this 
+URL by using the function `paste()` to glue the pieces together and then use the
+`utils::browseURL()` function to open up a window. Note we are using the
+variable called `BRANCH` that we named above.
+
+
+```{r make_pull}
+(my_account       <- dirname(remote_url(repo, "origin")))
+(pull_request_url <- paste(my_account, "popgenInfo/pull/new", BRANCH, sep = "/"))
+```
+
+Now that you have the URL, you can browse to it.
+
+```{r browse_pull, eval = FALSE}
+utils::browseURL(pull_request_url)
+```
+
+### Manually
+
+If you don't want to do this from R, you can do it through your web browser.
+
+1. Navigate to your fork on GitHub
+2. Click on the dropdown menu on the left that says **"Branch: master"** and
+   switch to the branch you want to create the pull request from.
+3. Click on the green button that says **"New Pull Request"**.
+
 # Conclusions
 
 From this tutorial, you should have learned how to:
@@ -539,28 +589,17 @@ to keep track of your workflows, making your science more reproducible.
 
 # What's Next?
 
-Now that you've successfully set up git, created a new branch, and created a new
-vignette, it's time to fill it with content. You can work in your vignette like
-you would write in any other Rmarkdown document and keep track of your changes
-like we showed above by **adding** and **committing** your changes followed by
-**pushing** these up to your fork. 
-
-Once you are finished with all of your changes, you can create a pull request 
-from your GitHub fork to NESCent. Your pull request begins a process of open 
-peer review where content, accuracy, and style are considered. If changes are 
-suggested, you can make them on your fork and your pull request will be
-automatically updated with them. When all questions and concerns have been
-addressed, the pull request may be merged into the NESCent repository as long as
-two of the maintainers approve.
-
-If it passes peer review and is published, you can update your fork: checkout
-your master branch, fetch the changes from NESCent, merge those changes, and
-push them up to the master branch on your fork to make it even with NESCent.
+Once your pull request passes peer review and is published, you can update your 
+fork by starting from Step 1: checkout your master branch, fetch the changes
+from NESCent, merge those changes, and push them up to the master branch on your
+fork to make it even with NESCent.
 
 # Contributors
 
  - Zhian N. Kamvar (Author)
  - Hilmar Lapp (Reviewer)
+ - Margarita M. Lopéz (Reviewer)
+ - Stéphanie Manel (Reviewer)
 
 # Session Information
 
