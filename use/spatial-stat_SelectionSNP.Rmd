@@ -33,7 +33,6 @@ library("devtools")
 source("https://bioconductor.org/biocLite.R")
 biocLite("qvalue")
 install_github("whitlock/OutFLANK")
-
 library(ggplot2)
 ```
 
@@ -175,7 +174,6 @@ ggplot(loc2temp, aes(x = factor(loc7), y = temp)) +
 
 mod <- glm(cbind(loc7, 2-loc7)~temp, family=binomial)  
 summary(mod) ## This loci is not significantly correlated to temperature
-
  
 ```
 
