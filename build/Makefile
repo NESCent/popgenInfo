@@ -4,7 +4,9 @@ HTML_DIRS  := $(patsubst %.Rmd, %_files, $(wildcard *.Rmd))
 HTML_DIRS  := $(HTML_DIRS) $(patsubst %.md, %_files, $(wildcard *.md))
 
 DATADIR ?= $(CURDIR)/../data
-SITEARCH = ../site.tar
+
+# we let this be a dotfile so that rm -r * won't match it
+SITEARCH = ../.site.tar
 
 all: clean html
 
