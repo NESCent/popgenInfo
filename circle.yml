@@ -27,6 +27,7 @@ deployment:
             - make deploy
             - git checkout gh-pages
             - rm -r *
+            - git checkout master -- circle.yml
             - tar xvf .site.tar
             - git add --all
             - git commit -m "Website rebuild"
