@@ -92,24 +92,41 @@ body {
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
+div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
 pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; }
-code > span.dt { color: #204a87; }
-code > span.dv { color: #0000cf; }
-code > span.bn { color: #0000cf; }
-code > span.fl { color: #0000cf; }
-code > span.ch { color: #4e9a06; }
-code > span.st { color: #4e9a06; }
-code > span.co { color: #8f5902; font-style: italic; }
-code > span.ot { color: #8f5902; }
-code > span.al { color: #ef2929; }
-code > span.fu { color: #000000; }
-code > span.er { font-weight: bold; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -250,7 +267,7 @@ img {
 <li><a href="http://rstudio.org/download">Download Rstudio here</a></li>
 </ul>
 <p>You can install <code>devtools</code> by typing in your R console:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>, <span class="dt">repos =</span> <span class="st">&quot;http://cran.rstudio.com/&quot;</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>, <span class="dt">repos =</span> <span class="st">&quot;http://cran.rstudio.com/&quot;</span>)</code></pre></div>
 <p>You might also need some background noise to avoid distraction. I recommend <a href="http://mynoise.net/NoiseMachines/spaceshipNoiseGenerator.php">the sound of a space ship control room</a>.</p>
 </div>
 <div id="tutorials-and-helpful-links" class="section level2">
@@ -280,7 +297,7 @@ img {
 <div id="description" class="section level3">
 <h3><code>DESCRIPTION</code></h3>
 <p>This file simply lists all the metadata needed for the package. It lists things such as Authors, Packages it needs to run, etc. You can view any package’s DESCRIPTION file by typing <code>packageDescription(&quot;package_name&quot;)</code></p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">packageDescription</span>(<span class="st">&quot;poppr&quot;</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">packageDescription</span>(<span class="st">&quot;poppr&quot;</span>)</code></pre></div>
 <pre><code>## Package: poppr
 ## Type: Package
 ## Title: Genetic Analysis of Populations with Mixed Reproduction
@@ -325,7 +342,7 @@ img {
 ##        Grunwald [ths]
 ## Repository: CRAN
 ## Date/Publication: 2015-12-01 08:01:21
-## Built: R 3.2.3; x86_64-pc-linux-gnu; 2016-02-03 04:50:48 UTC; unix
+## Built: R 3.2.3; x86_64-pc-linux-gnu; 2016-02-10 07:34:31 UTC; unix
 ## 
 ## -- File: /usr/local/lib/R/site-library/poppr/Meta/package.rds</code></pre>
 </div>
@@ -356,8 +373,8 @@ img {
 <div id="setting-up-your-information" class="section level3">
 <h3>Setting up your information</h3>
 <p>Devtools will create a pre-set package for you, but it will be easier for you if you set it up with your name and information, so that the DESCRIPTION file is automatically generated with the right information. Below are the default options for devtools. You can use <code>?devtools</code> to find out more information:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;devtools&quot;</span>)
-<span class="kw">options</span>()[<span class="kw">grep</span>(<span class="st">&quot;devtools&quot;</span>, <span class="kw">names</span>(<span class="kw">options</span>()))]</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;devtools&quot;</span>)
+<span class="kw">options</span>()[<span class="kw">grep</span>(<span class="st">&quot;devtools&quot;</span>, <span class="kw">names</span>(<span class="kw">options</span>()))]</code></pre></div>
 <pre><code>## $devtools.desc
 ## list()
 ## 
@@ -377,9 +394,9 @@ img {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/RtmpquTMcs/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/Rtmpjaugc7/R-lib&quot;</code></pre>
 <p>After looking at the documentation, we know that we want to change the values <code>devtools.desc.author</code>, <code>devtools.desc.license</code>, <code>devtools.name</code>. We will also add a “Maintainer” field to the DESCRIPTION file (tells users who to blame). The others don’t matter for now. We can add them in thusly (Note, I am using my name; you should obviously use your own):</p>
-<pre class="sourceCode r"><code class="sourceCode r">authors_at_r &lt;-<span class="st"> </span><span class="kw">paste0</span>(
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">authors_at_r &lt;-<span class="st"> </span><span class="kw">paste0</span>(
   <span class="st">&quot;&#39;&quot;</span>,
   <span class="kw">person</span>(
     <span class="st">&quot;Zhian N.&quot;</span>, 
@@ -394,7 +411,7 @@ img {
 <span class="kw">options</span>(<span class="dt">devtools.name =</span> <span class="st">&quot;Zhian N. Kamvar&quot;</span>)
 <span class="kw">options</span>(<span class="dt">devtools.desc.license =</span> <span class="st">&quot;GPL-3&quot;</span>)
 <span class="kw">options</span>(<span class="dt">devtools.desc =</span> <span class="kw">list</span>(<span class="st">&quot;Maintainer&quot;</span> =<span class="st"> &quot;&#39;Zhian N. Kamvar&#39; &lt;kamvarz@science.oregonstate.edu&gt;&quot;</span>))
-<span class="kw">options</span>()[<span class="kw">grep</span>(<span class="st">&quot;devtools&quot;</span>, <span class="kw">names</span>(<span class="kw">options</span>()))]</code></pre>
+<span class="kw">options</span>()[<span class="kw">grep</span>(<span class="st">&quot;devtools&quot;</span>, <span class="kw">names</span>(<span class="kw">options</span>()))]</code></pre></div>
 <pre><code>## $devtools.desc
 ## $devtools.desc$Maintainer
 ## [1] &quot;&#39;Zhian N. Kamvar&#39; &lt;kamvarz@science.oregonstate.edu&gt;&quot;
@@ -416,13 +433,13 @@ img {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/RtmpquTMcs/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/Rtmpjaugc7/R-lib&quot;</code></pre>
 <blockquote>
 <p>It is much easier to edit the DESCRIPTION file by hand afterward. This simply demonstrates how you can get started.</p>
 </blockquote>
 <p>Now we can create a new package called <em>myFirstPackage</em> in our current working directory by typing:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;devtools&quot;</span>)
-<span class="kw">create</span>(<span class="st">&quot;myFirstPackage&quot;</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;devtools&quot;</span>)
+<span class="kw">create</span>(<span class="st">&quot;myFirstPackage&quot;</span>)</code></pre></div>
 <pre><code>## Package: myFirstPackage
 ## Title: What the Package Does (one line, title case)
 ## Version: 0.0.0.9000
@@ -433,7 +450,7 @@ img {
 ## LazyData: true
 ## Maintainer: &#39;Zhian N. Kamvar&#39; &lt;kamvarz@science.oregonstate.edu&gt;</code></pre>
 <p>You can also use <code>check()</code> to see if your package passes <a href="http://r-pkgs.had.co.nz/check.html"><code>R CMD check</code></a>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">check</span>(<span class="st">&quot;myFirstPackage&quot;</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">check</span>(<span class="st">&quot;myFirstPackage&quot;</span>)</code></pre></div>
 <p>Now all you have to do is add in your R files and document your functions.</p>
 </div>
 </div>
@@ -452,8 +469,8 @@ img {
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools::<span class="kw">session_info</span>()</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
+devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
 ##  version  R version 3.2.3 (2015-12-10)
@@ -461,8 +478,8 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
-##  tz       Zulu                        
-##  date     2016-02-09</code></pre>
+##  tz       &lt;NA&gt;                        
+##  date     2016-02-11</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package   * version date       source        
 ##  devtools  * 1.10.0  2016-01-23 CRAN (R 3.2.3)

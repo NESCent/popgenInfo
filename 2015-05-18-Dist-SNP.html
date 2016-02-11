@@ -92,24 +92,41 @@ body {
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
+div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
 pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; }
-code > span.dt { color: #204a87; }
-code > span.dv { color: #0000cf; }
-code > span.bn { color: #0000cf; }
-code > span.fl { color: #0000cf; }
-code > span.ch { color: #4e9a06; }
-code > span.st { color: #4e9a06; }
-code > span.co { color: #8f5902; font-style: italic; }
-code > span.ot { color: #8f5902; }
-code > span.al { color: #ef2929; }
-code > span.fu { color: #000000; }
-code > span.er { font-weight: bold; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -252,32 +269,32 @@ img {
 <p>The dataset “Master_Pinus_data_genotype.txt” can be downloaded <a href="https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt">here</a>.</p>
 <p>The text file is a matrix of (550 rows x 3086 columns). It contains 4 extra columns: first column is the label of the individuals, the three other are description of the region, all the other columns are for the genotypes as (AA or AT…).</p>
 <p>When you import the data into R, the data file needs to be in your working directory, or adjust the path in the <code>read.table()</code> invocation below accordingly.</p>
-<pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Master_Pinus_data_genotype.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)   
-<span class="kw">dim</span>(Mydata) </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Master_Pinus_data_genotype.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)   
+<span class="kw">dim</span>(Mydata) </code></pre></div>
 <pre><code>## [1]  550 3086</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">ind &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$tree_id) <span class="co"># individual labels </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ind &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$tree_id) <span class="co"># individual labels </span>
 population &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$state) <span class="co"># population labels</span>
 county &lt;-<span class="st"> </span>Mydata$county 
-<span class="kw">dim</span>(Mydata) <span class="co"># 550 individuals x 3082 SNPs</span></code></pre>
+<span class="kw">dim</span>(Mydata) <span class="co"># 550 individuals x 3082 SNPs</span></code></pre></div>
 <pre><code>## [1]  550 3086</code></pre>
 </div>
 <div id="resourcespackages-required" class="section level1">
 <h1>Resources/Packages required</h1>
 <p>Loading the required packages:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;poppr&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;poppr&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;ape&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;ade4&quot;</span>)</code></pre>
+<span class="kw">library</span>(<span class="st">&quot;ade4&quot;</span>)</code></pre></div>
 </div>
 <div id="analysis" class="section level1">
 <h1>Analysis</h1>
 <div id="section-1-convert-the-data" class="section level2">
 <h2>Section 1: Convert the data</h2>
 <p>To work with the data, we need to convert the R object returned by <code>read.table()</code> to a <code>genind</code> object. To achieve this, we create a matrix with only genotypes, and keep only a subset of the first 100 SNP loci (to make calculations faster). The result can then be converted to a <code>genind</code> object (for the package adegenet). The <code>genind</code> object can then easily be converted into <code>loci</code> objects (package pegas) (i.e. Mydata2)</p>
-<pre class="sourceCode r"><code class="sourceCode r">locus &lt;-<span class="st"> </span>Mydata[, -<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">105</span>:<span class="kw">ncol</span>(Mydata))] 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">locus &lt;-<span class="st"> </span>Mydata[, -<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">105</span>:<span class="kw">ncol</span>(Mydata))] 
 Mydata1 &lt;-<span class="st"> </span><span class="kw">df2genind</span>(locus, <span class="dt">ploidy =</span> <span class="dv">2</span>, <span class="dt">ind.names =</span> ind, <span class="dt">pop =</span> population, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)
-Mydata1</code></pre>
+Mydata1</code></pre></div>
 <pre><code>## /// GENIND OBJECT /////////
 ## 
 ##  // 550 individuals; 100 loci; 200 alleles; size: 520.4 Kb
@@ -294,7 +311,7 @@ Mydata1</code></pre>
 ## 
 ##  // Optional content
 ##    @pop: population of each individual (group size range: 4-177)</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">Mydata2 &lt;-<span class="kw">genind2loci</span>(Mydata1)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata2 &lt;-<span class="kw">genind2loci</span>(Mydata1)</code></pre></div>
 </div>
 <div id="section-2.-individual-genetic-distance-euclidean-distance-dist-adegenet" class="section level2">
 <h2>Section 2. Individual genetic distance: euclidean distance (<code>dist</code> {adegenet})</h2>
@@ -305,35 +322,35 @@ Mydata1</code></pre>
 <li>Ploidy : 2</li>
 </ul>
 <p>The analysis is applied on allele frequency within individuals as represented in the <code>genind</code> object. We can use the function <code>dist()</code> from adegenet which provides different options. We will use the euclidean distance among vector of allele frequencies.</p>
-<pre class="sourceCode r"><code class="sourceCode r">distgenEUCL &lt;-<span class="st"> </span><span class="kw">dist</span>(Mydata1, <span class="dt">method =</span> <span class="st">&quot;euclidean&quot;</span>, <span class="dt">diag =</span> <span class="ot">FALSE</span>, <span class="dt">upper =</span> <span class="ot">FALSE</span>, <span class="dt">p =</span> <span class="dv">2</span>)
-<span class="kw">hist</span>(distgenEUCL)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenEUCL &lt;-<span class="st"> </span><span class="kw">dist</span>(Mydata1, <span class="dt">method =</span> <span class="st">&quot;euclidean&quot;</span>, <span class="dt">diag =</span> <span class="ot">FALSE</span>, <span class="dt">upper =</span> <span class="ot">FALSE</span>, <span class="dt">p =</span> <span class="dv">2</span>)
+<span class="kw">hist</span>(distgenEUCL)</code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_adegenet-1.png" title="" alt="" width="960" /></p>
 </div>
 <div id="section-3.-individual-genetic-distance-number-of-loci-for-which-individuals-differ-dist.gene-ape" class="section level2">
 <h2>Section 3. Individual genetic distance: number of loci for which individuals differ (<code>dist.gene</code> {ape})</h2>
 <p>The option <code>pairwise.deletion = FALSE</code> in the command <code>distgen()</code> removes all loci with one missing values : you an see on the histogram that we get a maximum distance of 3 loci out of 100.</p>
 <p>We can see that we get 98 loci with at least one sample missing. Then using the option <code>pairwise.deletion = TRUE</code> in the command <code>distgen()</code> allows you to keep loci with one missing value.</p>
-<pre class="sourceCode r"><code class="sourceCode r">distgenDIFF &lt;-<span class="st"> </span><span class="kw">dist.gene</span>(Mydata2, <span class="dt">method=</span><span class="st">&quot;pairwise&quot;</span>, <span class="dt">pairwise.deletion=</span><span class="ot">FALSE</span>, <span class="dt">variance=</span><span class="ot">FALSE</span>)
-<span class="kw">hist</span>(distgenDIFF)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenDIFF &lt;-<span class="st"> </span><span class="kw">dist.gene</span>(Mydata2, <span class="dt">method=</span><span class="st">&quot;pairwise&quot;</span>, <span class="dt">pairwise.deletion=</span><span class="ot">FALSE</span>, <span class="dt">variance=</span><span class="ot">FALSE</span>)
+<span class="kw">hist</span>(distgenDIFF)</code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_ape-1.png" title="" alt="" width="960" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">missing_data &lt;-<span class="st"> </span><span class="kw">info_table</span>(Mydata1, <span class="dt">type =</span> <span class="st">&quot;missing&quot;</span>)
-<span class="kw">sum</span>(missing_data[<span class="st">&quot;Total&quot;</span>, <span class="dv">1</span>:<span class="dv">100</span>] &gt;<span class="st"> </span><span class="dv">0</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">missing_data &lt;-<span class="st"> </span><span class="kw">info_table</span>(Mydata1, <span class="dt">type =</span> <span class="st">&quot;missing&quot;</span>)
+<span class="kw">sum</span>(missing_data[<span class="st">&quot;Total&quot;</span>, <span class="dv">1</span>:<span class="dv">100</span>] &gt;<span class="st"> </span><span class="dv">0</span>)</code></pre></div>
 <pre><code>## [1] 98</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(missing_data[<span class="st">&quot;Total&quot;</span>, <span class="dv">1</span>:<span class="dv">100</span>], <span class="dt">xlab =</span> <span class="st">&quot;Locus&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Percent Missing&quot;</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(missing_data[<span class="st">&quot;Total&quot;</span>, <span class="dv">1</span>:<span class="dv">100</span>], <span class="dt">xlab =</span> <span class="st">&quot;Locus&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Percent Missing&quot;</span>)</code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_ape-2.png" title="" alt="" width="960" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">distgenDIFF &lt;-<span class="st"> </span><span class="kw">dist.gene</span>(Mydata2, <span class="dt">method=</span><span class="st">&quot;pairwise&quot;</span>, <span class="dt">pairwise.deletion=</span><span class="ot">TRUE</span>, <span class="dt">variance=</span><span class="ot">FALSE</span>)
-<span class="kw">hist</span>(distgenDIFF)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenDIFF &lt;-<span class="st"> </span><span class="kw">dist.gene</span>(Mydata2, <span class="dt">method=</span><span class="st">&quot;pairwise&quot;</span>, <span class="dt">pairwise.deletion=</span><span class="ot">TRUE</span>, <span class="dt">variance=</span><span class="ot">FALSE</span>)
+<span class="kw">hist</span>(distgenDIFF)</code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_ape-3.png" title="" alt="" width="960" /></p>
 </div>
 <div id="section-4-number-of-allelic-differences-between-two-individuals-diss.dist-poppr" class="section level2">
 <h2>Section 4: number of allelic differences between two individuals (<code>diss.dist</code> {poppr})</h2>
-<pre class="sourceCode r"><code class="sourceCode r">distgenDISS &lt;-<span class="st"> </span><span class="kw">diss.dist</span>(Mydata1, <span class="dt">percent=</span><span class="ot">FALSE</span>, <span class="dt">mat=</span><span class="ot">FALSE</span>)
-<span class="kw">hist</span>(distgenDISS)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenDISS &lt;-<span class="st"> </span><span class="kw">diss.dist</span>(Mydata1, <span class="dt">percent=</span><span class="ot">FALSE</span>, <span class="dt">mat=</span><span class="ot">FALSE</span>)
+<span class="kw">hist</span>(distgenDISS)</code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_poppr-1.png" title="" alt="" width="960" /></p>
 </div>
 <div id="section-5-conclusions-drawn-from-the-analysis" class="section level2">
 <h2>Section 5: Conclusions drawn from the analysis</h2>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(distgenEUCL, distgenDIFF, distgenDISS)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(distgenEUCL, distgenDIFF, distgenDISS)</code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Compare_dist-1.png" title="" alt="" width="960" /></p>
 <p>The number of allelic differences between two individuals is a different measure from euclidean distance or number of locus differences between two individuals.</p>
 <p>Conclusion</p>
@@ -357,8 +374,8 @@ Mydata1</code></pre>
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools::<span class="kw">session_info</span>()</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
+devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
 ##  version  R version 3.2.3 (2015-12-10)
@@ -366,8 +383,8 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
-##  tz       Zulu                        
-##  date     2016-02-09</code></pre>
+##  tz       &lt;NA&gt;                        
+##  date     2016-02-11</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-3   2015-11-22 CRAN (R 3.2.3)
@@ -415,12 +432,12 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  scales       0.3.0   2015-08-25 CRAN (R 3.2.3)
 ##  seqinr       3.1-3   2014-12-17 CRAN (R 3.2.3)
 ##  shiny        0.13.0  2016-01-12 CRAN (R 3.2.3)
-##  sp           1.2-1   2015-10-18 CRAN (R 3.2.3)
+##  sp           1.2-2   2016-02-05 CRAN (R 3.2.3)
 ##  spdep        0.5-92  2015-12-22 CRAN (R 3.2.3)
 ##  stringi      1.0-1   2015-10-22 CRAN (R 3.2.3)
 ##  stringr      1.0.0   2015-04-30 CRAN (R 3.2.3)
 ##  vegan        2.3-3   2016-01-12 CRAN (R 3.2.3)
-##  xtable       1.8-0   2015-11-02 CRAN (R 3.2.3)
+##  xtable       1.8-2   2016-02-05 CRAN (R 3.2.3)
 ##  yaml         2.1.13  2014-06-12 CRAN (R 3.2.3)</code></pre>
 </div>
 

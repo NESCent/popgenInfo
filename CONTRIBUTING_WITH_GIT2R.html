@@ -92,24 +92,41 @@ body {
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
+div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
 pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; }
-code > span.dt { color: #204a87; }
-code > span.dv { color: #0000cf; }
-code > span.bn { color: #0000cf; }
-code > span.fl { color: #0000cf; }
-code > span.ch { color: #4e9a06; }
-code > span.st { color: #4e9a06; }
-code > span.co { color: #8f5902; font-style: italic; }
-code > span.ot { color: #8f5902; }
-code > span.al { color: #ef2929; }
-code > span.fu { color: #000000; }
-code > span.er { font-weight: bold; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -277,7 +294,7 @@ img {
 </div>
 <div id="step-1-forking-the-repository-do-once" class="section level1">
 <h1>Step 1: Forking the repository (DO ONCE)</h1>
-<p>Go to <a href="https://github.com/NESCent/popgenInfo"><a href="https://github.com/NESCent/popgenInfo" class="uri">https://github.com/NESCent/popgenInfo</a></a> and <a href="https://help.github.com/articles/fork-a-repo/#fork-an-example-repository">click on the “Fork” button</a>. This will create a copy of the NESCent popgenInfo repository to your account. After you’ve forked the repository, you never have to fork it again!</p>
+<p>Go to <a href="https://github.com/NESCent/popgenInfo" class="uri">https://github.com/NESCent/popgenInfo</a> and <a href="https://help.github.com/articles/fork-a-repo/#fork-an-example-repository">click on the “Fork” button</a>. This will create a copy of the NESCent popgenInfo repository to your account. After you’ve forked the repository, you never have to fork it again!</p>
 </div>
 <div id="step-2-clone-your-fork-to-your-computer-do-once" class="section level1">
 <h1>Step 2: Clone your fork to your computer (DO ONCE)</h1>
@@ -290,13 +307,13 @@ img {
 <h2>Create your forks folder</h2>
 <p>First, we need to make sure that we are working in the folder where we want to set up our fork. In this tutorial, we will use <code>setwd()</code> to do this via the R console, but it is possible to do this via Rstudio.</p>
 <p>If you are using Windows:</p>
-<pre class="sourceCode r"><code class="sourceCode r">fork_dir &lt;-<span class="st"> &quot;~/forks&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fork_dir &lt;-<span class="st"> &quot;~/forks&quot;</span></code></pre></div>
 <p>If you are using OSX:</p>
-<pre class="sourceCode r"><code class="sourceCode r">fork_dir &lt;-<span class="st"> &quot;~/Documents/forks&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fork_dir &lt;-<span class="st"> &quot;~/Documents/forks&quot;</span></code></pre></div>
 <p>Now, we create the directory and then move there:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(fork_dir)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(fork_dir)</code></pre></div>
 <p>We can use the function <code>list.files()</code> to see what’s inside the directory:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>()</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>()</code></pre></div>
 <pre><code>## character(0)</code></pre>
 <p>Currently, there’s nothing here. We will use the <code>clone()</code> function from <em>git2r</em> to make a copy of our repository. If you type <code>help(&quot;clone&quot;, &quot;git2r&quot;)</code> in your R console, you can see documentation about the function. We need two things from this function:</p>
 <ol style="list-style-type: decimal">
@@ -304,30 +321,30 @@ img {
 <li>The path to our folder where we want to store it</li>
 </ol>
 <p>The URL for the git repository is simply just the URL for your fork with <code>.git</code> at the end of it. For mine, it’s <code>https://github.com/zkamvar/popgenInfo.git</code>. To keep things simple, we will name the folder we want to put the repository in “popgenInfo”.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>)
 <span class="kw">clone</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/zkamvar/popgenInfo.git&quot;</span>,
-      <span class="dt">local_path =</span> <span class="st">&quot;popgenInfo&quot;</span>)</code></pre>
-<pre><code>## cloning into &#39;/tmp/RtmptZqRzF/popgenInfo&#39;...
-## Receiving objects:   1% (21/2063),    9 kb
-## Receiving objects:  11% (227/2063),   49 kb
-## Receiving objects:  21% (434/2063),   89 kb
-## Receiving objects:  31% (640/2063), 1481 kb
-## Receiving objects:  41% (846/2063), 9801 kb
-## Receiving objects:  51% (1053/2063), 10809 kb
-## Receiving objects:  61% (1259/2063), 10841 kb
-## Receiving objects:  71% (1465/2063), 10873 kb
-## Receiving objects:  81% (1672/2063), 11072 kb
-## Receiving objects:  91% (1878/2063), 11080 kb
-## Receiving objects: 100% (2063/2063), 11101 kb, done.</code></pre>
-<pre><code>## Local:    master /tmp/RtmptZqRzF/popgenInfo/
+      <span class="dt">local_path =</span> <span class="st">&quot;popgenInfo&quot;</span>)</code></pre></div>
+<pre><code>## cloning into &#39;/tmp/Rtmp1pPMoT/popgenInfo&#39;...
+## Receiving objects:   1% (21/2082),    9 kb
+## Receiving objects:  11% (230/2082),   49 kb
+## Receiving objects:  21% (438/2082),   88 kb
+## Receiving objects:  31% (646/2082), 1674 kb
+## Receiving objects:  41% (854/2082), 5499 kb
+## Receiving objects:  51% (1062/2082), 10811 kb
+## Receiving objects:  61% (1271/2082), 10843 kb
+## Receiving objects:  71% (1479/2082), 10875 kb
+## Receiving objects:  81% (1687/2082), 11083 kb
+## Receiving objects:  91% (1895/2082), 11087 kb
+## Receiving objects: 100% (2082/2082), 11104 kb, done.</code></pre>
+<pre><code>## Local:    master /tmp/Rtmp1pPMoT/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
 ## Head:     [ca56312] 2016-02-04: Merge pull request #129 from mmlopezu/NewDNA_Vignette2</code></pre>
 <p>Now when we look at our directory, we can see that we have one folder called “popgenInfo”:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>()</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>()</code></pre></div>
 <pre><code>## [1] &quot;popgenInfo&quot;</code></pre>
 <p>We can move into the folder with <code>setwd()</code> and look at all the files in there.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;popgenInfo&quot;</span>)
-<span class="kw">list.files</span>()</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;popgenInfo&quot;</span>)
+<span class="kw">list.files</span>()</code></pre></div>
 <pre><code>##  [1] &quot;build&quot;                       &quot;circle.yml&quot;                 
 ##  [3] &quot;CONDUCT.md&quot;                  &quot;CONTRIBUTING.md&quot;            
 ##  [5] &quot;CONTRIBUTING_WITH_GIT2R.Rmd&quot; &quot;data&quot;                       
@@ -347,10 +364,10 @@ img {
 <div id="setting-up-your-clone" class="section level2">
 <h2>Setting up your clone</h2>
 <p>To access the repository, all you have to do is open it by double-clicking on the “popgenInfo.Rproj” file. This will open Rstudio to this folder and set it as the working directory. After that, in your R console, type:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>) <span class="co"># in case you&#39;re starting from here</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>) <span class="co"># in case you&#39;re starting from here</span>
 repo &lt;-<span class="st"> </span><span class="kw">repository</span>()
-repo</code></pre>
-<pre><code>## Local:    master /tmp/RtmptZqRzF/popgenInfo/
+repo</code></pre></div>
+<pre><code>## Local:    master /tmp/Rtmp1pPMoT/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
 ## Head:     [ca56312] 2016-02-04: Merge pull request #129 from mmlopezu/NewDNA_Vignette2</code></pre>
 <p>This tells R that you have a repository in this folder and that you are referring to it as <code>repo</code>. The output of <code>repo</code> is a summary of your repository:</p>
@@ -360,10 +377,10 @@ repo</code></pre>
 <li><strong>Head</strong> This is a summary of the last <em>commit</em> containing the date and a description.</li>
 </ul>
 <p>In order to be able to synch your clone with your fork, GitHub needs to know that you are really who you say you are. This means that you need to associate your name, email, and a secret token with this repository. The first two items are easily done within R. You can use the function <code>config()</code> to set and confirm your name and email:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">config</span>(repo, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">config</span>(repo, 
        <span class="dt">user.name =</span> <span class="st">&quot;Zhian Kamvar&quot;</span>,
        <span class="dt">user.email =</span> <span class="st">&quot;kamvarz@science.oregonstate.edu&quot;</span>)
-<span class="kw">config</span>(repo)</code></pre>
+<span class="kw">config</span>(repo)</code></pre></div>
 <pre><code>## local:
 ##         branch.master.merge=refs/heads/master
 ##         branch.master.remote=origin
@@ -381,12 +398,12 @@ repo</code></pre>
 <p>Once you have created your PAT, make a text file called <code>.Renviron</code> inside of the repository and paste your PAT in that file as shown above. This will not be tracked by git, and will only exist on your computer.</p>
 <p>The next time you open R from <code>popgenInfo.Rproj</code>, this token will be available for GitHub to ensure that you are who you say you are. It is important to note that, if you change or delete that PAT, you must replace it here.</p>
 <p>In the next step, we will ensure that our fork is up to date with NESCent. In order to do that, we need to tell our local copy that it can take updates from NESCent. We do this by adding NESCent as a <strong>remote</strong> using the function <code>remote_add()</code> and checking to make sure it worked with the function <code>remotes()</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">remote_add</span>(repo, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">remote_add</span>(repo, 
            <span class="dt">name =</span> <span class="st">&quot;NESCent&quot;</span>, 
            <span class="dt">url =</span> <span class="st">&quot;https://github.com/NESCent/popgenInfo.git&quot;</span>)
 
 <span class="co"># Check our remotes</span>
-<span class="kw">remotes</span>(repo)</code></pre>
+<span class="kw">remotes</span>(repo)</code></pre></div>
 <pre><code>## [1] &quot;NESCent&quot; &quot;origin&quot;</code></pre>
 <p>With all of this information set, we can begin working on our repository.</p>
 </div>
@@ -395,34 +412,34 @@ repo</code></pre>
 <h1>Step 3: Keeping your fork up to date</h1>
 <p>The first thing we need to do is make sure that our master branch is up to date. Since other people are also contributing to this project, it is possible for changes to be made even within seconds of you forking the repository. In this section we will show you how you can keep your master branch up to date in your local repository and your fork on github.</p>
 <p>Let’s assume that you’ve just opened a fresh Rstudio session with the <code>popgenInfo.Rproj</code> file. First, let’s load <em>git2r</em> and access our repository.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>)
-repo &lt;-<span class="st"> </span><span class="kw">repository</span>()</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>)
+repo &lt;-<span class="st"> </span><span class="kw">repository</span>()</code></pre></div>
 <p>Now that we have our repository loaded, we should make sure that we are on the <strong>master branch</strong>. We can do this using the <code>checkout()</code> function from <em>git2r</em>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)
-repo</code></pre>
-<pre><code>## Local:    master /tmp/RtmptZqRzF/popgenInfo/
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)
+repo</code></pre></div>
+<pre><code>## Local:    master /tmp/Rtmp1pPMoT/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
 ## Head:     [ca56312] 2016-02-04: Merge pull request #129 from mmlopezu/NewDNA_Vignette2</code></pre>
 <p>Now, whether or not we suspect changes from NESCent, it’s always good form to update your local repository before creating any new branches. We can do it this by first <strong>fetching</strong> ALL changes that have happened on the NESCent popgenInfo repository, and then <strong>merging</strong> the NESCent master branch into our master branch. We will use the <em>git2r</em> functions <code>fetch()</code> and <code>merge()</code> to accomplish this.</p>
 <p>First, we fetch all of the changes that have happened. If there are no changes, nothing will appear, but if there is new content on the master branch or new branches on the repository, they will be downloaded and each branch will be printed to your screen. For our purposes, we are only concerned with the changes on the <strong>master</strong> branch, which will look something like this: <code>## [new]    b62a78c1fcd384a3ea23 refs/remotes/NESCent/master</code>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fetch</span>(repo, <span class="dt">name =</span> <span class="st">&quot;NESCent&quot;</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fetch</span>(repo, <span class="dt">name =</span> <span class="st">&quot;NESCent&quot;</span>)</code></pre></div>
 <pre><code>## [new]     203a03bbe842455fca32 refs/remotes/NESCent/README-cleanup
-## [new]     35b49e0ed2231e53ace9 refs/remotes/NESCent/gh-pages
-## [new]     daa4fba1e821c8aa7dfa refs/remotes/NESCent/master
+## [new]     946b94eb7bacf5a51df7 refs/remotes/NESCent/gh-pages
+## [new]     6fa016bac4a2b41ae123 refs/remotes/NESCent/master
 ## [new]     5c59f08b2bd9d943cf65 refs/remotes/NESCent/rm-stale-from-build
 ## [new]     16b52608de7f5ed41d04 refs/remotes/NESCent/summaryseqstats
 ## [new]     c7e4171b3786e398e39b refs/remotes/NESCent/web-devel</code></pre>
 <p>It’s important to note that our local repository is still unchanged at this point as we have just downloaded the updates from NESCent. To update our local repository, we should merge the changes from NESCent’s master branch into our master branch:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">merge</span>(repo, <span class="st">&quot;NESCent/master&quot;</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">merge</span>(repo, <span class="st">&quot;NESCent/master&quot;</span>)</code></pre></div>
 <pre><code>## Merge: Fast-forward</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">repo</code></pre>
-<pre><code>## Local:    master /tmp/RtmptZqRzF/popgenInfo/
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo</code></pre></div>
+<pre><code>## Local:    master /tmp/Rtmp1pPMoT/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [daa4fba] 2016-02-09: Merge pull request #135 from NESCent/README-cleanup</code></pre>
+## Head:     [6fa016b] 2016-02-11: Merge pull request #133 from NESCent/rm-stale-from-build</code></pre>
 <p>If there were any changes, the <strong>Head</strong> field will have a more current commit than when we intialized it above.</p>
 <p>Since we will never work directly on the master branch, there should be no conflicts from the NESCent branch and we now know that our branch is up to date. Assuming everything worked, we can push this to our fork on GitHub. We will use <em>git2r</em>’s <code>push()</code> function to do this. We also need to supply our PAT in order for this to work. To do so, we will use the <em>git2r</em> function <code>cred_token()</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">cred &lt;-<span class="st"> </span><span class="kw">cred_token</span>()
-<span class="kw">push</span>(repo, <span class="dt">credentials =</span> cred)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cred &lt;-<span class="st"> </span><span class="kw">cred_token</span>()
+<span class="kw">push</span>(repo, <span class="dt">credentials =</span> cred)</code></pre></div>
 <p>Now, when you check your fork, it should be updated with the most recent changes. From here, we can checkout a new branch and then proceed with adding our changes or new workflow.</p>
 </div>
 <div id="step-4-creating-a-new-branch" class="section level1">
@@ -431,16 +448,16 @@ repo</code></pre>
 <div id="setup" class="section level2">
 <h2>SETUP</h2>
 <p>Most importantly we need to make sure that we are on the master branch and it is up to date. To double plus make sure that you are on the master branch, check it out:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)
-repo</code></pre>
-<pre><code>## Local:    master /tmp/RtmptZqRzF/popgenInfo/
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)
+repo</code></pre></div>
+<pre><code>## Local:    master /tmp/Rtmp1pPMoT/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [daa4fba] 2016-02-09: Merge pull request #135 from NESCent/README-cleanup</code></pre>
+## Head:     [6fa016b] 2016-02-11: Merge pull request #133 from NESCent/rm-stale-from-build</code></pre>
 <p>For reasons that will reveal themselves later, please run these function definitions:</p>
-<pre class="sourceCode r"><code class="sourceCode r">my_branch &lt;-<span class="st"> </span>function(x) <span class="kw">paste0</span>(<span class="st">&quot;refs/heads/&quot;</span>, x)
-my_origin &lt;-<span class="st"> </span>function(x) <span class="kw">paste0</span>(<span class="st">&quot;origin/&quot;</span>, x)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_branch &lt;-<span class="st"> </span>function(x) <span class="kw">paste0</span>(<span class="st">&quot;refs/heads/&quot;</span>, x)
+my_origin &lt;-<span class="st"> </span>function(x) <span class="kw">paste0</span>(<span class="st">&quot;origin/&quot;</span>, x)</code></pre></div>
 <p>And, of course, don’t forget your credentials:</p>
-<pre class="sourceCode r"><code class="sourceCode r">cred &lt;-<span class="st"> </span><span class="kw">cred_token</span>()</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cred &lt;-<span class="st"> </span><span class="kw">cred_token</span>()</code></pre></div>
 </div>
 <div id="creation" class="section level2">
 <h2>Creation</h2>
@@ -453,23 +470,23 @@ my_origin &lt;-<span class="st"> </span>function(x) <span class="kw">paste0</spa
 </ol>
 <p>In the first step, we want to name the branch. Since we are creating a new vignette, it’s ideal for the branch name to be the same as the vignette. As shown in the <a href="CONTRIBUTING.html#best-practices">Best Practices</a> guidelines, you should name this vignette with the date and the subject. Since we are contributing a vignette on spatial stats and committing for the first time on 2015-12-16, the new branch and vignette will be called “2015-12-16-spatial- stats”.</p>
 <p>In code, the steps above would look like this:</p>
-<pre class="sourceCode r"><code class="sourceCode r">BRANCH &lt;-<span class="st"> &quot;2015-12-16-spatial-stats&quot;</span>                                         <span class="co"># 1</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BRANCH &lt;-<span class="st"> &quot;2015-12-16-spatial-stats&quot;</span>                                         <span class="co"># 1</span>
 <span class="kw">checkout</span>(repo, BRANCH, <span class="dt">create =</span> <span class="ot">TRUE</span>)                                        <span class="co"># 2</span>
 <span class="kw">push</span>(repo, <span class="dt">name =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">refspec =</span> <span class="kw">my_branch</span>(BRANCH), <span class="dt">credentials =</span> cred) <span class="co"># 3</span>
-<span class="kw">branch_set_upstream</span>(<span class="kw">head</span>(repo), <span class="kw">my_origin</span>(BRANCH))                           <span class="co"># 4</span></code></pre>
+<span class="kw">branch_set_upstream</span>(<span class="kw">head</span>(repo), <span class="kw">my_origin</span>(BRANCH))                           <span class="co"># 4</span></code></pre></div>
 <p>Let’s examine these one by one. First, you create a variable that will hold the name of the branch you want to create. We are using this convention to allow us to use this name multiple times. After that, we create that branch from our master branch. We can take a look at what our branch looks like at that point.</p>
-<pre class="sourceCode r"><code class="sourceCode r">BRANCH &lt;-<span class="st"> &quot;2015-12-16-spatial-stats&quot;</span>  <span class="co"># 1</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BRANCH &lt;-<span class="st"> &quot;2015-12-16-spatial-stats&quot;</span>  <span class="co"># 1</span>
 <span class="kw">checkout</span>(repo, BRANCH, <span class="dt">create =</span> <span class="ot">TRUE</span>) <span class="co"># 2</span>
-repo</code></pre>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmptZqRzF/popgenInfo/
-## Head:     [daa4fba] 2016-02-09: Merge pull request #135 from NESCent/README-cleanup</code></pre>
+repo</code></pre></div>
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/Rtmp1pPMoT/popgenInfo/
+## Head:     [6fa016b] 2016-02-11: Merge pull request #133 from NESCent/rm-stale-from-build</code></pre>
 <p>Notice here that you now only have two lines in the output, <strong>Local</strong> and <strong>Head</strong>. This is because the branch doesn’t exist on your GitHub fork. This is where the next two steps come in. We will push that branch and then make sure that our branch is tracking the copy on the fork.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">push</span>(repo, <span class="dt">name =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">refspec =</span> <span class="kw">my_branch</span>(BRANCH), <span class="dt">credentials =</span> cred) <span class="co"># 3</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">push</span>(repo, <span class="dt">name =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">refspec =</span> <span class="kw">my_branch</span>(BRANCH), <span class="dt">credentials =</span> cred) <span class="co"># 3</span>
 <span class="kw">branch_set_upstream</span>(<span class="kw">head</span>(repo), <span class="kw">my_origin</span>(BRANCH))                           <span class="co"># 4</span>
-repo</code></pre>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmptZqRzF/popgenInfo/
+repo</code></pre></div>
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/Rtmp1pPMoT/popgenInfo/
 ## Remote:   2015-12-16-spatial-stats @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [daa4fba] 2016-02-09: Merge pull request #135 from NESCent/README-cleanup</code></pre>
+## Head:     [6fa016b] 2016-02-11: Merge pull request #133 from NESCent/rm-stale-from-build</code></pre>
 <p>We can now see from the output that we have a <strong>Remote</strong> set up. Once we have this, we can start making changes! If you are adding a new vignette, please copy <a href="https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd"><code>TEMPLATE.Rmd</code></a> to the <strong>use/</strong> directory and give it a new name that is meaningful to your contribution (good practice is to name it the same as your branch). If you are including any data, place it in the <strong>data/</strong> directory. Once you add these files, you need to to <strong>add</strong> these files and then you should <strong>commit</strong>, which we will show you how to do below.</p>
 </div>
 </div>
@@ -478,37 +495,37 @@ repo</code></pre>
 <p>If you are using Rstudio, you can use it to integrate with git. This allows you to do things like commit, push, and pull. Hadley Wickham, chief scientist at Rstudio has put up <a href="http://r-pkgs.had.co.nz/git.html#git-status">this helpful tutorial on using git through Rstudio</a>. If you aren’t using Rstudio, but you don’t want to access the terminal (command line), this section will show you basic git commands with <em>git2r</em> that will allow you to work on your vignette and keep it up to date.</p>
 <p>Recall that using git is analogous to keeping a good, detailed lab notebook. When you make any changes, you record those changes (<code>git add</code>) and then say <em>why</em> you made the changes (<code>git commit</code>).</p>
 <p>Let’s say you’ve already copied the <code>TEMPLATE.Rmd</code> file to the <strong>use/</strong> directory and renamed it to <code>2015-12-16-spatial-stats.Rmd</code> and added some data called <code>spatial_data.csv</code>. When you place a file in your repository, git will not pay attention to any changes you do until you specifically add it. Until then it is “Untracked”. You can see this by running <code>status()</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">status</span>(repo)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">status</span>(repo)</code></pre></div>
 <pre><code>## Untracked files:
 ##  Untracked:  data/spatial_data.csv
 ##  Untracked:  use/2015-12-16-spatial-stats.Rmd</code></pre>
 <p>Since we’ve just added the files, we can use <code>add()</code> to tell git we want to stage them for committing.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">add</span>(repo, <span class="st">&quot;*&quot;</span>) <span class="co"># adding all new or changed files</span>
-<span class="kw">status</span>(repo)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">add</span>(repo, <span class="st">&quot;*&quot;</span>) <span class="co"># adding all new or changed files</span>
+<span class="kw">status</span>(repo)</code></pre></div>
 <pre><code>## Staged changes:
 ##  New:        data/spatial_data.csv
 ##  New:        use/2015-12-16-spatial-stats.Rmd</code></pre>
 <p>When we have done this, we can commit to our changes by using <code>commit()</code>. A commit is basically placing a record of what you did and, importantly, why you did it. Your commit message should record this. Commit messages should be able to fit on a single line. Optionally, if you want to be able to add more detail, you can enter more lines below the message:</p>
-<pre class="sourceCode r"><code class="sourceCode r">msg &lt;-<span class="st"> &quot; started spatial stats vignette and added data</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">msg &lt;-<span class="st"> &quot; started spatial stats vignette and added data</span>
 
 <span class="st">I copied the template to the use folder and placed</span>
 <span class="st">spatial data in the data folder.</span>
 <span class="st">&quot;</span>
-<span class="kw">commit</span>(repo, msg, <span class="dt">session =</span> <span class="ot">TRUE</span>)</code></pre>
-<pre><code>## [86562b5] 2016-02-09:  started spatial stats vignette and added data</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">status</span>(repo) <span class="co"># should return nothing</span>
-repo</code></pre>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmptZqRzF/popgenInfo/
+<span class="kw">commit</span>(repo, msg, <span class="dt">session =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [5a60f33] 2016-02-11:  started spatial stats vignette and added data</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">status</span>(repo) <span class="co"># should return nothing</span>
+repo</code></pre></div>
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/Rtmp1pPMoT/popgenInfo/
 ## Remote:   2015-12-16-spatial-stats @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [86562b5] 2016-02-09:  started spatial stats vignette and added data</code></pre>
+## Head:     [5a60f33] 2016-02-11:  started spatial stats vignette and added data</code></pre>
 <blockquote>
 <p>Note that we put <code>session = TRUE</code> in the commit function. This automatically puts your R session information in the commit, which gives more information about package versions you were working with when you were editing the vignette.</p>
 </blockquote>
 <p>You can see a summary of what you just did by looking at the summary of your commit:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">commits</span>(repo)[[<span class="dv">1</span>]])</code></pre>
-<pre><code>## Commit:  86562b5be57acd8ffe3f291e52d5fad4e17eb29c
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">commits</span>(repo)[[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>## Commit:  5a60f33714a79f16593cdf3ca3cff72c53005f97
 ## Author:  Zhian Kamvar &lt;kamvarz@science.oregonstate.edu&gt;
-## When:    2016-02-09 19:00:47
+## When:    2016-02-11 17:33:02
 ## 
 ##       started spatial stats vignette and added data
 ##      
@@ -543,7 +560,7 @@ repo</code></pre>
 ## data/spatial_data.csv            | -0 + 6  in 1 hunk
 ## use/2015-12-16-spatial-stats.Rmd | -0 +93  in 1 hunk</code></pre>
 <p>Now you can see that your commit message was recorded in the repository. Since we see that there is a <strong>Remote</strong> associated with this fork, we can simply use <code>push()</code> to push our changes up to the fork.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">push</span>(repo, <span class="dt">credentials =</span> <span class="kw">cred_token</span>())</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">push</span>(repo, <span class="dt">credentials =</span> <span class="kw">cred_token</span>())</code></pre></div>
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>
@@ -575,8 +592,8 @@ repo</code></pre>
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools::<span class="kw">session_info</span>()</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
+devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
 ##  version  R version 3.2.3 (2015-12-10)
@@ -584,8 +601,8 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
-##  tz       Zulu                        
-##  date     2016-02-09</code></pre>
+##  tz       &lt;NA&gt;                        
+##  date     2016-02-11</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package   * version date       source        
 ##  devtools    1.10.0  2016-01-23 CRAN (R 3.2.3)

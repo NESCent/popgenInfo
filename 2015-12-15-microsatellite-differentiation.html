@@ -92,24 +92,41 @@ body {
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
+div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
 pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; }
-code > span.dt { color: #204a87; }
-code > span.dv { color: #0000cf; }
-code > span.bn { color: #0000cf; }
-code > span.fl { color: #0000cf; }
-code > span.ch { color: #4e9a06; }
-code > span.st { color: #4e9a06; }
-code > span.co { color: #8f5902; font-style: italic; }
-code > span.ot { color: #8f5902; }
-code > span.al { color: #ef2929; }
-code > span.fu { color: #000000; }
-code > span.er { font-weight: bold; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -249,21 +266,21 @@ img {
 <h1>Resources/Packages required</h1>
 <p>We are going to use <em>mmod</em> for differentiation summary statistics, <em>pegas</em> for AMOVA, <em>adegenet</em> for DAPC, and we will use <em>reshape2</em> and <em>ggplot2</em> for plotting our results.</p>
 <p>Loading the required packages:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;mmod&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;reshape2&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre>
+<span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre></div>
 </div>
 <div id="analysis" class="section level1">
 <h1>Analysis</h1>
 <div id="data-preparation" class="section level2">
 <h2>Data preparation</h2>
 <p>First, we need to load our data. Since the data is distributed with <em>adegenet</em>, we can load it simply by using the function <code>data()</code>. Since we want to associate the different population strata with the data set, we also need to read in <a href="https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv"><code>bovine_strata.csv</code></a> as a data frame.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;microbov&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;adegenet&quot;</span>)
-bovine_strata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bovine_strata.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;microbov&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;adegenet&quot;</span>)
+bovine_strata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bovine_strata.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</code></pre></div>
 <p>The <code>microbov</code> data set is in a “genind” object. This is a way for adegenet to keep the genetic data and deomographic data together. Let’s take a look at what our data looks like:</p>
-<pre class="sourceCode r"><code class="sourceCode r">microbov</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">microbov</code></pre></div>
 <pre><code>## /// GENIND OBJECT /////////
 ## 
 ##  // 704 individuals; 30 loci; 373 alleles; size: 1.2 Mb
@@ -280,7 +297,7 @@ bovine_strata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<
 ##  // Optional content
 ##    @pop: population of each individual (group size range: 30-61)
 ##    @other: a list containing: coun  breed  spe</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(bovine_strata) <span class="co"># the function head shows the first 6 rows of a data frame</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(bovine_strata) <span class="co"># the function head shows the first 6 rows of a data frame</span></code></pre></div>
 <pre><code>##   Country  Breed Species
 ## 1      AF Borgou      BI
 ## 2      AF Borgou      BI
@@ -289,8 +306,8 @@ bovine_strata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<
 ## 5      AF Borgou      BI
 ## 6      AF Borgou      BI</code></pre>
 <p>We can see that our data matches the description above. Now we need to set <code>bovine_strata</code> in <code>microbov</code>’s <em>strata</em> slot.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">strata</span>(microbov) &lt;-<span class="st"> </span>bovine_strata
-microbov</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">strata</span>(microbov) &lt;-<span class="st"> </span>bovine_strata
+microbov</code></pre></div>
 <pre><code>## /// GENIND OBJECT /////////
 ## 
 ##  // 704 individuals; 30 loci; 373 alleles; size: 1.2 Mb
@@ -316,9 +333,9 @@ microbov</code></pre>
 <div id="estimation" class="section level3">
 <h3>Estimation</h3>
 <p>We will first take a look at the summary statistics for differentiation by breed using the function <code>diff_stats()</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setPop</span>(microbov) &lt;-<span class="st"> </span><span class="er">~</span>Breed <span class="co"># Use ~Country to analyze by country</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setPop</span>(microbov) &lt;-<span class="st"> </span><span class="er">~</span>Breed <span class="co"># Use ~Country to analyze by country</span>
 diff_bov &lt;-<span class="st"> </span><span class="kw">diff_stats</span>(microbov)
-diff_bov</code></pre>
+diff_bov</code></pre></div>
 <pre><code>## $per.locus
 ##                Hs        Ht        Gst Gprime_st          D
 ## INRA63  0.5639660 0.7062861 0.20150495 0.4881151 0.34971094
@@ -356,7 +373,12 @@ diff_bov</code></pre>
 ##        Hs        Ht   Gst_est Gprime_st     D_het    D_mean 
 ## 0.6544857 0.7455902 0.1221911 0.3756321 0.2825120 0.2347223</code></pre>
 <p>The output in <code>$per.locus</code> are estimates of the following measures:</p>
-<table>
+<table style="width:68%;">
+<colgroup>
+<col width="16%" />
+<col width="23%" />
+<col width="27%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Variable</th>
@@ -367,41 +389,41 @@ diff_bov</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left"><code>Hs</code></td>
-<td align="left"><span class="math">\(H_S\)</span></td>
+<td align="left"><span class="math inline">\(H_S\)</span></td>
 <td align="left">Heterozygosity with population structure</td>
 </tr>
 <tr class="even">
 <td align="left"><code>Ht</code></td>
-<td align="left"><span class="math">\(H_T\)</span></td>
+<td align="left"><span class="math inline">\(H_T\)</span></td>
 <td align="left">Heterozygosity without population structure</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>Gst</code></td>
-<td align="left"><span class="math">\(G_{st}\)</span></td>
+<td align="left"><span class="math inline">\(G_{st}\)</span></td>
 <td align="left">Nei</td>
 </tr>
 <tr class="even">
 <td align="left"><code>Gprime_st</code></td>
-<td align="left"><span class="math">\(G_{st}^&quot;\)</span></td>
+<td align="left"><span class="math inline">\(G_{st}^&quot;\)</span></td>
 <td align="left">Hedrick</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>D</code></td>
-<td align="left"><span class="math">\(D\)</span></td>
+<td align="left"><span class="math inline">\(D\)</span></td>
 <td align="left">Jost</td>
 </tr>
 </tbody>
 </table>
 <p>The <code>$global</code> refers to global estimates of these statistics. <code>D_het</code> and <code>D_mean</code> represent the average heterozygosity and harmonic mean, respectively.</p>
-<p>All of these describe population differentiation, but <span class="math">\(D\)</span> can be interpreted as the amount of population differentiation from 0 (panmixia) to 1 (complete differentiation) (Hedrick and Miermans, 2011).</p>
+<p>All of these describe population differentiation, but <span class="math inline">\(D\)</span> can be interpreted as the amount of population differentiation from 0 (panmixia) to 1 (complete differentiation) (Hedrick and Miermans, 2011).</p>
 </div>
 <div id="plotting" class="section level3">
 <h3>Plotting</h3>
 <p>You could choose to report the global versions of these statistics, but it might be additionally useful to show them as a boxplots with points showing their estimates in red. I prefer to use <em>ggplot2</em> here because it allows me to easily overlay the observations and estimates.</p>
-<pre class="sourceCode r"><code class="sourceCode r">per.locus &lt;-<span class="st"> </span><span class="kw">melt</span>(diff_bov$per.locus, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;Locus&quot;</span>, <span class="st">&quot;Statistic&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">per.locus &lt;-<span class="st"> </span><span class="kw">melt</span>(diff_bov$per.locus, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;Locus&quot;</span>, <span class="st">&quot;Statistic&quot;</span>))
 stats     &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hs&quot;</span>, <span class="st">&quot;Ht&quot;</span>, <span class="st">&quot;Gst&quot;</span>, <span class="st">&quot;Gprime_st&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;D&quot;</span>)
 glob      &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Statistic =</span> stats, <span class="dt">value =</span> diff_bov$global)
-<span class="kw">head</span>(per.locus)</code></pre>
+<span class="kw">head</span>(per.locus)</code></pre></div>
 <pre><code>##    Locus Statistic     value
 ## 1 INRA63        Hs 0.5639660
 ## 2  INRA5        Hs 0.5755958
@@ -409,7 +431,7 @@ glob      &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span
 ## 4 ILSTS5        Hs 0.4638298
 ## 5   HEL5        Hs 0.6930155
 ## 6   HEL1        Hs 0.6224377</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(glob)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(glob)</code></pre></div>
 <pre><code>##           Statistic     value
 ## Hs               Hs 0.6544857
 ## Ht               Ht 0.7455902
@@ -417,19 +439,19 @@ glob      &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span
 ## Gprime_st Gprime_st 0.3756321
 ## D_het             D 0.2825120
 ## D_mean            D 0.2347223</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(per.locus, <span class="kw">aes</span>(<span class="dt">x =</span> Statistic, <span class="dt">y =</span> value)) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(per.locus, <span class="kw">aes</span>(<span class="dt">x =</span> Statistic, <span class="dt">y =</span> value)) +
 <span class="st">  </span><span class="kw">geom_boxplot</span>() +
 <span class="st">  </span><span class="kw">geom_point</span>() +
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="kw">rel</span>(<span class="dv">3</span>), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">data =</span> glob) +
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Estimates of population differentiation&quot;</span>)</code></pre>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Estimates of population differentiation&quot;</span>)</code></pre></div>
 <p><img src="2015-12-15-microsatellite-differentiation_files/figure-html/plotting-1.png" title="" alt="" width="960" /></p>
 </div>
 <div id="confidence-intervals" class="section level3">
 <h3>Confidence Intervals</h3>
 <p>We can see that we have evidence for moderate differentiation in these populations at the level of breed. Of course bootstrapping would be helpful to get confidence intervals, so here we use the function <code>chao_bootstrap()</code> to simulate new data sets and <code>summarize_bootstrap()</code> to calculate statistical summarize based on those simulations. Since these can take a while, we’re only going to perform 10 replicates. You will want to increase that number for a more robust analysis:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">20151219</span>) <span class="co"># Be sure to set a seed for any random analysis!</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">20151219</span>) <span class="co"># Be sure to set a seed for any random analysis!</span>
 bs_reps &lt;-<span class="st"> </span><span class="kw">chao_bootstrap</span>(microbov, <span class="dt">nreps =</span> <span class="dv">10</span>)
-<span class="kw">summarise_bootstrap</span>(bs_reps, D_Jost) <span class="co"># Using the D_Jost function to summarize.</span></code></pre>
+<span class="kw">summarise_bootstrap</span>(bs_reps, D_Jost) <span class="co"># Using the D_Jost function to summarize.</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
@@ -481,10 +503,10 @@ bs_reps &lt;-<span class="st"> </span><span class="kw">chao_bootstrap</span>(mic
 <blockquote>
 <p>Note: we are using the syntax <code>pegas::amova()</code> because there is another function called <code>amova()</code> in the <em>ade4</em> package.</p>
 </blockquote>
-<pre class="sourceCode r"><code class="sourceCode r">bov_dist  &lt;-<span class="st"> </span><span class="kw">dist</span>(microbov) <span class="co"># Euclidean distance</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bov_dist  &lt;-<span class="st"> </span><span class="kw">dist</span>(microbov) <span class="co"># Euclidean distance</span>
 bov_stra  &lt;-<span class="st"> </span><span class="kw">strata</span>(microbov)
 bov_amova &lt;-<span class="st"> </span>pegas::<span class="kw">amova</span>(bov_dist ~<span class="st"> </span>Country/Breed, <span class="dt">data =</span> bov_stra, <span class="dt">nperm =</span> <span class="dv">0</span>)
-bov_amova</code></pre>
+bov_amova</code></pre></div>
 <pre><code>## 
 ##  Analysis of Molecular Variance
 ## 
@@ -505,9 +527,9 @@ bov_amova</code></pre>
 ##         a         b         c 
 ##  46.71477  48.10283 310.40625</code></pre>
 <p>If the population was panmictic, we would expect to see extremely small variance components for Country and Breed compared to Error (i.e. the variation from individuals within populations). We don’t see that and further suspect moderate differentiation. To test for this, you can boostrap replicates by setting the <code>nperm</code> argument. Again, because these bootstraps may take a long time, we’ll set it to 10:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">20151219</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">20151219</span>)
 bov_amova &lt;-<span class="st"> </span>pegas::<span class="kw">amova</span>(bov_dist ~<span class="st"> </span>Country/Breed, <span class="dt">data =</span> bov_stra, <span class="dt">nperm =</span> <span class="dv">10</span>)
-bov_amova</code></pre>
+bov_amova</code></pre></div>
 <pre><code>## 
 ##  Analysis of Molecular Variance
 ## 
@@ -534,14 +556,14 @@ bov_amova</code></pre>
 <h3>Other implementations</h3>
 <p>It is possible to do the same analyses in different packages, which I will list here.</p>
 <p>The <em>vegan</em> package has the function <code>adonis()</code> that implements a multivariate AMOVA and takes the same kind of arguments as the <em>pegas</em> implementation of <code>amova()</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;vegan&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;vegan&quot;</span>)
 <span class="kw">set.seed</span>(<span class="dv">20151219</span>)
-res &lt;-<span class="st"> </span><span class="kw">adonis</span>(bov_dist ~<span class="st"> </span>Country/Breed, <span class="dt">data =</span> bov_stra, <span class="dt">permutations =</span> <span class="dv">99</span>)</code></pre>
-<p>The package <em>ade4</em> implements the original model, but it requires an abundance matrix of haplotypes per population. The advantage of this version is the fact that it calculates <span class="math">\(\phi\)</span> statistics for you. The package <em>poppr</em> provides a wrapper for the <em>ade4</em> version that will sanitize the data and allows for calculation of within sample variance.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;poppr&quot;</span>)
+res &lt;-<span class="st"> </span><span class="kw">adonis</span>(bov_dist ~<span class="st"> </span>Country/Breed, <span class="dt">data =</span> bov_stra, <span class="dt">permutations =</span> <span class="dv">99</span>)</code></pre></div>
+<p>The package <em>ade4</em> implements the original model, but it requires an abundance matrix of haplotypes per population. The advantage of this version is the fact that it calculates <span class="math inline">\(\phi\)</span> statistics for you. The package <em>poppr</em> provides a wrapper for the <em>ade4</em> version that will sanitize the data and allows for calculation of within sample variance.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;poppr&quot;</span>)
 res &lt;-<span class="st"> </span><span class="kw">poppr.amova</span>(microbov, ~Country/Breed, <span class="dt">within =</span> <span class="ot">FALSE</span>)
 <span class="kw">set.seed</span>(<span class="dv">20151219</span>)
-<span class="kw">randtest</span>(res, <span class="dt">nrepet =</span> <span class="dv">99</span>)</code></pre>
+<span class="kw">randtest</span>(res, <span class="dt">nrepet =</span> <span class="dv">99</span>)</code></pre></div>
 </div>
 </div>
 <div id="discriminant-analyses-of-principal-components-dapc" class="section level2">
@@ -550,9 +572,9 @@ res &lt;-<span class="st"> </span><span class="kw">poppr.amova</span>(microbov, 
 <blockquote>
 <p>Warning: This analyis is sensitive to the number of principal components you choose, so by default, you should run this function with just the data set and without any options beforehand (<code>dapc(microbov)</code>).</p>
 </blockquote>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setPop</span>(microbov) &lt;-<span class="st"> </span><span class="er">~</span>Country/Breed
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setPop</span>(microbov) &lt;-<span class="st"> </span><span class="er">~</span>Country/Breed
 bov_dapc &lt;-<span class="st"> </span><span class="kw">dapc</span>(microbov, <span class="dt">n.pca =</span> <span class="dv">100</span>, <span class="dt">n.da =</span> <span class="dv">4</span>) <span class="co"># 100 principal components; 4 discriminant functions</span>
-<span class="kw">scatter</span>(bov_dapc)</code></pre>
+<span class="kw">scatter</span>(bov_dapc)</code></pre></div>
 <p><img src="2015-12-15-microsatellite-differentiation_files/figure-html/dapc-1.png" title="" alt="" width="960" /></p>
 <p>From this output, we can see that there is a lot of differentiation based on geography, but also that African breeds are a lot more differentiated than European breeds.</p>
 </div>
@@ -578,8 +600,8 @@ bov_dapc &lt;-<span class="st"> </span><span class="kw">dapc</span>(microbov, <s
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools::<span class="kw">session_info</span>()</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
+devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
 ##  version  R version 3.2.3 (2015-12-10)
@@ -587,8 +609,8 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
-##  tz       Zulu                        
-##  date     2016-02-09</code></pre>
+##  tz       &lt;NA&gt;                        
+##  date     2016-02-11</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-3   2015-11-22 CRAN (R 3.2.3)
@@ -631,11 +653,11 @@ devtools::<span class="kw">session_info</span>()</code></pre>
 ##  scales       0.3.0   2015-08-25 CRAN (R 3.2.3)
 ##  seqinr       3.1-3   2014-12-17 CRAN (R 3.2.3)
 ##  shiny        0.13.0  2016-01-12 CRAN (R 3.2.3)
-##  sp           1.2-1   2015-10-18 CRAN (R 3.2.3)
+##  sp           1.2-2   2016-02-05 CRAN (R 3.2.3)
 ##  spdep        0.5-92  2015-12-22 CRAN (R 3.2.3)
 ##  stringi      1.0-1   2015-10-22 CRAN (R 3.2.3)
 ##  stringr      1.0.0   2015-04-30 CRAN (R 3.2.3)
-##  xtable       1.8-0   2015-11-02 CRAN (R 3.2.3)
+##  xtable       1.8-2   2016-02-05 CRAN (R 3.2.3)
 ##  yaml         2.1.13  2014-06-12 CRAN (R 3.2.3)</code></pre>
 </div>
 
