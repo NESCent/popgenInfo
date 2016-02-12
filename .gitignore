@@ -18,4 +18,4 @@
 Makefile
 Dockerfile
 *.patch
-site.tar
+.site.tar
