@@ -33,14 +33,12 @@ library("devtools")
 source("https://bioconductor.org/biocLite.R")
 biocLite("qvalue")
 install_github("whitlock/OutFLANK")
-library(ggplot2)
 ```
 
 Loading the required packages:
 
 ```{r, loadpackage, message = FALSE}
 
-#Not shown on the screen 
 library(pcadapt)
 library(qvalue)
 library(OutFLANK)
