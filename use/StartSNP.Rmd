@@ -25,7 +25,6 @@ To make the calculations faster, we work only with a subset of the full dataset.
 library("adegenet")
 library("hierfstat")
 library("pegas")
-library("genetics")
 ```
 
 # Workflow for SNP data
