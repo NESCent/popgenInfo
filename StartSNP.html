@@ -269,8 +269,7 @@ img {
 <h1>Load necessary resources and packages</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;hierfstat&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;genetics&quot;</span>)</code></pre></div>
+<span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)</code></pre></div>
 </div>
 <div id="workflow-for-snp-data" class="section level1">
 <h1>Workflow for SNP data</h1>
@@ -438,17 +437,17 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0355  0.0730
-## 2  -0.2680  0.1716
-## 3  -0.2137 -0.0694
-## 4  -0.0367  0.2994
-## 5  -0.4062 -0.1502
-## 6  -0.1711  0.3343
-## 7   0.0212  0.1077
-## 8  -0.5048  0.1937
-## 9  -0.0499  0.0671
-## 10  0.0189  0.3535
-## 11 -0.0560  0.0412</code></pre>
+## 1  -0.0247  0.0720
+## 2  -0.2275  0.1433
+## 3  -0.2144 -0.0432
+## 4  -0.0250  0.2729
+## 5  -0.4190 -0.1999
+## 6  -0.1115  0.2847
+## 7   0.0132  0.1096
+## 8  -0.4236  0.2183
+## 9  -0.0463  0.0872
+## 10  0.0410  0.3455
+## 11 -0.0579  0.0545</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex =</span> <span class="fl">0.7</span>)</code></pre></div>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
@@ -458,18 +457,18 @@ Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata
 <p>We used the pegas package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata3, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre></div>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0_10037_01_257 0.75465490  1 0.385006451    0.439
-## X0_10040_02_394 0.16628227  1 0.683437231    0.716
-## X0_10044_01_392 2.96053195  1 0.085319867    0.100
-## X0_10048_01_60  6.39076800  1 0.011471539    0.006
-## X0_10051_02_166 1.12035389  1 0.289842265    0.272
-## X0_10054_01_402 1.54582494  1 0.213752853    0.242
-## X0_10067_03_111 0.04868128  1 0.825374035    0.567
-## X0_10079_02_168 0.01579313  1 0.899992594    0.580
+## X0_10037_01_257 0.75465490  1 0.385006451    0.476
+## X0_10040_02_394 0.16628227  1 0.683437231    0.707
+## X0_10044_01_392 2.96053195  1 0.085319867    0.107
+## X0_10048_01_60  6.39076800  1 0.011471539    0.011
+## X0_10051_02_166 1.12035389  1 0.289842265    0.293
+## X0_10054_01_402 1.54582494  1 0.213752853    0.209
+## X0_10067_03_111 0.04868128  1 0.825374035    0.592
+## X0_10079_02_168 0.01579313  1 0.899992594    0.587
 ## X0_10112_01_169 0.41126025  1 0.521330544    1.000
-## X0_10113_01_119 0.74248768  1 0.388865151    0.440
-## X0_10116_01_165 1.87098306  1 0.171362531    0.270
-## X0_10151_01_86  8.94232481  1 0.002786379    0.005</code></pre>
+## X0_10113_01_119 0.74248768  1 0.388865151    0.455
+## X0_10116_01_165 1.87098306  1 0.171362531    0.219
+## X0_10151_01_86  8.94232481  1 0.002786379    0.007</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math inline">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
@@ -517,7 +516,6 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  boot         1.3-17  2015-06-29 CRAN (R 3.2.1)
 ##  coda         0.18-1  2015-10-16 CRAN (R 3.2.3)
 ##  colorspace   1.2-6   2015-03-11 CRAN (R 3.2.3)
-##  combinat   * 0.0-8   2012-10-29 CRAN (R 3.2.3)
 ##  DBI          0.3.1   2014-09-24 CRAN (R 3.2.3)
 ##  deldir       0.1-9   2015-03-09 CRAN (R 3.2.3)
 ##  devtools     1.10.0  2016-01-23 CRAN (R 3.2.3)
@@ -525,11 +523,9 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  dplyr        0.4.3   2015-09-01 CRAN (R 3.2.3)
 ##  evaluate     0.8     2015-09-18 CRAN (R 3.2.3)
 ##  formatR      1.2.1   2015-09-18 CRAN (R 3.2.3)
-##  gdata      * 2.17.0  2015-07-04 CRAN (R 3.2.3)
-##  genetics   * 1.3.8.1 2013-09-03 CRAN (R 3.2.3)
 ##  ggplot2      2.0.0   2015-12-18 CRAN (R 3.2.3)
 ##  gtable       0.1.2   2012-12-05 CRAN (R 3.2.3)
-##  gtools     * 3.5.0   2015-05-29 CRAN (R 3.2.3)
+##  gtools       3.5.0   2015-05-29 CRAN (R 3.2.3)
 ##  hierfstat  * 0.04-22 2015-12-04 CRAN (R 3.2.3)
 ##  htmltools    0.3     2015-12-29 CRAN (R 3.2.3)
 ##  httpuv       1.3.3   2015-08-04 CRAN (R 3.2.3)
@@ -538,12 +534,11 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  lattice      0.20-33 2015-07-14 CRAN (R 3.2.3)
 ##  LearnBayes   2.15    2014-05-29 CRAN (R 3.2.3)
 ##  magrittr     1.5     2014-11-22 CRAN (R 3.2.3)
-##  MASS       * 7.3-45  2015-11-10 CRAN (R 3.2.3)
+##  MASS         7.3-45  2015-11-10 CRAN (R 3.2.3)
 ##  Matrix       1.2-3   2015-11-28 CRAN (R 3.2.2)
 ##  memoise      1.0.0   2016-01-29 CRAN (R 3.2.3)
 ##  mime         0.4     2015-09-03 CRAN (R 3.2.3)
 ##  munsell      0.4.2   2013-07-11 CRAN (R 3.2.3)
-##  mvtnorm    * 1.0-5   2016-02-02 CRAN (R 3.2.3)
 ##  nlme         3.1-124 2016-01-20 CRAN (R 3.2.3)
 ##  pegas      * 0.8-2   2015-09-25 CRAN (R 3.2.3)
 ##  plyr         1.8.3   2015-06-12 CRAN (R 3.2.3)
