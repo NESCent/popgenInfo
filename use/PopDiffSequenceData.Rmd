@@ -19,7 +19,6 @@ library(ape)
 library(pegas)
 library(hierfstat)
 library(mmod)
-library(genetics)
 library(poppr)
 ```
 
