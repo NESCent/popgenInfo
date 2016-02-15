@@ -10,7 +10,7 @@
 
 
 
-<title>Detection of the Signal of selection from genome scan. Population based analysis</title>
+<title>Detection of the signal of selection from genome scan. Population based analysis</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -186,6 +186,7 @@ img {
               <li><a href="StartSNP.html">Basic statistics</a></li>
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
               <li><a href="2015-05-18-Dist-SNP.html">Genetic Distance (individual-based)</a></li>
+              <li><a href="2016-01-26-SNP-selection.html">Signals of Selection</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -233,7 +234,7 @@ img {
 <div class="span10 offset1"> -->
 
 <div id="header">
-<h1 class="title">Detection of the Signal of selection from genome scan. Population based analysis</h1>
+<h1 class="title">Detection of the signal of selection from genome scan. Population based analysis</h1>
 </div>
 
 <div id="TOC">
@@ -243,8 +244,8 @@ img {
 <li><a href="#data">Data</a></li>
 <li><a href="#resourcespackages-required">Resources/Packages required</a><ul>
 <li><a href="#section-1-load-the-data">Section 1: Load the data</a></li>
-<li><a href="#section-2-pcadapt">section 2: PCAdapt</a></li>
-<li><a href="#section-3-outflank-httpsgithub.comwhitlockoutflank">section 3: outFlank (<a href="https://github.com/whitlock/OutFLANK" class="uri">https://github.com/whitlock/OutFLANK</a>)</a></li>
+<li><a href="#section-2-pcadapt">Section 2: <em>PCAdapt</em></a></li>
+<li><a href="#section-3-outflank-httpsgithub.comwhitlockoutflank">section 3: <em>OutFLANK</em> (<a href="https://github.com/whitlock/OutFLANK" class="uri">https://github.com/whitlock/OutFLANK</a>)</a></li>
 <li><a href="#section-4-logistic-regression-linking-outliers-and-temperature">Section 4: Logistic regression : linking outliers and temperature</a></li>
 </ul></li>
 <li><a href="#conclusions">Conclusions</a><ul>
@@ -258,7 +259,7 @@ img {
 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>The purpose of the vignette is to detect outlier SNP loci from a large number of SNPs genotyped for a large number of individuals. Individuals are organised in well defined populations. Then, we tested if allele counts in outlier loci are correlated to the temperature. We will first use a method based on principal component analysis (PCADAPT) (section 2) and a second method based on atypical values of Fst (OUTFLANK; Whitlok and Lotterhos (2015) ; <a href="https://github.com/whitlock/OutFLANK" class="uri">https://github.com/whitlock/OutFLANK</a>) (section 3) to detect outliers loci. Then, we will test if the allele counts in outliers are correlated to the temperature using a poisson regression (section 4).</p>
+<p>The purpose of the vignette is to detect outlier SNP loci from a large number of SNPs genotyped for a large number of individuals. Individuals are organised in well defined populations. Then, we tested if allele counts in outlier loci are correlated to the temperature. We will first use a method based on principal component analysis (<em>PCAdapt</em>) (section 2) and a second method based on atypical values of Fst (<em>OutFLANK</em>; Whitlok and Lotterhos (2015); <a href="https://github.com/whitlock/OutFLANK" class="uri">https://github.com/whitlock/OutFLANK</a>) (section 3) to detect outliers loci. Then, we will test if the allele counts in outliers are correlated to the temperature using a Poisson regression (section 4).</p>
 </div>
 <div id="assumptions" class="section level1">
 <h1>Assumptions</h1>
@@ -269,47 +270,47 @@ img {
 </div>
 <div id="data" class="section level1">
 <h1>Data</h1>
-<p>We will use a simulated data provided by Katie Lotterhos (Lotterhos et al. in prep). The initial data set is constituted of 509 individuals, 19 populations and 3084 SNP.It has 2 extra-columns: Population and Temperature measures. SNP are in columns: each row contains one value at each SNP loci (separated by spaces or tabulations) corresponding to the number of reference alleles: 0 means zero copies of the reference allele, 1 means one copy of the reference allele (i.e. heterozygote), and 2 means two copies of the reference allele.</p>
+<p>We will use simulated data provided by Katie Lotterhos (Lotterhos et al. in prep). The initial data set is constituted of 509 individuals, 19 populations and 3084 SNP. It has 2 extra-columns: Population and Temperature measures. SNP are in columns: each row contains one value at each SNP locus (separated by spaces or tabulations) corresponding to the number of reference alleles: 0 means zero copies of the reference allele, 1 means one copy of the reference allele (i.e. heterozygote), and 2 means two copies of the reference allele.</p>
 </div>
 <div id="resourcespackages-required" class="section level1">
 <h1>Resources/Packages required</h1>
 <ul>
-<li>PCADAPT:<a href="http://membres-timc.imag.fr/Michael.Blum/PCAdapt.html" class="uri">http://membres-timc.imag.fr/Michael.Blum/PCAdapt.html</a></li>
-<li>OutFlank:<a href="https://github.com/whitlock/OutFLANK" class="uri">https://github.com/whitlock/OutFLANK</a></li>
+<li><em>PCAdapt</em>: <a href="http://membres-timc.imag.fr/Michael.Blum/PCAdapt.html" class="uri">http://membres-timc.imag.fr/Michael.Blum/PCAdapt.html</a></li>
+<li><em>OutFLANK</em>: <a href="https://github.com/whitlock/OutFLANK" class="uri">https://github.com/whitlock/OutFLANK</a></li>
 </ul>
-<p>Since OutFLANK is not yet on CRAN, you will need to install it from GitHub using the <em>devtools</em> R package. Additionally, OutFLANK depends on <em>qvalue</em> from <a href="http://www.bioconductor.org/packages/release/bioc/html/qvalue.html">Bioconductor</a>, which must be installed beforehand.</p>
+<p>Since <em>OutFLANK</em> is not yet on CRAN, you will need to install it from GitHub using the <em>devtools</em> R package. Additionally, <em>OutFLANK</em> depends on <em>qvalue</em> from <a href="http://www.bioconductor.org/packages/release/bioc/html/qvalue.html">Bioconductor</a>, which must be installed beforehand.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;devtools&quot;</span>)
 <span class="kw">source</span>(<span class="st">&quot;https://bioconductor.org/biocLite.R&quot;</span>)
 <span class="kw">biocLite</span>(<span class="st">&quot;qvalue&quot;</span>)
 <span class="kw">install_github</span>(<span class="st">&quot;whitlock/OutFLANK&quot;</span>)</code></pre></div>
 <p>Loading the required packages:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pcadapt)
-<span class="kw">library</span>(qvalue)
-<span class="kw">library</span>(OutFLANK)
-<span class="kw">library</span>(ggplot2)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;pcadapt&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;qvalue&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;OutFLANK&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre></div>
 <div id="section-1-load-the-data" class="section level2">
 <h2>Section 1: Load the data</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sel &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;SNPselection1.txt&quot;</span>, <span class="dt">h=</span>T)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sel &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;SNPselection1.txt&quot;</span>, <span class="dt">head =</span> <span class="ot">TRUE</span>)
 <span class="kw">dim</span>(sel)</code></pre></div>
 <pre><code>## [1]  509 3086</code></pre>
 </div>
 <div id="section-2-pcadapt" class="section level2">
-<h2>section 2: PCAdapt</h2>
-<p>To run the function pcadapt, the user should specify the number K of principal components (PC) to work with: first perform with a large number of principal components (e.g. higher than the number of populations), then use the ‘scree plot’ to chose the value of K. It displays the percentage of variance that is explained by each PC. The recommended value of K corresponds to the largest value of K before the plateau of ‘scree plot’ is reached. Then for a given SNP, a statistical test to define the SNP as outlier or not is based on the “loadings” that are defined as the correlation between the SNP and the PCs.The statictic test for detecting outlier SNPs is the Mahalanobis distance (between the K correlations of the SNP and each axis and mean correlations) and,which scaled by a constant, should have a chi-square distribution with K degrees of freedom under the assumption that there are no outlier. By default P-values of SNPs with a minor allele frequency smaller than 0.05 are not computed. A Manhattan plot displays log10 of the p-values.It is also possible to check the distribution of the p-values using a Q-Q plot. The authors suggest to use false discovery rate (q-value) to provide a list of outliers.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genotype &lt;-<span class="st"> </span>sel[,<span class="dv">3</span>:<span class="kw">ncol</span>(sel)]
+<h2>Section 2: <em>PCAdapt</em></h2>
+<p>To run the function <code>pcadapt()</code>, the user should specify the number K of principal components (PC) to work with: first perform with a large number of principal components (e.g. higher than the number of populations), then use the ‘scree plot’ to chose the value of K. It displays the percentage of variance that is explained by each PC. The recommended value of K corresponds to the largest value of K before the plateau of ‘scree plot’ is reached. Then for a given SNP, a statistical test to define the SNP as outlier or not is based on the “loadings” that are defined as the correlation between the SNP and the PCs. The statistic test for detecting outlier SNPs is the Mahalanobis distance (between the K correlations of the SNP and each axis and mean correlations) and, which scaled by a constant, should have a chi-square distribution with K degrees of freedom under the assumption that there are no outlier. By default P-values of SNPs with a minor allele frequency smaller than 0.05 are not computed. A Manhattan plot displays log10 of the p-values. It is also possible to check the distribution of the p-values using a Q-Q plot. The authors suggest to use false discovery rate (q-value) to provide a list of outliers.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genotype &lt;-<span class="st"> </span>sel[, <span class="dv">3</span>:<span class="kw">ncol</span>(sel)]
 <span class="kw">dim</span>(genotype)</code></pre></div>
 <pre><code>## [1]  509 3084</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K &lt;-<span class="st"> </span><span class="dv">25</span> 
-x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(<span class="dt">data=</span>genotype, <span class="dt">K =</span> K) 
-<span class="kw">plot</span>(x,<span class="dt">option=</span><span class="st">&quot;screeplot&quot;</span>) <span class="co">#19 groups seems to be the correct value</span></code></pre></div>
-<p><img src="spatial-stat_SelectionSNP_files/figure-html/PCAdapt-1.png" title="" alt="" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x,<span class="dt">option=</span><span class="st">&quot;scores&quot;</span>, <span class="dt">pop =</span> sel[,<span class="dv">1</span>]) <span class="co">#how populations are shared among the 19 groups</span></code></pre></div>
-<p><img src="spatial-stat_SelectionSNP_files/figure-html/PCAdapt-2.png" title="" alt="" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K&lt;-<span class="dv">19</span>
-x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(<span class="dt">data=</span>genotype, <span class="dt">K=</span>K, <span class="dt">min.maf=</span><span class="dv">0</span>) 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K &lt;-<span class="st"> </span><span class="dv">25</span>
+x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(<span class="dt">data =</span> genotype, <span class="dt">K =</span> K)
+<span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;screeplot&quot;</span>) <span class="co"># 19 groups seems to be the correct value</span></code></pre></div>
+<p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-1.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;scores&quot;</span>, <span class="dt">pop =</span> sel[, <span class="dv">1</span>]) <span class="co"># how populations are shared among the 19 groups</span></code></pre></div>
+<p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-2.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K &lt;-<span class="st"> </span><span class="dv">19</span>
+x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(<span class="dt">data =</span> genotype, <span class="dt">K =</span> K, <span class="dt">min.maf =</span> <span class="dv">0</span>)
 
-<span class="kw">summary</span>(x) <span class="co">#numerical quantities obtained after performing a PCA</span></code></pre></div>
+<span class="kw">summary</span>(x) <span class="co"># numerical quantities obtained after performing a PCA</span></code></pre></div>
 <pre><code>##                 Length Class  Mode   
 ## stat             3084  -none- numeric
 ## pvalues          3084  -none- numeric
@@ -319,66 +320,71 @@ x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(<span class="dt"
 ## scores           9671  -none- numeric
 ## loadings        58596  -none- numeric
 ## singular_values    19  -none- numeric</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x,<span class="dt">option =</span> <span class="st">&quot;manhattan&quot;</span>)</code></pre></div>
-<p><img src="spatial-stat_SelectionSNP_files/figure-html/PCAdapt-3.png" title="" alt="" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x,<span class="dt">option =</span> <span class="st">&quot;qqplot&quot;</span>,<span class="dt">threshold=</span><span class="fl">0.1</span>)</code></pre></div>
-<p><img src="spatial-stat_SelectionSNP_files/figure-html/PCAdapt-4.png" title="" alt="" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x,<span class="dt">option =</span> <span class="st">&quot;stat.distribution&quot;</span>) <span class="co">#Distribution of Mahalanobis distances.</span></code></pre></div>
-<p><img src="spatial-stat_SelectionSNP_files/figure-html/PCAdapt-5.png" title="" alt="" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qval &lt;-<span class="st"> </span><span class="kw">qvalue</span>(x$pvalues)$qvalues 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;manhattan&quot;</span>)</code></pre></div>
+<p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-3.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;qqplot&quot;</span>, <span class="dt">threshold =</span> <span class="fl">0.1</span>)</code></pre></div>
+<p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-4.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;stat.distribution&quot;</span>) <span class="co"># Distribution of Mahalanobis distances.</span></code></pre></div>
+<p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-5.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qval &lt;-<span class="st"> </span><span class="kw">qvalue</span>(x$pvalues)$qvalues
 alpha &lt;-<span class="st"> </span><span class="fl">0.1</span>
-outliers_pcadapt &lt;-<span class="st"> </span><span class="kw">which</span>(qval&lt;alpha)
+outliers_pcadapt &lt;-<span class="st"> </span><span class="kw">which</span>(qval &lt;<span class="st"> </span>alpha)
 <span class="kw">print</span>(outliers_pcadapt)</code></pre></div>
 <pre><code>##  [1]  663  706  796  923 1155 1163 1347 1378 1639 1666 1825 2133 2556 2871</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(outliers_pcadapt) <span class="co"># 14 outliers</span></code></pre></div>
 <pre><code>## [1] 14</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alpha &lt;-<span class="st"> </span><span class="fl">0.05</span> <span class="co">#use of a more stringent threshold to detect outliers</span>
-outliers &lt;-<span class="st"> </span><span class="kw">which</span>(qval&lt;alpha)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alpha &lt;-<span class="st"> </span><span class="fl">0.05</span> <span class="co"># use of a more stringent threshold to detect outliers</span>
+outliers &lt;-<span class="st"> </span><span class="kw">which</span>(qval &lt;<span class="st"> </span>alpha)
 <span class="kw">print</span>(outliers)</code></pre></div>
 <pre><code>##  [1]  663  706  796  923 1155 1163 1347 1378 1639 1666 1825 2133 2556 2871</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(outliers) <span class="co">#14 outliers</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(outliers) <span class="co"># 14 outliers</span></code></pre></div>
 <pre><code>## [1] 14</code></pre>
 </div>
 <div id="section-3-outflank-httpsgithub.comwhitlockoutflank" class="section level2">
-<h2>section 3: outFlank (<a href="https://github.com/whitlock/OutFLANK" class="uri">https://github.com/whitlock/OutFLANK</a>)</h2>
-<p>A procedure to find Fst outliers based on an inferred distribution of neutral Fst: it uses likelihood on a trimmed distribution of Fst values to infer the distribution of Fst for neutral marker. This distribution is used to assign q-values to each locus to detect outliers loci potentially due to spatially heterogeneous selection. In practice, first the function MakeDiploidFSTMat allows to calculate the appropriate input dataframe among other parameters FST for each loci, and FST without sampling size correction (FSTNoCorr). Then the function outFlank estimate q-values and provides a list of outliers.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pop &lt;-<span class="st"> </span><span class="kw">data.frame</span>(sel[,<span class="dv">1</span>])
-ind &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;pop&quot;</span>,pop[,<span class="dv">1</span>]) <span class="co">#vector with the name of population</span>
+<h2>section 3: <em>OutFLANK</em> (<a href="https://github.com/whitlock/OutFLANK" class="uri">https://github.com/whitlock/OutFLANK</a>)</h2>
+<p>A procedure to find Fst outliers based on an inferred distribution of neutral Fst: it uses likelihood on a trimmed distribution of Fst values to infer the distribution of Fst for neutral markers. This distribution is used to assign q-values to each locus to detect outliers loci potentially due to spatially heterogeneous selection. In practice, first the function <code>MakeDiploidFSTMat()</code> allows to calculate the appropriate input data frame among other parameters, Fst for each locus, and Fst without sampling size correction (<code>FSTNoCorr</code>). Then the function <code>OutFLANK()</code> estimate q-values and provides a list of outliers.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pop &lt;-<span class="st"> </span><span class="kw">data.frame</span>(sel[, <span class="dv">1</span>])
+ind &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;pop&quot;</span>, pop[, <span class="dv">1</span>]) <span class="co">#vector with the name of population</span>
 
-locinames &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class="kw">seq</span>(<span class="dv">1</span>:<span class="kw">ncol</span>(genotype))) <span class="co">#vector with the name of loci</span>
+locinames &lt;-
+<span class="kw">as.character</span>(<span class="kw">seq</span>(<span class="dv">1</span>:<span class="kw">ncol</span>(genotype))) <span class="co">#vector with the name of loci</span>
 
 FstDataFrame &lt;-<span class="st"> </span><span class="kw">MakeDiploidFSTMat</span>(genotype, locinames, ind)</code></pre></div>
 <pre><code>## Calculating FSTs, may take a few minutes...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(FstDataFrame$FST, FstDataFrame$FSTNoCorr, <span class="dt">xlim=</span><span class="kw">c</span>(-<span class="fl">0.01</span>,<span class="fl">0.3</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(-<span class="fl">0.01</span>,<span class="fl">0.3</span>),<span class="dt">pch=</span><span class="dv">20</span>)
-<span class="kw">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="co"># Checking the effect of sample size on Fst since FSTCoCorr will be used in the follow</span></code></pre></div>
-<p><img src="spatial-stat_SelectionSNP_files/figure-html/outFLank-1.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(FstDataFrame$FST, FstDataFrame$FSTNoCorr, <span class="dt">xlim =</span> <span class="kw">c</span>(-<span class="fl">0.01</span>,<span class="fl">0.3</span>), 
+     <span class="dt">ylim =</span> <span class="kw">c</span>(-<span class="fl">0.01</span>, <span class="fl">0.3</span>), <span class="dt">pch =</span> <span class="dv">20</span>)
+<span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="co"># Checking the effect of sample size on Fst since FSTCoCorr will be used in the follow</span></code></pre></div>
+<p><img src="2016-01-26-SNP-selection_files/figure-html/outFLank-1.png" title="" alt="" width="960" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(FstDataFrame$FSTNoCorr) </code></pre></div>
-<p><img src="spatial-stat_SelectionSNP_files/figure-html/outFLank-2.png" title="" alt="" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OF &lt;-<span class="st"> </span><span class="kw">OutFLANK</span>(FstDataFrame, <span class="dt">NumberOfSamples=</span><span class="dv">19</span>, <span class="dt">qthreshold =</span> <span class="fl">0.05</span>, <span class="dt">RightTrimFraction =</span> <span class="fl">0.05</span>)
+<p><img src="2016-01-26-SNP-selection_files/figure-html/outFLank-2.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OF &lt;-<span class="st"> </span><span class="kw">OutFLANK</span>(FstDataFrame, <span class="dt">NumberOfSamples=</span><span class="dv">19</span>, <span class="dt">qthreshold =</span> <span class="fl">0.05</span>, 
+               <span class="dt">RightTrimFraction =</span> <span class="fl">0.05</span>)
 
 <span class="co"># Plot the ditribution of Fst with the chi squared distribution</span>
-<span class="kw">OutFLANKResultsPlotter</span>(OF, <span class="dt">withOutliers =</span> <span class="ot">TRUE</span>, <span class="dt">NoCorr =</span> <span class="ot">TRUE</span>, <span class="dt">Hmin =</span> <span class="fl">0.1</span>, <span class="dt">binwidth =</span> <span class="fl">0.005</span>, <span class="dt">Zoom =</span> <span class="ot">FALSE</span>, <span class="dt">RightZoomFraction =</span> <span class="fl">0.05</span>, <span class="dt">titletext =</span> <span class="ot">NULL</span>)</code></pre></div>
-<p><img src="spatial-stat_SelectionSNP_files/figure-html/outFLank-3.png" title="" alt="" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">outliers_OF &lt;-<span class="st"> </span>OF$results$LocusName[OF$results$OutlierFlag==<span class="ot">TRUE</span>]
+<span class="kw">OutFLANKResultsPlotter</span>(OF, <span class="dt">withOutliers =</span> <span class="ot">TRUE</span>, <span class="dt">NoCorr =</span> <span class="ot">TRUE</span>, <span class="dt">Hmin =</span> <span class="fl">0.1</span>, 
+                       <span class="dt">binwidth =</span> <span class="fl">0.005</span>, <span class="dt">Zoom =</span> <span class="ot">FALSE</span>, <span class="dt">RightZoomFraction =</span> <span class="fl">0.05</span>, 
+                       <span class="dt">titletext =</span> <span class="ot">NULL</span>)</code></pre></div>
+<p><img src="2016-01-26-SNP-selection_files/figure-html/outFLank-3.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">outliers_OF &lt;-<span class="st"> </span>OF$results$LocusName[OF$results$OutlierFlag ==<span class="st"> </span><span class="ot">TRUE</span>]
 <span class="kw">print</span>(outliers_OF)</code></pre></div>
 <pre><code>##  [1] 663  706  923  1163 1378 1639 1666 1825 2133 2556 2871
 ## 3084 Levels: 1 10 100 1000 1001 1002 1003 1004 1005 1006 1007 1008 ... 999</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(outliers_OF)  <span class="co"># 11 outliers</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(outliers_OF) <span class="co"># 11 outliers</span></code></pre></div>
 <pre><code>## [1] 11</code></pre>
 </div>
 <div id="section-4-logistic-regression-linking-outliers-and-temperature" class="section level2">
 <h2>Section 4: Logistic regression : linking outliers and temperature</h2>
-<p>We aim to test if the outliers detected with PCAdapt and OutFLANCK (663 706 923 1163 1378 1639 1666 1825 2133 2556 2871) are correlated to the temperature. We use a GLM with a binomial error to model the probability to have the allele “A” out of the two alleles. We derive the relation for some of the shared outliers. You can do the test for all.</p>
+<p>We aim to test if the outliers detected with <em>PCAdapt</em> and <em>OutFLANK</em> (663 706 923 1163 1378 1639 1666 1825 2133 2556 2871) are correlated to the temperature. We use a GLM with a binomial error to model the probability to have the allele “A” out of the two alleles. We derive the relation for some of the shared outliers. You can do the test for all.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We keep the outliers loci selected by both pcadapt and outflank</span>
-outliers &lt;-<span class="st"> </span>outliers_pcadapt[<span class="kw">which</span>(outliers_pcadapt %in%<span class="st"> </span>outliers_OF)]
+outliers &lt;-<span class="st"> </span>outliers_pcadapt[outliers_pcadapt %in%<span class="st"> </span>outliers_OF]
 <span class="kw">length</span>(outliers) <span class="co"># 11 outliers</span></code></pre></div>
 <pre><code>## [1] 11</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loc1 &lt;-<span class="st"> </span>genotype[,outliers[<span class="dv">1</span>]]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loc1 &lt;-<span class="st"> </span>genotype[, outliers[<span class="dv">1</span>]]
 temp &lt;-<span class="st"> </span>sel$Temperature
-loc1temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc1,temp)
+loc1temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc1, temp)
  
-mod&lt;-<span class="kw">glm</span>(<span class="kw">cbind</span>(loc1, <span class="dv">2</span>-loc1)~temp,<span class="dt">family=</span>binomial)  
-<span class="kw">summary</span>(mod)  <span class="co"># This loci is significantly correlated to temperature</span></code></pre></div>
+mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc1, <span class="dv">2</span> -<span class="st"> </span>loc1) ~<span class="st"> </span>temp, <span class="dt">family =</span> binomial) 
+<span class="kw">summary</span>(mod) <span class="co"># This loci is significantly correlated to temperature</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cbind(loc1, 2 - loc1) ~ temp, family = binomial)
@@ -401,16 +407,14 @@ mod&lt;-<span class="kw">glm</span>(<span class="kw">cbind</span>(loc1, <span cl
 ## AIC: 1011.6
 ## 
 ## Number of Fisher Scoring iterations: 3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loc2 &lt;-<span class="st"> </span>genotype[,outliers[<span class="dv">2</span>]]
-loc2temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc2,temp)
-<span class="kw">boxplot</span>(loc2temp[loc2temp$loc2 ==<span class="st"> </span><span class="dv">0</span>,<span class="dv">2</span>],loc2temp[loc2temp$loc2 ==<span class="st"> </span><span class="dv">1</span>,<span class="dv">2</span>],loc2temp[loc2temp$loc2 ==<span class="st"> </span><span class="dv">2</span>,<span class="dv">2</span>])</code></pre></div>
-<p><img src="spatial-stat_SelectionSNP_files/figure-html/Binomial%20regressions-1.png" title="" alt="" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(loc2temp, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(loc2), <span class="dt">y =</span> temp)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Major allele count&quot;</span>) +
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature (Centigrade)&quot;</span>)</code></pre></div>
-<p><img src="spatial-stat_SelectionSNP_files/figure-html/Binomial%20regressions-2.png" title="" alt="" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc2,<span class="dv">2</span>-loc2)~temp,<span class="dt">family=</span>binomial)  
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loc2 &lt;-<span class="st"> </span>genotype[, outliers[<span class="dv">2</span>]]
+loc2temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc2, temp)
+<span class="kw">ggplot</span>(loc2temp, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(loc2), <span class="dt">y =</span> temp)) +<span class="st"> </span>
+<span class="st"> </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
+<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Major allele count&quot;</span>) +
+<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature (Centigrade)&quot;</span>)</code></pre></div>
+<p><img src="2016-01-26-SNP-selection_files/figure-html/Binomial%20regressions-1.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc2, <span class="dv">2</span> -<span class="st"> </span>loc2) ~<span class="st"> </span>temp, <span class="dt">family =</span> binomial) 
 <span class="kw">summary</span>(mod) <span class="co"># This loci is significantly correlated to temperature</span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -435,15 +439,15 @@ loc2temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc2,t
 ## 
 ## Number of Fisher Scoring iterations: 3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test with a loci that is only selected by one method</span>
-loc7&lt;-genotype[,outliers_pcadapt[<span class="kw">which</span>(outliers_pcadapt %in%<span class="st"> </span>outliers_OF ==F)][<span class="dv">1</span>]]
-loc7temp&lt;-<span class="kw">data.frame</span>(loc7,temp)
-
+loc7 &lt;-<span class="st"> </span>genotype[, outliers_pcadapt[!outliers_pcadapt %in%<span class="st"> </span>outliers_OF][<span class="dv">1</span>]]
+loc7temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc7, temp)
+  
 <span class="kw">ggplot</span>(loc2temp, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(loc7), <span class="dt">y =</span> temp)) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Major allele count&quot;</span>) +
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature (Centigrade)&quot;</span>)</code></pre></div>
-<p><img src="spatial-stat_SelectionSNP_files/figure-html/Binomial%20regressions-3.png" title="" alt="" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc7, <span class="dv">2</span>-loc7)~temp, <span class="dt">family=</span>binomial)  
+<span class="st"> </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
+<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Major allele count&quot;</span>) +
+<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature (Centigrade)&quot;</span>)</code></pre></div>
+<p><img src="2016-01-26-SNP-selection_files/figure-html/Binomial%20regressions-2.png" title="" alt="" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc7, <span class="dv">2</span> -<span class="st"> </span>loc7) ~<span class="st"> </span>temp, <span class="dt">family =</span> binomial)
 <span class="kw">summary</span>(mod) ## This loci is not significantly correlated to temperature</code></pre></div>
 <pre><code>## 
 ## Call:
@@ -475,18 +479,17 @@ loc7temp&lt;-<span class="kw">data.frame</span>(loc7,temp)
 <li><em>PCAdapt</em> detected 14 outliers</li>
 <li><em>OutFLANK</em> detected 11 outliers</li>
 <li>11 outliers were detected in common</li>
-<li>Those common outliers are all significantly correlated with the temperatures as shown by poisson regressions. Such outliers can be potentially involved in local adaptation due to temperatures. However more analysis are necessary to confirm that they are outliers, and which allele is potentially under selection.</li>
+<li>Those common outliers are all significantly correlated with the temperatures as shown by Poisson regressions. Such outliers can be potentially involved in local adaptation due to temperatures. However more analysis are necessary to confirm that they are outliers, and which allele is potentially under selection.</li>
 </ul>
 <div id="whats-next" class="section level2">
 <h2>What’s next</h2>
-<p>Information on further analysis that could be done as LFFM (pakage LEA..).</p>
+<p>Information on further analysis that could be done as LFFM (package <em>LEA</em>..).</p>
 </div>
 </div>
 <div id="contributors" class="section level1">
 <h1>Contributors</h1>
 <ul>
-<li>Stephanie Manel (EPHE) (Author)<br />
-</li>
+<li>Stephanie Manel (EPHE) (Author)</li>
 <li>Alicia Dalongeville (CEFE) (Author)</li>
 <li>Zhian Kamvar (reviewer)</li>
 </ul>
@@ -498,7 +501,7 @@ loc7temp&lt;-<span class="kw">data.frame</span>(loc7,temp)
 </div>
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
-<p>Information about the R session used for this tutorial.</p>
+<p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
 devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
@@ -509,7 +512,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       &lt;NA&gt;                        
-##  date     2016-02-12</code></pre>
+##  date     2016-02-15</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source                            
 ##  cluster      2.0.3   2015-07-21 CRAN (R 3.2.1)                    

@@ -186,6 +186,7 @@ img {
               <li><a href="StartSNP.html">Basic statistics</a></li>
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
               <li><a href="2015-05-18-Dist-SNP.html">Genetic Distance (individual-based)</a></li>
+              <li><a href="2016-01-26-SNP-selection.html">Signals of Selection</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -394,7 +395,7 @@ img {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/Rtmp7UzHop/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/Rtmp1ZcBTi/R-lib&quot;</code></pre>
 <p>After looking at the documentation, we know that we want to change the values <code>devtools.desc.author</code>, <code>devtools.desc.license</code>, <code>devtools.name</code>. We will also add a “Maintainer” field to the DESCRIPTION file (tells users who to blame). The others don’t matter for now. We can add them in thusly (Note, I am using my name; you should obviously use your own):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">authors_at_r &lt;-<span class="st"> </span><span class="kw">paste0</span>(
   <span class="st">&quot;&#39;&quot;</span>,
@@ -433,7 +434,7 @@ img {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/Rtmp7UzHop/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/Rtmp1ZcBTi/R-lib&quot;</code></pre>
 <blockquote>
 <p>It is much easier to edit the DESCRIPTION file by hand afterward. This simply demonstrates how you can get started.</p>
 </blockquote>
@@ -479,7 +480,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       &lt;NA&gt;                        
-##  date     2016-02-12</code></pre>
+##  date     2016-02-15</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package   * version date       source        
 ##  devtools  * 1.10.0  2016-01-23 CRAN (R 3.2.3)

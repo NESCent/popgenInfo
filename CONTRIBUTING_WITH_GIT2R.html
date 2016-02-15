@@ -186,6 +186,7 @@ img {
               <li><a href="StartSNP.html">Basic statistics</a></li>
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
               <li><a href="2015-05-18-Dist-SNP.html">Genetic Distance (individual-based)</a></li>
+              <li><a href="2016-01-26-SNP-selection.html">Signals of Selection</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -324,19 +325,19 @@ img {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>)
 <span class="kw">clone</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/zkamvar/popgenInfo.git&quot;</span>,
       <span class="dt">local_path =</span> <span class="st">&quot;popgenInfo&quot;</span>)</code></pre></div>
-<pre><code>## cloning into &#39;/tmp/RtmpyoMWuP/popgenInfo&#39;...
-## Receiving objects:   1% (22/2144),    9 kb
-## Receiving objects:  11% (236/2144),   50 kb
-## Receiving objects:  21% (451/2144),   89 kb
-## Receiving objects:  31% (665/2144), 1692 kb
-## Receiving objects:  41% (880/2144), 6056 kb
-## Receiving objects:  51% (1094/2144), 10808 kb
-## Receiving objects:  61% (1308/2144), 10840 kb
-## Receiving objects:  71% (1523/2144), 10872 kb
-## Receiving objects:  81% (1737/2144), 11080 kb
-## Receiving objects:  91% (1952/2144), 11096 kb
-## Receiving objects: 100% (2144/2144), 11578 kb, done.</code></pre>
-<pre><code>## Local:    master /tmp/RtmpyoMWuP/popgenInfo/
+<pre><code>## cloning into &#39;/tmp/Rtmp7qj5Sb/popgenInfo&#39;...
+## Receiving objects:   1% (22/2134),    8 kb
+## Receiving objects:  11% (235/2134),   49 kb
+## Receiving objects:  21% (449/2134),   89 kb
+## Receiving objects:  31% (662/2134), 1683 kb
+## Receiving objects:  41% (875/2134), 6064 kb
+## Receiving objects:  51% (1089/2134), 10815 kb
+## Receiving objects:  61% (1302/2134), 10847 kb
+## Receiving objects:  71% (1516/2134), 10879 kb
+## Receiving objects:  81% (1729/2134), 11087 kb
+## Receiving objects:  91% (1942/2134), 11103 kb
+## Receiving objects: 100% (2134/2134), 11576 kb, done.</code></pre>
+<pre><code>## Local:    master /tmp/Rtmp7qj5Sb/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
 ## Head:     [816739e] 2016-02-12: Merge pull request #121 from smanel/26_01_16_Signal_Selection</code></pre>
 <p>Now when we look at our directory, we can see that we have one folder called “popgenInfo”:</p>
@@ -367,7 +368,7 @@ img {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>) <span class="co"># in case you&#39;re starting from here</span>
 repo &lt;-<span class="st"> </span><span class="kw">repository</span>()
 repo</code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpyoMWuP/popgenInfo/
+<pre><code>## Local:    master /tmp/Rtmp7qj5Sb/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
 ## Head:     [816739e] 2016-02-12: Merge pull request #121 from smanel/26_01_16_Signal_Selection</code></pre>
 <p>This tells R that you have a repository in this folder and that you are referring to it as <code>repo</code>. The output of <code>repo</code> is a summary of your repository:</p>
@@ -417,23 +418,25 @@ repo &lt;-<span class="st"> </span><span class="kw">repository</span>()</code></
 <p>Now that we have our repository loaded, we should make sure that we are on the <strong>master branch</strong>. We can do this using the <code>checkout()</code> function from <em>git2r</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)
 repo</code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpyoMWuP/popgenInfo/
+<pre><code>## Local:    master /tmp/Rtmp7qj5Sb/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
 ## Head:     [816739e] 2016-02-12: Merge pull request #121 from smanel/26_01_16_Signal_Selection</code></pre>
 <p>Now, whether or not we suspect changes from NESCent, it’s always good form to update your local repository before creating any new branches. We can do it this by first <strong>fetching</strong> ALL changes that have happened on the NESCent popgenInfo repository, and then <strong>merging</strong> the NESCent master branch into our master branch. We will use the <em>git2r</em> functions <code>fetch()</code> and <code>merge()</code> to accomplish this.</p>
 <p>First, we fetch all of the changes that have happened. If there are no changes, nothing will appear, but if there is new content on the master branch or new branches on the repository, they will be downloaded and each branch will be printed to your screen. For our purposes, we are only concerned with the changes on the <strong>master</strong> branch, which will look something like this: <code>## [new]    b62a78c1fcd384a3ea23 refs/remotes/NESCent/master</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fetch</span>(repo, <span class="dt">name =</span> <span class="st">&quot;NESCent&quot;</span>)</code></pre></div>
-<pre><code>## [new]     bf14c87b3604f663f16d refs/remotes/NESCent/gh-pages
-## [new]     2f4999205c4a68daf593 refs/remotes/NESCent/master
+<pre><code>## [new]     accc49eb4dd4b17d4639 refs/remotes/NESCent/add-images
+## [new]     23ac8e4adedcf526bf6c refs/remotes/NESCent/display-selection
+## [new]     98308651b420f7dd4cca refs/remotes/NESCent/gh-pages
+## [new]     737a4debc62870dbfbb5 refs/remotes/NESCent/master
 ## [new]     16b52608de7f5ed41d04 refs/remotes/NESCent/summaryseqstats
 ## [new]     c7e4171b3786e398e39b refs/remotes/NESCent/web-devel</code></pre>
 <p>It’s important to note that our local repository is still unchanged at this point as we have just downloaded the updates from NESCent. To update our local repository, we should merge the changes from NESCent’s master branch into our master branch:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">merge</span>(repo, <span class="st">&quot;NESCent/master&quot;</span>)</code></pre></div>
 <pre><code>## Merge: Fast-forward</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo</code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpyoMWuP/popgenInfo/
+<pre><code>## Local:    master /tmp/Rtmp7qj5Sb/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [2f49992] 2016-02-12: Merge pull request #142 from zkamvar/remove-genetics-pkg</code></pre>
+## Head:     [737a4de] 2016-02-15: Merge pull request #144 from NESCent/display-selection</code></pre>
 <p>If there were any changes, the <strong>Head</strong> field will have a more current commit than when we intialized it above.</p>
 <p>Since we will never work directly on the master branch, there should be no conflicts from the NESCent branch and we now know that our branch is up to date. Assuming everything worked, we can push this to our fork on GitHub. We will use <em>git2r</em>’s <code>push()</code> function to do this. We also need to supply our PAT in order for this to work. To do so, we will use the <em>git2r</em> function <code>cred_token()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cred &lt;-<span class="st"> </span><span class="kw">cred_token</span>()
@@ -448,9 +451,9 @@ repo</code></pre></div>
 <p>Most importantly we need to make sure that we are on the master branch and it is up to date. To double plus make sure that you are on the master branch, check it out:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)
 repo</code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpyoMWuP/popgenInfo/
+<pre><code>## Local:    master /tmp/Rtmp7qj5Sb/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [2f49992] 2016-02-12: Merge pull request #142 from zkamvar/remove-genetics-pkg</code></pre>
+## Head:     [737a4de] 2016-02-15: Merge pull request #144 from NESCent/display-selection</code></pre>
 <p>For reasons that will reveal themselves later, please run these function definitions:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_branch &lt;-<span class="st"> </span>function(x) <span class="kw">paste0</span>(<span class="st">&quot;refs/heads/&quot;</span>, x)
 my_origin &lt;-<span class="st"> </span>function(x) <span class="kw">paste0</span>(<span class="st">&quot;origin/&quot;</span>, x)</code></pre></div>
@@ -476,15 +479,15 @@ my_origin &lt;-<span class="st"> </span>function(x) <span class="kw">paste0</spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BRANCH &lt;-<span class="st"> &quot;2015-12-16-spatial-stats&quot;</span>  <span class="co"># 1</span>
 <span class="kw">checkout</span>(repo, BRANCH, <span class="dt">create =</span> <span class="ot">TRUE</span>) <span class="co"># 2</span>
 repo</code></pre></div>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpyoMWuP/popgenInfo/
-## Head:     [2f49992] 2016-02-12: Merge pull request #142 from zkamvar/remove-genetics-pkg</code></pre>
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/Rtmp7qj5Sb/popgenInfo/
+## Head:     [737a4de] 2016-02-15: Merge pull request #144 from NESCent/display-selection</code></pre>
 <p>Notice here that you now only have two lines in the output, <strong>Local</strong> and <strong>Head</strong>. This is because the branch doesn’t exist on your GitHub fork. This is where the next two steps come in. We will push that branch and then make sure that our branch is tracking the copy on the fork.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">push</span>(repo, <span class="dt">name =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">refspec =</span> <span class="kw">my_branch</span>(BRANCH), <span class="dt">credentials =</span> cred) <span class="co"># 3</span>
 <span class="kw">branch_set_upstream</span>(<span class="kw">head</span>(repo), <span class="kw">my_origin</span>(BRANCH))                           <span class="co"># 4</span>
 repo</code></pre></div>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpyoMWuP/popgenInfo/
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/Rtmp7qj5Sb/popgenInfo/
 ## Remote:   2015-12-16-spatial-stats @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [2f49992] 2016-02-12: Merge pull request #142 from zkamvar/remove-genetics-pkg</code></pre>
+## Head:     [737a4de] 2016-02-15: Merge pull request #144 from NESCent/display-selection</code></pre>
 <p>We can now see from the output that we have a <strong>Remote</strong> set up. Once we have this, we can start making changes! If you are adding a new vignette, please copy <a href="https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd"><code>TEMPLATE.Rmd</code></a> to the <strong>use/</strong> directory and give it a new name that is meaningful to your contribution (good practice is to name it the same as your branch). If you are including any data, place it in the <strong>data/</strong> directory. Once you add these files, you need to to <strong>add</strong> these files and then you should <strong>commit</strong>, which we will show you how to do below.</p>
 </div>
 </div>
@@ -510,20 +513,20 @@ repo</code></pre></div>
 <span class="st">spatial data in the data folder.</span>
 <span class="st">&quot;</span>
 <span class="kw">commit</span>(repo, msg, <span class="dt">session =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## [cf477f7] 2016-02-12:  started spatial stats vignette and added data</code></pre>
+<pre><code>## [35814ec] 2016-02-15:  started spatial stats vignette and added data</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">status</span>(repo) <span class="co"># should return nothing</span>
 repo</code></pre></div>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpyoMWuP/popgenInfo/
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/Rtmp7qj5Sb/popgenInfo/
 ## Remote:   2015-12-16-spatial-stats @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [cf477f7] 2016-02-12:  started spatial stats vignette and added data</code></pre>
+## Head:     [35814ec] 2016-02-15:  started spatial stats vignette and added data</code></pre>
 <blockquote>
 <p>Note that we put <code>session = TRUE</code> in the commit function. This automatically puts your R session information in the commit, which gives more information about package versions you were working with when you were editing the vignette.</p>
 </blockquote>
 <p>You can see a summary of what you just did by looking at the summary of your commit:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">commits</span>(repo)[[<span class="dv">1</span>]])</code></pre></div>
-<pre><code>## Commit:  cf477f735b0d16767a33e3d3fde8231189e905ef
+<pre><code>## Commit:  35814ecca9d8bf9e5b4936a92cadeaa7f557b4c5
 ## Author:  Zhian Kamvar &lt;kamvarz@science.oregonstate.edu&gt;
-## When:    2016-02-12 16:35:10
+## When:    2016-02-15 16:52:31
 ## 
 ##       started spatial stats vignette and added data
 ##      
@@ -600,7 +603,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       &lt;NA&gt;                        
-##  date     2016-02-12</code></pre>
+##  date     2016-02-15</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package   * version date       source        
 ##  devtools    1.10.0  2016-01-23 CRAN (R 3.2.3)

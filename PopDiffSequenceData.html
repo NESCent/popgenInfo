@@ -186,6 +186,7 @@ img {
               <li><a href="StartSNP.html">Basic statistics</a></li>
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
               <li><a href="2015-05-18-Dist-SNP.html">Genetic Distance (individual-based)</a></li>
+              <li><a href="2016-01-26-SNP-selection.html">Signals of Selection</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -392,32 +393,32 @@ allData3</code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   1.6075  (1.0303-2.4109)
-## CAD  1.6834  (1.1431-2.5343)
+## mt   1.606   (1.0783-2.4965)
+## CAD  1.7067  (1.1899-2.6125)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.6299   (1.2649-2.0418)</code></pre>
+## 1.6448   (1.2793-2.2801)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, Gst_Hedrick) <span class="co"># for Hedrick&#39;s Gst</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   1.0392  (1.0017-1.0828)
-## CAD  1.0191  (1.003-1.0461)
+## mt   1.0331  (1.0049-1.0815)
+## CAD  1.0218  (1.0048-1.0646)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.0295   (1.0103-1.0578)</code></pre>
+## 1.0283   (1.0116-1.0596)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, D_Jost)      <span class="co"># for Jost&#39;s D</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   0.8995  (0.8426-0.9526)
-## CAD  0.9522  (0.9072-0.9864)
+## mt   0.9085  (0.8536-0.9609)
+## CAD  0.9473  (0.8791-0.9895)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9268   (0.893-0.9578)
+## 0.9291   (0.8853-0.9713)
 ## 
 ## Global Estimate based on harmonic mean of statistic
-## 0.9247   (0.8891-0.9591)</code></pre>
+## 0.9271   (0.8861-0.9706)</code></pre>
 </div>
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
@@ -473,7 +474,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       &lt;NA&gt;                        
-##  date     2016-02-12</code></pre>
+##  date     2016-02-15</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-3   2015-11-22 CRAN (R 3.2.3)
