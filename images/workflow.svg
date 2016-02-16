@@ -8,10 +8,36 @@
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    width="990"
    height="765"
-   id="svg2">
+   id="svg2"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="workflow.svg">
+  <title
+     id="title3144">popgenInfo contribution workflow</title>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="889"
+     inkscape:window-height="945"
+     id="namedview167"
+     showgrid="false"
+     inkscape:zoom="0.30849673"
+     inkscape:cx="287.54237"
+     inkscape:cy="382.5"
+     inkscape:window-x="1280"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
   <defs
      id="defs4">
     <marker
@@ -159,8 +185,49 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title>popgenInfo contribution workflow</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by/4.0/" />
+        <dc:date>2016-02-16</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Zhian N. Kamvar</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:contributor>
+          <cc:Agent>
+            <dc:title>Zhian N. Kamvar,
+Margarita M. López-Uribe,
+Simone Coughan,
+Niklaus J. Grünwald,
+Hilmar Lapp,
+Stéphanie Manel</dc:title>
+          </cc:Agent>
+        </dc:contributor>
+        <dc:coverage></dc:coverage>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>git</rdf:li>
+            <rdf:li>github</rdf:li>
+            <rdf:li>population genetics</rdf:li>
+            <rdf:li>continuous integration</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:language>English</dc:language>
       </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by/3.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
     </rdf:RDF>
   </metadata>
   <g
