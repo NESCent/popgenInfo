@@ -14,7 +14,7 @@
    width="990"
    height="765"
    id="svg2"
-   inkscape:version="0.48.5 r10040"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="workflow.svg">
   <title
      id="title3144">popgenInfo contribution workflow</title>
@@ -27,13 +27,13 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="889"
-     inkscape:window-height="945"
+     inkscape:window-width="993"
+     inkscape:window-height="754"
      id="namedview167"
      showgrid="false"
-     inkscape:zoom="0.30849673"
-     inkscape:cx="287.54237"
-     inkscape:cy="382.5"
+     inkscape:zoom="0.61699346"
+     inkscape:cx="555.4062"
+     inkscape:cy="364.09005"
      inkscape:window-x="1280"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -187,7 +187,7 @@
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
         <dc:title>popgenInfo contribution workflow</dc:title>
         <cc:license
-           rdf:resource="http://creativecommons.org/licenses/by/4.0/" />
+           rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
         <dc:date>2016-02-16</dc:date>
         <dc:creator>
           <cc:Agent>
@@ -204,7 +204,7 @@ Hilmar Lapp,
 Stéphanie Manel</dc:title>
           </cc:Agent>
         </dc:contributor>
-        <dc:coverage></dc:coverage>
+        <dc:coverage />
         <dc:subject>
           <rdf:Bag>
             <rdf:li>git</rdf:li>
