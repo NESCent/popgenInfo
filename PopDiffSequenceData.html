@@ -259,17 +259,17 @@ img {
 </div>
 <div id="data" class="section level1">
 <h1>Data</h1>
-<p>Data used for the following analyses come from one mitochondrial gene (Cytochrome Oxidase I = <a href="https://github.com/nescent/popgenInfo/blob/master/data/Ebom_mt.fas">‘Ebom_mt.fas’</a>) and one nuclear gene (Calcium/Calmodulin-Dependent Protein Kinase II = <a href="https://github.com/nescent/popgenInfo/blob/master/data/Ebom_CAD.fas">‘Ebom_CAD.fas’</a>) of the orchid bee Eulaema bombiformis.</p>
+<p>Data used for the following analyses come from one mitochondrial gene (Cytochrome Oxidase I = <a href="https://github.com/nescent/popgenInfo/blob/master/data/Ebom_mt.fas">‘Ebom_mt.fas’</a>) and one nuclear gene (Calcium/Calmodulin-Dependent Protein Kinase II = <a href="https://github.com/nescent/popgenInfo/blob/master/data/Ebom_CAD.fas">‘Ebom_CAD.fas’</a>) of the orchid bee <em>Eulaema bombiformis</em>.</p>
 </div>
 <div id="resourcespackages" class="section level1">
 <h1>Resources/Packages</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(apex)
-<span class="kw">library</span>(adegenet)
-<span class="kw">library</span>(ape)
-<span class="kw">library</span>(pegas)
-<span class="kw">library</span>(hierfstat)
-<span class="kw">library</span>(mmod)
-<span class="kw">library</span>(poppr)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;apex&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;ape&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;hierfstat&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;mmod&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;poppr&quot;</span>)</code></pre></div>
 </div>
 <div id="import-data" class="section level1">
 <h1>Import data</h1>
@@ -393,32 +393,32 @@ allData3</code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   1.6216  (1.0988-2.3353)
-## CAD  1.7309  (1.207-2.7085)
+## mt   1.6018  (1.128-2.241)
+## CAD  1.6917  (1.1774-2.6876)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.661    (1.2894-2.1608)</code></pre>
+## 1.6316   (1.2527-2.1841)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, Gst_Hedrick) <span class="co"># for Hedrick&#39;s Gst</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   1.0366  (1.0056-1.0842)
-## CAD  1.0218  (1.0044-1.0548)
+## mt   1.038   (1.0068-1.1007)
+## CAD  1.0189  (1.0036-1.048)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.0298   (1.0125-1.0551)</code></pre>
+## 1.0287   (1.0099-1.0516)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, D_Jost)      <span class="co"># for Jost&#39;s D</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## mt   0.9044  (0.8545-0.9509)
-## CAD  0.9502  (0.9035-0.9846)
+## mt   0.9018  (0.8353-0.9614)
+## CAD  0.9522  (0.8979-0.988)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9283   (0.8897-0.954)
+## 0.9279   (0.8877-0.9624)
 ## 
 ## Global Estimate based on harmonic mean of statistic
-## 0.9264   (0.8868-0.9514)</code></pre>
+## 0.9258   (0.8893-0.9615)</code></pre>
 </div>
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
