@@ -280,11 +280,11 @@ img {
 <pre><code>## Loading required package: methods</code></pre>
 <pre><code>## Loading required package: ade4</code></pre>
 <pre><code>## 
-##    /// adegenet 2.0.0 is loaded ////////////
+##    /// adegenet 2.0.1 is loaded ////////////
 ## 
 ##    &gt; overview: &#39;?adegenet&#39;
 ##    &gt; tutorials/doc/questions: &#39;adegenetWeb()&#39; 
-##    &gt; bug reports/feature resquests: adegenetIssues()</code></pre>
+##    &gt; bug reports/feature requests: adegenetIssues()</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)</code></pre></div>
 <pre><code>## Loading required package: ape</code></pre>
 <pre><code>## 
@@ -304,34 +304,13 @@ img {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;nancycats&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;adegenet&quot;</span>)  
 <span class="kw">summary</span>(nancycats)</code></pre></div>
 <pre><code>## 
-##  # Total number of genotypes:  237 
-## 
-##  # Population sample sizes:  
-## P01 P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P14 P15 P16 P17 
-##  10  22  12  23  15  11  14  10   9  11  20  14  13  17  11  12  13 
-## 
-##  # Number of alleles per locus:  
-##  fca8 fca23 fca43 fca45 fca77 fca78 fca90 fca96 fca37 
-##    16    11    10     9    12     8    12    12    18 
-## 
-##  # Number of alleles per population:  
-## P01 P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P14 P15 P16 P17 
-##  36  53  50  67  48  56  42  54  43  46  70  52  44  61  42  40  35 
-## 
-##  # Percentage of missing data:  
-## [1] 2.344116
-## 
-##  # Observed heterozygosity:  
-##      fca8     fca23     fca43     fca45     fca77     fca78     fca90 
-## 0.6682028 0.6666667 0.6793249 0.7083333 0.6329114 0.5654008 0.6497890 
-##     fca96     fca37 
-## 0.6184211 0.4514768 
-## 
-##  # Expected heterozygosity:  
-##      fca8     fca23     fca43     fca45     fca77     fca78     fca90 
-## 0.8657224 0.7928751 0.7953319 0.7603095 0.8702576 0.6884669 0.8157881 
-##     fca96     fca37 
-## 0.7603493 0.6062686</code></pre>
+## // Number of individuals: 237
+## // Group sizes: 10 22 12 23 15 11 14 10 9 11 20 14 13 17 11 12 13
+## // Number of alleles per locus: 16 11 10 9 12 8 12 12 18
+## // Number of alleles per group: 36 53 50 67 48 56 42 54 43 46 70 52 44 61 42 40 35
+## // Percentage of missing data: 2.34 %
+## // Observed heterozygosity: 0.67 0.67 0.68 0.71 0.63 0.57 0.65 0.62 0.45
+## // Expected heterozygosity: 0.87 0.79 0.8 0.76 0.87 0.69 0.82 0.76 0.61</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(nancycats)</code></pre></div>
 </div>
 <div id="section-2-genetic-diversity-observed-and-expected-heterozygosity" class="section level2">
@@ -339,7 +318,7 @@ img {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nancycats  </code></pre></div>
 <pre><code>## /// GENIND OBJECT /////////
 ## 
-##  // 237 individuals; 9 loci; 108 alleles; size: 158.4 Kb
+##  // 237 individuals; 9 loci; 108 alleles; size: 145.3 Kb
 ## 
 ##  // Basic content
 ##    @tab:  237 x 108 matrix of allele counts
@@ -353,66 +332,16 @@ img {
 ##  // Optional content
 ##    @pop: population of each individual (group size range: 9-23)
 ##    @other: a list containing: xy</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">div &lt;-<span class="st"> </span><span class="kw">summary</span>(nancycats)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">div &lt;-<span class="st"> </span><span class="kw">summary</span>(nancycats)
+div</code></pre></div>
 <pre><code>## 
-##  # Total number of genotypes:  237 
-## 
-##  # Population sample sizes:  
-## P01 P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P14 P15 P16 P17 
-##  10  22  12  23  15  11  14  10   9  11  20  14  13  17  11  12  13 
-## 
-##  # Number of alleles per locus:  
-##  fca8 fca23 fca43 fca45 fca77 fca78 fca90 fca96 fca37 
-##    16    11    10     9    12     8    12    12    18 
-## 
-##  # Number of alleles per population:  
-## P01 P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P14 P15 P16 P17 
-##  36  53  50  67  48  56  42  54  43  46  70  52  44  61  42  40  35 
-## 
-##  # Percentage of missing data:  
-## [1] 2.344116
-## 
-##  # Observed heterozygosity:  
-##      fca8     fca23     fca43     fca45     fca77     fca78     fca90 
-## 0.6682028 0.6666667 0.6793249 0.7083333 0.6329114 0.5654008 0.6497890 
-##     fca96     fca37 
-## 0.6184211 0.4514768 
-## 
-##  # Expected heterozygosity:  
-##      fca8     fca23     fca43     fca45     fca77     fca78     fca90 
-## 0.8657224 0.7928751 0.7953319 0.7603095 0.8702576 0.6884669 0.8157881 
-##     fca96     fca37 
-## 0.7603493 0.6062686</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">div</code></pre></div>
-<pre><code>## $N
-## [1] 237
-## 
-## $pop.eff
-## P01 P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P14 P15 P16 P17 
-##  10  22  12  23  15  11  14  10   9  11  20  14  13  17  11  12  13 
-## 
-## $loc.n.all
-##  fca8 fca23 fca43 fca45 fca77 fca78 fca90 fca96 fca37 
-##    16    11    10     9    12     8    12    12    18 
-## 
-## $pop.nall
-## P01 P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P14 P15 P16 P17 
-##  36  53  50  67  48  56  42  54  43  46  70  52  44  61  42  40  35 
-## 
-## $NA.perc
-## [1] 2.344116
-## 
-## $Hobs
-##      fca8     fca23     fca43     fca45     fca77     fca78     fca90 
-## 0.6682028 0.6666667 0.6793249 0.7083333 0.6329114 0.5654008 0.6497890 
-##     fca96     fca37 
-## 0.6184211 0.4514768 
-## 
-## $Hexp
-##      fca8     fca23     fca43     fca45     fca77     fca78     fca90 
-## 0.8657224 0.7928751 0.7953319 0.7603095 0.8702576 0.6884669 0.8157881 
-##     fca96     fca37 
-## 0.7603493 0.6062686</code></pre>
+## // Number of individuals: 237
+## // Group sizes: 10 22 12 23 15 11 14 10 9 11 20 14 13 17 11 12 13
+## // Number of alleles per locus: 16 11 10 9 12 8 12 12 18
+## // Number of alleles per group: 36 53 50 67 48 56 42 54 43 46 70 52 44 61 42 40 35
+## // Percentage of missing data: 2.34 %
+## // Observed heterozygosity: 0.67 0.67 0.68 0.71 0.63 0.57 0.65 0.62 0.45
+## // Expected heterozygosity: 0.87 0.79 0.8 0.76 0.87 0.69 0.82 0.76 0.61</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(div$Hobs, <span class="dt">xlab=</span><span class="st">&quot;Loci number&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Observed Heterozygosity&quot;</span>, 
      <span class="dt">main=</span><span class="st">&quot;Observed heterozygosity per locus&quot;</span>)</code></pre></div>
 <p><img src="startMicrosatellite_files/figure-html/Genetic_diversity-1.png" title="" alt="" width="960" /></p>
@@ -476,14 +405,15 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       &lt;NA&gt;                        
-##  date     2016-02-16</code></pre>
+##  date     2016-02-22</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-3   2015-11-22 CRAN (R 3.2.3)
-##  adegenet   * 2.0.0   2015-07-07 CRAN (R 3.2.3)
+##  adegenet   * 2.0.1   2016-02-15 CRAN (R 3.2.3)
 ##  ape        * 3.4     2015-11-29 CRAN (R 3.2.3)
 ##  assertthat   0.1     2013-12-06 CRAN (R 3.2.3)
 ##  boot         1.3-17  2015-06-29 CRAN (R 3.2.1)
+##  cluster      2.0.3   2015-07-21 CRAN (R 3.2.1)
 ##  coda         0.18-1  2015-10-16 CRAN (R 3.2.3)
 ##  colorspace   1.2-6   2015-03-11 CRAN (R 3.2.3)
 ##  DBI          0.3.1   2014-09-24 CRAN (R 3.2.3)
@@ -505,10 +435,12 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  MASS         7.3-45  2015-11-10 CRAN (R 3.2.3)
 ##  Matrix       1.2-3   2015-11-28 CRAN (R 3.2.2)
 ##  memoise      1.0.0   2016-01-29 CRAN (R 3.2.3)
+##  mgcv         1.8-11  2016-01-24 CRAN (R 3.2.3)
 ##  mime         0.4     2015-09-03 CRAN (R 3.2.3)
 ##  munsell      0.4.2   2013-07-11 CRAN (R 3.2.3)
 ##  nlme         3.1-124 2016-01-20 CRAN (R 3.2.3)
 ##  pegas      * 0.8-2   2015-09-25 CRAN (R 3.2.3)
+##  permute      0.9-0   2016-01-24 CRAN (R 3.2.3)
 ##  plyr         1.8.3   2015-06-12 CRAN (R 3.2.3)
 ##  R6           2.1.2   2016-01-26 CRAN (R 3.2.3)
 ##  Rcpp         0.12.3  2016-01-10 CRAN (R 3.2.3)
@@ -521,6 +453,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  spdep        0.5-92  2015-12-22 CRAN (R 3.2.3)
 ##  stringi      1.0-1   2015-10-22 CRAN (R 3.2.3)
 ##  stringr      1.0.0   2015-04-30 CRAN (R 3.2.3)
+##  vegan        2.3-3   2016-01-12 CRAN (R 3.2.3)
 ##  xtable       1.8-2   2016-02-05 CRAN (R 3.2.3)
 ##  yaml         2.1.13  2014-06-12 CRAN (R 3.2.3)</code></pre>
 </div>
