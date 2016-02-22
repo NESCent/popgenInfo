@@ -48,12 +48,12 @@ AT...).
 When you import the data, you need to be in the right directory.
 
 ```{r, data_import_df_show, eval = FALSE}
-Mydata <- read.table("Master_Pinus_data_genotype.txt", header = TRUE)   
+Mydata <- read.table("Master_Pinus_data_genotype.txt", header = TRUE, check.names = FALSE)   
 dim(Mydata) 
 ```
 ```{r, data_import_df_do, echo = FALSE}
 # You should be in the right directory
-Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header = TRUE)   
+Mydata <- read.table("../data/Master_Pinus_data_genotype.txt", header = TRUE, check.names = FALSE)   
 dim(Mydata) 
 ```
 
