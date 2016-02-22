@@ -8,18 +8,18 @@ Now, we will discuss in more detail how to assess population genetic structure f
 
 # Data
 
-Data used for the following analyses come from one mitochondrial gene (Cytochrome Oxidase I = ['Ebom_mt.fas'](https://github.com/nescent/popgenInfo/blob/master/data/Ebom_mt.fas)) and one nuclear gene (Calcium/Calmodulin-Dependent Protein Kinase II = ['Ebom_CAD.fas'](https://github.com/nescent/popgenInfo/blob/master/data/Ebom_CAD.fas)) of the orchid bee Eulaema bombiformis.
+Data used for the following analyses come from one mitochondrial gene (Cytochrome Oxidase I = ['Ebom_mt.fas'](https://github.com/nescent/popgenInfo/blob/master/data/Ebom_mt.fas)) and one nuclear gene (Calcium/Calmodulin-Dependent Protein Kinase II = ['Ebom_CAD.fas'](https://github.com/nescent/popgenInfo/blob/master/data/Ebom_CAD.fas)) of the orchid bee *Eulaema bombiformis*.
 
 # Resources/Packages
 
 ```{r, packages, message = FALSE}
-library(apex)
-library(adegenet)
-library(ape)
-library(pegas)
-library(hierfstat)
-library(mmod)
-library(poppr)
+library("apex")
+library("adegenet")
+library("ape")
+library("pegas")
+library("hierfstat")
+library("mmod")
+library("poppr")
 ```
 
 # Import data
