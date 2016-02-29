@@ -46,7 +46,8 @@ popgenInfo website using the R package
 [*git2r*](https://cran.r-project.org/package=git2r), which was developed by the
 [rOpenSci project](https://ropensci.org/). This package allows for a nearly
 seamless and uniform interface for all contributors regardless of operating
-system.
+system. A companion set of videos to go along with this tutorial can be found at
+https://www.youtube.com/playlist?list=PLSFzyC3wp8-doiOcjDLlryIojK29qX2NL.
 
 ## Requirements
 
