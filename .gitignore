@@ -12,7 +12,7 @@
 .Rproj.user
 
 # This is used for website deployment
-site.tar
+.site.tar
 
 # ignore html files in directories except for build
 develop/*html

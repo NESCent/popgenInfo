@@ -11,6 +11,9 @@ about markdown here](http://rmarkdown.rstudio.com/authoring_basics.html) and
 [details about code chunks
 here](http://rmarkdown.rstudio.com/authoring_rcodechunks.html).
 
+This template document in Rmarkdown format is located at 
+https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd.
+
 # Assumptions
 
 All biological analyses have assumptions.
