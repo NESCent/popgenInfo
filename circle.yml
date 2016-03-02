@@ -26,7 +26,7 @@ deployment:
         commands:
             - make deploy
             - git checkout gh-pages
-            - rm -rf *
+            - rm -r *
             - git checkout master -- circle.yml
             - tar xvf .site.tar
             - git add --all
