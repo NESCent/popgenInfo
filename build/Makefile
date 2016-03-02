@@ -13,10 +13,10 @@ all: clean html
 html: dockerImage $(HTML_FILES)
 
 %.html: %.Rmd
-	docker run -v $(REPODIR):/repo -w /repo/build rocker/popgen Rscript -e "rmarkdown::render('$<')"
+	$(SUDO) docker run -v $(REPODIR):/repo -w /repo/build rocker/popgen Rscript -e "rmarkdown::render('$<')"
 
 %.html: %.md
-	docker run -v $(REPODIR):/repo -w /repo/build rocker/popgen Rscript -e "rmarkdown::render('$<')"
+	$(SUDO) docker run -v $(REPODIR):/repo -w /repo/build rocker/popgen Rscript -e "rmarkdown::render('$<')"
 
 deploy: html
 	tar cf $(SITEARCH) include libs *.html *_files
