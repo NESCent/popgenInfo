@@ -25,8 +25,9 @@ deployment:
         branch: master
         commands:
             - make deploy
+            - make clean
             - git checkout gh-pages
-            - rm -rf *
+            - rm -r *
             - git checkout master -- circle.yml
             - tar xvf .site.tar
             - git add --all
