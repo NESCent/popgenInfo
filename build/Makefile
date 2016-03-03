@@ -27,7 +27,7 @@ html: dockerImage $(HTML_FILES)
 	$(SUDO) docker run --user="$(USERID):$(GROUPID)" -e "HOME=/tmp" -v $(REPODIR):/repo -w /repo/build rocker/popgen Rscript -e "rmarkdown::render('$<')"
 
 deploy: html
-	tar cf $(SITEARCH) include libs *.html *_files
+	tar cf $(SITEARCH) include libs *.html *_files ../images
 
 .PHONY: dockerImage
 
