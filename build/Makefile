@@ -6,8 +6,8 @@ HTML_DIRS  := $(HTML_DIRS) $(patsubst %.md, %_files, $(wildcard *.md))
 DATADIR ?= $(CURDIR)/../data
 
 # we run commands in the container under the same UID and GID as on the host
-UID ?= $(shell id -u)
-GID ?= $(shell id -g)
+USERID ?= $(shell id -u)
+GROUPID ?= $(shell id -g)
 
 # we let this be a dotfile so that rm -r * won't match it
 SITEARCH = ../.site.tar
@@ -21,10 +21,10 @@ html: dockerImage $(HTML_FILES)
 # $HOME defaults to /, as it does for unknown users.
 
 %.html: %.Rmd
-	$(SUDO) docker run --user="$(UID):$(GID)" -e "HOME=/tmp" -v $(REPODIR):/repo -w /repo/build rocker/popgen Rscript -e "rmarkdown::render('$<')"
+	$(SUDO) docker run --user="$(USERID):$(GROUPID)" -e "HOME=/tmp" -v $(REPODIR):/repo -w /repo/build rocker/popgen Rscript -e "rmarkdown::render('$<')"
 
 %.html: %.md
-	$(SUDO) docker run --user="$(UID):$(GID)" -e "HOME=/tmp" -v $(REPODIR):/repo -w /repo/build rocker/popgen Rscript -e "rmarkdown::render('$<')"
+	$(SUDO) docker run --user="$(USERID):$(GROUPID)" -e "HOME=/tmp" -v $(REPODIR):/repo -w /repo/build rocker/popgen Rscript -e "rmarkdown::render('$<')"
 
 deploy: html
 	tar cf $(SITEARCH) include libs *.html *_files
