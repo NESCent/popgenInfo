@@ -222,15 +222,15 @@ $(document).ready(function () {
               <li><a href="GETSTARTED.html">Getting Started</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">For microsatellite data:</li>
-              <li><a href="startMicrosatellite.html">Basic Statistics</a></li>
+              <li><a href="startMicrosatellite.html">Basic statistics</a></li>
               <li><a href="2015-12-15-microsatellite-differentiation.html">Population differentiation</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">For SNP data:</li>
               <!-- <li class="divider"></li> -->
               <li><a href="StartSNP.html">Basic statistics</a></li>
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
-              <li><a href="2015-05-18-Dist-SNP.html">Genetic Distance (individual-based)</a></li>
-              <li><a href="2016-01-26-SNP-selection.html">Signals of Selection</a></li>
+              <li><a href="2015-05-18-Dist-SNP.html">Genetic distance (individual-based)</a></li>
+              <li><a href="2016-01-26-SNP-selection.html">Signals of selection</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -249,8 +249,8 @@ $(document).ready(function () {
            <li><a href = "PACKAGE_TUTORIALS.html">Developing R packages</a></li>
            <li class="divider"></li>  
            <li class="dropdown-header">Development Resources (external):</li>
-           <li><a href = "http://r-pkgs.had.co.nz/">Hadley Wickham's Guide For Creating R Packages</a></li>
-           <li><a href = "https://github.com/jtleek/rpackages">Jeff Leek's R Package Development</a></li>
+           <li><a href = "http://r-pkgs.had.co.nz/">Hadley Wickham's guide for creating R packages</a></li>
+           <li><a href = "https://github.com/jtleek/rpackages">Jeff Leek's R package development</a></li>
            <li><a href = "http://adv-r.had.co.nz/S4.html">S4 Classes in detail</a></li>
            <li><a href = "http://adv-r.had.co.nz/S3.html">S3 Classes in detail</a></li>
            <li><a href = "http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf">A not so short introduction to S4</a></li>
@@ -260,7 +260,7 @@ $(document).ready(function () {
         <li class="dropdown">
           <a href="about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contribute! <span class="caret"></span></a>
           <ul class = "dropdown-menu" role = "menu">
-           <li><a href = "CONTRIBUTING.html">Contribution Guidelines</a></li>  
+           <li><a href = "CONTRIBUTING.html">Contribution guidelines</a></li>  
            <li><a href = "CONTRIBUTING_WITH_GIT2R.html">Contributing with git2r</a></li> 
            <li class="divider"></li>  
            <li><a href="https://github.com/NESCent/popgenInfo">Source repository</a></li>  
@@ -403,17 +403,17 @@ div</code></pre></div>
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0253  0.0873
-## 2  -0.2703  0.1099
-## 3  -0.2111 -0.0528
-## 4  -0.0661  0.2931
-## 5  -0.4451 -0.1722
-## 6  -0.1434  0.3436
-## 7   0.0134  0.1087
-## 8  -0.4915  0.1875
-## 9  -0.0567  0.0798
-## 10  0.0285  0.3307
-## 11 -0.0652  0.0385</code></pre>
+## 1  -0.0480  0.0767
+## 2  -0.2626  0.1453
+## 3  -0.2141 -0.0470
+## 4  -0.0752  0.2789
+## 5  -0.4604 -0.1999
+## 6  -0.1314  0.3310
+## 7   0.0096  0.0954
+## 8  -0.4666  0.2038
+## 9  -0.0442  0.0664
+## 10  0.0176  0.3833
+## 11 -0.0602  0.0353</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex =</span> <span class="fl">0.7</span>)</code></pre></div>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
@@ -423,18 +423,18 @@ div</code></pre></div>
 <p>We used the pegas package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata3, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre></div>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0_10037_01_257 0.75465490  1 0.385006451    0.429
-## X0_10040_02_394 0.16628227  1 0.683437231    0.756
-## X0_10044_01_392 2.96053195  1 0.085319867    0.105
-## X0_10048_01_60  6.39076800  1 0.011471539    0.014
-## X0_10051_02_166 1.12035389  1 0.289842265    0.300
-## X0_10054_01_402 1.54582494  1 0.213752853    0.240
-## X0_10067_03_111 0.04868128  1 0.825374035    0.550
-## X0_10079_02_168 0.01579313  1 0.899992594    0.600
+## X0_10037_01_257 0.75465490  1 0.385006451    0.489
+## X0_10040_02_394 0.16628227  1 0.683437231    0.715
+## X0_10044_01_392 2.96053195  1 0.085319867    0.092
+## X0_10048_01_60  6.39076800  1 0.011471539    0.009
+## X0_10051_02_166 1.12035389  1 0.289842265    0.295
+## X0_10054_01_402 1.54582494  1 0.213752853    0.235
+## X0_10067_03_111 0.04868128  1 0.825374035    0.581
+## X0_10079_02_168 0.01579313  1 0.899992594    0.617
 ## X0_10112_01_169 0.41126025  1 0.521330544    1.000
-## X0_10113_01_119 0.74248768  1 0.388865151    0.450
-## X0_10116_01_165 1.87098306  1 0.171362531    0.246
-## X0_10151_01_86  8.94232481  1 0.002786379    0.006</code></pre>
+## X0_10113_01_119 0.74248768  1 0.388865151    0.433
+## X0_10116_01_165 1.87098306  1 0.171362531    0.263
+## X0_10151_01_86  8.94232481  1 0.002786379    0.004</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math inline">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
@@ -475,7 +475,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  date     2016-03-03</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
-##  ade4       * 1.7-3   2015-11-22 CRAN (R 3.2.3)
+##  ade4       * 1.7-4   2016-03-01 CRAN (R 3.2.3)
 ##  adegenet   * 2.0.1   2016-02-15 CRAN (R 3.2.3)
 ##  ape        * 3.4     2015-11-29 CRAN (R 3.2.3)
 ##  assertthat   0.1     2013-12-06 CRAN (R 3.2.3)
@@ -490,8 +490,8 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  dplyr        0.4.3   2015-09-01 CRAN (R 3.2.3)
 ##  evaluate     0.8     2015-09-18 CRAN (R 3.2.3)
 ##  formatR      1.2.1   2015-09-18 CRAN (R 3.2.3)
-##  ggplot2      2.0.0   2015-12-18 CRAN (R 3.2.3)
-##  gtable       0.1.2   2012-12-05 CRAN (R 3.2.3)
+##  ggplot2      2.1.0   2016-03-01 CRAN (R 3.2.3)
+##  gtable       0.2.0   2016-02-26 CRAN (R 3.2.3)
 ##  gtools       3.5.0   2015-05-29 CRAN (R 3.2.3)
 ##  hierfstat  * 0.04-22 2015-12-04 CRAN (R 3.2.3)
 ##  htmltools    0.3     2015-12-29 CRAN (R 3.2.3)
@@ -504,10 +504,10 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  MASS         7.3-45  2015-11-10 CRAN (R 3.2.3)
 ##  Matrix       1.2-3   2015-11-28 CRAN (R 3.2.2)
 ##  memoise      1.0.0   2016-01-29 CRAN (R 3.2.3)
-##  mgcv         1.8-11  2016-01-24 CRAN (R 3.2.3)
+##  mgcv         1.8-12  2016-03-03 CRAN (R 3.2.3)
 ##  mime         0.4     2015-09-03 CRAN (R 3.2.3)
 ##  munsell      0.4.3   2016-02-13 CRAN (R 3.2.3)
-##  nlme         3.1-124 2016-01-20 CRAN (R 3.2.3)
+##  nlme         3.1-125 2016-02-27 CRAN (R 3.2.3)
 ##  pegas      * 0.8-2   2015-09-25 CRAN (R 3.2.3)
 ##  permute      0.9-0   2016-01-24 CRAN (R 3.2.3)
 ##  plyr         1.8.3   2015-06-12 CRAN (R 3.2.3)
@@ -515,14 +515,14 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  Rcpp         0.12.3  2016-01-10 CRAN (R 3.2.3)
 ##  reshape2     1.4.1   2014-12-06 CRAN (R 3.2.3)
 ##  rmarkdown    0.9.5   2016-02-22 CRAN (R 3.2.3)
-##  scales       0.3.0   2015-08-25 CRAN (R 3.2.3)
+##  scales       0.4.0   2016-02-26 CRAN (R 3.2.3)
 ##  seqinr       3.1-3   2014-12-17 CRAN (R 3.2.3)
 ##  shiny        0.13.1  2016-02-17 CRAN (R 3.2.3)
 ##  sp           1.2-2   2016-02-05 CRAN (R 3.2.3)
 ##  spdep        0.5-92  2015-12-22 CRAN (R 3.2.3)
 ##  stringi      1.0-1   2015-10-22 CRAN (R 3.2.3)
 ##  stringr      1.0.0   2015-04-30 CRAN (R 3.2.3)
-##  vegan        2.3-3   2016-01-12 CRAN (R 3.2.3)
+##  vegan        2.3-4   2016-02-26 CRAN (R 3.2.3)
 ##  xtable       1.8-2   2016-02-05 CRAN (R 3.2.3)
 ##  yaml         2.1.13  2014-06-12 CRAN (R 3.2.3)</code></pre>
 </div>
