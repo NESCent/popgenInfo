@@ -29,22 +29,25 @@ how you took them.
 
 The basic steps of the process are:
 
-1. **Fork** the [popgenInfo repository](https://github.com/NESCent/popgenInfo)\*
-2. **Clone** your fork to your local machine.\*
-3. Checkout your master branch, **fetch** the changes from NESCent and **merge**
-   them into your fork.
-4. Create a new **branch** and then **add** and **commit** new changes or content.
-5. **Push** your changes to your fork.
-6. Open a **pull request** from your fork to NESCent.
+i. **Fork** the [popgenInfo repository](https://github.com/NESCent/popgenInfo)\*    
+ii. **Clone** your fork to your local machine.\*
 
-\* These should only be done once.
+1. Checkout your master branch, **fetch** the changes from NESCent and **merge**
+   them into your fork\^.
+2. Create a new **branch** and then **add** and **commit** new changes or content.
+3. **Push** your changes to your fork.
+4. Open a **pull request** from your fork to NESCent.
+
+\* These should only be done once.    
+\^ Start here if you already have cloned your fork.
 
 This particular tutorial will show you the basics of contributing to the
 popgenInfo website using the R package
 [*git2r*](https://cran.r-project.org/package=git2r), which was developed by the
 [rOpenSci project](https://ropensci.org/). This package allows for a nearly
 seamless and uniform interface for all contributors regardless of operating
-system.
+system. A companion set of videos to go along with this tutorial can be found at
+https://www.youtube.com/playlist?list=PLSFzyC3wp8-doiOcjDLlryIojK29qX2NL.
 
 ## Requirements
 
@@ -58,7 +61,9 @@ If you have also installed [git](https://git-scm.com/), you can set up Rstudio
 to work with git to help you commit changes, pull, and push. For the purposes of
 this tutorial, these things are not necessary.
 
-# Step 1: Forking the repository (DO ONCE)
+# Step i: Forking the repository (DO ONCE)
+
+> If you have already forked and cloned the repository, go to Step 3.
 
 Go to 
 [https://github.com/NESCent/popgenInfo](https://github.com/NESCent/popgenInfo) 
@@ -67,7 +72,7 @@ button](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository
 This will create a copy of the NESCent popgenInfo repository to your account.
 After you've forked the repository, you never have to fork it again!
 
-# Step 2: Clone your fork to your computer (DO ONCE)
+# Step ii: Clone your fork to your computer (DO ONCE)
 
 Now that you have your repository forked to your account, you will need to 
 **clone** it to your computer. Just like forking, you only have to clone your
@@ -254,7 +259,7 @@ remotes(repo)
 
 With all of this information set, we can begin working on our repository.
 
-# Step 3: Keeping your fork up to date
+# Step 1: Keeping your fork up to date
 
 The first thing we need to do is make sure that our master branch is up to date.
 Since other people are also contributing to this project, it is possible for
@@ -324,7 +329,7 @@ Now, when you check your fork, it should be updated with the most recent
 changes. From here, we can checkout a new branch and then proceed with adding 
 our changes or new workflow.
 
-# Step 4: Creating a New Branch
+# Step 2: Creating a New Branch
 
 When you add contributions, the best practice is to create a new branch off of
 the master. A **branch** is a term that indicates a sort of sandbox for a
@@ -437,7 +442,7 @@ including any data, place it in the **data/** directory. Once you add these
 files, you need to to **add** these files and then you should **commit**, which
 we will show you how to do below.
 
-# Step 5: Adding content, committing, and pushing
+# Step 3: Adding content, committing, and pushing
 
 If you are using Rstudio, you can use it to integrate with git. This allows you 
 to do things like commit, push, and pull. Hadley Wickham, chief scientist at 
@@ -515,6 +520,59 @@ we see that there is a **Remote** associated with this fork, we can simply use
 push(repo, credentials = cred_token())
 ```
 
+# Step 4: Pull Request and Peer Review
+
+Now that you've successfully set up git, created a new branch, and created a new
+vignette, it's time to fill it with content. You can work in your vignette like
+you would write in any other Rmarkdown document and keep track of your changes
+like we showed above by **adding** and **committing** your changes followed by
+**pushing** these up to your fork. Once you are finished with all of your
+changes, you can create a pull request from your GitHub fork to NESCent.
+
+## Creating a pull request
+
+### Through R
+
+You can tell R to open a browser for you to create your pull request. The URL 
+for this is in the form of 
+`https://github.com/USER/popgenInfo/pull/new/BRANCH`. We can create this 
+URL by using the function `paste()` to glue the pieces together and then use the
+`utils::browseURL()` function to open up a window. Note we are using the
+variable called `BRANCH` that we named above.
+
+
+```{r make_pull}
+(my_account       <- dirname(remote_url(repo, "origin")))
+(pull_request_url <- paste(my_account, "popgenInfo/pull/new", BRANCH, sep = "/"))
+```
+
+Now that you have the URL, you can browse to it.
+
+```{r browse_pull, eval = FALSE}
+utils::browseURL(pull_request_url)
+```
+
+### Manually
+
+If you don't want to do this from R, you can do it through your web browser.
+
+1. Navigate to your fork on GitHub
+2. Click on the dropdown menu on the left that says **"Branch: master"** and
+   switch to the branch you want to create the pull request from.
+3. Click on the green button that says **"New Pull Request"**.
+
+## Peer Review
+
+Your pull request begins a process of open peer review where content, accuracy,
+and style are considered. If changes are suggested, you should revise them by
+making changes on your fork and repeating the process in **Step 3**. Your pull
+request will be *automatically updated* once you push the changes to your fork.
+
+Finally, when all questions and concerns have been addressed, the pull request
+may be merged into the NESCent repository as long as two of the maintainers
+have signaled their approval.
+
+
 # Conclusions
 
 From this tutorial, you should have learned how to:
@@ -526,6 +584,7 @@ From this tutorial, you should have learned how to:
  - create a new branch
  - add and commit changes
  - push changes
+ - create a pull request
 
 The skills demonstrated in this tutorial are not exclusive for **popgenInfo**,
 but they can be used when writing up your own reports or analyses. Using git may
@@ -535,28 +594,17 @@ to keep track of your workflows, making your science more reproducible.
 
 # What's Next?
 
-Now that you've successfully set up git, created a new branch, and created a new
-vignette, it's time to fill it with content. You can work in your vignette like
-you would write in any other Rmarkdown document and keep track of your changes
-like we showed above by **adding** and **committing** your changes followed by
-**pushing** these up to your fork. 
-
-Once you are finished with all of your changes, you can create a pull request 
-from your GitHub fork to NESCent. Your pull request begins a process of open 
-peer review where content, accuracy, and style are considered. If changes are 
-suggested, you can make them on your fork and your pull request will be
-automatically updated with them. When all questions and concerns have been
-addressed, the pull request may be merged into the NESCent repository as long as
-two of the maintainers approve.
-
-If it passes peer review and is published, you can update your fork: checkout
-your master branch, fetch the changes from NESCent, merge those changes, and
-push them up to the master branch on your fork to make it even with NESCent.
+Once your pull request passes peer review and is published, you can update your 
+fork by starting from **Step 1**: checkout your master branch, fetch the changes
+from NESCent, merge those changes, and push them up to the master branch on your
+fork to make it even with NESCent.
 
 # Contributors
 
  - Zhian N. Kamvar (Author)
  - Hilmar Lapp (Reviewer)
+ - Margarita M. Lopéz (Reviewer)
+ - Stéphanie Manel (Reviewer)
 
 # Session Information
 
