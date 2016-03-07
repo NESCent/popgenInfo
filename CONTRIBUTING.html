@@ -248,6 +248,7 @@ $(document).ready(function () {
 </ul></li>
 <li><a href="#how-do-i-write-a-vignette">How do I write a vignette?</a></li>
 <li><a href="#how-do-i-submit-a-vignette">How do I submit a vignette?</a><ul>
+<li><a href="#setup-for-new-contributors">Setup for new contributors</a></li>
 <li><a href="#step-by-step-process-for-submission">Step-by-step process for submission</a></li>
 <li><a href="#guidelines-for-approval">Guidelines for approval</a></li>
 <li><a href="#best-practices">Best practices</a></li>
@@ -275,22 +276,41 @@ $(document).ready(function () {
 <h1>How do I submit a vignette?</h1>
 <p>Overall, vignette submission will follow the guidelines in <a href="https://guides.github.com/introduction/flow/index.html">GitHub flow</a>. Please create a new branch for each vignette to be submitted.</p>
 <p>Since this process requires git, if you are having trouble installing git or accessing your command line, please take a look at our detailed tutorial on using git through R: <a href="CONTRIBUTING_WITH_GIT2R.html">Contributing with git2r</a>.</p>
+<div id="setup-for-new-contributors" class="section level2">
+<h2>Setup for new contributors</h2>
+<p>If you are a new contributor, you will need to make sure you have git set up and a fork of this repository. Please follow these instructions carefully. If you have already set up your repository, go to the next section.</p>
+<ol style="list-style-type: decimal">
+<li>Set up a GitHub account if you don’t already have one, see <a href="https://guides.github.com/activities/hello-world/">here</a> for a quick tutorial on using GitHub.</li>
+<li>Download an appropriate Git client for your computer, see <a href="https://help.github.com/articles/set-up-git/">here</a>, and set it up.</li>
+<li>Fork the <a href="http://github.com/NESCent/popgenInfo">source repository</a> on GitHub using the <code>Fork</code> button (See <a href="https://help.github.com/articles/fork-a-repo/">GitHub’s tutorial</a>).</li>
+<li>On the command line, clone the repository to your machine using<br />
+<code>git clone https://github.com/YourAccount/popgenInfo.git</code><br />
+Note: the https protocol is easier to follow, but it’s possible to use ssh as well (<a href="https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork">details here</a>).</li>
+<li>Add the NESCent repository as upstream with<br />
+<code>git remote add upstream https://github.com/NESCent/popgenInfo.git</code><br />
+to keep your fork up to date with the master repository. <a href="https://help.github.com/articles/fork-a-repo/#step-3-configure-git-to-sync-your-fork-with-the-original-spoon-knife-repository">See these instructions for details</a></li>
+</ol>
+</div>
 <div id="step-by-step-process-for-submission" class="section level2">
 <h2>Step-by-step process for submission</h2>
+<p>If you have a vignette you would like to submit, please follow these instructions to submit it for review.</p>
 <ol style="list-style-type: decimal">
-<li>Set up a GitHub account if you don’t already have one, see <a href="https://guides.github.com/activities/hello-world/">here</a> for a quick tutorial on using GitHub. Download an appropriate Git client for your computer, see <a href="https://help.github.com/articles/set-up-git/">here</a>, and set it up.</li>
-<li>Fork the <a href="http://github.com/NESCent/popgenInfo">source repository</a> on GitHub using the <code>Fork</code> button (See <a href="https://help.github.com/articles/fork-a-repo/">GitHub’s tutorial</a>).</li>
-<li>Clone the repository to your machine using <code>git clone https://github.com/YourAccount/popgenInfo.git</code> on the command line. Note: the https protocol is easier to follow, but it’s possible to use ssh as well (<a href="https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork">details here</a>). Follow <a href="https://help.github.com/articles/fork-a-repo/#step-3-configure-git-to-sync-your-fork-with-the-original-spoon-knife-repository">these instructions</a> to keep your fork up to date with the master repository.</li>
-<li>Then, from the command line, move to the popgenInfo directory using <code>cd popgenInfo</code>.</li>
+<li>Update your fork</li>
+<li>From the command line, move to the <strong>popgenInfo</strong> directory using <code>cd popgenInfo</code></li>
+<li>Switch to your master branch with <code>git checkout master</code></li>
+<li><p>Update with<br />
+ <code>sh    git fetch upstream          # grab all the changes from NESCent    git merge upstream/master   # add them to your local fork    git push                    # push them up to your fork on github</code></p></li>
 <li>Create a branch for your changes using <code>git checkout -b Your_branch_name</code>.</li>
-<li>If you are on windows or macintosh, you can open Rstudio by double-clicking on the <code>popgenInfo.Rproj</code> file in your file browser. If you are on linux, you can open it by typing <code>rstudio popgenInfo.Rproj</code>.</li>
+<li>Add your vignette</li>
+<li>If you are on windows or macintosh, you can open Rstudio by double-clicking on the <strong>popgenInfo.Rproj</strong> file in your file browser. If you are on linux, you can open it by typing <code>rstudio popgenInfo.Rproj</code>.</li>
 <li>If you haven’t done so, create your vignette from the <a href="https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd"><code>TEMPLATE.Rmd</code></a> file and move any associated data to the <strong>data/</strong> directory.</li>
 <li>Move your vignette in <code>.Rmd</code> format into the <strong>use/</strong> directory.</li>
-<li>Add the file to git using <code>git add use/yourfilename.Rmd</code>.</li>
+<li>Add the file to git using <code>git add use/yourfilename.Rmd data/yourdata.txt</code>.</li>
 <li>Then commit this using <code>git commit</code> and add some short text describing what your file is.</li>
-<li>Then run <code>git push origin Your_branch_name</code>.</li>
+<li>Push to your fork and create a new pull request</li>
+<li>From the command line, run <code>git push --set-upstream origin Your_branch_name</code> to push your branch to your remote fork</li>
 <li>To do a pull request, navigate to your branch on GitHub. Click <code>Compare &amp; review</code> or the pull request icon.</li>
-<li>Once you have reviewed the changes, click <code>Create pull request</code>. Once the request is approved, the file will be automatically sent to a remote server that compiles the document into a html file.</li>
+<li><p>Once you have reviewed the changes, click <code>Create pull request</code>. Once the request is approved, the file will be automatically sent to a remote server that compiles the document into a html file.</p></li>
 </ol>
 </div>
 <div id="guidelines-for-approval" class="section level2">
