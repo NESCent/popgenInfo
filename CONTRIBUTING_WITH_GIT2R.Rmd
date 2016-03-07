@@ -53,7 +53,7 @@ https://www.youtube.com/playlist?list=PLSFzyC3wp8-doiOcjDLlryIojK29qX2NL.
 
 We assume that you have already done a few things:
 
-1. Signed up for a [GitHub account](https://github.com)
+1. Sign up for a [GitHub account](https://github.com)
 2. Install [R](https://cran.r-project.org)
 3. Install [Rstudio](https://rstudio.com/desktop/download)
 
@@ -63,7 +63,7 @@ this tutorial, these things are not necessary.
 
 # Step i: Forking the repository (DO ONCE)
 
-> If you have already forked and cloned the repository, go to Step 3.
+> If you have already forked and cloned the repository, go to Step 1.
 
 Go to 
 [https://github.com/NESCent/popgenInfo](https://github.com/NESCent/popgenInfo) 
