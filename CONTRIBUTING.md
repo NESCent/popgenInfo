@@ -44,26 +44,26 @@ to keep your fork up to date with the master repository. [See these instructions
 If you have a vignette you would like to submit, please follow these instructions to submit it for review. 
 
 1. Update your fork
-  1. From the command line, move to the **popgenInfo** directory using `cd popgenInfo`
-  2. Switch to your master branch with `git checkout master`
-  3. Update with    
-   ```sh
-   git fetch upstream          # grab all the changes from NESCent
-   git merge upstream/master   # add them to your local fork
-   git push                    # push them up to your fork on github
-   ```    
+    a. From the command line, move to the **popgenInfo** directory using `cd popgenInfo`
+    b. Switch to your master branch with `git checkout master`
+    c. Update with    
+        ```sh
+        git fetch upstream          # grab all the changes from NESCent
+        git merge upstream/master   # add them to your local fork
+        git push                    # push them up to your fork on github
+        ```    
 
 2. Create a branch for your changes using `git checkout -b Your_branch_name`.
 3. Add your vignette
-  1. If you are on windows or macintosh, you can open Rstudio by double-clicking on the **popgenInfo.Rproj** file in your file browser. If you are on linux, you can open it by typing `rstudio popgenInfo.Rproj`.
-  2. If you haven't done so, create your vignette from the [`TEMPLATE.Rmd`](https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd) file and move any associated data to the **data/** directory.
-  3. Move your  vignette in `.Rmd` format into the **use/** directory.
-  4. Add the file to git using `git add use/yourfilename.Rmd data/yourdata.txt`.
-  5. Then commit this using `git commit` and add some short text describing what your file is.
+    a. If you are on windows or macintosh, you can open Rstudio by double-clicking on the **popgenInfo.Rproj** file in your file browser. If you are on linux, you can open it by typing `rstudio popgenInfo.Rproj`.
+    b. If you haven't done so, create your vignette from the [`TEMPLATE.Rmd`](https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd) file and move any associated data to the **data/** directory.
+    c. Move your  vignette in `.Rmd` format into the **use/** directory.
+    d. Add the file to git using `git add use/yourfilename.Rmd data/yourdata.txt`.
+    e. Then commit this using `git commit` and add some short text describing what your file is.
 4. Push to your fork and create a new pull request
-  1. From the command line, run `git push --set-upstream origin Your_branch_name` to push your branch to your remote fork
-  2. To do a pull request, navigate to your branch on GitHub. Click `Compare & review` or the pull request icon.
-  3. Once you have reviewed the changes, click `Create pull request`. Once the request is approved, the file will be automatically sent to a remote server that compiles the document into a html file.
+    a. From the command line, run `git push --set-upstream origin Your_branch_name` to push your branch to your remote fork
+    b. To do a pull request, navigate to your branch on GitHub. Click `Compare & review` or the pull request icon.
+    c. Once you have reviewed the changes, click `Create pull request`. Once the request is approved, the file will be automatically sent to a remote server that compiles the document into a html file.
 
 ## Guidelines for approval
 
