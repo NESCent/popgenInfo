@@ -244,13 +244,13 @@ that, if you change or delete that PAT, you must replace it here.
 
 In the next step, we will ensure that our fork is up to date with NESCent. In 
 order to do that, we need to tell our local copy that it can take updates from 
-NESCent. We do this by adding NESCent as a **remote** using the function 
-`remote_add()` and checking to make sure it worked with the function
-`remotes()`.
+NESCent. We do this by adding NESCent as a **remote** called 'upstream' using 
+the function `remote_add()` and checking to make sure it worked with the 
+function `remotes()`.
 
 ```{r remote_add}
 remote_add(repo, 
-           name = "NESCent", 
+           name = "upstream", 
            url = "https://github.com/NESCent/popgenInfo.git")
 
 # Check our remotes
@@ -295,10 +295,10 @@ nothing will appear, but if there is new content on the master branch or new
 branches on the repository, they will be downloaded and each branch will be 
 printed to your screen. For our purposes, we are only concerned with the changes
 on the **master** branch, which will look something like this: 
-`## [new]    b62a78c1fcd384a3ea23 refs/remotes/NESCent/master`.
+`## [new]    b62a78c1fcd384a3ea23 refs/remotes/upstream/master`.
 
 ```{r update_master_fetch}
-fetch(repo, name = "NESCent")
+fetch(repo, name = "upstream")
 ```
 
 It's important to note that our local repository is still unchanged at this
@@ -307,7 +307,7 @@ repository, we should merge the changes from NESCent's master branch into our
 master branch:
 
 ```{r update_master_merge}
-merge(repo, "NESCent/master")
+merge(repo, "upstream/master")
 repo
 ```
 
@@ -542,7 +542,7 @@ variable called `BRANCH` that we named above.
 
 
 ```{r make_pull}
-(my_account       <- dirname(remote_url(repo, "origin")))
+(my_account <- dirname(remote_url(repo, "origin")))
 (pull_request_url <- paste(my_account, "popgenInfo/pull/new", BRANCH, sep = "/"))
 ```
 
