@@ -36,7 +36,7 @@ If you are a new contributor, you will need to make sure you have git set up and
 `git clone https://github.com/YourAccount/popgenInfo.git`    
 Note: the https protocol is easier to follow, but it's possible to use ssh as well ([details here](https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork)). 
 5. Add the NESCent repository to upstream with     
-`git remote add NESCent https://github.com/NESCent/popgenInfo.git`    
+`git remote add upstream https://github.com/NESCent/popgenInfo.git`    
 to keep your fork up to date with the master repository. [See these instructions for details](https://help.github.com/articles/fork-a-repo/#step-3-configure-git-to-sync-your-fork-with-the-original-spoon-knife-repository)
 
 ## Step-by-step process for submission
@@ -48,9 +48,9 @@ If you have a vignette you would like to submit, please follow these instruction
   2. Switch to your master branch with `git checkout master`
   3. Update with    
    ```sh
-   git fetch NESCent          # grab all the changes from NESCent
-   git merge NEScent/master   # add them to your local fork
-   git push                   # push them up to your fork on github
+   git fetch upstream          # grab all the changes from NESCent
+   git merge upstream/master   # add them to your local fork
+   git push                    # push them up to your fork on github
    ```    
 
 2. Create a branch for your changes using `git checkout -b Your_branch_name`.
