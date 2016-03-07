@@ -295,22 +295,30 @@ to keep your fork up to date with the master repository. <a href="https://help.g
 <h2>Step-by-step process for submission</h2>
 <p>If you have a vignette you would like to submit, please follow these instructions to submit it for review.</p>
 <ol style="list-style-type: decimal">
-<li>Update your fork</li>
+<li>Update your fork
+<ol style="list-style-type: lower-alpha">
 <li>From the command line, move to the <strong>popgenInfo</strong> directory using <code>cd popgenInfo</code></li>
 <li>Switch to your master branch with <code>git checkout master</code></li>
-<li><p>Update with<br />
- <code>sh    git fetch upstream          # grab all the changes from NESCent    git merge upstream/master   # add them to your local fork    git push                    # push them up to your fork on github</code></p></li>
+<li><p>Update with</p>
+<pre class="sh"><code>git fetch upstream          # grab all the changes from NESCent
+git merge upstream/master   # add them to your local fork
+git push                    # push them up to your fork on github</code></pre></li>
+</ol></li>
 <li>Create a branch for your changes using <code>git checkout -b Your_branch_name</code>.</li>
-<li>Add your vignette</li>
+<li>Add your vignette
+<ol style="list-style-type: lower-alpha">
 <li>If you are on windows or macintosh, you can open Rstudio by double-clicking on the <strong>popgenInfo.Rproj</strong> file in your file browser. If you are on linux, you can open it by typing <code>rstudio popgenInfo.Rproj</code>.</li>
 <li>If you haven’t done so, create your vignette from the <a href="https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd"><code>TEMPLATE.Rmd</code></a> file and move any associated data to the <strong>data/</strong> directory.</li>
 <li>Move your vignette in <code>.Rmd</code> format into the <strong>use/</strong> directory.</li>
 <li>Add the file to git using <code>git add use/yourfilename.Rmd data/yourdata.txt</code>.</li>
 <li>Then commit this using <code>git commit</code> and add some short text describing what your file is.</li>
-<li>Push to your fork and create a new pull request</li>
+</ol></li>
+<li>Push to your fork and create a new pull request
+<ol style="list-style-type: lower-alpha">
 <li>From the command line, run <code>git push --set-upstream origin Your_branch_name</code> to push your branch to your remote fork</li>
 <li>To do a pull request, navigate to your branch on GitHub. Click <code>Compare &amp; review</code> or the pull request icon.</li>
-<li><p>Once you have reviewed the changes, click <code>Create pull request</code>. Once the request is approved, the file will be automatically sent to a remote server that compiles the document into a html file.</p></li>
+<li>Once you have reviewed the changes, click <code>Create pull request</code>. Once the request is approved, the file will be automatically sent to a remote server that compiles the document into a html file.</li>
+</ol></li>
 </ol>
 </div>
 <div id="guidelines-for-approval" class="section level2">

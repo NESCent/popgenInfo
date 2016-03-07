@@ -390,7 +390,7 @@ $(document).ready(function () {
 ##        Grunwald [ths]
 ## Repository: CRAN
 ## Date/Publication: 2015-12-01 08:01:21
-## Built: R 3.2.3; x86_64-pc-linux-gnu; 2016-03-05 00:12:06 UTC; unix
+## Built: R 3.2.3; x86_64-pc-linux-gnu; 2016-03-07 20:39:22 UTC; unix
 ## 
 ## -- File: /usr/local/lib/R/site-library/poppr/Meta/package.rds</code></pre>
 </div>
@@ -442,7 +442,7 @@ $(document).ready(function () {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/RtmpkD8ssu/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/RtmpwdTgH0/R-lib&quot;</code></pre>
 <p>After looking at the documentation, we know that we want to change the values <code>devtools.desc.author</code>, <code>devtools.desc.license</code>, <code>devtools.name</code>. We will also add a “Maintainer” field to the DESCRIPTION file (tells users who to blame). The others don’t matter for now. We can add them in thusly (Note, I am using my name; you should obviously use your own):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">authors_at_r &lt;-<span class="st"> </span><span class="kw">paste0</span>(
   <span class="st">&quot;&#39;&quot;</span>,
@@ -481,7 +481,7 @@ $(document).ready(function () {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/RtmpkD8ssu/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/RtmpwdTgH0/R-lib&quot;</code></pre>
 <blockquote>
 <p>It is much easier to edit the DESCRIPTION file by hand afterward. This simply demonstrates how you can get started.</p>
 </blockquote>
@@ -532,8 +532,8 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>##  package   * version date       source        
 ##  devtools  * 1.10.0  2016-01-23 CRAN (R 3.2.3)
 ##  digest      0.6.9   2016-01-08 CRAN (R 3.2.3)
-##  evaluate    0.8     2015-09-18 CRAN (R 3.2.3)
-##  formatR     1.2.1   2015-09-18 CRAN (R 3.2.3)
+##  evaluate    0.8.3   2016-03-05 CRAN (R 3.2.3)
+##  formatR     1.3     2016-03-05 CRAN (R 3.2.3)
 ##  htmltools   0.3     2015-12-29 CRAN (R 3.2.3)
 ##  knitr       1.12.3  2016-01-22 CRAN (R 3.2.3)
 ##  magrittr    1.5     2014-11-22 CRAN (R 3.2.3)
