@@ -35,7 +35,7 @@ If you are a new contributor, you will need to make sure you have git set up and
 4. On the command line, clone the repository to your machine using    
 `git clone https://github.com/YourAccount/popgenInfo.git`    
 Note: the https protocol is easier to follow, but it's possible to use ssh as well ([details here](https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork)). 
-5. Add the NESCent repository to upstream with     
+5. Add the NESCent repository as upstream with     
 `git remote add upstream https://github.com/NESCent/popgenInfo.git`    
 to keep your fork up to date with the master repository. [See these instructions for details](https://help.github.com/articles/fork-a-repo/#step-3-configure-git-to-sync-your-fork-with-the-original-spoon-knife-repository)
 
