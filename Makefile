@@ -15,9 +15,10 @@
 ## program will usually tell you what to do.
 ##
 ## Once you have prepared your environment for running docker, you can
-## test the build by issuing 'make test', which at present is
-## synonymous with 'make html'. I.e., the website build is tested by
-## rendering all HTML content.
+## test the build by issuing 'USERID=0 GROUPID=0 make test', which at 
+## present is synonymous with 'make html'. I.e., the website build is 
+## tested by rendering all HTML content. Note that USERID and GROUPID
+## must be set to 0 or docker will not be able to process these files.
 ##
 ## The website is built in the build/ directory by first copying there
 ## all .md and .Rmd files from the root directory and a list of
