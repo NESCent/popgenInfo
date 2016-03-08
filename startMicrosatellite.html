@@ -293,7 +293,8 @@ $(document).ready(function () {
 <li><a href="#analysis">Analysis</a><ul>
 <li><a href="#section-1-load-the-data">Section 1: Load the data</a></li>
 <li><a href="#section-2-genetic-diversity-observed-and-expected-heterozygosity">Section 2: Genetic diversity (observed and expected heterozygosity)</a></li>
-<li><a href="#section-3-testing-for-hardy-weinberg-equilibrium">Section 3: Testing for Hardy-Weinberg Equilibrium</a></li>
+<li><a href="#section-3-basic-statistics-with-hierfstat">Section 3: Basic statistics with <em>hierfstat</em></a></li>
+<li><a href="#section-4-testing-for-hardy-weinberg-equilibrium">Section 4: Testing for Hardy-Weinberg Equilibrium</a></li>
 </ul></li>
 <li><a href="#conclusions">Conclusions</a><ul>
 <li><a href="#what-did-we-learn-today">What did we learn today?</a></li>
@@ -315,39 +316,25 @@ $(document).ready(function () {
 </div>
 <div id="assumptions" class="section level1">
 <h1>Assumptions</h1>
-<p><span class="math inline">\(H_0\)</span>: we assume that the microsatellites are in Hardy-Weinberg equilibrium <span class="math inline">\(H_1\)</span>: they are not.</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: we assume that the microsatellites are in Hardy-Weinberg equilibrium</li>
+<li><span class="math inline">\(H_1\)</span>: they are not.</li>
+</ul>
 </div>
 <div id="data" class="section level1">
 <h1>Data</h1>
-<p>The data used for these analyses are contained in an R dataset: <code>nancycats</code>, a “genind” object, i.e. an object of the package “adegenet”. It contains microsatellite genotypes of 237 cats from 17 colonies of Nancy (France). Each individuals of the 17 colonies are genotyped for 9 microsatellite loci.</p>
+<p>The data used for these analyses are contained in an R dataset: <code>nancycats</code>, a “genind” object, i.e. an object of the package <em>adegenet</em>. It contains microsatellite genotypes of 237 cats from 17 colonies of Nancy (France). Each individuals of the 17 colonies are genotyped for 9 microsatellite loci.</p>
 </div>
 <div id="resourcespackages-required" class="section level1">
 <h1>Resources/Packages required</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)</code></pre></div>
-<pre><code>## Loading required package: methods</code></pre>
-<pre><code>## Loading required package: ade4</code></pre>
-<pre><code>## 
-##    /// adegenet 2.0.1 is loaded ////////////
-## 
-##    &gt; overview: &#39;?adegenet&#39;
-##    &gt; tutorials/doc/questions: &#39;adegenetWeb()&#39; 
-##    &gt; bug reports/feature requests: adegenetIssues()</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)</code></pre></div>
-<pre><code>## Loading required package: ape</code></pre>
-<pre><code>## 
-## Attaching package: &#39;pegas&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:ape&#39;:
-## 
-##     mst</code></pre>
-<pre><code>## The following object is masked from &#39;package:ade4&#39;:
-## 
-##     amova</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;hierfstat&quot;</span>)</code></pre></div>
 </div>
 <div id="analysis" class="section level1">
 <h1>Analysis</h1>
 <div id="section-1-load-the-data" class="section level2">
 <h2>Section 1: Load the data</h2>
-<p>After loading the “genind” object, we then convert it into a <code>loci</code> object (of the package “pegas”)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;nancycats&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;adegenet&quot;</span>)  
 <span class="kw">summary</span>(nancycats)</code></pre></div>
 <pre><code>## 
@@ -358,7 +345,6 @@ $(document).ready(function () {
 ## // Percentage of missing data: 2.34 %
 ## // Observed heterozygosity: 0.67 0.67 0.68 0.71 0.63 0.57 0.65 0.62 0.45
 ## // Expected heterozygosity: 0.87 0.79 0.8 0.76 0.87 0.69 0.82 0.76 0.61</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(nancycats)</code></pre></div>
 </div>
 <div id="section-2-genetic-diversity-observed-and-expected-heterozygosity" class="section level2">
 <h2>Section 2: Genetic diversity (observed and expected heterozygosity)</h2>
@@ -401,12 +387,47 @@ div</code></pre></div>
 ## 
 ## data:  list(div$Hexp, div$Hobs)
 ## Bartlett&#39;s K-squared = 0.046962, df = 1, p-value = 0.8284</code></pre>
-<p>We get various information from the command summary. The one that interest us is the observed and expected heterozygotity per locus. We observed that heterozygosity varies among loci.</p>
-<p>The results from the Bartlett test indicates that we have no difference between the mean observed and expected heterozygotity</p>
+<p>We get various information from the command summary. The one that interest us is the observed and expected heterozygosity per locus. We observed that heterozygosity varies among loci.</p>
+<p>The results from the Bartlett test indicates that we have no difference between the mean observed and expected heterozygosity</p>
 </div>
-<div id="section-3-testing-for-hardy-weinberg-equilibrium" class="section level2">
-<h2>Section 3: Testing for Hardy-Weinberg Equilibrium</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre></div>
+<div id="section-3-basic-statistics-with-hierfstat" class="section level2">
+<h2>Section 3: Basic statistics with <em>hierfstat</em></h2>
+<p>The function <code>basic.stats()</code> provides the observed heterozygosity (<span class="math inline">\(H_o\)</span>), mean gene diversities within population (<span class="math inline">\(H_s\)</span>), <span class="math inline">\(F_{is}\)</span>, and <span class="math inline">\(F_{st}\)</span>. The function <code>boot.ppfis()</code> provides confidence interval for <span class="math inline">\(F_{is}\)</span>. The function <code>indpca()</code> does a PCA on the centered matrix of individuals’ allele frequencies.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nancycats.hfstat &lt;-<span class="st"> </span><span class="kw">genind2hierfstat</span>(nancycats)
+basicstat &lt;-<span class="st"> </span><span class="kw">basic.stats</span>(nancycats, <span class="dt">diploid =</span> <span class="ot">TRUE</span>, <span class="dt">digits =</span> <span class="dv">2</span>) 
+<span class="kw">names</span>(basicstat)</code></pre></div>
+<pre><code>## [1] &quot;n.ind.samp&quot; &quot;pop.freq&quot;   &quot;Ho&quot;         &quot;Hs&quot;         &quot;Fis&quot;       
+## [6] &quot;perloc&quot;     &quot;overall&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boot.ppfis</span>(nancycats.hfstat) </code></pre></div>
+<pre><code>## $call
+## boot.ppfis(dat = nancycats.hfstat)
+## 
+## $fis.ci
+##         ll     hl
+## 1  -0.0418 0.3033
+## 2   0.1111 0.2725
+## 3   0.0492 0.2370
+## 4   0.0878 0.2360
+## 5   0.0286 0.2237
+## 6   0.0121 0.2699
+## 7   0.0711 0.2757
+## 8   0.0404 0.3085
+## 9  -0.2142 0.0856
+## 10 -0.0479 0.2602
+## 11  0.0883 0.2283
+## 12  0.0507 0.2666
+## 13 -0.0900 0.1308
+## 14  0.0535 0.2345
+## 15 -0.1566 0.0831
+## 16 -0.0724 0.1325
+## 17 -0.1538 0.1597</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(nancycats.hfstat) 
+<span class="kw">plot</span>(x, <span class="dt">cex =</span> <span class="fl">0.7</span>)</code></pre></div>
+<p><img src="startMicrosatellite_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
+</div>
+<div id="section-4-testing-for-hardy-weinberg-equilibrium" class="section level2">
+<h2>Section 4: Testing for Hardy-Weinberg Equilibrium</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(nancycats, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre></div>
 <pre><code>##           chi^2  df  Pr(chi^2 &gt;) Pr.exact
 ## fca8  395.80006 120 0.000000e+00        0
 ## fca23 239.34221  55 0.000000e+00        0
@@ -429,7 +450,7 @@ div</code></pre></div>
 </div>
 <div id="what-is-next" class="section level2">
 <h2>What is next?</h2>
-<p>You may now want to move into looking into population differentiation (See <a href="DifferentiationMicrosatellites.html">Calculating genetic differentiation and clustering methods from microsatellites data</a>)</p>
+<p>You may now want to move on to looking into <a href="2015-12-15-microsatellite-differentiation.html">population differentiation</a>.</p>
 </div>
 </div>
 <div id="contributors" class="section level1">
@@ -452,7 +473,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       Zulu                        
-##  date     2016-03-07</code></pre>
+##  date     2016-03-08</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-4   2016-03-01 CRAN (R 3.2.3)
@@ -472,6 +493,8 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  formatR      1.3     2016-03-05 CRAN (R 3.2.3)
 ##  ggplot2      2.1.0   2016-03-01 CRAN (R 3.2.3)
 ##  gtable       0.2.0   2016-02-26 CRAN (R 3.2.3)
+##  gtools       3.5.0   2015-05-29 CRAN (R 3.2.3)
+##  hierfstat  * 0.04-22 2015-12-04 CRAN (R 3.2.3)
 ##  htmltools    0.3     2015-12-29 CRAN (R 3.2.3)
 ##  httpuv       1.3.3   2015-08-04 CRAN (R 3.2.3)
 ##  igraph       1.0.1   2015-06-26 CRAN (R 3.2.3)
