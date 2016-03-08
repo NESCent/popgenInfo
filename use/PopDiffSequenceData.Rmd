@@ -6,52 +6,58 @@ title: "Population Differentiation for Sequence Data"
 
 Now, we will discuss in more detail how to assess population genetic structure from sequence data. Assuming that you have a priori information about how the individuals are grouped in subpopulations, one can do the following analyses: 1) quantify pairwise subpopulation structure and their significance, 2) test for hierarchical structure among groups of subpopulations, and 3) use population clustering algorithms to corroborate the a priori grouping hypothesis. We will go into each of these analyses in this vignette.  
 
-# Data
+# Resources
+
+## Data
 
 Data used for the following analyses come from one mitochondrial gene (Cytochrome Oxidase I = ['Ebom_mt.fas'](https://github.com/nescent/popgenInfo/blob/master/data/Ebom_mt.fas)) and one nuclear gene (Calcium/Calmodulin-Dependent Protein Kinase II = ['Ebom_CAD.fas'](https://github.com/nescent/popgenInfo/blob/master/data/Ebom_CAD.fas)) of the orchid bee *Eulaema bombiformis*.
 
-# Resources/Packages
+## Packages
 
 ```{r, packages, message = FALSE}
 library("apex")
 library("adegenet")
-library("ape")
 library("pegas")
-library("hierfstat")
 library("mmod")
 library("poppr")
 ```
 
-# Import data
+# Importing data
 
-We will first import FASTA files for each gene independently using the *ape* function `read.FASTA()`. 
+We will first import FASTA files for all genes at once using the *apex* function `read.multiFASTA()`. This will allow us to read in multiple FASTA formatted files at once into a "multiDNA" object from the *apex* package. We can plot it to see what the two genes look like for all of our samples
 
 ```{r data_import_FASTA, eval = FALSE}
 # Creating DNAbin objects
-myData1 <- read.FASTA("Ebom_mt.fas") 
-myData2 <- read.FASTA("Ebom_CAD.fas")
+beeData <- read.multiFASTA(c("Ebom_mt.fas", "Ebom_CAD.fas"))
+plot(beeData, cex = 0.2)
 ```
 
 ```{r data_import_FASTA_real, echo = FALSE}
-myData1 <- read.FASTA("../data/Ebom_mt.fas") 
-myData2 <- read.FASTA("../data/Ebom_CAD.fas")
+beeData <- read.multiFASTA(c("../data/Ebom_mt.fas", "../data/Ebom_CAD.fas"))
+plot(beeData, cex = 0.2)
 ```
 
-We create a list that contains both genes (`allData1`) and then create a "multidna" object (`allData2`). Finally, this "multidna" object (`allData2`) will be converted into a "genind" object (`allData3`), which will be used for downstream analyses.
+> Pro tip: You can list all the files ending in ".fas" in your folder by using 
+> `dir(pattern = "fas", full.names = TRUE)`
+
+Now, this "multidna" object (`beeData`) will be converted into a "genind" object
+(`beeData.gid`), which will be used for downstream analyses. One thing we need
+to be aware of is the fact that we can't have any periods in our locus names. By
+default, the locus names are set to the file names, which both contain ".fas" in
+the title. We can fix this by using the text-replacing function `gsub()`:
+
+```{r fix_loci}
+locusNames(beeData)
+(locusNames(beeData) <- gsub(".fas", "", locusNames(beeData)))
+```
+
+Now we can create our "genind" object.
 
 ```{r, data_manipulate_FASTA}
-# Creating multidna object
-tmp1 <- as.matrix(myData1)
-tmp1
-tmp2 <- as.matrix(myData2)
-tmp2
-allData1 <- list(mt = tmp1, CAD = tmp2)
-allData2 <- new("multidna", allData1)
-plot(allData2, cex = 0.2)
 
-# Creating genind object
-allData3 <- multidna2genind(allData2, mlst = TRUE)
-allData3
+# Creating genind object by multilocus sequence types
+beeData.gid <- multidna2genind(beeData, mlst = TRUE)
+beeData.gid
 ```
 
 We also want to set the population strata.
@@ -59,33 +65,33 @@ We also want to set the population strata.
 ```{r set_populations}
 my_strata <- data.frame(regions = rep(c("West", "East"), each = 20), 
                         populations = rep(c("CA", "Ch", "Am", "AF"), each = 10))
-strata(allData3) <- my_strata
-setPop(allData3) <- ~populations
-allData3
+strata(beeData.gid) <- my_strata
+setPop(beeData.gid) <- ~populations
+beeData.gid
 ```
 
 
 # Pairwise population differentiation
 
-### Overall F- statistics
+## Overall F-statistics
 
 ```{r, Fstats1}
-diff_stats(allData3) # this function calculates overall Nei's Gst, Hedrick's Gst and  of the dataset
-Phi_st_Meirmans(allData3) # this function calculates overall PhiST, the Fst analog for DNA sequence data
+diff_stats(beeData.gid) # this function calculates overall Nei's Gst, Hedrick's Gst and  of the dataset
+Phi_st_Meirmans(beeData.gid) # this function calculates overall PhiST, the Fst analog for DNA sequence data
 ```
-### Pairwise Fst
+## Pairwise Fst
 
 ```{r, Fstats2}
-pairwise_Gst_Nei(allData3, linearized = FALSE) # Calculates pairwise Gst. If linearized = TRUE, it calculates 1/(1- Gst)  
-pairwise_Gst_Hedrick(allData3, linearized = FALSE)# Calculates pairwise Gst. If linearized = TRUE, it calculates 1/(1- Gst')  
-pairwise_D(allData3, linearized = FALSE, hsht_mean = "harmonic") # Calculates pairwise Gst. If linearized = TRUE, it calculates 1/(1- D)  
+pairwise_Gst_Nei(beeData.gid, linearized = FALSE) # Calculates pairwise Gst. If linearized = TRUE, it calculates 1/(1- Gst)  
+pairwise_Gst_Hedrick(beeData.gid, linearized = FALSE)# Calculates pairwise Gst. If linearized = TRUE, it calculates 1/(1- Gst')  
+pairwise_D(beeData.gid, linearized = FALSE, hsht_mean = "harmonic") # Calculates pairwise Gst. If linearized = TRUE, it calculates 1/(1- D)  
 ```
-### Testing for significance
+## Testing for significance
 
 To estimate if populations are significantly different, we will generate 100 replicates of the dataset using the function `chao_bootstrap()`. Then, summary statistics (mean and 95% CI) will be calculated for each of the different parameters of population differentiation. 
 
 ```{r, Fstats3}
-bs <- chao_bootstrap(allData3, nreps = 100)
+bs <- chao_bootstrap(beeData.gid, nreps = 100)
 summarise_bootstrap(bs, Gst_Nei)     # for Nei's Gst
 summarise_bootstrap(bs, Gst_Hedrick) # for Hedrick's Gst
 summarise_bootstrap(bs, D_Jost)      # for Jost's D
@@ -96,8 +102,8 @@ summarise_bootstrap(bs, D_Jost)      # for Jost's D
 Analysis of Molecular Variance (AMOVA) is a method for estimating population differentiation from molecular data taking into account the mutational distance between alleles. Unlike $F_{st}$, which quantifies genetic differentiation based on allele frequencies, AMOVA treats molecular data as vectors and estimates Euclidean distances between alleles. Furthermore, it is possible to test hypotheses about differentiation by grouping subpopulations in a hierarchical structure (Ref).
 
 ```{r, eval = TRUE}
-allData_dist <- dist.multidna(allData2, pool = TRUE)
-amova(allData_dist ~ populations, data = strata(allData3), nperm = 100)
+allData_dist <- dist.multidna(beeData, pool = TRUE)
+amova(allData_dist ~ populations, data = strata(beeData.gid), nperm = 100)
 ```
 
 # Conclusions
