@@ -23,8 +23,8 @@ the calculations faster.
 # Resources/Packages 
 
 ```{r,packages, message=FALSE}
-library(adegenet)
-library(hierfstat)
+library("adegenet")
+library("hierfstat")
 ```
 
 
@@ -37,8 +37,8 @@ in R as a data frame, and then  convert the SNP data file into a
 "[genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind)"
 object.
 
-Dataset "Master_Pinus_data_genotype.txt" can be downloaded 
-[here](https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt).
+The dataset ["Master_Pinus_data_genotype.txt" can be downloaded 
+here](https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt).
 
 The  text file is a matrix of (550 rows x 3086 columns). It contains 4 extra
 columns: first column is the label of the individuals, the three other are
@@ -125,12 +125,13 @@ will be able to choose the number of clusters.
 
 ```{r,clustering_without_a_priori}
 # using Kmeans and DAPC in adegenet 
+set.seed(20160308) # Setting a seed for a consistent result
 grp <- find.clusters(Mydata1, max.n.clust = 10, n.pca = 20, choose.n.clust = FALSE) 
 names(grp)
 grp$grp
 ```
 
-The K means procedure detected 5 groups. We will use this number of  group in
+The K means procedure detected 4 groups. We will use this number of  group in
 the discriminant analysis (function `dapc()`). On your own dataset, you need to
 spend more time to estimate the number of clusters.
 
@@ -139,7 +140,7 @@ dapc1 <- dapc(Mydata1, grp$grp, n.pca = 20, n.da = 6)
 scatter(dapc1) # plot of the group
 ```
 
-Five groups were finally detected and represented by the discriminant analysis.
+Four groups were finally detected and represented by the discriminant analysis.
 The 11 states are not the good level for population analysis. But we need to
 remember that we used only 20 SNPs to conduct the analysis.
 
