@@ -28,6 +28,7 @@ It contains microsatellite genotypes of 237 cats from 17 colonies of Nancy (Fran
 ```{r, packages, message = FALSE}
 library("adegenet")
 library("pegas")
+library("hierfstat")
 ```
 
 # Analysis
@@ -61,9 +62,26 @@ We get various information from the command summary.
 The one that interest us is the observed and expected heterozygotity per locus.
 We observed that heterozygosity varies among loci.
 
-The results from the Bartlett test indicates that we have no difference between the mean observed and expected heterozygotity
+The results from the Bartlett test indicates that we have no difference between the mean observed and expected heterozygosity
 
-## Section 3: Testing for Hardy-Weinberg Equilibrium
+## Section 3: Basic statistics with *hierfstat* 
+
+Populations are states. The function `basic.stats()`
+provides the observed heterozygosity ($H_o$), mean gene diversities within
+population ($H_s$), $F_{is}$, and $F_{st}$. The function `boot.ppfis()` provides
+confidence interval for $F_{is}$. The fuction `indpca()` does an PCA on the
+centered matrix of individuals' allele frequencies.
+
+```{r, basic_statistics}
+nancycats.hfstat <- genind2hierfstat(nancycats)
+basicstat <- basic.stats(nancycats, diploid = TRUE, digits = 2) 
+names(basicstat)
+boot.ppfis(nancycats.hfstat) 
+x <- indpca(nancycats.hfstat) 
+plot(x, cex = 0.7)
+```
+
+## Section 4: Testing for Hardy-Weinberg Equilibrium
 
 ```{r, Hardy-Weinberg_test}
 hw.test(nancycats, B = 1000)
