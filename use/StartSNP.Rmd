@@ -13,7 +13,7 @@ require to work at the population level. We will calculate:
 3. $F_{is}$ and global $F_{st}$.
 
 The dataset used for these analyses are for lodgepole pine
-(_Pinus contorta_, Pinaceae),  a plant species. More information on the dataset and
+(*Pinus contorta*, Pinaceae),  a plant species. More information on the dataset and
 the species is available from [A. Eckert's website](http://eckertdata.blogspot.fr/). Here
 we use the dataset with no presupposed idea of interpreting the results in a biological way.
 To make the calculations faster, we work only with a subset of the full dataset.
@@ -36,8 +36,8 @@ into R as a data frame, and then  convert the SNP data file into a
 "[genind](http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind)"
 object.
 
-The dataset "Master_Pinus_data_genotype.txt" can be downloaded 
-[here](https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt).
+The dataset ["Master_Pinus_data_genotype.txt" can be downloaded 
+here](https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt).
 
 The text file is a matrix of (550 rows x 3086 columns). It contains 4
 extra columns: first column is the label of the individuals, the three other are
@@ -59,11 +59,11 @@ dim(Mydata) # Matrix of dimension 550x3086
 
 To work with the data, we need to convert the R object returned by `read.table()` to a "genind" object.
 To achieve this, we create a matrix with only genotypes, and keep only a subset of the first 11
-SNP loci (to make calculations faster). The result can then be converted to a "genind" object (for package `adegent`).
-The "genind" object can then easily be converted into "hierfstat" (package *hierfstat*) and "loci" objects (package *pegas*).
+SNP loci (to make calculations faster). The result can then be converted to a "genind" object (for package *adegent*).
+The "genind" object can then easily be converted into a "hierfstat" (package *hierfstat*) object.
 
 ```{r,data_conversion}
-locus <- Mydata[, -c(1,2,3,4,17:3086)]    
+locus <- Mydata[, -c(1, 2, 3, 4, 17:3086)]    
 colnames(locus) <- gsub("\\.", "_", colnames(locus)) # locus names can't have "."
 ind <- as.character(Mydata$tree_id) # labels of the individuals
 population <- as.character(Mydata$state) # labels of the populations
@@ -71,7 +71,6 @@ Mydata1 <- df2genind(locus, ploidy = 2, ind.names = ind, pop = population, sep =
 Mydata1
 nAll(Mydata1) # Number of alleles per locus
 Mydata2 <- genind2hierfstat(Mydata1) # Create hierfstat object
-Mydata3 <- genind2loci(Mydata1)      # Create loci object
 ```
 
 ## Genetic diversity (observed and expected heterozygosity) 
@@ -99,7 +98,7 @@ We observed no difference between expected and observed heterozygosity.
 Basic statistics with *hierfstat*. Populations are states. The function `basic.stats()`
 provides the observed heterozygosity ($H_o$), mean gene diversities within
 population ($H_s$), $F_{is}$, and $F_{st}$. The function `boot.ppfis()` provides
-confidence interval for $F_{is}$. The fuction `indpca()` does an PCA on the
+confidence interval for $F_{is}$. The function `indpca()` does an PCA on the
 centered matrix of individuals' allele frequencies.
 
 ```{r, basic_statistics}
@@ -113,11 +112,11 @@ plot(x, cex = 0.7)
 
 ## Testing for Hardy-Weinberg Equilibrium  
 
-We used the pegas package.
+We used the function `hw.test()` from the *pegas* package.
 
 ```{r, Hardy-Weinberg_test}
 
-hw.test(Mydata3, B = 1000)
+hw.test(Mydata1, B = 1000)
 ```
 
 We get for each locus a test of significance of the null hypothesis: $H_0$ the
@@ -150,7 +149,8 @@ Molecular Ecology 19: 3789-3805. doi:[10.1111/j.1365-294X.2010.04698.x](http://d
 
 # Contributors
 
-- Stéphanie Manel
+- Stéphanie Manel (Author)
+- Zhian Kamvar (edits)
 
 # Session Information
 
