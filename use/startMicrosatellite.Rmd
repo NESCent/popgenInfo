@@ -41,12 +41,6 @@ data("nancycats", package = "adegenet")
 summary(nancycats)
 ```
 
-
-```{r, data_conversion}
-Mydata <- genind2loci(nancycats)
-```
-
-
 ## Section 2: Genetic diversity (observed and expected heterozygosity)   
 
 
@@ -72,7 +66,7 @@ The results from the Bartlett test indicates that we have no difference between 
 ## Section 3: Testing for Hardy-Weinberg Equilibrium
 
 ```{r, Hardy-Weinberg_test}
-hw.test(Mydata, B = 1000)
+hw.test(nancycats, B = 1000)
 ```
 
 We get for each locus a test of significance of the null hypothesis: $H_0$ the
