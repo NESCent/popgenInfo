@@ -98,7 +98,7 @@ Also, you have an idea of potential violations of the dataset to the null Wright
 
 ## What is next?
 
-You may now want to move on to looking into population differentiation (See [Calculating genetic differentiation and clustering methods from microsatellites data](2015-12-15-microsatellite-differentiation.html))
+You may now want to move on to looking into [population differentiation](2015-12-15-microsatellite-differentiation.html).
 
 
 # Contributors
