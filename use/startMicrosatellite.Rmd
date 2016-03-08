@@ -12,40 +12,33 @@ In this vignette, you will calculate basic population genetic statistics from mi
 
 # Assumptions
 
-$H_0$: we assume that the microsatellites are in Hardy-Weinberg equilibrium
-$H_1$: they are not.
+- $H_0$: we assume that the microsatellites are in Hardy-Weinberg equilibrium
+- $H_1$: they are not.
 
 
 
 # Data
 
-The data used for these analyses are contained in an R dataset: `nancycats`, a "genind" object, i.e. an object of the package "adegenet".
+The data used for these analyses are contained in an R dataset: `nancycats`, a "genind" object, i.e. an object of the package *adegenet*.
 It contains microsatellite genotypes of 237 cats from 17 colonies of Nancy (France). Each individuals of the 17 colonies are genotyped for 9 microsatellite loci.  
 
 
 # Resources/Packages required
 
-```{r, packages}
+```{r, packages, message = FALSE}
 library("adegenet")
 library("pegas")
+library("hierfstat")
 ```
 
 # Analysis
 
 ## Section 1: Load the data
 
-After loading the "genind" object, we then convert it into a `loci` object (of the package "pegas")
-
 ```{r, load_data_show}
 data("nancycats", package = "adegenet")  
 summary(nancycats)
 ```
-
-
-```{r, data_conversion}
-Mydata <- genind2loci(nancycats)
-```
-
 
 ## Section 2: Genetic diversity (observed and expected heterozygosity)   
 
@@ -64,15 +57,31 @@ bartlett.test(list(div$Hexp, div$Hobs)) # difference of means
 ```
 
 We get various information from the command summary. 
-The one that interest us is the observed and expected heterozygotity per locus.
+The one that interest us is the observed and expected heterozygosity per locus.
 We observed that heterozygosity varies among loci.
 
-The results from the Bartlett test indicates that we have no difference between the mean observed and expected heterozygotity
+The results from the Bartlett test indicates that we have no difference between the mean observed and expected heterozygosity
 
-## Section 3: Testing for Hardy-Weinberg Equilibrium
+## Section 3: Basic statistics with *hierfstat* 
+
+The function `basic.stats()` provides the observed heterozygosity ($H_o$), mean
+gene diversities within population ($H_s$), $F_{is}$, and $F_{st}$. The function
+`boot.ppfis()` provides confidence interval for $F_{is}$. The function `indpca()`
+does a PCA on the centered matrix of individuals' allele frequencies.
+
+```{r, basic_statistics}
+nancycats.hfstat <- genind2hierfstat(nancycats)
+basicstat <- basic.stats(nancycats, diploid = TRUE, digits = 2) 
+names(basicstat)
+boot.ppfis(nancycats.hfstat) 
+x <- indpca(nancycats.hfstat) 
+plot(x, cex = 0.7)
+```
+
+## Section 4: Testing for Hardy-Weinberg Equilibrium
 
 ```{r, Hardy-Weinberg_test}
-hw.test(Mydata, B = 1000)
+hw.test(nancycats, B = 1000)
 ```
 
 We get for each locus a test of significance of the null hypothesis: $H_0$ the
@@ -89,7 +98,7 @@ Also, you have an idea of potential violations of the dataset to the null Wright
 
 ## What is next?
 
-You may now want to move into looking into population differentiation (See [Calculating genetic differentiation and clustering methods from microsatellites data](DifferentiationMicrosatellites.html))
+You may now want to move on to looking into [population differentiation](2015-12-15-microsatellite-differentiation.html).
 
 
 # Contributors
