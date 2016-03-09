@@ -289,7 +289,7 @@ $(document).ready(function () {
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#resourcespackages">Resources/Packages</a></li>
 <li><a href="#workflow">Workflow</a><ul>
-<li><a href="#f_st-observed-and-expected-heterozygosity-package-hierfstat"><span class="math inline">\(F_{st}\)</span> (observed and expected heterozygosity) (package hierfstat)</a></li>
+<li><a href="#observed-and-expected-heterozygosity-f_st">Observed and expected heterozygosity: <span class="math inline">\(F_{st}\)</span></a></li>
 <li><a href="#unsupervised-clustering">Unsupervised clustering</a></li>
 </ul></li>
 <li><a href="#conclusions">Conclusions</a></li>
@@ -306,17 +306,17 @@ $(document).ready(function () {
 </div>
 <div id="resourcespackages" class="section level1">
 <h1>Resources/Packages</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(adegenet)
-<span class="kw">library</span>(hierfstat)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;hierfstat&quot;</span>)</code></pre></div>
 </div>
 <div id="workflow" class="section level1">
 <h1>Workflow</h1>
 <div id="import-data" class="section level3">
 <h3>Import data</h3>
 <p>The data are stored in a text file (genotype=AA..). We will import the dataset in R as a data frame, and then convert the SNP data file into a “<a href="http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind">genind</a>” object.</p>
-<p>Dataset “Master_Pinus_data_genotype.txt” can be downloaded <a href="https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt">here</a>.</p>
+<p>The dataset <a href="https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt">“Master_Pinus_data_genotype.txt” can be downloaded here</a>.</p>
 <p>The text file is a matrix of (550 rows x 3086 columns). It contains 4 extra columns: first column is the label of the individuals, the three other are description of the region, all the other columns are for the genotypes as (AA or AT…).</p>
-<p>When you import the data, you need to be in the right directory.</p>
+<p>When you import the data, you need to be in the same directory as the data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Master_Pinus_data_genotype.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">check.names =</span> <span class="ot">FALSE</span>)   
 <span class="kw">dim</span>(Mydata) </code></pre></div>
 <pre><code>## [1]  550 3086</code></pre>
@@ -329,7 +329,7 @@ county &lt;-<span class="st"> </span>Mydata$county
 <div id="data-conversion" class="section level3">
 <h3>Data conversion</h3>
 <p>To convert <code>Mydata</code> to a “genind” object (<em>adegenet</em>), the input should only contain genotypes. We decrease the number of SNPs to make the calculations faster and keep only 20 SNPs in the object <code>locus</code>. We then convert <code>Mydata1</code> to a “hierfstat” object (<code>Mydata2</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">locus &lt;-<span class="st"> </span>Mydata[, <span class="dv">5</span>:<span class="dv">24</span>] 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">locus   &lt;-<span class="st"> </span>Mydata[, <span class="dv">5</span>:<span class="dv">24</span>] 
 Mydata1 &lt;-<span class="st"> </span><span class="kw">df2genind</span>(locus, <span class="dt">ploidy =</span> <span class="dv">2</span>, <span class="dt">ind.names =</span> ind, <span class="dt">pop =</span> population, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
 Mydata1</code></pre></div>
 <pre><code>## /// GENIND OBJECT /////////
@@ -350,8 +350,9 @@ Mydata1</code></pre></div>
 ##    @pop: population of each individual (group size range: 4-177)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata2 &lt;-<span class="st"> </span><span class="kw">genind2hierfstat</span>(Mydata1) </code></pre></div>
 </div>
-<div id="f_st-observed-and-expected-heterozygosity-package-hierfstat" class="section level2">
-<h2><span class="math inline">\(F_{st}\)</span> (observed and expected heterozygosity) (package hierfstat)</h2>
+<div id="observed-and-expected-heterozygosity-f_st" class="section level2">
+<h2>Observed and expected heterozygosity: <span class="math inline">\(F_{st}\)</span></h2>
+<p>These statistics come from the package <em>hierfstat</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">basic.stats</span>(Mydata1) <span class="co"># Fst following Nei (1987) on genind object</span></code></pre></div>
 <pre><code>## $perloc
 ##                     Ho     Hs     Ht     Dst    Htp    Dstp     Fst
@@ -400,55 +401,7 @@ Mydata1</code></pre></div>
 ## $overall
 ##     Ho     Hs     Ht    Dst    Htp   Dstp    Fst   Fstp    Fis   Dest 
 ## 0.2580 0.2612 0.2725 0.0113 0.2737 0.0124 0.0415 0.0454 0.0124 0.0168</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">basic.stats</span>(Mydata2) <span class="co"># same as previous, on hierfstat object</span></code></pre></div>
-<pre><code>## $perloc
-##                     Ho     Hs     Ht     Dst    Htp    Dstp     Fst
-## X0.10037.01.257 0.4986 0.4079 0.4259  0.0180 0.4277  0.0198  0.0422
-## X0.10040.02.394 0.4866 0.4971 0.4968 -0.0003 0.4968 -0.0003 -0.0005
-## X0.10044.01.392 0.3638 0.4232 0.4931  0.0699 0.5000  0.0768  0.1417
-## X0.10048.01.60  0.4261 0.4626 0.4953  0.0327 0.4986  0.0359  0.0660
-## X0.10051.02.166 0.0596 0.0613 0.0634  0.0020 0.0636  0.0023  0.0323
-## X0.10054.01.402 0.4584 0.4481 0.4761  0.0280 0.4789  0.0308  0.0588
-## X0.10067.03.111 0.0879 0.0853 0.0853  0.0000 0.0853 -0.0001 -0.0005
-## X0.10079.02.168 0.0833 0.0808 0.0830  0.0022 0.0832  0.0024  0.0263
-## X0.10112.01.169 0.0764 0.0766 0.0760 -0.0006 0.0760 -0.0007 -0.0079
-## X0.10113.01.119 0.4436 0.4331 0.4294 -0.0037 0.4290 -0.0041 -0.0087
-## X0.10116.01.165 0.0399 0.0407 0.0402 -0.0004 0.0402 -0.0005 -0.0105
-## X0.10151.01.86  0.1063 0.1113 0.1125  0.0012 0.1126  0.0013  0.0106
-## X0.10162.01.255 0.0863 0.0879 0.0862 -0.0018 0.0860 -0.0020 -0.0207
-## X0.10207.01.280 0.2875 0.3521 0.3613  0.0092 0.3622  0.0101  0.0254
-## X0.10210.01.41  0.1081 0.1108 0.1089 -0.0019 0.1087 -0.0021 -0.0174
-## X0.10219.01.433 0.3618 0.3648 0.3656  0.0009 0.3657  0.0009  0.0023
-## X0.1022.02.173  0.4346 0.4267 0.4490  0.0222 0.4512  0.0245  0.0495
-## X0.10240.01.410 0.4576 0.4530 0.5006  0.0477 0.5054  0.0524  0.0952
-## X0.10262.01.558 0.2256 0.2292 0.2305  0.0013 0.2306  0.0014  0.0055
-## X0.10266.01.426 0.0677 0.0720 0.0716 -0.0004 0.0715 -0.0005 -0.0059
-##                    Fstp     Fis    Dest
-## X0.10037.01.257  0.0462 -0.2224  0.0334
-## X0.10040.02.394 -0.0006  0.0210 -0.0006
-## X0.10044.01.392  0.1537  0.1403  0.1332
-## X0.10048.01.60   0.0721  0.0790  0.0669
-## X0.10051.02.166  0.0354  0.0286  0.0024
-## X0.10054.01.402  0.0643 -0.0229  0.0558
-## X0.10067.03.111 -0.0006 -0.0293 -0.0001
-## X0.10079.02.168  0.0288 -0.0308  0.0026
-## X0.10112.01.169 -0.0088  0.0036 -0.0007
-## X0.10113.01.119 -0.0095 -0.0243 -0.0072
-## X0.10116.01.165 -0.0115  0.0193 -0.0005
-## X0.10151.01.86   0.0116  0.0443  0.0015
-## X0.10162.01.255 -0.0228  0.0192 -0.0021
-## X0.10207.01.280  0.0279  0.1834  0.0156
-## X0.10210.01.41  -0.0194  0.0245 -0.0024
-## X0.10219.01.433  0.0026  0.0082  0.0015
-## X0.1022.02.173   0.0542 -0.0185  0.0427
-## X0.10240.01.410  0.1037 -0.0102  0.0958
-## X0.10262.01.558  0.0060  0.0160  0.0018
-## X0.10266.01.426 -0.0064  0.0591 -0.0005
-## 
-## $overall
-##     Ho     Hs     Ht    Dst    Htp   Dstp    Fst   Fstp    Fis   Dest 
-## 0.2580 0.2612 0.2725 0.0113 0.2737 0.0124 0.0415 0.0454 0.0124 0.0168</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wc</span>(Mydata2) <span class="co"># Weir and Cockerham&#39;s estimate</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wc</span>(Mydata1) <span class="co"># Weir and Cockerham&#39;s estimate</span></code></pre></div>
 <pre><code>## $FST
 ## [1] 0.02300324
 ## 
@@ -456,7 +409,7 @@ Mydata1</code></pre></div>
 ## [1] 0.03090781</code></pre>
 <div id="hierarchical-f_st-tests-amova-for-snp-dataset" class="section level3">
 <h3>Hierarchical <span class="math inline">\(F_{st}\)</span> tests (=AMOVA for SNP dataset)</h3>
-<p>The function <code>varcomp.glob()</code> produces a Hierarchical <span class="math inline">\(F_{st}\)</span> (=AMOVA for SNPs or biallelic markers) It is possible to make permutations on the different levels: The function <code>test.g()</code> tests the effect of the population on genetic differentiation. Individuals are randomly permuted among states. The states influence genetic differentiation at a 5% level. With the function <code>test.between()</code>, the counties are permuted among states. The states influence significantly genetic structuring.</p>
+<p>The function <code>varcomp.glob()</code> produces a Hierarchical <span class="math inline">\(F_{st}\)</span> (=AMOVA for SNPs or bi-allelic markers) It is possible to make permutations on the different levels: The function <code>test.g()</code> tests the effect of the population on genetic differentiation. Individuals are randomly permuted among states. The states influence genetic differentiation at a 5% level. With the function <code>test.between()</code>, the counties are permuted among states. The states influence significantly genetic structuring.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loci &lt;-<span class="st"> </span>Mydata2[, -<span class="dv">1</span>] <span class="co"># Remove the population column</span>
 <span class="kw">varcomp.glob</span>(<span class="dt">levels =</span> <span class="kw">data.frame</span>(population, county), loci, <span class="dt">diploid =</span> <span class="ot">TRUE</span>) </code></pre></div>
 <pre><code>## $loc
@@ -493,48 +446,48 @@ Mydata1</code></pre></div>
 ## county     0.00000000 0.00000000 0.01829604</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test.g</span>(loci, <span class="dt">level =</span> population) </code></pre></div>
 <pre><code>## $g.star
-##   [1] 202.9249 210.3603 200.9906 251.6858 222.1866 210.0008 191.2413
-##   [8] 212.8439 238.0509 217.6332 252.4764 234.5740 225.3216 172.3096
-##  [15] 273.9200 202.7299 209.2044 246.3641 195.5660 208.9560 200.3164
-##  [22] 219.6034 189.0817 257.5701 240.5271 224.5017 236.9841 183.7293
-##  [29] 242.8054 215.7490 217.5221 209.2762 199.9555 240.2025 225.2715
-##  [36] 220.9471 218.3411 223.1723 214.0599 186.4820 213.4591 192.3926
-##  [43] 237.6359 235.8238 195.6096 237.8212 228.6124 191.3800 184.1110
-##  [50] 248.5696 215.4733 234.4187 227.1553 213.2273 190.6544 240.0486
-##  [57] 253.5869 222.5156 199.7866 220.3564 243.1188 202.4214 206.7129
-##  [64] 201.5369 256.6535 211.6119 221.6772 234.6544 192.7079 218.7215
-##  [71] 212.3591 223.7961 230.8094 201.0547 199.4151 202.7982 203.5581
-##  [78] 202.6848 254.5441 195.2968 204.7898 243.4774 215.0117 188.2901
-##  [85] 185.4874 239.0562 232.6507 236.2467 240.3578 236.1642 256.3433
-##  [92] 211.5226 212.1855 222.3297 238.7116 222.9846 227.7801 192.8911
-##  [99] 208.0952 378.7654
+##   [1] 203.5405 222.0698 249.3786 213.5745 208.7876 220.0743 230.2396
+##   [8] 214.9360 202.8266 227.4115 197.9994 261.1787 206.5269 191.8149
+##  [15] 199.7155 200.4050 240.1531 236.9325 249.7182 236.4112 228.6181
+##  [22] 211.5415 192.3943 237.0221 215.3701 203.6386 214.8118 219.0890
+##  [29] 217.1539 211.9188 206.9987 237.3773 209.6798 183.3466 229.0887
+##  [36] 206.6333 249.9965 229.0830 234.5443 233.2004 250.2757 206.4919
+##  [43] 235.9790 213.5977 226.8572 261.4177 182.6597 280.8340 233.6236
+##  [50] 238.4041 198.2351 269.9089 230.7522 186.3209 221.2545 209.1102
+##  [57] 186.1597 192.0387 224.2749 206.0977 196.8049 222.5403 221.5435
+##  [64] 217.8209 238.7442 200.0027 204.1062 225.4129 260.5873 202.2331
+##  [71] 194.4582 232.9243 214.0505 284.2799 196.0365 254.2579 225.9595
+##  [78] 241.9768 191.5555 233.6869 219.3483 232.5675 211.3013 243.0579
+##  [85] 226.0294 267.0723 229.5464 231.5534 249.8129 210.3383 217.0272
+##  [92] 226.4112 218.0269 208.1371 231.0482 221.7087 225.0538 243.0385
+##  [99] 191.5347 378.7654
 ## 
 ## $p.val
 ## [1] 0.01</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test.between</span>(loci, <span class="dt">test.lev =</span> population, <span class="dt">rand.unit =</span> county, <span class="dt">nperm =</span> <span class="dv">100</span>) </code></pre></div>
 <pre><code>## $g.star
-##   [1] 256.8039 257.7502 261.8399 248.1247 287.6557 273.8658 286.0633
-##   [8] 291.6652 267.3666 281.5477 238.7714 250.8640 229.6814 301.6438
-##  [15] 256.3392 237.7620 260.3696 227.3038 239.9335 252.5277 273.1196
-##  [22] 273.0023 247.6596 230.4534 268.5471 245.8467 246.9248 234.0281
-##  [29] 274.0155 225.0413 239.1093 239.5607 285.4791 233.5815 249.7690
-##  [36] 271.6145 237.8446 271.4091 295.7331 257.2351 223.8502 239.3857
-##  [43] 243.5527 239.9504 235.6965 265.6963 236.9203 239.5941 257.5464
-##  [50] 210.4834 261.2803 245.3218 286.5085 291.1213 235.2599 248.0455
-##  [57] 294.8025 262.7136 234.3453 267.3184 232.7919 259.0911 284.5872
-##  [64] 264.8874 251.3142 305.6306 268.9952 256.5537 298.3779 263.8928
-##  [71] 289.7654 243.5247 241.8965 259.5639 286.7182 222.3622 215.0853
-##  [78] 279.1337 272.3773 270.8088 232.3364 224.2826 252.7831 229.4054
-##  [85] 292.9642 257.1438 285.5614 263.3681 272.7978 235.8140 207.9024
-##  [92] 250.0685 247.7046 312.4051 237.2969 264.9312 241.5323 250.1695
-##  [99] 283.1251 378.7654
+##   [1] 208.8803 243.9814 301.4173 263.0941 219.7105 249.6787 298.3912
+##   [8] 247.9641 222.9479 247.9255 228.1703 312.5367 293.7721 263.0752
+##  [15] 245.1795 296.8997 261.4713 242.2530 232.9130 285.7542 237.3947
+##  [22] 245.3721 234.2073 273.4056 241.5680 281.3236 267.2988 235.9621
+##  [29] 274.8355 287.2139 280.2720 278.9966 232.9143 269.7471 269.4117
+##  [36] 238.3821 265.2116 266.2566 253.8118 251.5204 268.0781 244.3377
+##  [43] 248.2899 229.0621 277.9310 266.0086 269.4563 289.8522 245.2819
+##  [50] 249.3014 251.5124 267.0990 314.1122 254.0178 278.5750 265.7512
+##  [57] 272.2913 289.1020 267.7280 276.2808 271.3504 249.9066 251.1868
+##  [64] 260.7787 247.5180 296.4961 245.2372 219.1402 295.3915 257.7485
+##  [71] 242.7168 302.2574 238.2929 237.0002 268.3075 224.7938 263.3451
+##  [78] 254.3809 255.4483 265.6079 263.3258 247.7276 284.4230 255.1196
+##  [85] 199.5430 198.2589 264.2038 274.6929 268.2159 266.3052 249.4580
+##  [92] 275.0775 294.3584 229.9928 195.9194 296.9230 262.0768 278.1111
+##  [99] 239.7347 378.7654
 ## 
 ## $p.val
 ## [1] 0.01</code></pre>
 </div>
-<div id="pairwise-f_st-package-hierfstat" class="section level3">
-<h3>Pairwise <span class="math inline">\(F_{st}\)</span> (package hierfstat)</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">genet.dist</span>(Mydata1, <span class="dt">method=</span><span class="st">&quot;WC84&quot;</span>)</code></pre></div>
+<div id="pairwise-f_st" class="section level3">
+<h3>Pairwise <span class="math inline">\(F_{st}\)</span></h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">genet.dist</span>(Mydata1, <span class="dt">method =</span> <span class="st">&quot;WC84&quot;</span>)</code></pre></div>
 <pre><code>##                    alabama     arkansas      florida      georgia
 ## arkansas       0.052033165                                       
 ## florida        0.034205805  0.031222010                          
@@ -573,146 +526,147 @@ Mydata1</code></pre></div>
 </div>
 <div id="unsupervised-clustering" class="section level2">
 <h2>Unsupervised clustering</h2>
-<p>We don’t know the populations and we are looking for. As recommended by T. Jombart, with the function <code>find.clusters()</code> we used the maximum possible number of PCA axis which is 20 here. See detailed tutorial on this method for more information (<a href="https://github.com/thibautjombart/adegenet/raw/master/tutorials/tutorial-basics.pdf" class="uri">https://github.com/thibautjombart/adegenet/raw/master/tutorials/tutorial-basics.pdf</a>) In this example, we used <code>choose.n.clust = FALSE</code> but it is nice to use the option <code>TRUE</code> and then you will be able to choose the number of clusters.</p>
+<p>We don’t know the populations and we are looking for. As recommended by T. Jombart, with the function <code>find.clusters()</code> we used the maximum possible number of PCA axis which is 20 here. See detailed tutorial on this method for more information (<a href="https://github.com/thibautjombart/adegenet/raw/master/tutorials" class="uri">https://github.com/thibautjombart/adegenet/raw/master/tutorials</a> /tutorial-basics.pdf) In this example, we used <code>choose.n.clust = FALSE</code> but it is nice to use the option <code>TRUE</code> and then you will be able to choose the number of clusters.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using Kmeans and DAPC in adegenet </span>
+<span class="kw">set.seed</span>(<span class="dv">20160308</span>) <span class="co"># Setting a seed for a consistent result</span>
 grp &lt;-<span class="st"> </span><span class="kw">find.clusters</span>(Mydata1, <span class="dt">max.n.clust =</span> <span class="dv">10</span>, <span class="dt">n.pca =</span> <span class="dv">20</span>, <span class="dt">choose.n.clust =</span> <span class="ot">FALSE</span>) </code></pre></div>
 <pre><code>## The &quot;ward&quot; method has been renamed to &quot;ward.D&quot;; note new &quot;ward.D2&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(grp)</code></pre></div>
 <pre><code>## [1] &quot;Kstat&quot; &quot;stat&quot;  &quot;grp&quot;   &quot;size&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grp$grp</code></pre></div>
 <pre><code>##   1066   2040   4004   4005   4018   6009   6013   7033   7056   7069 
-##      5      1      2      1      5      3      2      2      3      3 
+##      4      3      1      3      1      3      1      1      2      3 
 ##   7088   7105   8001   8061   8068   8076   8120   8195   8203   8222 
-##      2      3      2      1      2      1      5      1      5      2 
+##      1      3      1      1      1      1      4      4      4      1 
 ##   8223   8231   8237   8301   8302   8303   8304   8305   8307   8308 
-##      2      2      3      2      1      3      1      2      3      3 
+##      4      1      3      1      3      3      4      1      3      3 
 ##   8309   8310   8313   8314   8316   8317   8318   8319   8320   8323 
-##      1      5      2      3      2      1      3      2      3      5 
+##      3      4      1      1      1      1      3      1      1      4 
 ##   8324   8327   8328   8329   8330   8332   8333   8334   8335   8336 
-##      5      2      2      3      4      1      1      5      5      4 
+##      4      1      1      1      1      4      3      4      4      3 
 ##   8337   8338   8339   8340   8342   8343   8344   8345   8346   8347 
-##      2      2      2      2      5      1      3      5      5      2 
+##      1      1      1      1      4      4      3      4      4      1 
 ##   8349   8350   8351   8352   8353   8354   8355   8356   8357   8358 
-##      3      2      1      1      2      2      3      2      5      3 
+##      1      4      4      1      1      1      4      1      4      3 
 ##   8364   8365   8366   8367   8368   8369   8370   8371   8372   8373 
-##      5      2      2      3      2      2      1      5      2      2 
+##      4      1      1      3      1      1      3      4      1      1 
 ##   8374   8375   8376   8377   8378   8379   8381   8382   8383   8384 
-##      2      2      5      5      1      1      2      2      5      3 
+##      1      1      2      4      3      3      1      1      2      2 
 ##   8385   8386   8387   8388   8389   8390   8391   8392   8393   8395 
-##      2      1      2      2      3      5      4      2      5      3 
+##      1      1      1      1      3      4      2      1      4      3 
 ##   8400   8402   8403   8559   8565   8567   8568   8569   8570   8571 
-##      2      3      3      5      3      3      1      5      2      5 
+##      1      1      1      4      3      3      3      4      4      4 
 ##   8572   8573   8574   8601   8602   8603   8604   8606   8607   8608 
-##      4      2      1      5      2      4      1      3      5      3 
+##      2      1      3      1      4      2      3      3      4      3 
 ##   8609   8610   8611   8613   8615   8616   8618   8619   8620   8621 
-##      1      4      2      1      3      1      2      4      3      3 
+##      3      2      1      3      3      3      1      3      3      3 
 ##   8622   8624   8626   8628   8629   8630   8631   8633   8634   8635 
-##      1      4      1      2      2      1      5      2      3      1 
+##      1      2      3      1      1      4      4      1      3      1 
 ##   8636   8637   8638   8639   8640   8641   8642   8643   8644   8645 
-##      3      1      3      3      4      3      1      3      1      4 
+##      3      1      3      3      1      3      3      2      1      2 
 ##   8646   8647   8648   8651   8652   8653   8654   8655   8656   8657 
-##      5      2      3      5      3      1      2      3      2      4 
+##      4      1      4      4      3      4      1      3      1      3 
 ##   8658   8659   8660   8661   8662   8663   8664   8667   8669   8670 
-##      1      1      3      3      4      5      4      1      1      2 
+##      4      3      3      3      2      4      2      4      3      1 
 ##   8671   8672   8673   8674   8675   8676   8677   8678   8679   8680 
-##      1      1      3      3      2      5      1      3      4      2 
+##      3      3      1      1      1      4      1      3      1      1 
 ##   8683   8685   8686   8687   8688   8689   8691   8692   8693   8694 
-##      2      4      5      3      5      1      5      5      3      3 
+##      1      2      4      3      4      3      4      2      4      3 
 ##   8695   8696   8697   8698   8699   8700   8701   8702   8703   8704 
-##      2      3      3      4      3      3      5      5      3      1 
+##      1      3      2      2      3      1      4      4      3      3 
 ##   8705   8706   9003   9006   9015  10005  11010  11503  11532  12008 
-##      4      2      1      1      3      1      5      2      4      3 
+##      2      1      1      3      2      1      4      1      2      3 
 ##  12012  14010  14015  22212  68087  68088  68090  68095  68130  68131 
-##      5      4      3      2      5      5      5      4      5      5 
+##      4      1      1      1      4      4      4      2      4      4 
 ##  68133  68134  68135   105A   108A   109B   110B   112C   115B   117B 
-##      1      5      1      4      5      2      5      1      1      2 
+##      1      4      3      2      3      1      4      4      4      1 
 ##   118B    11A   120A   121C   127A   128A   131B   132B   136C   138A 
-##      4      1      3      3      4      3      4      5      1      2 
+##      2      3      3      3      2      3      2      4      3      1 
 ##   139B   140B   141A   142B   144C   145A   146C   147A   149B   150A 
-##      4      4      3      4      4      2      5      3      4      2 
+##      2      2      3      2      2      1      4      1      2      1 
 ##   151A   152B   153B   154C   155B   156C   157A   158B    15A   162A 
-##      1      2      4      4      4      3      4      1      5      3 
+##      3      2      2      2      2      3      2      1      4      4 
 ##   166B    16A   171A   173A   174A    17C   188A   189A   190A   191A 
-##      5      1      3      3      5      1      5      3      2      4 
+##      2      3      3      3      2      3      4      3      2      2 
 ##    19A   205B    20A   212A   213A   217C   219A    21A   220A   224A 
-##      2      4      4      2      1      4      5      4      1      3 
+##      1      2      2      1      4      2      4      2      4      4 
 ##   226C   227C   234B   235A   238A    23A   245B   248A   250C   253A 
-##      5      2      3      4      4      4      3      1      2      1 
+##      4      1      3      2      2      2      1      1      1      1 
 ##   254C   257B   258A   260B   262A   264C   265A   268A   269A   270C 
-##      1      1      4      4      5      1      5      2      5      4 
+##      2      3      2      2      4      3      4      1      4      2 
 ##   271A   272B   275A   276B   277A    27A   281A   282B   283C   285C 
-##      3      2      4      1      1      1      5      3      5      1 
+##      3      1      2      4      3      3      4      3      4      3 
 ##   286B   287C   288C   289A   290C   291C   292C   298B   299C   300C 
-##      2      5      5      3      4      1      1      3      1      4 
+##      1      4      4      3      4      4      4      3      4      2 
 ##   302A   303C   305A   306A   307A   311A   316B   320C   322A   323B 
-##      4      3      4      5      3      3      4      4      2      4 
+##      2      4      3      4      3      4      1      2      1      2 
 ##   324A   326A   327A   328B   329B    32A   330A   331B   332C   334A 
-##      5      4      1      4      4      4      3      4      3      4 
+##      4      4      4      2      2      2      3      2      2      2 
 ##   335A   336A   339B   340A   341C   346A   349B    34A   351A   353C 
-##      1      3      4      4      3      5      1      4      4      2 
+##      3      3      2      2      3      4      3      2      2      1 
 ##   355A    35A   360B   361B   362C   365B   366A   368B   369A    36A 
-##      1      5      4      4      2      2      1      3      4      1 
+##      1      4      2      2      3      1      4      3      2      4 
 ##   370C   371B   372A   373B   375A   377B   378B   379B   382A   383C 
-##      4      5      5      1      2      5      3      3      5      3 
+##      2      1      4      4      2      2      3      1      2      2 
 ##   384A   385B   387A   388B   389A   390B   391C   392A   393C   395A 
-##      3      4      5      5      1      1      4      1      4      2 
+##      3      2      4      4      3      1      2      3      2      1 
 ##   397A   398C   400C   407A   408C   409B   410A   411C   412C   414A 
-##      4      5      3      3      3      3      5      1      3      4 
+##      2      4      3      3      3      3      4      3      3      2 
 ##   415A   416B   417A   418A   419B    41C   420B   421A   422B   423C 
-##      3      5      2      1      1      2      5      2      5      1 
+##      3      4      1      3      4      1      4      1      4      3 
 ##   424B   425B   426B   427C   428C   429B    42A   430B   431B   433B 
-##      3      5      4      5      3      1      3      4      1      5 
+##      3      4      1      2      4      3      3      4      3      4 
 ##   434B   435C   436A    43B   441C   442C   443C   448C   449A   450B 
-##      2      4      4      2      3      3      5      1      4      5 
+##      1      2      2      1      3      3      4      3      2      4 
 ##   451B   459A   461A   463A   469C   470A   471B   481A   483A   484A 
-##      5      4      4      1      1      4      2      5      5      1 
+##      3      2      2      4      1      2      2      4      4      4 
 ##   485A   486B   487C   489B    48B   492C   493A   496B   498B   499A 
-##      2      1      5      4      4      2      3      3      5      4 
+##      1      3      4      2      2      1      3      3      4      3 
 ##    49A   500B   501A   502C   514A   515A   519B   520B   526A   527B 
-##      4      3      4      3      4      5      4      1      3      4 
+##      2      1      2      3      2      4      2      1      1      4 
 ##   528C    52A   531A   532A   533A   534A   535C   536A   539A    53C 
-##      4      4      1      5      4      1      1      4      4      4 
+##      2      2      3      2      2      1      1      2      2      2 
 ##   540A   541A   542C   543C   544B   545A   546C   548C   549A    54C 
-##      2      4      5      4      3      4      5      5      4      1 
+##      1      2      4      2      1      2      4      4      2      3 
 ##   551C   552A   553B   554A   555C   556A   557B   558A   559A    55A 
-##      2      5      4      2      4      4      4      4      4      4 
+##      1      4      2      1      1      2      2      2      2      2 
 ##   561A   562A   563A   564B   565C   566B   568B   570A   571A   572C 
-##      1      4      4      4      2      2      1      5      5      3 
+##      3      2      2      2      1      1      4      4      2      3 
 ##   573C   574B   576A   577B   578B   579A    57A   580A   581C   600A 
-##      4      1      4      4      3      2      1      2      5      5 
+##      2      3      1      2      2      1      2      1      4      4 
 ##   601A   603A   605B   606B    60A   612C   613A   618A   619A    61A 
-##      1      3      1      5      2      3      5      4      3      5 
+##      3      3      4      4      1      4      4      2      3      4 
 ##   620C   621A   633B   634C   635A   636C   637B    63B   644B   645A 
-##      5      5      5      4      5      5      5      2      5      1 
+##      4      4      4      2      4      4      4      1      4      1 
 ##   646A    66A    67C    69A    73B    77B     7A    86C    89C    90C 
-##      5      3      4      1      2      2      3      1      1      4 
+##      4      3      2      3      1      2      3      3      3      2 
 ##    92A    93C    94C    97B    98A    99C     9A CRO108 CRO120 CRO121 
-##      4      4      4      2      2      4      4      3      3      3 
+##      2      2      2      1      1      2      2      2      3      3 
 ## CRO133 DF3364  FM406  FM417  FM428  FM442  FM445  S4PT6   SH13    SH7 
-##      2      5      3      1      5      2      4      5      3      2 
-## Levels: 1 2 3 4 5</code></pre>
-<p>The K means procedure detected 5 groups. We will use this number of group in the discriminant analysis (function <code>dapc()</code>). On your own dataset, you need to spend more time to estimate the number of clusters.</p>
+##      1      4      3      3      4      1      2      4      3      1 
+## Levels: 1 2 3 4</code></pre>
+<p>The K means procedure detected 4 groups. We will use this number of group in the discriminant analysis (function <code>dapc()</code>). On your own dataset, you need to spend more time to estimate the number of clusters.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dapc1 &lt;-<span class="st"> </span><span class="kw">dapc</span>(Mydata1, grp$grp, <span class="dt">n.pca =</span> <span class="dv">20</span>, <span class="dt">n.da =</span> <span class="dv">6</span>) 
 <span class="kw">scatter</span>(dapc1) <span class="co"># plot of the group</span></code></pre></div>
 <p><img src="DifferentiationSNP_files/figure-html/description_of_clusters-1.png" title="" alt="" width="960" /></p>
-<p>Five groups were finally detected and represented by the discriminant analysis. The 11 states are not the good level for population analysis. But we need to remember that we used only 20 SNPs to conduct the analysis.</p>
+<p>Four groups were finally detected and represented by the discriminant analysis. The 11 states are not the good level for population analysis. But we need to remember that we used only 20 SNPs to conduct the analysis.</p>
 </div>
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>
 <div id="what-did-we-learn-today" class="section level3">
 <h3>What did we learn today?</h3>
-<p>In this vignette, we learned how to calculate <span class="math inline">\(F_{st}\)</span> in existing populations and to investigate the effect of population structure on genetic differentiation from hierarchical <span class="math inline">\(F_{st}\)</span> analysis (like AMOVA in the case of SNP). We also run a multivariate analysis to investigate the genetic structure of the data at individual level assuming no population.</p>
+<p>In this vignette, we learned how to calculate <span class="math inline">\(F_{st}\)</span> in existing populations and to investigate the effect of population structure on genetic differentiation from hierarchical <span class="math inline">\(F_{st}\)</span> analysis (like AMOVA in the case of SNP). We also ran a multivariate analysis to investigate the genetic structure of the data at individual level assuming no population structure.</p>
 </div>
 <div id="what-is-next" class="section level3">
 <h3>What is next?</h3>
-<p>You may now want to move to the <a href="VignetteIndividualGeneticDistancesSNP.html">estimation of genetic distances</a></p>
+<p>You may now want to move on to the <a href="2015-05-18-Dist-SNP.html">estimation of genetic distances</a>.</p>
 </div>
 </div>
 <div id="contributors" class="section level1">
 <h1>Contributors</h1>
 <ul>
-<li>Stephanie Manel (Author)</li>
+<li>Stéphanie Manel (Author)</li>
 <li>Zhian Kamvar (edits)</li>
 </ul>
 </div>
