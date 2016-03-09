@@ -324,14 +324,14 @@ $(document).ready(function () {
 <div id="import-data" class="section level2">
 <h2>Import data</h2>
 <p>The data are stored in a text file (genotype=AA..). We will import the dataset into R as a data frame, and then convert the SNP data file into a “<a href="http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind">genind</a>” object.</p>
-<p>The dataset “Master_Pinus_data_genotype.txt” can be downloaded <a href="https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt">here</a>.</p>
+<p>The dataset <a href="https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt">“Master_Pinus_data_genotype.txt” can be downloaded here</a>.</p>
 <p>The text file is a matrix of (550 rows x 3086 columns). It contains 4 extra columns: first column is the label of the individuals, the three other are description of the region, all the other columns are for the genotypes as (AA or AT…).</p>
 <p>When you import the data into R, the data file needs to be in your working directory, or adjust the path in the <code>read.table()</code> invocation below accordingly.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Master_Pinus_data_genotype.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
 <span class="kw">dim</span>(Mydata) <span class="co"># Matrix of dimension 550x3086</span></code></pre></div>
 <pre><code>## [1]  550 3086</code></pre>
-<p>To work with the data, we need to convert the R object returned by <code>read.table()</code> to a “genind” object. To achieve this, we create a matrix with only genotypes, and keep only a subset of the first 11 SNP loci (to make calculations faster). The result can then be converted to a “genind” object (for package <code>adegent</code>). The “genind” object can then easily be converted into “hierfstat” (package <em>hierfstat</em>) and “loci” objects (package <em>pegas</em>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">locus &lt;-<span class="st"> </span>Mydata[, -<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">17</span>:<span class="dv">3086</span>)]    
+<p>To work with the data, we need to convert the R object returned by <code>read.table()</code> to a “genind” object. To achieve this, we create a matrix with only genotypes, and keep only a subset of the first 11 SNP loci (to make calculations faster). The result can then be converted to a “genind” object (for package <em>adegent</em>). The “genind” object can then easily be converted into a “hierfstat” (package <em>hierfstat</em>) object.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">locus &lt;-<span class="st"> </span>Mydata[, -<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">17</span>:<span class="dv">3086</span>)]    
 <span class="kw">colnames</span>(locus) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>, <span class="st">&quot;_&quot;</span>, <span class="kw">colnames</span>(locus)) <span class="co"># locus names can&#39;t have &quot;.&quot;</span>
 ind &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$tree_id) <span class="co"># labels of the individuals</span>
 population &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$state) <span class="co"># labels of the populations</span>
@@ -360,8 +360,7 @@ Mydata1</code></pre></div>
 ##               2               2               2               2 
 ## X0_10112_01_169 X0_10113_01_119 X0_10116_01_165  X0_10151_01_86 
 ##               2               2               2               2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata2 &lt;-<span class="st"> </span><span class="kw">genind2hierfstat</span>(Mydata1) <span class="co"># Create hierfstat object</span>
-Mydata3 &lt;-<span class="st"> </span><span class="kw">genind2loci</span>(Mydata1)      <span class="co"># Create loci object</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata2 &lt;-<span class="st"> </span><span class="kw">genind2hierfstat</span>(Mydata1) <span class="co"># Create hierfstat object</span></code></pre></div>
 </div>
 <div id="genetic-diversity-observed-and-expected-heterozygosity" class="section level2">
 <h2>Genetic diversity (observed and expected heterozygosity)</h2>
@@ -392,7 +391,7 @@ div</code></pre></div>
 ## data:  list(div$Hexp, div$Hobs)
 ## Bartlett&#39;s K-squared = 0.011457, df = 1, p-value = 0.9148</code></pre>
 <p>We observed that heterozygosity varies among loci. We observed no difference between expected and observed heterozygosity.</p>
-<p>Basic statistics with <em>hierfstat</em>. Populations are states. The function <code>basic.stats()</code> provides the observed heterozygosity (<span class="math inline">\(H_o\)</span>), mean gene diversities within population (<span class="math inline">\(H_s\)</span>), <span class="math inline">\(F_{is}\)</span>, and <span class="math inline">\(F_{st}\)</span>. The function <code>boot.ppfis()</code> provides confidence interval for <span class="math inline">\(F_{is}\)</span>. The fuction <code>indpca()</code> does an PCA on the centered matrix of individuals’ allele frequencies.</p>
+<p>Basic statistics with <em>hierfstat</em>. Populations are states. The function <code>basic.stats()</code> provides the observed heterozygosity (<span class="math inline">\(H_o\)</span>), mean gene diversities within population (<span class="math inline">\(H_s\)</span>), <span class="math inline">\(F_{is}\)</span>, and <span class="math inline">\(F_{st}\)</span>. The function <code>boot.ppfis()</code> provides confidence interval for <span class="math inline">\(F_{is}\)</span>. The function <code>indpca()</code> does an PCA on the centered matrix of individuals’ allele frequencies.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basicstat &lt;-<span class="st"> </span><span class="kw">basic.stats</span>(Mydata2, <span class="dt">diploid =</span> <span class="ot">TRUE</span>, <span class="dt">digits =</span> <span class="dv">2</span>) 
 <span class="kw">names</span>(basicstat)   </code></pre></div>
 <pre><code>## [1] &quot;n.ind.samp&quot; &quot;pop.freq&quot;   &quot;Ho&quot;         &quot;Hs&quot;         &quot;Fis&quot;       
@@ -403,38 +402,38 @@ div</code></pre></div>
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0329  0.0820
-## 2  -0.2180  0.1675
-## 3  -0.2177 -0.0426
-## 4  -0.0417  0.2722
-## 5  -0.4223 -0.1407
-## 6  -0.1586  0.3010
-## 7   0.0196  0.1150
-## 8  -0.4844  0.2068
-## 9  -0.0449  0.0867
-## 10  0.0416  0.2906
-## 11 -0.0582  0.0391</code></pre>
+## 1  -0.0295  0.0906
+## 2  -0.2698  0.1508
+## 3  -0.1998 -0.0446
+## 4  -0.0557  0.2668
+## 5  -0.4562 -0.1502
+## 6  -0.1827  0.3626
+## 7   0.0206  0.1050
+## 8  -0.4680  0.2094
+## 9  -0.0579  0.0861
+## 10 -0.0103  0.3507
+## 11 -0.0551  0.0491</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex =</span> <span class="fl">0.7</span>)</code></pre></div>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
 </div>
 <div id="testing-for-hardy-weinberg-equilibrium" class="section level2">
 <h2>Testing for Hardy-Weinberg Equilibrium</h2>
-<p>We used the pegas package.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata3, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre></div>
+<p>We used the function <code>hw.test()</code> from the <em>pegas</em> package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata1, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre></div>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0_10037_01_257 0.75465490  1 0.385006451    0.450
-## X0_10040_02_394 0.16628227  1 0.683437231    0.717
-## X0_10044_01_392 2.96053195  1 0.085319867    0.079
-## X0_10048_01_60  6.39076800  1 0.011471539    0.014
-## X0_10051_02_166 1.12035389  1 0.289842265    0.301
-## X0_10054_01_402 1.54582494  1 0.213752853    0.231
-## X0_10067_03_111 0.04868128  1 0.825374035    0.533
-## X0_10079_02_168 0.01579313  1 0.899992594    0.614
+## X0_10037_01_257 0.75465490  1 0.385006451    0.455
+## X0_10040_02_394 0.16628227  1 0.683437231    0.730
+## X0_10044_01_392 2.96053195  1 0.085319867    0.109
+## X0_10048_01_60  6.39076800  1 0.011471539    0.009
+## X0_10051_02_166 1.12035389  1 0.289842265    0.288
+## X0_10054_01_402 1.54582494  1 0.213752853    0.228
+## X0_10067_03_111 0.04868128  1 0.825374035    0.573
+## X0_10079_02_168 0.01579313  1 0.899992594    0.602
 ## X0_10112_01_169 0.41126025  1 0.521330544    1.000
-## X0_10113_01_119 0.74248768  1 0.388865151    0.453
-## X0_10116_01_165 1.87098306  1 0.171362531    0.245
-## X0_10151_01_86  8.94232481  1 0.002786379    0.005</code></pre>
+## X0_10113_01_119 0.74248768  1 0.388865151    0.468
+## X0_10116_01_165 1.87098306  1 0.171362531    0.231
+## X0_10151_01_86  8.94232481  1 0.002786379    0.009</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math inline">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
@@ -456,7 +455,8 @@ div</code></pre></div>
 <div id="contributors" class="section level1">
 <h1>Contributors</h1>
 <ul>
-<li>Stéphanie Manel</li>
+<li>Stéphanie Manel (Author)</li>
+<li>Zhian Kamvar (edits)</li>
 </ul>
 </div>
 <div id="session-information" class="section level1">
@@ -472,7 +472,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       Zulu                        
-##  date     2016-03-08</code></pre>
+##  date     2016-03-09</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-4   2016-03-01 CRAN (R 3.2.3)
