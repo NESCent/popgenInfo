@@ -29,12 +29,12 @@ Since this process requires git, if you are having trouble installing git or acc
 
 If you are a new contributor, you will need to make sure you have git set up and a fork of this repository. Please follow these instructions carefully. If you have already set up your repository, go to the next section. 
 
-1. Set up a GitHub account if you don't already have one, see [here](https://guides.github.com/activities/hello-world/) for a quick tutorial on using GitHub. 
-2. Download an appropriate Git client for your computer, see [here](https://help.github.com/articles/set-up-git/), and set it up.
+1. Set up a GitHub account if you don't already have one, [see here for a quick tutorial on using GitHub](https://guides.github.com/activities/hello-world/). 
+2. Download an appropriate Git client for your computer and set it up ([instructions to set up git](https://help.github.com/articles/set-up-git/)).
 3. Fork the [source repository](http://github.com/NESCent/popgenInfo) on GitHub using the `Fork` button (See [GitHub's tutorial](https://help.github.com/articles/fork-a-repo/)). 
 4. On the command line, clone the repository to your machine using    
 `git clone https://github.com/YourAccount/popgenInfo.git`    
-Note: the https protocol is easier to follow, but it's possible to use ssh as well ([details here](https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork)). 
+Note: the https protocol is easier to follow, [but it's possible to use ssh as well](https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork). 
 5. Add the NESCent repository as upstream with     
 `git remote add upstream https://github.com/NESCent/popgenInfo.git`    
 to keep your fork up to date with the master repository. [See these instructions for details](https://help.github.com/articles/fork-a-repo/#step-3-configure-git-to-sync-your-fork-with-the-original-spoon-knife-repository)
@@ -76,7 +76,6 @@ If you have a vignette you would like to submit, please follow these instruction
  - Give your vignette a unique name by using the date of your first commit (e.g. `2015-06-16_Parentage_Microsatellite.Rmd`) would be a vignette that was started on June 16th, 2015) 
  - List authors at the bottom of the vignette
  - Use small examples and encourage readers to explore with bigger examples
- - Submit your vignette early to get feedback
  - Indicate whether or not your pull request is ready to be merged or if you want feedback
 
 # How do I submit datasets?
