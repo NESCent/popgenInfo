@@ -11,7 +11,7 @@
 
 
 
-<title>IndividualDistanceSNP</title>
+<title>Individual Based Genetic Distance for SNP Data</title>
 
 <script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -280,7 +280,7 @@ $(document).ready(function () {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">IndividualDistanceSNP</h1>
+<h1 class="title">Individual Based Genetic Distance for SNP Data</h1>
 
 </div>
 
@@ -313,8 +313,8 @@ $(document).ready(function () {
 <div id="data" class="section level1">
 <h1>Data</h1>
 <p>The dataset used for those analysis concerns the plant: lodgepole pine (<em>Pinus contorta</em>, <em>Pinaceae</em>). You can have more information on this data set and the species on the web site of A. Eckert: (<a href="http://eckertdata.blogspot.fr/" class="uri">http://eckertdata.blogspot.fr/</a>). But here the dataset is used as a test dataset with no idea of interpreting the results in a biological way. We will work on a subset of the dataset to make the calculations faster.</p>
-<p>The data are stored in a text file (genotype=AA). We will import the dataset in R as a data frame, and then convert the SNP data file into <a href="http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind">genind</a> objects.</p>
-<p>The dataset “Master_Pinus_data_genotype.txt” can be downloaded <a href="https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt">here</a>.</p>
+<p>The data are stored in a text file (genotype = AA). We will import the dataset in R as a data frame, and then convert the SNP data file into <a href="http://www.inside-r.org/packages/cran/adegenet/docs/.valid.genind">genind</a> objects.</p>
+<p>The dataset <a href="https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt">“Master_Pinus_data_genotype.txt” can be downloaded here</a>.</p>
 <p>The text file is a matrix of (550 rows x 3086 columns). It contains 4 extra columns: first column is the label of the individuals, the three other are description of the region, all the other columns are for the genotypes as (AA or AT…).</p>
 <p>When you import the data into R, the data file needs to be in your working directory, or adjust the path in the <code>read.table()</code> invocation below accordingly.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Master_Pinus_data_genotype.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">check.names =</span> <span class="ot">FALSE</span>)   
@@ -376,23 +376,24 @@ Mydata1</code></pre></div>
 </div>
 <div id="section-3.-individual-genetic-distance-number-of-loci-for-which-individuals-differ-dist.gene-ape" class="section level2">
 <h2>Section 3. Individual genetic distance: number of loci for which individuals differ (<code>dist.gene</code> {ape})</h2>
-<p>The option <code>pairwise.deletion = FALSE</code> in the command <code>distgen()</code> removes all loci with one missing values : you an see on the histogram that we get a maximum distance of 3 loci out of 100.</p>
-<p>We can see that we get 98 loci with at least one sample missing. Then using the option <code>pairwise.deletion = TRUE</code> in the command <code>distgen()</code> allows you to keep loci with one missing value.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenDIFF &lt;-<span class="st"> </span><span class="kw">dist.gene</span>(Mydata2, <span class="dt">method=</span><span class="st">&quot;pairwise&quot;</span>, <span class="dt">pairwise.deletion=</span><span class="ot">FALSE</span>, <span class="dt">variance=</span><span class="ot">FALSE</span>)
+<p>The option <code>pairwise.deletion = FALSE</code> in the command <code>dist.gene()</code> removes all loci with one missing values : you an see on the histogram that we get a maximum distance of 3 loci out of 100.</p>
+<p>We can see that we get 98 loci with at least one sample missing. Then using the option <code>pairwise.deletion = TRUE</code> in the command <code>dist.gene()</code> allows you to keep loci with one missing value.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenDIFF &lt;-<span class="st"> </span><span class="kw">dist.gene</span>(Mydata2, <span class="dt">method=</span><span class="st">&quot;pairwise&quot;</span>, <span class="dt">pairwise.deletion =</span> <span class="ot">FALSE</span>, <span class="dt">variance =</span> <span class="ot">FALSE</span>)
 <span class="kw">hist</span>(distgenDIFF)</code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_ape-1.png" title="" alt="" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">missing_data &lt;-<span class="st"> </span><span class="kw">info_table</span>(Mydata1, <span class="dt">type =</span> <span class="st">&quot;missing&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get percent missing data per population</span>
+missing_data &lt;-<span class="st"> </span><span class="kw">info_table</span>(Mydata1, <span class="dt">type =</span> <span class="st">&quot;missing&quot;</span>)
 <span class="kw">sum</span>(missing_data[<span class="st">&quot;Total&quot;</span>, <span class="dv">1</span>:<span class="dv">100</span>] &gt;<span class="st"> </span><span class="dv">0</span>)</code></pre></div>
 <pre><code>## [1] 98</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(missing_data[<span class="st">&quot;Total&quot;</span>, <span class="dv">1</span>:<span class="dv">100</span>], <span class="dt">xlab =</span> <span class="st">&quot;Locus&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Percent Missing&quot;</span>)</code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_ape-2.png" title="" alt="" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenDIFF &lt;-<span class="st"> </span><span class="kw">dist.gene</span>(Mydata2, <span class="dt">method=</span><span class="st">&quot;pairwise&quot;</span>, <span class="dt">pairwise.deletion=</span><span class="ot">TRUE</span>, <span class="dt">variance=</span><span class="ot">FALSE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenDIFF &lt;-<span class="st"> </span><span class="kw">dist.gene</span>(Mydata2, <span class="dt">method=</span><span class="st">&quot;pairwise&quot;</span>, <span class="dt">pairwise.deletion =</span> <span class="ot">TRUE</span>, <span class="dt">variance =</span> <span class="ot">FALSE</span>)
 <span class="kw">hist</span>(distgenDIFF)</code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_ape-3.png" title="" alt="" width="960" /></p>
 </div>
 <div id="section-4-number-of-allelic-differences-between-two-individuals-diss.dist-poppr" class="section level2">
 <h2>Section 4: number of allelic differences between two individuals (<code>diss.dist</code> {poppr})</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenDISS &lt;-<span class="st"> </span><span class="kw">diss.dist</span>(Mydata1, <span class="dt">percent=</span><span class="ot">FALSE</span>, <span class="dt">mat=</span><span class="ot">FALSE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenDISS &lt;-<span class="st"> </span><span class="kw">diss.dist</span>(Mydata1, <span class="dt">percent =</span> <span class="ot">FALSE</span>, <span class="dt">mat =</span> <span class="ot">FALSE</span>)
 <span class="kw">hist</span>(distgenDISS)</code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_poppr-1.png" title="" alt="" width="960" /></p>
 </div>
@@ -408,7 +409,7 @@ Mydata1</code></pre></div>
 </div>
 <div id="what-is-next" class="section level3">
 <h3>What is next?</h3>
-<p>Other R packages can also be used to estimate individual genetic distances like <em>gstudio</em> for example. The individuals genetic distances can then be used in analysis as Mantel tests to test for isolation by distance or more complex analysis in landscape genetics to test for resistance by distance, cluster analysis, spatial network… See related vignettes.</p>
+<p>These individuals genetic distances can then be used in analyses such as Mantel tests to test for isolation by distance, more complex analyses in landscape genetics to test for resistance by distance, cluster analysis, or spatial networks.</p>
 </div>
 </div>
 </div>
