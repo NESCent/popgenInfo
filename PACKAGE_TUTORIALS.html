@@ -200,10 +200,9 @@ $(document).ready(function () {
         <li class="dropdown">
           <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Package Developers <span class="caret"></span></a>
           <ul class = "dropdown-menu" role = "menu">
-           <li><a href = "DEVELOPER_INTRO.html">Introduction</a></li>
            <li><a href = "PACKAGES.html">Population genetic packages in R</a></li>  
            <li><a href = "DATAFORMATS.html">Population genetic data types in R</a></li>
-           <li><a href = "PACKAGE_TUTORIALS.html">Developing R packages</a></li>
+           <li><a href = "PACKAGE_TUTORIALS.html">Tutorials for developing R packages</a></li>
            <li class="divider"></li>  
            <li class="dropdown-header">Development Resources (external):</li>
            <li><a href = "http://r-pkgs.had.co.nz/">Hadley Wickham's guide for creating R packages</a></li>
@@ -244,6 +243,7 @@ $(document).ready(function () {
 <div id="TOC">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
+<li><a href="#a-word-on-modularity">A word on modularity</a></li>
 <li><a href="#resources-for-writing-r-packages">Resources for writing R packages</a></li>
 <li><a href="#tutorials">Tutorials</a><ul>
 <li><a href="#basics">Basics</a></li>
@@ -254,6 +254,10 @@ $(document).ready(function () {
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>The following tutorials are meant to give you a basic starting point that can enable you to write packages for population genetic analysis. These are not designed to be a comprehensive guide for package development. There are MANY tutorials available that describe development in detail (some examples are in the dropdown menu). <strong>The vignettes here are designed to show you how to develop packages so that they can be easily integrated with the broader community of population genetics in R</strong>. With these tools in R, population genetic analysis can become more available and reproducible.</p>
+</div>
+<div id="a-word-on-modularity" class="section level1">
+<h1>A word on modularity</h1>
+<p>R is an open source language with a strong community of developers contributing new methods and analyses. The population genetics community has worked hard to create data classes that can be used efficiently between packages, expanding the number of analyses that can be done by users in a reproducible manner. Utilizing common data types within your R package lowers the barrier between current workflows and your new method or visualization.</p>
 </div>
 <div id="resources-for-writing-r-packages" class="section level1">
 <h1>Resources for writing R packages</h1>
@@ -268,7 +272,10 @@ $(document).ready(function () {
 </div>
 <div id="tutorials" class="section level1">
 <h1>Tutorials</h1>
-<p><em>A number of additional tutorials have been <a href="https://github.com/NESCent/popgenInfo/issues?utf8=✓&amp;q=is%3Aopen+label%3A%22help+wanted%22+label%3Adocumentation">tagged as candidates for community contribution</a>.</em></p>
+<blockquote>
+<p>A number of additional tutorials have been <a href="https://github.com/NESCent/popgenInfo/issues?utf8=✓&amp;q=is%3Aopen+label%3A%22help+wanted%22+label%3Adocumentation">tagged as candidates for community contribution</a>.</p>
+</blockquote>
+<p>If you are a package developer and would like to contribute a workflow about package development, classes, or methods to this website, please see our documentation on <a href="CONTRIBUTING.html">contributing workflow vignettes</a>.</p>
 <div id="basics" class="section level2">
 <h2>Basics</h2>
 <ul>

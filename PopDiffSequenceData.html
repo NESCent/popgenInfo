@@ -243,10 +243,9 @@ $(document).ready(function () {
         <li class="dropdown">
           <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Package Developers <span class="caret"></span></a>
           <ul class = "dropdown-menu" role = "menu">
-           <li><a href = "DEVELOPER_INTRO.html">Introduction</a></li>
            <li><a href = "PACKAGES.html">Population genetic packages in R</a></li>  
            <li><a href = "DATAFORMATS.html">Population genetic data types in R</a></li>
-           <li><a href = "PACKAGE_TUTORIALS.html">Developing R packages</a></li>
+           <li><a href = "PACKAGE_TUTORIALS.html">Tutorials for developing R packages</a></li>
            <li class="divider"></li>  
            <li class="dropdown-header">Development Resources (external):</li>
            <li><a href = "http://r-pkgs.had.co.nz/">Hadley Wickham's guide for creating R packages</a></li>
@@ -430,32 +429,32 @@ beeData.gid</code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  1.6247  (1.1383-2.6225)
-## Ebom_CAD 1.675   (1.2134-2.3849)
+## Ebom_mt  1.6482  (1.1115-2.4482)
+## Ebom_CAD 1.6611  (1.1811-2.559)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.6385   (1.2827-2.2177)</code></pre>
+## 1.644    (1.2495-2.2187)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, Gst_Hedrick) <span class="co"># for Hedrick&#39;s Gst</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  1.0374  (1.0083-1.1061)
-## Ebom_CAD 1.0179  (1.0029-1.0512)
+## Ebom_mt  1.0374  (1.0083-1.099)
+## Ebom_CAD 1.0197  (1.0046-1.0423)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.0277   (1.0125-1.0595)</code></pre>
+## 1.0288   (1.0126-1.0582)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, D_Jost)      <span class="co"># for Jost&#39;s D</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  0.9046  (0.8305-0.9502)
-## Ebom_CAD 0.9553  (0.8967-0.9932)
+## Ebom_mt  0.9062  (0.8578-0.9682)
+## Ebom_CAD 0.9485  (0.9001-0.9811)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9307   (0.8853-0.9636)
+## 0.928    (0.8952-0.9661)
 ## 
 ## Global Estimate based on harmonic mean of statistic
-## 0.9289   (0.8839-0.9622)</code></pre>
+## 0.9265   (0.8944-0.9656)</code></pre>
 </div>
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
