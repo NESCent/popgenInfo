@@ -78,7 +78,7 @@ Mydata1
 Mydata2 <- genind2hierfstat(Mydata1) 
 ```
 
-## $F_{st}$ (observed and expected heterozygosity)
+## Observed and expected heterozygosity: $F_{st}$
 
 These statistics come from the package *hierfstat*.
 
@@ -157,7 +157,7 @@ individual level assuming no population structure.
 
 ### What is next?
 
-You may now want to move to the [estimation of genetic distances](2015-05-18-Dist-SNP.html)
+You may now want to move on to the [estimation of genetic distances](2015-05-18-Dist-SNP.html).
   
 # Contributors
 
