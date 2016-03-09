@@ -14,7 +14,7 @@ will help the larger population genetics community. The following series of
 tutorials will help point you toward the resources you need to get your package
 up and running.
 
-A word on modularity
+A word on modularity 
 =======
 
 R is an open source language with a strong community of developers contributing
