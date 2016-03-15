@@ -401,17 +401,17 @@ div</code></pre></div>
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0307  0.0705
-## 2  -0.1892  0.1214
-## 3  -0.2017 -0.0727
-## 4  -0.0032  0.2778
-## 5  -0.4117 -0.1597
-## 6  -0.1374  0.3509
-## 7   0.0148  0.1061
-## 8  -0.4526  0.1745
-## 9  -0.0502  0.0770
-## 10  0.0394  0.3248
-## 11 -0.0499  0.0341</code></pre>
+## 1  -0.0283  0.0829
+## 2  -0.2638  0.1408
+## 3  -0.2121 -0.0362
+## 4  -0.0720  0.2798
+## 5  -0.4348 -0.1146
+## 6  -0.1375  0.2997
+## 7   0.0125  0.1140
+## 8  -0.5296  0.1779
+## 9  -0.0500  0.0900
+## 10 -0.0145  0.3061
+## 11 -0.0598  0.0404</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex =</span> <span class="fl">0.7</span>)</code></pre></div>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
@@ -421,18 +421,18 @@ div</code></pre></div>
 <p>We used the function <code>hw.test()</code> from the <em>pegas</em> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata1, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre></div>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0_10037_01_257 0.75465490  1 0.385006451    0.450
-## X0_10040_02_394 0.16628227  1 0.683437231    0.726
-## X0_10044_01_392 2.96053195  1 0.085319867    0.081
-## X0_10048_01_60  6.39076800  1 0.011471539    0.008
-## X0_10051_02_166 1.12035389  1 0.289842265    0.298
-## X0_10054_01_402 1.54582494  1 0.213752853    0.216
-## X0_10067_03_111 0.04868128  1 0.825374035    0.535
-## X0_10079_02_168 0.01579313  1 0.899992594    0.577
+## X0_10037_01_257 0.75465490  1 0.385006451    0.444
+## X0_10040_02_394 0.16628227  1 0.683437231    0.727
+## X0_10044_01_392 2.96053195  1 0.085319867    0.087
+## X0_10048_01_60  6.39076800  1 0.011471539    0.015
+## X0_10051_02_166 1.12035389  1 0.289842265    0.286
+## X0_10054_01_402 1.54582494  1 0.213752853    0.229
+## X0_10067_03_111 0.04868128  1 0.825374035    0.550
+## X0_10079_02_168 0.01579313  1 0.899992594    0.580
 ## X0_10112_01_169 0.41126025  1 0.521330544    1.000
-## X0_10113_01_119 0.74248768  1 0.388865151    0.475
-## X0_10116_01_165 1.87098306  1 0.171362531    0.240
-## X0_10151_01_86  8.94232481  1 0.002786379    0.007</code></pre>
+## X0_10113_01_119 0.74248768  1 0.388865151    0.463
+## X0_10116_01_165 1.87098306  1 0.171362531    0.213
+## X0_10151_01_86  8.94232481  1 0.002786379    0.008</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math inline">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
@@ -471,7 +471,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       Zulu                        
-##  date     2016-03-09</code></pre>
+##  date     2016-03-15</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-4   2016-03-01 CRAN (R 3.2.3)
@@ -506,7 +506,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  mgcv         1.8-12  2016-03-03 CRAN (R 3.2.3)
 ##  mime         0.4     2015-09-03 CRAN (R 3.2.3)
 ##  munsell      0.4.3   2016-02-13 CRAN (R 3.2.3)
-##  nlme         3.1-125 2016-02-27 CRAN (R 3.2.3)
+##  nlme         3.1-126 2016-03-14 CRAN (R 3.2.3)
 ##  pegas      * 0.8-2   2015-09-25 CRAN (R 3.2.3)
 ##  permute      0.9-0   2016-01-24 CRAN (R 3.2.3)
 ##  plyr         1.8.3   2015-06-12 CRAN (R 3.2.3)
