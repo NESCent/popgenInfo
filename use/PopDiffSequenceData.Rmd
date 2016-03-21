@@ -47,8 +47,8 @@ default, the locus names are set to the file names, which both contain ".fas" in
 the title. We can fix this by using the text-replacing function `gsub()`:
 
 ```{r fix_loci}
-locusNames(beeData)
-(locusNames(beeData) <- gsub(".fas", "", locusNames(beeData)))
+getLocusNames(beeData)
+(setLocusNames(beeData) <- gsub(".fas", "", getLocusNames(beeData)))
 ```
 
 Now we can create our "genind" object.
