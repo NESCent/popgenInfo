@@ -383,21 +383,21 @@ $(document).ready(function () {
 <span class="kw">clone</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/zkamvar/popgenInfo.git&quot;</span>,
       <span class="dt">local_path =</span> <span class="st">&quot;popgenInfo&quot;</span>)</code></pre></div>
 <pre><code>## Loading required package: methods</code></pre>
-<pre><code>## cloning into &#39;/tmp/RtmpiWH7HN/popgenInfo&#39;...
-## Receiving objects:   1% (23/2261),    9 kb
-## Receiving objects:  11% (249/2261),   56 kb
-## Receiving objects:  21% (475/2261),   97 kb
-## Receiving objects:  31% (701/2261), 1942 kb
-## Receiving objects:  41% (928/2261), 6897 kb
-## Receiving objects:  51% (1154/2261), 11648 kb
-## Receiving objects:  61% (1380/2261), 11696 kb
-## Receiving objects:  71% (1606/2261), 11727 kb
-## Receiving objects:  81% (1832/2261), 11759 kb
-## Receiving objects:  91% (2058/2261), 11951 kb
-## Receiving objects: 100% (2261/2261), 11958 kb, done.</code></pre>
-<pre><code>## Local:    master /tmp/RtmpiWH7HN/popgenInfo/
+<pre><code>## cloning into &#39;/tmp/RtmpVLaVuj/popgenInfo&#39;...
+## Receiving objects:   1% (24/2381),    9 kb
+## Receiving objects:  11% (262/2381),   56 kb
+## Receiving objects:  21% (501/2381),  105 kb
+## Receiving objects:  31% (739/2381),  881 kb
+## Receiving objects:  41% (977/2381), 9831 kb
+## Receiving objects:  51% (1215/2381), 11671 kb
+## Receiving objects:  61% (1453/2381), 11703 kb
+## Receiving objects:  71% (1691/2381), 11735 kb
+## Receiving objects:  81% (1929/2381), 11783 kb
+## Receiving objects:  91% (2167/2381), 11976 kb
+## Receiving objects: 100% (2381/2381), 11980 kb, done.</code></pre>
+<pre><code>## Local:    master /tmp/RtmpVLaVuj/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [10ddd8e] 2016-03-07: Merge pull request #161 from NESCent/fix-contributing</code></pre>
+## Head:     [cb0d664] 2016-03-18: Merge pull request #175 from NESCent/diff-snp-fix</code></pre>
 <p>Now when we look at our directory, we can see that we have one folder called “popgenInfo”:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>()</code></pre></div>
 <pre><code>## [1] &quot;popgenInfo&quot;</code></pre>
@@ -409,16 +409,15 @@ $(document).ready(function () {
 ##  [5] &quot;CONTRIBUTING_WITH_GIT2R.Rmd&quot; &quot;data&quot;                       
 ##  [7] &quot;DATAFORMATS.md&quot;              &quot;DESCRIPTION&quot;                
 ##  [9] &quot;develop&quot;                     &quot;developer_example.Rmd&quot;      
-## [11] &quot;DEVELOPER.md&quot;                &quot;GETSTARTED.md&quot;              
-## [13] &quot;images&quot;                      &quot;index.md&quot;                   
-## [15] &quot;install&quot;                     &quot;LEARN.md&quot;                   
-## [17] &quot;LICENSE&quot;                     &quot;LOAD_PACKAGES.md&quot;           
-## [19] &quot;Makefile&quot;                    &quot;PACKAGES.md&quot;                
-## [21] &quot;popgenInfo.Rproj&quot;            &quot;README.md&quot;                  
-## [23] &quot;R_MARKDOWN.md&quot;               &quot;SNP.md&quot;                     
-## [25] &quot;SSR.md&quot;                      &quot;TEMPLATE.Rmd&quot;               
-## [27] &quot;use&quot;                         &quot;USINGR.md&quot;                  
-## [29] &quot;WORKFLOWS.md&quot;</code></pre>
+## [11] &quot;GETSTARTED.md&quot;               &quot;images&quot;                     
+## [13] &quot;index.md&quot;                    &quot;install&quot;                    
+## [15] &quot;LEARN.md&quot;                    &quot;LICENSE&quot;                    
+## [17] &quot;Makefile&quot;                    &quot;PACKAGES.md&quot;                
+## [19] &quot;popgenInfo.Rproj&quot;            &quot;README.md&quot;                  
+## [21] &quot;R_MARKDOWN.md&quot;               &quot;SNP.md&quot;                     
+## [23] &quot;SSR.md&quot;                      &quot;TEMPLATE.Rmd&quot;               
+## [25] &quot;use&quot;                         &quot;USINGR.md&quot;                  
+## [27] &quot;WORKFLOWS.md&quot;</code></pre>
 <p>Now we have successfully cloned our repository into our computer using <em>git2r</em>. Next, we will set up our credentials and keep our master branch up to date.</p>
 </div>
 <div id="setting-up-your-clone" class="section level2">
@@ -427,9 +426,9 @@ $(document).ready(function () {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>) <span class="co"># in case you&#39;re starting from here</span>
 repo &lt;-<span class="st"> </span><span class="kw">repository</span>()
 repo</code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpiWH7HN/popgenInfo/
+<pre><code>## Local:    master /tmp/RtmpVLaVuj/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [10ddd8e] 2016-03-07: Merge pull request #161 from NESCent/fix-contributing</code></pre>
+## Head:     [cb0d664] 2016-03-18: Merge pull request #175 from NESCent/diff-snp-fix</code></pre>
 <p>This tells R that you have a repository in this folder and that you are referring to it as <code>repo</code>. The output of <code>repo</code> is a summary of your repository:</p>
 <ul>
 <li><strong>Local</strong> This is the branch (master) and the path where the copy of your repository is.</li>
@@ -477,16 +476,18 @@ repo &lt;-<span class="st"> </span><span class="kw">repository</span>()</code></
 <p>Now that we have our repository loaded, we should make sure that we are on the <strong>master branch</strong>. We can do this using the <code>checkout()</code> function from <em>git2r</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)
 repo</code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpiWH7HN/popgenInfo/
+<pre><code>## Local:    master /tmp/RtmpVLaVuj/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [10ddd8e] 2016-03-07: Merge pull request #161 from NESCent/fix-contributing</code></pre>
+## Head:     [cb0d664] 2016-03-18: Merge pull request #175 from NESCent/diff-snp-fix</code></pre>
 <p>Now, whether or not we suspect changes from NESCent, it’s always good form to update your local repository before creating any new branches. We can do it this by first <strong>fetching</strong> ALL changes that have happened on the NESCent popgenInfo repository, and then <strong>merging</strong> the NESCent master branch into our master branch. We will use the <em>git2r</em> functions <code>fetch()</code> and <code>merge()</code> to accomplish this.</p>
 <p>First, we fetch all of the changes that have happened. If there are no changes, nothing will appear, but if there is new content on the master branch or new branches on the repository, they will be downloaded and each branch will be printed to your screen. For our purposes, we are only concerned with the changes on the <strong>master</strong> branch, which will look something like this: <code>## [new]    b62a78c1fcd384a3ea23 refs/remotes/upstream/master</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fetch</span>(repo, <span class="dt">name =</span> <span class="st">&quot;upstream&quot;</span>)</code></pre></div>
-<pre><code>## [new]     686085a86293c4d7a44f refs/remotes/upstream/custom-domain
+<pre><code>## [new]     eb7c52a10a489ced597f refs/remotes/upstream/apex-update
+## [new]     686085a86293c4d7a44f refs/remotes/upstream/custom-domain
 ## [new]     0321c685b70d71e0d9ce refs/remotes/upstream/diff-snp-fix
-## [new]     ee8a6d51b792b9a6f60d refs/remotes/upstream/gh-pages
-## [new]     cb0d66460c062ff8e299 refs/remotes/upstream/master
+## [new]     95d6f4f243d592b745f9 refs/remotes/upstream/fix-menubar
+## [new]     a10f91c428ee6a800479 refs/remotes/upstream/gh-pages
+## [new]     19b3d7db045935941018 refs/remotes/upstream/master
 ## [new]     baa1358367cedf7a7fda refs/remotes/upstream/site-images
 ## [new]     16b52608de7f5ed41d04 refs/remotes/upstream/summaryseqstats
 ## [new]     8840ff6e3782db926b03 refs/remotes/upstream/update-makefile-doc
@@ -495,9 +496,9 @@ repo</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">merge</span>(repo, <span class="st">&quot;upstream/master&quot;</span>)</code></pre></div>
 <pre><code>## Merge: Fast-forward</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo</code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpiWH7HN/popgenInfo/
+<pre><code>## Local:    master /tmp/RtmpVLaVuj/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [cb0d664] 2016-03-18: Merge pull request #175 from NESCent/diff-snp-fix</code></pre>
+## Head:     [19b3d7d] 2016-03-23: Merge pull request #179 from NESCent/update-data-format</code></pre>
 <p>If there were any changes, the <strong>Head</strong> field will have a more current commit than when we intialized it above.</p>
 <p>Since we will never work directly on the master branch, there should be no conflicts from the NESCent branch and we now know that our branch is up to date. Assuming everything worked, we can push this to our fork on GitHub. We will use <em>git2r</em>’s <code>push()</code> function to do this. We also need to supply our PAT in order for this to work. To do so, we will use the <em>git2r</em> function <code>cred_token()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cred &lt;-<span class="st"> </span><span class="kw">cred_token</span>()
@@ -512,9 +513,9 @@ repo</code></pre></div>
 <p>Most importantly we need to make sure that we are on the master branch and it is up to date. To double plus make sure that you are on the master branch, check it out:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)
 repo</code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpiWH7HN/popgenInfo/
+<pre><code>## Local:    master /tmp/RtmpVLaVuj/popgenInfo/
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [cb0d664] 2016-03-18: Merge pull request #175 from NESCent/diff-snp-fix</code></pre>
+## Head:     [19b3d7d] 2016-03-23: Merge pull request #179 from NESCent/update-data-format</code></pre>
 <p>For reasons that will reveal themselves later, please run these function definitions:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_branch &lt;-<span class="st"> </span>function(x) <span class="kw">paste0</span>(<span class="st">&quot;refs/heads/&quot;</span>, x)
 my_origin &lt;-<span class="st"> </span>function(x) <span class="kw">paste0</span>(<span class="st">&quot;origin/&quot;</span>, x)</code></pre></div>
@@ -540,15 +541,15 @@ my_origin &lt;-<span class="st"> </span>function(x) <span class="kw">paste0</spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BRANCH &lt;-<span class="st"> &quot;2015-12-16-spatial-stats&quot;</span>  <span class="co"># 1</span>
 <span class="kw">checkout</span>(repo, BRANCH, <span class="dt">create =</span> <span class="ot">TRUE</span>) <span class="co"># 2</span>
 repo</code></pre></div>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpiWH7HN/popgenInfo/
-## Head:     [cb0d664] 2016-03-18: Merge pull request #175 from NESCent/diff-snp-fix</code></pre>
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpVLaVuj/popgenInfo/
+## Head:     [19b3d7d] 2016-03-23: Merge pull request #179 from NESCent/update-data-format</code></pre>
 <p>Notice here that you now only have two lines in the output, <strong>Local</strong> and <strong>Head</strong>. This is because the branch doesn’t exist on your GitHub fork. This is where the next two steps come in. We will push that branch and then make sure that our branch is tracking the copy on the fork.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">push</span>(repo, <span class="dt">name =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">refspec =</span> <span class="kw">my_branch</span>(BRANCH), <span class="dt">credentials =</span> cred) <span class="co"># 3</span>
 <span class="kw">branch_set_upstream</span>(<span class="kw">head</span>(repo), <span class="kw">my_origin</span>(BRANCH))                           <span class="co"># 4</span>
 repo</code></pre></div>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpiWH7HN/popgenInfo/
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpVLaVuj/popgenInfo/
 ## Remote:   2015-12-16-spatial-stats @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [cb0d664] 2016-03-18: Merge pull request #175 from NESCent/diff-snp-fix</code></pre>
+## Head:     [19b3d7d] 2016-03-23: Merge pull request #179 from NESCent/update-data-format</code></pre>
 <p>We can now see from the output that we have a <strong>Remote</strong> set up. Once we have this, we can start making changes! If you are adding a new vignette, please copy <a href="https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd"><code>TEMPLATE.Rmd</code></a> to the <strong>use/</strong> directory and give it a new name that is meaningful to your contribution (good practice is to name it the same as your branch). If you are including any data, place it in the <strong>data/</strong> directory. Once you add these files, you need to to <strong>add</strong> these files and then you should <strong>commit</strong>, which we will show you how to do below.</p>
 </div>
 </div>
@@ -574,21 +575,21 @@ repo</code></pre></div>
 <span class="st">spatial data in the data folder.</span>
 <span class="st">&quot;</span>
 <span class="kw">commit</span>(repo, msg, <span class="dt">session =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## [9760b40] 2016-03-18:  started spatial stats vignette and added data</code></pre>
+<pre><code>## [d9140c1] 2016-03-23:  started spatial stats vignette and added data</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">status</span>(repo) <span class="co"># should return nothing</span></code></pre></div>
 <pre><code>## working directory clean</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo</code></pre></div>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpiWH7HN/popgenInfo/
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpVLaVuj/popgenInfo/
 ## Remote:   2015-12-16-spatial-stats @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [9760b40] 2016-03-18:  started spatial stats vignette and added data</code></pre>
+## Head:     [d9140c1] 2016-03-23:  started spatial stats vignette and added data</code></pre>
 <blockquote>
 <p>Note that we put <code>session = TRUE</code> in the commit function. This automatically puts your R session information in the commit, which gives more information about package versions you were working with when you were editing the vignette.</p>
 </blockquote>
 <p>You can see a summary of what you just did by looking at the summary of your commit:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">commits</span>(repo)[[<span class="dv">1</span>]])</code></pre></div>
-<pre><code>## Commit:  9760b40e3a58374bcffe6dfdddd6c189a88d8f8c
+<pre><code>## Commit:  d9140c1e5518705b3c2a5c50d2226da51712efb9
 ## Author:  Zhian Kamvar &lt;kamvarz@science.oregonstate.edu&gt;
-## When:    2016-03-18 21:50:37
+## When:    2016-03-23 20:56:39
 ## 
 ##       started spatial stats vignette and added data
 ##      
@@ -616,9 +617,9 @@ repo</code></pre></div>
 ##      [1] git2r_0.14.0
 ##      
 ##      loaded via a namespace (and not attached):
-##       [1] magrittr_1.5    formatR_1.3     tools_3.2.3     htmltools_0.3  
-##       [5] yaml_2.1.13     stringi_1.0-1   rmarkdown_0.9.5 knitr_1.12.3   
-##       [9] stringr_1.0.0   digest_0.6.9    evaluate_0.8.3 
+##       [1] magrittr_1.5    formatR_1.3     tools_3.2.3     htmltools_0.3.5
+##       [5] yaml_2.1.13     Rcpp_0.12.3     stringi_1.0-1   rmarkdown_0.9.5
+##       [9] knitr_1.12.3    stringr_1.0.0   digest_0.6.9    evaluate_0.8.3 
 ## 2 files changed, 102 insertions, 0 deletions
 ## data/spatial_data.csv            | -0 + 6  in 1 hunk
 ## use/2015-12-16-spatial-stats.Rmd | -0 +96  in 1 hunk</code></pre>
@@ -697,7 +698,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       Zulu                        
-##  date     2016-03-18</code></pre>
+##  date     2016-03-23</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package   * version date       source        
 ##  devtools    1.10.0  2016-01-23 CRAN (R 3.2.3)
@@ -705,10 +706,11 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  evaluate    0.8.3   2016-03-05 CRAN (R 3.2.3)
 ##  formatR     1.3     2016-03-05 CRAN (R 3.2.3)
 ##  git2r     * 0.14.0  2016-03-13 CRAN (R 3.2.3)
-##  htmltools   0.3     2015-12-29 CRAN (R 3.2.3)
+##  htmltools   0.3.5   2016-03-21 CRAN (R 3.2.3)
 ##  knitr       1.12.3  2016-01-22 CRAN (R 3.2.3)
 ##  magrittr    1.5     2014-11-22 CRAN (R 3.2.3)
 ##  memoise     1.0.0   2016-01-29 CRAN (R 3.2.3)
+##  Rcpp        0.12.3  2016-01-10 CRAN (R 3.2.3)
 ##  rmarkdown   0.9.5   2016-02-22 CRAN (R 3.2.3)
 ##  stringi     1.0-1   2015-10-22 CRAN (R 3.2.3)
 ##  stringr     1.0.0   2015-04-30 CRAN (R 3.2.3)
