@@ -42,4 +42,7 @@ provide a conversion method to one or more of the classes listed below.
 | | can be converted to `data.frame` or `matrix` with appropriate `as.` functions. | |
 | | has manipulation functions like `subset` which will select certain strata and/or loci, `merge` to combine mulitple `gtypes`, and `summary`. | |
 | | can create input files for Genepop, STRUCTURE, fastsimcoal, Arlequin, MEGA, and PHASE | |
+| **multiDNA** {S4} (*apex*) | stores multiple `DNAbin` objects from *ape* | |
+| **multiPhyDat** {S4} (*apex*) | stores multiple `phyDat` objects from *phangorn* | |
+
 
