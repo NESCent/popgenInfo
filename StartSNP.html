@@ -235,7 +235,6 @@ $(document).ready(function () {
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
               <!-- <li class="divider"></li>   -->
-              <li><a href="SummarySequenceData.html">Summary statistics</a></li>
               <li><a href="PopDiffSequenceData.html">Population differentiation</a></li>
           </ol>
         </li>
@@ -401,17 +400,17 @@ div</code></pre></div>
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0311  0.0748
-## 2  -0.2472  0.1208
-## 3  -0.2040 -0.0578
-## 4  -0.0641  0.2630
-## 5  -0.4318 -0.1386
-## 6  -0.1518  0.3967
-## 7   0.0132  0.1099
-## 8  -0.4924  0.1769
-## 9  -0.0513  0.0867
-## 10 -0.0008  0.3338
-## 11 -0.0581  0.0493</code></pre>
+## 1  -0.0261  0.0889
+## 2  -0.2486  0.1350
+## 3  -0.2082 -0.0628
+## 4  -0.0534  0.3167
+## 5  -0.4348 -0.1249
+## 6  -0.1495  0.3351
+## 7   0.0123  0.0932
+## 8  -0.4838  0.1923
+## 9  -0.0543  0.0657
+## 10  0.0209  0.3113
+## 11 -0.0606  0.0442</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex =</span> <span class="fl">0.7</span>)</code></pre></div>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" title="" alt="" width="960" /></p>
@@ -422,17 +421,17 @@ div</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata1, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre></div>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
 ## X0_10037_01_257 0.75465490  1 0.385006451    0.459
-## X0_10040_02_394 0.16628227  1 0.683437231    0.752
-## X0_10044_01_392 2.96053195  1 0.085319867    0.093
-## X0_10048_01_60  6.39076800  1 0.011471539    0.013
-## X0_10051_02_166 1.12035389  1 0.289842265    0.271
+## X0_10040_02_394 0.16628227  1 0.683437231    0.723
+## X0_10044_01_392 2.96053195  1 0.085319867    0.109
+## X0_10048_01_60  6.39076800  1 0.011471539    0.014
+## X0_10051_02_166 1.12035389  1 0.289842265    0.306
 ## X0_10054_01_402 1.54582494  1 0.213752853    0.235
-## X0_10067_03_111 0.04868128  1 0.825374035    0.563
-## X0_10079_02_168 0.01579313  1 0.899992594    0.578
+## X0_10067_03_111 0.04868128  1 0.825374035    0.546
+## X0_10079_02_168 0.01579313  1 0.899992594    0.612
 ## X0_10112_01_169 0.41126025  1 0.521330544    1.000
-## X0_10113_01_119 0.74248768  1 0.388865151    0.430
-## X0_10116_01_165 1.87098306  1 0.171362531    0.257
-## X0_10151_01_86  8.94232481  1 0.002786379    0.009</code></pre>
+## X0_10113_01_119 0.74248768  1 0.388865151    0.445
+## X0_10116_01_165 1.87098306  1 0.171362531    0.249
+## X0_10151_01_86  8.94232481  1 0.002786379    0.005</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math inline">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
@@ -471,7 +470,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       Zulu                        
-##  date     2016-03-23</code></pre>
+##  date     2016-03-24</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-4   2016-03-01 CRAN (R 3.2.3)
