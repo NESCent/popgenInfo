@@ -2,6 +2,8 @@
 
 Build status: [![Circle CI](https://circleci.com/gh/NESCent/popgenInfo/tree/master.svg?style=svg)](https://circleci.com/gh/NESCent/popgenInfo/tree/master)
 
+Archival copy: [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.48274.svg)](http://dx.doi.org/10.5281/zenodo.48274)
+
 ## Introduction
 
 This site provides resources for conducting population genetic analyses in R using existing packages. Any member of the R user community proficient in population genetics is welcome to contibute to this site. See [instructions](CONTRIBUTING.md) on how to contribute workflow vignettes using [R markdown](R_MARKDOWN.md).
