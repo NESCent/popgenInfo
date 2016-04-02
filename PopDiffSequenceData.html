@@ -335,9 +335,9 @@ beeData &lt;-<span class="st"> </span><span class="kw">read.multiFASTA</span>(<s
 <p>Pro tip: You can list all the files ending in “.fas” in your folder by using <code>dir(pattern = &quot;fas&quot;, full.names = TRUE)</code></p>
 </blockquote>
 <p>Now, this “multidna” object (<code>beeData</code>) will be converted into a “genind” object (<code>beeData.gid</code>), which will be used for downstream analyses. One thing we need to be aware of is the fact that we can’t have any periods in our locus names. By default, the locus names are set to the file names, which both contain “.fas” in the title. We can fix this by using the text-replacing function <code>gsub()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">locusNames</span>(beeData)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getLocusNames</span>(beeData)</code></pre></div>
 <pre><code>## [1] &quot;Ebom_mt.fas&quot;  &quot;Ebom_CAD.fas&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="kw">locusNames</span>(beeData) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;.fas&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">locusNames</span>(beeData)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="kw">setLocusNames</span>(beeData) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;.fas&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="kw">getLocusNames</span>(beeData)))</code></pre></div>
 <pre><code>## [1] &quot;Ebom_mt&quot;  &quot;Ebom_CAD&quot;</code></pre>
 <p>Now we can create our “genind” object.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Creating genind object by multilocus sequence types</span>
@@ -428,32 +428,32 @@ beeData.gid</code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  1.6622  (1.0688-2.7783)
-## Ebom_CAD 1.7088  (1.1387-2.5987)
+## Ebom_mt  1.5435  (1.0684-2.5078)
+## Ebom_CAD 1.6986  (1.0714-2.6998)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.6684   (1.2508-2.3249)</code></pre>
+## 1.6061   (1.1714-2.1503)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, Gst_Hedrick) <span class="co"># for Hedrick&#39;s Gst</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  1.0386  (1.0045-1.0934)
-## Ebom_CAD 1.0203  (1.005-1.0459)
+## Ebom_mt  1.0316  (1.0047-1.0756)
+## Ebom_CAD 1.0189  (1.0021-1.0473)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.0298   (1.0103-1.0547)</code></pre>
+## 1.0264   (1.0076-1.0548)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, D_Jost)      <span class="co"># for Jost&#39;s D</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  0.9049  (0.8381-0.9586)
-## Ebom_CAD 0.9498  (0.9073-0.9859)
+## Ebom_mt  0.9038  (0.8314-0.9556)
+## Ebom_CAD 0.9523  (0.908-0.9894)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9283   (0.889-0.9592)
+## 0.9294   (0.8827-0.9585)
 ## 
 ## Global Estimate based on harmonic mean of statistic
-## 0.9263   (0.8886-0.9587)</code></pre>
+## 0.927    (0.8776-0.9581)</code></pre>
 </div>
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
@@ -513,13 +513,13 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       Zulu                        
-##  date     2016-03-25</code></pre>
+##  date     2016-04-02</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-4   2016-03-01 CRAN (R 3.2.3)
 ##  adegenet   * 2.0.1   2016-02-15 CRAN (R 3.2.3)
 ##  ape        * 3.4     2015-11-29 CRAN (R 3.2.3)
-##  apex       * 1.0.1   2015-09-07 CRAN (R 3.2.3)
+##  apex       * 1.0.2   2016-03-31 CRAN (R 3.2.3)
 ##  assertthat   0.1     2013-12-06 CRAN (R 3.2.3)
 ##  boot         1.3-17  2015-06-29 CRAN (R 3.2.1)
 ##  cluster      2.0.3   2015-07-21 CRAN (R 3.2.1)
