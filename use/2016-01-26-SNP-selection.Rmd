@@ -65,7 +65,6 @@ library("ggplot2")
  
 ## Section 1: Load the data
 
-
 ```{r, load_data_show, eval=FALSE}
 sel <- read.table("SNPselection1.txt", head = TRUE)
 dim(sel)
@@ -95,17 +94,21 @@ Manhattan plot displays log10 of the p-values. It is also possible to check the
 distribution of the p-values using a Q-Q plot. The authors suggest to use false
 discovery rate (q-value) to provide a list of outliers.
 
+> Note: *PCAdapt* expects the incoming matrix to have samples in columns and
+> loci in rows. Because our data is the opposite, we need to tell the `pcadapt()`
+> function to transpose the matrix before analysis with `transpose = TRUE`.
+
 ```{r, PCAdapt}
 
 genotype <- sel[, 3:ncol(sel)]
 dim(genotype)
 K <- 25
-x <- pcadapt(data = genotype, K = K)
+x <- pcadapt(genotype, K = K, transpose = TRUE)
 plot(x, option = "screeplot") # 19 groups seems to be the correct value
 plot(x, option = "scores", pop = sel[, 1]) # how populations are shared among the 19 groups
 
 K <- 19
-x <- pcadapt(data = genotype, K = K, min.maf = 0)
+x <- pcadapt(genotype, K = K, min.maf = 0, transpose = TRUE)
 
 summary(x) # numerical quantities obtained after performing a PCA
 plot(x, option = "manhattan")
@@ -178,7 +181,7 @@ outliers. You can do the test for all.
 
 ```{r,Binomial regressions}
 
-# We keep the outliers loci selected by both pcadapt and outflank
+# We keep the outlier loci selected by both pcadapt and outflank
 outliers <- outliers_pcadapt[outliers_pcadapt %in% outliers_OF]
 length(outliers) # 11 outliers
 
@@ -187,7 +190,7 @@ temp <- sel$Temperature
 loc1temp <- data.frame(loc1, temp)
  
 mod <- glm(cbind(loc1, 2 - loc1) ~ temp, family = binomial) 
-summary(mod) # This loci is significantly correlated to temperature
+summary(mod) # This locus is significantly correlated to temperature
 
  
 loc2 <- genotype[, outliers[2]]
@@ -199,9 +202,9 @@ ggplot(loc2temp, aes(x = factor(loc2), y = temp)) +
 
 
 mod <- glm(cbind(loc2, 2 - loc2) ~ temp, family = binomial) 
-summary(mod) # This loci is significantly correlated to temperature
+summary(mod) # This locus is significantly correlated to temperature
 
-# Test with a loci that is only selected by one method
+# Test with a locus that is only selected by one method
 loc7 <- genotype[, outliers_pcadapt[!outliers_pcadapt %in% outliers_OF][1]]
 loc7temp <- data.frame(loc7, temp)
   
@@ -211,19 +214,17 @@ ggplot(loc2temp, aes(x = factor(loc7), y = temp)) +
  ylab("Temperature (Centigrade)")
 
 mod <- glm(cbind(loc7, 2 - loc7) ~ temp, family = binomial)
-summary(mod) ## This loci is not significantly correlated to temperature
+summary(mod) ## This locus is not significantly correlated to temperature
  
 ```
 
- 
- 
 # Conclusions
 
 - *PCAdapt* detected 14 outliers 
 - *OutFLANK* detected 11 outliers 
 - 11 outliers were detected in common 
 - Those common outliers are all significantly correlated with the temperatures
-as shown by Poisson regressions. Such outliers can be potentially involved in
+as shown by Poisson regression. Such outliers can be potentially involved in
 local adaptation due to temperatures. However more analysis are necessary to
 confirm that they are outliers, and which allele is potentially under selection.
 
