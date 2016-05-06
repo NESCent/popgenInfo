@@ -343,29 +343,37 @@ $(document).ready(function () {
 <div id="section-2-pcadapt" class="section level2">
 <h2>Section 2: <em>PCAdapt</em></h2>
 <p>To run the function <code>pcadapt()</code>, the user should specify the number K of principal components (PC) to work with: first perform with a large number of principal components (e.g. higher than the number of populations), then use the ‘scree plot’ to chose the value of K. It displays the percentage of variance that is explained by each PC. The recommended value of K corresponds to the largest value of K before the plateau of ‘scree plot’ is reached. Then for a given SNP, a statistical test to define the SNP as outlier or not is based on the “loadings” that are defined as the correlation between the SNP and the PCs. The statistic test for detecting outlier SNPs is the Mahalanobis distance (between the K correlations of the SNP and each axis and mean correlations) and, which scaled by a constant, should have a chi-square distribution with K degrees of freedom under the assumption that there are no outlier. By default P-values of SNPs with a minor allele frequency smaller than 0.05 are not computed. A Manhattan plot displays log10 of the p-values. It is also possible to check the distribution of the p-values using a Q-Q plot. The authors suggest to use false discovery rate (q-value) to provide a list of outliers.</p>
+<blockquote>
+<p>Note: <em>PCAdapt</em> expects the incoming matrix to have samples in columns and loci in rows. Because our data is the opposite, we need to tell the <code>pcadapt()</code> function to transpose the matrix before analysis with <code>transpose = TRUE</code>.</p>
+</blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genotype &lt;-<span class="st"> </span>sel[, <span class="dv">3</span>:<span class="kw">ncol</span>(sel)]
 <span class="kw">dim</span>(genotype)</code></pre></div>
 <pre><code>## [1]  509 3084</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K &lt;-<span class="st"> </span><span class="dv">25</span>
-x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(<span class="dt">data =</span> genotype, <span class="dt">K =</span> K)
-<span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;screeplot&quot;</span>) <span class="co"># 19 groups seems to be the correct value</span></code></pre></div>
+x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(genotype, <span class="dt">K =</span> K, <span class="dt">transpose =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## Number of SNPs: 3084
+## Number of individuals: 509
+## Number of SNPs with minor allele frequency lower than 0.05 ignored: 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;screeplot&quot;</span>) <span class="co"># 19 groups seems to be the correct value</span></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-1.png" title="" alt="" width="960" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;scores&quot;</span>, <span class="dt">pop =</span> sel[, <span class="dv">1</span>]) <span class="co"># how populations are shared among the 19 groups</span></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-2.png" title="" alt="" width="960" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K &lt;-<span class="st"> </span><span class="dv">19</span>
-x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(<span class="dt">data =</span> genotype, <span class="dt">K =</span> K, <span class="dt">min.maf =</span> <span class="dv">0</span>)
-
-<span class="kw">summary</span>(x) <span class="co"># numerical quantities obtained after performing a PCA</span></code></pre></div>
+x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(genotype, <span class="dt">K =</span> K, <span class="dt">min.maf =</span> <span class="dv">0</span>, <span class="dt">transpose =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## Number of SNPs: 3084
+## Number of individuals: 509
+## Number of SNPs with minor allele frequency lower than 0 ignored: 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(x) <span class="co"># numerical quantities obtained after performing a PCA</span></code></pre></div>
 <pre><code>##                 Length Class  Mode   
-## stat             3084  -none- numeric
-## pvalues          3084  -none- numeric
 ## maf              3084  -none- numeric
+## loadings        58596  -none- numeric
+## singular.values    19  -none- numeric
+## scores           9671  -none- numeric
+## zscores         58596  -none- numeric
+## stat             3084  -none- numeric
 ## gif                 1  -none- numeric
 ## chi2.stat        3084  -none- numeric
-## scores           9671  -none- numeric
-## loadings        58596  -none- numeric
-## singular_values    19  -none- numeric
-## zscores         58596  -none- numeric</code></pre>
+## pvalues          3084  -none- numeric</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;manhattan&quot;</span>)</code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-3.png" title="" alt="" width="960" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;qqplot&quot;</span>, <span class="dt">threshold =</span> <span class="fl">0.1</span>)</code></pre></div>
@@ -421,7 +429,7 @@ FstDataFrame &lt;-<span class="st"> </span><span class="kw">MakeDiploidFSTMat</s
 <div id="section-4-logistic-regression-linking-outliers-and-temperature" class="section level2">
 <h2>Section 4: Logistic regression : linking outliers and temperature</h2>
 <p>We aim to test if the outliers detected with <em>PCAdapt</em> and <em>OutFLANK</em> (663 706 923 1163 1378 1639 1666 1825 2133 2556 2871) are correlated to the temperature. We use a GLM with a binomial error to model the probability to have the allele “A” out of the two alleles. We derive the relation for some of the shared outliers. You can do the test for all.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We keep the outliers loci selected by both pcadapt and outflank</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We keep the outlier loci selected by both pcadapt and outflank</span>
 outliers &lt;-<span class="st"> </span>outliers_pcadapt[outliers_pcadapt %in%<span class="st"> </span>outliers_OF]
 <span class="kw">length</span>(outliers) <span class="co"># 11 outliers</span></code></pre></div>
 <pre><code>## [1] 11</code></pre>
@@ -430,7 +438,7 @@ temp &lt;-<span class="st"> </span>sel$Temperature
 loc1temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc1, temp)
  
 mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc1, <span class="dv">2</span> -<span class="st"> </span>loc1) ~<span class="st"> </span>temp, <span class="dt">family =</span> binomial) 
-<span class="kw">summary</span>(mod) <span class="co"># This loci is significantly correlated to temperature</span></code></pre></div>
+<span class="kw">summary</span>(mod) <span class="co"># This locus is significantly correlated to temperature</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cbind(loc1, 2 - loc1) ~ temp, family = binomial)
@@ -461,7 +469,7 @@ loc2temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc2, 
 <span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature (Centigrade)&quot;</span>)</code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/Binomial%20regressions-1.png" title="" alt="" width="960" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc2, <span class="dv">2</span> -<span class="st"> </span>loc2) ~<span class="st"> </span>temp, <span class="dt">family =</span> binomial) 
-<span class="kw">summary</span>(mod) <span class="co"># This loci is significantly correlated to temperature</span></code></pre></div>
+<span class="kw">summary</span>(mod) <span class="co"># This locus is significantly correlated to temperature</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cbind(loc2, 2 - loc2) ~ temp, family = binomial)
@@ -484,7 +492,7 @@ loc2temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc2, 
 ## AIC: 1059.5
 ## 
 ## Number of Fisher Scoring iterations: 3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test with a loci that is only selected by one method</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test with a locus that is only selected by one method</span>
 loc7 &lt;-<span class="st"> </span>genotype[, outliers_pcadapt[!outliers_pcadapt %in%<span class="st"> </span>outliers_OF][<span class="dv">1</span>]]
 loc7temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc7, temp)
   
@@ -494,7 +502,7 @@ loc7temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc7, 
 <span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature (Centigrade)&quot;</span>)</code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/Binomial%20regressions-2.png" title="" alt="" width="960" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc7, <span class="dv">2</span> -<span class="st"> </span>loc7) ~<span class="st"> </span>temp, <span class="dt">family =</span> binomial)
-<span class="kw">summary</span>(mod) ## This loci is not significantly correlated to temperature</code></pre></div>
+<span class="kw">summary</span>(mod) ## This locus is not significantly correlated to temperature</code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cbind(loc7, 2 - loc7) ~ temp, family = binomial)
@@ -525,7 +533,7 @@ loc7temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc7, 
 <li><em>PCAdapt</em> detected 14 outliers</li>
 <li><em>OutFLANK</em> detected 11 outliers</li>
 <li>11 outliers were detected in common</li>
-<li>Those common outliers are all significantly correlated with the temperatures as shown by Poisson regressions. Such outliers can be potentially involved in local adaptation due to temperatures. However more analysis are necessary to confirm that they are outliers, and which allele is potentially under selection.</li>
+<li>Those common outliers are all significantly correlated with the temperatures as shown by Poisson regression. Such outliers can be potentially involved in local adaptation due to temperatures. However more analysis are necessary to confirm that they are outliers, and which allele is potentially under selection.</li>
 </ul>
 <div id="whats-next" class="section level2">
 <h2>What’s next</h2>
@@ -552,49 +560,50 @@ loc7temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc7, 
 devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
-##  version  R version 3.2.3 (2015-12-10)
+##  version  R version 3.2.5 (2016-04-14)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
-##  tz       Zulu                        
-##  date     2016-04-02</code></pre>
+##  tz       &lt;NA&gt;                        
+##  date     2016-05-06</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source                            
-##  cluster      2.0.3   2015-07-21 CRAN (R 3.2.1)                    
-##  colorspace   1.2-6   2015-03-11 CRAN (R 3.2.3)                    
-##  DEoptimR     1.0-4   2015-10-23 CRAN (R 3.2.3)                    
-##  devtools     1.10.0  2016-01-23 CRAN (R 3.2.3)                    
-##  digest       0.6.9   2016-01-08 CRAN (R 3.2.3)                    
-##  evaluate     0.8.3   2016-03-05 CRAN (R 3.2.3)                    
-##  fit.models * 0.5-10  2013-02-23 CRAN (R 3.2.3)                    
-##  formatR      1.3     2016-03-05 CRAN (R 3.2.3)                    
-##  ggplot2    * 2.1.0   2016-03-01 CRAN (R 3.2.3)                    
-##  gtable       0.2.0   2016-02-26 CRAN (R 3.2.3)                    
-##  htmltools    0.3.5   2016-03-21 CRAN (R 3.2.3)                    
-##  knitr        1.12.3  2016-01-22 CRAN (R 3.2.3)                    
-##  labeling     0.3     2014-08-23 CRAN (R 3.2.3)                    
-##  lattice    * 0.20-33 2015-07-14 CRAN (R 3.2.3)                    
-##  magrittr     1.5     2014-11-22 CRAN (R 3.2.3)                    
-##  MASS       * 7.3-45  2015-11-10 CRAN (R 3.2.3)                    
-##  memoise      1.0.0   2016-01-29 CRAN (R 3.2.3)                    
-##  munsell      0.4.3   2016-02-13 CRAN (R 3.2.3)                    
-##  mvtnorm      1.0-5   2016-02-02 CRAN (R 3.2.3)                    
-##  OutFLANK   * 0.1     2016-04-02 Github (whitlock/OutFLANK@1379c26)
-##  pcadapt    * 2.2     2016-02-13 CRAN (R 3.2.3)                    
-##  pcaPP        1.9-60  2014-10-22 CRAN (R 3.2.3)                    
-##  plyr         1.8.3   2015-06-12 CRAN (R 3.2.3)                    
-##  qvalue     * 2.2.2   2016-04-02 Bioconductor                      
-##  Rcpp         0.12.3  2016-01-10 CRAN (R 3.2.3)                    
-##  reshape2     1.4.1   2014-12-06 CRAN (R 3.2.3)                    
-##  rmarkdown    0.9.5   2016-02-22 CRAN (R 3.2.3)                    
-##  robust     * 0.4-16  2014-05-18 CRAN (R 3.2.3)                    
-##  robustbase * 0.92-5  2015-07-22 CRAN (R 3.2.3)                    
-##  rrcov      * 1.3-11  2016-02-15 CRAN (R 3.2.3)                    
-##  scales       0.4.0   2016-02-26 CRAN (R 3.2.3)                    
-##  stringi      1.0-1   2015-10-22 CRAN (R 3.2.3)                    
-##  stringr      1.0.0   2015-04-30 CRAN (R 3.2.3)                    
-##  yaml         2.1.13  2014-06-12 CRAN (R 3.2.3)</code></pre>
+##  cluster      2.0.4   2016-04-18 CRAN (R 3.2.5)                    
+##  colorspace   1.2-6   2015-03-11 CRAN (R 3.2.5)                    
+##  DEoptimR     1.0-4   2015-10-23 CRAN (R 3.2.5)                    
+##  devtools     1.11.1  2016-04-21 CRAN (R 3.2.5)                    
+##  digest       0.6.9   2016-01-08 CRAN (R 3.2.5)                    
+##  evaluate     0.8.3   2016-03-05 CRAN (R 3.2.5)                    
+##  fit.models * 0.5-10  2013-02-23 CRAN (R 3.2.5)                    
+##  formatR      1.3     2016-03-05 CRAN (R 3.2.5)                    
+##  ggplot2    * 2.1.0   2016-03-01 CRAN (R 3.2.5)                    
+##  gtable       0.2.0   2016-02-26 CRAN (R 3.2.5)                    
+##  htmltools    0.3.5   2016-03-21 CRAN (R 3.2.5)                    
+##  knitr        1.12.3  2016-01-22 CRAN (R 3.2.5)                    
+##  labeling     0.3     2014-08-23 CRAN (R 3.2.5)                    
+##  lattice    * 0.20-33 2015-07-14 CRAN (R 3.2.5)                    
+##  magrittr     1.5     2014-11-22 CRAN (R 3.2.5)                    
+##  MASS       * 7.3-45  2016-04-21 CRAN (R 3.2.5)                    
+##  memoise      1.0.0   2016-01-29 CRAN (R 3.2.5)                    
+##  munsell      0.4.3   2016-02-13 CRAN (R 3.2.5)                    
+##  mvtnorm      1.0-5   2016-02-02 CRAN (R 3.2.5)                    
+##  OutFLANK   * 0.1     2016-04-24 Github (whitlock/OutFLANK@1379c26)
+##  pcadapt    * 3.0     2016-04-15 CRAN (R 3.2.5)                    
+##  pcaPP        1.9-60  2014-10-22 CRAN (R 3.2.5)                    
+##  plyr         1.8.3   2015-06-12 CRAN (R 3.2.5)                    
+##  qvalue     * 2.2.2   2016-04-24 Bioconductor                      
+##  Rcpp         0.12.4  2016-03-26 CRAN (R 3.2.5)                    
+##  reshape2     1.4.1   2014-12-06 CRAN (R 3.2.5)                    
+##  rmarkdown    0.9.5   2016-02-22 CRAN (R 3.2.5)                    
+##  robust     * 0.4-16  2014-05-18 CRAN (R 3.2.5)                    
+##  robustbase * 0.92-5  2015-07-22 CRAN (R 3.2.5)                    
+##  rrcov      * 1.3-11  2016-02-15 CRAN (R 3.2.5)                    
+##  scales       0.4.0   2016-02-26 CRAN (R 3.2.5)                    
+##  stringi      1.0-1   2015-10-22 CRAN (R 3.2.5)                    
+##  stringr      1.0.0   2015-04-30 CRAN (R 3.2.5)                    
+##  withr        1.0.1   2016-02-04 CRAN (R 3.2.5)                    
+##  yaml         2.1.13  2014-06-12 CRAN (R 3.2.5)</code></pre>
 </div>
 
 <!-- </div>
