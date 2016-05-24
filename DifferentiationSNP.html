@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 
 
@@ -136,25 +136,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </style>
 
 
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
+<style type="text/css">
 h1 {
   font-size: 34px;
 }
@@ -175,6 +157,30 @@ h5 {
 }
 h6 {
   font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -278,7 +284,8 @@ $(document).ready(function () {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">Calculating genetic differentiation and clustering methods from SNP data</h1>
+
+<h1 class="title toc-ignore">Calculating genetic differentiation and clustering methods from SNP data</h1>
 
 </div>
 
@@ -444,41 +451,41 @@ Mydata1</code></pre></div>
 ## county     0.00000000 0.00000000 0.01829604</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test.g</span>(loci, <span class="dt">level =</span> population) </code></pre></div>
 <pre><code>## $g.star
-##   [1] 203.8337 211.2746 240.1082 230.0337 199.9941 235.2666 245.2459
-##   [8] 267.8396 251.1338 191.8993 227.3938 210.2591 189.3126 216.8398
-##  [15] 273.3245 239.9426 262.5375 223.1139 227.5494 242.7467 227.1493
-##  [22] 256.5238 248.7048 255.8178 235.1096 221.4986 247.5442 271.4205
-##  [29] 236.1985 238.2379 237.5513 234.0843 237.9009 244.7103 219.5236
-##  [36] 214.3899 229.5007 193.2623 249.7494 201.7152 252.7352 235.2455
-##  [43] 213.2728 199.1037 214.6167 210.5976 202.4865 188.8844 246.4721
-##  [50] 213.1072 196.9750 238.7403 245.9174 209.6068 195.2837 254.6296
-##  [57] 211.4454 236.4354 250.8272 190.4918 230.1022 189.3336 233.9985
-##  [64] 213.7713 225.4354 207.8554 251.6586 201.0945 222.6378 228.1447
-##  [71] 244.2728 244.9780 221.9640 206.5146 208.6117 224.1557 234.2226
-##  [78] 228.9241 250.1322 248.6497 246.1841 207.6049 238.0547 271.2566
-##  [85] 220.5406 226.8105 261.1627 232.6065 179.1872 227.4036 228.9655
-##  [92] 251.1654 208.9486 224.6370 195.5119 214.1591 246.2171 244.9581
-##  [99] 223.9014 378.7654
+##   [1] 247.9409 234.4972 199.3616 250.3422 261.8262 235.3093 183.4313
+##   [8] 201.8999 184.7263 225.0982 223.2461 213.4970 212.8784 196.6652
+##  [15] 219.8904 248.3199 187.5860 193.3457 210.7998 238.1872 220.1442
+##  [22] 234.8169 225.8646 232.7054 258.8878 246.6425 246.5257 186.4904
+##  [29] 177.7181 215.4383 235.3390 202.3896 207.5471 211.2231 220.1797
+##  [36] 212.7379 196.1710 223.7925 217.3719 202.6487 211.7824 236.9170
+##  [43] 214.2429 231.5311 203.4053 207.1535 175.2458 242.8020 230.3847
+##  [50] 229.6557 245.7897 222.9135 232.2808 210.1263 258.5588 262.9996
+##  [57] 216.3748 200.2861 252.4962 235.4155 222.0806 229.7670 247.5132
+##  [64] 205.0521 204.3239 216.2010 203.5904 223.8626 260.5429 259.3627
+##  [71] 249.4532 210.8562 231.6840 240.2272 271.4429 239.9160 179.8541
+##  [78] 206.5268 259.4140 215.0247 226.9043 242.8626 218.3706 236.7054
+##  [85] 249.3229 213.6404 216.2517 212.2441 209.4087 220.1362 216.4287
+##  [92] 272.8726 227.8649 220.9461 243.5917 251.5529 207.3711 234.1912
+##  [99] 185.3122 378.7654
 ## 
 ## $p.val
 ## [1] 0.01</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test.between</span>(loci, <span class="dt">test.lev =</span> population, <span class="dt">rand.unit =</span> county, <span class="dt">nperm =</span> <span class="dv">100</span>) </code></pre></div>
 <pre><code>## $g.star
-##   [1] 294.5514 300.2705 259.3691 269.5520 223.3897 242.2403 230.8904
-##   [8] 255.8292 283.8062 284.4878 221.2593 246.8358 247.9891 257.3619
-##  [15] 217.5126 228.1157 257.7361 333.2454 275.9026 254.5508 298.2754
-##  [22] 241.7809 239.7992 248.7734 242.5124 232.2379 236.3404 258.8154
-##  [29] 273.6696 247.3515 281.2323 250.3258 306.5343 262.2903 259.2628
-##  [36] 263.5036 252.3895 281.4771 265.6110 304.9876 286.7785 268.3900
-##  [43] 294.5381 270.9160 256.8474 235.2838 278.9203 240.3025 271.2192
-##  [50] 256.4258 279.3702 250.9313 230.3985 242.6461 223.4933 261.3549
-##  [57] 257.8163 299.9235 261.7846 251.0991 262.1508 252.3174 247.8176
-##  [64] 224.4154 277.4849 268.2260 280.1043 243.5472 254.9760 232.1985
-##  [71] 251.0252 302.3965 303.9554 303.0320 259.5316 262.6705 282.7610
-##  [78] 296.8512 271.9895 218.0738 292.8761 259.6638 200.3605 281.5009
-##  [85] 262.7877 265.9280 303.6477 250.2360 276.8078 207.8237 225.5117
-##  [92] 259.4970 307.3228 260.9602 241.0966 302.2954 250.4591 292.6614
-##  [99] 276.3169 378.7654
+##   [1] 257.0533 256.8380 254.5367 233.0415 275.2816 241.2337 242.9797
+##   [8] 246.5648 281.1478 265.6465 269.5008 241.0957 302.9833 260.8571
+##  [15] 219.7463 228.9491 297.0814 257.9392 270.2016 269.7976 194.9119
+##  [22] 235.5391 248.5301 339.4413 253.7245 263.5048 254.2125 299.0784
+##  [29] 255.0385 262.9535 235.4429 261.4885 288.0249 282.5938 239.6178
+##  [36] 234.8892 228.0405 275.7628 276.7107 301.6431 257.8870 218.2040
+##  [43] 230.7174 240.6417 273.8258 244.2167 237.8800 238.7334 297.3625
+##  [50] 257.4611 277.4897 243.5330 291.5063 284.1221 229.1940 257.8361
+##  [57] 245.6940 276.7912 268.1622 298.1953 225.2674 278.4590 277.6967
+##  [64] 228.6941 279.8314 234.4422 229.5304 262.1320 255.0161 261.2311
+##  [71] 271.6367 264.0669 260.6620 271.3236 229.8569 231.8376 279.7506
+##  [78] 255.9831 279.6985 288.1559 277.2264 257.8831 232.5105 262.5132
+##  [85] 229.1799 230.1277 261.8895 255.2237 276.4553 270.1582 234.1768
+##  [92] 261.5660 296.6076 278.1999 298.3714 254.7342 230.1764 242.6538
+##  [99] 259.6546 378.7654
 ## 
 ## $p.val
 ## [1] 0.01</code></pre>
@@ -646,7 +653,7 @@ grp &lt;-<span class="st"> </span><span class="kw">find.clusters</span>(Mydata1,
 <p>The K means procedure detected 4 groups. We will use this number of group in the discriminant analysis (function <code>dapc()</code>). On your own dataset, you need to spend more time to estimate the number of clusters.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dapc1 &lt;-<span class="st"> </span><span class="kw">dapc</span>(Mydata1, grp$grp, <span class="dt">n.pca =</span> <span class="dv">20</span>, <span class="dt">n.da =</span> <span class="dv">6</span>) 
 <span class="kw">scatter</span>(dapc1) <span class="co"># plot of the group</span></code></pre></div>
-<p><img src="DifferentiationSNP_files/figure-html/description_of_clusters-1.png" title="" alt="" width="960" /></p>
+<p><img src="DifferentiationSNP_files/figure-html/description_of_clusters-1.png" width="960" /></p>
 <p>It’s clear that a subset of 20 SNPs does not have a strong enough signal to separate the samples into distinct groups. What would happen if we used more SNPs?</p>
 </div>
 </div>
@@ -680,67 +687,67 @@ grp &lt;-<span class="st"> </span><span class="kw">find.clusters</span>(Mydata1,
 devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
-##  version  R version 3.2.5 (2016-04-14)
+##  version  R version 3.3.0 (2016-05-03)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       &lt;NA&gt;                        
-##  date     2016-05-06</code></pre>
+##  date     2016-05-24</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
-##  ade4       * 1.7-4   2016-03-01 CRAN (R 3.2.5)
-##  adegenet   * 2.0.1   2016-02-15 CRAN (R 3.2.5)
-##  ape          3.4     2015-11-29 CRAN (R 3.2.5)
-##  assertthat   0.1     2013-12-06 CRAN (R 3.2.5)
+##  ade4       * 1.7-4   2016-03-01 CRAN (R 3.3.0)
+##  adegenet   * 2.0.1   2016-02-15 CRAN (R 3.3.0)
+##  ape          3.4     2015-11-29 CRAN (R 3.3.0)
+##  assertthat   0.1     2013-12-06 CRAN (R 3.3.0)
 ##  boot         1.3-18  2016-02-23 CRAN (R 3.3.0)
 ##  cluster      2.0.4   2016-04-18 CRAN (R 3.2.5)
-##  coda         0.18-1  2015-10-16 CRAN (R 3.2.5)
-##  colorspace   1.2-6   2015-03-11 CRAN (R 3.2.5)
-##  DBI          0.3.1   2014-09-24 CRAN (R 3.2.5)
-##  deldir       0.1-12  2016-03-06 CRAN (R 3.2.5)
-##  devtools     1.11.1  2016-04-21 CRAN (R 3.2.5)
-##  digest       0.6.9   2016-01-08 CRAN (R 3.2.5)
-##  dplyr        0.4.3   2015-09-01 CRAN (R 3.2.5)
-##  evaluate     0.8.3   2016-03-05 CRAN (R 3.2.5)
-##  formatR      1.3     2016-03-05 CRAN (R 3.2.5)
-##  gdata        2.17.0  2015-07-04 CRAN (R 3.2.5)
-##  ggplot2      2.1.0   2016-03-01 CRAN (R 3.2.5)
-##  gmodels      2.16.2  2015-07-22 CRAN (R 3.2.5)
-##  gtable       0.2.0   2016-02-26 CRAN (R 3.2.5)
-##  gtools       3.5.0   2015-05-29 CRAN (R 3.2.5)
-##  hierfstat  * 0.04-22 2015-12-04 CRAN (R 3.2.5)
-##  htmltools    0.3.5   2016-03-21 CRAN (R 3.2.5)
-##  httpuv       1.3.3   2015-08-04 CRAN (R 3.2.5)
-##  igraph       1.0.1   2015-06-26 CRAN (R 3.2.5)
-##  knitr        1.12.3  2016-01-22 CRAN (R 3.2.5)
-##  lattice      0.20-33 2015-07-14 CRAN (R 3.2.5)
-##  LearnBayes   2.15    2014-05-29 CRAN (R 3.2.5)
-##  magrittr     1.5     2014-11-22 CRAN (R 3.2.5)
-##  MASS         7.3-45  2016-04-21 CRAN (R 3.2.5)
-##  Matrix       1.2-5   2016-04-17 CRAN (R 3.2.5)
-##  memoise      1.0.0   2016-01-29 CRAN (R 3.2.5)
-##  mgcv         1.8-12  2016-03-03 CRAN (R 3.2.5)
-##  mime         0.4     2015-09-03 CRAN (R 3.2.5)
-##  munsell      0.4.3   2016-02-13 CRAN (R 3.2.5)
-##  nlme         3.1-127 2016-04-16 CRAN (R 3.2.5)
-##  permute      0.9-0   2016-01-24 CRAN (R 3.2.5)
-##  plyr         1.8.3   2015-06-12 CRAN (R 3.2.5)
-##  R6           2.1.2   2016-01-26 CRAN (R 3.2.5)
-##  Rcpp         0.12.4  2016-03-26 CRAN (R 3.2.5)
-##  reshape2     1.4.1   2014-12-06 CRAN (R 3.2.5)
-##  rmarkdown    0.9.5   2016-02-22 CRAN (R 3.2.5)
-##  scales       0.4.0   2016-02-26 CRAN (R 3.2.5)
-##  seqinr       3.1-3   2014-12-17 CRAN (R 3.2.5)
-##  shiny        0.13.2  2016-03-28 CRAN (R 3.2.5)
-##  sp           1.2-3   2016-04-14 CRAN (R 3.2.5)
-##  spdep        0.6-4   2016-04-12 CRAN (R 3.2.5)
-##  stringi      1.0-1   2015-10-22 CRAN (R 3.2.5)
-##  stringr      1.0.0   2015-04-30 CRAN (R 3.2.5)
-##  vegan        2.3-5   2016-04-09 CRAN (R 3.2.5)
-##  withr        1.0.1   2016-02-04 CRAN (R 3.2.5)
-##  xtable       1.8-2   2016-02-05 CRAN (R 3.2.5)
-##  yaml         2.1.13  2014-06-12 CRAN (R 3.2.5)</code></pre>
+##  coda         0.18-1  2015-10-16 CRAN (R 3.3.0)
+##  colorspace   1.2-6   2015-03-11 CRAN (R 3.3.0)
+##  DBI          0.4-1   2016-05-08 CRAN (R 3.3.0)
+##  deldir       0.1-12  2016-03-06 CRAN (R 3.3.0)
+##  devtools     1.11.1  2016-04-21 CRAN (R 3.3.0)
+##  digest       0.6.9   2016-01-08 CRAN (R 3.3.0)
+##  dplyr        0.4.3   2015-09-01 CRAN (R 3.3.0)
+##  evaluate     0.9     2016-04-29 CRAN (R 3.3.0)
+##  formatR      1.4     2016-05-09 CRAN (R 3.3.0)
+##  gdata        2.17.0  2015-07-04 CRAN (R 3.3.0)
+##  ggplot2      2.1.0   2016-03-01 CRAN (R 3.3.0)
+##  gmodels      2.16.2  2015-07-22 CRAN (R 3.3.0)
+##  gtable       0.2.0   2016-02-26 CRAN (R 3.3.0)
+##  gtools       3.5.0   2015-05-29 CRAN (R 3.3.0)
+##  hierfstat  * 0.04-22 2015-12-04 CRAN (R 3.3.0)
+##  htmltools    0.3.5   2016-03-21 CRAN (R 3.3.0)
+##  httpuv       1.3.3   2015-08-04 CRAN (R 3.3.0)
+##  igraph       1.0.1   2015-06-26 CRAN (R 3.3.0)
+##  knitr        1.13    2016-05-09 CRAN (R 3.3.0)
+##  lattice      0.20-33 2015-07-14 CRAN (R 3.3.0)
+##  LearnBayes   2.15    2014-05-29 CRAN (R 3.3.0)
+##  magrittr     1.5     2014-11-22 CRAN (R 3.3.0)
+##  MASS         7.3-45  2016-04-21 CRAN (R 3.3.0)
+##  Matrix       1.2-6   2016-05-02 CRAN (R 3.3.0)
+##  memoise      1.0.0   2016-01-29 CRAN (R 3.3.0)
+##  mgcv         1.8-12  2016-03-03 CRAN (R 3.3.0)
+##  mime         0.4     2015-09-03 CRAN (R 3.3.0)
+##  munsell      0.4.3   2016-02-13 CRAN (R 3.3.0)
+##  nlme         3.1-128 2016-05-10 CRAN (R 3.3.0)
+##  permute      0.9-0   2016-01-24 CRAN (R 3.3.0)
+##  plyr         1.8.3   2015-06-12 CRAN (R 3.3.0)
+##  R6           2.1.2   2016-01-26 CRAN (R 3.3.0)
+##  Rcpp         0.12.5  2016-05-14 CRAN (R 3.3.0)
+##  reshape2     1.4.1   2014-12-06 CRAN (R 3.3.0)
+##  rmarkdown    0.9.6   2016-05-01 CRAN (R 3.3.0)
+##  scales       0.4.0   2016-02-26 CRAN (R 3.3.0)
+##  seqinr       3.1-3   2014-12-17 CRAN (R 3.3.0)
+##  shiny        0.13.2  2016-03-28 CRAN (R 3.3.0)
+##  sp           1.2-3   2016-04-14 CRAN (R 3.3.0)
+##  spdep        0.6-4   2016-04-12 CRAN (R 3.3.0)
+##  stringi      1.0-1   2015-10-22 CRAN (R 3.3.0)
+##  stringr      1.0.0   2015-04-30 CRAN (R 3.3.0)
+##  vegan        2.3-5   2016-04-09 CRAN (R 3.3.0)
+##  withr        1.0.1   2016-02-04 CRAN (R 3.3.0)
+##  xtable       1.8-2   2016-02-05 CRAN (R 3.3.0)
+##  yaml         2.1.13  2014-06-12 CRAN (R 3.3.0)</code></pre>
 </div>
 
 <!-- </div>
