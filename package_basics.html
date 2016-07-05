@@ -354,8 +354,8 @@ $(document).ready(function () {
 <pre><code>## Package: poppr
 ## Type: Package
 ## Title: Genetic Analysis of Populations with Mixed Reproduction
-## Version: 2.1.1
-## Date: 2016-03-15
+## Version: 2.2.0
+## Date: 2016-06-08
 ## Authors@R: c(person(c(&quot;Zhian&quot;, &quot;N.&quot;), &quot;Kamvar&quot;, role = c(&quot;cre&quot;,
 ##        &quot;aut&quot;), email = &quot;kamvarz@science.oregonstate.edu&quot;),
 ##        person(c(&quot;Javier&quot;, &quot;F.&quot;), &quot;Tabima&quot;, role = &quot;aut&quot;, email =
@@ -365,9 +365,11 @@ $(document).ready(function () {
 ##        role = &quot;aut&quot;, email = &quot;brookjon@onid.orst.edu&quot;),
 ##        person(c(&quot;Stacy&quot;, &quot;A.&quot;), &quot;Krueger-Hadfield&quot;, role = &quot;ctb&quot;,
 ##        email = &quot;kruegersa@cofc.edu&quot;), person(c(&quot;Erik&quot;), &quot;Sotka&quot;,
-##        role = &quot;ctb&quot;, email = &quot;sotkae@cofc.edu&quot;),
-##        person(c(&quot;Niklaus&quot;, &quot;J.&quot;), &quot;Grunwald&quot;, role = &quot;ths&quot;, email
-##        = &quot;grunwaln@science.oregonstate.edu&quot;))
+##        role = &quot;ctb&quot;, email = &quot;sotkae@cofc.edu&quot;), person(c(&quot;Brian&quot;,
+##        &quot;J.&quot;), &quot;Knaus&quot;, role = &quot;ctb&quot;, email =
+##        &quot;briank.lists@gmail.com&quot;), person(c(&quot;Niklaus&quot;, &quot;J.&quot;),
+##        &quot;Grunwald&quot;, role = &quot;ths&quot;, email =
+##        &quot;grunwaln@science.oregonstate.edu&quot;))
 ## Maintainer: Zhian N. Kamvar &lt;kamvarz@science.oregonstate.edu&gt;
 ## Encoding: UTF-8
 ## URL: http://github.com/grunwaldlab/poppr,
@@ -381,21 +383,21 @@ $(document).ready(function () {
 ## Depends: R (&gt;= 2.15.1), adegenet (&gt;= 2.0.0)
 ## Imports: stats, graphics, grDevices, utils, vegan, ggplot2,
 ##        phangorn, ape (&gt;= 3.1-1), igraph, methods, ade4, pegas,
-##        reshape2, dplyr (&gt;= 0.4), boot, shiny
+##        reshape2, dplyr (&gt;= 0.4), boot, shiny, magrittr
 ## Suggests: testthat, knitr, rmarkdown, knitcitations, polysat,
 ##        poweRlaw, cowplot
 ## License: GPL-2 | GPL-3
 ## VignetteBuilder: knitr
 ## RoxygenNote: 5.0.1
 ## NeedsCompilation: yes
-## Packaged: 2016-03-15 19:11:06 UTC; zhian
+## Packaged: 2016-06-08 23:19:50 UTC; zhian
 ## Author: Zhian N. Kamvar [cre, aut], Javier F. Tabima [aut], Sydney
 ##        E. Everhart [ctb, dtc], Jonah C. Brooks [aut], Stacy A.
-##        Krueger-Hadfield [ctb], Erik Sotka [ctb], Niklaus J.
-##        Grunwald [ths]
+##        Krueger-Hadfield [ctb], Erik Sotka [ctb], Brian J. Knaus
+##        [ctb], Niklaus J. Grunwald [ths]
 ## Repository: CRAN
-## Date/Publication: 2016-03-15 20:38:02
-## Built: R 3.3.0; x86_64-pc-linux-gnu; 2016-05-18 23:29:11 UTC; unix
+## Date/Publication: 2016-06-13 17:17:59
+## Built: R 3.3.1; x86_64-pc-linux-gnu; 2016-06-29 23:35:19 UTC; unix
 ## 
 ## -- File: /usr/local/lib/R/site-library/poppr/Meta/package.rds</code></pre>
 </div>
@@ -447,7 +449,7 @@ $(document).ready(function () {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/RtmpuO1Aas/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/Rtmp7LK6Tv/R-lib&quot;</code></pre>
 <p>After looking at the documentation, we know that we want to change the values <code>devtools.desc.author</code>, <code>devtools.desc.license</code>, <code>devtools.name</code>. We will also add a “Maintainer” field to the DESCRIPTION file (tells users who to blame). The others don’t matter for now. We can add them in thusly (Note, I am using my name; you should obviously use your own):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">authors_at_r &lt;-<span class="st"> </span><span class="kw">paste0</span>(
   <span class="st">&quot;&#39;&quot;</span>,
@@ -486,7 +488,7 @@ $(document).ready(function () {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/RtmpuO1Aas/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/Rtmp7LK6Tv/R-lib&quot;</code></pre>
 <blockquote>
 <p>It is much easier to edit the DESCRIPTION file by hand afterward. This simply demonstrates how you can get started.</p>
 </blockquote>
@@ -498,7 +500,7 @@ $(document).ready(function () {
 ## Version: 0.0.0.9000
 ## Authors@R: &#39;Zhian N. Kamvar &lt;kamvarz@science.oregonstate.edu&gt; [aut, cre]&#39;
 ## Description: What the package does (one paragraph).
-## Depends: R (&gt;= 3.3.0)
+## Depends: R (&gt;= 3.3.1)
 ## License: GPL-3
 ## Encoding: UTF-8
 ## LazyData: true
@@ -527,30 +529,30 @@ $(document).ready(function () {
 devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
-##  version  R version 3.3.0 (2016-05-03)
+##  version  R version 3.3.1 (2016-06-21)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
-##  tz       &lt;NA&gt;                        
-##  date     2016-05-24</code></pre>
+##  tz       Zulu                        
+##  date     2016-07-05</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package   * version date       source        
-##  devtools  * 1.11.1  2016-04-21 CRAN (R 3.3.0)
-##  digest      0.6.9   2016-01-08 CRAN (R 3.3.0)
-##  evaluate    0.9     2016-04-29 CRAN (R 3.3.0)
-##  formatR     1.4     2016-05-09 CRAN (R 3.3.0)
-##  htmltools   0.3.5   2016-03-21 CRAN (R 3.3.0)
-##  knitr       1.13    2016-05-09 CRAN (R 3.3.0)
-##  magrittr    1.5     2014-11-22 CRAN (R 3.3.0)
-##  memoise     1.0.0   2016-01-29 CRAN (R 3.3.0)
-##  Rcpp        0.12.5  2016-05-14 CRAN (R 3.3.0)
-##  rmarkdown   0.9.6   2016-05-01 CRAN (R 3.3.0)
-##  stringi     1.0-1   2015-10-22 CRAN (R 3.3.0)
-##  stringr     1.0.0   2015-04-30 CRAN (R 3.3.0)
-##  whisker     0.3-2   2013-04-28 CRAN (R 3.3.0)
-##  withr       1.0.1   2016-02-04 CRAN (R 3.3.0)
-##  yaml        2.1.13  2014-06-12 CRAN (R 3.3.0)</code></pre>
+##  devtools  * 1.12.0  2016-06-24 CRAN (R 3.3.1)
+##  digest      0.6.9   2016-01-08 CRAN (R 3.3.1)
+##  evaluate    0.9     2016-04-29 CRAN (R 3.3.1)
+##  formatR     1.4     2016-05-09 CRAN (R 3.3.1)
+##  htmltools   0.3.5   2016-03-21 CRAN (R 3.3.1)
+##  knitr       1.13    2016-05-09 CRAN (R 3.3.1)
+##  magrittr    1.5     2014-11-22 CRAN (R 3.3.1)
+##  memoise     1.0.0   2016-01-29 CRAN (R 3.3.1)
+##  Rcpp        0.12.5  2016-05-14 CRAN (R 3.3.1)
+##  rmarkdown   0.9.6   2016-05-01 CRAN (R 3.3.1)
+##  stringi     1.1.1   2016-05-27 CRAN (R 3.3.1)
+##  stringr     1.0.0   2015-04-30 CRAN (R 3.3.1)
+##  whisker     0.3-2   2013-04-28 CRAN (R 3.3.1)
+##  withr       1.0.2   2016-06-20 CRAN (R 3.3.1)
+##  yaml        2.1.13  2014-06-12 CRAN (R 3.3.1)</code></pre>
 </div>
 
 <!-- </div>

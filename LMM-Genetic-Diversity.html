@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Linear mixed-effects models to control for the variability of microsatellite loci when comparing genetic diversity</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<!---
+
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-right: 50px;
+  padding-left: -50px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+ offset scroll position for anchor links (for fixed navbar)  
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+</style>
+-->
+
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- HOME -->
+      <a class="navbar-brand" href="index.html"><b>Population Genetics in R</b></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!-- Table of contents -->
+        <li class="dropdown">
+          <a href="chapters" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users <span class="caret"></span></a>
+          <ol class="dropdown-menu">
+              <li><a href="GETSTARTED.html">Getting Started</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">For microsatellite data:</li>
+              <li><a href="startMicrosatellite.html">Basic statistics</a></li>
+              <li><a href="2015-12-15-microsatellite-differentiation.html">Population differentiation</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">For SNP data:</li>
+              <!-- <li class="divider"></li> -->
+              <li><a href="StartSNP.html">Basic statistics</a></li>
+              <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
+              <li><a href="2015-05-18-Dist-SNP.html">Genetic distance (individual-based)</a></li>
+              <li><a href="2016-01-26-SNP-selection.html">Signals of selection</a></li>
+              <!-- <li><a href="SNP.html">SNPs</a></li> -->
+              <li class="divider"></li>
+              <li class="dropdown-header">For sequence data:</li>
+              <!-- <li class="divider"></li>   -->
+              <li><a href="PopDiffSequenceData.html">Population differentiation</a></li>
+          </ol>
+        </li>
+        <!-- Appendices dropdown -->
+        <li class="dropdown">
+          <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Package Developers <span class="caret"></span></a>
+          <ul class = "dropdown-menu" role = "menu">
+           <li><a href = "PACKAGES.html">Population genetic packages in R</a></li>  
+           <li><a href = "DATAFORMATS.html">Population genetic data types in R</a></li>
+           <li><a href = "PACKAGE_TUTORIALS.html">Tutorials for developing R packages</a></li>
+           <li class="divider"></li>  
+           <li class="dropdown-header">Development Resources (external):</li>
+           <li><a href = "http://r-pkgs.had.co.nz/">Hadley Wickham's guide for creating R packages</a></li>
+           <li><a href = "https://github.com/jtleek/rpackages">Jeff Leek's R package development</a></li>
+           <li><a href = "http://adv-r.had.co.nz/S4.html">S4 Classes in detail</a></li>
+           <li><a href = "http://adv-r.had.co.nz/S3.html">S3 Classes in detail</a></li>
+           <li><a href = "http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf">A not so short introduction to S4</a></li>
+          </ul>
+        </li>
+        <!-- Author button -->
+        <li class="dropdown">
+          <a href="about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contribute! <span class="caret"></span></a>
+          <ul class = "dropdown-menu" role = "menu">
+           <li><a href = "CONTRIBUTING.html">Contribution guidelines</a></li>  
+           <li><a href = "CONTRIBUTING_WITH_GIT2R.html">Contributing with git2r</a></li> 
+           <li class="divider"></li>  
+           <li><a href="https://github.com/NESCent/popgenInfo">Source repository</a></li>  
+		  </ul>
+        </li>
+        <li class = "button">
+          <a href="LinksToResources.html">Useful Links</a>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- <div class="container">
+<div class="row">
+<div class="span10 offset1"> -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Linear mixed-effects models to control for the variability of microsatellite loci when comparing genetic diversity</h1>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#assumptions">Assumptions</a></li>
+<li><a href="#resources">Resources</a><ul>
+<li><a href="#data">Data</a></li>
+<li><a href="#packages">Packages</a></li>
+</ul></li>
+<li><a href="#analysis">Analysis</a><ul>
+<li><a href="#section-1-load-the-data">Section 1: Load the data</a></li>
+<li><a href="#section-2-data-analysischecking-assumptions">Section 2: Data analysis/Checking assumptions</a></li>
+<li><a href="#section-3-summary-statistics">Section 3: Summary statistics</a></li>
+</ul></li>
+<li><a href="#conclusions">Conclusions</a></li>
+<li><a href="#contributors">Contributors</a></li>
+<li><a href="#references">References</a></li>
+<li><a href="#session-information">Session Information</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>There is general interest in comparing the amount of genetic variation among different populations, usually measured as number of alleles, heterozygosity and/or allelic richness.</p>
+<p>Genetic variability of populations of a species is important because it can be thought of an indirect measure of the evolvability of those populations. The greater the genetic diversity of a population the bigger the amount of genetic raw material upon which selection can act. A population deprived of its genetic variability is less likely to respond to environmental changes and more vulnerable to the negative effects of inbreeding. From a theoretical point of you measuring (correctly) genetic diversity of a population and comparing it among different naturally occurring or human driven treatments might be important to test the theoretical predictions on impact of drift on effect of population size of relatively isolated (small) populations and on mechanisms of genetic variance (diversity) maintenance. From the conservation point of view the relative genetic diversity of population differentially affected by human intervention might give insight into how resilient populations of a species are to rapid changes of the habitat in which they live. Particularly interesting are comparisons between mainland and island(s) natural and disturbed habitats, between urban and rural habitats. But it would also be desirable to correlate genetic diversity with the extent of isolation (distance from mainland, distance from next fragment), or with the size of islands or fragments.</p>
+<p>Petit et al. (2005) were the first to emphasize the importance of controlling for the fact that microsatellite variation is dependent from the length of the microsatellite markers employed. They proposed the use of an ANCOVA framework when comparing genetic variation of microsatellite markers, with the mean number of repeats (MNR) included as covariate.</p>
+<p>With an ANCOVA approach we use mean genetic diversity across population as covariate. If allelic richness is what is used as measurement of genetic diversity, mean allelic richness across population at each locus will be used as covariate. Highly variable markers will have a high mean allelic richness; less variable markers will be characterized by a smaller value of mean allelic richness. This allows to account for the portion of variability in the data due the fact that some microsatellite markers are more variable than other.</p>
+<p>Here we suggest the use of linear mixed-effects models (LMMs) to control for the variability of microsatellite loci (random part of the mixed model) when comparing genetic diversity. This approach has less assumptions and is more statistically powerful than ANCOVA (Crawley 2007). In a LMM approach, we account for the portion of variance due to intrinsic differences in marker variability by introducing a level of grouping (modeled as locus), within which the chosen measurement of genetic diversity (allelic richness or heterozygosity) will vary around a group (locus) mean. The difference with an ANCOVA approach is that loci will be characterized, not only by their respective means across populations, but also by their respective variances around their respective means.</p>
+</div>
+<div id="assumptions" class="section level1">
+<h1>Assumptions</h1>
+<ul>
+<li>The explanatory variables are related linearly to the response</li>
+<li>The errors have constant variance</li>
+<li>The errors are independent</li>
+<li>The errors are normally distributed</li>
+</ul>
+</div>
+<div id="resources" class="section level1">
+<h1>Resources</h1>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>As an example we’ll use the comparison in Allelic Richness among populations of the orchid bee Euglossa dilemma in the Yucatan peninsula (Soro et al. submitted). Specifically we ask whether the magnitute of isolation could affect the genetic diversity of Euglossa dilemma.The 24 sites where populations were sampled were assigned to 4 categories corresponding to different habitats : 1) Natural (N); 2) Disturbed (D); 3) City (C); 4) Island (I). We provide a data file (GenDivEuglossa.txt), where for each locality (population) under a certain habitat (fixed factor), Allelic Richness rariefied to a minimum sample size of 10 individuals(response variable), has been calculated at each locus (random factor). The data are stored in the file called <a href="https://github.com/nescent/popgenInfo/blob/master/data/GenDivEuglossa.txt">GenDivEuglossa.txt</a>.</p>
+</div>
+<div id="packages" class="section level2">
+<h2>Packages</h2>
+<p>Packages required:</p>
+<p>Loading the required packages: lm4: Package for fitting linear and generalized linear mixed-effects models. MuMIn: Package mainly used for model selection and model averaging based on information criteria. Here we use the r.squaredGLMM function to calculate conditional and marginal coefficient of determination. multcomp: Package used for simultaneous inference in general parametric models. The glht function can be used for multiple comparisons in linear mixed effects models.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;lme4&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;MuMIn&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;multcomp&quot;</span>)</code></pre></div>
+</div>
+</div>
+<div id="analysis" class="section level1">
+<h1>Analysis</h1>
+<div id="section-1-load-the-data" class="section level2">
+<h2>Section 1: Load the data</h2>
+<p>At first we need to load our dataset. We will import “GenDivEuglossa.txt”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GenDivEuglossa &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;../data/GenDivEuglossa.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
+<span class="kw">summary</span>(GenDivEuglossa)
+<span class="kw">str</span>(GenDivEuglossa)</code></pre></div>
+<pre><code>##                                      Locality    Locus    Habitat
+##  Bethania_N_Campeche                     : 5   ann04:24   C:25   
+##  CampecheCity_C_Campeche                 : 5   ann08:24   D:50   
+##  Cancun_C_Cancun                         : 5   ann24:24   I:10   
+##  Cancun_D_Cancun                         : 5   ann28:24   N:35   
+##  CancunInFrontIsland_D_Cancun            : 5   Egc18:24          
+##  CancunNaturalArea(ZonaAgricola)_N_Cancun: 5                     
+##  (Other)                                 :90                     
+##  AllelicRichness 
+##  Min.   : 1.930  
+##  1st Qu.: 2.583  
+##  Median : 3.225  
+##  Mean   : 5.037  
+##  3rd Qu.: 6.143  
+##  Max.   :12.820  
+## </code></pre>
+<pre><code>## &#39;data.frame&#39;:    120 obs. of  4 variables:
+##  $ Locality       : Factor w/ 24 levels &quot;Bethania_N_Campeche&quot;,..: 6 6 6 6 6 14 14 14 14 14 ...
+##  $ Locus          : Factor w/ 5 levels &quot;ann04&quot;,&quot;ann08&quot;,..: 5 4 3 1 2 5 4 3 1 2 ...
+##  $ Habitat        : Factor w/ 4 levels &quot;C&quot;,&quot;D&quot;,&quot;I&quot;,&quot;N&quot;: 4 4 4 4 4 4 4 4 4 4 ...
+##  $ AllelicRichness: num  5.98 3.04 4.28 1.93 12.47 ...</code></pre>
+</div>
+<div id="section-2-data-analysischecking-assumptions" class="section level2">
+<h2>Section 2: Data analysis/Checking assumptions</h2>
+<p>Second, we build our model using the function lmer () from the lme4 package. With this command, we create a model with Allellic Richness as response with habitat and locus as fixed and random effects factors respectively. We modeled “habitat” as fixed because the four levels we chose (Natural, Disturbed, City and Island) correspond to four levels of progressive level of “isolation”, whose effect on the genetic diversity of Euglossa dilemma, we are interested in. Locus is our random factor since we are only interested to account for its variation. Locus has bee modeled as random because the five markers we used are a random sample of the theoretically many markers we could have used.</p>
+<p>Now lets look at the summary of our model. First we get several measures of model fit, including AIC, BIC, log likelihood and deviance. Then we get an estimate of the variance explained by the random effect (Locus). As you can see it is quite different from zero and thus important for our model. Next we have estimates of the fixed effects, with standard errors.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelMANAG&lt;-<span class="kw">lmer</span>(AllelicRichness~Habitat+(<span class="dv">1</span>|Locus), GenDivEuglossa, <span class="dt">REML=</span><span class="ot">FALSE</span>)
+<span class="kw">summary</span>(modelMANAG)</code></pre></div>
+<pre><code>## Linear mixed model fit by maximum likelihood  [&#39;lmerMod&#39;]
+## Formula: AllelicRichness ~ Habitat + (1 | Locus)
+##    Data: GenDivEuglossa
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    274.5    291.3   -131.3    262.5      114 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.7773 -0.5771 -0.0567  0.5471  2.5254 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  Locus    (Intercept) 10.8141  3.2885  
+##  Residual              0.3985  0.6313  
+## Number of obs: 120, groups:  Locus, 5
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)   5.0564     1.4761   3.426
+## HabitatD     -0.0312     0.1546  -0.202
+## HabitatI     -0.6464     0.2362  -2.737
+## HabitatN      0.1613     0.1653   0.976
+## 
+## Correlation of Fixed Effects:
+##          (Intr) HabttD HabttI
+## HabitatD -0.070              
+## HabitatI -0.046  0.436       
+## HabitatN -0.065  0.624  0.408</code></pre>
+<p>Now, we check our model assumptions. We check for normality and homogeneity by inspecting the residual plot. This plot depicts fitted values on the x-axis and residuals on the y-axis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(modelMANAG)</code></pre></div>
+<p><img src="LMM-Genetic-Diversity_files/figure-html/unnamed-chunk-6-1.png" width="960" /></p>
+</div>
+<div id="section-3-summary-statistics" class="section level2">
+<h2>Section 3: Summary statistics</h2>
+<p>In order to test the effect of our fixed factor ‘Habitat’, we run a likelihood ratio test, comparing our model (modelMANAG), which includes the fixed factor “Habitat”, with a model (modelNULL) that excludes it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelMANAG&lt;-<span class="kw">lmer</span>(AllelicRichness~Habitat+(<span class="dv">1</span>|Locus), GenDivEuglossa, <span class="dt">REML=</span><span class="ot">FALSE</span>)
+modelNULL&lt;-<span class="kw">lmer</span>(AllelicRichness~<span class="dv">1</span>+(<span class="dv">1</span>|Locus), GenDivEuglossa, <span class="dt">REML=</span><span class="ot">FALSE</span>)
+<span class="kw">anova</span>(modelMANAG, modelNULL)</code></pre></div>
+<pre><code>## Data: GenDivEuglossa
+## Models:
+## modelNULL: AllelicRichness ~ 1 + (1 | Locus)
+## modelMANAG: AllelicRichness ~ Habitat + (1 | Locus)
+##            Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)   
+## modelNULL   3 280.66 289.02 -137.33   274.66                            
+## modelMANAG  6 274.55 291.27 -131.27   262.55 12.113      3   0.007005 **
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>As a goodness of fit measure of our model, we computed both the conditional and marginal coefficient of determination. We quantify the variance accounted by “Habitat” alone (marginal R2 (Nakagawa and Schielzeth 2013)) and the variance accounted for by marker variability (conditional R2 (Nakagawa and Schielzeth 2013)).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">r.squaredGLMM</span>(modelMANAG)</code></pre></div>
+<pre><code>##         R2m         R2c 
+## 0.003800717 0.964593519</code></pre>
+<p>Finally we test for differences in Allelic Richness among different habitat types by Tukey HSD post-hoc comparisons. From the results we see that E. dilemma is particularly resilient to loss of natural habitat and only on islands did E. dilemma show significantly reduced genetic diversity.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">posthoc&lt;-<span class="kw">glht</span>(modelMANAG, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">Habitat =</span> <span class="st">&quot;Tukey&quot;</span>))
+<span class="kw">summary</span>(posthoc)</code></pre></div>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: lmer(formula = AllelicRichness ~ Habitat + (1 | Locus), data = GenDivEuglossa, 
+##     REML = FALSE)
+## 
+## Linear Hypotheses:
+##            Estimate Std. Error z value Pr(&gt;|z|)   
+## D - C == 0  -0.0312     0.1546  -0.202  0.99698   
+## I - C == 0  -0.6464     0.2362  -2.737  0.02975 * 
+## N - C == 0   0.1613     0.1653   0.976  0.75670   
+## I - D == 0  -0.6152     0.2187  -2.813  0.02384 * 
+## N - D == 0   0.1925     0.1391   1.384  0.50004   
+## N - I == 0   0.8077     0.2264   3.568  0.00194 **
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## (Adjusted p values reported -- single-step method)</code></pre>
+</div>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<p>LMM analyses showed that locality type had an effect on allelic richness in E. dilemma. The variance accounted for by locality type alone (marginal R2 of the fixed factor habitat (Nakagawa and Schielzeth 2013) was 0.3 %, while the variance accounted for by marker variability (conditional R2 (Nakagawa and Schielzeth 2013)) was 96.4%. This highlights how inherent inter-locus variability in genetic diversity could obscure any signal of genetic variability related to environmental variables unless inherent inter-locus variability is properly accounted for in analyses. The intensification of forest clearance on the Yucatan Peninsula and concomitant habitat fragmentation seem to have had little, if any, effect on neutral genetic diversity of E. dilemma, measured as allelic richness. Inhabiting an island, on the contrary, seemed to lower the allelic richness of E. dilemma.</p>
+</div>
+<div id="contributors" class="section level1">
+<h1>Contributors</h1>
+<ul>
+<li>Panagiotis Theodorou (Author)</li>
+<li>Antonella Soro (Author)</li>
+</ul>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>Crawley, M. J. (2007).The R Book. West Sussex: J. Wiley. Nakagawa, S. &amp; Schielzeth, H. (2013). A general and simple method for obtainin R2 from generalized linear mixed-e???ects models. Methods in Ecology and Evolution, 4,133-142. Petit, R.J., Deguilloux, M.F., Chat, J., Grivet, D., Garnier-Gere, P.&amp; Vendramin, G.G. (2005). Standardizing for microsatellite length in comparisons of genetic diversity. Molecualr Ecology, 14,885-890. Soro A., Quezada-Euan J. G., Theodorou P., Moritz R.F.A.,Paxton R.J. (2016). The population genetics of two orchid bees suggests high Ne, high dispersal, low diploid male production and only a effect of island isolation in lowering genetic diversity. (submitted to Conservation Genetics)</p>
+</div>
+<div id="session-information" class="section level1">
+<h1>Session Information</h1>
+<p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
+devtools::<span class="kw">session_info</span>()</code></pre></div>
+<pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
+<pre><code>##  setting  value                       
+##  version  R version 3.3.1 (2016-06-21)
+##  system   x86_64, linux-gnu           
+##  ui       X11                         
+##  language (EN)                        
+##  collate  en_US.UTF-8                 
+##  tz       Zulu                        
+##  date     2016-07-05</code></pre>
+<pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
+<pre><code>##  package   * version date       source        
+##  codetools   0.2-14  2015-07-15 CRAN (R 3.3.1)
+##  devtools    1.12.0  2016-06-24 CRAN (R 3.3.1)
+##  digest      0.6.9   2016-01-08 CRAN (R 3.3.1)
+##  evaluate    0.9     2016-04-29 CRAN (R 3.3.1)
+##  formatR     1.4     2016-05-09 CRAN (R 3.3.1)
+##  htmltools   0.3.5   2016-03-21 CRAN (R 3.3.1)
+##  knitr       1.13    2016-05-09 CRAN (R 3.3.1)
+##  lattice     0.20-33 2015-07-14 CRAN (R 3.3.1)
+##  lme4      * 1.1-12  2016-04-16 CRAN (R 3.3.1)
+##  magrittr    1.5     2014-11-22 CRAN (R 3.3.1)
+##  MASS      * 7.3-45  2016-04-21 CRAN (R 3.3.1)
+##  Matrix    * 1.2-6   2016-05-02 CRAN (R 3.3.0)
+##  memoise     1.0.0   2016-01-29 CRAN (R 3.3.1)
+##  minqa       1.2.4   2014-10-09 CRAN (R 3.3.1)
+##  multcomp  * 1.4-5   2016-05-04 CRAN (R 3.3.1)
+##  MuMIn     * 1.15.6  2016-01-07 CRAN (R 3.3.1)
+##  mvtnorm   * 1.0-5   2016-02-02 CRAN (R 3.3.1)
+##  nlme        3.1-128 2016-05-10 CRAN (R 3.3.1)
+##  nloptr      1.0.4   2014-08-04 CRAN (R 3.3.1)
+##  Rcpp        0.12.5  2016-05-14 CRAN (R 3.3.1)
+##  rmarkdown   0.9.6   2016-05-01 CRAN (R 3.3.1)
+##  sandwich    2.3-4   2015-09-24 CRAN (R 3.3.1)
+##  stringi     1.1.1   2016-05-27 CRAN (R 3.3.1)
+##  stringr     1.0.0   2015-04-30 CRAN (R 3.3.1)
+##  survival  * 2.39-5  2016-06-26 CRAN (R 3.3.1)
+##  TH.data   * 1.0-7   2016-01-28 CRAN (R 3.3.1)
+##  withr       1.0.2   2016-06-20 CRAN (R 3.3.1)
+##  yaml        2.1.13  2014-06-12 CRAN (R 3.3.1)
+##  zoo         1.7-13  2016-05-03 CRAN (R 3.3.1)</code></pre>
+</div>
+
+<!-- </div>
+</div>
+</div>
+ -->
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
