@@ -32,7 +32,7 @@ As an example we'll use the comparison in Allelic Richness among populations of 
  3. City (C)
  4. Island (I)
 
-We provide a data file (GenDivEuglossa.txt), where for each locality (population) under a certain habitat (fixed factor), Allelic Richness rariefied to a minimum sample size of 10 individuals (response variable), has been calculated at each locus (random factor). 
+We provide a data file (GenDivEuglossa.txt), where for each locality (population) under a certain habitat (fixed factor), Allelic Richness rarefied to a minimum sample size of 10 individuals (response variable), has been calculated at each locus (random factor). 
 The data are stored in the file called [GenDivEuglossa.txt](https://github.com/nescent/popgenInfo/blob/master/data/GenDivEuglossa.txt).
 
 ## Packages
@@ -73,7 +73,7 @@ str(GenDivEuglossa)
 
 ## Section 2: Data analysis/Checking assumptions  
 
-Second, we build our model using the function `lmer()` from the *lme4* package. With this command, we create a model with Allellic Richness as response with habitat and locus as fixed and random effects factors respectively. We modeled "habitat" as fixed because the four levels we chose (Natural, Disturbed, City and Island) correspond to four levels of progressive level of "isolation", whose effect on the genetic diversity of *E. dilemma*, we are interested in. Locus is our random factor since we are only interested to account for its variation. Locus has bee modeled as random because the five markers we used are a random sample of the theoretically many markers we could have used. 
+Second, we build our model using the function `lmer()` from the *lme4* package. With this command, we create a model with Allelic Richness as response with habitat and locus as fixed and random effects factors respectively. We modeled "habitat" as fixed because the four levels we chose (Natural, Disturbed, City and Island) correspond to four levels of progressive level of "isolation", whose effect on the genetic diversity of *E. dilemma*, we are interested in. Locus is our random factor since we are only interested to account for its variation. Locus has bee modeled as random because the five markers we used are a random sample of the theoretically many markers we could have used. 
 
 Now lets look at the summary of our model. First we get several measures of model fit, including AIC, BIC, log likelihood and deviance. Then we get an estimate of the variance explained by the random effect (Locus). As you can see it is quite different from zero and thus important for our model. Next we have estimates of the fixed effects, with standard errors.
 
