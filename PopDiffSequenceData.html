@@ -230,6 +230,7 @@ $(document).ready(function () {
               <li class="dropdown-header">For microsatellite data:</li>
               <li><a href="startMicrosatellite.html">Basic statistics</a></li>
               <li><a href="2015-12-15-microsatellite-differentiation.html">Population differentiation</a></li>
+              <li><a href="LMM-Genetic-Diversity.html">Comparing genetic diversity using mixed models</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">For SNP data:</li>
               <!-- <li class="divider"></li> -->
@@ -435,32 +436,32 @@ beeData.gid</code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  1.6216  (1.099-2.5098)
-## Ebom_CAD 1.6267  (1.0743-2.3309)
+## Ebom_mt  1.6165  (1.0655-2.3821)
+## Ebom_CAD 1.6575  (1.0922-2.437)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.6104   (1.2925-2.1509)</code></pre>
+## 1.6251   (1.2151-2.0991)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, Gst_Hedrick) <span class="co"># for Hedrick&#39;s Gst</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  1.0366  (1.0091-1.0825)
-## Ebom_CAD 1.0178  (1.0034-1.0444)
+## Ebom_mt  1.0371  (1.004-1.0953)
+## Ebom_CAD 1.0199  (1.0028-1.0536)
 ## 
 ## Global Estimate based on average heterozygosity
-## 1.0275   (1.0131-1.0506)</code></pre>
+## 1.029    (1.0095-1.0571)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, D_Jost)      <span class="co"># for Jost&#39;s D</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  0.9038  (0.8359-0.9551)
-## Ebom_CAD 0.9522  (0.9058-0.9902)
+## Ebom_mt  0.9051  (0.8561-0.9524)
+## Ebom_CAD 0.9477  (0.8911-0.9882)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9289   (0.8917-0.9594)
+## 0.9274   (0.8925-0.9579)
 ## 
 ## Global Estimate based on harmonic mean of statistic
-## 0.9269   (0.8882-0.959)</code></pre>
+## 0.9255   (0.8866-0.9524)</code></pre>
 </div>
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
@@ -520,7 +521,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       Zulu                        
-##  date     2016-07-05</code></pre>
+##  date     2016-07-06</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-4   2016-03-01 CRAN (R 3.3.1)

@@ -230,6 +230,7 @@ $(document).ready(function () {
               <li class="dropdown-header">For microsatellite data:</li>
               <li><a href="startMicrosatellite.html">Basic statistics</a></li>
               <li><a href="2015-12-15-microsatellite-differentiation.html">Population differentiation</a></li>
+              <li><a href="LMM-Genetic-Diversity.html">Comparing genetic diversity using mixed models</a></li>
               <li class="divider"></li>
               <li class="dropdown-header">For SNP data:</li>
               <!-- <li class="divider"></li> -->
@@ -330,12 +331,24 @@ $(document).ready(function () {
 <h1>Resources</h1>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<p>As an example we’ll use the comparison in Allelic Richness among populations of the orchid bee Euglossa dilemma in the Yucatan peninsula (Soro et al. submitted). Specifically we ask whether the magnitute of isolation could affect the genetic diversity of Euglossa dilemma.The 24 sites where populations were sampled were assigned to 4 categories corresponding to different habitats : 1) Natural (N); 2) Disturbed (D); 3) City (C); 4) Island (I). We provide a data file (GenDivEuglossa.txt), where for each locality (population) under a certain habitat (fixed factor), Allelic Richness rariefied to a minimum sample size of 10 individuals(response variable), has been calculated at each locus (random factor). The data are stored in the file called <a href="https://github.com/nescent/popgenInfo/blob/master/data/GenDivEuglossa.txt">GenDivEuglossa.txt</a>.</p>
+<p>As an example we’ll use the comparison in Allelic Richness among populations of the orchid bee <em>Euglossa dilemma</em> in the Yucatan peninsula (Soro et al. submitted). Specifically we ask whether the magnitute of isolation could affect the genetic diversity of <em>E. dilemma</em>.The 24 sites where populations were sampled were assigned to 4 categories corresponding to different habitats:</p>
+<ol style="list-style-type: decimal">
+<li>Natural (N)</li>
+<li>Disturbed (D)</li>
+<li>City (C)</li>
+<li>Island (I)</li>
+</ol>
+<p>We provide a data file (GenDivEuglossa.txt), where for each locality (population) under a certain habitat (fixed factor), Allelic Richness rarefied to a minimum sample size of 10 individuals (response variable), has been calculated at each locus (random factor). The data are stored in the file called <a href="https://github.com/nescent/popgenInfo/blob/master/data/GenDivEuglossa.txt">GenDivEuglossa.txt</a>.</p>
 </div>
 <div id="packages" class="section level2">
 <h2>Packages</h2>
 <p>Packages required:</p>
-<p>Loading the required packages: lm4: Package for fitting linear and generalized linear mixed-effects models. MuMIn: Package mainly used for model selection and model averaging based on information criteria. Here we use the r.squaredGLMM function to calculate conditional and marginal coefficient of determination. multcomp: Package used for simultaneous inference in general parametric models. The glht function can be used for multiple comparisons in linear mixed effects models.</p>
+<p>Loading the required packages:</p>
+<ul>
+<li><em>lme4</em>: Package for fitting linear and generalized linear mixed-effects models.</li>
+<li><em>MuMIn</em>: Package mainly used for model selection and model averaging based on information criteria. Here we use the <code>r.squaredGLMM()</code> function to calculate conditional and marginal coefficient of determination.</li>
+<li><em>multcomp</em>: Package used for simultaneous inference in general parametric models. The <code>glht()</code> function can be used for multiple comparisons in linear mixed effects models.</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;lme4&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;MuMIn&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;multcomp&quot;</span>)</code></pre></div>
@@ -346,9 +359,8 @@ $(document).ready(function () {
 <div id="section-1-load-the-data" class="section level2">
 <h2>Section 1: Load the data</h2>
 <p>At first we need to load our dataset. We will import “GenDivEuglossa.txt”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GenDivEuglossa &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;../data/GenDivEuglossa.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
-<span class="kw">summary</span>(GenDivEuglossa)
-<span class="kw">str</span>(GenDivEuglossa)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GenDivEuglossa &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;GenDivEuglossa.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(GenDivEuglossa)</code></pre></div>
 <pre><code>##                                      Locality    Locus    Habitat
 ##  Bethania_N_Campeche                     : 5   ann04:24   C:25   
 ##  CampecheCity_C_Campeche                 : 5   ann08:24   D:50   
@@ -365,6 +377,7 @@ $(document).ready(function () {
 ##  3rd Qu.: 6.143  
 ##  Max.   :12.820  
 ## </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(GenDivEuglossa)</code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    120 obs. of  4 variables:
 ##  $ Locality       : Factor w/ 24 levels &quot;Bethania_N_Campeche&quot;,..: 6 6 6 6 6 14 14 14 14 14 ...
 ##  $ Locus          : Factor w/ 5 levels &quot;ann04&quot;,&quot;ann08&quot;,..: 5 4 3 1 2 5 4 3 1 2 ...
@@ -373,9 +386,9 @@ $(document).ready(function () {
 </div>
 <div id="section-2-data-analysischecking-assumptions" class="section level2">
 <h2>Section 2: Data analysis/Checking assumptions</h2>
-<p>Second, we build our model using the function lmer () from the lme4 package. With this command, we create a model with Allellic Richness as response with habitat and locus as fixed and random effects factors respectively. We modeled “habitat” as fixed because the four levels we chose (Natural, Disturbed, City and Island) correspond to four levels of progressive level of “isolation”, whose effect on the genetic diversity of Euglossa dilemma, we are interested in. Locus is our random factor since we are only interested to account for its variation. Locus has bee modeled as random because the five markers we used are a random sample of the theoretically many markers we could have used.</p>
+<p>Second, we build our model using the function <code>lmer()</code> from the <em>lme4</em> package. With this command, we create a model with Allelic Richness as response with habitat and locus as fixed and random effects factors respectively. We modeled “habitat” as fixed because the four levels we chose (Natural, Disturbed, City and Island) correspond to four levels of progressive level of “isolation”, whose effect on the genetic diversity of <em>E. dilemma</em>, we are interested in. Locus is our random factor since we are only interested to account for its variation. Locus has bee modeled as random because the five markers we used are a random sample of the theoretically many markers we could have used.</p>
 <p>Now lets look at the summary of our model. First we get several measures of model fit, including AIC, BIC, log likelihood and deviance. Then we get an estimate of the variance explained by the random effect (Locus). As you can see it is quite different from zero and thus important for our model. Next we have estimates of the fixed effects, with standard errors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelMANAG&lt;-<span class="kw">lmer</span>(AllelicRichness~Habitat+(<span class="dv">1</span>|Locus), GenDivEuglossa, <span class="dt">REML=</span><span class="ot">FALSE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelMANAG &lt;-<span class="st"> </span><span class="kw">lmer</span>(AllelicRichness ~<span class="st"> </span>Habitat +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>Locus), GenDivEuglossa, <span class="dt">REML =</span> <span class="ot">FALSE</span>)
 <span class="kw">summary</span>(modelMANAG)</code></pre></div>
 <pre><code>## Linear mixed model fit by maximum likelihood  [&#39;lmerMod&#39;]
 ## Formula: AllelicRichness ~ Habitat + (1 | Locus)
@@ -408,13 +421,13 @@ $(document).ready(function () {
 ## HabitatN -0.065  0.624  0.408</code></pre>
 <p>Now, we check our model assumptions. We check for normality and homogeneity by inspecting the residual plot. This plot depicts fitted values on the x-axis and residuals on the y-axis.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(modelMANAG)</code></pre></div>
-<p><img src="LMM-Genetic-Diversity_files/figure-html/unnamed-chunk-6-1.png" width="960" /></p>
+<p><img src="LMM-Genetic-Diversity_files/figure-html/unnamed-chunk-5-1.png" width="960" /></p>
 </div>
 <div id="section-3-summary-statistics" class="section level2">
 <h2>Section 3: Summary statistics</h2>
 <p>In order to test the effect of our fixed factor ‘Habitat’, we run a likelihood ratio test, comparing our model (modelMANAG), which includes the fixed factor “Habitat”, with a model (modelNULL) that excludes it.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelMANAG&lt;-<span class="kw">lmer</span>(AllelicRichness~Habitat+(<span class="dv">1</span>|Locus), GenDivEuglossa, <span class="dt">REML=</span><span class="ot">FALSE</span>)
-modelNULL&lt;-<span class="kw">lmer</span>(AllelicRichness~<span class="dv">1</span>+(<span class="dv">1</span>|Locus), GenDivEuglossa, <span class="dt">REML=</span><span class="ot">FALSE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelMANAG&lt;-<span class="kw">lmer</span>(AllelicRichness ~<span class="st"> </span>Habitat +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>Locus), GenDivEuglossa, <span class="dt">REML =</span> <span class="ot">FALSE</span>)
+modelNULL&lt;-<span class="kw">lmer</span>(AllelicRichness ~<span class="st"> </span><span class="dv">1</span> +<span class="st"> </span>(<span class="dv">1</span> |<span class="st"> </span>Locus), GenDivEuglossa, <span class="dt">REML =</span> <span class="ot">FALSE</span>)
 <span class="kw">anova</span>(modelMANAG, modelNULL)</code></pre></div>
 <pre><code>## Data: GenDivEuglossa
 ## Models:
@@ -429,8 +442,8 @@ modelNULL&lt;-<span class="kw">lmer</span>(AllelicRichness~<span class="dv">1</s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">r.squaredGLMM</span>(modelMANAG)</code></pre></div>
 <pre><code>##         R2m         R2c 
 ## 0.003800717 0.964593519</code></pre>
-<p>Finally we test for differences in Allelic Richness among different habitat types by Tukey HSD post-hoc comparisons. From the results we see that E. dilemma is particularly resilient to loss of natural habitat and only on islands did E. dilemma show significantly reduced genetic diversity.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">posthoc&lt;-<span class="kw">glht</span>(modelMANAG, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">Habitat =</span> <span class="st">&quot;Tukey&quot;</span>))
+<p>Finally we test for differences in Allelic Richness among different habitat types by Tukey HSD post-hoc comparisons. From the results we see that <em>E. dilemma</em> is particularly resilient to loss of natural habitat and only on islands did <em>E. dilemma</em> show significantly reduced genetic diversity.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">posthoc &lt;-<span class="st"> </span><span class="kw">glht</span>(modelMANAG, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">Habitat =</span> <span class="st">&quot;Tukey&quot;</span>))
 <span class="kw">summary</span>(posthoc)</code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
@@ -443,12 +456,12 @@ modelNULL&lt;-<span class="kw">lmer</span>(AllelicRichness~<span class="dv">1</s
 ## 
 ## Linear Hypotheses:
 ##            Estimate Std. Error z value Pr(&gt;|z|)   
-## D - C == 0  -0.0312     0.1546  -0.202  0.99698   
-## I - C == 0  -0.6464     0.2362  -2.737  0.02975 * 
-## N - C == 0   0.1613     0.1653   0.976  0.75670   
-## I - D == 0  -0.6152     0.2187  -2.813  0.02384 * 
-## N - D == 0   0.1925     0.1391   1.384  0.50004   
-## N - I == 0   0.8077     0.2264   3.568  0.00194 **
+## D - C == 0  -0.0312     0.1546  -0.202   0.9970   
+## I - C == 0  -0.6464     0.2362  -2.737   0.0301 * 
+## N - C == 0   0.1613     0.1653   0.976   0.7567   
+## I - D == 0  -0.6152     0.2187  -2.813   0.0245 * 
+## N - D == 0   0.1925     0.1391   1.384   0.5001   
+## N - I == 0   0.8077     0.2264   3.568   0.0021 **
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
@@ -456,18 +469,25 @@ modelNULL&lt;-<span class="kw">lmer</span>(AllelicRichness~<span class="dv">1</s
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>
-<p>LMM analyses showed that locality type had an effect on allelic richness in E. dilemma. The variance accounted for by locality type alone (marginal R2 of the fixed factor habitat (Nakagawa and Schielzeth 2013) was 0.3 %, while the variance accounted for by marker variability (conditional R2 (Nakagawa and Schielzeth 2013)) was 96.4%. This highlights how inherent inter-locus variability in genetic diversity could obscure any signal of genetic variability related to environmental variables unless inherent inter-locus variability is properly accounted for in analyses. The intensification of forest clearance on the Yucatan Peninsula and concomitant habitat fragmentation seem to have had little, if any, effect on neutral genetic diversity of E. dilemma, measured as allelic richness. Inhabiting an island, on the contrary, seemed to lower the allelic richness of E. dilemma.</p>
+<p>LMM analyses showed that locality type had an effect on allelic richness in <em>E. dilemma</em>. The variance accounted for by locality type alone (marginal R2 of the fixed factor habitat (Nakagawa and Schielzeth 2013) was 0.3 %, while the variance accounted for by marker variability (conditional R2 (Nakagawa and Schielzeth 2013)) was 96.4%. This highlights how inherent inter-locus variability in genetic diversity could obscure any signal of genetic variability related to environmental variables unless inherent inter-locus variability is properly accounted for in analyses. The intensification of forest clearance on the Yucatan Peninsula and concomitant habitat fragmentation seem to have had little, if any, effect on neutral genetic diversity of <em>E. dilemma</em>, measured as allelic richness. Inhabiting an island, on the contrary, seemed to lower the allelic richness of <em>E. dilemma</em>.</p>
 </div>
 <div id="contributors" class="section level1">
 <h1>Contributors</h1>
 <ul>
 <li>Panagiotis Theodorou (Author)</li>
 <li>Antonella Soro (Author)</li>
+<li>Margarita M. López- Uribe (Editor)</li>
+<li>Zhian N. Kamvar (Editor)</li>
 </ul>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
-<p>Crawley, M. J. (2007).The R Book. West Sussex: J. Wiley. Nakagawa, S. &amp; Schielzeth, H. (2013). A general and simple method for obtainin R2 from generalized linear mixed-e???ects models. Methods in Ecology and Evolution, 4,133-142. Petit, R.J., Deguilloux, M.F., Chat, J., Grivet, D., Garnier-Gere, P.&amp; Vendramin, G.G. (2005). Standardizing for microsatellite length in comparisons of genetic diversity. Molecualr Ecology, 14,885-890. Soro A., Quezada-Euan J. G., Theodorou P., Moritz R.F.A.,Paxton R.J. (2016). The population genetics of two orchid bees suggests high Ne, high dispersal, low diploid male production and only a effect of island isolation in lowering genetic diversity. (submitted to Conservation Genetics)</p>
+<ul>
+<li>Crawley, M. J. (2007).The R Book. West Sussex: J. Wiley. DOI: <a href="https://dx.doi.org/10.1002/9780470515075">10.1002/9780470515075</a></li>
+<li>Nakagawa, S. &amp; Schielzeth, H. (2013). A general and simple method for obtainin R2 from generalized linear mixed-effects models. Methods in Ecology and Evolution, 4, 133-142. DOI: <a href="https://dx.doi.org/10.1111/j.2041-210x.2012.00261.x">10.1111/j.2041-210x.2012.00261.x</a></li>
+<li>Petit, R.J., Deguilloux, M.F., Chat, J., Grivet, D., Garnier-Gere, P.&amp; Vendramin, G.G. (2005). Standardizing for microsatellite length in comparisons of genetic diversity. Molecualr Ecology, 14, 885-890. DOI: <a href="https://dx.doi.org/10.1111/j.1365-294X.2005.02446.x">10.1111/j.1365-294X.2005.02446.x</a></li>
+<li>Soro A., Quezada-Euan J. G., Theodorou P., Moritz R.F.A.,Paxton R.J. (2016). The population genetics of two orchid bees suggests high Ne, high dispersal, low diploid male production and only a effect of island isolation in lowering genetic diversity. (submitted to Conservation Genetics)</li>
+</ul>
 </div>
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
@@ -482,7 +502,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       Zulu                        
-##  date     2016-07-05</code></pre>
+##  date     2016-07-06</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package   * version date       source        
 ##  codetools   0.2-14  2015-07-15 CRAN (R 3.3.1)
