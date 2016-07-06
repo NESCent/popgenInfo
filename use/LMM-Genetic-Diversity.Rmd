@@ -126,9 +126,9 @@ The intensification of forest clearance on the Yucatan Peninsula and concomitant
 
 # References
 
-- Crawley, M. J. (2007).The R Book. West Sussex: J. Wiley.
-- Nakagawa, S. & Schielzeth, H. (2013). A general and simple method for obtainin R2 from generalized linear mixed-effects models. Methods in Ecology and Evolution, 4,133-142.
-- Petit, R.J., Deguilloux, M.F., Chat, J., Grivet, D., Garnier-Gere, P.& Vendramin, G.G. (2005). Standardizing for microsatellite length in comparisons of genetic diversity. Molecualr Ecology, 14,885-890.
+- Crawley, M. J. (2007).The R Book. West Sussex: J. Wiley. DOI: [10.1002/9780470515075](https://dx.doi.org/10.1002/9780470515075)
+- Nakagawa, S. & Schielzeth, H. (2013). A general and simple method for obtainin R2 from generalized linear mixed-effects models. Methods in Ecology and Evolution, 4, 133-142. DOI: [10.1111/j.2041-210x.2012.00261.x](https://dx.doi.org/10.1111/j.2041-210x.2012.00261.x)
+- Petit, R.J., Deguilloux, M.F., Chat, J., Grivet, D., Garnier-Gere, P.& Vendramin, G.G. (2005). Standardizing for microsatellite length in comparisons of genetic diversity. Molecualr Ecology, 14, 885-890. DOI: [10.1111/j.1365-294X.2005.02446.x](https://dx.doi.org/10.1111/j.1365-294X.2005.02446.x)
 - Soro A., Quezada-Euan J. G., Theodorou P., Moritz R.F.A.,Paxton R.J. (2016). The population genetics of two orchid bees suggests high Ne, high dispersal, low diploid male production and only a effect of island isolation in lowering genetic diversity. (submitted to Conservation Genetics)
 
 # Session Information
