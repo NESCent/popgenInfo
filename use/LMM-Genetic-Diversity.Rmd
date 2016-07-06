@@ -50,7 +50,7 @@ library("multcomp")
 
 At first we need to load our dataset. We will import "GenDivEuglossa.txt". 
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 GenDivEuglossa <- read.delim("../data/GenDivEuglossa.txt", header = TRUE)
 summary(GenDivEuglossa)
 str(GenDivEuglossa)
@@ -70,27 +70,14 @@ Second, we build our model using the function lmer () from the lme4 package. Wit
 
 Now lets look at the summary of our model. First we get several measures of model fit, including AIC, BIC, log likelihood and deviance. Then we get an estimate of the variance explained by the random effect (Locus). As you can see it is quite different from zero and thus important for our model. Next we have estimates of the fixed effects, with standard errors.
 
-```{r, eval=FALSE}
-modelMANAG<-lmer(AllelicRichness~Habitat+(1|Locus), GenDivEuglossa, REML=FALSE)
-summary(modelMANAG)
-```
-
-```{r, echo=FALSE}
-# Note: the code chunk above will be shown to the reader, but it will not run.
-# This code chunk will run, but will not be shown to the reader.
+```{r}
 modelMANAG<-lmer(AllelicRichness~Habitat+(1|Locus), GenDivEuglossa, REML=FALSE)
 summary(modelMANAG)
 ```
 
 Now, we check our model assumptions. We check for normality and homogeneity by inspecting the residual plot. This plot depicts fitted values on the x-axis and residuals on the y-axis.
 
-```{r, eval=FALSE}
-plot(modelMANAG)
-```
-
-```{r, echo=FALSE}
-# Note: the code chunk above will be shown to the reader, but it will not run.
-# This code chunk will run, but will not be shown to the reader.
+```{r}
 plot(modelMANAG)
 ```
 
@@ -98,15 +85,7 @@ plot(modelMANAG)
 
 In order to test the effect of our fixed factor 'Habitat', we run a likelihood ratio test, comparing our model (modelMANAG), which includes the fixed factor "Habitat", with a model (modelNULL) that excludes it.
 
-```{r, eval=FALSE}
-modelMANAG<-lmer(AllelicRichness~Habitat+(1|Locus), GenDivEuglossa, REML=FALSE)
-modelNULL<-lmer(AllelicRichness~1+(1|Locus), GenDivEuglossa, REML=FALSE)
-anova(modelMANAG, modelNULL)
-```
-
-```{r, echo=FALSE}
-# Note: the code chunk above will be shown to the reader, but it will not run.
-# This code chunk will run, but will not be shown to the reader.
+```{r}
 modelMANAG<-lmer(AllelicRichness~Habitat+(1|Locus), GenDivEuglossa, REML=FALSE)
 modelNULL<-lmer(AllelicRichness~1+(1|Locus), GenDivEuglossa, REML=FALSE)
 anova(modelMANAG, modelNULL)
@@ -114,28 +93,17 @@ anova(modelMANAG, modelNULL)
 
 As a goodness of fit measure of our model, we computed both the conditional and marginal coefficient of determination. We quantify the variance accounted by "Habitat" alone (marginal R2 (Nakagawa and Schielzeth 2013)) and the variance accounted for by marker variability (conditional R2 (Nakagawa and Schielzeth 2013)). 
 
-```{r, eval=FALSE}
-r.squaredGLMM(modelMANAG)
-```
-
-```{r,echo=FALSE}
-# Note: the code chunk above will be shown to the reader, but it will not run.
-# This code chunk will run, but will not be shown to the reader.
+```{r}
 r.squaredGLMM(modelMANAG)
 ```
 
 Finally we test for differences in Allelic Richness among different habitat types by Tukey HSD post-hoc comparisons.
 From the results we see that E. dilemma is particularly resilient to loss of natural habitat and only on islands did E. dilemma show significantly reduced genetic diversity.
 
-```{r, eval=FALSE}
+```{r}
 posthoc<-glht(modelMANAG, linfct = mcp(Habitat = "Tukey"))
 summary(posthoc)
 ```
-
-```{r, echo=FALSE}
-posthoc<-glht(modelMANAG, linfct = mcp(Habitat = "Tukey"))
-summary(posthoc)
-``` 
 
 # Conclusions
 
