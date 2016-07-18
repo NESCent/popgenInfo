@@ -13,6 +13,10 @@ held at [NESCent] March 16-20, 2015.
 
 ## Prerequisites and how this works
 
+An overview of and a detailed rationale for the building blocks of this resource and how they click together are described in the following publication:
+
+> Kamvar, Z. N., M. M. López-Uribe, S. Coughlan, N. J. Grünwald, H. Lapp, and S. Manel. 2016. "Developing Educational Resources for Population Genetics in R: An Open and Collaborative Approach." _Molecular Ecology Resources_. [doi:10.1111/1755-0998.12558].
+
 ### Building the Website with Docker
 
 The content of this resource is authored in Markdown and [R markdown]
@@ -64,9 +68,13 @@ We welcome contributions by the community. Please see the file
 that this project has adopted a [Contributor Code of Conduct](CONDUCT.md).
 By participating you agree to abide by its terms.
 
+Where appropriate, please acknowledge this site by citing the following publication:
+> Kamvar _et al_ (2016) "Developing Educational Resources for Population Genetics in R: An Open and Collaborative Approach." Molecular Ecology Resources. [doi:10.1111/1755-0998.12558].
+
 [NESCent]: http://nescent.org
 [Population Genetics in R hackathon]: https://github.com/NESCent/r-popgen-hackathon
 [R markdown]: http://rmarkdown.rstudio.com/
 [Circle CI]: http://circleci.com
 [Docker]: https://www.docker.com/whatisdocker/
 [Docker installation guides]: https://docs.docker.com/
+[doi:10.1111/1755-0998.12558]: http://doi.org/10.1111/1755-0998.12558

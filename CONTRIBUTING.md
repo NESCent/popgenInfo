@@ -4,7 +4,11 @@ title: "Creating and submitting vignettes"
 
 Vignettes are documents that outline topics in population genetics involving one or more R packages. These topics are based around biological questions and the type of data used in population genetics. They are generally more extensive than those found in package vignettes and are intended to provide R users with the necessary code and examples to solve biological questions. 
 
-The analyses outlined in the vignettes should be fast to run, ideally approximately two minutes or less. For example, if you are running permutations, set these to a small number in the workflow and encourage the user to increase the number themselves in order to reduce the time required. 
+The analyses outlined in the vignettes should be fast to run, ideally approximately two minutes or less. For example, if you are running permutations, set these to a small number in the workflow and encourage the user to increase the number themselves in order to reduce the time required.
+
+An overview of and initial experiences with the contribution process, its building blocks, and their rationale has been published in the following paper:
+
+> Kamvar, Z. N., M. M. López-Uribe, S. Coughlan, N. J. Grünwald, H. Lapp, and S. Manel. 2016. "Developing Educational Resources for Population Genetics in R: An Open and Collaborative Approach." _Molecular Ecology Resources_. [doi:10.1111/1755-0998.12558].
 
 # Who should contribute?
 
@@ -85,3 +89,5 @@ We encourage contributors to use existing data sets for their vignettes. If uplo
 # Code of Conduct
 
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.html). By participating in this project you agree to abide by its terms.
+
+[doi:10.1111/1755-0998.12558]: http://doi.org/10.1111/1755-0998.12558
