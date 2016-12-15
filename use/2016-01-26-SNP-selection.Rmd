@@ -34,6 +34,13 @@ zero copies of the reference allele, 1 means one copy of the reference allele
 (i.e. heterozygote), and 2 means two copies of the reference allele.
 
 
+```{r setup, include = FALSE}
+# This chunk is not included, it's used to set the working directory such that
+# it makes sense to the user when reading in data.
+knitr::opts_knit$set(root.dir = "..")
+```
+
+
 # Resources/Packages required
 
 - *PCAdapt*: http://membres-timc.imag.fr/Michael.Blum/PCAdapt.html
@@ -65,13 +72,8 @@ library("ggplot2")
  
 ## Section 1: Load the data
 
-```{r, load_data_show, eval=FALSE}
-sel <- read.table("SNPselection1.txt", head = TRUE)
-dim(sel)
-```
-
-```{r, load_data_evaluate, echo=FALSE}
-sel <- read.table("../data/SNPselection1.txt", head = TRUE)
+```{r, load_data}
+sel <- read.table("data/SNPselection1.txt", head = TRUE)
 dim(sel)
 ```
 
@@ -95,20 +97,32 @@ distribution of the p-values using a Q-Q plot. The authors suggest to use false
 discovery rate (q-value) to provide a list of outliers.
 
 > Note: *PCAdapt* expects the incoming matrix to have samples in columns and
-> loci in rows. Because our data is the opposite, we need to tell the `pcadapt()`
-> function to transpose the matrix before analysis with `transpose = TRUE`.
+> loci in rows. Because our data is the opposite, we need to transpose our data
+> matrix with the `t()` function.
 
-```{r, PCAdapt}
-
+```{r PCAdapt_matrix}
 genotype <- sel[, 3:ncol(sel)]
 dim(genotype)
+# As of version 3.0.3, PCAdapt does not allow matrix input, so the input must be
+# stored in a separate file. We will store this in a temporary file that will be
+# automatically cleaned up after use.
+genotype_file <- tempfile()
+write.table(x = t(genotype), # transposing the genotype matrix with t()
+            file = genotype_file, 
+            sep = " ", 
+            col.names = FALSE, 
+            row.names = FALSE)
+```
+
+
+```{r, PCAdapt}
 K <- 25
-x <- pcadapt(genotype, K = K, transpose = TRUE)
+x <- pcadapt(genotype_file, K = K)
 plot(x, option = "screeplot") # 19 groups seems to be the correct value
 plot(x, option = "scores", pop = sel[, 1]) # how populations are shared among the 19 groups
 
 K <- 19
-x <- pcadapt(genotype, K = K, min.maf = 0, transpose = TRUE)
+x <- pcadapt(genotype_file, K = K, min.maf = 0)
 
 summary(x) # numerical quantities obtained after performing a PCA
 plot(x, option = "manhattan")
@@ -142,11 +156,9 @@ function `OutFLANK()` estimate q-values and provides a list of outliers.
 
 ```{r, outFLank}
 
-pop <- data.frame(sel[, 1])
-ind <- paste("pop", pop[, 1]) #vector with the name of population
+ind <- paste("pop", sel[, 1]) # vector with the name of population
 
-locinames <-
-as.character(seq(1:ncol(genotype))) #vector with the name of loci
+locinames <- as.character(seq(ncol(genotype))) # vector with the name of loci
 
 FstDataFrame <- MakeDiploidFSTMat(genotype, locinames, ind)
 plot(FstDataFrame$FST, FstDataFrame$FSTNoCorr, xlim = c(-0.01,0.3), 
