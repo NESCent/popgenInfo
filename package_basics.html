@@ -19,6 +19,7 @@
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
 <!---
 
 <style type="text/css">
@@ -191,10 +192,10 @@ button.code-folding-btn:focus {
 </style>
 
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -355,11 +356,11 @@ $(document).ready(function () {
 <pre><code>## Package: poppr
 ## Type: Package
 ## Title: Genetic Analysis of Populations with Mixed Reproduction
-## Version: 2.2.0
-## Date: 2016-06-08
+## Version: 2.3.0
+## Date: 2016-11-16
 ## Authors@R: c(person(c(&quot;Zhian&quot;, &quot;N.&quot;), &quot;Kamvar&quot;, role = c(&quot;cre&quot;,
-##        &quot;aut&quot;), email = &quot;kamvarz@science.oregonstate.edu&quot;),
-##        person(c(&quot;Javier&quot;, &quot;F.&quot;), &quot;Tabima&quot;, role = &quot;aut&quot;, email =
+##        &quot;aut&quot;), email = &quot;zkamvar@gmail.com&quot;), person(c(&quot;Javier&quot;,
+##        &quot;F.&quot;), &quot;Tabima&quot;, role = &quot;aut&quot;, email =
 ##        &quot;tabimaj@onid.orst.edu&quot;), person(c(&quot;Sydney&quot;, &quot;E.&quot;),
 ##        &quot;Everhart&quot;, role = c(&quot;ctb&quot;, &quot;dtc&quot;), email =
 ##        &quot;everhart@unl.edu&quot;), person(c(&quot;Jonah&quot;, &quot;C.&quot;), &quot;Brooks&quot;,
@@ -371,7 +372,7 @@ $(document).ready(function () {
 ##        &quot;briank.lists@gmail.com&quot;), person(c(&quot;Niklaus&quot;, &quot;J.&quot;),
 ##        &quot;Grunwald&quot;, role = &quot;ths&quot;, email =
 ##        &quot;grunwaln@science.oregonstate.edu&quot;))
-## Maintainer: Zhian N. Kamvar &lt;kamvarz@science.oregonstate.edu&gt;
+## Maintainer: Zhian N. Kamvar &lt;zkamvar@gmail.com&gt;
 ## Encoding: UTF-8
 ## URL: http://github.com/grunwaldlab/poppr,
 ##        http://grunwaldlab.github.io/Population_Genetics_in_R/,
@@ -391,14 +392,14 @@ $(document).ready(function () {
 ## VignetteBuilder: knitr
 ## RoxygenNote: 5.0.1
 ## NeedsCompilation: yes
-## Packaged: 2016-06-08 23:19:50 UTC; zhian
+## Packaged: 2016-11-23 04:11:40 UTC; zhian
 ## Author: Zhian N. Kamvar [cre, aut], Javier F. Tabima [aut], Sydney
 ##        E. Everhart [ctb, dtc], Jonah C. Brooks [aut], Stacy A.
 ##        Krueger-Hadfield [ctb], Erik Sotka [ctb], Brian J. Knaus
 ##        [ctb], Niklaus J. Grunwald [ths]
 ## Repository: CRAN
-## Date/Publication: 2016-06-13 17:17:59
-## Built: R 3.3.1; x86_64-pc-linux-gnu; 2016-07-12 18:05:08 UTC; unix
+## Date/Publication: 2016-11-23 17:45:12
+## Built: R 3.3.2; x86_64-pc-linux-gnu; 2016-12-14 20:37:10 UTC; unix
 ## 
 ## -- File: /usr/local/lib/R/site-library/poppr/Meta/package.rds</code></pre>
 </div>
@@ -450,7 +451,7 @@ $(document).ready(function () {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/RtmpGkXZqK/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/RtmpQvfqzv/R-lib&quot;</code></pre>
 <p>After looking at the documentation, we know that we want to change the values <code>devtools.desc.author</code>, <code>devtools.desc.license</code>, <code>devtools.name</code>. We will also add a “Maintainer” field to the DESCRIPTION file (tells users who to blame). The others don’t matter for now. We can add them in thusly (Note, I am using my name; you should obviously use your own):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">authors_at_r &lt;-<span class="st"> </span><span class="kw">paste0</span>(
   <span class="st">&quot;&#39;&quot;</span>,
@@ -489,7 +490,7 @@ $(document).ready(function () {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/RtmpGkXZqK/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/RtmpQvfqzv/R-lib&quot;</code></pre>
 <blockquote>
 <p>It is much easier to edit the DESCRIPTION file by hand afterward. This simply demonstrates how you can get started.</p>
 </blockquote>
@@ -501,7 +502,7 @@ $(document).ready(function () {
 ## Version: 0.0.0.9000
 ## Authors@R: &#39;Zhian N. Kamvar &lt;kamvarz@science.oregonstate.edu&gt; [aut, cre]&#39;
 ## Description: What the package does (one paragraph).
-## Depends: R (&gt;= 3.3.1)
+## Depends: R (&gt;= 3.3.2)
 ## License: GPL-3
 ## Encoding: UTF-8
 ## LazyData: true
@@ -530,30 +531,31 @@ $(document).ready(function () {
 devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
-##  version  R version 3.3.1 (2016-06-21)
+##  version  R version 3.3.2 (2016-10-31)
 ##  system   x86_64, linux-gnu           
-##  ui       X11                         
+##  ui       unknown                     
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
-##  tz       Zulu                        
-##  date     2016-07-18</code></pre>
+##  tz       &lt;NA&gt;                        
+##  date     2016-12-15</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package   * version date       source        
-##  devtools  * 1.12.0  2016-06-24 CRAN (R 3.3.1)
-##  digest      0.6.9   2016-01-08 CRAN (R 3.3.1)
-##  evaluate    0.9     2016-04-29 CRAN (R 3.3.1)
-##  formatR     1.4     2016-05-09 CRAN (R 3.3.1)
-##  htmltools   0.3.5   2016-03-21 CRAN (R 3.3.1)
-##  knitr       1.13    2016-05-09 CRAN (R 3.3.1)
-##  magrittr    1.5     2014-11-22 CRAN (R 3.3.1)
-##  memoise     1.0.0   2016-01-29 CRAN (R 3.3.1)
-##  Rcpp        0.12.5  2016-05-14 CRAN (R 3.3.1)
-##  rmarkdown   1.0     2016-07-08 CRAN (R 3.3.1)
-##  stringi     1.1.1   2016-05-27 CRAN (R 3.3.1)
-##  stringr     1.0.0   2015-04-30 CRAN (R 3.3.1)
-##  whisker     0.3-2   2013-04-28 CRAN (R 3.3.1)
-##  withr       1.0.2   2016-06-20 CRAN (R 3.3.1)
-##  yaml        2.1.13  2014-06-12 CRAN (R 3.3.1)</code></pre>
+##  backports   1.0.4   2016-10-24 CRAN (R 3.3.2)
+##  devtools  * 1.12.0  2016-12-05 CRAN (R 3.3.2)
+##  digest      0.6.10  2016-08-02 CRAN (R 3.3.2)
+##  evaluate    0.10    2016-10-11 CRAN (R 3.3.2)
+##  htmltools   0.3.5   2016-03-21 CRAN (R 3.3.2)
+##  knitr       1.15.1  2016-11-22 CRAN (R 3.3.2)
+##  magrittr    1.5     2014-11-22 CRAN (R 3.3.2)
+##  memoise     1.0.0   2016-01-29 CRAN (R 3.3.2)
+##  Rcpp        0.12.8  2016-11-17 CRAN (R 3.3.2)
+##  rmarkdown   1.2     2016-11-21 CRAN (R 3.3.2)
+##  rprojroot   1.1     2016-10-29 CRAN (R 3.3.2)
+##  stringi     1.1.2   2016-10-01 CRAN (R 3.3.2)
+##  stringr     1.1.0   2016-08-19 CRAN (R 3.3.2)
+##  whisker     0.3-2   2013-04-28 CRAN (R 3.3.2)
+##  withr       1.0.2   2016-06-20 CRAN (R 3.3.2)
+##  yaml        2.1.14  2016-11-12 CRAN (R 3.3.2)</code></pre>
 </div>
 
 <!-- </div>
@@ -568,9 +570,13 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
+
 
 </script>
 

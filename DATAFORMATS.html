@@ -19,6 +19,7 @@
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
 <!---
 
 <style type="text/css">
@@ -148,10 +149,10 @@ button.code-folding-btn:focus {
 </style>
 
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -250,184 +251,184 @@ $(document).ready(function () {
 
 <p>The following table describes specialized objects to store data represented in population genetics packages. Conversion between all types is possible.</p>
 <p>Anyone developing a package for population genetic analysis is encouraged to use or build upon these data structures. If a new data structure is needed, please provide a conversion method to one or more of the classes listed below.</p>
-<table style="width:110%;">
+<table>
 <colgroup>
-<col width="50%" />
-<col width="29%" />
-<col width="30%" />
+<col width="45%" />
+<col width="26%" />
+<col width="27%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Class {type} (<em>package</em>)</th>
-<th align="left">Strengths</th>
-<th align="left">Weaknesses</th>
+<th>Class {type} (<em>package</em>)</th>
+<th>Strengths</th>
+<th>Weaknesses</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><strong>DNAbin</strong> {S3} (<em>ape</em>)</td>
-<td align="left">stores all sets of sequences (aligned or not)</td>
-<td align="left">less compact than 2-bit coding (but by a factor 4 at most)</td>
+<td><strong>DNAbin</strong> {S3} (<em>ape</em>)</td>
+<td>stores all sets of sequences (aligned or not)</td>
+<td>less compact than 2-bit coding (but by a factor 4 at most)</td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left">uses matrices (aligned) or lists so usual R’s commands (<code>names</code>, <code>rownames</code>, <code>[</code>, <code>[[</code>, <code>$</code>) can be used</td>
-<td align="left"></td>
+<td></td>
+<td>uses matrices (aligned) or lists so usual R’s commands (<code>names</code>, <code>rownames</code>, <code>[</code>, <code>[[</code>, <code>$</code>) can be used</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">many <code>as.DNAbin</code> methods in ape (inc. from BioConductor)</td>
-<td align="left"></td>
+<td></td>
+<td>many <code>as.DNAbin</code> methods in ape (inc. from BioConductor)</td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left">efficient functions in ape (<code>dist.dna</code>, <code>seg.sites</code>, <code>base.freq</code>, <code>read.FASTA</code>) and in pegas (<code>haplotype</code>)</td>
-<td align="left"></td>
+<td></td>
+<td>efficient functions in ape (<code>dist.dna</code>, <code>seg.sites</code>, <code>base.freq</code>, <code>read.FASTA</code>) and in pegas (<code>haplotype</code>)</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>loci</strong> {S3} (<em>pegas</em>)</td>
-<td align="left">low memory usage</td>
-<td align="left">not really appropriate for some analyses (e.g., multivariate analyses)</td>
+<td><strong>loci</strong> {S3} (<em>pegas</em>)</td>
+<td>low memory usage</td>
+<td>not really appropriate for some analyses (e.g., multivariate analyses)</td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left">all levels of ploidy and any number of alleles</td>
-<td align="left">needs to improve the treatment of NA’s (especially when data are read with read.vcf()</td>
+<td></td>
+<td>all levels of ploidy and any number of alleles</td>
+<td>needs to improve the treatment of NA’s (especially when data are read with read.vcf()</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">genotypes can be phased</td>
-<td align="left"></td>
+<td></td>
+<td>genotypes can be phased</td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left">any kind of individual data can be associated in the data frame</td>
-<td align="left"></td>
+<td></td>
+<td>any kind of individual data can be associated in the data frame</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">efficient to compute genotype and allele frequencies</td>
-<td align="left"></td>
+<td></td>
+<td>efficient to compute genotype and allele frequencies</td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left"><strong>genind</strong> {S4} (<em>adegenet</em>)</td>
-<td align="left">stores allelic counts; ideal for multivariate analyses</td>
-<td align="left">requires more memory</td>
+<td><strong>genind</strong> {S4} (<em>adegenet</em>)</td>
+<td>stores allelic counts; ideal for multivariate analyses</td>
+<td>requires more memory</td>
 </tr>
 <tr class="odd">
-<td align="left"> </td>
-<td align="left">additional slots for individual data</td>
-<td align="left">less efficient to compute frequencies</td>
+<td> </td>
+<td>additional slots for individual data</td>
+<td>less efficient to compute frequencies</td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left">additional slot for population strata</td>
-<td align="left"></td>
+<td></td>
+<td>additional slot for population strata</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">all levels of ploidy</td>
-<td align="left"></td>
+<td></td>
+<td>all levels of ploidy</td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left"><strong>genpop</strong> {S4} (<em>adegenet</em>)</td>
-<td align="left">equivalent to genind at group level; ideal for multivariate analysis</td>
-<td align="left">requires more memory</td>
+<td><strong>genpop</strong> {S4} (<em>adegenet</em>)</td>
+<td>equivalent to genind at group level; ideal for multivariate analysis</td>
+<td>requires more memory</td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>genlight</strong> {S4} (<em>adegenet</em>)</td>
-<td align="left">stores binary SNPs using bit-level coding; very memory efficient</td>
-<td align="left">more computationally intensive to handle; less functionalities</td>
+<td><strong>genlight</strong> {S4} (<em>adegenet</em>)</td>
+<td>stores binary SNPs using bit-level coding; very memory efficient</td>
+<td>more computationally intensive to handle; less functionalities</td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left">additional slots for individual data and population strata</td>
-<td align="left"></td>
+<td></td>
+<td>additional slots for individual data and population strata</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">all levels of ploidy</td>
-<td align="left">assumes bi-allelic loci</td>
+<td></td>
+<td>all levels of ploidy</td>
+<td>assumes bi-allelic loci</td>
 </tr>
 <tr class="even">
-<td align="left"><strong>genclone</strong> {S4} (<em>poppr</em>)</td>
-<td align="left">inherits genind object; gains all advantages</td>
-<td align="left">all the same weaknesses plus slightly more memory</td>
+<td><strong>genclone</strong> {S4} (<em>poppr</em>)</td>
+<td>inherits genind object; gains all advantages</td>
+<td>all the same weaknesses plus slightly more memory</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">stores multilocus genotype/lineage definitions (<code>@mlg</code> slot) for clonal populations</td>
-<td align="left"></td>
+<td></td>
+<td>stores multilocus genotype/lineage definitions (<code>@mlg</code> slot) for clonal populations</td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left"><strong>snpclone</strong> {S4} (<em>poppr</em>)</td>
-<td align="left">inherits genlight object; gains all advantages</td>
-<td align="left">all the same weaknesses plus slightly more memory</td>
+<td><strong>snpclone</strong> {S4} (<em>poppr</em>)</td>
+<td>inherits genlight object; gains all advantages</td>
+<td>all the same weaknesses plus slightly more memory</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">stores multilocus genotype/lineage definitions (<code>@mlg</code> slot) for clonal populations</td>
-<td align="left"></td>
+<td></td>
+<td>stores multilocus genotype/lineage definitions (<code>@mlg</code> slot) for clonal populations</td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left"><strong>genambig</strong> {S4} (<em>polysat</em>)</td>
-<td align="left">stores microsatellite data with ambiguous ploidy</td>
-<td align="left">does not handle any other data type</td>
+<td><strong>genambig</strong> {S4} (<em>polysat</em>)</td>
+<td>stores microsatellite data with ambiguous ploidy</td>
+<td>does not handle any other data type</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">exports to genpop objects</td>
-<td align="left">cannot easily be transferred to any other object</td>
+<td></td>
+<td>exports to genpop objects</td>
+<td>cannot easily be transferred to any other object</td>
 </tr>
 <tr class="even">
-<td align="left"><strong>phyDat</strong> {S3} (<em>phangorn</em>)</td>
-<td align="left">very general inspired by R <code>data.frame</code>, <code>factor</code> and <code>contrasts</code>, can contain any discrete data type; nucleotides, amino acids and codons have some more support</td>
-<td align="left">designed having phylogenetic analysis in mind; requires alignments, where all sequences have same length</td>
+<td><strong>phyDat</strong> {S3} (<em>phangorn</em>)</td>
+<td>very general inspired by R <code>data.frame</code>, <code>factor</code> and <code>contrasts</code>, can contain any discrete data type; nucleotides, amino acids and codons have some more support</td>
+<td>designed having phylogenetic analysis in mind; requires alignments, where all sequences have same length</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">can be converted to and from <code>DNAbin</code> objects (<code>as.DNAbin</code> / <code>as.phyDat</code>)</td>
-<td align="left"></td>
+<td></td>
+<td>can be converted to and from <code>DNAbin</code> objects (<code>as.DNAbin</code> / <code>as.phyDat</code>)</td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left">a few generic functions work on it: <code>c</code>, <code>unique</code>, <code>subset</code> and utility functions <code>baseFreq</code>, <code>allSitePattern</code>, etc.</td>
-<td align="left">data are not necessarily very memory efficient (as integer + contrast matrix), but stores only unique site patterns and their weights (as double)</td>
+<td></td>
+<td>a few generic functions work on it: <code>c</code>, <code>unique</code>, <code>subset</code> and utility functions <code>baseFreq</code>, <code>allSitePattern</code>, etc.</td>
+<td>data are not necessarily very memory efficient (as integer + contrast matrix), but stores only unique site patterns and their weights (as double)</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">“efficient” maximum likelihood, maximum parsimony and distance functions in phangorn</td>
-<td align="left"></td>
+<td></td>
+<td>“efficient” maximum likelihood, maximum parsimony and distance functions in phangorn</td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left"><strong>gtype</strong> {S3} (<em>strataG</em>)</td>
-<td align="left">a simple R <code>list</code> containing a <code>matrix</code> where the first column is a stratification scheme and columns afterward are either haplotypes or diploid loci. If haploid data, the <code>gtype</code> object can also contain a list of DNA sequences.</td>
-<td align="left">Can likely be made more efficient in terms of storage and preprocessing for other analytical routines in package</td>
+<td><strong>gtype</strong> {S3} (<em>strataG</em>)</td>
+<td>a simple R <code>list</code> containing a <code>matrix</code> where the first column is a stratification scheme and columns afterward are either haplotypes or diploid loci. If haploid data, the <code>gtype</code> object can also contain a list of DNA sequences.</td>
+<td>Can likely be made more efficient in terms of storage and preprocessing for other analytical routines in package</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">can be converted to <code>data.frame</code> or <code>matrix</code> with appropriate <code>as.</code> functions.</td>
-<td align="left"></td>
+<td></td>
+<td>can be converted to <code>data.frame</code> or <code>matrix</code> with appropriate <code>as.</code> functions.</td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left">has manipulation functions like <code>subset</code> which will select certain strata and/or loci, <code>merge</code> to combine mulitple <code>gtypes</code>, and <code>summary</code>.</td>
-<td align="left"></td>
+<td></td>
+<td>has manipulation functions like <code>subset</code> which will select certain strata and/or loci, <code>merge</code> to combine mulitple <code>gtypes</code>, and <code>summary</code>.</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">can create input files for Genepop, STRUCTURE, fastsimcoal, Arlequin, MEGA, and PHASE</td>
-<td align="left"></td>
+<td></td>
+<td>can create input files for Genepop, STRUCTURE, fastsimcoal, Arlequin, MEGA, and PHASE</td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left"><strong>multiDNA</strong> {S4} (<em>apex</em>)</td>
-<td align="left">stores multiple <code>DNAbin</code> objects from <em>ape</em></td>
-<td align="left"></td>
+<td><strong>multiDNA</strong> {S4} (<em>apex</em>)</td>
+<td>stores multiple <code>DNAbin</code> objects from <em>ape</em></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>multiPhyDat</strong> {S4} (<em>apex</em>)</td>
-<td align="left">stores multiple <code>phyDat</code> objects from <em>phangorn</em></td>
-<td align="left"></td>
+<td><strong>multiPhyDat</strong> {S4} (<em>apex</em>)</td>
+<td>stores multiple <code>phyDat</code> objects from <em>phangorn</em></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -444,9 +445,13 @@ $(document).ready(function () {
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
+
 
 </script>
 
