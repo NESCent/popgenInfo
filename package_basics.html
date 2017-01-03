@@ -239,6 +239,7 @@ $(document).ready(function () {
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
               <li><a href="2015-05-18-Dist-SNP.html">Genetic distance (individual-based)</a></li>
               <li><a href="2016-01-26-SNP-selection.html">Signals of selection</a></li>
+			  <li><a href="2016-12-13_MEM_outlier.html">Spatial Outlier Detection</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -399,7 +400,7 @@ $(document).ready(function () {
 ##        [ctb], Niklaus J. Grunwald [ths]
 ## Repository: CRAN
 ## Date/Publication: 2016-11-23 17:45:12
-## Built: R 3.3.2; x86_64-pc-linux-gnu; 2016-12-14 20:37:10 UTC; unix
+## Built: R 3.3.2; x86_64-pc-linux-gnu; 2016-12-31 09:49:54 UTC; unix
 ## 
 ## -- File: /usr/local/lib/R/site-library/poppr/Meta/package.rds</code></pre>
 </div>
@@ -451,7 +452,7 @@ $(document).ready(function () {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/RtmpQvfqzv/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/Rtmp6r9rgQ/R-lib&quot;</code></pre>
 <p>After looking at the documentation, we know that we want to change the values <code>devtools.desc.author</code>, <code>devtools.desc.license</code>, <code>devtools.name</code>. We will also add a “Maintainer” field to the DESCRIPTION file (tells users who to blame). The others don’t matter for now. We can add them in thusly (Note, I am using my name; you should obviously use your own):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">authors_at_r &lt;-<span class="st"> </span><span class="kw">paste0</span>(
   <span class="st">&quot;&#39;&quot;</span>,
@@ -490,7 +491,7 @@ $(document).ready(function () {
 ## [1] &quot;~/R-dev&quot;
 ## 
 ## $devtools.revdep.libpath
-## [1] &quot;/tmp/RtmpQvfqzv/R-lib&quot;</code></pre>
+## [1] &quot;/tmp/Rtmp6r9rgQ/R-lib&quot;</code></pre>
 <blockquote>
 <p>It is much easier to edit the DESCRIPTION file by hand afterward. This simply demonstrates how you can get started.</p>
 </blockquote>
@@ -533,11 +534,11 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>##  setting  value                       
 ##  version  R version 3.3.2 (2016-10-31)
 ##  system   x86_64, linux-gnu           
-##  ui       unknown                     
+##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       &lt;NA&gt;                        
-##  date     2016-12-15</code></pre>
+##  date     2017-01-03</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package   * version date       source        
 ##  backports   1.0.4   2016-10-24 CRAN (R 3.3.2)
@@ -549,7 +550,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  magrittr    1.5     2014-11-22 CRAN (R 3.3.2)
 ##  memoise     1.0.0   2016-01-29 CRAN (R 3.3.2)
 ##  Rcpp        0.12.8  2016-11-17 CRAN (R 3.3.2)
-##  rmarkdown   1.2     2016-11-21 CRAN (R 3.3.2)
+##  rmarkdown   1.3     2016-12-21 CRAN (R 3.3.2)
 ##  rprojroot   1.1     2016-10-29 CRAN (R 3.3.2)
 ##  stringi     1.1.2   2016-10-01 CRAN (R 3.3.2)
 ##  stringr     1.1.0   2016-08-19 CRAN (R 3.3.2)

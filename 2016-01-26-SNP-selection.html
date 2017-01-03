@@ -239,6 +239,7 @@ $(document).ready(function () {
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
               <li><a href="2015-05-18-Dist-SNP.html">Genetic distance (individual-based)</a></li>
               <li><a href="2016-01-26-SNP-selection.html">Signals of selection</a></li>
+			  <li><a href="2016-12-13_MEM_outlier.html">Spatial Outlier Detection</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -369,7 +370,7 @@ genotype_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
             <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K &lt;-<span class="st"> </span><span class="dv">25</span>
 x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(genotype_file, <span class="dt">K =</span> K)</code></pre></div>
-<pre><code>## Reading file /tmp/RtmpV9vNT2/file11dbee482...
+<pre><code>## Reading file /tmp/RtmpmKqB49/file144eeafdf...
 ## Number of SNPs: 3084
 ## Number of individuals: 509
 ## Number of SNPs with minor allele frequency lower than 0.05 ignored: 0</code></pre>
@@ -379,7 +380,7 @@ x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(genotype_file, <
 <p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-2.png" width="960" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K &lt;-<span class="st"> </span><span class="dv">19</span>
 x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(genotype_file, <span class="dt">K =</span> K, <span class="dt">min.maf =</span> <span class="dv">0</span>)</code></pre></div>
-<pre><code>## Reading file /tmp/RtmpV9vNT2/file11dbee482...
+<pre><code>## Reading file /tmp/RtmpmKqB49/file144eeafdf...
 ## Number of SNPs: 3084
 ## Number of individuals: 509
 ## Number of SNPs with minor allele frequency lower than 0 ignored: 0</code></pre>
@@ -580,18 +581,18 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>##  setting  value                       
 ##  version  R version 3.3.2 (2016-10-31)
 ##  system   x86_64, linux-gnu           
-##  ui       unknown                     
+##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       &lt;NA&gt;                        
-##  date     2016-12-15</code></pre>
+##  date     2017-01-03</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package     * version date       source                            
 ##  ape           4.0     2016-12-01 CRAN (R 3.3.2)                    
 ##  assertthat    0.1     2013-12-06 CRAN (R 3.3.2)                    
 ##  backports     1.0.4   2016-10-24 CRAN (R 3.3.2)                    
 ##  cluster       2.0.5   2016-10-08 CRAN (R 3.3.2)                    
-##  colorspace    1.3-1   2016-11-18 CRAN (R 3.3.2)                    
+##  colorspace    1.3-2   2016-12-14 CRAN (R 3.3.2)                    
 ##  DEoptimR      1.0-8   2016-11-19 CRAN (R 3.3.2)                    
 ##  devtools      1.12.0  2016-12-05 CRAN (R 3.3.2)                    
 ##  digest        0.6.10  2016-08-02 CRAN (R 3.3.2)                    
@@ -612,16 +613,16 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  munsell       0.4.3   2016-02-13 CRAN (R 3.3.2)                    
 ##  mvtnorm       1.0-5   2016-02-02 CRAN (R 3.3.2)                    
 ##  nlme          3.1-128 2016-05-10 CRAN (R 3.3.2)                    
-##  OutFLANK    * 0.1     2016-12-14 Github (whitlock/OutFLANK@1379c26)
+##  OutFLANK    * 0.1     2016-12-31 Github (whitlock/OutFLANK@1379c26)
 ##  pcadapt     * 3.0.3   2016-11-03 CRAN (R 3.3.2)                    
 ##  pcaPP         1.9-61  2016-10-11 CRAN (R 3.3.2)                    
 ##  permute       0.9-4   2016-09-09 CRAN (R 3.3.2)                    
 ##  pinfsc50      1.1.0   2016-12-02 CRAN (R 3.3.2)                    
 ##  plyr          1.8.4   2016-06-08 CRAN (R 3.3.2)                    
-##  qvalue      * 2.6.0   2016-12-14 Bioconductor                      
+##  qvalue      * 2.6.0   2016-12-31 Bioconductor                      
 ##  Rcpp          0.12.8  2016-11-17 CRAN (R 3.3.2)                    
 ##  reshape2      1.4.2   2016-10-22 CRAN (R 3.3.2)                    
-##  rmarkdown     1.2     2016-11-21 CRAN (R 3.3.2)                    
+##  rmarkdown     1.3     2016-12-21 CRAN (R 3.3.2)                    
 ##  robust      * 0.4-16  2014-05-18 CRAN (R 3.3.2)                    
 ##  robustbase  * 0.92-7  2016-12-09 CRAN (R 3.3.2)                    
 ##  rprojroot     1.1     2016-10-29 CRAN (R 3.3.2)                    

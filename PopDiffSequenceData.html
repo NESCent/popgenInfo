@@ -239,6 +239,7 @@ $(document).ready(function () {
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
               <li><a href="2015-05-18-Dist-SNP.html">Genetic distance (individual-based)</a></li>
               <li><a href="2016-01-26-SNP-selection.html">Signals of selection</a></li>
+			  <li><a href="2016-12-13_MEM_outlier.html">Spatial Outlier Detection</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -437,32 +438,32 @@ beeData.gid</code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  0.1861  (0.081-0.291)
-## Ebom_CAD 0.2097  (0.076-0.344)
+## Ebom_mt  0.1861  (0.096-0.276)
+## Ebom_CAD 0.2097  (0.089-0.330)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.1980   (0.119-0.277)</code></pre>
+## 0.1980   (0.121-0.275)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, Gst_Hedrick) <span class="co"># for Hedrick&#39;s Gst</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  0.9059  (0.836-0.975)
-## Ebom_CAD 0.9550  (0.904-1.006)
+## Ebom_mt  0.9059  (0.846-0.966)
+## Ebom_CAD 0.9550  (0.908-1.002)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9316   (0.886-0.977)</code></pre>
+## 0.9316   (0.894-0.969)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, D_Jost)      <span class="co"># for Jost&#39;s D</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  0.8772  (0.785-0.970)
-## Ebom_CAD 0.9391  (0.871-1.008)
+## Ebom_mt  0.8772  (0.797-0.957)
+## Ebom_CAD 0.9391  (0.874-1.004)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9091   (0.848-0.970)
+## 0.9091   (0.858-0.960)
 ## 
 ## Global Estimate based on harmonic mean of statistic
-## 0.9071   (0.845-0.969)</code></pre>
+## 0.9071   (0.855-0.959)</code></pre>
 </div>
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
@@ -518,11 +519,11 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>##  setting  value                       
 ##  version  R version 3.3.2 (2016-10-31)
 ##  system   x86_64, linux-gnu           
-##  ui       unknown                     
+##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       &lt;NA&gt;                        
-##  date     2016-12-15</code></pre>
+##  date     2017-01-03</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-5   2016-12-13 CRAN (R 3.3.2)
@@ -534,7 +535,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  boot         1.3-18  2016-02-23 CRAN (R 3.3.2)
 ##  cluster      2.0.5   2016-10-08 CRAN (R 3.3.2)
 ##  coda         0.19-1  2016-12-08 CRAN (R 3.3.2)
-##  colorspace   1.3-1   2016-11-18 CRAN (R 3.3.2)
+##  colorspace   1.3-2   2016-12-14 CRAN (R 3.3.2)
 ##  DBI          0.5-1   2016-09-10 CRAN (R 3.3.2)
 ##  deldir       0.1-12  2016-03-06 CRAN (R 3.3.2)
 ##  devtools     1.12.0  2016-12-05 CRAN (R 3.3.2)
@@ -572,12 +573,12 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  R6           2.2.0   2016-10-05 CRAN (R 3.3.2)
 ##  Rcpp         0.12.8  2016-11-17 CRAN (R 3.3.2)
 ##  reshape2     1.4.2   2016-10-22 CRAN (R 3.3.2)
-##  rmarkdown    1.2     2016-11-21 CRAN (R 3.3.2)
+##  rmarkdown    1.3     2016-12-21 CRAN (R 3.3.2)
 ##  rprojroot    1.1     2016-10-29 CRAN (R 3.3.2)
 ##  scales       0.4.1   2016-11-09 CRAN (R 3.3.2)
 ##  seqinr       3.3-3   2016-10-13 CRAN (R 3.3.2)
 ##  shiny        0.14.2  2016-11-01 CRAN (R 3.3.2)
-##  sp           1.2-3   2016-04-14 CRAN (R 3.3.2)
+##  sp           1.2-4   2016-12-22 CRAN (R 3.3.2)
 ##  spdep        0.6-8   2016-09-21 CRAN (R 3.3.2)
 ##  stringi      1.1.2   2016-10-01 CRAN (R 3.3.2)
 ##  stringr      1.1.0   2016-08-19 CRAN (R 3.3.2)

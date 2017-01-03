@@ -239,6 +239,7 @@ $(document).ready(function () {
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
               <li><a href="2015-05-18-Dist-SNP.html">Genetic distance (individual-based)</a></li>
               <li><a href="2016-01-26-SNP-selection.html">Signals of selection</a></li>
+			  <li><a href="2016-12-13_MEM_outlier.html">Spatial Outlier Detection</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -411,23 +412,23 @@ basicstat &lt;-<span class="st"> </span><span class="kw">basic.stats</span>(nanc
 ## 
 ## $fis.ci
 ##         ll     hl
-## 1  -0.0249 0.2835
-## 2   0.1141 0.2650
-## 3   0.0662 0.2606
-## 4   0.1029 0.2329
-## 5   0.0309 0.2186
-## 6   0.0665 0.2935
-## 7   0.0821 0.2894
-## 8   0.0560 0.3504
-## 9  -0.2384 0.1090
-## 10 -0.0637 0.2377
-## 11  0.0862 0.2424
-## 12  0.0752 0.2693
-## 13 -0.0844 0.1180
-## 14  0.0325 0.2342
-## 15 -0.1747 0.0810
-## 16 -0.0654 0.1568
-## 17 -0.1239 0.1676</code></pre>
+## 1  -0.0194 0.2856
+## 2   0.1033 0.2670
+## 3   0.0609 0.2542
+## 4   0.1030 0.2221
+## 5   0.0344 0.2188
+## 6   0.0466 0.2831
+## 7   0.0693 0.2941
+## 8   0.0729 0.3296
+## 9  -0.2565 0.0923
+## 10 -0.0787 0.2330
+## 11  0.0834 0.2365
+## 12  0.0795 0.2540
+## 13 -0.0611 0.1250
+## 14  0.0053 0.2578
+## 15 -0.1575 0.1114
+## 16 -0.0594 0.1753
+## 17 -0.1175 0.1453</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(nancycats.hfstat) 
 <span class="kw">plot</span>(x, <span class="dt">cex =</span> <span class="fl">0.7</span>)</code></pre></div>
 <p><img src="startMicrosatellite_files/figure-html/basic_statistics-1.png" width="960" /></p>
@@ -476,11 +477,11 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>##  setting  value                       
 ##  version  R version 3.3.2 (2016-10-31)
 ##  system   x86_64, linux-gnu           
-##  ui       unknown                     
+##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       &lt;NA&gt;                        
-##  date     2016-12-15</code></pre>
+##  date     2017-01-03</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
 ##  ade4       * 1.7-5   2016-12-13 CRAN (R 3.3.2)
@@ -491,7 +492,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  boot         1.3-18  2016-02-23 CRAN (R 3.3.2)
 ##  cluster      2.0.5   2016-10-08 CRAN (R 3.3.2)
 ##  coda         0.19-1  2016-12-08 CRAN (R 3.3.2)
-##  colorspace   1.3-1   2016-11-18 CRAN (R 3.3.2)
+##  colorspace   1.3-2   2016-12-14 CRAN (R 3.3.2)
 ##  DBI          0.5-1   2016-09-10 CRAN (R 3.3.2)
 ##  deldir       0.1-12  2016-03-06 CRAN (R 3.3.2)
 ##  devtools     1.12.0  2016-12-05 CRAN (R 3.3.2)
@@ -525,12 +526,12 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  R6           2.2.0   2016-10-05 CRAN (R 3.3.2)
 ##  Rcpp         0.12.8  2016-11-17 CRAN (R 3.3.2)
 ##  reshape2     1.4.2   2016-10-22 CRAN (R 3.3.2)
-##  rmarkdown    1.2     2016-11-21 CRAN (R 3.3.2)
+##  rmarkdown    1.3     2016-12-21 CRAN (R 3.3.2)
 ##  rprojroot    1.1     2016-10-29 CRAN (R 3.3.2)
 ##  scales       0.4.1   2016-11-09 CRAN (R 3.3.2)
 ##  seqinr       3.3-3   2016-10-13 CRAN (R 3.3.2)
 ##  shiny        0.14.2  2016-11-01 CRAN (R 3.3.2)
-##  sp           1.2-3   2016-04-14 CRAN (R 3.3.2)
+##  sp           1.2-4   2016-12-22 CRAN (R 3.3.2)
 ##  spdep        0.6-8   2016-09-21 CRAN (R 3.3.2)
 ##  stringi      1.1.2   2016-10-01 CRAN (R 3.3.2)
 ##  stringr      1.1.0   2016-08-19 CRAN (R 3.3.2)

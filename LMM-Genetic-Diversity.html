@@ -239,6 +239,7 @@ $(document).ready(function () {
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
               <li><a href="2015-05-18-Dist-SNP.html">Genetic distance (individual-based)</a></li>
               <li><a href="2016-01-26-SNP-selection.html">Signals of selection</a></li>
+			  <li><a href="2016-12-13_MEM_outlier.html">Spatial Outlier Detection</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -458,11 +459,11 @@ modelNULL&lt;-<span class="kw">lmer</span>(AllelicRichness ~<span class="st"> </
 ## Linear Hypotheses:
 ##            Estimate Std. Error z value Pr(&gt;|z|)   
 ## D - C == 0  -0.0312     0.1546  -0.202  0.99698   
-## I - C == 0  -0.6464     0.2362  -2.737  0.02994 * 
-## N - C == 0   0.1613     0.1653   0.976  0.75669   
-## I - D == 0  -0.6152     0.2187  -2.813  0.02401 * 
-## N - D == 0   0.1925     0.1391   1.384  0.50008   
-## N - I == 0   0.8077     0.2264   3.568  0.00197 **
+## I - C == 0  -0.6464     0.2362  -2.737  0.02995 * 
+## N - C == 0   0.1613     0.1653   0.976  0.75668   
+## I - D == 0  -0.6152     0.2187  -2.813  0.02426 * 
+## N - D == 0   0.1925     0.1391   1.384  0.50006   
+## N - I == 0   0.8077     0.2264   3.568  0.00211 **
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
@@ -499,11 +500,11 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 <pre><code>##  setting  value                       
 ##  version  R version 3.3.2 (2016-10-31)
 ##  system   x86_64, linux-gnu           
-##  ui       unknown                     
+##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       &lt;NA&gt;                        
-##  date     2016-12-15</code></pre>
+##  date     2017-01-03</code></pre>
 <pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package   * version date       source        
 ##  backports   1.0.4   2016-10-24 CRAN (R 3.3.2)
@@ -526,7 +527,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  nlme        3.1-128 2016-05-10 CRAN (R 3.3.2)
 ##  nloptr      1.0.4   2014-08-04 CRAN (R 3.3.2)
 ##  Rcpp        0.12.8  2016-11-17 CRAN (R 3.3.2)
-##  rmarkdown   1.2     2016-11-21 CRAN (R 3.3.2)
+##  rmarkdown   1.3     2016-12-21 CRAN (R 3.3.2)
 ##  rprojroot   1.1     2016-10-29 CRAN (R 3.3.2)
 ##  sandwich    2.3-4   2015-09-24 CRAN (R 3.3.2)
 ##  stringi     1.1.2   2016-10-01 CRAN (R 3.3.2)
@@ -535,7 +536,7 @@ devtools::<span class="kw">session_info</span>()</code></pre></div>
 ##  TH.data   * 1.0-7   2016-01-28 CRAN (R 3.3.2)
 ##  withr       1.0.2   2016-06-20 CRAN (R 3.3.2)
 ##  yaml        2.1.14  2016-11-12 CRAN (R 3.3.2)
-##  zoo         1.7-13  2016-05-03 CRAN (R 3.3.2)</code></pre>
+##  zoo         1.7-14  2016-12-19 CRAN (R 3.3.2)</code></pre>
 </div>
 
 <!-- </div>
