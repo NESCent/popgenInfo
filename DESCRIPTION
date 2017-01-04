@@ -1,6 +1,6 @@
 Package: popgenInfo
 Title: popgenInfo is not really an R package, but this is here to list the dependencies for running all the vignettes.
-Version: 0.1
+Version: 0.2
 Authors: Zhian N. Kamvar,
   Margarita M. López-Uribe,
   Simone Coughan,
@@ -26,7 +26,13 @@ Imports:
   knitcitations,
   phangorn,
   phylobase,
-  phytools
+  phytools,
+  pcadapt,
+  lme4,
+  MuMIn,
+  multcomp,
+  raster,
+  viridis
 Suggests:
   BioStrings,
   qvalue
