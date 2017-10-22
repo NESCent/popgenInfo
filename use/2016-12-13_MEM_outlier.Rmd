@@ -41,7 +41,7 @@ library(viridis)
 
 ## Section 1: Load and inspect the data
 
-The dimensions of our data frame are 500 rows and 103 columns. Every row in the data frame contains information for one individual, so in this example we will be analyzing 500 individuals. Columns 1 and 2 are the X and Y UTM coordinates for each individual. Column 3 is a factor ("Env") indicating what type of habitat an individual is located in. Columns 4 through 103 are genotypes at 100 loci for each individual. These genotypes are provided as allele counts (0/1/2). Locus 1 (L1) is the locus under selection (responsive to the habitat factor "Env"). The remainder of the loci are neutral (L2 - L100). 
+The dimensions of our [data frame](https://raw.githubusercontent.com/NESCent/popgenInfo/master/data/MSOD_vignette_data.csv) are 500 rows and 103 columns. Every row in the data frame contains information for one individual, so in this example we will be analyzing 500 individuals. Columns 1 and 2 are the X and Y UTM coordinates for each individual. Column 3 is a factor ("Env") indicating what type of habitat an individual is located in. Columns 4 through 103 are genotypes at 100 loci for each individual. These genotypes are provided as allele counts (0/1/2). Locus 1 (L1) is the locus under selection (responsive to the habitat factor "Env"). The remainder of the loci are neutral (L2 - L100). 
 
 ```{r load}
 dat   <- read.csv("data/MSOD_vignette_data.csv") # All the data
