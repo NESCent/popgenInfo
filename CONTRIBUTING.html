@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -355,9 +355,9 @@ to keep your fork up to date with the master repository. <a href="https://help.g
 <li>From the command line, move to the <strong>popgenInfo</strong> directory using <code>cd popgenInfo</code></li>
 <li>Switch to your master branch with <code>git checkout master</code></li>
 <li><p>Update with</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">git</span> fetch upstream          <span class="co"># grab all the changes from NESCent</span>
-<span class="kw">git</span> merge upstream/master   <span class="co"># add them to your local fork</span>
-<span class="kw">git</span> push                    <span class="co"># push them up to your fork on github</span></code></pre></div></li>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="fu">git</span> fetch upstream          # grab all the changes from NESCent
+<span class="fu">git</span> merge upstream/master   # add them to your local fork
+<span class="fu">git</span> push                    # push them up to your fork on github</code></pre></div></li>
 </ol></li>
 <li>Create a branch for your changes using <code>git checkout -b Your_branch_name</code>.</li>
 <li>Add your vignette
@@ -430,7 +430,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

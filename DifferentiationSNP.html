@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -328,16 +328,16 @@ $(document).ready(function () {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Master_Pinus_data_genotype.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">check.names =</span> <span class="ot">FALSE</span>)   
 <span class="kw">dim</span>(Mydata) </code></pre></div>
 <pre><code>## [1]  550 3086</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ind &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$tree_id) <span class="co"># use later with adegenet (individual labels)</span>
-population &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$state) <span class="co"># use later with adegenet (population labels)</span>
-county &lt;-<span class="st"> </span>Mydata$county 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ind &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata<span class="op">$</span>tree_id) <span class="co"># use later with adegenet (individual labels)</span>
+population &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata<span class="op">$</span>state) <span class="co"># use later with adegenet (population labels)</span>
+county &lt;-<span class="st"> </span>Mydata<span class="op">$</span>county 
 <span class="kw">dim</span>(Mydata) <span class="co"># 550 individuals x 3082 SNPs</span></code></pre></div>
 <pre><code>## [1]  550 3086</code></pre>
 </div>
 <div id="data-conversion" class="section level3">
 <h3>Data conversion</h3>
 <p>To convert <code>Mydata</code> to a “genind” object (<em>adegenet</em>), the input should only contain genotypes. We decrease the number of SNPs to make the calculations faster and keep only 20 SNPs in the object <code>locus</code>. We then convert <code>Mydata1</code> to a “hierfstat” object (<code>Mydata2</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">locus   &lt;-<span class="st"> </span>Mydata[, <span class="dv">5</span>:<span class="dv">24</span>] 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">locus   &lt;-<span class="st"> </span>Mydata[, <span class="dv">5</span><span class="op">:</span><span class="dv">24</span>] 
 Mydata1 &lt;-<span class="st"> </span><span class="kw">df2genind</span>(locus, <span class="dt">ploidy =</span> <span class="dv">2</span>, <span class="dt">ind.names =</span> ind, <span class="dt">pop =</span> population, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
 Mydata1</code></pre></div>
 <pre><code>## /// GENIND OBJECT /////////
@@ -418,7 +418,7 @@ Mydata1</code></pre></div>
 <div id="hierarchical-f_st-tests-amova-for-snp-dataset" class="section level3">
 <h3>Hierarchical <span class="math inline">\(F_{st}\)</span> tests (=AMOVA for SNP dataset)</h3>
 <p>The function <code>varcomp.glob()</code> produces a Hierarchical <span class="math inline">\(F_{st}\)</span> (=AMOVA for SNPs or bi-allelic markers) It is possible to make permutations on the different levels: The function <code>test.g()</code> tests the effect of the population on genetic differentiation. Individuals are randomly permuted among states. The states influence genetic differentiation at a 5% level. With the function <code>test.between()</code>, the counties are permuted among states. The states influence significantly genetic structuring.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loci &lt;-<span class="st"> </span>Mydata2[, -<span class="dv">1</span>] <span class="co"># Remove the population column</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loci &lt;-<span class="st"> </span>Mydata2[, <span class="op">-</span><span class="dv">1</span>] <span class="co"># Remove the population column</span>
 <span class="kw">varcomp.glob</span>(<span class="dt">levels =</span> <span class="kw">data.frame</span>(population, county), loci, <span class="dt">diploid =</span> <span class="ot">TRUE</span>) </code></pre></div>
 <pre><code>## $loc
 ##                          [,1]          [,2]          [,3]       [,4]
@@ -454,41 +454,41 @@ Mydata1</code></pre></div>
 ## county     0.00000000 0.00000000 0.01829604</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test.g</span>(loci, <span class="dt">level =</span> population) </code></pre></div>
 <pre><code>## $g.star
-##   [1] 260.5297 216.3335 220.2240 222.0100 253.5008 241.8717 248.0382
-##   [8] 223.3143 229.8985 212.3708 252.8432 209.0847 236.6628 242.1262
-##  [15] 194.2421 235.2828 220.4039 211.6549 242.5383 187.9137 258.6989
-##  [22] 223.8577 192.4523 232.3658 213.1652 241.9819 238.1730 202.0798
-##  [29] 234.4804 235.5446 234.9952 224.5964 215.1480 204.1731 214.3815
-##  [36] 214.6349 214.3714 222.5092 198.8620 262.0002 208.5187 235.4410
-##  [43] 217.1556 211.5999 224.1621 248.7393 209.7324 192.7153 230.0311
-##  [50] 197.7011 223.3358 232.9960 207.2343 227.9032 235.8070 204.4477
-##  [57] 243.0616 202.6704 235.1158 218.7683 219.9284 228.5920 199.2378
-##  [64] 230.1254 199.9263 221.0018 200.2032 256.6499 222.7087 213.6543
-##  [71] 200.5704 270.3039 203.4829 230.8766 237.8876 226.4172 220.4239
-##  [78] 214.8304 192.1173 224.0235 213.6727 236.8981 211.2254 185.9821
-##  [85] 233.2732 208.4035 218.5635 211.7899 237.7030 233.5469 210.9506
-##  [92] 205.9765 240.1955 207.7381 187.1298 204.4788 236.9804 222.7857
-##  [99] 219.3257 378.7654
+##   [1] 229.2511 195.7171 189.1480 233.4216 210.1137 271.7029 200.6259
+##   [8] 218.0068 239.1179 208.8081 187.4422 197.2938 247.9774 250.9006
+##  [15] 223.6627 224.7373 205.9735 241.5322 228.8345 236.0038 213.0297
+##  [22] 216.3307 186.6939 201.2446 243.6919 206.6343 237.2070 222.6795
+##  [29] 218.8004 215.9884 181.0080 204.0818 204.4117 245.8890 209.0215
+##  [36] 226.6831 230.4259 237.6353 244.2798 213.3588 231.0548 222.4205
+##  [43] 198.3946 216.5259 194.2015 175.7164 243.0642 213.1475 216.0264
+##  [50] 217.9343 211.9965 222.9099 199.2883 199.0308 198.1951 216.5995
+##  [57] 218.1581 217.4462 218.4799 196.1199 212.3503 216.2169 255.7705
+##  [64] 211.8494 245.8233 231.8871 260.5366 235.2403 216.5615 200.7191
+##  [71] 223.4841 244.1205 221.6643 186.1479 201.3270 209.2627 224.6976
+##  [78] 239.7160 207.5407 233.4712 263.6123 181.4340 191.2091 206.0144
+##  [85] 194.3768 200.3829 227.0201 212.6518 214.5014 257.3936 216.1917
+##  [92] 244.8484 235.3235 191.1157 210.2893 272.7945 221.1965 268.6951
+##  [99] 208.3099 378.7654
 ## 
 ## $p.val
 ## [1] 0.01</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">test.between</span>(loci, <span class="dt">test.lev =</span> population, <span class="dt">rand.unit =</span> county, <span class="dt">nperm =</span> <span class="dv">100</span>) </code></pre></div>
 <pre><code>## $g.star
-##   [1] 303.8646 230.1035 247.6314 257.1789 294.5935 277.7621 259.0076
-##   [8] 244.0152 231.7291 231.8134 293.7544 294.9070 285.6019 234.6537
-##  [15] 244.7982 221.9155 208.5285 298.0680 255.8457 219.7808 281.9340
-##  [22] 276.6203 257.4497 285.6968 283.3965 272.0333 208.6551 259.5363
-##  [29] 282.8206 267.9550 268.5340 208.9065 219.5480 278.5734 259.2559
-##  [36] 258.6274 235.2248 249.2446 281.4034 217.6891 248.0391 243.1079
-##  [43] 300.2940 291.6670 240.3010 244.8921 290.2099 206.4562 249.0657
-##  [50] 252.1999 293.1325 243.7703 229.3889 240.2796 266.7870 255.2519
-##  [57] 258.5295 249.8591 207.9150 290.4364 266.2202 239.2599 251.5536
-##  [64] 294.8112 242.0585 248.8689 284.3053 240.3569 280.1045 259.7342
-##  [71] 247.7135 263.5705 240.7986 239.6524 289.5585 283.4186 272.7284
-##  [78] 287.0451 290.2288 285.1185 265.8772 269.2290 243.6917 238.5031
-##  [85] 279.1029 266.3170 251.7320 223.6478 306.1061 250.6083 266.3116
-##  [92] 250.3041 246.3991 300.2299 256.6542 246.9871 228.2364 287.3983
-##  [99] 243.1451 378.7654
+##   [1] 245.6209 280.0694 251.4734 277.6215 243.1002 273.7829 212.6890
+##   [8] 210.4169 240.2560 259.8837 266.9758 300.6550 244.7509 230.5397
+##  [15] 227.3365 233.5964 267.6156 249.4081 241.3878 264.7481 290.6321
+##  [22] 277.1410 265.1293 260.4980 250.0381 270.5953 294.2920 242.3452
+##  [29] 229.7037 289.8699 257.9537 263.6851 258.5376 232.1671 256.8157
+##  [36] 280.5397 280.2190 256.8964 231.8873 286.1879 247.5544 247.7720
+##  [43] 250.8022 291.9624 235.6785 246.4740 281.3778 246.3275 250.9107
+##  [50] 272.6889 271.5199 225.9539 269.9525 271.5986 256.5754 265.2713
+##  [57] 292.9601 289.1685 247.4078 277.1998 249.0283 238.8622 267.5161
+##  [64] 255.3528 253.1781 294.0642 237.0676 249.2244 254.4657 243.3932
+##  [71] 217.4305 299.2627 252.1121 252.5785 279.3438 230.7430 273.3231
+##  [78] 258.7861 260.5836 265.6492 247.7937 250.4375 255.0755 314.7306
+##  [85] 263.2931 244.9094 243.7477 268.4328 270.4736 228.4279 253.7269
+##  [92] 277.8671 247.9094 246.5143 256.0224 251.5443 249.6691 251.8782
+##  [99] 199.7428 378.7654
 ## 
 ## $p.val
 ## [1] 0.01</code></pre>
@@ -496,39 +496,39 @@ Mydata1</code></pre></div>
 <div id="pairwise-f_st" class="section level3">
 <h3>Pairwise <span class="math inline">\(F_{st}\)</span></h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">genet.dist</span>(Mydata1, <span class="dt">method =</span> <span class="st">&quot;WC84&quot;</span>)</code></pre></div>
-<pre><code>##                    alabama     arkansas      florida      georgia
-## arkansas       0.052033165                                       
-## florida        0.034205805  0.031222010                          
-## georgia        0.046469226  0.028847476  0.001379763             
-## louisiana      0.031028123  0.035722729  0.096253248  0.133824385
-## mississippi    0.019629941 -0.011045367  0.008707686  0.018627828
-## northcarolina  0.009066562  0.057810705  0.033602798  0.035531517
-## oklahoma       0.104844418  0.022743098  0.080741693  0.092718257
-## southcarolina  0.007107402  0.052707863  0.019836955  0.029831181
-## texas          0.038153327  0.013982640  0.025059824  0.046361901
-## virginia       0.027303304  0.065029859  0.027697122  0.014916721
-##                  louisiana  mississippi northcarolina     oklahoma
-## arkansas                                                          
-## florida                                                           
-## georgia                                                           
-## louisiana                                                         
-## mississippi    0.030209963                                        
-## northcarolina  0.043365828  0.030048967                           
-## oklahoma       0.070815392  0.061834123   0.116089566             
-## southcarolina  0.064729942  0.030695068   0.006809538  0.107662986
-## texas          0.036298136 -0.025535193   0.046659978  0.033860376
-## virginia       0.092337839  0.034121040   0.012476717  0.125242248
-##               southcarolina        texas
-## arkansas                                
-## florida                                 
-## georgia                                 
-## louisiana                               
-## mississippi                             
-## northcarolina                           
-## oklahoma                                
-## southcarolina                           
-## texas           0.052491099             
-## virginia        0.009878778  0.068423280</code></pre>
+<pre><code>##                    georgia     virginia northcarolina southcarolina
+## virginia       0.014916721                                         
+## northcarolina  0.035531517  0.012476717                            
+## southcarolina  0.029831181  0.009878778   0.006809538              
+## alabama        0.046469226  0.027303304   0.009066562   0.007107402
+## oklahoma       0.092718257  0.125242248   0.116089566   0.107662986
+## arkansas       0.028847476  0.065029859   0.057810705   0.052707863
+## florida        0.001379763  0.027697122   0.033602798   0.019836955
+## mississippi    0.018627828  0.034121040   0.030048967   0.030695068
+## texas          0.046361901  0.068423280   0.046659978   0.052491099
+## louisiana      0.133824385  0.092337839   0.043365828   0.064729942
+##                    alabama     oklahoma     arkansas      florida
+## virginia                                                         
+## northcarolina                                                    
+## southcarolina                                                    
+## alabama                                                          
+## oklahoma       0.104844418                                       
+## arkansas       0.052033165  0.022743098                          
+## florida        0.034205805  0.080741693  0.031222010             
+## mississippi    0.019629941  0.061834123 -0.011045367  0.008707686
+## texas          0.038153327  0.033860376  0.013982640  0.025059824
+## louisiana      0.031028123  0.070815392  0.035722729  0.096253248
+##                mississippi        texas
+## virginia                               
+## northcarolina                          
+## southcarolina                          
+## alabama                                
+## oklahoma                               
+## arkansas                               
+## florida                                
+## mississippi                            
+## texas         -0.025535193             
+## louisiana      0.030209963  0.036298136</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># No test at the moment</span></code></pre></div>
 </div>
 </div>
@@ -537,11 +537,10 @@ Mydata1</code></pre></div>
 <p>We don’t know the populations and we are looking for. As recommended by T. Jombart, with the function <code>find.clusters()</code> we used the maximum possible number of PCA axis which is 20 here. See detailed tutorial on this method for more information (<a href="https://github.com/thibautjombart/adegenet/raw/master/tutorials" class="uri">https://github.com/thibautjombart/adegenet/raw/master/tutorials</a> /tutorial-basics.pdf) In this example, we used <code>choose.n.clust = FALSE</code> but it is nice to use the option <code>TRUE</code> and then you will be able to choose the number of clusters.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using Kmeans and DAPC in adegenet </span>
 <span class="kw">set.seed</span>(<span class="dv">20160308</span>) <span class="co"># Setting a seed for a consistent result</span>
-grp &lt;-<span class="st"> </span><span class="kw">find.clusters</span>(Mydata1, <span class="dt">max.n.clust =</span> <span class="dv">10</span>, <span class="dt">n.pca =</span> <span class="dv">20</span>, <span class="dt">choose.n.clust =</span> <span class="ot">FALSE</span>) </code></pre></div>
-<pre><code>## The &quot;ward&quot; method has been renamed to &quot;ward.D&quot;; note new &quot;ward.D2&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(grp)</code></pre></div>
+grp &lt;-<span class="st"> </span><span class="kw">find.clusters</span>(Mydata1, <span class="dt">max.n.clust =</span> <span class="dv">10</span>, <span class="dt">n.pca =</span> <span class="dv">20</span>, <span class="dt">choose.n.clust =</span> <span class="ot">FALSE</span>) 
+<span class="kw">names</span>(grp)</code></pre></div>
 <pre><code>## [1] &quot;Kstat&quot; &quot;stat&quot;  &quot;grp&quot;   &quot;size&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grp$grp</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grp<span class="op">$</span>grp</code></pre></div>
 <pre><code>##   1066   2040   4004   4005   4018   6009   6013   7033   7056   7069 
 ##      4      3      1      3      1      3      1      1      2      3 
 ##   7088   7105   8001   8061   8068   8076   8120   8195   8203   8222 
@@ -654,7 +653,7 @@ grp &lt;-<span class="st"> </span><span class="kw">find.clusters</span>(Mydata1,
 ##      1      4      3      3      4      1      2      4      3      1 
 ## Levels: 1 2 3 4</code></pre>
 <p>The K means procedure detected 4 groups. We will use this number of group in the discriminant analysis (function <code>dapc()</code>). On your own dataset, you need to spend more time to estimate the number of clusters.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dapc1 &lt;-<span class="st"> </span><span class="kw">dapc</span>(Mydata1, grp$grp, <span class="dt">n.pca =</span> <span class="dv">20</span>, <span class="dt">n.da =</span> <span class="dv">6</span>) 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dapc1 &lt;-<span class="st"> </span><span class="kw">dapc</span>(Mydata1, grp<span class="op">$</span>grp, <span class="dt">n.pca =</span> <span class="dv">20</span>, <span class="dt">n.da =</span> <span class="dv">6</span>) 
 <span class="kw">scatter</span>(dapc1) <span class="co"># plot of the group</span></code></pre></div>
 <p><img src="DifferentiationSNP_files/figure-html/description_of_clusters-1.png" width="960" /></p>
 <p>It’s clear that a subset of 20 SNPs does not have a strong enough signal to separate the samples into distinct groups. What would happen if we used more SNPs?</p>
@@ -687,73 +686,90 @@ grp &lt;-<span class="st"> </span><span class="kw">find.clusters</span>(Mydata1,
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools::<span class="kw">session_info</span>()</code></pre></div>
-<pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
+devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
+<pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
-##  version  R version 3.3.2 (2016-10-31)
+##  version  R version 3.4.2 (2017-09-28)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
-##  tz       &lt;NA&gt;                        
-##  date     2017-01-04</code></pre>
-<pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
+##  tz       UTC                         
+##  date     2017-10-22</code></pre>
+<pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
-##  ade4       * 1.7-5   2016-12-13 CRAN (R 3.3.2)
-##  adegenet   * 2.0.1   2016-02-15 CRAN (R 3.3.2)
-##  ape          4.0     2016-12-01 CRAN (R 3.3.2)
-##  assertthat   0.1     2013-12-06 CRAN (R 3.3.2)
-##  backports    1.0.4   2016-10-24 CRAN (R 3.3.2)
-##  boot         1.3-18  2016-02-23 CRAN (R 3.3.2)
-##  cluster      2.0.5   2016-10-08 CRAN (R 3.3.2)
-##  coda         0.19-1  2016-12-08 CRAN (R 3.3.2)
-##  colorspace   1.3-2   2016-12-14 CRAN (R 3.3.2)
-##  DBI          0.5-1   2016-09-10 CRAN (R 3.3.2)
-##  deldir       0.1-12  2016-03-06 CRAN (R 3.3.2)
-##  devtools     1.12.0  2016-12-05 CRAN (R 3.3.2)
-##  digest       0.6.10  2016-08-02 CRAN (R 3.3.2)
-##  dplyr        0.5.0   2016-06-24 CRAN (R 3.3.2)
-##  evaluate     0.10    2016-10-11 CRAN (R 3.3.2)
-##  gdata        2.17.0  2015-07-04 CRAN (R 3.3.2)
-##  ggplot2      2.2.0   2016-11-11 CRAN (R 3.3.2)
-##  gmodels      2.16.2  2015-07-22 CRAN (R 3.3.2)
-##  gtable       0.2.0   2016-02-26 CRAN (R 3.3.2)
-##  gtools       3.5.0   2015-05-29 CRAN (R 3.3.2)
-##  hierfstat  * 0.04-22 2015-12-04 CRAN (R 3.3.2)
-##  htmltools    0.3.5   2016-03-21 CRAN (R 3.3.2)
-##  httpuv       1.3.3   2015-08-04 CRAN (R 3.3.2)
-##  igraph       1.0.1   2015-06-26 CRAN (R 3.3.2)
-##  knitr        1.15.1  2016-11-22 CRAN (R 3.3.2)
-##  lattice      0.20-34 2016-09-06 CRAN (R 3.3.2)
-##  lazyeval     0.2.0   2016-06-12 CRAN (R 3.3.2)
-##  LearnBayes   2.15    2014-05-29 CRAN (R 3.3.2)
-##  magrittr     1.5     2014-11-22 CRAN (R 3.3.2)
-##  MASS         7.3-45  2016-04-21 CRAN (R 3.3.2)
-##  Matrix       1.2-7.1 2016-09-01 CRAN (R 3.3.2)
-##  memoise      1.0.0   2016-01-29 CRAN (R 3.3.2)
-##  mgcv         1.8-16  2016-11-07 CRAN (R 3.3.2)
-##  mime         0.5     2016-07-07 CRAN (R 3.3.2)
-##  munsell      0.4.3   2016-02-13 CRAN (R 3.3.2)
-##  nlme         3.1-128 2016-05-10 CRAN (R 3.3.2)
-##  permute      0.9-4   2016-09-09 CRAN (R 3.3.2)
-##  plyr         1.8.4   2016-06-08 CRAN (R 3.3.2)
-##  R6           2.2.0   2016-10-05 CRAN (R 3.3.2)
-##  Rcpp         0.12.8  2016-11-17 CRAN (R 3.3.2)
-##  reshape2     1.4.2   2016-10-22 CRAN (R 3.3.2)
-##  rmarkdown    1.3     2016-12-21 CRAN (R 3.3.2)
-##  rprojroot    1.1     2016-10-29 CRAN (R 3.3.2)
-##  scales       0.4.1   2016-11-09 CRAN (R 3.3.2)
-##  seqinr       3.3-3   2016-10-13 CRAN (R 3.3.2)
-##  shiny        0.14.2  2016-11-01 CRAN (R 3.3.2)
-##  sp           1.2-4   2016-12-22 CRAN (R 3.3.2)
-##  spdep        0.6-8   2016-09-21 CRAN (R 3.3.2)
-##  stringi      1.1.2   2016-10-01 CRAN (R 3.3.2)
-##  stringr      1.1.0   2016-08-19 CRAN (R 3.3.2)
-##  tibble       1.2     2016-08-26 CRAN (R 3.3.2)
-##  vegan        2.4-1   2016-09-07 CRAN (R 3.3.2)
-##  withr        1.0.2   2016-06-20 CRAN (R 3.3.2)
-##  xtable       1.8-2   2016-02-05 CRAN (R 3.3.2)
-##  yaml         2.1.14  2016-11-12 CRAN (R 3.3.2)</code></pre>
+##  ade4       * 1.7-8   2017-08-09 CRAN (R 3.4.2)
+##  adegenet   * 2.1.0   2017-10-12 CRAN (R 3.4.2)
+##  ape          4.1     2017-02-14 CRAN (R 3.4.2)
+##  assertthat   0.2.0   2017-04-11 CRAN (R 3.4.2)
+##  backports    1.1.1   2017-09-25 CRAN (R 3.4.2)
+##  base       * 3.4.2   2017-10-21 local         
+##  bindr        0.1     2016-11-13 CRAN (R 3.4.2)
+##  bindrcpp     0.2     2017-06-17 CRAN (R 3.4.2)
+##  boot         1.3-20  2017-07-30 CRAN (R 3.4.2)
+##  cluster      2.0.6   2017-03-16 CRAN (R 3.4.2)
+##  coda         0.19-1  2016-12-08 CRAN (R 3.4.2)
+##  colorspace   1.3-2   2016-12-14 CRAN (R 3.4.2)
+##  compiler     3.4.2   2017-10-21 local         
+##  datasets   * 3.4.2   2017-10-21 local         
+##  deldir       0.1-14  2017-04-22 CRAN (R 3.4.2)
+##  devtools     1.13.3  2017-08-02 CRAN (R 3.4.2)
+##  digest       0.6.12  2017-01-27 CRAN (R 3.4.2)
+##  dplyr        0.7.4   2017-09-28 CRAN (R 3.4.2)
+##  evaluate     0.10.1  2017-06-24 CRAN (R 3.4.2)
+##  expm         0.999-2 2017-03-29 CRAN (R 3.4.2)
+##  gdata        2.18.0  2017-06-06 CRAN (R 3.4.2)
+##  ggplot2      2.2.1   2016-12-30 CRAN (R 3.4.2)
+##  glue         1.1.1   2017-06-21 CRAN (R 3.4.2)
+##  gmodels      2.16.2  2015-07-22 CRAN (R 3.4.2)
+##  graphics   * 3.4.2   2017-10-21 local         
+##  grDevices  * 3.4.2   2017-10-21 local         
+##  grid         3.4.2   2017-10-21 local         
+##  gtable       0.2.0   2016-02-26 CRAN (R 3.4.2)
+##  gtools       3.5.0   2015-05-29 CRAN (R 3.4.2)
+##  hierfstat  * 0.04-22 2015-12-04 CRAN (R 3.4.2)
+##  htmltools    0.3.6   2017-04-28 CRAN (R 3.4.2)
+##  httpuv       1.3.5   2017-07-04 CRAN (R 3.4.2)
+##  igraph       1.1.2   2017-07-21 CRAN (R 3.4.2)
+##  knitr        1.17    2017-08-10 CRAN (R 3.4.2)
+##  lattice      0.20-35 2017-03-25 CRAN (R 3.4.2)
+##  lazyeval     0.2.0   2016-06-12 CRAN (R 3.4.2)
+##  LearnBayes   2.15    2014-05-29 CRAN (R 3.4.2)
+##  magrittr     1.5     2014-11-22 CRAN (R 3.4.2)
+##  MASS         7.3-47  2017-04-21 CRAN (R 3.4.2)
+##  Matrix       1.2-11  2017-08-16 CRAN (R 3.4.2)
+##  memoise      1.1.0   2017-04-21 CRAN (R 3.4.2)
+##  methods    * 3.4.2   2017-10-21 local         
+##  mgcv         1.8-22  2017-09-19 CRAN (R 3.4.2)
+##  mime         0.5     2016-07-07 CRAN (R 3.4.2)
+##  munsell      0.4.3   2016-02-13 CRAN (R 3.4.2)
+##  nlme         3.1-131 2017-02-06 CRAN (R 3.4.2)
+##  parallel     3.4.2   2017-10-21 local         
+##  permute      0.9-4   2016-09-09 CRAN (R 3.4.2)
+##  pkgconfig    2.0.1   2017-03-21 CRAN (R 3.4.2)
+##  plyr         1.8.4   2016-06-08 CRAN (R 3.4.2)
+##  R6           2.2.2   2017-06-17 CRAN (R 3.4.2)
+##  Rcpp         0.12.13 2017-09-28 CRAN (R 3.4.2)
+##  reshape2     1.4.2   2016-10-22 CRAN (R 3.4.2)
+##  rlang        0.1.2   2017-08-09 CRAN (R 3.4.2)
+##  rmarkdown    1.6     2017-06-15 CRAN (R 3.4.2)
+##  rprojroot    1.2     2017-01-16 CRAN (R 3.4.2)
+##  scales       0.5.0   2017-08-24 CRAN (R 3.4.2)
+##  seqinr       3.4-5   2017-08-01 CRAN (R 3.4.2)
+##  shiny        1.0.5   2017-08-23 CRAN (R 3.4.2)
+##  sp           1.2-5   2017-06-29 CRAN (R 3.4.2)
+##  spdep        0.6-15  2017-09-01 CRAN (R 3.4.2)
+##  splines      3.4.2   2017-10-21 local         
+##  stats      * 3.4.2   2017-10-21 local         
+##  stringi      1.1.5   2017-04-07 CRAN (R 3.4.2)
+##  stringr      1.2.0   2017-02-18 CRAN (R 3.4.2)
+##  tibble       1.3.4   2017-08-22 CRAN (R 3.4.2)
+##  tools        3.4.2   2017-10-21 local         
+##  utils      * 3.4.2   2017-10-21 local         
+##  vegan        2.4-4   2017-08-24 CRAN (R 3.4.2)
+##  withr        2.0.0   2017-07-28 CRAN (R 3.4.2)
+##  xtable       1.8-2   2016-02-05 CRAN (R 3.4.2)
+##  yaml         2.1.14  2016-11-12 CRAN (R 3.4.2)</code></pre>
 </div>
 
 <!-- </div>
@@ -783,7 +799,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

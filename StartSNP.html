@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -339,10 +339,10 @@ $(document).ready(function () {
 <span class="kw">dim</span>(Mydata) <span class="co"># Matrix of dimension 550x3086</span></code></pre></div>
 <pre><code>## [1]  550 3086</code></pre>
 <p>To work with the data, we need to convert the R object returned by <code>read.table()</code> to a “genind” object. To achieve this, we create a matrix with only genotypes, and keep only a subset of the first 11 SNP loci (to make calculations faster). The result can then be converted to a “genind” object (for package <em>adegent</em>). The “genind” object can then easily be converted into a “hierfstat” (package <em>hierfstat</em>) object.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">locus &lt;-<span class="st"> </span>Mydata[, -<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">17</span>:<span class="dv">3086</span>)]    
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">locus &lt;-<span class="st"> </span>Mydata[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">17</span><span class="op">:</span><span class="dv">3086</span>)]    
 <span class="kw">colnames</span>(locus) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>, <span class="st">&quot;_&quot;</span>, <span class="kw">colnames</span>(locus)) <span class="co"># locus names can&#39;t have &quot;.&quot;</span>
-ind &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$tree_id) <span class="co"># labels of the individuals</span>
-population &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata$state) <span class="co"># labels of the populations</span>
+ind &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata<span class="op">$</span>tree_id) <span class="co"># labels of the individuals</span>
+population &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata<span class="op">$</span>state) <span class="co"># labels of the populations</span>
 Mydata1 &lt;-<span class="st"> </span><span class="kw">df2genind</span>(locus, <span class="dt">ploidy =</span> <span class="dv">2</span>, <span class="dt">ind.names =</span> ind, <span class="dt">pop =</span> population, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
 Mydata1</code></pre></div>
 <pre><code>## /// GENIND OBJECT /////////
@@ -377,22 +377,22 @@ Mydata1</code></pre></div>
 div</code></pre></div>
 <pre><code>## 
 ## // Number of individuals: 550
-## // Group sizes: 169 10 24 10 4 9 177 7 58 9 73
+## // Group sizes: 10 73 177 58 169 7 10 24 9 9 4
 ## // Number of alleles per locus: 2 2 2 2 2 2 2 2 2 2 2 2
-## // Number of alleles per group: 24 19 23 22 18 21 24 20 23 19 24
+## // Number of alleles per group: 22 24 24 23 24 20 19 23 21 19 18
 ## // Percentage of missing data: 1.62 %
 ## // Observed heterozygosity: 0.42 0.49 0.46 0.4 0.12 0.47 0.07 0.08 0.11 0.46 0.04 0.14
 ## // Expected heterozygosity: 0.41 0.5 0.5 0.45 0.13 0.5 0.07 0.08 0.11 0.44 0.04 0.16</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(div)</code></pre></div>
 <pre><code>## [1] &quot;n&quot;         &quot;n.by.pop&quot;  &quot;loc.n.all&quot; &quot;pop.n.all&quot; &quot;NA.perc&quot;   &quot;Hobs&quot;     
 ## [7] &quot;Hexp&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(div$Hobs, <span class="dt">xlab=</span><span class="st">&quot;Loci number&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Observed Heterozygosity&quot;</span>, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(div<span class="op">$</span>Hobs, <span class="dt">xlab=</span><span class="st">&quot;Loci number&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Observed Heterozygosity&quot;</span>, 
      <span class="dt">main=</span><span class="st">&quot;Observed heterozygosity per locus&quot;</span>)</code></pre></div>
 <p><img src="StartSNP_files/figure-html/Genetic_Diversity-1.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(div$Hobs,div$Hexp, <span class="dt">xlab=</span><span class="st">&quot;Hobs&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Hexp&quot;</span>, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(div<span class="op">$</span>Hobs,div<span class="op">$</span>Hexp, <span class="dt">xlab=</span><span class="st">&quot;Hobs&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Hexp&quot;</span>, 
      <span class="dt">main=</span><span class="st">&quot;Expected heterozygosity as a function of observed heterozygosity per locus&quot;</span>)</code></pre></div>
 <p><img src="StartSNP_files/figure-html/Genetic_Diversity-2.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bartlett.test</span>(<span class="kw">list</span>(div$Hexp, div$Hobs)) <span class="co"># a test : H0: Hexp = Hobs</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bartlett.test</span>(<span class="kw">list</span>(div<span class="op">$</span>Hexp, div<span class="op">$</span>Hobs)) <span class="co"># a test : H0: Hexp = Hobs</span></code></pre></div>
 <pre><code>## 
 ##  Bartlett test of homogeneity of variances
 ## 
@@ -410,17 +410,17 @@ div</code></pre></div>
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0434  0.0898
-## 2  -0.2655  0.1689
-## 3  -0.2090 -0.0765
-## 4  -0.0362  0.2955
-## 5  -0.4398 -0.1249
-## 6  -0.1759  0.2867
-## 7   0.0152  0.1082
-## 8  -0.4712  0.1966
-## 9  -0.0521  0.0736
-## 10  0.0228  0.3708
-## 11 -0.0589  0.0409</code></pre>
+## 1  -0.0376  0.2965
+## 2  -0.0560  0.0387
+## 3   0.0063  0.0977
+## 4  -0.0457  0.0668
+## 5  -0.0277  0.0811
+## 6  -0.4826  0.2059
+## 7  -0.2587  0.0979
+## 8  -0.2062 -0.0456
+## 9  -0.1290  0.3338
+## 10  0.0084  0.2934
+## 11 -0.4187 -0.1480</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex =</span> <span class="fl">0.7</span>)</code></pre></div>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" width="960" /></p>
@@ -430,18 +430,18 @@ div</code></pre></div>
 <p>We used the function <code>hw.test()</code> from the <em>pegas</em> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata1, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre></div>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0_10037_01_257 0.75465490  1 0.385006451    0.448
-## X0_10040_02_394 0.16628227  1 0.683437231    0.738
-## X0_10044_01_392 2.96053195  1 0.085319867    0.096
-## X0_10048_01_60  6.39076800  1 0.011471539    0.013
-## X0_10051_02_166 1.12035389  1 0.289842265    0.293
-## X0_10054_01_402 1.54582494  1 0.213752853    0.235
-## X0_10067_03_111 0.04868128  1 0.825374035    0.550
-## X0_10079_02_168 0.01579313  1 0.899992594    0.612
+## X0_10037_01_257 0.75465490  1 0.385006451    0.460
+## X0_10040_02_394 0.16628227  1 0.683437231    0.727
+## X0_10044_01_392 2.96053195  1 0.085319867    0.087
+## X0_10048_01_60  6.39076800  1 0.011471539    0.010
+## X0_10051_02_166 1.12035389  1 0.289842265    0.298
+## X0_10054_01_402 1.54582494  1 0.213752853    0.233
+## X0_10067_03_111 0.04868128  1 0.825374035    0.568
+## X0_10079_02_168 0.01579313  1 0.899992594    0.592
 ## X0_10112_01_169 0.41126025  1 0.521330544    1.000
-## X0_10113_01_119 0.74248768  1 0.388865151    0.449
-## X0_10116_01_165 1.87098306  1 0.171362531    0.254
-## X0_10151_01_86  8.94232481  1 0.002786379    0.007</code></pre>
+## X0_10113_01_119 0.74248768  1 0.388865151    0.420
+## X0_10116_01_165 1.87098306  1 0.171362531    0.237
+## X0_10151_01_86  8.94232481  1 0.002786379    0.003</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math inline">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
@@ -471,74 +471,91 @@ div</code></pre></div>
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools::<span class="kw">session_info</span>()</code></pre></div>
-<pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
+devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
+<pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
-##  version  R version 3.3.2 (2016-10-31)
+##  version  R version 3.4.2 (2017-09-28)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
-##  tz       &lt;NA&gt;                        
-##  date     2017-01-04</code></pre>
-<pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
+##  tz       UTC                         
+##  date     2017-10-22</code></pre>
+<pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
-##  ade4       * 1.7-5   2016-12-13 CRAN (R 3.3.2)
-##  adegenet   * 2.0.1   2016-02-15 CRAN (R 3.3.2)
-##  ape        * 4.0     2016-12-01 CRAN (R 3.3.2)
-##  assertthat   0.1     2013-12-06 CRAN (R 3.3.2)
-##  backports    1.0.4   2016-10-24 CRAN (R 3.3.2)
-##  boot         1.3-18  2016-02-23 CRAN (R 3.3.2)
-##  cluster      2.0.5   2016-10-08 CRAN (R 3.3.2)
-##  coda         0.19-1  2016-12-08 CRAN (R 3.3.2)
-##  colorspace   1.3-2   2016-12-14 CRAN (R 3.3.2)
-##  DBI          0.5-1   2016-09-10 CRAN (R 3.3.2)
-##  deldir       0.1-12  2016-03-06 CRAN (R 3.3.2)
-##  devtools     1.12.0  2016-12-05 CRAN (R 3.3.2)
-##  digest       0.6.10  2016-08-02 CRAN (R 3.3.2)
-##  dplyr        0.5.0   2016-06-24 CRAN (R 3.3.2)
-##  evaluate     0.10    2016-10-11 CRAN (R 3.3.2)
-##  gdata        2.17.0  2015-07-04 CRAN (R 3.3.2)
-##  ggplot2      2.2.0   2016-11-11 CRAN (R 3.3.2)
-##  gmodels      2.16.2  2015-07-22 CRAN (R 3.3.2)
-##  gtable       0.2.0   2016-02-26 CRAN (R 3.3.2)
-##  gtools       3.5.0   2015-05-29 CRAN (R 3.3.2)
-##  hierfstat  * 0.04-22 2015-12-04 CRAN (R 3.3.2)
-##  htmltools    0.3.5   2016-03-21 CRAN (R 3.3.2)
-##  httpuv       1.3.3   2015-08-04 CRAN (R 3.3.2)
-##  igraph       1.0.1   2015-06-26 CRAN (R 3.3.2)
-##  knitr        1.15.1  2016-11-22 CRAN (R 3.3.2)
-##  lattice      0.20-34 2016-09-06 CRAN (R 3.3.2)
-##  lazyeval     0.2.0   2016-06-12 CRAN (R 3.3.2)
-##  LearnBayes   2.15    2014-05-29 CRAN (R 3.3.2)
-##  magrittr     1.5     2014-11-22 CRAN (R 3.3.2)
-##  MASS         7.3-45  2016-04-21 CRAN (R 3.3.2)
-##  Matrix       1.2-7.1 2016-09-01 CRAN (R 3.3.2)
-##  memoise      1.0.0   2016-01-29 CRAN (R 3.3.2)
-##  mgcv         1.8-16  2016-11-07 CRAN (R 3.3.2)
-##  mime         0.5     2016-07-07 CRAN (R 3.3.2)
-##  munsell      0.4.3   2016-02-13 CRAN (R 3.3.2)
-##  nlme         3.1-128 2016-05-10 CRAN (R 3.3.2)
-##  pegas      * 0.9     2016-04-16 CRAN (R 3.3.2)
-##  permute      0.9-4   2016-09-09 CRAN (R 3.3.2)
-##  plyr         1.8.4   2016-06-08 CRAN (R 3.3.2)
-##  R6           2.2.0   2016-10-05 CRAN (R 3.3.2)
-##  Rcpp         0.12.8  2016-11-17 CRAN (R 3.3.2)
-##  reshape2     1.4.2   2016-10-22 CRAN (R 3.3.2)
-##  rmarkdown    1.3     2016-12-21 CRAN (R 3.3.2)
-##  rprojroot    1.1     2016-10-29 CRAN (R 3.3.2)
-##  scales       0.4.1   2016-11-09 CRAN (R 3.3.2)
-##  seqinr       3.3-3   2016-10-13 CRAN (R 3.3.2)
-##  shiny        0.14.2  2016-11-01 CRAN (R 3.3.2)
-##  sp           1.2-4   2016-12-22 CRAN (R 3.3.2)
-##  spdep        0.6-8   2016-09-21 CRAN (R 3.3.2)
-##  stringi      1.1.2   2016-10-01 CRAN (R 3.3.2)
-##  stringr      1.1.0   2016-08-19 CRAN (R 3.3.2)
-##  tibble       1.2     2016-08-26 CRAN (R 3.3.2)
-##  vegan        2.4-1   2016-09-07 CRAN (R 3.3.2)
-##  withr        1.0.2   2016-06-20 CRAN (R 3.3.2)
-##  xtable       1.8-2   2016-02-05 CRAN (R 3.3.2)
-##  yaml         2.1.14  2016-11-12 CRAN (R 3.3.2)</code></pre>
+##  ade4       * 1.7-8   2017-08-09 CRAN (R 3.4.2)
+##  adegenet   * 2.1.0   2017-10-12 CRAN (R 3.4.2)
+##  ape        * 4.1     2017-02-14 CRAN (R 3.4.2)
+##  assertthat   0.2.0   2017-04-11 CRAN (R 3.4.2)
+##  backports    1.1.1   2017-09-25 CRAN (R 3.4.2)
+##  base       * 3.4.2   2017-10-21 local         
+##  bindr        0.1     2016-11-13 CRAN (R 3.4.2)
+##  bindrcpp     0.2     2017-06-17 CRAN (R 3.4.2)
+##  boot         1.3-20  2017-07-30 CRAN (R 3.4.2)
+##  cluster      2.0.6   2017-03-16 CRAN (R 3.4.2)
+##  coda         0.19-1  2016-12-08 CRAN (R 3.4.2)
+##  colorspace   1.3-2   2016-12-14 CRAN (R 3.4.2)
+##  compiler     3.4.2   2017-10-21 local         
+##  datasets   * 3.4.2   2017-10-21 local         
+##  deldir       0.1-14  2017-04-22 CRAN (R 3.4.2)
+##  devtools     1.13.3  2017-08-02 CRAN (R 3.4.2)
+##  digest       0.6.12  2017-01-27 CRAN (R 3.4.2)
+##  dplyr        0.7.4   2017-09-28 CRAN (R 3.4.2)
+##  evaluate     0.10.1  2017-06-24 CRAN (R 3.4.2)
+##  expm         0.999-2 2017-03-29 CRAN (R 3.4.2)
+##  gdata        2.18.0  2017-06-06 CRAN (R 3.4.2)
+##  ggplot2      2.2.1   2016-12-30 CRAN (R 3.4.2)
+##  glue         1.1.1   2017-06-21 CRAN (R 3.4.2)
+##  gmodels      2.16.2  2015-07-22 CRAN (R 3.4.2)
+##  graphics   * 3.4.2   2017-10-21 local         
+##  grDevices  * 3.4.2   2017-10-21 local         
+##  grid         3.4.2   2017-10-21 local         
+##  gtable       0.2.0   2016-02-26 CRAN (R 3.4.2)
+##  gtools       3.5.0   2015-05-29 CRAN (R 3.4.2)
+##  hierfstat  * 0.04-22 2015-12-04 CRAN (R 3.4.2)
+##  htmltools    0.3.6   2017-04-28 CRAN (R 3.4.2)
+##  httpuv       1.3.5   2017-07-04 CRAN (R 3.4.2)
+##  igraph       1.1.2   2017-07-21 CRAN (R 3.4.2)
+##  knitr        1.17    2017-08-10 CRAN (R 3.4.2)
+##  lattice      0.20-35 2017-03-25 CRAN (R 3.4.2)
+##  lazyeval     0.2.0   2016-06-12 CRAN (R 3.4.2)
+##  LearnBayes   2.15    2014-05-29 CRAN (R 3.4.2)
+##  magrittr     1.5     2014-11-22 CRAN (R 3.4.2)
+##  MASS         7.3-47  2017-04-21 CRAN (R 3.4.2)
+##  Matrix       1.2-11  2017-08-16 CRAN (R 3.4.2)
+##  memoise      1.1.0   2017-04-21 CRAN (R 3.4.2)
+##  methods    * 3.4.2   2017-10-21 local         
+##  mgcv         1.8-22  2017-09-19 CRAN (R 3.4.2)
+##  mime         0.5     2016-07-07 CRAN (R 3.4.2)
+##  munsell      0.4.3   2016-02-13 CRAN (R 3.4.2)
+##  nlme         3.1-131 2017-02-06 CRAN (R 3.4.2)
+##  parallel     3.4.2   2017-10-21 local         
+##  pegas      * 0.10    2017-05-03 CRAN (R 3.4.2)
+##  permute      0.9-4   2016-09-09 CRAN (R 3.4.2)
+##  pkgconfig    2.0.1   2017-03-21 CRAN (R 3.4.2)
+##  plyr         1.8.4   2016-06-08 CRAN (R 3.4.2)
+##  R6           2.2.2   2017-06-17 CRAN (R 3.4.2)
+##  Rcpp         0.12.13 2017-09-28 CRAN (R 3.4.2)
+##  reshape2     1.4.2   2016-10-22 CRAN (R 3.4.2)
+##  rlang        0.1.2   2017-08-09 CRAN (R 3.4.2)
+##  rmarkdown    1.6     2017-06-15 CRAN (R 3.4.2)
+##  rprojroot    1.2     2017-01-16 CRAN (R 3.4.2)
+##  scales       0.5.0   2017-08-24 CRAN (R 3.4.2)
+##  seqinr       3.4-5   2017-08-01 CRAN (R 3.4.2)
+##  shiny        1.0.5   2017-08-23 CRAN (R 3.4.2)
+##  sp           1.2-5   2017-06-29 CRAN (R 3.4.2)
+##  spdep        0.6-15  2017-09-01 CRAN (R 3.4.2)
+##  splines      3.4.2   2017-10-21 local         
+##  stats      * 3.4.2   2017-10-21 local         
+##  stringi      1.1.5   2017-04-07 CRAN (R 3.4.2)
+##  stringr      1.2.0   2017-02-18 CRAN (R 3.4.2)
+##  tibble       1.3.4   2017-08-22 CRAN (R 3.4.2)
+##  tools        3.4.2   2017-10-21 local         
+##  utils      * 3.4.2   2017-10-21 local         
+##  vegan        2.4-4   2017-08-24 CRAN (R 3.4.2)
+##  withr        2.0.0   2017-07-28 CRAN (R 3.4.2)
+##  xtable       1.8-2   2016-02-05 CRAN (R 3.4.2)
+##  yaml         2.1.14  2016-11-12 CRAN (R 3.4.2)</code></pre>
 </div>
 
 <!-- </div>
@@ -568,7 +585,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

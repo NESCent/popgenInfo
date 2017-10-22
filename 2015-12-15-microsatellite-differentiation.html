@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -471,9 +471,9 @@ diff_bov</code></pre></div>
 <div id="plotting" class="section level3">
 <h3>Plotting</h3>
 <p>You could choose to report the global versions of these statistics, but it might be additionally useful to show them as a boxplots with points showing their estimates in red. I prefer to use <em>ggplot2</em> here because it allows me to easily overlay the observations and estimates.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">per.locus &lt;-<span class="st"> </span><span class="kw">melt</span>(diff_bov$per.locus, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;Locus&quot;</span>, <span class="st">&quot;Statistic&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">per.locus &lt;-<span class="st"> </span><span class="kw">melt</span>(diff_bov<span class="op">$</span>per.locus, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;Locus&quot;</span>, <span class="st">&quot;Statistic&quot;</span>))
 stats     &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hs&quot;</span>, <span class="st">&quot;Ht&quot;</span>, <span class="st">&quot;Gst&quot;</span>, <span class="st">&quot;Gprime_st&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;D&quot;</span>)
-glob      &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Statistic =</span> stats, <span class="dt">value =</span> diff_bov$global)
+glob      &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Statistic =</span> stats, <span class="dt">value =</span> diff_bov<span class="op">$</span>global)
 <span class="kw">head</span>(per.locus)</code></pre></div>
 <pre><code>##    Locus Statistic     value
 ## 1 INRA63        Hs 0.5639660
@@ -490,10 +490,10 @@ glob      &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span
 ## Gprime_st Gprime_st 0.3756321
 ## D_het             D 0.2825120
 ## D_mean            D 0.2347223</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(per.locus, <span class="kw">aes</span>(<span class="dt">x =</span> Statistic, <span class="dt">y =</span> value)) +
-<span class="st">  </span><span class="kw">geom_boxplot</span>() +
-<span class="st">  </span><span class="kw">geom_point</span>() +
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="kw">rel</span>(<span class="dv">3</span>), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">data =</span> glob) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(per.locus, <span class="kw">aes</span>(<span class="dt">x =</span> Statistic, <span class="dt">y =</span> value)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="kw">rel</span>(<span class="dv">3</span>), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">data =</span> glob) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Estimates of population differentiation&quot;</span>)</code></pre></div>
 <p><img src="2015-12-15-microsatellite-differentiation_files/figure-html/plotting-1.png" width="960" /></p>
 </div>
@@ -556,7 +556,7 @@ bs_reps &lt;-<span class="st"> </span><span class="kw">chao_bootstrap</span>(mic
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bov_dist  &lt;-<span class="st"> </span><span class="kw">dist</span>(microbov) <span class="co"># Euclidean distance</span>
 bov_stra  &lt;-<span class="st"> </span><span class="kw">strata</span>(microbov)
-bov_amova &lt;-<span class="st"> </span>pegas::<span class="kw">amova</span>(bov_dist ~<span class="st"> </span>Country/Breed, <span class="dt">data =</span> bov_stra, <span class="dt">nperm =</span> <span class="dv">0</span>)
+bov_amova &lt;-<span class="st"> </span>pegas<span class="op">::</span><span class="kw">amova</span>(bov_dist <span class="op">~</span><span class="st"> </span>Country<span class="op">/</span>Breed, <span class="dt">data =</span> bov_stra, <span class="dt">nperm =</span> <span class="dv">0</span>)
 bov_amova</code></pre></div>
 <pre><code>## 
 ##  Analysis of Molecular Variance
@@ -579,7 +579,7 @@ bov_amova</code></pre></div>
 ##  46.71477  48.10283 310.40625</code></pre>
 <p>If the population was panmictic, we would expect to see extremely small variance components for Country and Breed compared to Error (i.e. the variation from individuals within populations). We don’t see that and further suspect moderate differentiation. To test for this, you can boostrap replicates by setting the <code>nperm</code> argument. Again, because these bootstraps may take a long time, we’ll set it to 10:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">20151219</span>)
-bov_amova &lt;-<span class="st"> </span>pegas::<span class="kw">amova</span>(bov_dist ~<span class="st"> </span>Country/Breed, <span class="dt">data =</span> bov_stra, <span class="dt">nperm =</span> <span class="dv">10</span>)
+bov_amova &lt;-<span class="st"> </span>pegas<span class="op">::</span><span class="kw">amova</span>(bov_dist <span class="op">~</span><span class="st"> </span>Country<span class="op">/</span>Breed, <span class="dt">data =</span> bov_stra, <span class="dt">nperm =</span> <span class="dv">10</span>)
 bov_amova</code></pre></div>
 <pre><code>## 
 ##  Analysis of Molecular Variance
@@ -609,10 +609,10 @@ bov_amova</code></pre></div>
 <p>The <em>vegan</em> package has the function <code>adonis()</code> that implements a multivariate AMOVA and takes the same kind of arguments as the <em>pegas</em> implementation of <code>amova()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;vegan&quot;</span>)
 <span class="kw">set.seed</span>(<span class="dv">20151219</span>)
-res &lt;-<span class="st"> </span><span class="kw">adonis</span>(bov_dist ~<span class="st"> </span>Country/Breed, <span class="dt">data =</span> bov_stra, <span class="dt">permutations =</span> <span class="dv">99</span>)</code></pre></div>
+res &lt;-<span class="st"> </span><span class="kw">adonis</span>(bov_dist <span class="op">~</span><span class="st"> </span>Country<span class="op">/</span>Breed, <span class="dt">data =</span> bov_stra, <span class="dt">permutations =</span> <span class="dv">99</span>)</code></pre></div>
 <p>The package <em>ade4</em> implements the original model, but it requires an abundance matrix of haplotypes per population. The advantage of this version is the fact that it calculates <span class="math inline">\(\phi\)</span> statistics for you. The package <em>poppr</em> provides a wrapper for the <em>ade4</em> version that will sanitize the data and allows for calculation of within sample variance.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;poppr&quot;</span>)
-res &lt;-<span class="st"> </span><span class="kw">poppr.amova</span>(microbov, ~Country/Breed, <span class="dt">within =</span> <span class="ot">FALSE</span>)
+res &lt;-<span class="st"> </span><span class="kw">poppr.amova</span>(microbov, <span class="op">~</span>Country<span class="op">/</span>Breed, <span class="dt">within =</span> <span class="ot">FALSE</span>)
 <span class="kw">set.seed</span>(<span class="dv">20151219</span>)
 <span class="kw">randtest</span>(res, <span class="dt">nrepet =</span> <span class="dv">99</span>)</code></pre></div>
 </div>
@@ -623,7 +623,7 @@ res &lt;-<span class="st"> </span><span class="kw">poppr.amova</span>(microbov, 
 <blockquote>
 <p>Warning: This analyis is sensitive to the number of principal components you choose, so by default, you should run this function with just the data set and without any options beforehand (<code>dapc(microbov)</code>).</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setPop</span>(microbov) &lt;-<span class="st"> </span><span class="er">~</span>Country/Breed
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setPop</span>(microbov) &lt;-<span class="st"> </span><span class="er">~</span>Country<span class="op">/</span>Breed
 bov_dapc &lt;-<span class="st"> </span><span class="kw">dapc</span>(microbov, <span class="dt">n.pca =</span> <span class="dv">100</span>, <span class="dt">n.da =</span> <span class="dv">4</span>) <span class="co"># 100 principal components; 4 discriminant functions</span>
 <span class="kw">scatter</span>(bov_dapc)</code></pre></div>
 <p><img src="2015-12-15-microsatellite-differentiation_files/figure-html/dapc-1.png" width="960" /></p>
@@ -652,75 +652,92 @@ bov_dapc &lt;-<span class="st"> </span><span class="kw">dapc</span>(microbov, <s
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools::<span class="kw">session_info</span>()</code></pre></div>
-<pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
+devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
+<pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
-##  version  R version 3.3.2 (2016-10-31)
+##  version  R version 3.4.2 (2017-09-28)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
-##  tz       &lt;NA&gt;                        
-##  date     2017-01-04</code></pre>
-<pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
+##  tz       UTC                         
+##  date     2017-10-22</code></pre>
+<pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package    * version date       source        
-##  ade4       * 1.7-5   2016-12-13 CRAN (R 3.3.2)
-##  adegenet   * 2.0.1   2016-02-15 CRAN (R 3.3.2)
-##  ape        * 4.0     2016-12-01 CRAN (R 3.3.2)
-##  assertthat   0.1     2013-12-06 CRAN (R 3.3.2)
-##  backports    1.0.4   2016-10-24 CRAN (R 3.3.2)
-##  boot         1.3-18  2016-02-23 CRAN (R 3.3.2)
-##  cluster      2.0.5   2016-10-08 CRAN (R 3.3.2)
-##  coda         0.19-1  2016-12-08 CRAN (R 3.3.2)
-##  colorspace   1.3-2   2016-12-14 CRAN (R 3.3.2)
-##  DBI          0.5-1   2016-09-10 CRAN (R 3.3.2)
-##  deldir       0.1-12  2016-03-06 CRAN (R 3.3.2)
-##  devtools     1.12.0  2016-12-05 CRAN (R 3.3.2)
-##  digest       0.6.10  2016-08-02 CRAN (R 3.3.2)
-##  dplyr        0.5.0   2016-06-24 CRAN (R 3.3.2)
-##  evaluate     0.10    2016-10-11 CRAN (R 3.3.2)
-##  gdata        2.17.0  2015-07-04 CRAN (R 3.3.2)
-##  ggplot2    * 2.2.0   2016-11-11 CRAN (R 3.3.2)
-##  gmodels      2.16.2  2015-07-22 CRAN (R 3.3.2)
-##  gtable       0.2.0   2016-02-26 CRAN (R 3.3.2)
-##  gtools       3.5.0   2015-05-29 CRAN (R 3.3.2)
-##  htmltools    0.3.5   2016-03-21 CRAN (R 3.3.2)
-##  httpuv       1.3.3   2015-08-04 CRAN (R 3.3.2)
-##  igraph       1.0.1   2015-06-26 CRAN (R 3.3.2)
-##  knitr        1.15.1  2016-11-22 CRAN (R 3.3.2)
-##  labeling     0.3     2014-08-23 CRAN (R 3.3.2)
-##  lattice      0.20-34 2016-09-06 CRAN (R 3.3.2)
-##  lazyeval     0.2.0   2016-06-12 CRAN (R 3.3.2)
-##  LearnBayes   2.15    2014-05-29 CRAN (R 3.3.2)
-##  magrittr     1.5     2014-11-22 CRAN (R 3.3.2)
-##  MASS         7.3-45  2016-04-21 CRAN (R 3.3.2)
-##  Matrix       1.2-7.1 2016-09-01 CRAN (R 3.3.2)
-##  memoise      1.0.0   2016-01-29 CRAN (R 3.3.2)
-##  mgcv         1.8-16  2016-11-07 CRAN (R 3.3.2)
-##  mime         0.5     2016-07-07 CRAN (R 3.3.2)
-##  mmod       * 1.3.2   2016-09-16 CRAN (R 3.3.2)
-##  munsell      0.4.3   2016-02-13 CRAN (R 3.3.2)
-##  nlme         3.1-128 2016-05-10 CRAN (R 3.3.2)
-##  pegas      * 0.9     2016-04-16 CRAN (R 3.3.2)
-##  permute      0.9-4   2016-09-09 CRAN (R 3.3.2)
-##  plyr         1.8.4   2016-06-08 CRAN (R 3.3.2)
-##  R6           2.2.0   2016-10-05 CRAN (R 3.3.2)
-##  Rcpp         0.12.8  2016-11-17 CRAN (R 3.3.2)
-##  reshape2   * 1.4.2   2016-10-22 CRAN (R 3.3.2)
-##  rmarkdown    1.3     2016-12-21 CRAN (R 3.3.2)
-##  rprojroot    1.1     2016-10-29 CRAN (R 3.3.2)
-##  scales       0.4.1   2016-11-09 CRAN (R 3.3.2)
-##  seqinr       3.3-3   2016-10-13 CRAN (R 3.3.2)
-##  shiny        0.14.2  2016-11-01 CRAN (R 3.3.2)
-##  sp           1.2-4   2016-12-22 CRAN (R 3.3.2)
-##  spdep        0.6-8   2016-09-21 CRAN (R 3.3.2)
-##  stringi      1.1.2   2016-10-01 CRAN (R 3.3.2)
-##  stringr      1.1.0   2016-08-19 CRAN (R 3.3.2)
-##  tibble       1.2     2016-08-26 CRAN (R 3.3.2)
-##  vegan        2.4-1   2016-09-07 CRAN (R 3.3.2)
-##  withr        1.0.2   2016-06-20 CRAN (R 3.3.2)
-##  xtable       1.8-2   2016-02-05 CRAN (R 3.3.2)
-##  yaml         2.1.14  2016-11-12 CRAN (R 3.3.2)</code></pre>
+##  ade4       * 1.7-8   2017-08-09 CRAN (R 3.4.2)
+##  adegenet   * 2.1.0   2017-10-12 CRAN (R 3.4.2)
+##  ape        * 4.1     2017-02-14 CRAN (R 3.4.2)
+##  assertthat   0.2.0   2017-04-11 CRAN (R 3.4.2)
+##  backports    1.1.1   2017-09-25 CRAN (R 3.4.2)
+##  base       * 3.4.2   2017-10-21 local         
+##  bindr        0.1     2016-11-13 CRAN (R 3.4.2)
+##  bindrcpp     0.2     2017-06-17 CRAN (R 3.4.2)
+##  boot         1.3-20  2017-07-30 CRAN (R 3.4.2)
+##  cluster      2.0.6   2017-03-16 CRAN (R 3.4.2)
+##  coda         0.19-1  2016-12-08 CRAN (R 3.4.2)
+##  colorspace   1.3-2   2016-12-14 CRAN (R 3.4.2)
+##  compiler     3.4.2   2017-10-21 local         
+##  datasets   * 3.4.2   2017-10-21 local         
+##  deldir       0.1-14  2017-04-22 CRAN (R 3.4.2)
+##  devtools     1.13.3  2017-08-02 CRAN (R 3.4.2)
+##  digest       0.6.12  2017-01-27 CRAN (R 3.4.2)
+##  dplyr        0.7.4   2017-09-28 CRAN (R 3.4.2)
+##  evaluate     0.10.1  2017-06-24 CRAN (R 3.4.2)
+##  expm         0.999-2 2017-03-29 CRAN (R 3.4.2)
+##  gdata        2.18.0  2017-06-06 CRAN (R 3.4.2)
+##  ggplot2    * 2.2.1   2016-12-30 CRAN (R 3.4.2)
+##  glue         1.1.1   2017-06-21 CRAN (R 3.4.2)
+##  gmodels      2.16.2  2015-07-22 CRAN (R 3.4.2)
+##  graphics   * 3.4.2   2017-10-21 local         
+##  grDevices  * 3.4.2   2017-10-21 local         
+##  grid         3.4.2   2017-10-21 local         
+##  gtable       0.2.0   2016-02-26 CRAN (R 3.4.2)
+##  gtools       3.5.0   2015-05-29 CRAN (R 3.4.2)
+##  htmltools    0.3.6   2017-04-28 CRAN (R 3.4.2)
+##  httpuv       1.3.5   2017-07-04 CRAN (R 3.4.2)
+##  igraph       1.1.2   2017-07-21 CRAN (R 3.4.2)
+##  knitr        1.17    2017-08-10 CRAN (R 3.4.2)
+##  labeling     0.3     2014-08-23 CRAN (R 3.4.2)
+##  lattice      0.20-35 2017-03-25 CRAN (R 3.4.2)
+##  lazyeval     0.2.0   2016-06-12 CRAN (R 3.4.2)
+##  LearnBayes   2.15    2014-05-29 CRAN (R 3.4.2)
+##  magrittr     1.5     2014-11-22 CRAN (R 3.4.2)
+##  MASS         7.3-47  2017-04-21 CRAN (R 3.4.2)
+##  Matrix       1.2-11  2017-08-16 CRAN (R 3.4.2)
+##  memoise      1.1.0   2017-04-21 CRAN (R 3.4.2)
+##  methods    * 3.4.2   2017-10-21 local         
+##  mgcv         1.8-22  2017-09-19 CRAN (R 3.4.2)
+##  mime         0.5     2016-07-07 CRAN (R 3.4.2)
+##  mmod       * 1.3.3   2017-04-06 CRAN (R 3.4.2)
+##  munsell      0.4.3   2016-02-13 CRAN (R 3.4.2)
+##  nlme         3.1-131 2017-02-06 CRAN (R 3.4.2)
+##  parallel     3.4.2   2017-10-21 local         
+##  pegas      * 0.10    2017-05-03 CRAN (R 3.4.2)
+##  permute      0.9-4   2016-09-09 CRAN (R 3.4.2)
+##  pkgconfig    2.0.1   2017-03-21 CRAN (R 3.4.2)
+##  plyr         1.8.4   2016-06-08 CRAN (R 3.4.2)
+##  R6           2.2.2   2017-06-17 CRAN (R 3.4.2)
+##  Rcpp         0.12.13 2017-09-28 CRAN (R 3.4.2)
+##  reshape2   * 1.4.2   2016-10-22 CRAN (R 3.4.2)
+##  rlang        0.1.2   2017-08-09 CRAN (R 3.4.2)
+##  rmarkdown    1.6     2017-06-15 CRAN (R 3.4.2)
+##  rprojroot    1.2     2017-01-16 CRAN (R 3.4.2)
+##  scales       0.5.0   2017-08-24 CRAN (R 3.4.2)
+##  seqinr       3.4-5   2017-08-01 CRAN (R 3.4.2)
+##  shiny        1.0.5   2017-08-23 CRAN (R 3.4.2)
+##  sp           1.2-5   2017-06-29 CRAN (R 3.4.2)
+##  spdep        0.6-15  2017-09-01 CRAN (R 3.4.2)
+##  splines      3.4.2   2017-10-21 local         
+##  stats      * 3.4.2   2017-10-21 local         
+##  stringi      1.1.5   2017-04-07 CRAN (R 3.4.2)
+##  stringr      1.2.0   2017-02-18 CRAN (R 3.4.2)
+##  tibble       1.3.4   2017-08-22 CRAN (R 3.4.2)
+##  tools        3.4.2   2017-10-21 local         
+##  utils      * 3.4.2   2017-10-21 local         
+##  vegan        2.4-4   2017-08-24 CRAN (R 3.4.2)
+##  withr        2.0.0   2017-07-28 CRAN (R 3.4.2)
+##  xtable       1.8-2   2016-02-05 CRAN (R 3.4.2)
+##  yaml         2.1.14  2016-11-12 CRAN (R 3.4.2)</code></pre>
 </div>
 
 <!-- </div>
@@ -750,7 +767,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

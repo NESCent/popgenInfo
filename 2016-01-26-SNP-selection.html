@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -356,7 +356,7 @@ $(document).ready(function () {
 <blockquote>
 <p>Note: <em>PCAdapt</em> expects the incoming matrix to have samples in columns and loci in rows. Because our data is the opposite, we need to transpose our data matrix with the <code>t()</code> function.</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genotype &lt;-<span class="st"> </span>sel[, <span class="dv">3</span>:<span class="kw">ncol</span>(sel)]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genotype &lt;-<span class="st"> </span>sel[, <span class="dv">3</span><span class="op">:</span><span class="kw">ncol</span>(sel)]
 <span class="kw">dim</span>(genotype)</code></pre></div>
 <pre><code>## [1]  509 3084</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># As of version 3.0.3, PCAdapt does not allow matrix input, so the input must be</span>
@@ -370,7 +370,7 @@ genotype_file &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
             <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K &lt;-<span class="st"> </span><span class="dv">25</span>
 x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(genotype_file, <span class="dt">K =</span> K)</code></pre></div>
-<pre><code>## Reading file /tmp/Rtmpr5E150/file149287ba7...
+<pre><code>## Reading file /tmp/RtmpNzYgKy/file178153d59...
 ## Number of SNPs: 3084
 ## Number of individuals: 509
 ## Number of SNPs with minor allele frequency lower than 0.05 ignored: 0</code></pre>
@@ -380,7 +380,7 @@ x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(genotype_file, <
 <p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-2.png" width="960" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K &lt;-<span class="st"> </span><span class="dv">19</span>
 x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(genotype_file, <span class="dt">K =</span> K, <span class="dt">min.maf =</span> <span class="dv">0</span>)</code></pre></div>
-<pre><code>## Reading file /tmp/Rtmpr5E150/file149287ba7...
+<pre><code>## Reading file /tmp/RtmpNzYgKy/file178153d59...
 ## Number of SNPs: 3084
 ## Number of individuals: 509
 ## Number of SNPs with minor allele frequency lower than 0 ignored: 0</code></pre>
@@ -401,15 +401,15 @@ x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(genotype_file, <
 <p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-4.png" width="960" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;stat.distribution&quot;</span>) <span class="co"># Distribution of Mahalanobis distances.</span></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-5.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qval &lt;-<span class="st"> </span><span class="kw">qvalue</span>(x$pvalues)$qvalues
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qval &lt;-<span class="st"> </span><span class="kw">qvalue</span>(x<span class="op">$</span>pvalues)<span class="op">$</span>qvalues
 alpha &lt;-<span class="st"> </span><span class="fl">0.1</span>
-outliers_pcadapt &lt;-<span class="st"> </span><span class="kw">which</span>(qval &lt;<span class="st"> </span>alpha)
+outliers_pcadapt &lt;-<span class="st"> </span><span class="kw">which</span>(qval <span class="op">&lt;</span><span class="st"> </span>alpha)
 <span class="kw">print</span>(outliers_pcadapt)</code></pre></div>
 <pre><code>##  [1]  663  706  796  923 1155 1163 1347 1378 1639 1666 1825 2133 2556 2871</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(outliers_pcadapt) <span class="co"># 14 outliers</span></code></pre></div>
 <pre><code>## [1] 14</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alpha &lt;-<span class="st"> </span><span class="fl">0.05</span> <span class="co"># use of a more stringent threshold to detect outliers</span>
-outliers &lt;-<span class="st"> </span><span class="kw">which</span>(qval &lt;<span class="st"> </span>alpha)
+outliers &lt;-<span class="st"> </span><span class="kw">which</span>(qval <span class="op">&lt;</span><span class="st"> </span>alpha)
 <span class="kw">print</span>(outliers)</code></pre></div>
 <pre><code>##  [1]  663  706  796  923 1155 1163 1347 1378 1639 1666 1825 2133 2556 2871</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(outliers) <span class="co"># 14 outliers</span></code></pre></div>
@@ -424,11 +424,11 @@ locinames &lt;-<span class="st"> </span><span class="kw">as.character</span>(<sp
 
 FstDataFrame &lt;-<span class="st"> </span><span class="kw">MakeDiploidFSTMat</span>(genotype, locinames, ind)</code></pre></div>
 <pre><code>## Calculating FSTs, may take a few minutes...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(FstDataFrame$FST, FstDataFrame$FSTNoCorr, <span class="dt">xlim =</span> <span class="kw">c</span>(-<span class="fl">0.01</span>,<span class="fl">0.3</span>), 
-     <span class="dt">ylim =</span> <span class="kw">c</span>(-<span class="fl">0.01</span>, <span class="fl">0.3</span>), <span class="dt">pch =</span> <span class="dv">20</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(FstDataFrame<span class="op">$</span>FST, FstDataFrame<span class="op">$</span>FSTNoCorr, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.01</span>,<span class="fl">0.3</span>), 
+     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.01</span>, <span class="fl">0.3</span>), <span class="dt">pch =</span> <span class="dv">20</span>)
 <span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="co"># Checking the effect of sample size on Fst since FSTCoCorr will be used in the follow</span></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/outFLank-1.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(FstDataFrame$FSTNoCorr) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(FstDataFrame<span class="op">$</span>FSTNoCorr) </code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/outFLank-2.png" width="960" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OF &lt;-<span class="st"> </span><span class="kw">OutFLANK</span>(FstDataFrame, <span class="dt">NumberOfSamples=</span><span class="dv">19</span>, <span class="dt">qthreshold =</span> <span class="fl">0.05</span>, 
                <span class="dt">RightTrimFraction =</span> <span class="fl">0.05</span>)
@@ -438,7 +438,7 @@ FstDataFrame &lt;-<span class="st"> </span><span class="kw">MakeDiploidFSTMat</s
                        <span class="dt">binwidth =</span> <span class="fl">0.005</span>, <span class="dt">Zoom =</span> <span class="ot">FALSE</span>, <span class="dt">RightZoomFraction =</span> <span class="fl">0.05</span>, 
                        <span class="dt">titletext =</span> <span class="ot">NULL</span>)</code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/outFLank-3.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">outliers_OF &lt;-<span class="st"> </span>OF$results$LocusName[OF$results$OutlierFlag ==<span class="st"> </span><span class="ot">TRUE</span>]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">outliers_OF &lt;-<span class="st"> </span>OF<span class="op">$</span>results<span class="op">$</span>LocusName[OF<span class="op">$</span>results<span class="op">$</span>OutlierFlag <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>]
 <span class="kw">print</span>(outliers_OF)</code></pre></div>
 <pre><code>##  [1] 663  706  923  1163 1378 1639 1666 1825 2133 2556 2871
 ## 3084 Levels: 1 10 100 1000 1001 1002 1003 1004 1005 1006 1007 1008 ... 999</code></pre>
@@ -449,14 +449,14 @@ FstDataFrame &lt;-<span class="st"> </span><span class="kw">MakeDiploidFSTMat</s
 <h2>Section 4: Logistic regression : linking outliers and temperature</h2>
 <p>We aim to test if the outliers detected with <em>PCAdapt</em> and <em>OutFLANK</em> (663 706 923 1163 1378 1639 1666 1825 2133 2556 2871) are correlated to the temperature. We use a GLM with a binomial error to model the probability to have the allele “A” out of the two alleles. We derive the relation for some of the shared outliers. You can do the test for all.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We keep the outlier loci selected by both pcadapt and outflank</span>
-outliers &lt;-<span class="st"> </span>outliers_pcadapt[outliers_pcadapt %in%<span class="st"> </span>outliers_OF]
+outliers &lt;-<span class="st"> </span>outliers_pcadapt[outliers_pcadapt <span class="op">%in%</span><span class="st"> </span>outliers_OF]
 <span class="kw">length</span>(outliers) <span class="co"># 11 outliers</span></code></pre></div>
 <pre><code>## [1] 11</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loc1 &lt;-<span class="st"> </span>genotype[, outliers[<span class="dv">1</span>]]
-temp &lt;-<span class="st"> </span>sel$Temperature
+temp &lt;-<span class="st"> </span>sel<span class="op">$</span>Temperature
 loc1temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc1, temp)
  
-mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc1, <span class="dv">2</span> -<span class="st"> </span>loc1) ~<span class="st"> </span>temp, <span class="dt">family =</span> binomial) 
+mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc1, <span class="dv">2</span> <span class="op">-</span><span class="st"> </span>loc1) <span class="op">~</span><span class="st"> </span>temp, <span class="dt">family =</span> binomial) 
 <span class="kw">summary</span>(mod) <span class="co"># This locus is significantly correlated to temperature</span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -482,12 +482,12 @@ mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">c
 ## Number of Fisher Scoring iterations: 3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loc2 &lt;-<span class="st"> </span>genotype[, outliers[<span class="dv">2</span>]]
 loc2temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc2, temp)
-<span class="kw">ggplot</span>(loc2temp, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(loc2), <span class="dt">y =</span> temp)) +<span class="st"> </span>
-<span class="st"> </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
-<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Major allele count&quot;</span>) +
+<span class="kw">ggplot</span>(loc2temp, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(loc2), <span class="dt">y =</span> temp)) <span class="op">+</span><span class="st"> </span>
+<span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Major allele count&quot;</span>) <span class="op">+</span>
 <span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature (Centigrade)&quot;</span>)</code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/Binomial%20regressions-1.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc2, <span class="dv">2</span> -<span class="st"> </span>loc2) ~<span class="st"> </span>temp, <span class="dt">family =</span> binomial) 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc2, <span class="dv">2</span> <span class="op">-</span><span class="st"> </span>loc2) <span class="op">~</span><span class="st"> </span>temp, <span class="dt">family =</span> binomial) 
 <span class="kw">summary</span>(mod) <span class="co"># This locus is significantly correlated to temperature</span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -512,15 +512,15 @@ loc2temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc2, 
 ## 
 ## Number of Fisher Scoring iterations: 3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test with a locus that is only selected by one method</span>
-loc7 &lt;-<span class="st"> </span>genotype[, outliers_pcadapt[!outliers_pcadapt %in%<span class="st"> </span>outliers_OF][<span class="dv">1</span>]]
+loc7 &lt;-<span class="st"> </span>genotype[, outliers_pcadapt[<span class="op">!</span>outliers_pcadapt <span class="op">%in%</span><span class="st"> </span>outliers_OF][<span class="dv">1</span>]]
 loc7temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc7, temp)
   
-<span class="kw">ggplot</span>(loc2temp, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(loc7), <span class="dt">y =</span> temp)) +<span class="st"> </span>
-<span class="st"> </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span>
-<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Major allele count&quot;</span>) +
+<span class="kw">ggplot</span>(loc2temp, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(loc7), <span class="dt">y =</span> temp)) <span class="op">+</span><span class="st"> </span>
+<span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Major allele count&quot;</span>) <span class="op">+</span>
 <span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature (Centigrade)&quot;</span>)</code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/Binomial%20regressions-2.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc7, <span class="dv">2</span> -<span class="st"> </span>loc7) ~<span class="st"> </span>temp, <span class="dt">family =</span> binomial)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc7, <span class="dv">2</span> <span class="op">-</span><span class="st"> </span>loc7) <span class="op">~</span><span class="st"> </span>temp, <span class="dt">family =</span> binomial)
 <span class="kw">summary</span>(mod) ## This locus is not significantly correlated to temperature</code></pre></div>
 <pre><code>## 
 ## Call:
@@ -576,66 +576,79 @@ loc7temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc7, 
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools::<span class="kw">session_info</span>()</code></pre></div>
-<pre><code>## Session info ---------------------------------------------------------------------------------------</code></pre>
+devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
+<pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
-##  version  R version 3.3.2 (2016-10-31)
+##  version  R version 3.4.2 (2017-09-28)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
-##  tz       &lt;NA&gt;                        
-##  date     2017-01-04</code></pre>
-<pre><code>## Packages -------------------------------------------------------------------------------------------</code></pre>
+##  tz       UTC                         
+##  date     2017-10-22</code></pre>
+<pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  package     * version date       source                            
-##  ape           4.0     2016-12-01 CRAN (R 3.3.2)                    
-##  assertthat    0.1     2013-12-06 CRAN (R 3.3.2)                    
-##  backports     1.0.4   2016-10-24 CRAN (R 3.3.2)                    
-##  cluster       2.0.5   2016-10-08 CRAN (R 3.3.2)                    
-##  colorspace    1.3-2   2016-12-14 CRAN (R 3.3.2)                    
-##  DEoptimR      1.0-8   2016-11-19 CRAN (R 3.3.2)                    
-##  devtools      1.12.0  2016-12-05 CRAN (R 3.3.2)                    
-##  digest        0.6.10  2016-08-02 CRAN (R 3.3.2)                    
-##  evaluate      0.10    2016-10-11 CRAN (R 3.3.2)                    
-##  fit.models  * 0.5-10  2013-02-23 CRAN (R 3.3.2)                    
-##  ggplot2     * 2.2.0   2016-11-11 CRAN (R 3.3.2)                    
-##  gtable        0.2.0   2016-02-26 CRAN (R 3.3.2)                    
-##  htmltools     0.3.5   2016-03-21 CRAN (R 3.3.2)                    
-##  knitr         1.15.1  2016-11-22 CRAN (R 3.3.2)                    
-##  labeling      0.3     2014-08-23 CRAN (R 3.3.2)                    
-##  lattice     * 0.20-34 2016-09-06 CRAN (R 3.3.2)                    
-##  lazyeval      0.2.0   2016-06-12 CRAN (R 3.3.2)                    
-##  magrittr      1.5     2014-11-22 CRAN (R 3.3.2)                    
-##  MASS        * 7.3-45  2016-04-21 CRAN (R 3.3.2)                    
-##  Matrix        1.2-7.1 2016-09-01 CRAN (R 3.3.2)                    
-##  memoise       1.0.0   2016-01-29 CRAN (R 3.3.2)                    
-##  mgcv          1.8-16  2016-11-07 CRAN (R 3.3.2)                    
-##  munsell       0.4.3   2016-02-13 CRAN (R 3.3.2)                    
-##  mvtnorm       1.0-5   2016-02-02 CRAN (R 3.3.2)                    
-##  nlme          3.1-128 2016-05-10 CRAN (R 3.3.2)                    
-##  OutFLANK    * 0.1     2017-01-04 Github (whitlock/OutFLANK@1379c26)
-##  pcadapt     * 3.0.4   2017-01-02 CRAN (R 3.3.2)                    
-##  pcaPP         1.9-61  2016-10-11 CRAN (R 3.3.2)                    
-##  permute       0.9-4   2016-09-09 CRAN (R 3.3.2)                    
-##  pinfsc50      1.1.0   2016-12-02 CRAN (R 3.3.2)                    
-##  plyr          1.8.4   2016-06-08 CRAN (R 3.3.2)                    
-##  qvalue      * 2.6.0   2017-01-04 Bioconductor                      
-##  Rcpp          0.12.8  2016-11-17 CRAN (R 3.3.2)                    
-##  reshape2      1.4.2   2016-10-22 CRAN (R 3.3.2)                    
-##  rmarkdown     1.3     2016-12-21 CRAN (R 3.3.2)                    
-##  robust      * 0.4-16  2014-05-18 CRAN (R 3.3.2)                    
-##  robustbase  * 0.92-7  2016-12-09 CRAN (R 3.3.2)                    
-##  rprojroot     1.1     2016-10-29 CRAN (R 3.3.2)                    
-##  rrcov       * 1.4-3   2016-09-06 CRAN (R 3.3.2)                    
-##  scales        0.4.1   2016-11-09 CRAN (R 3.3.2)                    
-##  stringi       1.1.2   2016-10-01 CRAN (R 3.3.2)                    
-##  stringr       1.1.0   2016-08-19 CRAN (R 3.3.2)                    
-##  tibble        1.2     2016-08-26 CRAN (R 3.3.2)                    
-##  vcfR        * 1.3.0   2016-12-08 CRAN (R 3.3.2)                    
-##  vegan         2.4-1   2016-09-07 CRAN (R 3.3.2)                    
-##  viridisLite   0.1.3   2016-03-12 CRAN (R 3.3.2)                    
-##  withr         1.0.2   2016-06-20 CRAN (R 3.3.2)                    
-##  yaml          2.1.14  2016-11-12 CRAN (R 3.3.2)</code></pre>
+##  ape           4.1     2017-02-14 CRAN (R 3.4.2)                    
+##  backports     1.1.1   2017-09-25 CRAN (R 3.4.2)                    
+##  base        * 3.4.2   2017-10-21 local                             
+##  cluster       2.0.6   2017-03-16 CRAN (R 3.4.2)                    
+##  colorspace    1.3-2   2016-12-14 CRAN (R 3.4.2)                    
+##  compiler      3.4.2   2017-10-21 local                             
+##  datasets    * 3.4.2   2017-10-21 local                             
+##  DEoptimR      1.0-8   2016-11-19 CRAN (R 3.4.2)                    
+##  devtools      1.13.3  2017-08-02 CRAN (R 3.4.2)                    
+##  digest        0.6.12  2017-01-27 CRAN (R 3.4.2)                    
+##  evaluate      0.10.1  2017-06-24 CRAN (R 3.4.2)                    
+##  fit.models  * 0.5-14  2017-04-06 CRAN (R 3.4.2)                    
+##  ggplot2     * 2.2.1   2016-12-30 CRAN (R 3.4.2)                    
+##  graphics    * 3.4.2   2017-10-21 local                             
+##  grDevices   * 3.4.2   2017-10-21 local                             
+##  grid          3.4.2   2017-10-21 local                             
+##  gtable        0.2.0   2016-02-26 CRAN (R 3.4.2)                    
+##  htmltools     0.3.6   2017-04-28 CRAN (R 3.4.2)                    
+##  knitr         1.17    2017-08-10 CRAN (R 3.4.2)                    
+##  labeling      0.3     2014-08-23 CRAN (R 3.4.2)                    
+##  lattice       0.20-35 2017-03-25 CRAN (R 3.4.2)                    
+##  lazyeval      0.2.0   2016-06-12 CRAN (R 3.4.2)                    
+##  magrittr      1.5     2014-11-22 CRAN (R 3.4.2)                    
+##  MASS        * 7.3-47  2017-04-21 CRAN (R 3.4.2)                    
+##  Matrix        1.2-11  2017-08-16 CRAN (R 3.4.2)                    
+##  memoise       1.1.0   2017-04-21 CRAN (R 3.4.2)                    
+##  methods       3.4.2   2017-10-21 local                             
+##  mgcv          1.8-22  2017-09-19 CRAN (R 3.4.2)                    
+##  munsell       0.4.3   2016-02-13 CRAN (R 3.4.2)                    
+##  mvtnorm       1.0-6   2017-03-02 CRAN (R 3.4.2)                    
+##  nlme          3.1-131 2017-02-06 CRAN (R 3.4.2)                    
+##  OutFLANK    * 0.1     2017-10-21 Github (whitlock/OutFLANK@1379c26)
+##  parallel      3.4.2   2017-10-21 local                             
+##  pcadapt     * 3.0.4   2017-01-02 CRAN (R 3.4.2)                    
+##  pcaPP         1.9-72  2017-06-27 CRAN (R 3.4.2)                    
+##  permute       0.9-4   2016-09-09 CRAN (R 3.4.2)                    
+##  pinfsc50      1.1.0   2016-12-02 CRAN (R 3.4.2)                    
+##  plyr          1.8.4   2016-06-08 CRAN (R 3.4.2)                    
+##  qvalue      * 2.8.0   2017-10-21 Bioconductor                      
+##  Rcpp          0.12.13 2017-09-28 CRAN (R 3.4.2)                    
+##  reshape2      1.4.2   2016-10-22 CRAN (R 3.4.2)                    
+##  rlang         0.1.2   2017-08-09 CRAN (R 3.4.2)                    
+##  rmarkdown     1.6     2017-06-15 CRAN (R 3.4.2)                    
+##  robust      * 0.4-18  2017-04-27 CRAN (R 3.4.2)                    
+##  robustbase    0.92-7  2016-12-09 CRAN (R 3.4.2)                    
+##  rprojroot     1.2     2017-01-16 CRAN (R 3.4.2)                    
+##  rrcov         1.4-3   2016-09-06 CRAN (R 3.4.2)                    
+##  scales        0.5.0   2017-08-24 CRAN (R 3.4.2)                    
+##  splines       3.4.2   2017-10-21 local                             
+##  stats       * 3.4.2   2017-10-21 local                             
+##  stats4        3.4.2   2017-10-21 local                             
+##  stringi       1.1.5   2017-04-07 CRAN (R 3.4.2)                    
+##  stringr       1.2.0   2017-02-18 CRAN (R 3.4.2)                    
+##  tibble        1.3.4   2017-08-22 CRAN (R 3.4.2)                    
+##  tools         3.4.2   2017-10-21 local                             
+##  utils       * 3.4.2   2017-10-21 local                             
+##  vcfR        * 1.5.0   2017-05-18 CRAN (R 3.4.2)                    
+##  vegan         2.4-4   2017-08-24 CRAN (R 3.4.2)                    
+##  viridisLite   0.2.0   2017-03-24 CRAN (R 3.4.2)                    
+##  withr         2.0.0   2017-07-28 CRAN (R 3.4.2)                    
+##  yaml          2.1.14  2016-11-12 CRAN (R 3.4.2)</code></pre>
 </div>
 
 <!-- </div>
@@ -665,7 +678,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
