@@ -239,7 +239,8 @@ $(document).ready(function () {
               <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
               <li><a href="2015-05-18-Dist-SNP.html">Genetic distance (individual-based)</a></li>
               <li><a href="2016-01-26-SNP-selection.html">Signals of selection</a></li>
-			  <li><a href="2016-12-13_MEM_outlier.html">Spatial Outlier Detection</a></li>
+			  <li><a href="2016-12-13_MEM_outlier.html">Spatial outlier detection</a></li>
+			  <li><a href="2018-03-27_RDA_GEA.html">Detecting multilocus adaptation using redundancy analysis</a></li>
               <!-- <li><a href="SNP.html">SNPs</a></li> -->
               <li class="divider"></li>
               <li class="dropdown-header">For sequence data:</li>
@@ -410,17 +411,17 @@ div</code></pre></div>
 ## 
 ## $fis.ci
 ##         ll      hl
-## 1  -0.0376  0.2965
-## 2  -0.0560  0.0387
-## 3   0.0063  0.0977
-## 4  -0.0457  0.0668
-## 5  -0.0277  0.0811
-## 6  -0.4826  0.2059
-## 7  -0.2587  0.0979
-## 8  -0.2062 -0.0456
-## 9  -0.1290  0.3338
-## 10  0.0084  0.2934
-## 11 -0.4187 -0.1480</code></pre>
+## 1  -0.0708  0.2875
+## 2  -0.0675  0.0360
+## 3   0.0117  0.0900
+## 4  -0.0579  0.0718
+## 5  -0.0408  0.0822
+## 6  -0.4722  0.1852
+## 7  -0.2609  0.1636
+## 8  -0.2122 -0.0582
+## 9  -0.1484  0.3040
+## 10  0.0120  0.3153
+## 11 -0.4348 -0.1633</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">indpca</span>(Mydata2) 
 <span class="kw">plot</span>(x, <span class="dt">cex =</span> <span class="fl">0.7</span>)</code></pre></div>
 <p><img src="StartSNP_files/figure-html/basic_statistics-1.png" width="960" /></p>
@@ -430,18 +431,18 @@ div</code></pre></div>
 <p>We used the function <code>hw.test()</code> from the <em>pegas</em> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hw.test</span>(Mydata1, <span class="dt">B =</span> <span class="dv">1000</span>)</code></pre></div>
 <pre><code>##                      chi^2 df Pr(chi^2 &gt;) Pr.exact
-## X0_10037_01_257 0.75465490  1 0.385006451    0.460
-## X0_10040_02_394 0.16628227  1 0.683437231    0.727
-## X0_10044_01_392 2.96053195  1 0.085319867    0.087
-## X0_10048_01_60  6.39076800  1 0.011471539    0.010
-## X0_10051_02_166 1.12035389  1 0.289842265    0.298
-## X0_10054_01_402 1.54582494  1 0.213752853    0.233
-## X0_10067_03_111 0.04868128  1 0.825374035    0.568
-## X0_10079_02_168 0.01579313  1 0.899992594    0.592
+## X0_10037_01_257 0.75465490  1 0.385006451    0.457
+## X0_10040_02_394 0.16628227  1 0.683437231    0.723
+## X0_10044_01_392 2.96053195  1 0.085319867    0.089
+## X0_10048_01_60  6.39076800  1 0.011471539    0.018
+## X0_10051_02_166 1.12035389  1 0.289842265    0.319
+## X0_10054_01_402 1.54582494  1 0.213752853    0.251
+## X0_10067_03_111 0.04868128  1 0.825374035    0.567
+## X0_10079_02_168 0.01579313  1 0.899992594    0.603
 ## X0_10112_01_169 0.41126025  1 0.521330544    1.000
-## X0_10113_01_119 0.74248768  1 0.388865151    0.420
-## X0_10116_01_165 1.87098306  1 0.171362531    0.237
-## X0_10151_01_86  8.94232481  1 0.002786379    0.003</code></pre>
+## X0_10113_01_119 0.74248768  1 0.388865151    0.442
+## X0_10116_01_165 1.87098306  1 0.171362531    0.242
+## X0_10151_01_86  8.94232481  1 0.002786379    0.005</code></pre>
 <p>We get for each locus a test of significance of the null hypothesis: <span class="math inline">\(H_0\)</span> the locus is in HW equilibrium in the population. All but one locus are in HW equilibrium.</p>
 </div>
 </div>
@@ -474,88 +475,90 @@ div</code></pre></div>
 devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
 <pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
-##  version  R version 3.4.2 (2017-09-28)
+##  version  R version 3.4.3 (2017-11-30)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  tz       UTC                         
-##  date     2017-10-22</code></pre>
+##  date     2018-04-03</code></pre>
 <pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  package    * version date       source        
-##  ade4       * 1.7-8   2017-08-09 CRAN (R 3.4.2)
-##  adegenet   * 2.1.0   2017-10-12 CRAN (R 3.4.2)
-##  ape        * 4.1     2017-02-14 CRAN (R 3.4.2)
-##  assertthat   0.2.0   2017-04-11 CRAN (R 3.4.2)
-##  backports    1.1.1   2017-09-25 CRAN (R 3.4.2)
-##  base       * 3.4.2   2017-10-21 local         
-##  bindr        0.1     2016-11-13 CRAN (R 3.4.2)
-##  bindrcpp     0.2     2017-06-17 CRAN (R 3.4.2)
-##  boot         1.3-20  2017-07-30 CRAN (R 3.4.2)
-##  cluster      2.0.6   2017-03-16 CRAN (R 3.4.2)
-##  coda         0.19-1  2016-12-08 CRAN (R 3.4.2)
-##  colorspace   1.3-2   2016-12-14 CRAN (R 3.4.2)
-##  compiler     3.4.2   2017-10-21 local         
-##  datasets   * 3.4.2   2017-10-21 local         
-##  deldir       0.1-14  2017-04-22 CRAN (R 3.4.2)
-##  devtools     1.13.3  2017-08-02 CRAN (R 3.4.2)
-##  digest       0.6.12  2017-01-27 CRAN (R 3.4.2)
-##  dplyr        0.7.4   2017-09-28 CRAN (R 3.4.2)
-##  evaluate     0.10.1  2017-06-24 CRAN (R 3.4.2)
-##  expm         0.999-2 2017-03-29 CRAN (R 3.4.2)
-##  gdata        2.18.0  2017-06-06 CRAN (R 3.4.2)
-##  ggplot2      2.2.1   2016-12-30 CRAN (R 3.4.2)
-##  glue         1.1.1   2017-06-21 CRAN (R 3.4.2)
-##  gmodels      2.16.2  2015-07-22 CRAN (R 3.4.2)
-##  graphics   * 3.4.2   2017-10-21 local         
-##  grDevices  * 3.4.2   2017-10-21 local         
-##  grid         3.4.2   2017-10-21 local         
-##  gtable       0.2.0   2016-02-26 CRAN (R 3.4.2)
-##  gtools       3.5.0   2015-05-29 CRAN (R 3.4.2)
-##  hierfstat  * 0.04-22 2015-12-04 CRAN (R 3.4.2)
-##  htmltools    0.3.6   2017-04-28 CRAN (R 3.4.2)
-##  httpuv       1.3.5   2017-07-04 CRAN (R 3.4.2)
-##  igraph       1.1.2   2017-07-21 CRAN (R 3.4.2)
-##  knitr        1.17    2017-08-10 CRAN (R 3.4.2)
-##  lattice      0.20-35 2017-03-25 CRAN (R 3.4.2)
-##  lazyeval     0.2.0   2016-06-12 CRAN (R 3.4.2)
-##  LearnBayes   2.15    2014-05-29 CRAN (R 3.4.2)
-##  magrittr     1.5     2014-11-22 CRAN (R 3.4.2)
-##  MASS         7.3-47  2017-04-21 CRAN (R 3.4.2)
-##  Matrix       1.2-11  2017-08-16 CRAN (R 3.4.2)
-##  memoise      1.1.0   2017-04-21 CRAN (R 3.4.2)
-##  methods    * 3.4.2   2017-10-21 local         
-##  mgcv         1.8-22  2017-09-19 CRAN (R 3.4.2)
-##  mime         0.5     2016-07-07 CRAN (R 3.4.2)
-##  munsell      0.4.3   2016-02-13 CRAN (R 3.4.2)
-##  nlme         3.1-131 2017-02-06 CRAN (R 3.4.2)
-##  parallel     3.4.2   2017-10-21 local         
-##  pegas      * 0.10    2017-05-03 CRAN (R 3.4.2)
-##  permute      0.9-4   2016-09-09 CRAN (R 3.4.2)
-##  pkgconfig    2.0.1   2017-03-21 CRAN (R 3.4.2)
-##  plyr         1.8.4   2016-06-08 CRAN (R 3.4.2)
-##  R6           2.2.2   2017-06-17 CRAN (R 3.4.2)
-##  Rcpp         0.12.13 2017-09-28 CRAN (R 3.4.2)
-##  reshape2     1.4.2   2016-10-22 CRAN (R 3.4.2)
-##  rlang        0.1.2   2017-08-09 CRAN (R 3.4.2)
-##  rmarkdown    1.6     2017-06-15 CRAN (R 3.4.2)
-##  rprojroot    1.2     2017-01-16 CRAN (R 3.4.2)
-##  scales       0.5.0   2017-08-24 CRAN (R 3.4.2)
-##  seqinr       3.4-5   2017-08-01 CRAN (R 3.4.2)
-##  shiny        1.0.5   2017-08-23 CRAN (R 3.4.2)
-##  sp           1.2-5   2017-06-29 CRAN (R 3.4.2)
-##  spdep        0.6-15  2017-09-01 CRAN (R 3.4.2)
-##  splines      3.4.2   2017-10-21 local         
-##  stats      * 3.4.2   2017-10-21 local         
-##  stringi      1.1.5   2017-04-07 CRAN (R 3.4.2)
-##  stringr      1.2.0   2017-02-18 CRAN (R 3.4.2)
-##  tibble       1.3.4   2017-08-22 CRAN (R 3.4.2)
-##  tools        3.4.2   2017-10-21 local         
-##  utils      * 3.4.2   2017-10-21 local         
-##  vegan        2.4-4   2017-08-24 CRAN (R 3.4.2)
-##  withr        2.0.0   2017-07-28 CRAN (R 3.4.2)
-##  xtable       1.8-2   2016-02-05 CRAN (R 3.4.2)
-##  yaml         2.1.14  2016-11-12 CRAN (R 3.4.2)</code></pre>
+<pre><code>##  package    * version   date       source        
+##  ade4       * 1.7-10    2017-12-15 CRAN (R 3.4.3)
+##  adegenet   * 2.1.1     2018-02-02 CRAN (R 3.4.3)
+##  ape        * 5.0       2017-10-30 CRAN (R 3.4.3)
+##  assertthat   0.2.0     2017-04-11 CRAN (R 3.4.3)
+##  backports    1.1.2     2017-12-13 CRAN (R 3.4.3)
+##  base       * 3.4.3     2018-02-21 local         
+##  bindr        0.1       2016-11-13 CRAN (R 3.4.3)
+##  bindrcpp     0.2       2017-06-17 CRAN (R 3.4.3)
+##  boot         1.3-20    2017-07-30 CRAN (R 3.4.3)
+##  cluster      2.0.6     2017-03-16 CRAN (R 3.4.3)
+##  coda         0.19-1    2016-12-08 CRAN (R 3.4.3)
+##  colorspace   1.3-2     2016-12-14 CRAN (R 3.4.3)
+##  compiler     3.4.3     2018-02-21 local         
+##  datasets   * 3.4.3     2018-02-21 local         
+##  deldir       0.1-14    2017-04-22 CRAN (R 3.4.3)
+##  devtools     1.13.5    2018-02-18 CRAN (R 3.4.3)
+##  digest       0.6.15    2018-01-28 CRAN (R 3.4.3)
+##  dplyr        0.7.4     2017-09-28 CRAN (R 3.4.3)
+##  evaluate     0.10.1    2017-06-24 CRAN (R 3.4.3)
+##  expm         0.999-2   2017-03-29 CRAN (R 3.4.3)
+##  gdata        2.18.0    2017-06-06 CRAN (R 3.4.3)
+##  ggplot2      2.2.1     2016-12-30 CRAN (R 3.4.3)
+##  glue         1.2.0     2017-10-29 CRAN (R 3.4.3)
+##  gmodels      2.16.2    2015-07-22 CRAN (R 3.4.3)
+##  graphics   * 3.4.3     2018-02-21 local         
+##  grDevices  * 3.4.3     2018-02-21 local         
+##  grid         3.4.3     2018-02-21 local         
+##  gtable       0.2.0     2016-02-26 CRAN (R 3.4.3)
+##  gtools       3.5.0     2015-05-29 CRAN (R 3.4.3)
+##  hierfstat  * 0.04-22   2015-12-04 CRAN (R 3.4.3)
+##  htmltools    0.3.6     2017-04-28 CRAN (R 3.4.3)
+##  httpuv       1.3.5     2017-07-04 CRAN (R 3.4.3)
+##  igraph       1.1.2     2017-07-21 CRAN (R 3.4.3)
+##  knitr        1.20      2018-02-20 CRAN (R 3.4.3)
+##  lattice      0.20-35   2017-03-25 CRAN (R 3.4.3)
+##  lazyeval     0.2.1     2017-10-29 CRAN (R 3.4.3)
+##  LearnBayes   2.15      2014-05-29 CRAN (R 3.4.3)
+##  magrittr     1.5       2014-11-22 CRAN (R 3.4.3)
+##  MASS         7.3-48    2017-12-25 CRAN (R 3.4.3)
+##  Matrix       1.2-12    2017-11-16 CRAN (R 3.4.3)
+##  memoise      1.1.0     2017-04-21 CRAN (R 3.4.3)
+##  methods    * 3.4.3     2018-02-21 local         
+##  mgcv         1.8-23    2018-01-15 CRAN (R 3.4.3)
+##  mime         0.5       2016-07-07 CRAN (R 3.4.3)
+##  munsell      0.4.3     2016-02-13 CRAN (R 3.4.3)
+##  nlme         3.1-131.1 2018-02-16 CRAN (R 3.4.3)
+##  parallel     3.4.3     2018-02-21 local         
+##  pegas      * 0.10      2017-05-03 CRAN (R 3.4.3)
+##  permute      0.9-4     2016-09-09 CRAN (R 3.4.3)
+##  pillar       1.1.0     2018-01-14 CRAN (R 3.4.3)
+##  pkgconfig    2.0.1     2017-03-21 CRAN (R 3.4.3)
+##  plyr         1.8.4     2016-06-08 CRAN (R 3.4.3)
+##  R6           2.2.2     2017-06-17 CRAN (R 3.4.3)
+##  Rcpp         0.12.15   2018-01-20 CRAN (R 3.4.3)
+##  reshape2     1.4.3     2017-12-11 CRAN (R 3.4.3)
+##  rlang        0.2.0     2018-02-20 CRAN (R 3.4.3)
+##  rmarkdown    1.8       2017-11-17 CRAN (R 3.4.3)
+##  rprojroot    1.3-2     2018-01-03 CRAN (R 3.4.3)
+##  scales       0.5.0     2017-08-24 CRAN (R 3.4.3)
+##  seqinr       3.4-5     2017-08-01 CRAN (R 3.4.3)
+##  shiny        1.0.5     2017-08-23 CRAN (R 3.4.3)
+##  sp           1.2-7     2018-01-19 CRAN (R 3.4.3)
+##  spData       0.2.7.4   2018-02-11 CRAN (R 3.4.3)
+##  spdep        0.7-4     2017-11-22 CRAN (R 3.4.3)
+##  splines      3.4.3     2018-02-21 local         
+##  stats      * 3.4.3     2018-02-21 local         
+##  stringi      1.1.6     2017-11-17 CRAN (R 3.4.3)
+##  stringr      1.3.0     2018-02-19 CRAN (R 3.4.3)
+##  tibble       1.4.2     2018-01-22 CRAN (R 3.4.3)
+##  tools        3.4.3     2018-02-21 local         
+##  utils      * 3.4.3     2018-02-21 local         
+##  vegan        2.4-6     2018-01-24 CRAN (R 3.4.3)
+##  withr        2.1.1     2017-12-19 CRAN (R 3.4.3)
+##  xtable       1.8-2     2016-02-05 CRAN (R 3.4.3)
+##  yaml         2.1.16    2017-12-12 CRAN (R 3.4.3)</code></pre>
 </div>
 
 <!-- </div>

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Detecting multilocus adaptation using Redundancy Analysis (RDA)</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<!---
+
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+  padding-right: 50px;
+  padding-left: -50px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+ offset scroll position for anchor links (for fixed navbar)  
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+</style>
+-->
+
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- HOME -->
+      <a class="navbar-brand" href="index.html"><b>Population Genetics in R</b></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!-- Table of contents -->
+        <li class="dropdown">
+          <a href="chapters" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users <span class="caret"></span></a>
+          <ol class="dropdown-menu">
+              <li><a href="GETSTARTED.html">Getting Started</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">For microsatellite data:</li>
+              <li><a href="startMicrosatellite.html">Basic statistics</a></li>
+              <li><a href="2015-12-15-microsatellite-differentiation.html">Population differentiation</a></li>
+              <li><a href="LMM-Genetic-Diversity.html">Comparing genetic diversity using mixed models</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">For SNP data:</li>
+              <!-- <li class="divider"></li> -->
+              <li><a href="StartSNP.html">Basic statistics</a></li>
+              <li><a href="DifferentiationSNP.html">Population differentiation</a></li>
+              <li><a href="2015-05-18-Dist-SNP.html">Genetic distance (individual-based)</a></li>
+              <li><a href="2016-01-26-SNP-selection.html">Signals of selection</a></li>
+			  <li><a href="2016-12-13_MEM_outlier.html">Spatial outlier detection</a></li>
+			  <li><a href="2018-03-27_RDA_GEA.html">Detecting multilocus adaptation using redundancy analysis</a></li>
+              <!-- <li><a href="SNP.html">SNPs</a></li> -->
+              <li class="divider"></li>
+              <li class="dropdown-header">For sequence data:</li>
+              <!-- <li class="divider"></li>   -->
+              <li><a href="PopDiffSequenceData.html">Population differentiation</a></li>
+          </ol>
+        </li>
+        <!-- Appendices dropdown -->
+        <li class="dropdown">
+          <a href="appendices" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Package Developers <span class="caret"></span></a>
+          <ul class = "dropdown-menu" role = "menu">
+           <li><a href = "PACKAGES.html">Population genetic packages in R</a></li>  
+           <li><a href = "DATAFORMATS.html">Population genetic data types in R</a></li>
+           <li><a href = "PACKAGE_TUTORIALS.html">Tutorials for developing R packages</a></li>
+           <li class="divider"></li>  
+           <li class="dropdown-header">Development Resources (external):</li>
+           <li><a href = "http://r-pkgs.had.co.nz/">Hadley Wickham's guide for creating R packages</a></li>
+           <li><a href = "https://github.com/jtleek/rpackages">Jeff Leek's R package development</a></li>
+           <li><a href = "http://adv-r.had.co.nz/S4.html">S4 Classes in detail</a></li>
+           <li><a href = "http://adv-r.had.co.nz/S3.html">S3 Classes in detail</a></li>
+           <li><a href = "http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf">A not so short introduction to S4</a></li>
+          </ul>
+        </li>
+        <!-- Author button -->
+        <li class="dropdown">
+          <a href="about" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contribute! <span class="caret"></span></a>
+          <ul class = "dropdown-menu" role = "menu">
+           <li><a href = "CONTRIBUTING.html">Contribution guidelines</a></li>  
+           <li><a href = "CONTRIBUTING_WITH_GIT2R.html">Contributing with git2r</a></li> 
+           <li class="divider"></li>  
+           <li><a href="https://github.com/NESCent/popgenInfo">Source repository</a></li>  
+		  </ul>
+        </li>
+        <li class = "button">
+          <a href="LinksToResources.html">Useful Links</a>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<!-- <div class="container">
+<div class="row">
+<div class="span10 offset1"> -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Detecting multilocus adaptation using Redundancy Analysis (RDA)</h1>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#assumptions">Assumptions</a></li>
+<li><a href="#data-packages">Data &amp; packages</a></li>
+<li><a href="#analysis">Analysis</a></li>
+<li><a href="#conclusions">Conclusions</a></li>
+<li><a href="#contributors">Contributors</a></li>
+<li><a href="#references">References</a></li>
+<li><a href="#session-information">Session Information</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>The purpose of this vignette is to illustrate the use of <strong>Redundancy Analysis (RDA)</strong> as a genotype-environment association (GEA) method to detect loci under selection (Forester et al., 2018). RDA is a multivariate ordination technique that can be used to analyze many loci and environmental predictors simultaneously. RDA determines how groups of loci covary in response to the multivariate environment, and can detect processes that result in weak, multilocus molecular signatures (Rellstab et al., 2015; Forester et al., 2018).</p>
+<p>RDA is a two-step analysis in which genetic and environmental data are analyzed using multivariate linear regression, producing a matrix of fitted values. Then PCA of the fitted values is used to produce canonical axes, which are linear combinations of the predictors (Legendre &amp; Legendre, 2012). RDA can be used to analyze genomic data derived from both individual and population-based sampling designs.</p>
+</div>
+<div id="assumptions" class="section level2">
+<h2>Assumptions</h2>
+<p>RDA is a linear model and so assumes a linear dependence between the response variables (genotypes) and the explanatory variables (environmental predictors). Additional detail can be found in Legendre &amp; Legendre (2012). We also recommend Borcard et al. (2011) for details on the implementation and interpretation of RDA using the <code>vegan</code> package (Oksanen et al, 2017).</p>
+</div>
+<div id="data-packages" class="section level2">
+<h2>Data &amp; packages</h2>
+<p>In this vignette, we’ll apply RDA to genomic data from 94 North American gray wolves (<em>Canis lupus</em>) sampled across Canada and Alaska (Schweizer et al., 2016). Results of the RDA at the full set of 42,587 single nucleotide polymorphism (SNP) markers are available in Forester et al. (2018). Here, in the interest of computational efficiency, we will use a randomly sampled subset of 10,000 SNPs from this larger data set. We are interested in understanding how wolves may be locally adapted to environmental conditions across their North American range</p>
+<p>In this case, the data are individual-based, and are input as allele counts (i.e. 0/1/2) for each locus for each individual wolf. For population-based data, you can input the genomic data as allele frequencies within demes. The distinction between individual and population based analyses may not be straightforward in all cases. A simple guideline would be to use an individual-based framework when you have individual coordinates for most of your samples, and the resolution of your environmental data (if in raster format) would allow for a sampling of environmental conditions across the site/study area.</p>
+<p>Begin by installing the necessary packages, if you don’t already have them:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(c(&quot;psych&quot;,&quot;vegan&quot;), dependencies=TRUE)</span>
+
+<span class="co"># Load packages</span>
+<span class="co"># -------------</span>
+<span class="kw">library</span>(psych)    <span class="co"># Used to investigate correlations among predictors</span>
+<span class="kw">library</span>(vegan)    <span class="co"># Used to run RDA</span></code></pre></div>
+</div>
+<div id="analysis" class="section level2">
+<h2>Analysis</h2>
+<div id="read-in-and-prepare-the-genetic-data-for-analysis" class="section level3">
+<h3>Read in and prepare the genetic data for analysis</h3>
+<p>I downloaded these data from the Schweizer et al. (2016) <a href="http://datadryad.org/resource/doi:10.5061/dryad.c9b25">Dryad repository</a> and converted them from .tped to .raw format using plink (Purcell et al., 2007). Then, using the R package <code>adegenet</code> (Jombart 2008), I read in the .raw data and extracted the matrix of 94 individuals x 42,587 SNPs. Finally, I randomly sampled 10,000 columns (SNPs) from the full data set, which is what we will analyze in this vignette.</p>
+<p>The full data in .raw format are available in the Supplemental Information for Forester et al. (2018). If you want to analyze the full data set, use the <code>read.PLINK</code> call from <code>adegenet</code> to read the data into R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datzip &lt;-<span class="st"> </span>(<span class="st">&quot;data/wolf_geno_samp_10000.zip&quot;</span>) 
+zipd &lt;-<span class="st"> </span><span class="kw">tempdir</span>()
+<span class="kw">unzip</span>(datzip, <span class="dt">exdir=</span>zipd)
+gen &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">paste0</span>(zipd,<span class="st">&quot;/wolf_geno_samp_10000.csv&quot;</span>), <span class="dt">row.names=</span><span class="dv">1</span>)
+<span class="kw">dim</span>(gen)</code></pre></div>
+<pre><code>## [1]    94 10000</code></pre>
+<p>We have 94 individuals (rows) genotyped at 10,000 SNPs (columns).</p>
+<p>RDA requires complete data frames (i.e., no missing data). For this vignette, we’ll use a simple approach to imputing missing values: we will impute using the most common genotype at each SNP across all individuals.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">is.na</span>(gen)) <span class="co"># 27,987 NAs in the matrix (~3% missing data)</span></code></pre></div>
+<pre><code>## [1] 27987</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gen.imp &lt;-<span class="st"> </span><span class="kw">apply</span>(gen, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="kw">replace</span>(x, <span class="kw">is.na</span>(x), <span class="kw">as.numeric</span>(<span class="kw">names</span>(<span class="kw">which.max</span>(<span class="kw">table</span>(x))))))
+<span class="kw">sum</span>(<span class="kw">is.na</span>(gen.imp)) <span class="co"># No NAs</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>We could also use this imputation approach within ecotypes (rather than across all individuals). Other promising imputation methods for species lacking a reference genome include: using ancestry values from <code>snmf</code> in the <code>LEA</code> package (Frichot &amp; Francois 2015), using Random Forest (implemented for genomic data in the R package <code>grur</code>, Gosselin 2017), and the program LinkImpute (Money et al., 2015).</p>
+</div>
+<div id="read-in-and-screen-the-environmental-predictors" class="section level3">
+<h3>Read in and screen the environmental predictors</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">env &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/wolf_env.csv&quot;</span>)
+<span class="kw">str</span>(env) <span class="co"># Look at the structure of the data frame</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    94 obs. of  16 variables:
+##  $ individual            : Factor w/ 94 levels &quot;11226.CEL&quot;,&quot;11228.CEL&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+##  $ ecotype               : Factor w/ 6 levels &quot;Pop_1_WestForest&quot;,..: 2 6 6 6 2 2 2 2 2 2 ...
+##  $ long                  : num  -94.5 -88.1 -72 -72 -114.8 ...
+##  $ lat                   : num  49.8 49.1 58.8 58.6 60.6 ...
+##  $ ann_mean_temp         : int  23 15 -69 -66 -34 -37 -35 -47 -46 -20 ...
+##  $ mean_diurnal_range    : int  97 115 75 76 102 114 112 99 109 115 ...
+##  $ temp_seasonality      : int  13047 11408 11831 11867 14259 14806 15176 15844 15312 14099 ...
+##  $ max_temp_warmest_month: int  253 233 130 135 207 223 229 228 223 226 ...
+##  $ min_temp_coldest_month: int  -229 -228 -286 -284 -299 -308 -305 -313 -320 -295 ...
+##  $ ann_precip            : int  610 784 483 477 335 319 372 339 284 375 ...
+##  $ precip_seasonality    : int  47 29 39 40 39 34 43 48 36 46 ...
+##  $ precip_coldest_quarter: int  76 142 70 70 56 58 57 52 54 56 ...
+##  $ land_cover            : int  8 5 7 7 7 1 1 1 1 1 ...
+##  $ ndvi                  : int  7403 8222 6450 6141 7595 7518 7472 8157 7348 6616 ...
+##  $ elev                  : int  349 234 264 200 194 219 280 154 190 222 ...
+##  $ percent_tree_cover    : int  36 51 5 9 26 48 47 61 61 47 ...</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">env<span class="op">$</span>individual &lt;-<span class="st"> </span><span class="kw">as.character</span>(env<span class="op">$</span>individual) <span class="co"># Make individual names characters (not factors)</span>
+env<span class="op">$</span>land_cover &lt;-<span class="st"> </span><span class="kw">as.factor</span>(env<span class="op">$</span>land_cover)    <span class="co"># Make land cover a factor (not an integer)</span>
+
+<span class="co"># Confirm that genotypes and environmental data are in the same order</span>
+<span class="kw">identical</span>(<span class="kw">rownames</span>(gen.imp), env[,<span class="dv">1</span>]) </code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>RDA is a regression-based method, and so can be subject to problems when using highly correlated predictors (Dormann et al., 2013). Generally, the |r| &gt; 0.7 “rule of thumb” is a good guideline for removing correlated predictors. We will also check for multicollinearity using Variance Inflation Factors (VIF), below.</p>
+<p>Variable reduction should be guided by an ecological interpretation of the relevance of possible predictors. Here, we use the function <code>pairs.panels</code> to visualize correlations among our predictors. Correlation coefficients are in the upper right diagonal, with their size scaled to their |r|. The lower left shows scatter plots, while the diagonal shows histograms of the data. See <code>?pairs.panels</code> for more information.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairs.panels</span>(env[,<span class="dv">5</span><span class="op">:</span><span class="dv">16</span>], <span class="dt">scale=</span>T)</code></pre></div>
+<p><img src="2018-03-27_RDA_GEA_files/figure-html/env.prep1-1.png" width="768" /></p>
+<p>We only have a few strong correlations. Below, find one option for variable reduction. This could be modified based on ecological and/or biological knowledge about the species or specific hypotheses about the environmental drivers of selection:</p>
+<ol style="list-style-type: decimal">
+<li><code>precip_coldest_quarter</code> and <code>ann_precip</code> are correlated at 0.97; remove one.</li>
+<li>If we remove <code>max_temp_warmest_month</code> and <code>min_temp_coldest_month</code>, we eliminate the remaining strong correlations in a small number of predictors (and still have measures of temperature range and variation included).</li>
+<li>Also investigate the distribution of factor levels in <code>land_cover</code>.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred &lt;-<span class="st"> </span><span class="kw">subset</span>(env, <span class="dt">select=</span><span class="op">-</span><span class="kw">c</span>(precip_coldest_quarter, max_temp_warmest_month, min_temp_coldest_month))
+
+<span class="kw">table</span>(pred<span class="op">$</span>land_cover)</code></pre></div>
+<pre><code>## 
+##  0  1  5  7  8 10 12 14 15 16 
+##  3 23  7 40  7  4  2  1  1  6</code></pre>
+<p>The distribution of factor levels is highly skewed towards classes 1 &amp; 7, leaving the remaining classes with small numbers of individuals. These characteristics make it unlikely to be a highly informative predictor; let’s remove it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred &lt;-<span class="st"> </span><span class="kw">subset</span>(pred, <span class="dt">select=</span><span class="op">-</span><span class="kw">c</span>(land_cover))</code></pre></div>
+<p>Let’s look at this reduced set of predictors:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred &lt;-<span class="st"> </span>pred[,<span class="dv">5</span><span class="op">:</span><span class="dv">12</span>]
+<span class="kw">colnames</span>(pred) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;MDR&quot;</span>,<span class="st">&quot;sdT&quot;</span>,<span class="st">&quot;AP&quot;</span>,<span class="st">&quot;cvP&quot;</span>,<span class="st">&quot;NDVI&quot;</span>,<span class="st">&quot;Elev&quot;</span>,<span class="st">&quot;Tree&quot;</span>)
+<span class="kw">pairs.panels</span>(pred, <span class="dt">scale=</span>T)</code></pre></div>
+<p><img src="2018-03-27_RDA_GEA_files/figure-html/env.prep4-1.png" width="576" /></p>
+<p>This looks better. Let’s move on and run the RDA.</p>
+</div>
+<div id="run-the-rda" class="section level3">
+<h3>Run the RDA</h3>
+<p>The code to run the RDA is simple. However, as noted previously, we highly recommend Borcard et al. (2011) for details on the implementation and interpretation of RDA models and the objects created by <code>vegan</code>. RDA runs relatively quickly on most data sets, however on a very large data set (such as the full wolf data set) it can take 15-20 minutes, depending on the computer.</p>
+<p>Note: if your predictors include any factors, you’ll need to write out the formula in the <code>rda</code> call if you want to include a significance test of the constrained axis (code shown below). Since we are not using any factors in this analysis, we can use the shorthand formula <code>gen.imp ~ .</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wolf.rda &lt;-<span class="st"> </span><span class="kw">rda</span>(gen.imp <span class="op">~</span><span class="st"> </span>., <span class="dt">data=</span>pred, <span class="dt">scale=</span>T)
+wolf.rda</code></pre></div>
+<pre><code>## Call: rda(formula = gen.imp ~ AMT + MDR + sdT + AP + cvP + NDVI +
+## Elev + Tree, data = pred, scale = T)
+## 
+##                Inertia Proportion Rank
+## Total         8307.000      1.000     
+## Constrained   1113.488      0.134    8
+## Unconstrained 7193.512      0.866   85
+## Inertia is correlations 
+## 
+## Eigenvalues for constrained axes:
+##   RDA1   RDA2   RDA3   RDA4   RDA5   RDA6   RDA7   RDA8 
+## 281.19 216.87 179.53 110.84  89.78  87.15  75.93  72.20 
+## 
+## Eigenvalues for unconstrained axes:
+##    PC1    PC2    PC3    PC4    PC5    PC6    PC7    PC8 
+## 261.51 211.68 197.60 171.80 127.67 121.61 115.54 110.04 
+## (Showed only 8 of all 85 unconstrained eigenvalues)</code></pre>
+<p>First, note that we will have as many constrained (“RDA”) axes as we have predictors in the model. All residual variance is then modeled by PCA (the unconstrained “PC” axes). The proportion of the variance explained by the environmental predictors is given under the “Proportion” column for “Constrained”; this is equivalent to the R<sup>2</sup> of a multiple regression. Just like in multiple regression, this R<sup>2</sup> will be biased and should be adjusted based on the number of predictors. We can calculate the adjusted R<sup>2</sup> using:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">RsquareAdj</span>(wolf.rda)</code></pre></div>
+<pre><code>## $r.squared
+## [1] 0.1340421
+## 
+## $adj.r.squared
+## [1] 0.05254019</code></pre>
+<p>Our constrained ordination explains about 5% of the variation; this low explanatory power is not surprising given that we expect that most of the SNPs in our dataset will not show a relationship with the environmental predictors (e.g., most SNPs will be neutral).</p>
+<p>The eigenvalues for the constrained axes reflect the variance explained by each canonical axis:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(wolf.rda)<span class="op">$</span>concont</code></pre></div>
+<pre><code>## Importance of components:
+##                           RDA1     RDA2     RDA3      RDA4     RDA5
+## Eigenvalue            281.1906 216.8651 179.5282 110.84337 89.78143
+## Proportion Explained    0.2525   0.1948   0.1612   0.09955  0.08063
+## Cumulative Proportion   0.2525   0.4473   0.6085   0.70807  0.78870
+##                           RDA6     RDA7     RDA8
+## Eigenvalue            87.14904 75.92523 72.20485
+## Proportion Explained   0.07827  0.06819  0.06485
+## Cumulative Proportion  0.86697  0.93515  1.00000</code></pre>
+<p>We can visualize this information using a screeplot of the canonical eigenvalues by calling <code>screeplot</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screeplot</span>(wolf.rda)</code></pre></div>
+<p><img src="2018-03-27_RDA_GEA_files/figure-html/screeplot,%20-1.png" width="595.2" /></p>
+<p>Here, we can see that the first three constrained axes explain most of the variance. The screeplot provides an informal (and quick) way to determine how many constrained axes to include when we search for candidate SNPs (below). We could start by investigating RDA axes that explain the most variance (excluding those after the “drop off” point in the screeplot.)</p>
+<p>Now let’s check our RDA model for significance using formal tests. We can assess both the full model and each constrained axis using F-statistics (Legendre et al, 2010). The null hypothesis is that no linear relationship exists between the SNP data and the environmental predictors. See <code>?anova.cca</code> for more details and options.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">signif.full &lt;-<span class="st"> </span><span class="kw">anova.cca</span>(wolf.rda, <span class="dt">parallel=</span><span class="kw">getOption</span>(<span class="st">&quot;mc.cores&quot;</span>)) <span class="co"># default is permutation=999</span>
+signif.full</code></pre></div>
+<pre><code>## Permutation test for rda under reduced model
+## Permutation: free
+## Number of permutations: 999
+## 
+## Model: rda(formula = gen.imp ~ AMT + MDR + sdT + AP + cvP + NDVI + Elev + Tree, data = pred, scale = T)
+##          Df Variance      F Pr(&gt;F)    
+## Model     8   1113.5 1.6446  0.001 ***
+## Residual 85   7193.5                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The full model is significant, but that doesn’t tell us much. We can check each constrained axis for significance using the code below. For this test, each constrained axis is tested using all previous constrained axes as conditions. See <code>?anova.cca</code> and Legendre et al. (2010) for details. The purpose here is to determine which constrained axes we should investigate for candidate loci.</p>
+<p>This analysis is time intensive (taking up to a few hours for the full wolf data set), so we will not run the code here. If we did run it, we would find that the first three constrained axes are significant (p = 0.001); constrained axis 4 has a p-value of 0.080, while axes 5-8 have p-values &gt; 0.850. This corresponds with our evaluation of the screeplot, above.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">signif.axis &lt;-<span class="st"> </span><span class="kw">anova.cca</span>(wolf.rda, <span class="dt">by=</span><span class="st">&quot;axis&quot;</span>, <span class="dt">parallel=</span><span class="kw">getOption</span>(<span class="st">&quot;mc.cores&quot;</span>))
+signif.axis</code></pre></div>
+<p>Finally, <code>vegan</code> has a simple function for checking Variance Inflation Factors for the predictor variables used in the model:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vif.cca</span>(wolf.rda)</code></pre></div>
+<pre><code>##      AMT      MDR      sdT       AP      cvP     NDVI     Elev     Tree 
+## 7.854243 6.495892 2.775059 4.051610 1.318631 2.285632 2.028377 2.260139</code></pre>
+<p>All values are below 10, and most are below 5, which indicates that multicollinearity among these predictors shouldn’t be a problem for the model. We could remove one of the temperature variables (AMT or MDR) if we were concerned about these higher VIF values (Zuur et al., 2010).</p>
+</div>
+<div id="plot-the-rda" class="section level3">
+<h3>Plot the RDA</h3>
+<p>We’ll start with simple triplots from <code>vegan</code>. Here we’ll use <code>scaling=3</code> (also known as “symmetrical scaling”) for the ordination plots. This scales the SNP and individual scores by the square root of the eigenvalues. See Borcard et al. (2011) or the <code>vegan</code> help for more information on scaling in RDA plots.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>)          <span class="co"># default is axes 1 and 2</span>
+<span class="kw">plot</span>(wolf.rda, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="dt">scaling=</span><span class="dv">3</span>)  <span class="co"># axes 1 and 3</span></code></pre></div>
+<p><img src="2018-03-27_RDA_GEA_files/figure-html/simple_plot-1.png" width="480" /><img src="2018-03-27_RDA_GEA_files/figure-html/simple_plot-2.png" width="480" /></p>
+<p>Here, the SNPs are in red (in the center of each plot), and the individuals are the black circles. The blue vectors are the environmental predictors. The relative arrangement of these items in the ordination space reflects their relationship with the ordination axes, which are linear combinations of the predictor variables.</p>
+<p>Let’s make some more informative plots. We’ll color the individual points based on their ecotype, which we can find in the <code>env</code> data set.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(env<span class="op">$</span>ecotype) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Western Forest&quot;</span>,<span class="st">&quot;Boreal Forest&quot;</span>,<span class="st">&quot;Arctic&quot;</span>,<span class="st">&quot;High Arctic&quot;</span>,<span class="st">&quot;British Columbia&quot;</span>,<span class="st">&quot;Atlantic Forest&quot;</span>)
+eco &lt;-<span class="st"> </span>env<span class="op">$</span>ecotype
+bg &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;#ff7f00&quot;</span>,<span class="st">&quot;#1f78b4&quot;</span>,<span class="st">&quot;#ffff33&quot;</span>,<span class="st">&quot;#a6cee3&quot;</span>,<span class="st">&quot;#33a02c&quot;</span>,<span class="st">&quot;#e31a1c&quot;</span>) <span class="co"># 6 nice colors for our ecotypes</span></code></pre></div>
+<p>This time, we’ll set the plots up and add each component in separately:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># axes 1 &amp; 2</span>
+<span class="kw">plot</span>(wolf.rda, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>)
+<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">cex=</span><span class="fl">0.7</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>)           <span class="co"># the SNPs</span>
+<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;sites&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="fl">1.3</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">bg=</span>bg[eco]) <span class="co"># the wolves</span>
+<span class="kw">text</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">display=</span><span class="st">&quot;bp&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#0868ac&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>)                           <span class="co"># the predictors</span>
+<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend=</span><span class="kw">levels</span>(eco), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.bg=</span>bg)
+
+<span class="co"># axes 1 &amp; 3</span>
+<span class="kw">plot</span>(wolf.rda, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
+<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">cex=</span><span class="fl">0.7</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
+<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;sites&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="fl">1.3</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">bg=</span>bg[eco], <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
+<span class="kw">text</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">display=</span><span class="st">&quot;bp&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#0868ac&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
+<span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend=</span><span class="kw">levels</span>(eco), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.bg=</span>bg)</code></pre></div>
+<p><img src="2018-03-27_RDA_GEA_files/figure-html/nicer_plot2-1.png" width="576" /><img src="2018-03-27_RDA_GEA_files/figure-html/nicer_plot2-2.png" width="576" /></p>
+<p>Now that the individuals are color coded, we can identify some interesting relationships. Starting with the plot of axes 1 and 2, note that individual genotypes from wet and temperate British Columbia (green) are positively related to high annual precipitation (AP) and low temperature seasonality (sdT). By contrast, Artic and High Arctic individuals are characterized by small mean diurnal temperature range (MDR), low annual mean temperature (AMT), lower levels of tree cover (Tree) and NDVI (a measure of vegetation greenness), and are found at lower elevation. Atlantic Forest and Western Forest individuals load more strongly on RDA axis 3, showing weak and strong precipitation seasonality (cvP) respectively, consistent with continental-scale climate in these regions.</p>
+</div>
+<div id="identify-candidate-snps-involved-in-local-adaptation" class="section level3">
+<h3>Identify candidate SNPs involved in local adaptation</h3>
+<p>We’ll use the loadings of the SNPs in the ordination space to determine which SNPs are candidates for local adaptation. The SNP loadings are stored as <code>species</code> in the RDA object. We’ll extract the SNP loadings from the three significant constrained axes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">load.rda &lt;-<span class="st"> </span><span class="kw">summary</span>(wolf.rda)<span class="op">$</span>species[,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]   <span class="co"># Species scores for the first three constrained axes</span></code></pre></div>
+<p>If we look at histograms of the loadings on each RDA axis, we can see their (relatively normal) distributions. SNPs loading at the center of the distribution are not showing a relationship with the environmental predictors; those loading in the tails are, and are more likely to be under selection as a function of those predictors (or some other predictor correlated with them).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(load.rda[,<span class="dv">1</span>], <span class="dt">main=</span><span class="st">&quot;Loadings on RDA1&quot;</span>)
+<span class="kw">hist</span>(load.rda[,<span class="dv">2</span>], <span class="dt">main=</span><span class="st">&quot;Loadings on RDA2&quot;</span>)
+<span class="kw">hist</span>(load.rda[,<span class="dv">3</span>], <span class="dt">main=</span><span class="st">&quot;Loadings on RDA3&quot;</span>) </code></pre></div>
+<p><img src="2018-03-27_RDA_GEA_files/figure-html/loadings_plot-1.png" width="240" /><img src="2018-03-27_RDA_GEA_files/figure-html/loadings_plot-2.png" width="240" /><img src="2018-03-27_RDA_GEA_files/figure-html/loadings_plot-3.png" width="240" /></p>
+<p>I’ve written a simple function to identify SNPs that load in the tails of these distributions. We’ll start with a 3 standard deviation cutoff (two-tailed p-value = 0.0027). As with all cutoffs, this can be modified to reflect the goals of the analysis and our tolerance for true positives vs. false positives. For example, if you needed to be very conservative and only identify those loci under very strong selection (i.e., minimize false positive rates), you could increase the number of standard deviations to 3.5 (two-tailed p-value = 0.0005). This would also increase the false negative rate. If you were less concerned with false positives, and more concerned with identifying as many potential candidate loci as possible (including those that may be under weaker selection), you might choose a 2.5 standard deviation cutoff (two-tailed p-value = 0.012).</p>
+<p>I define the function here as <code>outliers</code>, where <code>x</code> is the vector of loadings and <code>z</code> is the number of standard deviations to use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">outliers &lt;-<span class="st"> </span><span class="cf">function</span>(x,z){
+  lims &lt;-<span class="st"> </span><span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>z <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(x)     <span class="co"># find loadings +/-z sd from mean loading     </span>
+  x[x <span class="op">&lt;</span><span class="st"> </span>lims[<span class="dv">1</span>] <span class="op">|</span><span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span>lims[<span class="dv">2</span>]]               <span class="co"># locus names in these tails</span>
+}</code></pre></div>
+<p>Now let’s apply it to each significant constrained axis:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cand1 &lt;-<span class="st"> </span><span class="kw">outliers</span>(load.rda[,<span class="dv">1</span>],<span class="dv">3</span>) <span class="co"># 38</span>
+cand2 &lt;-<span class="st"> </span><span class="kw">outliers</span>(load.rda[,<span class="dv">2</span>],<span class="dv">3</span>) <span class="co"># 69</span>
+cand3 &lt;-<span class="st"> </span><span class="kw">outliers</span>(load.rda[,<span class="dv">3</span>],<span class="dv">3</span>) <span class="co"># 34</span>
+
+ncand &lt;-<span class="st"> </span><span class="kw">length</span>(cand1) <span class="op">+</span><span class="st"> </span><span class="kw">length</span>(cand2) <span class="op">+</span><span class="st"> </span><span class="kw">length</span>(cand3)
+ncand</code></pre></div>
+<pre><code>## [1] 141</code></pre>
+<p>We have 38 candidates on axis 1, 69 on axis 2, and 34 on axis 3, for a total of 141 candidate SNPs (note that the full wolf data set produces 604 candidates).</p>
+<p>Next, we’ll organize our results by making one data frame with the axis, SNP name, loading, &amp; correlation with each predictor:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cand1 &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dt">times=</span><span class="kw">length</span>(cand1)), <span class="kw">names</span>(cand1), <span class="kw">unname</span>(cand1))
+cand2 &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dt">times=</span><span class="kw">length</span>(cand2)), <span class="kw">names</span>(cand2), <span class="kw">unname</span>(cand2))
+cand3 &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(<span class="kw">rep</span>(<span class="dv">3</span>,<span class="dt">times=</span><span class="kw">length</span>(cand3)), <span class="kw">names</span>(cand3), <span class="kw">unname</span>(cand3))
+
+<span class="kw">colnames</span>(cand1) &lt;-<span class="st"> </span><span class="kw">colnames</span>(cand2) &lt;-<span class="st"> </span><span class="kw">colnames</span>(cand3) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;axis&quot;</span>,<span class="st">&quot;snp&quot;</span>,<span class="st">&quot;loading&quot;</span>)
+
+cand &lt;-<span class="st"> </span><span class="kw">rbind</span>(cand1, cand2, cand3)
+cand<span class="op">$</span>snp &lt;-<span class="st"> </span><span class="kw">as.character</span>(cand<span class="op">$</span>snp)</code></pre></div>
+<p>Let’s add in the correlations of each candidate SNP with the eight environmental predictors:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow=</span>(ncand), <span class="dt">ncol=</span><span class="dv">8</span>)  <span class="co"># 8 columns for 8 predictors</span>
+<span class="kw">colnames</span>(foo) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;MDR&quot;</span>,<span class="st">&quot;sdT&quot;</span>,<span class="st">&quot;AP&quot;</span>,<span class="st">&quot;cvP&quot;</span>,<span class="st">&quot;NDVI&quot;</span>,<span class="st">&quot;Elev&quot;</span>,<span class="st">&quot;Tree&quot;</span>)
+
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cand<span class="op">$</span>snp)) {
+  nam &lt;-<span class="st"> </span>cand[i,<span class="dv">2</span>]
+  snp.gen &lt;-<span class="st"> </span>gen.imp[,nam]
+  foo[i,] &lt;-<span class="st"> </span><span class="kw">apply</span>(pred,<span class="dv">2</span>,<span class="cf">function</span>(x) <span class="kw">cor</span>(x,snp.gen))
+}
+
+cand &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(cand,foo)  
+<span class="kw">head</span>(cand)</code></pre></div>
+<pre><code>##   axis            snp    loading        AMT         MDR          sdT
+## 1    1 chr12.18324211  0.1653558 -0.5241186 -0.49494075 -0.005959814
+## 2    1  chr1.34067314  0.1752205 -0.5099884 -0.33919031  0.155830913
+## 3    1 chr14.50142980 -0.1732094  0.3575841 -0.03942464 -0.459226591
+## 4    1 chr24.41186635 -0.1731387  0.4864240  0.24621551 -0.164103691
+## 5    1  chr38.4478906  0.1653778 -0.5415994 -0.42718095 -0.021246605
+## 6    1  chr6.36999927  0.1726538 -0.6337194 -0.38186764  0.197238082
+##           AP        cvP       NDVI        Elev       Tree
+## 1 -0.1253256  0.1933743 -0.4376680 -0.30596534 -0.3944034
+## 2 -0.3650321  0.1913584 -0.4122741 -0.15441188 -0.4561399
+## 3  0.6469386 -0.1770349  0.1055266  0.46473573  0.1117899
+## 4  0.4102671 -0.2097322  0.3304666  0.19130351  0.3384255
+## 5 -0.2180935  0.2587389 -0.5574285 -0.05247521 -0.3324873
+## 6 -0.2750116  0.3336288 -0.4764188 -0.06159512 -0.3784786</code></pre>
+<p>Now we have a data frame of 141 candidate SNPs and their correlation with our 8 environmental predictors.</p>
+</div>
+<div id="investigate-the-candidates" class="section level3">
+<h3>Investigate the candidates</h3>
+<p>We’ll start off by looking for duplicate detections. These are SNPs that are identified as candidates on more than one RDA axis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(cand<span class="op">$</span>snp[<span class="kw">duplicated</span>(cand<span class="op">$</span>snp)])  <span class="co"># 7 duplicate detections</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">cbind</span>(cand<span class="op">$</span>axis, <span class="kw">duplicated</span>(cand<span class="op">$</span>snp)) 
+<span class="kw">table</span>(foo[foo[,<span class="dv">1</span>]<span class="op">==</span><span class="dv">1</span>,<span class="dv">2</span>]) <span class="co"># no duplicates on axis 1</span></code></pre></div>
+<pre><code>## 
+##  0 
+## 38</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(foo[foo[,<span class="dv">1</span>]<span class="op">==</span><span class="dv">2</span>,<span class="dv">2</span>]) <span class="co">#  7 duplicates on axis 2</span></code></pre></div>
+<pre><code>## 
+##  0  1 
+## 62  7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(foo[foo[,<span class="dv">1</span>]<span class="op">==</span><span class="dv">3</span>,<span class="dv">2</span>]) <span class="co"># no duplicates on axis 3</span></code></pre></div>
+<pre><code>## 
+##  0 
+## 34</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cand &lt;-<span class="st"> </span>cand[<span class="op">!</span><span class="kw">duplicated</span>(cand<span class="op">$</span>snp),] <span class="co"># remove duplicate detections</span></code></pre></div>
+<p>We’ve now reduced our candidates to 134 unique SNPs.</p>
+<p>Next, we’ll see which of the predictors each candidate SNP is most strongly correlated with:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cand<span class="op">$</span>snp)) {
+  bar &lt;-<span class="st"> </span>cand[i,]
+  cand[i,<span class="dv">12</span>] &lt;-<span class="st"> </span><span class="kw">names</span>(<span class="kw">which.max</span>(<span class="kw">abs</span>(bar[<span class="dv">4</span><span class="op">:</span><span class="dv">11</span>]))) <span class="co"># gives the variable</span>
+  cand[i,<span class="dv">13</span>] &lt;-<span class="st"> </span><span class="kw">max</span>(<span class="kw">abs</span>(bar[<span class="dv">4</span><span class="op">:</span><span class="dv">11</span>]))              <span class="co"># gives the correlation</span>
+}
+
+<span class="kw">colnames</span>(cand)[<span class="dv">12</span>] &lt;-<span class="st"> &quot;predictor&quot;</span>
+<span class="kw">colnames</span>(cand)[<span class="dv">13</span>] &lt;-<span class="st"> &quot;correlation&quot;</span>
+
+<span class="kw">table</span>(cand<span class="op">$</span>predictor) </code></pre></div>
+<pre><code>## 
+##  AMT   AP  cvP Elev  MDR NDVI  sdT Tree 
+##   17   58   32    1   20    4    1    1</code></pre>
+<p>Based on the strongest correlations, most SNPs are associated with our two precipitation variables (annual precipitation and precipitation seasonality), with temperature variables accounting for the second highest number of detections (mean diurnal range and annual mean temperature). The other four variables are related to a smaller number of detections.</p>
+<p>Note that, in some cases, correlations may be strong for multiple variables (depending on collinearity among predictors). It may be useful to consider how candidate SNPs are correlated with multiple predictors. We could, for example, look at the <code>cand</code> object and investigate correlations with predictors other than the predictor with the highest correlation coefficient. However, for this analysis we will focus on the strongest correlations of each SNP with one predictor.</p>
+</div>
+<div id="plot-the-snps" class="section level3">
+<h3>Plot the SNPs</h3>
+<p>Let’s look at RDA plots again, but this time focus in on the SNPs in the ordination space. We’ll color code the SNPs based on the predictor variable that they are most strongly correlated with. There is a lot of code to set this up, which you can mostly ignore.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sel &lt;-<span class="st"> </span>cand<span class="op">$</span>snp
+env &lt;-<span class="st"> </span>cand<span class="op">$</span>predictor
+env[env<span class="op">==</span><span class="st">&quot;AP&quot;</span>] &lt;-<span class="st"> &#39;#1f78b4&#39;</span>
+env[env<span class="op">==</span><span class="st">&quot;cvP&quot;</span>] &lt;-<span class="st"> &#39;#a6cee3&#39;</span>
+env[env<span class="op">==</span><span class="st">&quot;MDR&quot;</span>] &lt;-<span class="st"> &#39;#6a3d9a&#39;</span>
+env[env<span class="op">==</span><span class="st">&quot;AMT&quot;</span>] &lt;-<span class="st"> &#39;#e31a1c&#39;</span>
+env[env<span class="op">==</span><span class="st">&quot;NDVI&quot;</span>] &lt;-<span class="st"> &#39;#33a02c&#39;</span>
+env[env<span class="op">==</span><span class="st">&quot;Elev&quot;</span>] &lt;-<span class="st"> &#39;#ffff33&#39;</span>
+env[env<span class="op">==</span><span class="st">&quot;sdT&quot;</span>] &lt;-<span class="st"> &#39;#fb9a99&#39;</span>
+env[env<span class="op">==</span><span class="st">&quot;Tree&quot;</span>] &lt;-<span class="st"> &#39;#b2df8a&#39;</span>
+
+<span class="co"># color by predictor:</span>
+col.pred &lt;-<span class="st"> </span><span class="kw">rownames</span>(wolf.rda<span class="op">$</span>CCA<span class="op">$</span>v) <span class="co"># pull the SNP names</span>
+
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(sel)) {           <span class="co"># color code candidate SNPs</span>
+  foo &lt;-<span class="st"> </span><span class="kw">match</span>(sel[i],col.pred)
+  col.pred[foo] &lt;-<span class="st"> </span>env[i]
+}
+
+col.pred[<span class="kw">grep</span>(<span class="st">&quot;chr&quot;</span>,col.pred)] &lt;-<span class="st"> &#39;#f1eef6&#39;</span> <span class="co"># non-candidate SNPs</span>
+empty &lt;-<span class="st"> </span>col.pred
+empty[<span class="kw">grep</span>(<span class="st">&quot;#f1eef6&quot;</span>,empty)] &lt;-<span class="st"> </span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>, <span class="dt">alpha=</span><span class="dv">0</span>) <span class="co"># transparent</span>
+empty.outline &lt;-<span class="st"> </span><span class="kw">ifelse</span>(empty<span class="op">==</span><span class="st">&quot;#00FF0000&quot;</span>,<span class="st">&quot;#00FF0000&quot;</span>,<span class="st">&quot;gray32&quot;</span>)
+bg &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;#1f78b4&#39;</span>,<span class="st">&#39;#a6cee3&#39;</span>,<span class="st">&#39;#6a3d9a&#39;</span>,<span class="st">&#39;#e31a1c&#39;</span>,<span class="st">&#39;#33a02c&#39;</span>,<span class="st">&#39;#ffff33&#39;</span>,<span class="st">&#39;#fb9a99&#39;</span>,<span class="st">&#39;#b2df8a&#39;</span>)</code></pre></div>
+<p>Now we’re ready to plot the SNPs:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># axes 1 &amp; 2</span>
+<span class="kw">plot</span>(wolf.rda, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))
+<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">bg=</span>col.pred, <span class="dt">scaling=</span><span class="dv">3</span>)
+<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">col=</span>empty.outline, <span class="dt">bg=</span>empty, <span class="dt">scaling=</span><span class="dv">3</span>)
+<span class="kw">text</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">display=</span><span class="st">&quot;bp&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#0868ac&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>)
+<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;AP&quot;</span>,<span class="st">&quot;cvP&quot;</span>,<span class="st">&quot;MDR&quot;</span>,<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;NDVI&quot;</span>,<span class="st">&quot;Elev&quot;</span>,<span class="st">&quot;sdT&quot;</span>,<span class="st">&quot;Tree&quot;</span>), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.bg=</span>bg)
+
+<span class="co"># axes 1 &amp; 3</span>
+<span class="kw">plot</span>(wolf.rda, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
+<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">bg=</span>col.pred, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
+<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">col=</span>empty.outline, <span class="dt">bg=</span>empty, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
+<span class="kw">text</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">display=</span><span class="st">&quot;bp&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#0868ac&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
+<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;AP&quot;</span>,<span class="st">&quot;cvP&quot;</span>,<span class="st">&quot;MDR&quot;</span>,<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;NDVI&quot;</span>,<span class="st">&quot;Elev&quot;</span>,<span class="st">&quot;sdT&quot;</span>,<span class="st">&quot;Tree&quot;</span>), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.bg=</span>bg)</code></pre></div>
+<p><img src="2018-03-27_RDA_GEA_files/figure-html/snp.plot2-1.png" width="576" /><img src="2018-03-27_RDA_GEA_files/figure-html/snp.plot2-2.png" width="576" /></p>
+<p>We can see some interesting relationships in these plots. For example, SNPs most strongly correlated with annual precipitation (AP) have strong loadings in the lower left quadrant between RDA axes 1 and 2 along the AP vector, accounting for the majority of these 58 AP-correlated detections. Most candidates highly correlated with the important temperature variables (AMT and MDR) load strongly on axes 1 and 2, respectively. Note how candidate SNPs correlated with precipitation seasonality (cvP) and elevation are located in the center of the plot, and will not be detected as outliers on axes 1 or 2. However, these loci are detected on axis 3.</p>
+<p>Overall, candidate SNPs on axis 1 represent multilocus sets of SNP genotypes associated with annual precipitation and mean diurnal range; SNPs on axis 2 represent genotypes associated with annual precipitation and annual mean temperature; and SNPs on axis 3 represent genotypes associated with precipitation seasonality.</p>
+<p>These detections differ from the candidates identified using a univariate GEA test by Schweizer et al. (2016). From the full (42,587 SNP) data set, in which RDA identified 556 unique candidates, only 52 were found in common between the univariate test and the RDA results (see Forester et al. 2018). In contrast to the univariate detections, the majority (67%) of SNPs identified by RDA were most strongly associated with precipitation variables, which are known drivers of morphology and population structure in gray wolves (Geffen et al., 2004; O’Keefe et al., 2013; Schweizer et al., 2016). These findings provide new candidate regions and multilocus haplotypes for understanding local adaptation of gray wolves across their North American range.</p>
+</div>
+</div>
+<div id="conclusions" class="section level2">
+<h2>Conclusions</h2>
+<p>In summary, <strong>Redundancy Analysis (RDA)</strong> is a highly effective genotype-environment association method, which can identify unique haplotypes associated with the multivariate environment. In a simulation study, RDA showed a superior combination of low false positive and high true positive rates across weak, moderate, and strong multilocus selection. These results were robust across the levels of population structure, demographic histories, sampling designs, and sample sizes tested (Forester et al., 2018).</p>
+<p>It is important to note that RDA has not yet been tested in situations with high population structure; see Forester et al. (2018) for recommendations on using RDA in this context.</p>
+<p>Overall, <strong>RDA</strong> is an effective means of detecting adaptive processes that result in weak, multilocus molecular signatures, providing a powerful tool for investigating the genetic basis of local adaptation and informing management actions to conserve the evolutionary potential of species of agricultural, forestry, fisheries, and conservation concern.</p>
+</div>
+<div id="contributors" class="section level2">
+<h2>Contributors</h2>
+<ul>
+<li><p>Brenna R. Forester (Author)</p></li>
+<li>Martin Laporte (reviewer)</li>
+<li><p>Stéphanie Manel (reviewer)</p></li>
+</ul>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p>Borcard D, Gillet F, Legendre P (2011) <a href="http://www.springer.com/us/book/9781441979759"><em>Numerical Ecology with R</em></a>. Springer, New York.</p>
+<p>Dormann CF, Elith J, Bacher S, et al. (2013) <a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1600-0587.2012.07348.x/abstract">Collinearity: a review of methods to deal with it and a simulation study evaluating their performance</a>. <em>Ecography</em>, 36: 27-46.</p>
+<p>Forester BR, Lasky JR, Wagner HH, Urban DL (2018) <a href="https://www.biorxiv.org/content/early/2017/12/17/129460">Comparing methods for detecting multilocus adaptation with multivariate genotype-environment associations</a>. <em>Molecular Ecology</em>.</p>
+<p>Frichot E, François O (2015) <a href="http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12382/abstract">LEA: An R package for landscape and ecological association studies</a>. <em>Methods in Ecology and Evolution</em>, 6: 925-929.</p>
+<p>Geffen E, Anderson MJ, Wayne RK (2004) <a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1365-294X.2004.02244.x/full">Climate and habitat barriers to dispersal in the highly mobile grey wolf</a>. <em>Molecular Ecology</em>, 13: 2481-2490.</p>
+<p>Gosselin T (2017) <a href="https://github.com/thierrygosselin/grur">grur: an R package tailored for RADseq data imputations</a>. R package version 0.0.1 <a href="doi:10.5281/zenodo.496176" class="uri">doi:10.5281/zenodo.496176</a>.</p>
+<p>Jombart, T (2008) <a href="https://academic.oup.com/bioinformatics/article/24/11/1403/191127">adegenet: a R package for the multivariate analysis of genetic markers</a>. <em>Bioinformatics</em>, 24: 1403-1405.</p>
+<p>Legendre P, Legendre L (2012) <a href="https://www.elsevier.com/books/numerical-ecology/legendre/978-0-444-53868-0"><em>Numerical Ecology</em>, 3rd edition</a>. Elsevier, Amsterdam.</p>
+<p>Legendre P, Oksanen J, ter Braak CJ (2010) <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.2041-210X.2010.00078.x">Testing the significance of canonical axes in redundancy analysis</a>. <em>Methods in Ecology and Evolution</em>, 2: 269-277.</p>
+<p>Money D, Migicovsky Z, Gardner K, Myles S (2017) <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-017-3873-5">LinkImputeR: user-guided genotype calling and imputation for non-model organisms</a>. <em>BMC Genomics</em>, 18: 1-12.</p>
+<p>O’Keefe FR, Meachen J, Fet EV, Brannick A (2013) <a href="http://www.bioone.org/doi/abs/10.1644/13-MAMM-A-069">Ecological determinants of clinal morphological variation in the cranium of the North American gray wolf</a>. <em>Journal of Mammalogy</em>, 94: 1223-1236.</p>
+<p>Oksanen J, Blanchet FG, Kindt R, et al. (2016) <a href="https://CRAN.R-project.org/package=vegan"><em>vegan: Community Ecology Package</em></a>. R package version 2.3-5.</p>
+<p>Purcell S, Neale B, Todd-Brown K, et al. (2007) <a href="https://www.sciencedirect.com/science/article/pii/S0002929707613524?via%3Dihub">PLINK: a toolset for whole-genome association and population-based linkage analysis</a>. <em>American Journal of Human Genetics</em>, 81: 559-575. Version 1.07.</p>
+<p>Rellstab C, Gugerli F, Eckert AJ, Hancock AM, Holderegger R (2015) <a href="http://onlinelibrary.wiley.com/doi/10.1111/mec.13322/abstract">A practical guide to environmental association analysis in landscape genomics</a>. <em>Molecular Ecology</em>, 24: 4348-4370.</p>
+<p>Schweizer RM, vonHoldt BM, Harrigan R, et al. (2016) <a href="http://onlinelibrary.wiley.com/doi/10.1111/mec.13364/full">Genetic subdivision and candidate genes under selection in North American grey wolves</a>. <em>Molecular Ecology</em>, 25: 380-402.</p>
+<p>Zuur AF, Ieno EN, Elphick CS (2010) <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.2041-210X.2009.00001.x">A protocol for data exploration to avoid common statistical problems</a>. <em>Methods in Ecology and Evolution</em>, 1: 3-14.</p>
+</div>
+<div id="session-information" class="section level2">
+<h2>Session Information</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width=</span><span class="dv">100</span>)
+devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
+<pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
+<pre><code>##  setting  value                       
+##  version  R version 3.4.3 (2017-11-30)
+##  system   x86_64, linux-gnu           
+##  ui       X11                         
+##  language (EN)                        
+##  collate  en_US.UTF-8                 
+##  tz       UTC                         
+##  date     2018-04-03</code></pre>
+<pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
+<pre><code>##  package   * version   date       source        
+##  backports   1.1.2     2017-12-13 CRAN (R 3.4.3)
+##  base      * 3.4.3     2018-02-21 local         
+##  cluster     2.0.6     2017-03-16 CRAN (R 3.4.3)
+##  compiler    3.4.3     2018-02-21 local         
+##  datasets  * 3.4.3     2018-02-21 local         
+##  devtools    1.13.5    2018-02-18 CRAN (R 3.4.3)
+##  digest      0.6.15    2018-01-28 CRAN (R 3.4.3)
+##  evaluate    0.10.1    2017-06-24 CRAN (R 3.4.3)
+##  foreign     0.8-69    2017-06-21 CRAN (R 3.4.3)
+##  graphics  * 3.4.3     2018-02-21 local         
+##  grDevices * 3.4.3     2018-02-21 local         
+##  grid        3.4.3     2018-02-21 local         
+##  htmltools   0.3.6     2017-04-28 CRAN (R 3.4.3)
+##  knitr       1.20      2018-02-20 CRAN (R 3.4.3)
+##  lattice   * 0.20-35   2017-03-25 CRAN (R 3.4.3)
+##  magrittr    1.5       2014-11-22 CRAN (R 3.4.3)
+##  MASS        7.3-48    2017-12-25 CRAN (R 3.4.3)
+##  Matrix      1.2-12    2017-11-16 CRAN (R 3.4.3)
+##  memoise     1.1.0     2017-04-21 CRAN (R 3.4.3)
+##  methods     3.4.3     2018-02-21 local         
+##  mgcv        1.8-23    2018-01-15 CRAN (R 3.4.3)
+##  mnormt      1.5-5     2016-10-15 CRAN (R 3.4.3)
+##  nlme        3.1-131.1 2018-02-16 CRAN (R 3.4.3)
+##  parallel    3.4.3     2018-02-21 local         
+##  permute   * 0.9-4     2016-09-09 CRAN (R 3.4.3)
+##  psych     * 1.7.8     2017-09-09 CRAN (R 3.4.3)
+##  Rcpp        0.12.15   2018-01-20 CRAN (R 3.4.3)
+##  rmarkdown   1.8       2017-11-17 CRAN (R 3.4.3)
+##  rprojroot   1.3-2     2018-01-03 CRAN (R 3.4.3)
+##  stats     * 3.4.3     2018-02-21 local         
+##  stringi     1.1.6     2017-11-17 CRAN (R 3.4.3)
+##  stringr     1.3.0     2018-02-19 CRAN (R 3.4.3)
+##  tools       3.4.3     2018-02-21 local         
+##  utils     * 3.4.3     2018-02-21 local         
+##  vegan     * 2.4-6     2018-01-24 CRAN (R 3.4.3)
+##  withr       2.1.1     2017-12-19 CRAN (R 3.4.3)
+##  yaml        2.1.16    2017-12-12 CRAN (R 3.4.3)</code></pre>
+</div>
+
+<!-- </div>
+</div>
+</div>
+ -->
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
