@@ -133,7 +133,7 @@ Our constrained ordination explains about 5% of the variation; this low explanat
 The eigenvalues for the constrained axes reflect the variance explained by each canonical axis:
 
 ```{r}
-summary(wolf.rda)$concont
+summary(eigenvals(wolf.rda, constrained=T))
 ```
 
 We can visualize this information using a screeplot of the canonical eigenvalues by calling `screeplot`:
@@ -213,7 +213,7 @@ Now that the individuals are color coded, we can identify some interesting relat
 We'll use the loadings of the SNPs in the ordination space to determine which SNPs are candidates for local adaptation. The SNP loadings are stored as `species` in the RDA object. We'll extract the SNP loadings from the three significant constrained axes:
 
 ```{r, loadings}
-load.rda <- summary(wolf.rda)$species[,1:3]   # Species scores for the first three constrained axes
+load.rda <- scores(wolf.rda, choices=c(1:3), display="species")  # Species scores for the first three constrained axes
 ```
 If we look at histograms of the loadings on each RDA axis, we can see their (relatively normal) distributions. SNPs loading at the center of the distribution are not showing a relationship with the environmental predictors; those loading in the tails are, and are more likely to be under selection as a function of those predictors (or some other predictor correlated with them).
 
