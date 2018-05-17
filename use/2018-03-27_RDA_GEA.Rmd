@@ -133,7 +133,7 @@ Our constrained ordination explains about 5% of the variation; this low explanat
 The eigenvalues for the constrained axes reflect the variance explained by each canonical axis:
 
 ```{r}
-summary(eigenvals(wolf.rda, constrained=T))
+summary(eigenvals(wolf.rda, model = "constrained"))
 ```
 
 We can visualize this information using a screeplot of the canonical eigenvalues by calling `screeplot`:
