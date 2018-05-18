@@ -103,26 +103,20 @@ discovery rate (q-value) to provide a list of outliers.
 ```{r PCAdapt_matrix}
 genotype <- sel[, 3:ncol(sel)]
 dim(genotype)
-# As of version 3.0.3, PCAdapt does not allow matrix input, so the input must be
-# stored in a separate file. We will store this in a temporary file that will be
-# automatically cleaned up after use.
-genotype_file <- tempfile()
-write.table(x = t(genotype), # transposing the genotype matrix with t()
-            file = genotype_file, 
-            sep = " ", 
-            col.names = FALSE, 
-            row.names = FALSE)
+# PCAdapt requires a pcadapt_class object. You can convert a matrix to 
+# pcadapt_class with the read.pcadapt() function.
+pca_genotype <- read.pcadapt(t(genotype))
 ```
 
 
 ```{r, PCAdapt}
 K <- 25
-x <- pcadapt(genotype_file, K = K)
+x <- pcadapt(pca_genotype, K = K)
 plot(x, option = "screeplot") # 19 groups seems to be the correct value
 plot(x, option = "scores", pop = sel[, 1]) # how populations are shared among the 19 groups
 
 K <- 19
-x <- pcadapt(genotype_file, K = K, min.maf = 0)
+x <- pcadapt(pca_genotype, K = K, min.maf = 0)
 
 summary(x) # numerical quantities obtained after performing a PCA
 plot(x, option = "manhattan")
