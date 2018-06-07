@@ -1,0 +1,48 @@
+version: 2
+
+jobs:
+    build:
+        docker:
+            - image: hlapp/rpopgen
+        steps:
+            - checkout
+            - run: make ci-deploy
+            - persist_to_workspace:
+                root: archive
+                paths:
+                    - .
+        branches:
+            ignore:
+                - gh-pages
+
+    deploy:
+        docker:
+            - image: ubuntu:16.04
+        steps:
+            - checkout
+            - run: |
+                git config user.name "Hilmar Lapp"
+                git config user.email "hlapp@drycafe.net"
+                git checkout gh-pages
+                rm -r *
+                git checkout gh-pages -- CNAME
+                tar xvf /tmp/archive/site.tar
+                git add --all
+                git commit -m "Website rebuild"
+                git push origin gh-pages
+                git checkout master
+            - attach_workspace:
+                at: /tmp/archive
+
+workflows:
+    version: 2
+
+    build_deploy:
+        jobs:
+            - build
+            - deploy:
+                requires:
+                    - build
+                filters:
+                    branches:
+                        only: master
