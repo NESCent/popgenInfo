@@ -11,9 +11,6 @@ jobs:
                 root: archive
                 paths:
                     - .
-        branches:
-            ignore:
-                - gh-pages
 
     deploy:
         docker:
@@ -39,7 +36,10 @@ workflows:
 
     build_deploy:
         jobs:
-            - build
+            - build:
+                filters:
+                    branches:
+                        ignore: gh-pages
             - deploy:
                 requires:
                     - build
