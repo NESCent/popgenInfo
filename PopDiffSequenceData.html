@@ -356,7 +356,7 @@ beeData.gid &lt;-<span class="st"> </span><span class="kw">multidna2genind</span
 beeData.gid</code></pre></div>
 <pre><code>## /// GENIND OBJECT /////////
 ## 
-##  // 40 individuals; 2 loci; 36 alleles; size: 50.6 Kb
+##  // 40 individuals; 2 loci; 36 alleles; size: 51.7 Kb
 ## 
 ##  // Basic content
 ##    @tab:  40 x 36 matrix of allele counts
@@ -377,7 +377,7 @@ beeData.gid</code></pre></div>
 beeData.gid</code></pre></div>
 <pre><code>## /// GENIND OBJECT /////////
 ## 
-##  // 40 individuals; 2 loci; 36 alleles; size: 53.4 Kb
+##  // 40 individuals; 2 loci; 36 alleles; size: 54.7 Kb
 ## 
 ##  // Basic content
 ##    @tab:  40 x 36 matrix of allele counts
@@ -439,32 +439,32 @@ beeData.gid</code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  0.1861  (0.087-0.285)
-## Ebom_CAD 0.2097  (0.079-0.341)
+## Ebom_mt  0.1861  (0.101-0.271)
+## Ebom_CAD 0.2097  (0.096-0.323)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.1980   (0.116-0.279)</code></pre>
+## 0.1980   (0.134-0.262)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, Gst_Hedrick) <span class="co"># for Hedrick&#39;s Gst</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  0.9059  (0.848-0.964)
-## Ebom_CAD 0.9550  (0.911-0.999)
+## Ebom_mt  0.9059  (0.847-0.965)
+## Ebom_CAD 0.9550  (0.906-1.004)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9316   (0.895-0.968)</code></pre>
+## 0.9316   (0.892-0.971)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise_bootstrap</span>(bs, D_Jost)      <span class="co"># for Jost&#39;s D</span></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
-## Ebom_mt  0.8772  (0.800-0.955)
-## Ebom_CAD 0.9391  (0.880-0.999)
+## Ebom_mt  0.8772  (0.796-0.959)
+## Ebom_CAD 0.9391  (0.872-1.006)
 ## 
 ## Global Estimate based on average heterozygosity
-## 0.9091   (0.860-0.958)
+## 0.9091   (0.854-0.964)
 ## 
 ## Global Estimate based on harmonic mean of statistic
-## 0.9071   (0.858-0.956)</code></pre>
+## 0.9071   (0.853-0.962)</code></pre>
 </div>
 </div>
 <div id="amova-analysis-of-molecular-variance" class="section level1">
@@ -518,95 +518,100 @@ beeData.gid</code></pre></div>
 devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
 <pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
-##  version  R version 3.4.3 (2017-11-30)
+##  version  R version 3.5.0 (2018-04-23)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
-##  tz       UTC                         
-##  date     2018-04-03</code></pre>
+##  tz       Etc/UTC                     
+##  date     2018-06-07</code></pre>
 <pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  package    * version   date       source        
-##  ade4       * 1.7-10    2017-12-15 CRAN (R 3.4.3)
-##  adegenet   * 2.1.1     2018-02-02 CRAN (R 3.4.3)
-##  ape        * 5.0       2017-10-30 CRAN (R 3.4.3)
-##  apex       * 1.0.3     2017-09-23 CRAN (R 3.4.3)
-##  assertthat   0.2.0     2017-04-11 CRAN (R 3.4.3)
-##  backports    1.1.2     2017-12-13 CRAN (R 3.4.3)
-##  base       * 3.4.3     2018-02-21 local         
-##  bindr        0.1       2016-11-13 CRAN (R 3.4.3)
-##  bindrcpp     0.2       2017-06-17 CRAN (R 3.4.3)
-##  boot         1.3-20    2017-07-30 CRAN (R 3.4.3)
-##  cluster      2.0.6     2017-03-16 CRAN (R 3.4.3)
-##  coda         0.19-1    2016-12-08 CRAN (R 3.4.3)
-##  colorspace   1.3-2     2016-12-14 CRAN (R 3.4.3)
-##  compiler     3.4.3     2018-02-21 local         
-##  datasets   * 3.4.3     2018-02-21 local         
-##  deldir       0.1-14    2017-04-22 CRAN (R 3.4.3)
-##  devtools     1.13.5    2018-02-18 CRAN (R 3.4.3)
-##  digest       0.6.15    2018-01-28 CRAN (R 3.4.3)
-##  dplyr        0.7.4     2017-09-28 CRAN (R 3.4.3)
-##  evaluate     0.10.1    2017-06-24 CRAN (R 3.4.3)
-##  expm         0.999-2   2017-03-29 CRAN (R 3.4.3)
-##  fastmatch    1.1-0     2017-01-28 CRAN (R 3.4.3)
-##  gdata        2.18.0    2017-06-06 CRAN (R 3.4.3)
-##  ggplot2      2.2.1     2016-12-30 CRAN (R 3.4.3)
-##  glue         1.2.0     2017-10-29 CRAN (R 3.4.3)
-##  gmodels      2.16.2    2015-07-22 CRAN (R 3.4.3)
-##  graphics   * 3.4.3     2018-02-21 local         
-##  grDevices  * 3.4.3     2018-02-21 local         
-##  grid         3.4.3     2018-02-21 local         
-##  gtable       0.2.0     2016-02-26 CRAN (R 3.4.3)
-##  gtools       3.5.0     2015-05-29 CRAN (R 3.4.3)
-##  htmltools    0.3.6     2017-04-28 CRAN (R 3.4.3)
-##  httpuv       1.3.5     2017-07-04 CRAN (R 3.4.3)
-##  igraph       1.1.2     2017-07-21 CRAN (R 3.4.3)
-##  knitr        1.20      2018-02-20 CRAN (R 3.4.3)
-##  lattice      0.20-35   2017-03-25 CRAN (R 3.4.3)
-##  lazyeval     0.2.1     2017-10-29 CRAN (R 3.4.3)
-##  LearnBayes   2.15      2014-05-29 CRAN (R 3.4.3)
-##  magrittr     1.5       2014-11-22 CRAN (R 3.4.3)
-##  MASS         7.3-48    2017-12-25 CRAN (R 3.4.3)
-##  Matrix       1.2-12    2017-11-16 CRAN (R 3.4.3)
-##  memoise      1.1.0     2017-04-21 CRAN (R 3.4.3)
-##  methods    * 3.4.3     2018-02-21 local         
-##  mgcv         1.8-23    2018-01-15 CRAN (R 3.4.3)
-##  mime         0.5       2016-07-07 CRAN (R 3.4.3)
-##  mmod       * 1.3.3     2017-04-06 CRAN (R 3.4.3)
-##  munsell      0.4.3     2016-02-13 CRAN (R 3.4.3)
-##  nlme         3.1-131.1 2018-02-16 CRAN (R 3.4.3)
-##  parallel     3.4.3     2018-02-21 local         
-##  pegas      * 0.10      2017-05-03 CRAN (R 3.4.3)
-##  permute      0.9-4     2016-09-09 CRAN (R 3.4.3)
-##  phangorn   * 2.4.0     2018-02-15 CRAN (R 3.4.3)
-##  pillar       1.1.0     2018-01-14 CRAN (R 3.4.3)
-##  pkgconfig    2.0.1     2017-03-21 CRAN (R 3.4.3)
-##  plyr         1.8.4     2016-06-08 CRAN (R 3.4.3)
-##  poppr      * 2.6.1     2018-01-15 CRAN (R 3.4.3)
-##  quadprog     1.5-5     2013-04-17 CRAN (R 3.4.3)
-##  R6           2.2.2     2017-06-17 CRAN (R 3.4.3)
-##  Rcpp         0.12.15   2018-01-20 CRAN (R 3.4.3)
-##  reshape2     1.4.3     2017-12-11 CRAN (R 3.4.3)
-##  rlang        0.2.0     2018-02-20 CRAN (R 3.4.3)
-##  rmarkdown    1.8       2017-11-17 CRAN (R 3.4.3)
-##  rprojroot    1.3-2     2018-01-03 CRAN (R 3.4.3)
-##  scales       0.5.0     2017-08-24 CRAN (R 3.4.3)
-##  seqinr       3.4-5     2017-08-01 CRAN (R 3.4.3)
-##  shiny        1.0.5     2017-08-23 CRAN (R 3.4.3)
-##  sp           1.2-7     2018-01-19 CRAN (R 3.4.3)
-##  spData       0.2.7.4   2018-02-11 CRAN (R 3.4.3)
-##  spdep        0.7-4     2017-11-22 CRAN (R 3.4.3)
-##  splines      3.4.3     2018-02-21 local         
-##  stats      * 3.4.3     2018-02-21 local         
-##  stringi      1.1.6     2017-11-17 CRAN (R 3.4.3)
-##  stringr      1.3.0     2018-02-19 CRAN (R 3.4.3)
-##  tibble       1.4.2     2018-01-22 CRAN (R 3.4.3)
-##  tools        3.4.3     2018-02-21 local         
-##  utils      * 3.4.3     2018-02-21 local         
-##  vegan        2.4-6     2018-01-24 CRAN (R 3.4.3)
-##  withr        2.1.1     2017-12-19 CRAN (R 3.4.3)
-##  xtable       1.8-2     2016-02-05 CRAN (R 3.4.3)
-##  yaml         2.1.16    2017-12-12 CRAN (R 3.4.3)</code></pre>
+<pre><code>##  package    * version date       source        
+##  ade4       * 1.7-11  2018-04-05 CRAN (R 3.5.0)
+##  adegenet   * 2.1.1   2018-02-02 CRAN (R 3.5.0)
+##  ape        * 5.1     2018-04-04 CRAN (R 3.5.0)
+##  apex       * 1.0.3   2017-09-23 CRAN (R 3.5.0)
+##  assertthat   0.2.0   2017-04-11 CRAN (R 3.5.0)
+##  backports    1.1.2   2017-12-13 CRAN (R 3.5.0)
+##  base       * 3.5.0   2018-06-07 local         
+##  bindr        0.1.1   2018-03-13 CRAN (R 3.5.0)
+##  bindrcpp     0.2.2   2018-03-29 CRAN (R 3.5.0)
+##  boot         1.3-20  2017-07-30 CRAN (R 3.5.0)
+##  cluster      2.0.7-1 2018-04-09 CRAN (R 3.5.0)
+##  coda         0.19-1  2016-12-08 CRAN (R 3.5.0)
+##  colorspace   1.3-2   2016-12-14 CRAN (R 3.5.0)
+##  compiler     3.5.0   2018-06-07 local         
+##  datasets   * 3.5.0   2018-06-07 local         
+##  deldir       0.1-15  2018-04-01 CRAN (R 3.5.0)
+##  devtools     1.13.5  2018-02-18 CRAN (R 3.5.0)
+##  digest       0.6.15  2018-01-28 CRAN (R 3.5.0)
+##  dplyr        0.7.5   2018-05-19 CRAN (R 3.5.0)
+##  evaluate     0.10.1  2017-06-24 CRAN (R 3.5.0)
+##  expm         0.999-2 2017-03-29 CRAN (R 3.5.0)
+##  fastmatch    1.1-0   2017-01-28 CRAN (R 3.5.0)
+##  gdata        2.18.0  2017-06-06 CRAN (R 3.5.0)
+##  ggplot2      2.2.1   2016-12-30 CRAN (R 3.5.0)
+##  glue         1.2.0   2017-10-29 CRAN (R 3.5.0)
+##  gmodels      2.16.2  2015-07-22 CRAN (R 3.5.0)
+##  graphics   * 3.5.0   2018-06-07 local         
+##  grDevices  * 3.5.0   2018-06-07 local         
+##  grid         3.5.0   2018-06-07 local         
+##  gtable       0.2.0   2016-02-26 CRAN (R 3.5.0)
+##  gtools       3.5.0   2015-05-29 CRAN (R 3.5.0)
+##  htmltools    0.3.6   2017-04-28 CRAN (R 3.5.0)
+##  httpuv       1.4.3   2018-05-10 CRAN (R 3.5.0)
+##  igraph       1.2.1   2018-03-10 CRAN (R 3.5.0)
+##  knitr        1.20    2018-02-20 CRAN (R 3.5.0)
+##  later        0.7.2   2018-05-01 CRAN (R 3.5.0)
+##  lattice      0.20-35 2017-03-25 CRAN (R 3.5.0)
+##  lazyeval     0.2.1   2017-10-29 CRAN (R 3.5.0)
+##  LearnBayes   2.15.1  2018-03-18 CRAN (R 3.5.0)
+##  magrittr     1.5     2014-11-22 CRAN (R 3.5.0)
+##  MASS         7.3-50  2018-04-30 CRAN (R 3.5.0)
+##  Matrix       1.2-14  2018-04-09 CRAN (R 3.5.0)
+##  memoise      1.1.0   2017-04-21 CRAN (R 3.5.0)
+##  methods    * 3.5.0   2018-06-07 local         
+##  mgcv         1.8-23  2018-01-15 CRAN (R 3.5.0)
+##  mime         0.5     2016-07-07 CRAN (R 3.5.0)
+##  mmod       * 1.3.3   2017-04-06 CRAN (R 3.5.0)
+##  munsell      0.4.3   2016-02-13 CRAN (R 3.5.0)
+##  nlme         3.1-137 2018-04-07 CRAN (R 3.5.0)
+##  parallel     3.5.0   2018-06-07 local         
+##  pegas      * 0.10    2017-05-03 CRAN (R 3.5.0)
+##  permute      0.9-4   2016-09-09 CRAN (R 3.5.0)
+##  phangorn   * 2.4.0   2018-02-15 CRAN (R 3.5.0)
+##  pillar       1.2.3   2018-05-25 CRAN (R 3.5.0)
+##  pkgconfig    2.0.1   2017-03-21 CRAN (R 3.5.0)
+##  plyr         1.8.4   2016-06-08 CRAN (R 3.5.0)
+##  polysat      1.7-2   2017-08-17 CRAN (R 3.5.0)
+##  poppr      * 2.8.0   2018-05-19 CRAN (R 3.5.0)
+##  promises     1.0.1   2018-04-13 CRAN (R 3.5.0)
+##  purrr        0.2.5   2018-05-29 CRAN (R 3.5.0)
+##  quadprog     1.5-5   2013-04-17 CRAN (R 3.5.0)
+##  R6           2.2.2   2017-06-17 CRAN (R 3.5.0)
+##  Rcpp         0.12.17 2018-05-18 CRAN (R 3.5.0)
+##  reshape2     1.4.3   2017-12-11 CRAN (R 3.5.0)
+##  rlang        0.2.1   2018-05-30 CRAN (R 3.5.0)
+##  rmarkdown    1.9     2018-03-01 CRAN (R 3.5.0)
+##  rprojroot    1.3-2   2018-01-03 CRAN (R 3.5.0)
+##  scales       0.5.0   2017-08-24 CRAN (R 3.5.0)
+##  seqinr       3.4-5   2017-08-01 CRAN (R 3.5.0)
+##  shiny        1.1.0   2018-05-17 CRAN (R 3.5.0)
+##  sp           1.3-1   2018-06-05 CRAN (R 3.5.0)
+##  spData       0.2.8.3 2018-03-25 CRAN (R 3.5.0)
+##  spdep        0.7-7   2018-04-03 CRAN (R 3.5.0)
+##  splines      3.5.0   2018-06-07 local         
+##  stats      * 3.5.0   2018-06-07 local         
+##  stringi      1.2.2   2018-05-02 CRAN (R 3.5.0)
+##  stringr      1.3.1   2018-05-10 CRAN (R 3.5.0)
+##  tibble       1.4.2   2018-01-22 CRAN (R 3.5.0)
+##  tidyselect   0.2.4   2018-02-26 CRAN (R 3.5.0)
+##  tools        3.5.0   2018-06-07 local         
+##  utils      * 3.5.0   2018-06-07 local         
+##  vegan        2.5-2   2018-05-17 CRAN (R 3.5.0)
+##  withr        2.1.2   2018-03-15 CRAN (R 3.5.0)
+##  xtable       1.8-2   2016-02-05 CRAN (R 3.5.0)
+##  yaml         2.1.19  2018-05-01 CRAN (R 3.5.0)</code></pre>
 </div>
 
 <!-- </div>
