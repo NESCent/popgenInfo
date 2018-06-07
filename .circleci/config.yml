@@ -17,6 +17,8 @@ jobs:
             - image: buildpack-deps:16.04-scm
         steps:
             - checkout
+            - attach_workspace:
+                at: /tmp/archive
             - run: |
                 git config user.name "Hilmar Lapp"
                 git config user.email "hlapp@drycafe.net"
@@ -28,8 +30,6 @@ jobs:
                 git commit -m "Website rebuild"
                 git push origin gh-pages
                 git checkout master
-            - attach_workspace:
-                at: /tmp/archive
 
 workflows:
     version: 2
