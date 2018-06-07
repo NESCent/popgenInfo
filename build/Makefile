@@ -5,34 +5,21 @@ HTML_DIRS  := $(HTML_DIRS) $(patsubst %.md, %_files, $(wildcard *.md))
 
 DATADIR ?= $(CURDIR)/../data
 
-# we run commands in the container under the same UID and GID as on the host
-USERID ?= $(shell id -u)
-GROUPID ?= $(shell id -g)
-
-# we let this be a dotfile so that rm -r * won't match it
-SITEARCH = ../.site.tar
+ARCHIVEDIR = ../archive
 
 all: clean html
 
-html: dockerImage $(HTML_FILES)
-
-# We set HOME=/tmp for inside the container so that Rmarkdown is not
-# confused into think that $HOME/opt/pandoc is the pandoc home when
-# $HOME defaults to /, as it does for unknown users.
+html: $(HTML_FILES)
 
 %.html: %.Rmd
-	$(SUDO) docker run --user="$(USERID):$(GROUPID)" -e "HOME=/tmp" -v $(REPODIR):/repo -w /repo/build rocker/popgen Rscript -e "rmarkdown::render('$<')"
+	Rscript -e "rmarkdown::render('$<')"
 
 %.html: %.md
-	$(SUDO) docker run --user="$(USERID):$(GROUPID)" -e "HOME=/tmp" -v $(REPODIR):/repo -w /repo/build rocker/popgen Rscript -e "rmarkdown::render('$<')"
+	Rscript -e "rmarkdown::render('$<')"
 
 deploy: html
-	tar cf $(SITEARCH) include libs *.html *_files
-
-.PHONY: dockerImage
-
-dockerImage: 
-	docker build -t rocker/popgen - < Dockerfile
+	mkdir $(ARCHIVEDIR)
+	tar cf $(ARCHIVEDIR)/site.tar include libs *.html *_files
 
 .PHONY: clean distclean
 
@@ -42,3 +29,4 @@ clean:
 
 distclean: clean
 	$(RM) *.Rmd *.md
+	$(RM) $(ARCHIVEDIR)/site.tar
