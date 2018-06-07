@@ -43,7 +43,7 @@ GROUPID ?= $(shell id -g)
 
 all: clean html
 
-SUBDIRS  := use install develop
+SUBDIRS  := use develop
 BUILDDIR := build
 DATADIR  := data
 REPODIR  := $(CURDIR)
