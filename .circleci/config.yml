@@ -46,3 +46,21 @@ workflows:
                 filters:
                     branches:
                         only: master
+    weekly:
+        triggers:
+            - schedule:
+                cron: "16 45 * * 1"
+                filters:
+                    branches:
+                        only: 
+                            - master
+                            - add-weekly-build
+        jobs:
+            - build:
+                filters:
+                    branches:
+                        ignore: gh-pages
+            - deploy:
+                requires:
+                    - build
+
