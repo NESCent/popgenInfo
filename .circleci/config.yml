@@ -19,9 +19,12 @@ jobs:
             - checkout
             - attach_workspace:
                 at: /tmp/archive
+            - add_ssh_keys:
+                fingerprints:
+                    - "04:32:c8:3e:0f:a9:5f:cf:d1:73:2f:5f:13:35:32:a8"
             - run: |
-                git config user.name "Hilmar Lapp"
-                git config user.email "hlapp@drycafe.net"
+                git config user.name "PopgenInfo CI Build"
+                git config user.email "ci-build@popgen.nescent.org"
                 git checkout gh-pages
                 rm -r *
                 git checkout gh-pages -- CNAME
