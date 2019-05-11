@@ -93,43 +93,90 @@ body {
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -165,9 +212,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -186,25 +231,98 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -320,12 +438,12 @@ $(document).ready(function () {
 <p>In this vignette, we’ll apply RDA to genomic data from 94 North American gray wolves (<em>Canis lupus</em>) sampled across Canada and Alaska (Schweizer et al., 2016). Results of the RDA at the full set of 42,587 single nucleotide polymorphism (SNP) markers are available in Forester et al. (2018). Here, in the interest of computational efficiency, we will use a randomly sampled subset of 10,000 SNPs from this larger data set. We are interested in understanding how wolves may be locally adapted to environmental conditions across their North American range</p>
 <p>In this case, the data are individual-based, and are input as allele counts (i.e. 0/1/2) for each locus for each individual wolf. For population-based data, you can input the genomic data as allele frequencies within demes. The distinction between individual and population based analyses may not be straightforward in all cases. A simple guideline would be to use an individual-based framework when you have individual coordinates for most of your samples, and the resolution of your environmental data (if in raster format) would allow for a sampling of environmental conditions across the site/study area.</p>
 <p>Begin by installing the necessary packages, if you don’t already have them:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(c(&quot;psych&quot;,&quot;vegan&quot;), dependencies=TRUE)</span>
-
-<span class="co"># Load packages</span>
-<span class="co"># -------------</span>
-<span class="kw">library</span>(psych)    <span class="co"># Used to investigate correlations among predictors</span>
-<span class="kw">library</span>(vegan)    <span class="co"># Used to run RDA</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages(c(&quot;psych&quot;,&quot;vegan&quot;), dependencies=TRUE)</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># Load packages</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># -------------</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">library</span>(psych)    <span class="co"># Used to investigate correlations among predictors</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">library</span>(vegan)    <span class="co"># Used to run RDA</span></a></code></pre></div>
 </div>
 <div id="analysis" class="section level2">
 <h2>Analysis</h2>
@@ -333,25 +451,25 @@ $(document).ready(function () {
 <h3>Read in and prepare the genetic data for analysis</h3>
 <p>I downloaded these data from the Schweizer et al. (2016) <a href="http://datadryad.org/resource/doi:10.5061/dryad.c9b25">Dryad repository</a> and converted them from .tped to .raw format using plink (Purcell et al., 2007). Then, using the R package <code>adegenet</code> (Jombart 2008), I read in the .raw data and extracted the matrix of 94 individuals x 42,587 SNPs. Finally, I randomly sampled 10,000 columns (SNPs) from the full data set, which is what we will analyze in this vignette.</p>
 <p>The full data in .raw format are available in the Supplemental Information for Forester et al. (2018). If you want to analyze the full data set, use the <code>read.PLINK</code> call from <code>adegenet</code> to read the data into R.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datzip &lt;-<span class="st"> </span>(<span class="st">&quot;data/wolf_geno_samp_10000.zip&quot;</span>) 
-zipd &lt;-<span class="st"> </span><span class="kw">tempdir</span>()
-<span class="kw">unzip</span>(datzip, <span class="dt">exdir=</span>zipd)
-gen &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">paste0</span>(zipd,<span class="st">&quot;/wolf_geno_samp_10000.csv&quot;</span>), <span class="dt">row.names=</span><span class="dv">1</span>)
-<span class="kw">dim</span>(gen)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">datzip &lt;-<span class="st"> </span>(<span class="st">&quot;data/wolf_geno_samp_10000.zip&quot;</span>) </a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">zipd &lt;-<span class="st"> </span><span class="kw">tempdir</span>()</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">unzip</span>(datzip, <span class="dt">exdir=</span>zipd)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">gen &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">paste0</span>(zipd,<span class="st">&quot;/wolf_geno_samp_10000.csv&quot;</span>), <span class="dt">row.names=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">dim</span>(gen)</a></code></pre></div>
 <pre><code>## [1]    94 10000</code></pre>
 <p>We have 94 individuals (rows) genotyped at 10,000 SNPs (columns).</p>
 <p>RDA requires complete data frames (i.e., no missing data). For this vignette, we’ll use a simple approach to imputing missing values: we will impute using the most common genotype at each SNP across all individuals.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(<span class="kw">is.na</span>(gen)) <span class="co"># 27,987 NAs in the matrix (~3% missing data)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">sum</span>(<span class="kw">is.na</span>(gen)) <span class="co"># 27,987 NAs in the matrix (~3% missing data)</span></a></code></pre></div>
 <pre><code>## [1] 27987</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gen.imp &lt;-<span class="st"> </span><span class="kw">apply</span>(gen, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="kw">replace</span>(x, <span class="kw">is.na</span>(x), <span class="kw">as.numeric</span>(<span class="kw">names</span>(<span class="kw">which.max</span>(<span class="kw">table</span>(x))))))
-<span class="kw">sum</span>(<span class="kw">is.na</span>(gen.imp)) <span class="co"># No NAs</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">gen.imp &lt;-<span class="st"> </span><span class="kw">apply</span>(gen, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="kw">replace</span>(x, <span class="kw">is.na</span>(x), <span class="kw">as.numeric</span>(<span class="kw">names</span>(<span class="kw">which.max</span>(<span class="kw">table</span>(x))))))</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">sum</span>(<span class="kw">is.na</span>(gen.imp)) <span class="co"># No NAs</span></a></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>We could also use this imputation approach within ecotypes (rather than across all individuals). Other promising imputation methods for species lacking a reference genome include: using ancestry values from <code>snmf</code> in the <code>LEA</code> package (Frichot &amp; Francois 2015), using Random Forest (implemented for genomic data in the R package <code>grur</code>, Gosselin 2017), and the program LinkImpute (Money et al., 2015).</p>
 </div>
 <div id="read-in-and-screen-the-environmental-predictors" class="section level3">
 <h3>Read in and screen the environmental predictors</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">env &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/wolf_env.csv&quot;</span>)
-<span class="kw">str</span>(env) <span class="co"># Look at the structure of the data frame</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">env &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/wolf_env.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">str</span>(env) <span class="co"># Look at the structure of the data frame</span></a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    94 obs. of  16 variables:
 ##  $ individual            : Factor w/ 94 levels &quot;11226.CEL&quot;,&quot;11228.CEL&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ ecotype               : Factor w/ 6 levels &quot;Pop_1_WestForest&quot;,..: 2 6 6 6 2 2 2 2 2 2 ...
@@ -369,15 +487,15 @@ gen &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="
 ##  $ ndvi                  : int  7403 8222 6450 6141 7595 7518 7472 8157 7348 6616 ...
 ##  $ elev                  : int  349 234 264 200 194 219 280 154 190 222 ...
 ##  $ percent_tree_cover    : int  36 51 5 9 26 48 47 61 61 47 ...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">env<span class="op">$</span>individual &lt;-<span class="st"> </span><span class="kw">as.character</span>(env<span class="op">$</span>individual) <span class="co"># Make individual names characters (not factors)</span>
-env<span class="op">$</span>land_cover &lt;-<span class="st"> </span><span class="kw">as.factor</span>(env<span class="op">$</span>land_cover)    <span class="co"># Make land cover a factor (not an integer)</span>
-
-<span class="co"># Confirm that genotypes and environmental data are in the same order</span>
-<span class="kw">identical</span>(<span class="kw">rownames</span>(gen.imp), env[,<span class="dv">1</span>]) </code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">env<span class="op">$</span>individual &lt;-<span class="st"> </span><span class="kw">as.character</span>(env<span class="op">$</span>individual) <span class="co"># Make individual names characters (not factors)</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">env<span class="op">$</span>land_cover &lt;-<span class="st"> </span><span class="kw">as.factor</span>(env<span class="op">$</span>land_cover)    <span class="co"># Make land cover a factor (not an integer)</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co"># Confirm that genotypes and environmental data are in the same order</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw">identical</span>(<span class="kw">rownames</span>(gen.imp), env[,<span class="dv">1</span>]) </a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>RDA is a regression-based method, and so can be subject to problems when using highly correlated predictors (Dormann et al., 2013). Generally, the |r| &gt; 0.7 “rule of thumb” is a good guideline for removing correlated predictors. We will also check for multicollinearity using Variance Inflation Factors (VIF), below.</p>
 <p>Variable reduction should be guided by an ecological interpretation of the relevance of possible predictors. Here, we use the function <code>pairs.panels</code> to visualize correlations among our predictors. Correlation coefficients are in the upper right diagonal, with their size scaled to their |r|. The lower left shows scatter plots, while the diagonal shows histograms of the data. See <code>?pairs.panels</code> for more information.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairs.panels</span>(env[,<span class="dv">5</span><span class="op">:</span><span class="dv">16</span>], <span class="dt">scale=</span>T)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">pairs.panels</span>(env[,<span class="dv">5</span><span class="op">:</span><span class="dv">16</span>], <span class="dt">scale=</span>T)</a></code></pre></div>
 <p><img src="2018-03-27_RDA_GEA_files/figure-html/env.prep1-1.png" width="768" /></p>
 <p>We only have a few strong correlations. Below, find one option for variable reduction. This could be modified based on ecological and/or biological knowledge about the species or specific hypotheses about the environmental drivers of selection:</p>
 <ol style="list-style-type: decimal">
@@ -385,18 +503,18 @@ env<span class="op">$</span>land_cover &lt;-<span class="st"> </span><span class
 <li>If we remove <code>max_temp_warmest_month</code> and <code>min_temp_coldest_month</code>, we eliminate the remaining strong correlations in a small number of predictors (and still have measures of temperature range and variation included).</li>
 <li>Also investigate the distribution of factor levels in <code>land_cover</code>.</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred &lt;-<span class="st"> </span><span class="kw">subset</span>(env, <span class="dt">select=</span><span class="op">-</span><span class="kw">c</span>(precip_coldest_quarter, max_temp_warmest_month, min_temp_coldest_month))
-
-<span class="kw">table</span>(pred<span class="op">$</span>land_cover)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">pred &lt;-<span class="st"> </span><span class="kw">subset</span>(env, <span class="dt">select=</span><span class="op">-</span><span class="kw">c</span>(precip_coldest_quarter, max_temp_warmest_month, min_temp_coldest_month))</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">table</span>(pred<span class="op">$</span>land_cover)</a></code></pre></div>
 <pre><code>## 
 ##  0  1  5  7  8 10 12 14 15 16 
 ##  3 23  7 40  7  4  2  1  1  6</code></pre>
 <p>The distribution of factor levels is highly skewed towards classes 1 &amp; 7, leaving the remaining classes with small numbers of individuals. These characteristics make it unlikely to be a highly informative predictor; let’s remove it.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred &lt;-<span class="st"> </span><span class="kw">subset</span>(pred, <span class="dt">select=</span><span class="op">-</span><span class="kw">c</span>(land_cover))</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">pred &lt;-<span class="st"> </span><span class="kw">subset</span>(pred, <span class="dt">select=</span><span class="op">-</span><span class="kw">c</span>(land_cover))</a></code></pre></div>
 <p>Let’s look at this reduced set of predictors:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred &lt;-<span class="st"> </span>pred[,<span class="dv">5</span><span class="op">:</span><span class="dv">12</span>]
-<span class="kw">colnames</span>(pred) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;MDR&quot;</span>,<span class="st">&quot;sdT&quot;</span>,<span class="st">&quot;AP&quot;</span>,<span class="st">&quot;cvP&quot;</span>,<span class="st">&quot;NDVI&quot;</span>,<span class="st">&quot;Elev&quot;</span>,<span class="st">&quot;Tree&quot;</span>)
-<span class="kw">pairs.panels</span>(pred, <span class="dt">scale=</span>T)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">pred &lt;-<span class="st"> </span>pred[,<span class="dv">5</span><span class="op">:</span><span class="dv">12</span>]</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">colnames</span>(pred) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;MDR&quot;</span>,<span class="st">&quot;sdT&quot;</span>,<span class="st">&quot;AP&quot;</span>,<span class="st">&quot;cvP&quot;</span>,<span class="st">&quot;NDVI&quot;</span>,<span class="st">&quot;Elev&quot;</span>,<span class="st">&quot;Tree&quot;</span>)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="kw">pairs.panels</span>(pred, <span class="dt">scale=</span>T)</a></code></pre></div>
 <p><img src="2018-03-27_RDA_GEA_files/figure-html/env.prep4-1.png" width="576" /></p>
 <p>This looks better. Let’s move on and run the RDA.</p>
 </div>
@@ -404,8 +522,8 @@ env<span class="op">$</span>land_cover &lt;-<span class="st"> </span><span class
 <h3>Run the RDA</h3>
 <p>The code to run the RDA is simple. However, as noted previously, we highly recommend Borcard et al. (2011) for details on the implementation and interpretation of RDA models and the objects created by <code>vegan</code>. RDA runs relatively quickly on most data sets, however on a very large data set (such as the full wolf data set) it can take 15-20 minutes, depending on the computer.</p>
 <p>Note: if your predictors include any factors, you’ll need to write out the formula in the <code>rda</code> call if you want to include a significance test of the constrained axis (code shown below). Since we are not using any factors in this analysis, we can use the shorthand formula <code>gen.imp ~ .</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wolf.rda &lt;-<span class="st"> </span><span class="kw">rda</span>(gen.imp <span class="op">~</span><span class="st"> </span>., <span class="dt">data=</span>pred, <span class="dt">scale=</span>T)
-wolf.rda</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">wolf.rda &lt;-<span class="st"> </span><span class="kw">rda</span>(gen.imp <span class="op">~</span><span class="st"> </span>., <span class="dt">data=</span>pred, <span class="dt">scale=</span>T)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">wolf.rda</a></code></pre></div>
 <pre><code>## Call: rda(formula = gen.imp ~ AMT + MDR + sdT + AP + cvP + NDVI +
 ## Elev + Tree, data = pred, scale = T)
 ## 
@@ -422,9 +540,9 @@ wolf.rda</code></pre></div>
 ## Eigenvalues for unconstrained axes:
 ##    PC1    PC2    PC3    PC4    PC5    PC6    PC7    PC8 
 ## 261.51 211.68 197.60 171.80 127.67 121.61 115.54 110.04 
-## (Showed only 8 of all 85 unconstrained eigenvalues)</code></pre>
+## (Showing 8 of 85 unconstrained eigenvalues)</code></pre>
 <p>First, note that we will have as many constrained (“RDA”) axes as we have predictors in the model. All residual variance is then modeled by PCA (the unconstrained “PC” axes). The proportion of the variance explained by the environmental predictors is given under the “Proportion” column for “Constrained”; this is equivalent to the R<sup>2</sup> of a multiple regression. Just like in multiple regression, this R<sup>2</sup> will be biased and should be adjusted based on the number of predictors. We can calculate the adjusted R<sup>2</sup> using:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">RsquareAdj</span>(wolf.rda)</code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">RsquareAdj</span>(wolf.rda)</a></code></pre></div>
 <pre><code>## $r.squared
 ## [1] 0.1340421
 ## 
@@ -432,7 +550,7 @@ wolf.rda</code></pre></div>
 ## [1] 0.05254019</code></pre>
 <p>Our constrained ordination explains about 5% of the variation; this low explanatory power is not surprising given that we expect that most of the SNPs in our dataset will not show a relationship with the environmental predictors (e.g., most SNPs will be neutral).</p>
 <p>The eigenvalues for the constrained axes reflect the variance explained by each canonical axis:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">eigenvals</span>(wolf.rda, <span class="dt">model =</span> <span class="st">&quot;constrained&quot;</span>))</code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">eigenvals</span>(wolf.rda, <span class="dt">model =</span> <span class="st">&quot;constrained&quot;</span>))</a></code></pre></div>
 <pre><code>## Importance of components:
 ##                           RDA1     RDA2     RDA3      RDA4     RDA5
 ## Eigenvalue            281.1906 216.8651 179.5282 110.84337 89.78143
@@ -443,12 +561,12 @@ wolf.rda</code></pre></div>
 ## Proportion Explained   0.07827  0.06819  0.06485
 ## Cumulative Proportion  0.86697  0.93515  1.00000</code></pre>
 <p>We can visualize this information using a screeplot of the canonical eigenvalues by calling <code>screeplot</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">screeplot</span>(wolf.rda)</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">screeplot</span>(wolf.rda)</a></code></pre></div>
 <p><img src="2018-03-27_RDA_GEA_files/figure-html/screeplot,%20-1.png" width="595.2" /></p>
 <p>Here, we can see that the first three constrained axes explain most of the variance. The screeplot provides an informal (and quick) way to determine how many constrained axes to include when we search for candidate SNPs (below). We could start by investigating RDA axes that explain the most variance (excluding those after the “drop off” point in the screeplot.)</p>
 <p>Now let’s check our RDA model for significance using formal tests. We can assess both the full model and each constrained axis using F-statistics (Legendre et al, 2010). The null hypothesis is that no linear relationship exists between the SNP data and the environmental predictors. See <code>?anova.cca</code> for more details and options.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">signif.full &lt;-<span class="st"> </span><span class="kw">anova.cca</span>(wolf.rda, <span class="dt">parallel=</span><span class="kw">getOption</span>(<span class="st">&quot;mc.cores&quot;</span>)) <span class="co"># default is permutation=999</span>
-signif.full</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">signif.full &lt;-<span class="st"> </span><span class="kw">anova.cca</span>(wolf.rda, <span class="dt">parallel=</span><span class="kw">getOption</span>(<span class="st">&quot;mc.cores&quot;</span>)) <span class="co"># default is permutation=999</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">signif.full</a></code></pre></div>
 <pre><code>## Permutation test for rda under reduced model
 ## Permutation: free
 ## Number of permutations: 999
@@ -461,10 +579,10 @@ signif.full</code></pre></div>
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The full model is significant, but that doesn’t tell us much. We can check each constrained axis for significance using the code below. For this test, each constrained axis is tested using all previous constrained axes as conditions. See <code>?anova.cca</code> and Legendre et al. (2010) for details. The purpose here is to determine which constrained axes we should investigate for candidate loci.</p>
 <p>This analysis is time intensive (taking up to a few hours for the full wolf data set), so we will not run the code here. If we did run it, we would find that the first three constrained axes are significant (p = 0.001); constrained axis 4 has a p-value of 0.080, while axes 5-8 have p-values &gt; 0.850. This corresponds with our evaluation of the screeplot, above.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">signif.axis &lt;-<span class="st"> </span><span class="kw">anova.cca</span>(wolf.rda, <span class="dt">by=</span><span class="st">&quot;axis&quot;</span>, <span class="dt">parallel=</span><span class="kw">getOption</span>(<span class="st">&quot;mc.cores&quot;</span>))
-signif.axis</code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">signif.axis &lt;-<span class="st"> </span><span class="kw">anova.cca</span>(wolf.rda, <span class="dt">by=</span><span class="st">&quot;axis&quot;</span>, <span class="dt">parallel=</span><span class="kw">getOption</span>(<span class="st">&quot;mc.cores&quot;</span>))</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">signif.axis</a></code></pre></div>
 <p>Finally, <code>vegan</code> has a simple function for checking Variance Inflation Factors for the predictor variables used in the model:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vif.cca</span>(wolf.rda)</code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">vif.cca</span>(wolf.rda)</a></code></pre></div>
 <pre><code>##      AMT      MDR      sdT       AP      cvP     NDVI     Elev     Tree 
 ## 7.854243 6.495892 2.775059 4.051610 1.318631 2.285632 2.028377 2.260139</code></pre>
 <p>All values are below 10, and most are below 5, which indicates that multicollinearity among these predictors shouldn’t be a problem for the model. We could remove one of the temperature variables (AMT or MDR) if we were concerned about these higher VIF values (Zuur et al., 2010).</p>
@@ -472,76 +590,76 @@ signif.axis</code></pre></div>
 <div id="plot-the-rda" class="section level3">
 <h3>Plot the RDA</h3>
 <p>We’ll start with simple triplots from <code>vegan</code>. Here we’ll use <code>scaling=3</code> (also known as “symmetrical scaling”) for the ordination plots. This scales the SNP and individual scores by the square root of the eigenvalues. See Borcard et al. (2011) or the <code>vegan</code> help for more information on scaling in RDA plots.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>)          <span class="co"># default is axes 1 and 2</span>
-<span class="kw">plot</span>(wolf.rda, <span class="dt">choices =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="dt">scaling=</span><span class="dv">3</span>)  <span class="co"># axes 1 and 3</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">plot</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>)          <span class="co"># default is axes 1 and 2</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw">plot</span>(wolf.rda, <span class="dt">choices =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="dt">scaling=</span><span class="dv">3</span>)  <span class="co"># axes 1 and 3</span></a></code></pre></div>
 <p><img src="2018-03-27_RDA_GEA_files/figure-html/simple_plot-1.png" width="480" /><img src="2018-03-27_RDA_GEA_files/figure-html/simple_plot-2.png" width="480" /></p>
 <p>Here, the SNPs are in red (in the center of each plot), and the individuals are the black circles. The blue vectors are the environmental predictors. The relative arrangement of these items in the ordination space reflects their relationship with the ordination axes, which are linear combinations of the predictor variables.</p>
 <p>Let’s make some more informative plots. We’ll color the individual points based on their ecotype, which we can find in the <code>env</code> data set.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(env<span class="op">$</span>ecotype) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Western Forest&quot;</span>,<span class="st">&quot;Boreal Forest&quot;</span>,<span class="st">&quot;Arctic&quot;</span>,<span class="st">&quot;High Arctic&quot;</span>,<span class="st">&quot;British Columbia&quot;</span>,<span class="st">&quot;Atlantic Forest&quot;</span>)
-eco &lt;-<span class="st"> </span>env<span class="op">$</span>ecotype
-bg &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;#ff7f00&quot;</span>,<span class="st">&quot;#1f78b4&quot;</span>,<span class="st">&quot;#ffff33&quot;</span>,<span class="st">&quot;#a6cee3&quot;</span>,<span class="st">&quot;#33a02c&quot;</span>,<span class="st">&quot;#e31a1c&quot;</span>) <span class="co"># 6 nice colors for our ecotypes</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">levels</span>(env<span class="op">$</span>ecotype) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Western Forest&quot;</span>,<span class="st">&quot;Boreal Forest&quot;</span>,<span class="st">&quot;Arctic&quot;</span>,<span class="st">&quot;High Arctic&quot;</span>,<span class="st">&quot;British Columbia&quot;</span>,<span class="st">&quot;Atlantic Forest&quot;</span>)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">eco &lt;-<span class="st"> </span>env<span class="op">$</span>ecotype</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">bg &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;#ff7f00&quot;</span>,<span class="st">&quot;#1f78b4&quot;</span>,<span class="st">&quot;#ffff33&quot;</span>,<span class="st">&quot;#a6cee3&quot;</span>,<span class="st">&quot;#33a02c&quot;</span>,<span class="st">&quot;#e31a1c&quot;</span>) <span class="co"># 6 nice colors for our ecotypes</span></a></code></pre></div>
 <p>This time, we’ll set the plots up and add each component in separately:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># axes 1 &amp; 2</span>
-<span class="kw">plot</span>(wolf.rda, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>)
-<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">cex=</span><span class="fl">0.7</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>)           <span class="co"># the SNPs</span>
-<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;sites&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="fl">1.3</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">bg=</span>bg[eco]) <span class="co"># the wolves</span>
-<span class="kw">text</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">display=</span><span class="st">&quot;bp&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#0868ac&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>)                           <span class="co"># the predictors</span>
-<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend=</span><span class="kw">levels</span>(eco), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.bg=</span>bg)
-
-<span class="co"># axes 1 &amp; 3</span>
-<span class="kw">plot</span>(wolf.rda, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
-<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">cex=</span><span class="fl">0.7</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
-<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;sites&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="fl">1.3</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">bg=</span>bg[eco], <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
-<span class="kw">text</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">display=</span><span class="st">&quot;bp&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#0868ac&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
-<span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend=</span><span class="kw">levels</span>(eco), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.bg=</span>bg)</code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># axes 1 &amp; 2</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">plot</span>(wolf.rda, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">cex=</span><span class="fl">0.7</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>)           <span class="co"># the SNPs</span></a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;sites&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="fl">1.3</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">bg=</span>bg[eco]) <span class="co"># the wolves</span></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="kw">text</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">display=</span><span class="st">&quot;bp&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#0868ac&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>)                           <span class="co"># the predictors</span></a>
+<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend=</span><span class="kw">levels</span>(eco), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.bg=</span>bg)</a>
+<a class="sourceLine" id="cb31-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="co"># axes 1 &amp; 3</span></a>
+<a class="sourceLine" id="cb31-9" data-line-number="9"><span class="kw">plot</span>(wolf.rda, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb31-10" data-line-number="10"><span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span>, <span class="dt">cex=</span><span class="fl">0.7</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb31-11" data-line-number="11"><span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;sites&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="fl">1.3</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">bg=</span>bg[eco], <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb31-12" data-line-number="12"><span class="kw">text</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">display=</span><span class="st">&quot;bp&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#0868ac&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb31-13" data-line-number="13"><span class="kw">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="dt">legend=</span><span class="kw">levels</span>(eco), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.bg=</span>bg)</a></code></pre></div>
 <p><img src="2018-03-27_RDA_GEA_files/figure-html/nicer_plot2-1.png" width="576" /><img src="2018-03-27_RDA_GEA_files/figure-html/nicer_plot2-2.png" width="576" /></p>
 <p>Now that the individuals are color coded, we can identify some interesting relationships. Starting with the plot of axes 1 and 2, note that individual genotypes from wet and temperate British Columbia (green) are positively related to high annual precipitation (AP) and low temperature seasonality (sdT). By contrast, Artic and High Arctic individuals are characterized by small mean diurnal temperature range (MDR), low annual mean temperature (AMT), lower levels of tree cover (Tree) and NDVI (a measure of vegetation greenness), and are found at lower elevation. Atlantic Forest and Western Forest individuals load more strongly on RDA axis 3, showing weak and strong precipitation seasonality (cvP) respectively, consistent with continental-scale climate in these regions.</p>
 </div>
 <div id="identify-candidate-snps-involved-in-local-adaptation" class="section level3">
 <h3>Identify candidate SNPs involved in local adaptation</h3>
 <p>We’ll use the loadings of the SNPs in the ordination space to determine which SNPs are candidates for local adaptation. The SNP loadings are stored as <code>species</code> in the RDA object. We’ll extract the SNP loadings from the three significant constrained axes:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">load.rda &lt;-<span class="st"> </span><span class="kw">scores</span>(wolf.rda, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">display=</span><span class="st">&quot;species&quot;</span>)  <span class="co"># Species scores for the first three constrained axes</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">load.rda &lt;-<span class="st"> </span><span class="kw">scores</span>(wolf.rda, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="dt">display=</span><span class="st">&quot;species&quot;</span>)  <span class="co"># Species scores for the first three constrained axes</span></a></code></pre></div>
 <p>If we look at histograms of the loadings on each RDA axis, we can see their (relatively normal) distributions. SNPs loading at the center of the distribution are not showing a relationship with the environmental predictors; those loading in the tails are, and are more likely to be under selection as a function of those predictors (or some other predictor correlated with them).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(load.rda[,<span class="dv">1</span>], <span class="dt">main=</span><span class="st">&quot;Loadings on RDA1&quot;</span>)
-<span class="kw">hist</span>(load.rda[,<span class="dv">2</span>], <span class="dt">main=</span><span class="st">&quot;Loadings on RDA2&quot;</span>)
-<span class="kw">hist</span>(load.rda[,<span class="dv">3</span>], <span class="dt">main=</span><span class="st">&quot;Loadings on RDA3&quot;</span>) </code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">hist</span>(load.rda[,<span class="dv">1</span>], <span class="dt">main=</span><span class="st">&quot;Loadings on RDA1&quot;</span>)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">hist</span>(load.rda[,<span class="dv">2</span>], <span class="dt">main=</span><span class="st">&quot;Loadings on RDA2&quot;</span>)</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="kw">hist</span>(load.rda[,<span class="dv">3</span>], <span class="dt">main=</span><span class="st">&quot;Loadings on RDA3&quot;</span>) </a></code></pre></div>
 <p><img src="2018-03-27_RDA_GEA_files/figure-html/loadings_plot-1.png" width="240" /><img src="2018-03-27_RDA_GEA_files/figure-html/loadings_plot-2.png" width="240" /><img src="2018-03-27_RDA_GEA_files/figure-html/loadings_plot-3.png" width="240" /></p>
 <p>I’ve written a simple function to identify SNPs that load in the tails of these distributions. We’ll start with a 3 standard deviation cutoff (two-tailed p-value = 0.0027). As with all cutoffs, this can be modified to reflect the goals of the analysis and our tolerance for true positives vs. false positives. For example, if you needed to be very conservative and only identify those loci under very strong selection (i.e., minimize false positive rates), you could increase the number of standard deviations to 3.5 (two-tailed p-value = 0.0005). This would also increase the false negative rate. If you were less concerned with false positives, and more concerned with identifying as many potential candidate loci as possible (including those that may be under weaker selection), you might choose a 2.5 standard deviation cutoff (two-tailed p-value = 0.012).</p>
 <p>I define the function here as <code>outliers</code>, where <code>x</code> is the vector of loadings and <code>z</code> is the number of standard deviations to use:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">outliers &lt;-<span class="st"> </span><span class="cf">function</span>(x,z){
-  lims &lt;-<span class="st"> </span><span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>z <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(x)     <span class="co"># find loadings +/-z sd from mean loading     </span>
-  x[x <span class="op">&lt;</span><span class="st"> </span>lims[<span class="dv">1</span>] <span class="op">|</span><span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span>lims[<span class="dv">2</span>]]               <span class="co"># locus names in these tails</span>
-}</code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">outliers &lt;-<span class="st"> </span><span class="cf">function</span>(x,z){</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">  lims &lt;-<span class="st"> </span><span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>z <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(x)     <span class="co"># find loadings +/-z sd from mean loading     </span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">  x[x <span class="op">&lt;</span><span class="st"> </span>lims[<span class="dv">1</span>] <span class="op">|</span><span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span>lims[<span class="dv">2</span>]]               <span class="co"># locus names in these tails</span></a>
+<a class="sourceLine" id="cb34-4" data-line-number="4">}</a></code></pre></div>
 <p>Now let’s apply it to each significant constrained axis:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cand1 &lt;-<span class="st"> </span><span class="kw">outliers</span>(load.rda[,<span class="dv">1</span>],<span class="dv">3</span>) <span class="co"># 38</span>
-cand2 &lt;-<span class="st"> </span><span class="kw">outliers</span>(load.rda[,<span class="dv">2</span>],<span class="dv">3</span>) <span class="co"># 69</span>
-cand3 &lt;-<span class="st"> </span><span class="kw">outliers</span>(load.rda[,<span class="dv">3</span>],<span class="dv">3</span>) <span class="co"># 34</span>
-
-ncand &lt;-<span class="st"> </span><span class="kw">length</span>(cand1) <span class="op">+</span><span class="st"> </span><span class="kw">length</span>(cand2) <span class="op">+</span><span class="st"> </span><span class="kw">length</span>(cand3)
-ncand</code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">cand1 &lt;-<span class="st"> </span><span class="kw">outliers</span>(load.rda[,<span class="dv">1</span>],<span class="dv">3</span>) <span class="co"># 38</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">cand2 &lt;-<span class="st"> </span><span class="kw">outliers</span>(load.rda[,<span class="dv">2</span>],<span class="dv">3</span>) <span class="co"># 69</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">cand3 &lt;-<span class="st"> </span><span class="kw">outliers</span>(load.rda[,<span class="dv">3</span>],<span class="dv">3</span>) <span class="co"># 34</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5">ncand &lt;-<span class="st"> </span><span class="kw">length</span>(cand1) <span class="op">+</span><span class="st"> </span><span class="kw">length</span>(cand2) <span class="op">+</span><span class="st"> </span><span class="kw">length</span>(cand3)</a>
+<a class="sourceLine" id="cb35-6" data-line-number="6">ncand</a></code></pre></div>
 <pre><code>## [1] 141</code></pre>
 <p>We have 38 candidates on axis 1, 69 on axis 2, and 34 on axis 3, for a total of 141 candidate SNPs (note that the full wolf data set produces 604 candidates).</p>
 <p>Next, we’ll organize our results by making one data frame with the axis, SNP name, loading, &amp; correlation with each predictor:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cand1 &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dt">times=</span><span class="kw">length</span>(cand1)), <span class="kw">names</span>(cand1), <span class="kw">unname</span>(cand1))
-cand2 &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dt">times=</span><span class="kw">length</span>(cand2)), <span class="kw">names</span>(cand2), <span class="kw">unname</span>(cand2))
-cand3 &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(<span class="kw">rep</span>(<span class="dv">3</span>,<span class="dt">times=</span><span class="kw">length</span>(cand3)), <span class="kw">names</span>(cand3), <span class="kw">unname</span>(cand3))
-
-<span class="kw">colnames</span>(cand1) &lt;-<span class="st"> </span><span class="kw">colnames</span>(cand2) &lt;-<span class="st"> </span><span class="kw">colnames</span>(cand3) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;axis&quot;</span>,<span class="st">&quot;snp&quot;</span>,<span class="st">&quot;loading&quot;</span>)
-
-cand &lt;-<span class="st"> </span><span class="kw">rbind</span>(cand1, cand2, cand3)
-cand<span class="op">$</span>snp &lt;-<span class="st"> </span><span class="kw">as.character</span>(cand<span class="op">$</span>snp)</code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">cand1 &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dt">times=</span><span class="kw">length</span>(cand1)), <span class="kw">names</span>(cand1), <span class="kw">unname</span>(cand1))</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">cand2 &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dt">times=</span><span class="kw">length</span>(cand2)), <span class="kw">names</span>(cand2), <span class="kw">unname</span>(cand2))</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3">cand3 &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(<span class="kw">rep</span>(<span class="dv">3</span>,<span class="dt">times=</span><span class="kw">length</span>(cand3)), <span class="kw">names</span>(cand3), <span class="kw">unname</span>(cand3))</a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="kw">colnames</span>(cand1) &lt;-<span class="st"> </span><span class="kw">colnames</span>(cand2) &lt;-<span class="st"> </span><span class="kw">colnames</span>(cand3) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;axis&quot;</span>,<span class="st">&quot;snp&quot;</span>,<span class="st">&quot;loading&quot;</span>)</a>
+<a class="sourceLine" id="cb37-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb37-7" data-line-number="7">cand &lt;-<span class="st"> </span><span class="kw">rbind</span>(cand1, cand2, cand3)</a>
+<a class="sourceLine" id="cb37-8" data-line-number="8">cand<span class="op">$</span>snp &lt;-<span class="st"> </span><span class="kw">as.character</span>(cand<span class="op">$</span>snp)</a></code></pre></div>
 <p>Let’s add in the correlations of each candidate SNP with the eight environmental predictors:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow=</span>(ncand), <span class="dt">ncol=</span><span class="dv">8</span>)  <span class="co"># 8 columns for 8 predictors</span>
-<span class="kw">colnames</span>(foo) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;MDR&quot;</span>,<span class="st">&quot;sdT&quot;</span>,<span class="st">&quot;AP&quot;</span>,<span class="st">&quot;cvP&quot;</span>,<span class="st">&quot;NDVI&quot;</span>,<span class="st">&quot;Elev&quot;</span>,<span class="st">&quot;Tree&quot;</span>)
-
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cand<span class="op">$</span>snp)) {
-  nam &lt;-<span class="st"> </span>cand[i,<span class="dv">2</span>]
-  snp.gen &lt;-<span class="st"> </span>gen.imp[,nam]
-  foo[i,] &lt;-<span class="st"> </span><span class="kw">apply</span>(pred,<span class="dv">2</span>,<span class="cf">function</span>(x) <span class="kw">cor</span>(x,snp.gen))
-}
-
-cand &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(cand,foo)  
-<span class="kw">head</span>(cand)</code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">foo &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow=</span>(ncand), <span class="dt">ncol=</span><span class="dv">8</span>)  <span class="co"># 8 columns for 8 predictors</span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">colnames</span>(foo) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;MDR&quot;</span>,<span class="st">&quot;sdT&quot;</span>,<span class="st">&quot;AP&quot;</span>,<span class="st">&quot;cvP&quot;</span>,<span class="st">&quot;NDVI&quot;</span>,<span class="st">&quot;Elev&quot;</span>,<span class="st">&quot;Tree&quot;</span>)</a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cand<span class="op">$</span>snp)) {</a>
+<a class="sourceLine" id="cb38-5" data-line-number="5">  nam &lt;-<span class="st"> </span>cand[i,<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb38-6" data-line-number="6">  snp.gen &lt;-<span class="st"> </span>gen.imp[,nam]</a>
+<a class="sourceLine" id="cb38-7" data-line-number="7">  foo[i,] &lt;-<span class="st"> </span><span class="kw">apply</span>(pred,<span class="dv">2</span>,<span class="cf">function</span>(x) <span class="kw">cor</span>(x,snp.gen))</a>
+<a class="sourceLine" id="cb38-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb38-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb38-10" data-line-number="10">cand &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(cand,foo)  </a>
+<a class="sourceLine" id="cb38-11" data-line-number="11"><span class="kw">head</span>(cand)</a></code></pre></div>
 <pre><code>##   axis            snp    loading        AMT         MDR          sdT
 ## 1    1 chr12.18324211  0.1653558 -0.5241186 -0.49494075 -0.005959814
 ## 2    1  chr1.34067314  0.1752205 -0.5099884 -0.33919031  0.155830913
@@ -561,34 +679,34 @@ cand &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(cand
 <div id="investigate-the-candidates" class="section level3">
 <h3>Investigate the candidates</h3>
 <p>We’ll start off by looking for duplicate detections. These are SNPs that are identified as candidates on more than one RDA axis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(cand<span class="op">$</span>snp[<span class="kw">duplicated</span>(cand<span class="op">$</span>snp)])  <span class="co"># 7 duplicate detections</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">length</span>(cand<span class="op">$</span>snp[<span class="kw">duplicated</span>(cand<span class="op">$</span>snp)])  <span class="co"># 7 duplicate detections</span></a></code></pre></div>
 <pre><code>## [1] 7</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foo &lt;-<span class="st"> </span><span class="kw">cbind</span>(cand<span class="op">$</span>axis, <span class="kw">duplicated</span>(cand<span class="op">$</span>snp)) 
-<span class="kw">table</span>(foo[foo[,<span class="dv">1</span>]<span class="op">==</span><span class="dv">1</span>,<span class="dv">2</span>]) <span class="co"># no duplicates on axis 1</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">foo &lt;-<span class="st"> </span><span class="kw">cbind</span>(cand<span class="op">$</span>axis, <span class="kw">duplicated</span>(cand<span class="op">$</span>snp)) </a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="kw">table</span>(foo[foo[,<span class="dv">1</span>]<span class="op">==</span><span class="dv">1</span>,<span class="dv">2</span>]) <span class="co"># no duplicates on axis 1</span></a></code></pre></div>
 <pre><code>## 
 ##  0 
 ## 38</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(foo[foo[,<span class="dv">1</span>]<span class="op">==</span><span class="dv">2</span>,<span class="dv">2</span>]) <span class="co">#  7 duplicates on axis 2</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">table</span>(foo[foo[,<span class="dv">1</span>]<span class="op">==</span><span class="dv">2</span>,<span class="dv">2</span>]) <span class="co">#  7 duplicates on axis 2</span></a></code></pre></div>
 <pre><code>## 
 ##  0  1 
 ## 62  7</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(foo[foo[,<span class="dv">1</span>]<span class="op">==</span><span class="dv">3</span>,<span class="dv">2</span>]) <span class="co"># no duplicates on axis 3</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">table</span>(foo[foo[,<span class="dv">1</span>]<span class="op">==</span><span class="dv">3</span>,<span class="dv">2</span>]) <span class="co"># no duplicates on axis 3</span></a></code></pre></div>
 <pre><code>## 
 ##  0 
 ## 34</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cand &lt;-<span class="st"> </span>cand[<span class="op">!</span><span class="kw">duplicated</span>(cand<span class="op">$</span>snp),] <span class="co"># remove duplicate detections</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">cand &lt;-<span class="st"> </span>cand[<span class="op">!</span><span class="kw">duplicated</span>(cand<span class="op">$</span>snp),] <span class="co"># remove duplicate detections</span></a></code></pre></div>
 <p>We’ve now reduced our candidates to 134 unique SNPs.</p>
 <p>Next, we’ll see which of the predictors each candidate SNP is most strongly correlated with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cand<span class="op">$</span>snp)) {
-  bar &lt;-<span class="st"> </span>cand[i,]
-  cand[i,<span class="dv">12</span>] &lt;-<span class="st"> </span><span class="kw">names</span>(<span class="kw">which.max</span>(<span class="kw">abs</span>(bar[<span class="dv">4</span><span class="op">:</span><span class="dv">11</span>]))) <span class="co"># gives the variable</span>
-  cand[i,<span class="dv">13</span>] &lt;-<span class="st"> </span><span class="kw">max</span>(<span class="kw">abs</span>(bar[<span class="dv">4</span><span class="op">:</span><span class="dv">11</span>]))              <span class="co"># gives the correlation</span>
-}
-
-<span class="kw">colnames</span>(cand)[<span class="dv">12</span>] &lt;-<span class="st"> &quot;predictor&quot;</span>
-<span class="kw">colnames</span>(cand)[<span class="dv">13</span>] &lt;-<span class="st"> &quot;correlation&quot;</span>
-
-<span class="kw">table</span>(cand<span class="op">$</span>predictor) </code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cand<span class="op">$</span>snp)) {</a>
+<a class="sourceLine" id="cb49-2" data-line-number="2">  bar &lt;-<span class="st"> </span>cand[i,]</a>
+<a class="sourceLine" id="cb49-3" data-line-number="3">  cand[i,<span class="dv">12</span>] &lt;-<span class="st"> </span><span class="kw">names</span>(<span class="kw">which.max</span>(<span class="kw">abs</span>(bar[<span class="dv">4</span><span class="op">:</span><span class="dv">11</span>]))) <span class="co"># gives the variable</span></a>
+<a class="sourceLine" id="cb49-4" data-line-number="4">  cand[i,<span class="dv">13</span>] &lt;-<span class="st"> </span><span class="kw">max</span>(<span class="kw">abs</span>(bar[<span class="dv">4</span><span class="op">:</span><span class="dv">11</span>]))              <span class="co"># gives the correlation</span></a>
+<a class="sourceLine" id="cb49-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb49-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb49-7" data-line-number="7"><span class="kw">colnames</span>(cand)[<span class="dv">12</span>] &lt;-<span class="st"> &quot;predictor&quot;</span></a>
+<a class="sourceLine" id="cb49-8" data-line-number="8"><span class="kw">colnames</span>(cand)[<span class="dv">13</span>] &lt;-<span class="st"> &quot;correlation&quot;</span></a>
+<a class="sourceLine" id="cb49-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb49-10" data-line-number="10"><span class="kw">table</span>(cand<span class="op">$</span>predictor) </a></code></pre></div>
 <pre><code>## 
 ##  AMT   AP  cvP Elev  MDR NDVI  sdT Tree 
 ##   17   58   32    1   20    4    1    1</code></pre>
@@ -598,48 +716,48 @@ cand &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(cand
 <div id="plot-the-snps" class="section level3">
 <h3>Plot the SNPs</h3>
 <p>Let’s look at RDA plots again, but this time focus in on the SNPs in the ordination space. We’ll color code the SNPs based on the predictor variable that they are most strongly correlated with. There is a lot of code to set this up, which you can mostly ignore.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sel &lt;-<span class="st"> </span>cand<span class="op">$</span>snp
-env &lt;-<span class="st"> </span>cand<span class="op">$</span>predictor
-env[env<span class="op">==</span><span class="st">&quot;AP&quot;</span>] &lt;-<span class="st"> &#39;#1f78b4&#39;</span>
-env[env<span class="op">==</span><span class="st">&quot;cvP&quot;</span>] &lt;-<span class="st"> &#39;#a6cee3&#39;</span>
-env[env<span class="op">==</span><span class="st">&quot;MDR&quot;</span>] &lt;-<span class="st"> &#39;#6a3d9a&#39;</span>
-env[env<span class="op">==</span><span class="st">&quot;AMT&quot;</span>] &lt;-<span class="st"> &#39;#e31a1c&#39;</span>
-env[env<span class="op">==</span><span class="st">&quot;NDVI&quot;</span>] &lt;-<span class="st"> &#39;#33a02c&#39;</span>
-env[env<span class="op">==</span><span class="st">&quot;Elev&quot;</span>] &lt;-<span class="st"> &#39;#ffff33&#39;</span>
-env[env<span class="op">==</span><span class="st">&quot;sdT&quot;</span>] &lt;-<span class="st"> &#39;#fb9a99&#39;</span>
-env[env<span class="op">==</span><span class="st">&quot;Tree&quot;</span>] &lt;-<span class="st"> &#39;#b2df8a&#39;</span>
-
-<span class="co"># color by predictor:</span>
-col.pred &lt;-<span class="st"> </span><span class="kw">rownames</span>(wolf.rda<span class="op">$</span>CCA<span class="op">$</span>v) <span class="co"># pull the SNP names</span>
-
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(sel)) {           <span class="co"># color code candidate SNPs</span>
-  foo &lt;-<span class="st"> </span><span class="kw">match</span>(sel[i],col.pred)
-  col.pred[foo] &lt;-<span class="st"> </span>env[i]
-}
-
-col.pred[<span class="kw">grep</span>(<span class="st">&quot;chr&quot;</span>,col.pred)] &lt;-<span class="st"> &#39;#f1eef6&#39;</span> <span class="co"># non-candidate SNPs</span>
-empty &lt;-<span class="st"> </span>col.pred
-empty[<span class="kw">grep</span>(<span class="st">&quot;#f1eef6&quot;</span>,empty)] &lt;-<span class="st"> </span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>, <span class="dt">alpha=</span><span class="dv">0</span>) <span class="co"># transparent</span>
-empty.outline &lt;-<span class="st"> </span><span class="kw">ifelse</span>(empty<span class="op">==</span><span class="st">&quot;#00FF0000&quot;</span>,<span class="st">&quot;#00FF0000&quot;</span>,<span class="st">&quot;gray32&quot;</span>)
-bg &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;#1f78b4&#39;</span>,<span class="st">&#39;#a6cee3&#39;</span>,<span class="st">&#39;#6a3d9a&#39;</span>,<span class="st">&#39;#e31a1c&#39;</span>,<span class="st">&#39;#33a02c&#39;</span>,<span class="st">&#39;#ffff33&#39;</span>,<span class="st">&#39;#fb9a99&#39;</span>,<span class="st">&#39;#b2df8a&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">sel &lt;-<span class="st"> </span>cand<span class="op">$</span>snp</a>
+<a class="sourceLine" id="cb51-2" data-line-number="2">env &lt;-<span class="st"> </span>cand<span class="op">$</span>predictor</a>
+<a class="sourceLine" id="cb51-3" data-line-number="3">env[env<span class="op">==</span><span class="st">&quot;AP&quot;</span>] &lt;-<span class="st"> &#39;#1f78b4&#39;</span></a>
+<a class="sourceLine" id="cb51-4" data-line-number="4">env[env<span class="op">==</span><span class="st">&quot;cvP&quot;</span>] &lt;-<span class="st"> &#39;#a6cee3&#39;</span></a>
+<a class="sourceLine" id="cb51-5" data-line-number="5">env[env<span class="op">==</span><span class="st">&quot;MDR&quot;</span>] &lt;-<span class="st"> &#39;#6a3d9a&#39;</span></a>
+<a class="sourceLine" id="cb51-6" data-line-number="6">env[env<span class="op">==</span><span class="st">&quot;AMT&quot;</span>] &lt;-<span class="st"> &#39;#e31a1c&#39;</span></a>
+<a class="sourceLine" id="cb51-7" data-line-number="7">env[env<span class="op">==</span><span class="st">&quot;NDVI&quot;</span>] &lt;-<span class="st"> &#39;#33a02c&#39;</span></a>
+<a class="sourceLine" id="cb51-8" data-line-number="8">env[env<span class="op">==</span><span class="st">&quot;Elev&quot;</span>] &lt;-<span class="st"> &#39;#ffff33&#39;</span></a>
+<a class="sourceLine" id="cb51-9" data-line-number="9">env[env<span class="op">==</span><span class="st">&quot;sdT&quot;</span>] &lt;-<span class="st"> &#39;#fb9a99&#39;</span></a>
+<a class="sourceLine" id="cb51-10" data-line-number="10">env[env<span class="op">==</span><span class="st">&quot;Tree&quot;</span>] &lt;-<span class="st"> &#39;#b2df8a&#39;</span></a>
+<a class="sourceLine" id="cb51-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb51-12" data-line-number="12"><span class="co"># color by predictor:</span></a>
+<a class="sourceLine" id="cb51-13" data-line-number="13">col.pred &lt;-<span class="st"> </span><span class="kw">rownames</span>(wolf.rda<span class="op">$</span>CCA<span class="op">$</span>v) <span class="co"># pull the SNP names</span></a>
+<a class="sourceLine" id="cb51-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb51-15" data-line-number="15"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(sel)) {           <span class="co"># color code candidate SNPs</span></a>
+<a class="sourceLine" id="cb51-16" data-line-number="16">  foo &lt;-<span class="st"> </span><span class="kw">match</span>(sel[i],col.pred)</a>
+<a class="sourceLine" id="cb51-17" data-line-number="17">  col.pred[foo] &lt;-<span class="st"> </span>env[i]</a>
+<a class="sourceLine" id="cb51-18" data-line-number="18">}</a>
+<a class="sourceLine" id="cb51-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb51-20" data-line-number="20">col.pred[<span class="kw">grep</span>(<span class="st">&quot;chr&quot;</span>,col.pred)] &lt;-<span class="st"> &#39;#f1eef6&#39;</span> <span class="co"># non-candidate SNPs</span></a>
+<a class="sourceLine" id="cb51-21" data-line-number="21">empty &lt;-<span class="st"> </span>col.pred</a>
+<a class="sourceLine" id="cb51-22" data-line-number="22">empty[<span class="kw">grep</span>(<span class="st">&quot;#f1eef6&quot;</span>,empty)] &lt;-<span class="st"> </span><span class="kw">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>, <span class="dt">alpha=</span><span class="dv">0</span>) <span class="co"># transparent</span></a>
+<a class="sourceLine" id="cb51-23" data-line-number="23">empty.outline &lt;-<span class="st"> </span><span class="kw">ifelse</span>(empty<span class="op">==</span><span class="st">&quot;#00FF0000&quot;</span>,<span class="st">&quot;#00FF0000&quot;</span>,<span class="st">&quot;gray32&quot;</span>)</a>
+<a class="sourceLine" id="cb51-24" data-line-number="24">bg &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;#1f78b4&#39;</span>,<span class="st">&#39;#a6cee3&#39;</span>,<span class="st">&#39;#6a3d9a&#39;</span>,<span class="st">&#39;#e31a1c&#39;</span>,<span class="st">&#39;#33a02c&#39;</span>,<span class="st">&#39;#ffff33&#39;</span>,<span class="st">&#39;#fb9a99&#39;</span>,<span class="st">&#39;#b2df8a&#39;</span>)</a></code></pre></div>
 <p>Now we’re ready to plot the SNPs:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># axes 1 &amp; 2</span>
-<span class="kw">plot</span>(wolf.rda, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))
-<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">bg=</span>col.pred, <span class="dt">scaling=</span><span class="dv">3</span>)
-<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">col=</span>empty.outline, <span class="dt">bg=</span>empty, <span class="dt">scaling=</span><span class="dv">3</span>)
-<span class="kw">text</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">display=</span><span class="st">&quot;bp&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#0868ac&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>)
-<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;AP&quot;</span>,<span class="st">&quot;cvP&quot;</span>,<span class="st">&quot;MDR&quot;</span>,<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;NDVI&quot;</span>,<span class="st">&quot;Elev&quot;</span>,<span class="st">&quot;sdT&quot;</span>,<span class="st">&quot;Tree&quot;</span>), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.bg=</span>bg)
-
-<span class="co"># axes 1 &amp; 3</span>
-<span class="kw">plot</span>(wolf.rda, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
-<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">bg=</span>col.pred, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
-<span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">col=</span>empty.outline, <span class="dt">bg=</span>empty, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
-<span class="kw">text</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">display=</span><span class="st">&quot;bp&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#0868ac&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))
-<span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;AP&quot;</span>,<span class="st">&quot;cvP&quot;</span>,<span class="st">&quot;MDR&quot;</span>,<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;NDVI&quot;</span>,<span class="st">&quot;Elev&quot;</span>,<span class="st">&quot;sdT&quot;</span>,<span class="st">&quot;Tree&quot;</span>), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.bg=</span>bg)</code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="co"># axes 1 &amp; 2</span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="kw">plot</span>(wolf.rda, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb52-3" data-line-number="3"><span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">bg=</span>col.pred, <span class="dt">scaling=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">col=</span>empty.outline, <span class="dt">bg=</span>empty, <span class="dt">scaling=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb52-5" data-line-number="5"><span class="kw">text</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">display=</span><span class="st">&quot;bp&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#0868ac&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb52-6" data-line-number="6"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;AP&quot;</span>,<span class="st">&quot;cvP&quot;</span>,<span class="st">&quot;MDR&quot;</span>,<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;NDVI&quot;</span>,<span class="st">&quot;Elev&quot;</span>,<span class="st">&quot;sdT&quot;</span>,<span class="st">&quot;Tree&quot;</span>), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.bg=</span>bg)</a>
+<a class="sourceLine" id="cb52-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb52-8" data-line-number="8"><span class="co"># axes 1 &amp; 3</span></a>
+<a class="sourceLine" id="cb52-9" data-line-number="9"><span class="kw">plot</span>(wolf.rda, <span class="dt">type=</span><span class="st">&quot;n&quot;</span>, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb52-10" data-line-number="10"><span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">bg=</span>col.pred, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb52-11" data-line-number="11"><span class="kw">points</span>(wolf.rda, <span class="dt">display=</span><span class="st">&quot;species&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">col=</span>empty.outline, <span class="dt">bg=</span>empty, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb52-12" data-line-number="12"><span class="kw">text</span>(wolf.rda, <span class="dt">scaling=</span><span class="dv">3</span>, <span class="dt">display=</span><span class="st">&quot;bp&quot;</span>, <span class="dt">col=</span><span class="st">&quot;#0868ac&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">choices=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb52-13" data-line-number="13"><span class="kw">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="dt">legend=</span><span class="kw">c</span>(<span class="st">&quot;AP&quot;</span>,<span class="st">&quot;cvP&quot;</span>,<span class="st">&quot;MDR&quot;</span>,<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;NDVI&quot;</span>,<span class="st">&quot;Elev&quot;</span>,<span class="st">&quot;sdT&quot;</span>,<span class="st">&quot;Tree&quot;</span>), <span class="dt">bty=</span><span class="st">&quot;n&quot;</span>, <span class="dt">col=</span><span class="st">&quot;gray32&quot;</span>, <span class="dt">pch=</span><span class="dv">21</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.bg=</span>bg)</a></code></pre></div>
 <p><img src="2018-03-27_RDA_GEA_files/figure-html/snp.plot2-1.png" width="576" /><img src="2018-03-27_RDA_GEA_files/figure-html/snp.plot2-2.png" width="576" /></p>
 <p>We can see some interesting relationships in these plots. For example, SNPs most strongly correlated with annual precipitation (AP) have strong loadings in the lower left quadrant between RDA axes 1 and 2 along the AP vector, accounting for the majority of these 58 AP-correlated detections. Most candidates highly correlated with the important temperature variables (AMT and MDR) load strongly on axes 1 and 2, respectively. Note how candidate SNPs correlated with precipitation seasonality (cvP) and elevation are located in the center of the plot, and will not be detected as outliers on axes 1 or 2. However, these loci are detected on axis 3.</p>
 <p>Overall, candidate SNPs on axis 1 represent multilocus sets of SNP genotypes associated with annual precipitation and mean diurnal range; SNPs on axis 2 represent genotypes associated with annual precipitation and annual mean temperature; and SNPs on axis 3 represent genotypes associated with precipitation seasonality.</p>
-<p>These detections differ from the candidates identified using a univariate GEA test by Schweizer et al. (2016). From the full (42,587 SNP) data set, in which RDA identified 556 unique candidates, only 52 were found in common between the univariate test and the RDA results (see Forester et al. 2018). In contrast to the univariate detections, the majority (67%) of SNPs identified by RDA were most strongly associated with precipitation variables, which are known drivers of morphology and population structure in gray wolves (Geffen et al., 2004; O’Keefe et al., 2013; Schweizer et al., 2016). These findings provide new candidate regions and multilocus haplotypes for understanding local adaptation of gray wolves across their North American range.</p>
+<p>These detections differ from the candidates identified using a univariate GEA test by Schweizer et al. (2016). From the full (42,587 SNP) data set, in which RDA identified 556 unique candidates, only 52 were found in common between the univariate test and the RDA results (see Forester et al. 2018). In contrast to the univariate detections, the majority (67%) of SNPs identified by RDA were most strongly associated with precipitation variables, which are known drivers of morphology and population structure in gray wolves (Geffen et al., 2004; O’Keefe et al., 2013; Schweizer et al., 2016). These findings provide new candidate regions and multilocus haplotypes for understanding local adaptation of gray wolves across their North American range.</p>
 </div>
 </div>
 <div id="conclusions" class="section level2">
@@ -677,56 +795,70 @@ bg &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39
 </div>
 <div id="session-information" class="section level2">
 <h2>Session Information</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width=</span><span class="dv">100</span>)
-devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
-<pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  setting  value                       
-##  version  R version 3.5.0 (2018-04-23)
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width=</span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb53-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">session_info</span>()</a></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────
+##  setting  value                       
+##  version  R version 3.6.0 (2019-04-26)
+##  os       Debian GNU/Linux 9 (stretch)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
+##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2018-06-07</code></pre>
-<pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  package   * version date       source        
-##  backports   1.1.2   2017-12-13 CRAN (R 3.5.0)
-##  base      * 3.5.0   2018-06-07 local         
-##  cluster     2.0.7-1 2018-04-09 CRAN (R 3.5.0)
-##  compiler    3.5.0   2018-06-07 local         
-##  datasets  * 3.5.0   2018-06-07 local         
-##  devtools    1.13.5  2018-02-18 CRAN (R 3.5.0)
-##  digest      0.6.15  2018-01-28 CRAN (R 3.5.0)
-##  evaluate    0.10.1  2017-06-24 CRAN (R 3.5.0)
-##  foreign     0.8-70  2018-04-23 CRAN (R 3.5.0)
-##  graphics  * 3.5.0   2018-06-07 local         
-##  grDevices * 3.5.0   2018-06-07 local         
-##  grid        3.5.0   2018-06-07 local         
-##  htmltools   0.3.6   2017-04-28 CRAN (R 3.5.0)
-##  knitr       1.20    2018-02-20 CRAN (R 3.5.0)
-##  lattice   * 0.20-35 2017-03-25 CRAN (R 3.5.0)
-##  magrittr    1.5     2014-11-22 CRAN (R 3.5.0)
-##  MASS        7.3-50  2018-04-30 CRAN (R 3.5.0)
-##  Matrix      1.2-14  2018-04-09 CRAN (R 3.5.0)
-##  memoise     1.1.0   2017-04-21 CRAN (R 3.5.0)
-##  methods   * 3.5.0   2018-06-07 local         
-##  mgcv        1.8-23  2018-01-15 CRAN (R 3.5.0)
-##  mnormt      1.5-5   2016-10-15 CRAN (R 3.5.0)
-##  nlme        3.1-137 2018-04-07 CRAN (R 3.5.0)
-##  parallel    3.5.0   2018-06-07 local         
-##  permute   * 0.9-4   2016-09-09 CRAN (R 3.5.0)
-##  psych     * 1.8.4   2018-05-06 CRAN (R 3.5.0)
-##  Rcpp        0.12.17 2018-05-18 CRAN (R 3.5.0)
-##  rmarkdown   1.9     2018-03-01 CRAN (R 3.5.0)
-##  rprojroot   1.3-2   2018-01-03 CRAN (R 3.5.0)
-##  stats     * 3.5.0   2018-06-07 local         
-##  stringi     1.2.2   2018-05-02 CRAN (R 3.5.0)
-##  stringr     1.3.1   2018-05-10 CRAN (R 3.5.0)
-##  tools       3.5.0   2018-06-07 local         
-##  utils     * 3.5.0   2018-06-07 local         
-##  vegan     * 2.5-2   2018-05-17 CRAN (R 3.5.0)
-##  withr       2.1.2   2018-03-15 CRAN (R 3.5.0)
-##  yaml        2.1.19  2018-05-01 CRAN (R 3.5.0)</code></pre>
+##  date     2019-05-11                  
+## 
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────
+##  package     * version  date       lib source        
+##  assertthat    0.2.1    2019-03-21 [1] CRAN (R 3.6.0)
+##  backports     1.1.4    2019-04-10 [1] CRAN (R 3.6.0)
+##  callr         3.2.0    2019-03-15 [1] CRAN (R 3.6.0)
+##  cli           1.1.0    2019-03-19 [1] CRAN (R 3.6.0)
+##  cluster       2.0.8    2019-04-05 [2] CRAN (R 3.6.0)
+##  crayon        1.3.4    2017-09-16 [1] CRAN (R 3.6.0)
+##  desc          1.2.0    2018-05-01 [1] CRAN (R 3.6.0)
+##  devtools      2.0.2    2019-04-08 [1] CRAN (R 3.6.0)
+##  digest        0.6.18   2018-10-10 [1] CRAN (R 3.6.0)
+##  evaluate      0.13     2019-02-12 [1] CRAN (R 3.6.0)
+##  foreign       0.8-71   2018-07-20 [2] CRAN (R 3.6.0)
+##  fs            1.3.1    2019-05-06 [1] CRAN (R 3.6.0)
+##  glue          1.3.1    2019-03-12 [1] CRAN (R 3.6.0)
+##  htmltools     0.3.6    2017-04-28 [1] CRAN (R 3.6.0)
+##  knitr         1.22     2019-03-08 [1] CRAN (R 3.6.0)
+##  lattice     * 0.20-38  2018-11-04 [2] CRAN (R 3.6.0)
+##  magrittr      1.5      2014-11-22 [1] CRAN (R 3.6.0)
+##  MASS          7.3-51.4 2019-03-31 [2] CRAN (R 3.6.0)
+##  Matrix        1.2-17   2019-03-22 [2] CRAN (R 3.6.0)
+##  memoise       1.1.0    2017-04-21 [1] CRAN (R 3.6.0)
+##  mgcv          1.8-28   2019-03-21 [2] CRAN (R 3.6.0)
+##  mnormt        1.5-5    2016-10-15 [1] CRAN (R 3.6.0)
+##  nlme          3.1-139  2019-04-09 [2] CRAN (R 3.6.0)
+##  permute     * 0.9-5    2019-03-12 [1] CRAN (R 3.6.0)
+##  pkgbuild      1.0.3    2019-03-20 [1] CRAN (R 3.6.0)
+##  pkgload       1.0.2    2018-10-29 [1] CRAN (R 3.6.0)
+##  prettyunits   1.0.2    2015-07-13 [1] CRAN (R 3.6.0)
+##  processx      3.3.1    2019-05-08 [1] CRAN (R 3.6.0)
+##  ps            1.3.0    2018-12-21 [1] CRAN (R 3.6.0)
+##  psych       * 1.8.12   2019-01-12 [1] CRAN (R 3.6.0)
+##  R6            2.4.0    2019-02-14 [1] CRAN (R 3.6.0)
+##  Rcpp          1.0.1    2019-03-17 [1] CRAN (R 3.6.0)
+##  remotes       2.0.4    2019-04-10 [1] CRAN (R 3.6.0)
+##  rlang         0.3.4    2019-04-07 [1] CRAN (R 3.6.0)
+##  rmarkdown     1.12     2019-03-14 [1] CRAN (R 3.6.0)
+##  rprojroot     1.3-2    2018-01-03 [1] CRAN (R 3.6.0)
+##  sessioninfo   1.1.1    2018-11-05 [1] CRAN (R 3.6.0)
+##  stringi       1.4.3    2019-03-12 [1] CRAN (R 3.6.0)
+##  stringr       1.4.0    2019-02-10 [1] CRAN (R 3.6.0)
+##  testthat      2.1.1    2019-04-23 [1] CRAN (R 3.6.0)
+##  usethis       1.5.0    2019-04-07 [1] CRAN (R 3.6.0)
+##  vegan       * 2.5-4    2019-02-04 [1] CRAN (R 3.6.0)
+##  withr         2.1.2    2018-03-15 [1] CRAN (R 3.6.0)
+##  xfun          0.6      2019-04-02 [1] CRAN (R 3.6.0)
+##  yaml          2.2.0    2018-07-25 [1] CRAN (R 3.6.0)
+## 
+## [1] /usr/local/lib/R/site-library
+## [2] /usr/local/lib/R/library</code></pre>
 </div>
 
 <!-- </div>

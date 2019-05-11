@@ -93,43 +93,90 @@ body {
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -165,9 +212,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -186,25 +231,98 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -301,14 +419,12 @@ $(document).ready(function () {
 <li><a href="#resourcespackages-required">Resources/Packages required</a><ul>
 <li><a href="#section-1-load-the-data">Section 1: Load the data</a></li>
 <li><a href="#section-2-pcadapt">Section 2: <em>PCAdapt</em></a></li>
-<li><a href="#section-3-outflank-httpsgithub.comwhitlockoutflank">section 3: <em>OutFLANK</em> (<a href="https://github.com/whitlock/OutFLANK" class="uri">https://github.com/whitlock/OutFLANK</a>)</a></li>
 <li><a href="#section-4-logistic-regression-linking-outliers-and-temperature">Section 4: Logistic regression : linking outliers and temperature</a></li>
 </ul></li>
 <li><a href="#conclusions">Conclusions</a><ul>
 <li><a href="#whats-next">What’s next</a></li>
 </ul></li>
 <li><a href="#contributors">Contributors</a></li>
-<li><a href="#references">References</a></li>
 <li><a href="#session-information">Session Information</a></li>
 </ul>
 </div>
@@ -326,7 +442,7 @@ $(document).ready(function () {
 </div>
 <div id="data" class="section level1">
 <h1>Data</h1>
-<p>We will use simulated data provided by Katie Lotterhos (Lotterhos et al. in prep). The initial data set is constituted of 509 individuals, 19 populations and 3084 SNP. It has 2 extra-columns: Population and Temperature measures. SNP are in columns: each row contains one value at each SNP locus (separated by spaces or tabulations) corresponding to the number of reference alleles: 0 means zero copies of the reference allele, 1 means one copy of the reference allele (i.e. heterozygote), and 2 means two copies of the reference allele.</p>
+<p>We will use simulated data provided by Katie Lotterhos (Lotterhos et al. in prep). The initial data set is constituted of 509 individuals, 19 populations and 3084 SNP. It has 2 extra-columns: Population and Temperature measures. SNP are in columns: each row contains one value at each SNP locus (separated by spaces or tabulations) corresponding to the number of reference alleles: 0 means zero copies of the reference allele, 1 means one copy of the reference allele (i.e. heterozygote), and 2 means two copies of the reference allele.</p>
 </div>
 <div id="resourcespackages-required" class="section level1">
 <h1>Resources/Packages required</h1>
@@ -335,20 +451,20 @@ $(document).ready(function () {
 <li><em>OutFLANK</em>: <a href="https://github.com/whitlock/OutFLANK" class="uri">https://github.com/whitlock/OutFLANK</a></li>
 </ul>
 <p>Since <em>OutFLANK</em> is not yet on CRAN, you will need to install it from GitHub using the <em>devtools</em> R package. Additionally, <em>OutFLANK</em> depends on <em>qvalue</em> from <a href="http://www.bioconductor.org/packages/release/bioc/html/qvalue.html">Bioconductor</a>, which must be installed beforehand.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;devtools&quot;</span>)
-<span class="kw">source</span>(<span class="st">&quot;https://bioconductor.org/biocLite.R&quot;</span>)
-<span class="kw">biocLite</span>(<span class="st">&quot;qvalue&quot;</span>)
-<span class="kw">install_github</span>(<span class="st">&quot;whitlock/OutFLANK&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;devtools&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">source</span>(<span class="st">&quot;https://bioconductor.org/biocLite.R&quot;</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">biocLite</span>(<span class="st">&quot;qvalue&quot;</span>)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">install_github</span>(<span class="st">&quot;whitlock/OutFLANK&quot;</span>)</a></code></pre></div>
 <p>Loading the required packages:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;pcadapt&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;qvalue&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;OutFLANK&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;pcadapt&quot;</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;qvalue&quot;</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;OutFLANK&quot;</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</a></code></pre></div>
 <div id="section-1-load-the-data" class="section level2">
 <h2>Section 1: Load the data</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sel &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/SNPselection1.txt&quot;</span>, <span class="dt">head =</span> <span class="ot">TRUE</span>)
-<span class="kw">dim</span>(sel)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">sel &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/SNPselection1.txt&quot;</span>, <span class="dt">head =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">dim</span>(sel)</a></code></pre></div>
 <pre><code>## [1]  509 3086</code></pre>
 </div>
 <div id="section-2-pcadapt" class="section level2">
@@ -357,22 +473,22 @@ $(document).ready(function () {
 <blockquote>
 <p>Note: <em>PCAdapt</em> expects the incoming matrix to have samples in columns and loci in rows. Because our data is the opposite, we need to transpose our data matrix with the <code>t()</code> function.</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genotype &lt;-<span class="st"> </span>sel[, <span class="dv">3</span><span class="op">:</span><span class="kw">ncol</span>(sel)]
-<span class="kw">dim</span>(genotype)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">genotype &lt;-<span class="st"> </span>sel[, <span class="dv">3</span><span class="op">:</span><span class="kw">ncol</span>(sel)]</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">dim</span>(genotype)</a></code></pre></div>
 <pre><code>## [1]  509 3084</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># PCAdapt requires a pcadapt_class object. You can convert a matrix to </span>
-<span class="co"># pcadapt_class with the read.pcadapt() function.</span>
-pca_genotype &lt;-<span class="st"> </span><span class="kw">read.pcadapt</span>(<span class="kw">t</span>(genotype))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K &lt;-<span class="st"> </span><span class="dv">25</span>
-x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(pca_genotype, <span class="dt">K =</span> K)
-<span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;screeplot&quot;</span>) <span class="co"># 19 groups seems to be the correct value</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># PCAdapt requires a pcadapt_class object. You can convert a matrix to </span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co"># pcadapt_class with the read.pcadapt() function.</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">pca_genotype &lt;-<span class="st"> </span><span class="kw">read.pcadapt</span>(<span class="kw">t</span>(genotype))</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">K &lt;-<span class="st"> </span><span class="dv">25</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(pca_genotype, <span class="dt">K =</span> K)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;screeplot&quot;</span>) <span class="co"># 19 groups seems to be the correct value</span></a></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-1.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;scores&quot;</span>, <span class="dt">pop =</span> sel[, <span class="dv">1</span>]) <span class="co"># how populations are shared among the 19 groups</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;scores&quot;</span>, <span class="dt">pop =</span> sel[, <span class="dv">1</span>]) <span class="co"># how populations are shared among the 19 groups</span></a></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-2.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">K &lt;-<span class="st"> </span><span class="dv">19</span>
-x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(pca_genotype, <span class="dt">K =</span> K, <span class="dt">min.maf =</span> <span class="dv">0</span>)
-
-<span class="kw">summary</span>(x) <span class="co"># numerical quantities obtained after performing a PCA</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">K &lt;-<span class="st"> </span><span class="dv">19</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(pca_genotype, <span class="dt">K =</span> K, <span class="dt">min.maf =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">summary</span>(x) <span class="co"># numerical quantities obtained after performing a PCA</span></a></code></pre></div>
 <pre><code>##                 Length Class  Mode   
 ## scores           9671  -none- numeric
 ## singular.values    19  -none- numeric
@@ -385,69 +501,67 @@ x &lt;-<span class="st"> </span><span class="kw">pcadapt</span>(pca_genotype, <s
 ## gif                 1  -none- numeric
 ## pvalues          3084  -none- numeric
 ## pass             3084  -none- numeric</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;manhattan&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;manhattan&quot;</span>)</a></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-3.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;qqplot&quot;</span>, <span class="dt">threshold =</span> <span class="fl">0.1</span>)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;qqplot&quot;</span>, <span class="dt">threshold =</span> <span class="fl">0.1</span>)</a></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-4.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;stat.distribution&quot;</span>) <span class="co"># Distribution of Mahalanobis distances.</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">plot</span>(x, <span class="dt">option =</span> <span class="st">&quot;stat.distribution&quot;</span>) <span class="co"># Distribution of Mahalanobis distances.</span></a></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/PCAdapt-5.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qval &lt;-<span class="st"> </span><span class="kw">qvalue</span>(x<span class="op">$</span>pvalues)<span class="op">$</span>qvalues
-alpha &lt;-<span class="st"> </span><span class="fl">0.1</span>
-outliers_pcadapt &lt;-<span class="st"> </span><span class="kw">which</span>(qval <span class="op">&lt;</span><span class="st"> </span>alpha)
-<span class="kw">print</span>(outliers_pcadapt)</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">qval &lt;-<span class="st"> </span><span class="kw">qvalue</span>(x<span class="op">$</span>pvalues)<span class="op">$</span>qvalues</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">alpha &lt;-<span class="st"> </span><span class="fl">0.1</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">outliers_pcadapt &lt;-<span class="st"> </span><span class="kw">which</span>(qval <span class="op">&lt;</span><span class="st"> </span>alpha)</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw">print</span>(outliers_pcadapt)</a></code></pre></div>
 <pre><code>##  [1]  663  706  796  923 1155 1163 1347 1378 1639 1666 1825 2133 2556 2871</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(outliers_pcadapt) <span class="co"># 14 outliers</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">length</span>(outliers_pcadapt) <span class="co"># 14 outliers</span></a></code></pre></div>
 <pre><code>## [1] 14</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alpha &lt;-<span class="st"> </span><span class="fl">0.05</span> <span class="co"># use of a more stringent threshold to detect outliers</span>
-outliers &lt;-<span class="st"> </span><span class="kw">which</span>(qval <span class="op">&lt;</span><span class="st"> </span>alpha)
-<span class="kw">print</span>(outliers)</code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">alpha &lt;-<span class="st"> </span><span class="fl">0.05</span> <span class="co"># use of a more stringent threshold to detect outliers</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">outliers &lt;-<span class="st"> </span><span class="kw">which</span>(qval <span class="op">&lt;</span><span class="st"> </span>alpha)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="kw">print</span>(outliers)</a></code></pre></div>
 <pre><code>##  [1]  663  706  796  923 1155 1163 1347 1378 1639 1666 1825 2133 2556 2871</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(outliers) <span class="co"># 14 outliers</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">length</span>(outliers) <span class="co"># 14 outliers</span></a></code></pre></div>
 <pre><code>## [1] 14</code></pre>
-</div>
-<div id="section-3-outflank-httpsgithub.comwhitlockoutflank" class="section level2">
-<h2>section 3: <em>OutFLANK</em> (<a href="https://github.com/whitlock/OutFLANK" class="uri">https://github.com/whitlock/OutFLANK</a>)</h2>
+<p>##section 3: <em>OutFLANK</em> (<a href="https://github.com/whitlock/OutFLANK" class="uri">https://github.com/whitlock/OutFLANK</a>)</p>
 <p>A procedure to find Fst outliers based on an inferred distribution of neutral Fst: it uses likelihood on a trimmed distribution of Fst values to infer the distribution of Fst for neutral markers. This distribution is used to assign q-values to each locus to detect outliers loci potentially due to spatially heterogeneous selection. In practice, first the function <code>MakeDiploidFSTMat()</code> allows to calculate the appropriate input data frame among other parameters, Fst for each locus, and Fst without sampling size correction (<code>FSTNoCorr</code>). Then the function <code>OutFLANK()</code> estimate q-values and provides a list of outliers.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ind &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;pop&quot;</span>, sel[, <span class="dv">1</span>]) <span class="co"># vector with the name of population</span>
-
-locinames &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class="kw">seq</span>(<span class="kw">ncol</span>(genotype))) <span class="co"># vector with the name of loci</span>
-
-FstDataFrame &lt;-<span class="st"> </span><span class="kw">MakeDiploidFSTMat</span>(genotype, locinames, ind)</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">ind &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;pop&quot;</span>, sel[, <span class="dv">1</span>]) <span class="co"># vector with the name of population</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">locinames &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class="kw">seq</span>(<span class="kw">ncol</span>(genotype))) <span class="co"># vector with the name of loci</span></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">FstDataFrame &lt;-<span class="st"> </span><span class="kw">MakeDiploidFSTMat</span>(genotype, locinames, ind)</a></code></pre></div>
 <pre><code>## Calculating FSTs, may take a few minutes...</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(FstDataFrame<span class="op">$</span>FST, FstDataFrame<span class="op">$</span>FSTNoCorr, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.01</span>,<span class="fl">0.3</span>), 
-     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.01</span>, <span class="fl">0.3</span>), <span class="dt">pch =</span> <span class="dv">20</span>)
-<span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="co"># Checking the effect of sample size on Fst since FSTCoCorr will be used in the follow</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">plot</span>(FstDataFrame<span class="op">$</span>FST, FstDataFrame<span class="op">$</span>FSTNoCorr, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.01</span>,<span class="fl">0.3</span>), </a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.01</span>, <span class="fl">0.3</span>), <span class="dt">pch =</span> <span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="co"># Checking the effect of sample size on Fst since FSTCoCorr will be used in the follow</span></a></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/outFLank-1.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(FstDataFrame<span class="op">$</span>FSTNoCorr) </code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">hist</span>(FstDataFrame<span class="op">$</span>FSTNoCorr) </a></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/outFLank-2.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OF &lt;-<span class="st"> </span><span class="kw">OutFLANK</span>(FstDataFrame, <span class="dt">NumberOfSamples=</span><span class="dv">19</span>, <span class="dt">qthreshold =</span> <span class="fl">0.05</span>, 
-               <span class="dt">RightTrimFraction =</span> <span class="fl">0.05</span>)
-
-<span class="co"># Plot the ditribution of Fst with the chi squared distribution</span>
-<span class="kw">OutFLANKResultsPlotter</span>(OF, <span class="dt">withOutliers =</span> <span class="ot">TRUE</span>, <span class="dt">NoCorr =</span> <span class="ot">TRUE</span>, <span class="dt">Hmin =</span> <span class="fl">0.1</span>, 
-                       <span class="dt">binwidth =</span> <span class="fl">0.005</span>, <span class="dt">Zoom =</span> <span class="ot">FALSE</span>, <span class="dt">RightZoomFraction =</span> <span class="fl">0.05</span>, 
-                       <span class="dt">titletext =</span> <span class="ot">NULL</span>)</code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">OF &lt;-<span class="st"> </span><span class="kw">OutFLANK</span>(FstDataFrame, <span class="dt">NumberOfSamples=</span><span class="dv">19</span>, <span class="dt">qthreshold =</span> <span class="fl">0.05</span>, </a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">               <span class="dt">RightTrimFraction =</span> <span class="fl">0.05</span>)</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="co"># Plot the ditribution of Fst with the chi squared distribution</span></a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="kw">OutFLANKResultsPlotter</span>(OF, <span class="dt">withOutliers =</span> <span class="ot">TRUE</span>, <span class="dt">NoCorr =</span> <span class="ot">TRUE</span>, <span class="dt">Hmin =</span> <span class="fl">0.1</span>, </a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">                       <span class="dt">binwidth =</span> <span class="fl">0.005</span>, <span class="dt">Zoom =</span> <span class="ot">FALSE</span>, <span class="dt">RightZoomFraction =</span> <span class="fl">0.05</span>, </a>
+<a class="sourceLine" id="cb27-7" data-line-number="7">                       <span class="dt">titletext =</span> <span class="ot">NULL</span>)</a></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/outFLank-3.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">outliers_OF &lt;-<span class="st"> </span>OF<span class="op">$</span>results<span class="op">$</span>LocusName[OF<span class="op">$</span>results<span class="op">$</span>OutlierFlag <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>]
-<span class="kw">print</span>(outliers_OF)</code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">outliers_OF &lt;-<span class="st"> </span>OF<span class="op">$</span>results<span class="op">$</span>LocusName[OF<span class="op">$</span>results<span class="op">$</span>OutlierFlag <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>]</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw">print</span>(outliers_OF)</a></code></pre></div>
 <pre><code>##  [1] 663  706  923  1163 1378 1639 1666 1825 2133 2556 2871
 ## 3084 Levels: 1 10 100 1000 1001 1002 1003 1004 1005 1006 1007 1008 ... 999</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(outliers_OF) <span class="co"># 11 outliers</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">length</span>(outliers_OF) <span class="co"># 11 outliers</span></a></code></pre></div>
 <pre><code>## [1] 11</code></pre>
 </div>
 <div id="section-4-logistic-regression-linking-outliers-and-temperature" class="section level2">
 <h2>Section 4: Logistic regression : linking outliers and temperature</h2>
 <p>We aim to test if the outliers detected with <em>PCAdapt</em> and <em>OutFLANK</em> (663 706 923 1163 1378 1639 1666 1825 2133 2556 2871) are correlated to the temperature. We use a GLM with a binomial error to model the probability to have the allele “A” out of the two alleles. We derive the relation for some of the shared outliers. You can do the test for all.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We keep the outlier loci selected by both pcadapt and outflank</span>
-outliers &lt;-<span class="st"> </span>outliers_pcadapt[outliers_pcadapt <span class="op">%in%</span><span class="st"> </span>outliers_OF]
-<span class="kw">length</span>(outliers) <span class="co"># 11 outliers</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="co"># We keep the outlier loci selected by both pcadapt and outflank</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">outliers &lt;-<span class="st"> </span>outliers_pcadapt[outliers_pcadapt <span class="op">%in%</span><span class="st"> </span>outliers_OF]</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="kw">length</span>(outliers) <span class="co"># 11 outliers</span></a></code></pre></div>
 <pre><code>## [1] 11</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loc1 &lt;-<span class="st"> </span>genotype[, outliers[<span class="dv">1</span>]]
-temp &lt;-<span class="st"> </span>sel<span class="op">$</span>Temperature
-loc1temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc1, temp)
- 
-mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc1, <span class="dv">2</span> <span class="op">-</span><span class="st"> </span>loc1) <span class="op">~</span><span class="st"> </span>temp, <span class="dt">family =</span> binomial) 
-<span class="kw">summary</span>(mod) <span class="co"># This locus is significantly correlated to temperature</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">loc1 &lt;-<span class="st"> </span>genotype[, outliers[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">temp &lt;-<span class="st"> </span>sel<span class="op">$</span>Temperature</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">loc1temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc1, temp)</a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"> </a>
+<a class="sourceLine" id="cb34-5" data-line-number="5">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc1, <span class="dv">2</span> <span class="op">-</span><span class="st"> </span>loc1) <span class="op">~</span><span class="st"> </span>temp, <span class="dt">family =</span> binomial) </a>
+<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="kw">summary</span>(mod) <span class="co"># This locus is significantly correlated to temperature</span></a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cbind(loc1, 2 - loc1) ~ temp, family = binomial)
@@ -470,15 +584,15 @@ mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">c
 ## AIC: 1011.6
 ## 
 ## Number of Fisher Scoring iterations: 3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loc2 &lt;-<span class="st"> </span>genotype[, outliers[<span class="dv">2</span>]]
-loc2temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc2, temp)
-<span class="kw">ggplot</span>(loc2temp, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(loc2), <span class="dt">y =</span> temp)) <span class="op">+</span><span class="st"> </span>
-<span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Major allele count&quot;</span>) <span class="op">+</span>
-<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature (Centigrade)&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">loc2 &lt;-<span class="st"> </span>genotype[, outliers[<span class="dv">2</span>]]</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2">loc2temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc2, temp)</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="kw">ggplot</span>(loc2temp, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(loc2), <span class="dt">y =</span> temp)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-5" data-line-number="5"><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Major allele count&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature (Centigrade)&quot;</span>)</a></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/Binomial%20regressions-1.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc2, <span class="dv">2</span> <span class="op">-</span><span class="st"> </span>loc2) <span class="op">~</span><span class="st"> </span>temp, <span class="dt">family =</span> binomial) 
-<span class="kw">summary</span>(mod) <span class="co"># This locus is significantly correlated to temperature</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc2, <span class="dv">2</span> <span class="op">-</span><span class="st"> </span>loc2) <span class="op">~</span><span class="st"> </span>temp, <span class="dt">family =</span> binomial) </a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw">summary</span>(mod) <span class="co"># This locus is significantly correlated to temperature</span></a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cbind(loc2, 2 - loc2) ~ temp, family = binomial)
@@ -501,17 +615,17 @@ loc2temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc2, 
 ## AIC: 1059.5
 ## 
 ## Number of Fisher Scoring iterations: 3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Test with a locus that is only selected by one method</span>
-loc7 &lt;-<span class="st"> </span>genotype[, outliers_pcadapt[<span class="op">!</span>outliers_pcadapt <span class="op">%in%</span><span class="st"> </span>outliers_OF][<span class="dv">1</span>]]
-loc7temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc7, temp)
-  
-<span class="kw">ggplot</span>(loc2temp, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(loc7), <span class="dt">y =</span> temp)) <span class="op">+</span><span class="st"> </span>
-<span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Major allele count&quot;</span>) <span class="op">+</span>
-<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature (Centigrade)&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># Test with a locus that is only selected by one method</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">loc7 &lt;-<span class="st"> </span>genotype[, outliers_pcadapt[<span class="op">!</span>outliers_pcadapt <span class="op">%in%</span><span class="st"> </span>outliers_OF][<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb39-3" data-line-number="3">loc7temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc7, temp)</a>
+<a class="sourceLine" id="cb39-4" data-line-number="4">  </a>
+<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="kw">ggplot</span>(loc2temp, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(loc7), <span class="dt">y =</span> temp)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb39-6" data-line-number="6"><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb39-7" data-line-number="7"><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Major allele count&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb39-8" data-line-number="8"><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Temperature (Centigrade)&quot;</span>)</a></code></pre></div>
 <p><img src="2016-01-26-SNP-selection_files/figure-html/Binomial%20regressions-2.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc7, <span class="dv">2</span> <span class="op">-</span><span class="st"> </span>loc7) <span class="op">~</span><span class="st"> </span>temp, <span class="dt">family =</span> binomial)
-<span class="kw">summary</span>(mod) ## This locus is not significantly correlated to temperature</code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(loc7, <span class="dv">2</span> <span class="op">-</span><span class="st"> </span>loc7) <span class="op">~</span><span class="st"> </span>temp, <span class="dt">family =</span> binomial)</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="kw">summary</span>(mod) <span class="co">## This locus is not significantly correlated to temperature</span></a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cbind(loc7, 2 - loc7) ~ temp, family = binomial)
@@ -556,106 +670,110 @@ loc7temp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(loc7, 
 <li>Alicia Dalongeville (CEFE) (Author)</li>
 <li>Zhian Kamvar (reviewer)</li>
 </ul>
-</div>
-<div id="references" class="section level1">
-<h1>References</h1>
+<p>#References</p>
 <p>Duforet-Frebourg N, K Luu, G Laval, E Bazin, MGB Blum. (2016) Detecting genomic signatures of natural selection with principal component analysis: application to the 1000 Genomes data. Molecular Biology and Evolution (<a href="http://arxiv.org/abs/1504.04543" class="uri">http://arxiv.org/abs/1504.04543</a>)</p>
 <p>Whitlock MC, Lotterhos KE (2015) Reliable Detection of Loci Responsible for Local Adaptation: Inference of a Null Model through Trimming the Distribution of Fst. The American Naturalist 186, S24-S36. <a href="http://www.jstor.org/stable/10.1086/682949" class="uri">http://www.jstor.org/stable/10.1086/682949</a></p>
 </div>
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
-<pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  setting  value                       
-##  version  R version 3.5.0 (2018-04-23)
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">session_info</span>()</a></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────
+##  setting  value                       
+##  version  R version 3.6.0 (2019-04-26)
+##  os       Debian GNU/Linux 9 (stretch)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
+##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2018-06-07</code></pre>
-<pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  package     * version date       source                            
-##  ape           5.1     2018-04-04 CRAN (R 3.5.0)                    
-##  assertthat    0.2.0   2017-04-11 CRAN (R 3.5.0)                    
-##  backports     1.1.2   2017-12-13 CRAN (R 3.5.0)                    
-##  base        * 3.5.0   2018-06-07 local                             
-##  bindr         0.1.1   2018-03-13 CRAN (R 3.5.0)                    
-##  bindrcpp      0.2.2   2018-03-29 CRAN (R 3.5.0)                    
-##  cluster       2.0.7-1 2018-04-09 CRAN (R 3.5.0)                    
-##  colorspace    1.3-2   2016-12-14 CRAN (R 3.5.0)                    
-##  compiler      3.5.0   2018-06-07 local                             
-##  data.table    1.11.4  2018-05-27 CRAN (R 3.5.0)                    
-##  datasets    * 3.5.0   2018-06-07 local                             
-##  DEoptimR      1.0-8   2016-11-19 CRAN (R 3.5.0)                    
-##  devtools      1.13.5  2018-02-18 CRAN (R 3.5.0)                    
-##  digest        0.6.15  2018-01-28 CRAN (R 3.5.0)                    
-##  dplyr         0.7.5   2018-05-19 CRAN (R 3.5.0)                    
-##  evaluate      0.10.1  2017-06-24 CRAN (R 3.5.0)                    
-##  fit.models    0.5-14  2017-04-06 CRAN (R 3.5.0)                    
-##  ggplot2     * 2.2.1   2016-12-30 CRAN (R 3.5.0)                    
-##  glue          1.2.0   2017-10-29 CRAN (R 3.5.0)                    
-##  graphics    * 3.5.0   2018-06-07 local                             
-##  grDevices   * 3.5.0   2018-06-07 local                             
-##  grid          3.5.0   2018-06-07 local                             
-##  gtable        0.2.0   2016-02-26 CRAN (R 3.5.0)                    
-##  htmltools     0.3.6   2017-04-28 CRAN (R 3.5.0)                    
-##  htmlwidgets   1.2     2018-04-19 CRAN (R 3.5.0)                    
-##  httr          1.3.1   2017-08-20 CRAN (R 3.5.0)                    
-##  jsonlite      1.5     2017-06-01 CRAN (R 3.5.0)                    
-##  knitr         1.20    2018-02-20 CRAN (R 3.5.0)                    
-##  labeling      0.3     2014-08-23 CRAN (R 3.5.0)                    
-##  lattice       0.20-35 2017-03-25 CRAN (R 3.5.0)                    
-##  lazyeval      0.2.1   2017-10-29 CRAN (R 3.5.0)                    
-##  magrittr      1.5     2014-11-22 CRAN (R 3.5.0)                    
-##  MASS          7.3-50  2018-04-30 CRAN (R 3.5.0)                    
-##  Matrix        1.2-14  2018-04-09 CRAN (R 3.5.0)                    
-##  memoise       1.1.0   2017-04-21 CRAN (R 3.5.0)                    
-##  methods     * 3.5.0   2018-06-07 local                             
-##  mgcv          1.8-23  2018-01-15 CRAN (R 3.5.0)                    
-##  munsell       0.4.3   2016-02-13 CRAN (R 3.5.0)                    
-##  mvtnorm       1.0-8   2018-05-31 CRAN (R 3.5.0)                    
-##  nlme          3.1-137 2018-04-07 CRAN (R 3.5.0)                    
-##  OutFLANK    * 0.2     2018-06-07 Github (whitlock/OutFLANK@8ec7d50)
-##  parallel      3.5.0   2018-06-07 local                             
-##  pcadapt     * 4.0.2   2018-06-07 Github (bcm-uga/pcadapt@97da966)  
-##  pcaPP         1.9-73  2018-01-14 CRAN (R 3.5.0)                    
-##  permute       0.9-4   2016-09-09 CRAN (R 3.5.0)                    
-##  pillar        1.2.3   2018-05-25 CRAN (R 3.5.0)                    
-##  pinfsc50      1.1.0   2016-12-02 CRAN (R 3.5.0)                    
-##  pkgconfig     2.0.1   2017-03-21 CRAN (R 3.5.0)                    
-##  plotly        4.7.1   2017-07-29 CRAN (R 3.5.0)                    
-##  plyr          1.8.4   2016-06-08 CRAN (R 3.5.0)                    
-##  purrr         0.2.5   2018-05-29 CRAN (R 3.5.0)                    
-##  qvalue      * 2.12.0  2018-06-07 Bioconductor                      
-##  R6            2.2.2   2017-06-17 CRAN (R 3.5.0)                    
-##  Rcpp          0.12.17 2018-05-18 CRAN (R 3.5.0)                    
-##  reshape2      1.4.3   2017-12-11 CRAN (R 3.5.0)                    
-##  rlang         0.2.1   2018-05-30 CRAN (R 3.5.0)                    
-##  rmarkdown     1.9     2018-03-01 CRAN (R 3.5.0)                    
-##  robust        0.4-18  2017-04-27 CRAN (R 3.5.0)                    
-##  robustbase    0.93-0  2018-04-24 CRAN (R 3.5.0)                    
-##  rprojroot     1.3-2   2018-01-03 CRAN (R 3.5.0)                    
-##  rrcov         1.4-4   2018-05-24 CRAN (R 3.5.0)                    
-##  RSpectra      0.13-1  2018-05-22 CRAN (R 3.5.0)                    
-##  scales        0.5.0   2017-08-24 CRAN (R 3.5.0)                    
-##  splines       3.5.0   2018-06-07 local                             
-##  stats       * 3.5.0   2018-06-07 local                             
-##  stats4        3.5.0   2018-06-07 local                             
-##  stringi       1.2.2   2018-05-02 CRAN (R 3.5.0)                    
-##  stringr       1.3.1   2018-05-10 CRAN (R 3.5.0)                    
-##  tibble        1.4.2   2018-01-22 CRAN (R 3.5.0)                    
-##  tidyr         0.8.1   2018-05-18 CRAN (R 3.5.0)                    
-##  tidyselect    0.2.4   2018-02-26 CRAN (R 3.5.0)                    
-##  tools         3.5.0   2018-06-07 local                             
-##  utils       * 3.5.0   2018-06-07 local                             
-##  vcfR          1.8.0   2018-04-17 CRAN (R 3.5.0)                    
-##  vegan         2.5-2   2018-05-17 CRAN (R 3.5.0)                    
-##  viridisLite   0.3.0   2018-02-01 CRAN (R 3.5.0)                    
-##  withr         2.1.2   2018-03-15 CRAN (R 3.5.0)                    
-##  yaml          2.1.19  2018-05-01 CRAN (R 3.5.0)</code></pre>
+##  date     2019-05-11                  
+## 
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────
+##  package     * version  date       lib source                            
+##  ape           5.3      2019-03-17 [1] CRAN (R 3.6.0)                    
+##  assertthat    0.2.1    2019-03-21 [1] CRAN (R 3.6.0)                    
+##  backports     1.1.4    2019-04-10 [1] CRAN (R 3.6.0)                    
+##  callr         3.2.0    2019-03-15 [1] CRAN (R 3.6.0)                    
+##  cli           1.1.0    2019-03-19 [1] CRAN (R 3.6.0)                    
+##  cluster       2.0.8    2019-04-05 [2] CRAN (R 3.6.0)                    
+##  colorspace    1.4-1    2019-03-18 [1] CRAN (R 3.6.0)                    
+##  crayon        1.3.4    2017-09-16 [1] CRAN (R 3.6.0)                    
+##  data.table    1.12.2   2019-04-07 [1] CRAN (R 3.6.0)                    
+##  DEoptimR      1.0-8    2016-11-19 [1] CRAN (R 3.6.0)                    
+##  desc          1.2.0    2018-05-01 [1] CRAN (R 3.6.0)                    
+##  devtools      2.0.2    2019-04-08 [1] CRAN (R 3.6.0)                    
+##  digest        0.6.18   2018-10-10 [1] CRAN (R 3.6.0)                    
+##  dplyr         0.8.0.1  2019-02-15 [1] CRAN (R 3.6.0)                    
+##  evaluate      0.13     2019-02-12 [1] CRAN (R 3.6.0)                    
+##  fit.models    0.5-14   2017-04-06 [1] CRAN (R 3.6.0)                    
+##  fs            1.3.1    2019-05-06 [1] CRAN (R 3.6.0)                    
+##  ggplot2     * 3.1.1    2019-04-07 [1] CRAN (R 3.6.0)                    
+##  glue          1.3.1    2019-03-12 [1] CRAN (R 3.6.0)                    
+##  gtable        0.3.0    2019-03-25 [1] CRAN (R 3.6.0)                    
+##  htmltools     0.3.6    2017-04-28 [1] CRAN (R 3.6.0)                    
+##  htmlwidgets   1.3      2018-09-30 [1] CRAN (R 3.6.0)                    
+##  httr          1.4.0    2018-12-11 [1] CRAN (R 3.6.0)                    
+##  jsonlite      1.6      2018-12-07 [1] CRAN (R 3.6.0)                    
+##  knitr         1.22     2019-03-08 [1] CRAN (R 3.6.0)                    
+##  labeling      0.3      2014-08-23 [1] CRAN (R 3.6.0)                    
+##  lattice       0.20-38  2018-11-04 [2] CRAN (R 3.6.0)                    
+##  lazyeval      0.2.2    2019-03-15 [1] CRAN (R 3.6.0)                    
+##  magrittr      1.5      2014-11-22 [1] CRAN (R 3.6.0)                    
+##  MASS          7.3-51.4 2019-03-31 [2] CRAN (R 3.6.0)                    
+##  Matrix        1.2-17   2019-03-22 [2] CRAN (R 3.6.0)                    
+##  memoise       1.1.0    2017-04-21 [1] CRAN (R 3.6.0)                    
+##  mgcv          1.8-28   2019-03-21 [2] CRAN (R 3.6.0)                    
+##  munsell       0.5.0    2018-06-12 [1] CRAN (R 3.6.0)                    
+##  mvtnorm       1.0-10   2019-03-05 [1] CRAN (R 3.6.0)                    
+##  nlme          3.1-139  2019-04-09 [2] CRAN (R 3.6.0)                    
+##  OutFLANK    * 0.2      2019-05-10 [1] Github (whitlock/OutFLANK@8ec7d50)
+##  pcadapt     * 4.1.0    2019-02-27 [1] CRAN (R 3.6.0)                    
+##  pcaPP         1.9-73   2018-01-14 [1] CRAN (R 3.6.0)                    
+##  permute       0.9-5    2019-03-12 [1] CRAN (R 3.6.0)                    
+##  pillar        1.3.1    2018-12-15 [1] CRAN (R 3.6.0)                    
+##  pinfsc50      1.1.0    2016-12-02 [1] CRAN (R 3.6.0)                    
+##  pkgbuild      1.0.3    2019-03-20 [1] CRAN (R 3.6.0)                    
+##  pkgconfig     2.0.2    2018-08-16 [1] CRAN (R 3.6.0)                    
+##  pkgload       1.0.2    2018-10-29 [1] CRAN (R 3.6.0)                    
+##  plotly        4.9.0    2019-04-10 [1] CRAN (R 3.6.0)                    
+##  plyr          1.8.4    2016-06-08 [1] CRAN (R 3.6.0)                    
+##  prettyunits   1.0.2    2015-07-13 [1] CRAN (R 3.6.0)                    
+##  processx      3.3.1    2019-05-08 [1] CRAN (R 3.6.0)                    
+##  ps            1.3.0    2018-12-21 [1] CRAN (R 3.6.0)                    
+##  purrr         0.3.2    2019-03-15 [1] CRAN (R 3.6.0)                    
+##  qvalue      * 2.16.0   2019-05-02 [1] Bioconductor                      
+##  R6            2.4.0    2019-02-14 [1] CRAN (R 3.6.0)                    
+##  Rcpp          1.0.1    2019-03-17 [1] CRAN (R 3.6.0)                    
+##  remotes       2.0.4    2019-04-10 [1] CRAN (R 3.6.0)                    
+##  reshape2      1.4.3    2017-12-11 [1] CRAN (R 3.6.0)                    
+##  rlang         0.3.4    2019-04-07 [1] CRAN (R 3.6.0)                    
+##  rmarkdown     1.12     2019-03-14 [1] CRAN (R 3.6.0)                    
+##  robust        0.4-18   2017-04-27 [1] CRAN (R 3.6.0)                    
+##  robustbase    0.93-4   2019-03-19 [1] CRAN (R 3.6.0)                    
+##  rprojroot     1.3-2    2018-01-03 [1] CRAN (R 3.6.0)                    
+##  rrcov         1.4-7    2018-11-15 [1] CRAN (R 3.6.0)                    
+##  RSpectra      0.14-0   2019-04-04 [1] CRAN (R 3.6.0)                    
+##  scales        1.0.0    2018-08-09 [1] CRAN (R 3.6.0)                    
+##  sessioninfo   1.1.1    2018-11-05 [1] CRAN (R 3.6.0)                    
+##  stringi       1.4.3    2019-03-12 [1] CRAN (R 3.6.0)                    
+##  stringr       1.4.0    2019-02-10 [1] CRAN (R 3.6.0)                    
+##  testthat      2.1.1    2019-04-23 [1] CRAN (R 3.6.0)                    
+##  tibble        2.1.1    2019-03-16 [1] CRAN (R 3.6.0)                    
+##  tidyr         0.8.3    2019-03-01 [1] CRAN (R 3.6.0)                    
+##  tidyselect    0.2.5    2018-10-11 [1] CRAN (R 3.6.0)                    
+##  usethis       1.5.0    2019-04-07 [1] CRAN (R 3.6.0)                    
+##  vcfR          1.8.0    2018-04-17 [1] CRAN (R 3.6.0)                    
+##  vegan         2.5-4    2019-02-04 [1] CRAN (R 3.6.0)                    
+##  viridisLite   0.3.0    2018-02-01 [1] CRAN (R 3.6.0)                    
+##  withr         2.1.2    2018-03-15 [1] CRAN (R 3.6.0)                    
+##  xfun          0.6      2019-04-02 [1] CRAN (R 3.6.0)                    
+##  yaml          2.2.0    2018-07-25 [1] CRAN (R 3.6.0)                    
+## 
+## [1] /usr/local/lib/R/site-library
+## [2] /usr/local/lib/R/library</code></pre>
 </div>
 
 <!-- </div>

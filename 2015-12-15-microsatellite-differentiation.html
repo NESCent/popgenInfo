@@ -93,43 +93,90 @@ body {
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -165,9 +212,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -186,25 +231,98 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -323,21 +441,21 @@ $(document).ready(function () {
 <h1>Resources/Packages required</h1>
 <p>We are going to use <em>mmod</em> for differentiation summary statistics, <em>pegas</em> for AMOVA, <em>adegenet</em> for DAPC, and we will use <em>reshape2</em> and <em>ggplot2</em> for plotting our results.</p>
 <p>Loading the required packages:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;mmod&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;reshape2&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;mmod&quot;</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(<span class="st">&quot;reshape2&quot;</span>)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</a></code></pre></div>
 </div>
 <div id="analysis" class="section level1">
 <h1>Analysis</h1>
 <div id="data-preparation" class="section level2">
 <h2>Data preparation</h2>
 <p>First, we need to load our data. Since the data is distributed with <em>adegenet</em>, we can load it simply by using the function <code>data()</code>. Since we want to associate the different population strata with the data set, we also need to read in <a href="https://github.com/NESCent/popgenInfo/tree/master/data/bovine_strata.csv"><code>bovine_strata.csv</code></a> as a data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;microbov&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;adegenet&quot;</span>)
-bovine_strata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bovine_strata.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;microbov&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;adegenet&quot;</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">bovine_strata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bovine_strata.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div>
 <p>The <code>microbov</code> data set is in a “genind” object. This is a way for adegenet to keep the genetic data and deomographic data together. Let’s take a look at what our data looks like:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">microbov</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">microbov</a></code></pre></div>
 <pre><code>## /// GENIND OBJECT /////////
 ## 
 ##  // 704 individuals; 30 loci; 373 alleles; size: 1.1 Mb
@@ -354,7 +472,7 @@ bovine_strata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<
 ##  // Optional content
 ##    @pop: population of each individual (group size range: 30-61)
 ##    @other: a list containing: coun  breed  spe</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(bovine_strata) <span class="co"># the function head shows the first 6 rows of a data frame</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">head</span>(bovine_strata) <span class="co"># the function head shows the first 6 rows of a data frame</span></a></code></pre></div>
 <pre><code>##   Country  Breed Species
 ## 1      AF Borgou      BI
 ## 2      AF Borgou      BI
@@ -363,8 +481,8 @@ bovine_strata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<
 ## 5      AF Borgou      BI
 ## 6      AF Borgou      BI</code></pre>
 <p>We can see that our data matches the description above. Now we need to set <code>bovine_strata</code> in <code>microbov</code>’s <em>strata</em> slot.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">strata</span>(microbov) &lt;-<span class="st"> </span>bovine_strata
-microbov</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">strata</span>(microbov) &lt;-<span class="st"> </span>bovine_strata</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">microbov</a></code></pre></div>
 <pre><code>## /// GENIND OBJECT /////////
 ## 
 ##  // 704 individuals; 30 loci; 373 alleles; size: 1.1 Mb
@@ -390,9 +508,9 @@ microbov</code></pre></div>
 <div id="estimation" class="section level3">
 <h3>Estimation</h3>
 <p>We will first take a look at the summary statistics for differentiation by breed using the function <code>diff_stats()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setPop</span>(microbov) &lt;-<span class="st"> </span><span class="er">~</span>Breed <span class="co"># Use ~Country to analyze by country</span>
-diff_bov &lt;-<span class="st"> </span><span class="kw">diff_stats</span>(microbov)
-diff_bov</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">setPop</span>(microbov) &lt;-<span class="st"> </span><span class="er">~</span>Breed <span class="co"># Use ~Country to analyze by country</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">diff_bov &lt;-<span class="st"> </span><span class="kw">diff_stats</span>(microbov)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">diff_bov</a></code></pre></div>
 <pre><code>## $per.locus
 ##                Hs        Ht        Gst Gprime_st          D
 ## INRA63  0.5639660 0.7062861 0.20150495 0.4881151 0.34971094
@@ -472,10 +590,10 @@ diff_bov</code></pre></div>
 <div id="plotting" class="section level3">
 <h3>Plotting</h3>
 <p>You could choose to report the global versions of these statistics, but it might be additionally useful to show them as a boxplots with points showing their estimates in red. I prefer to use <em>ggplot2</em> here because it allows me to easily overlay the observations and estimates.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">per.locus &lt;-<span class="st"> </span><span class="kw">melt</span>(diff_bov<span class="op">$</span>per.locus, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;Locus&quot;</span>, <span class="st">&quot;Statistic&quot;</span>))
-stats     &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hs&quot;</span>, <span class="st">&quot;Ht&quot;</span>, <span class="st">&quot;Gst&quot;</span>, <span class="st">&quot;Gprime_st&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;D&quot;</span>)
-glob      &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Statistic =</span> stats, <span class="dt">value =</span> diff_bov<span class="op">$</span>global)
-<span class="kw">head</span>(per.locus)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">per.locus &lt;-<span class="st"> </span><span class="kw">melt</span>(diff_bov<span class="op">$</span>per.locus, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;Locus&quot;</span>, <span class="st">&quot;Statistic&quot;</span>))</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">stats     &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hs&quot;</span>, <span class="st">&quot;Ht&quot;</span>, <span class="st">&quot;Gst&quot;</span>, <span class="st">&quot;Gprime_st&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;D&quot;</span>)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">glob      &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Statistic =</span> stats, <span class="dt">value =</span> diff_bov<span class="op">$</span>global)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="kw">head</span>(per.locus)</a></code></pre></div>
 <pre><code>##    Locus Statistic     value
 ## 1 INRA63        Hs 0.5639660
 ## 2  INRA5        Hs 0.5755958
@@ -483,7 +601,7 @@ glob      &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span
 ## 4 ILSTS5        Hs 0.4638298
 ## 5   HEL5        Hs 0.6930155
 ## 6   HEL1        Hs 0.6224377</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(glob)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">head</span>(glob)</a></code></pre></div>
 <pre><code>##           Statistic     value
 ## Hs               Hs 0.6544857
 ## Ht               Ht 0.7455902
@@ -491,19 +609,19 @@ glob      &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span
 ## Gprime_st Gprime_st 0.3756321
 ## D_het             D 0.2825120
 ## D_mean            D 0.2347223</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(per.locus, <span class="kw">aes</span>(<span class="dt">x =</span> Statistic, <span class="dt">y =</span> value)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="kw">rel</span>(<span class="dv">3</span>), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">data =</span> glob) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Estimates of population differentiation&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">ggplot</span>(per.locus, <span class="kw">aes</span>(<span class="dt">x =</span> Statistic, <span class="dt">y =</span> value)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="kw">rel</span>(<span class="dv">3</span>), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">data =</span> glob) <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Estimates of population differentiation&quot;</span>)</a></code></pre></div>
 <p><img src="2015-12-15-microsatellite-differentiation_files/figure-html/plotting-1.png" width="960" /></p>
 </div>
 <div id="confidence-intervals" class="section level3">
 <h3>Confidence Intervals</h3>
 <p>We can see that we have evidence for moderate differentiation in these populations at the level of breed. Of course bootstrapping would be helpful to get confidence intervals, so here we use the function <code>chao_bootstrap()</code> to simulate new data sets and <code>summarize_bootstrap()</code> to calculate statistical summarize based on those simulations. Since these can take a while, we’re only going to perform 10 replicates. You will want to increase that number for a more robust analysis:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">20151219</span>) <span class="co"># Be sure to set a seed for any random analysis!</span>
-bs_reps &lt;-<span class="st"> </span><span class="kw">chao_bootstrap</span>(microbov, <span class="dt">nreps =</span> <span class="dv">10</span>)
-<span class="kw">summarise_bootstrap</span>(bs_reps, D_Jost) <span class="co"># Using the D_Jost function to summarize.</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">20151219</span>) <span class="co"># Be sure to set a seed for any random analysis!</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">bs_reps &lt;-<span class="st"> </span><span class="kw">chao_bootstrap</span>(microbov, <span class="dt">nreps =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="kw">summarise_bootstrap</span>(bs_reps, D_Jost) <span class="co"># Using the D_Jost function to summarize.</span></a></code></pre></div>
 <pre><code>## 
 ## Estimates for each locus
 ## Locus    Mean     95% CI
@@ -555,10 +673,10 @@ bs_reps &lt;-<span class="st"> </span><span class="kw">chao_bootstrap</span>(mic
 <blockquote>
 <p>Note: we are using the syntax <code>pegas::amova()</code> because there is another function called <code>amova()</code> in the <em>ade4</em> package.</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bov_dist  &lt;-<span class="st"> </span><span class="kw">dist</span>(microbov) <span class="co"># Euclidean distance</span>
-bov_stra  &lt;-<span class="st"> </span><span class="kw">strata</span>(microbov)
-bov_amova &lt;-<span class="st"> </span>pegas<span class="op">::</span><span class="kw">amova</span>(bov_dist <span class="op">~</span><span class="st"> </span>Country<span class="op">/</span>Breed, <span class="dt">data =</span> bov_stra, <span class="dt">nperm =</span> <span class="dv">0</span>)
-bov_amova</code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">bov_dist  &lt;-<span class="st"> </span><span class="kw">dist</span>(microbov) <span class="co"># Euclidean distance</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">bov_stra  &lt;-<span class="st"> </span><span class="kw">strata</span>(microbov)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">bov_amova &lt;-<span class="st"> </span>pegas<span class="op">::</span><span class="kw">amova</span>(bov_dist <span class="op">~</span><span class="st"> </span>Country<span class="op">/</span>Breed, <span class="dt">data =</span> bov_stra, <span class="dt">nperm =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">bov_amova</a></code></pre></div>
 <pre><code>## 
 ##  Analysis of Molecular Variance
 ## 
@@ -575,13 +693,19 @@ bov_amova</code></pre></div>
 ##   Country     Breed     Error 
 ##  9.578926  7.156947 41.340516 
 ## 
+## Phi-statistics:
+## Country.in.GLOBAL (Phi_CT)   Breed.in.GLOBAL (Phi_ST) 
+##                  0.1649367                  0.2881700 
+##  Breed.in.Country (Phi_SC) 
+##                  0.1475736 
+## 
 ## Variance coefficients:
 ##         a         b         c 
 ##  46.71477  48.10283 310.40625</code></pre>
 <p>If the population was panmictic, we would expect to see extremely small variance components for Country and Breed compared to Error (i.e. the variation from individuals within populations). We don’t see that and further suspect moderate differentiation. To test for this, you can boostrap replicates by setting the <code>nperm</code> argument. Again, because these bootstraps may take a long time, we’ll set it to 10:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">20151219</span>)
-bov_amova &lt;-<span class="st"> </span>pegas<span class="op">::</span><span class="kw">amova</span>(bov_dist <span class="op">~</span><span class="st"> </span>Country<span class="op">/</span>Breed, <span class="dt">data =</span> bov_stra, <span class="dt">nperm =</span> <span class="dv">10</span>)
-bov_amova</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">20151219</span>)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">bov_amova &lt;-<span class="st"> </span>pegas<span class="op">::</span><span class="kw">amova</span>(bov_dist <span class="op">~</span><span class="st"> </span>Country<span class="op">/</span>Breed, <span class="dt">data =</span> bov_stra, <span class="dt">nperm =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">bov_amova</a></code></pre></div>
 <pre><code>## 
 ##  Analysis of Molecular Variance
 ## 
@@ -600,6 +724,12 @@ bov_amova</code></pre></div>
 ## Breed    7.1569       0
 ## Error   41.3405        
 ## 
+## Phi-statistics:
+## Country.in.GLOBAL (Phi_CT)   Breed.in.GLOBAL (Phi_ST) 
+##                  0.1649367                  0.2881700 
+##  Breed.in.Country (Phi_SC) 
+##                  0.1475736 
+## 
 ## Variance coefficients:
 ##         a         b         c 
 ##  46.71477  48.10283 310.40625</code></pre>
@@ -608,14 +738,14 @@ bov_amova</code></pre></div>
 <h3>Other implementations</h3>
 <p>It is possible to do the same analyses in different packages, which I will list here.</p>
 <p>The <em>vegan</em> package has the function <code>adonis()</code> that implements a multivariate AMOVA and takes the same kind of arguments as the <em>pegas</em> implementation of <code>amova()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;vegan&quot;</span>)
-<span class="kw">set.seed</span>(<span class="dv">20151219</span>)
-res &lt;-<span class="st"> </span><span class="kw">adonis</span>(bov_dist <span class="op">~</span><span class="st"> </span>Country<span class="op">/</span>Breed, <span class="dt">data =</span> bov_stra, <span class="dt">permutations =</span> <span class="dv">99</span>)</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;vegan&quot;</span>)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">20151219</span>)</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">res &lt;-<span class="st"> </span><span class="kw">adonis</span>(bov_dist <span class="op">~</span><span class="st"> </span>Country<span class="op">/</span>Breed, <span class="dt">data =</span> bov_stra, <span class="dt">permutations =</span> <span class="dv">99</span>)</a></code></pre></div>
 <p>The package <em>ade4</em> implements the original model, but it requires an abundance matrix of haplotypes per population. The advantage of this version is the fact that it calculates <span class="math inline">\(\phi\)</span> statistics for you. The package <em>poppr</em> provides a wrapper for the <em>ade4</em> version that will sanitize the data and allows for calculation of within sample variance.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;poppr&quot;</span>)
-res &lt;-<span class="st"> </span><span class="kw">poppr.amova</span>(microbov, <span class="op">~</span>Country<span class="op">/</span>Breed, <span class="dt">within =</span> <span class="ot">FALSE</span>)
-<span class="kw">set.seed</span>(<span class="dv">20151219</span>)
-<span class="kw">randtest</span>(res, <span class="dt">nrepet =</span> <span class="dv">99</span>)</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;poppr&quot;</span>)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">res &lt;-<span class="st"> </span><span class="kw">poppr.amova</span>(microbov, <span class="op">~</span>Country<span class="op">/</span>Breed, <span class="dt">within =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="kw">set.seed</span>(<span class="dv">20151219</span>)</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="kw">randtest</span>(res, <span class="dt">nrepet =</span> <span class="dv">99</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="discriminant-analyses-of-principal-components-dapc" class="section level2">
@@ -624,9 +754,9 @@ res &lt;-<span class="st"> </span><span class="kw">poppr.amova</span>(microbov, 
 <blockquote>
 <p>Warning: This analyis is sensitive to the number of principal components you choose, so by default, you should run this function with just the data set and without any options beforehand (<code>dapc(microbov)</code>).</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setPop</span>(microbov) &lt;-<span class="st"> </span><span class="er">~</span>Country<span class="op">/</span>Breed
-bov_dapc &lt;-<span class="st"> </span><span class="kw">dapc</span>(microbov, <span class="dt">n.pca =</span> <span class="dv">100</span>, <span class="dt">n.da =</span> <span class="dv">4</span>) <span class="co"># 100 principal components; 4 discriminant functions</span>
-<span class="kw">scatter</span>(bov_dapc)</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">setPop</span>(microbov) &lt;-<span class="st"> </span><span class="er">~</span>Country<span class="op">/</span>Breed</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">bov_dapc &lt;-<span class="st"> </span><span class="kw">dapc</span>(microbov, <span class="dt">n.pca =</span> <span class="dv">100</span>, <span class="dt">n.da =</span> <span class="dv">4</span>) <span class="co"># 100 principal components; 4 discriminant functions</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="kw">scatter</span>(bov_dapc)</a></code></pre></div>
 <p><img src="2015-12-15-microsatellite-differentiation_files/figure-html/dapc-1.png" width="960" /></p>
 <p>From this output, we can see that there is a lot of differentiation based on geography, but also that African breeds are a lot more differentiated than European breeds.</p>
 </div>
@@ -652,99 +782,113 @@ bov_dapc &lt;-<span class="st"> </span><span class="kw">dapc</span>(microbov, <s
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
-<pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  setting  value                       
-##  version  R version 3.5.0 (2018-04-23)
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">session_info</span>()</a></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────
+##  setting  value                       
+##  version  R version 3.6.0 (2019-04-26)
+##  os       Debian GNU/Linux 9 (stretch)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
+##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2018-06-07</code></pre>
-<pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  package    * version date       source        
-##  ade4       * 1.7-11  2018-04-05 CRAN (R 3.5.0)
-##  adegenet   * 2.1.1   2018-02-02 CRAN (R 3.5.0)
-##  ape        * 5.1     2018-04-04 CRAN (R 3.5.0)
-##  assertthat   0.2.0   2017-04-11 CRAN (R 3.5.0)
-##  backports    1.1.2   2017-12-13 CRAN (R 3.5.0)
-##  base       * 3.5.0   2018-06-07 local         
-##  bindr        0.1.1   2018-03-13 CRAN (R 3.5.0)
-##  bindrcpp     0.2.2   2018-03-29 CRAN (R 3.5.0)
-##  boot         1.3-20  2017-07-30 CRAN (R 3.5.0)
-##  cluster      2.0.7-1 2018-04-09 CRAN (R 3.5.0)
-##  coda         0.19-1  2016-12-08 CRAN (R 3.5.0)
-##  colorspace   1.3-2   2016-12-14 CRAN (R 3.5.0)
-##  compiler     3.5.0   2018-06-07 local         
-##  datasets   * 3.5.0   2018-06-07 local         
-##  deldir       0.1-15  2018-04-01 CRAN (R 3.5.0)
-##  devtools     1.13.5  2018-02-18 CRAN (R 3.5.0)
-##  digest       0.6.15  2018-01-28 CRAN (R 3.5.0)
-##  dplyr        0.7.5   2018-05-19 CRAN (R 3.5.0)
-##  evaluate     0.10.1  2017-06-24 CRAN (R 3.5.0)
-##  expm         0.999-2 2017-03-29 CRAN (R 3.5.0)
-##  gdata        2.18.0  2017-06-06 CRAN (R 3.5.0)
-##  ggplot2    * 2.2.1   2016-12-30 CRAN (R 3.5.0)
-##  glue         1.2.0   2017-10-29 CRAN (R 3.5.0)
-##  gmodels      2.16.2  2015-07-22 CRAN (R 3.5.0)
-##  graphics   * 3.5.0   2018-06-07 local         
-##  grDevices  * 3.5.0   2018-06-07 local         
-##  grid         3.5.0   2018-06-07 local         
-##  gtable       0.2.0   2016-02-26 CRAN (R 3.5.0)
-##  gtools       3.5.0   2015-05-29 CRAN (R 3.5.0)
-##  htmltools    0.3.6   2017-04-28 CRAN (R 3.5.0)
-##  httpuv       1.4.3   2018-05-10 CRAN (R 3.5.0)
-##  igraph       1.2.1   2018-03-10 CRAN (R 3.5.0)
-##  knitr        1.20    2018-02-20 CRAN (R 3.5.0)
-##  labeling     0.3     2014-08-23 CRAN (R 3.5.0)
-##  later        0.7.2   2018-05-01 CRAN (R 3.5.0)
-##  lattice      0.20-35 2017-03-25 CRAN (R 3.5.0)
-##  lazyeval     0.2.1   2017-10-29 CRAN (R 3.5.0)
-##  LearnBayes   2.15.1  2018-03-18 CRAN (R 3.5.0)
-##  magrittr     1.5     2014-11-22 CRAN (R 3.5.0)
-##  MASS         7.3-50  2018-04-30 CRAN (R 3.5.0)
-##  Matrix       1.2-14  2018-04-09 CRAN (R 3.5.0)
-##  memoise      1.1.0   2017-04-21 CRAN (R 3.5.0)
-##  methods    * 3.5.0   2018-06-07 local         
-##  mgcv         1.8-23  2018-01-15 CRAN (R 3.5.0)
-##  mime         0.5     2016-07-07 CRAN (R 3.5.0)
-##  mmod       * 1.3.3   2017-04-06 CRAN (R 3.5.0)
-##  munsell      0.4.3   2016-02-13 CRAN (R 3.5.0)
-##  nlme         3.1-137 2018-04-07 CRAN (R 3.5.0)
-##  parallel     3.5.0   2018-06-07 local         
-##  pegas      * 0.10    2017-05-03 CRAN (R 3.5.0)
-##  permute      0.9-4   2016-09-09 CRAN (R 3.5.0)
-##  pillar       1.2.3   2018-05-25 CRAN (R 3.5.0)
-##  pkgconfig    2.0.1   2017-03-21 CRAN (R 3.5.0)
-##  plyr         1.8.4   2016-06-08 CRAN (R 3.5.0)
-##  promises     1.0.1   2018-04-13 CRAN (R 3.5.0)
-##  purrr        0.2.5   2018-05-29 CRAN (R 3.5.0)
-##  R6           2.2.2   2017-06-17 CRAN (R 3.5.0)
-##  Rcpp         0.12.17 2018-05-18 CRAN (R 3.5.0)
-##  reshape2   * 1.4.3   2017-12-11 CRAN (R 3.5.0)
-##  rlang        0.2.1   2018-05-30 CRAN (R 3.5.0)
-##  rmarkdown    1.9     2018-03-01 CRAN (R 3.5.0)
-##  rprojroot    1.3-2   2018-01-03 CRAN (R 3.5.0)
-##  scales       0.5.0   2017-08-24 CRAN (R 3.5.0)
-##  seqinr       3.4-5   2017-08-01 CRAN (R 3.5.0)
-##  shiny        1.1.0   2018-05-17 CRAN (R 3.5.0)
-##  sp           1.3-1   2018-06-05 CRAN (R 3.5.0)
-##  spData       0.2.8.3 2018-03-25 CRAN (R 3.5.0)
-##  spdep        0.7-7   2018-04-03 CRAN (R 3.5.0)
-##  splines      3.5.0   2018-06-07 local         
-##  stats      * 3.5.0   2018-06-07 local         
-##  stringi      1.2.2   2018-05-02 CRAN (R 3.5.0)
-##  stringr      1.3.1   2018-05-10 CRAN (R 3.5.0)
-##  tibble       1.4.2   2018-01-22 CRAN (R 3.5.0)
-##  tidyselect   0.2.4   2018-02-26 CRAN (R 3.5.0)
-##  tools        3.5.0   2018-06-07 local         
-##  utils      * 3.5.0   2018-06-07 local         
-##  vegan        2.5-2   2018-05-17 CRAN (R 3.5.0)
-##  withr        2.1.2   2018-03-15 CRAN (R 3.5.0)
-##  xtable       1.8-2   2016-02-05 CRAN (R 3.5.0)
-##  yaml         2.1.19  2018-05-01 CRAN (R 3.5.0)</code></pre>
+##  date     2019-05-11                  
+## 
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────
+##  package     * version  date       lib source        
+##  ade4        * 1.7-13   2018-08-31 [1] CRAN (R 3.6.0)
+##  adegenet    * 2.1.1    2018-02-02 [1] CRAN (R 3.6.0)
+##  ape         * 5.3      2019-03-17 [1] CRAN (R 3.6.0)
+##  assertthat    0.2.1    2019-03-21 [1] CRAN (R 3.6.0)
+##  backports     1.1.4    2019-04-10 [1] CRAN (R 3.6.0)
+##  boot          1.3-22   2019-04-02 [2] CRAN (R 3.6.0)
+##  callr         3.2.0    2019-03-15 [1] CRAN (R 3.6.0)
+##  class         7.3-15   2019-01-01 [2] CRAN (R 3.6.0)
+##  classInt      0.3-3    2019-04-26 [1] CRAN (R 3.6.0)
+##  cli           1.1.0    2019-03-19 [1] CRAN (R 3.6.0)
+##  cluster       2.0.8    2019-04-05 [2] CRAN (R 3.6.0)
+##  coda          0.19-2   2018-10-08 [1] CRAN (R 3.6.0)
+##  colorspace    1.4-1    2019-03-18 [1] CRAN (R 3.6.0)
+##  crayon        1.3.4    2017-09-16 [1] CRAN (R 3.6.0)
+##  DBI           1.0.0    2018-05-02 [1] CRAN (R 3.6.0)
+##  deldir        0.1-16   2019-01-04 [1] CRAN (R 3.6.0)
+##  desc          1.2.0    2018-05-01 [1] CRAN (R 3.6.0)
+##  devtools      2.0.2    2019-04-08 [1] CRAN (R 3.6.0)
+##  digest        0.6.18   2018-10-10 [1] CRAN (R 3.6.0)
+##  dplyr         0.8.0.1  2019-02-15 [1] CRAN (R 3.6.0)
+##  e1071         1.7-1    2019-03-19 [1] CRAN (R 3.6.0)
+##  evaluate      0.13     2019-02-12 [1] CRAN (R 3.6.0)
+##  expm          0.999-4  2019-03-21 [1] CRAN (R 3.6.0)
+##  fs            1.3.1    2019-05-06 [1] CRAN (R 3.6.0)
+##  gdata         2.18.0   2017-06-06 [1] CRAN (R 3.6.0)
+##  ggplot2     * 3.1.1    2019-04-07 [1] CRAN (R 3.6.0)
+##  glue          1.3.1    2019-03-12 [1] CRAN (R 3.6.0)
+##  gmodels       2.18.1   2018-06-25 [1] CRAN (R 3.6.0)
+##  gtable        0.3.0    2019-03-25 [1] CRAN (R 3.6.0)
+##  gtools        3.8.1    2018-06-26 [1] CRAN (R 3.6.0)
+##  htmltools     0.3.6    2017-04-28 [1] CRAN (R 3.6.0)
+##  httpuv        1.5.1    2019-04-05 [1] CRAN (R 3.6.0)
+##  igraph        1.2.4.1  2019-04-22 [1] CRAN (R 3.6.0)
+##  KernSmooth    2.23-15  2015-06-29 [2] CRAN (R 3.6.0)
+##  knitr         1.22     2019-03-08 [1] CRAN (R 3.6.0)
+##  labeling      0.3      2014-08-23 [1] CRAN (R 3.6.0)
+##  later         0.8.0    2019-02-11 [1] CRAN (R 3.6.0)
+##  lattice       0.20-38  2018-11-04 [2] CRAN (R 3.6.0)
+##  lazyeval      0.2.2    2019-03-15 [1] CRAN (R 3.6.0)
+##  LearnBayes    2.15.1   2018-03-18 [1] CRAN (R 3.6.0)
+##  magrittr      1.5      2014-11-22 [1] CRAN (R 3.6.0)
+##  MASS          7.3-51.4 2019-03-31 [2] CRAN (R 3.6.0)
+##  Matrix        1.2-17   2019-03-22 [2] CRAN (R 3.6.0)
+##  memoise       1.1.0    2017-04-21 [1] CRAN (R 3.6.0)
+##  mgcv          1.8-28   2019-03-21 [2] CRAN (R 3.6.0)
+##  mime          0.6      2018-10-05 [1] CRAN (R 3.6.0)
+##  mmod        * 1.3.3    2017-04-06 [1] CRAN (R 3.6.0)
+##  munsell       0.5.0    2018-06-12 [1] CRAN (R 3.6.0)
+##  nlme          3.1-139  2019-04-09 [2] CRAN (R 3.6.0)
+##  pegas       * 0.11     2018-07-09 [1] CRAN (R 3.6.0)
+##  permute       0.9-5    2019-03-12 [1] CRAN (R 3.6.0)
+##  pillar        1.3.1    2018-12-15 [1] CRAN (R 3.6.0)
+##  pkgbuild      1.0.3    2019-03-20 [1] CRAN (R 3.6.0)
+##  pkgconfig     2.0.2    2018-08-16 [1] CRAN (R 3.6.0)
+##  pkgload       1.0.2    2018-10-29 [1] CRAN (R 3.6.0)
+##  plyr          1.8.4    2016-06-08 [1] CRAN (R 3.6.0)
+##  prettyunits   1.0.2    2015-07-13 [1] CRAN (R 3.6.0)
+##  processx      3.3.1    2019-05-08 [1] CRAN (R 3.6.0)
+##  promises      1.0.1    2018-04-13 [1] CRAN (R 3.6.0)
+##  ps            1.3.0    2018-12-21 [1] CRAN (R 3.6.0)
+##  purrr         0.3.2    2019-03-15 [1] CRAN (R 3.6.0)
+##  R6            2.4.0    2019-02-14 [1] CRAN (R 3.6.0)
+##  Rcpp          1.0.1    2019-03-17 [1] CRAN (R 3.6.0)
+##  remotes       2.0.4    2019-04-10 [1] CRAN (R 3.6.0)
+##  reshape2    * 1.4.3    2017-12-11 [1] CRAN (R 3.6.0)
+##  rlang         0.3.4    2019-04-07 [1] CRAN (R 3.6.0)
+##  rmarkdown     1.12     2019-03-14 [1] CRAN (R 3.6.0)
+##  rprojroot     1.3-2    2018-01-03 [1] CRAN (R 3.6.0)
+##  scales        1.0.0    2018-08-09 [1] CRAN (R 3.6.0)
+##  seqinr        3.4-5    2017-08-01 [1] CRAN (R 3.6.0)
+##  sessioninfo   1.1.1    2018-11-05 [1] CRAN (R 3.6.0)
+##  sf            0.7-4    2019-04-25 [1] CRAN (R 3.6.0)
+##  shiny         1.3.2    2019-04-22 [1] CRAN (R 3.6.0)
+##  sp            1.3-1    2018-06-05 [1] CRAN (R 3.6.0)
+##  spData        0.3.0    2019-01-07 [1] CRAN (R 3.6.0)
+##  spdep         1.1-2    2019-04-05 [1] CRAN (R 3.6.0)
+##  stringi       1.4.3    2019-03-12 [1] CRAN (R 3.6.0)
+##  stringr       1.4.0    2019-02-10 [1] CRAN (R 3.6.0)
+##  testthat      2.1.1    2019-04-23 [1] CRAN (R 3.6.0)
+##  tibble        2.1.1    2019-03-16 [1] CRAN (R 3.6.0)
+##  tidyselect    0.2.5    2018-10-11 [1] CRAN (R 3.6.0)
+##  units         0.6-3    2019-05-03 [1] CRAN (R 3.6.0)
+##  usethis       1.5.0    2019-04-07 [1] CRAN (R 3.6.0)
+##  vegan         2.5-4    2019-02-04 [1] CRAN (R 3.6.0)
+##  withr         2.1.2    2018-03-15 [1] CRAN (R 3.6.0)
+##  xfun          0.6      2019-04-02 [1] CRAN (R 3.6.0)
+##  xtable        1.8-4    2019-04-21 [1] CRAN (R 3.6.0)
+##  yaml          2.2.0    2018-07-25 [1] CRAN (R 3.6.0)
+## 
+## [1] /usr/local/lib/R/site-library
+## [2] /usr/local/lib/R/library</code></pre>
 </div>
 
 <!-- </div>

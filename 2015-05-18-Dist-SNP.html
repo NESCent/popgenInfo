@@ -93,43 +93,90 @@ body {
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -165,9 +212,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -186,25 +231,98 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -326,32 +444,32 @@ $(document).ready(function () {
 <p>The dataset <a href="https://github.com/NESCent/popgenInfo/tree/master/data/Master_Pinus_data_genotype.txt">“Master_Pinus_data_genotype.txt” can be downloaded here</a>.</p>
 <p>The text file is a matrix of (550 rows x 3086 columns). It contains 4 extra columns: first column is the label of the individuals, the three other are description of the region, all the other columns are for the genotypes as (AA or AT…).</p>
 <p>When you import the data into R, the data file needs to be in your working directory, or adjust the path in the <code>read.table()</code> invocation below accordingly.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Master_Pinus_data_genotype.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">check.names =</span> <span class="ot">FALSE</span>)   
-<span class="kw">dim</span>(Mydata) </code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">Mydata &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Master_Pinus_data_genotype.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">check.names =</span> <span class="ot">FALSE</span>)   </a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">dim</span>(Mydata) </a></code></pre></div>
 <pre><code>## [1]  550 3086</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ind &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata<span class="op">$</span>tree_id) <span class="co"># individual labels </span>
-population &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata<span class="op">$</span>state) <span class="co"># population labels</span>
-county &lt;-<span class="st"> </span>Mydata<span class="op">$</span>county 
-<span class="kw">dim</span>(Mydata) <span class="co"># 550 individuals x 3082 SNPs</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ind &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata<span class="op">$</span>tree_id) <span class="co"># individual labels </span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">population &lt;-<span class="st"> </span><span class="kw">as.character</span>(Mydata<span class="op">$</span>state) <span class="co"># population labels</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">county &lt;-<span class="st"> </span>Mydata<span class="op">$</span>county </a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">dim</span>(Mydata) <span class="co"># 550 individuals x 3082 SNPs</span></a></code></pre></div>
 <pre><code>## [1]  550 3086</code></pre>
 </div>
 <div id="resourcespackages-required" class="section level1">
 <h1>Resources/Packages required</h1>
 <p>Loading the required packages:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;poppr&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;ape&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;ade4&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;poppr&quot;</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;pegas&quot;</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;ape&quot;</span>)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">library</span>(<span class="st">&quot;adegenet&quot;</span>)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">library</span>(<span class="st">&quot;ade4&quot;</span>)</a></code></pre></div>
 </div>
 <div id="analysis" class="section level1">
 <h1>Analysis</h1>
 <div id="section-1-convert-the-data" class="section level2">
 <h2>Section 1: Convert the data</h2>
 <p>To work with the data, we need to convert the R object returned by <code>read.table()</code> to a <code>genind</code> object. To achieve this, we create a matrix with only genotypes, and keep only a subset of the first 100 SNP loci (to make calculations faster). The result can then be converted to a <code>genind</code> object (for the package adegenet). The <code>genind</code> object can then easily be converted into <code>loci</code> objects (package pegas) (i.e. Mydata2)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">locus &lt;-<span class="st"> </span>Mydata[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">105</span><span class="op">:</span><span class="kw">ncol</span>(Mydata))] 
-Mydata1 &lt;-<span class="st"> </span><span class="kw">df2genind</span>(locus, <span class="dt">ploidy =</span> <span class="dv">2</span>, <span class="dt">ind.names =</span> ind, <span class="dt">pop =</span> population, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)
-Mydata1</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">locus &lt;-<span class="st"> </span>Mydata[, <span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">105</span><span class="op">:</span><span class="kw">ncol</span>(Mydata))] </a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">Mydata1 &lt;-<span class="st"> </span><span class="kw">df2genind</span>(locus, <span class="dt">ploidy =</span> <span class="dv">2</span>, <span class="dt">ind.names =</span> ind, <span class="dt">pop =</span> population, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">Mydata1</a></code></pre></div>
 <pre><code>## /// GENIND OBJECT /////////
 ## 
 ##  // 550 individuals; 100 loci; 200 alleles; size: 530.6 Kb
@@ -368,7 +486,7 @@ Mydata1</code></pre></div>
 ## 
 ##  // Optional content
 ##    @pop: population of each individual (group size range: 4-177)</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mydata2 &lt;-<span class="kw">genind2loci</span>(Mydata1)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">Mydata2 &lt;-<span class="kw">genind2loci</span>(Mydata1)</a></code></pre></div>
 </div>
 <div id="section-2.-individual-genetic-distance-euclidean-distance-dist-adegenet" class="section level2">
 <h2>Section 2. Individual genetic distance: euclidean distance (<code>dist</code> {adegenet})</h2>
@@ -379,36 +497,36 @@ Mydata1</code></pre></div>
 <li>Ploidy : 2</li>
 </ul>
 <p>The analysis is applied on allele frequency within individuals as represented in the <code>genind</code> object. We can use the function <code>dist()</code> from adegenet which provides different options. We will use the euclidean distance among vector of allele frequencies.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenEUCL &lt;-<span class="st"> </span><span class="kw">dist</span>(Mydata1, <span class="dt">method =</span> <span class="st">&quot;euclidean&quot;</span>, <span class="dt">diag =</span> <span class="ot">FALSE</span>, <span class="dt">upper =</span> <span class="ot">FALSE</span>, <span class="dt">p =</span> <span class="dv">2</span>)
-<span class="kw">hist</span>(distgenEUCL)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">distgenEUCL &lt;-<span class="st"> </span><span class="kw">dist</span>(Mydata1, <span class="dt">method =</span> <span class="st">&quot;euclidean&quot;</span>, <span class="dt">diag =</span> <span class="ot">FALSE</span>, <span class="dt">upper =</span> <span class="ot">FALSE</span>, <span class="dt">p =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">hist</span>(distgenEUCL)</a></code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_adegenet-1.png" width="960" /></p>
 </div>
 <div id="section-3.-individual-genetic-distance-number-of-loci-for-which-individuals-differ-dist.gene-ape" class="section level2">
 <h2>Section 3. Individual genetic distance: number of loci for which individuals differ (<code>dist.gene</code> {ape})</h2>
 <p>The option <code>pairwise.deletion = FALSE</code> in the command <code>dist.gene()</code> removes all loci with one missing values : you an see on the histogram that we get a maximum distance of 3 loci out of 100.</p>
 <p>We can see that we get 98 loci with at least one sample missing. Then using the option <code>pairwise.deletion = TRUE</code> in the command <code>dist.gene()</code> allows you to keep loci with one missing value.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenDIFF &lt;-<span class="st"> </span><span class="kw">dist.gene</span>(Mydata2, <span class="dt">method=</span><span class="st">&quot;pairwise&quot;</span>, <span class="dt">pairwise.deletion =</span> <span class="ot">FALSE</span>, <span class="dt">variance =</span> <span class="ot">FALSE</span>)
-<span class="kw">hist</span>(distgenDIFF)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">distgenDIFF &lt;-<span class="st"> </span><span class="kw">dist.gene</span>(Mydata2, <span class="dt">method=</span><span class="st">&quot;pairwise&quot;</span>, <span class="dt">pairwise.deletion =</span> <span class="ot">FALSE</span>, <span class="dt">variance =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">hist</span>(distgenDIFF)</a></code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_ape-1.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get percent missing data per population</span>
-missing_data &lt;-<span class="st"> </span><span class="kw">info_table</span>(Mydata1, <span class="dt">type =</span> <span class="st">&quot;missing&quot;</span>)
-<span class="kw">sum</span>(missing_data[<span class="st">&quot;Total&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>] <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># Get percent missing data per population</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">missing_data &lt;-<span class="st"> </span><span class="kw">info_table</span>(Mydata1, <span class="dt">type =</span> <span class="st">&quot;missing&quot;</span>)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">sum</span>(missing_data[<span class="st">&quot;Total&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>] <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a></code></pre></div>
 <pre><code>## [1] 98</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(missing_data[<span class="st">&quot;Total&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], <span class="dt">xlab =</span> <span class="st">&quot;Locus&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Percent Missing&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">barplot</span>(missing_data[<span class="st">&quot;Total&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], <span class="dt">xlab =</span> <span class="st">&quot;Locus&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Percent Missing&quot;</span>)</a></code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_ape-2.png" width="960" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenDIFF &lt;-<span class="st"> </span><span class="kw">dist.gene</span>(Mydata2, <span class="dt">method=</span><span class="st">&quot;pairwise&quot;</span>, <span class="dt">pairwise.deletion =</span> <span class="ot">TRUE</span>, <span class="dt">variance =</span> <span class="ot">FALSE</span>)
-<span class="kw">hist</span>(distgenDIFF)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">distgenDIFF &lt;-<span class="st"> </span><span class="kw">dist.gene</span>(Mydata2, <span class="dt">method=</span><span class="st">&quot;pairwise&quot;</span>, <span class="dt">pairwise.deletion =</span> <span class="ot">TRUE</span>, <span class="dt">variance =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">hist</span>(distgenDIFF)</a></code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_ape-3.png" width="960" /></p>
 </div>
 <div id="section-4-number-of-allelic-differences-between-two-individuals-diss.dist-poppr" class="section level2">
 <h2>Section 4: number of allelic differences between two individuals (<code>diss.dist</code> {poppr})</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distgenDISS &lt;-<span class="st"> </span><span class="kw">diss.dist</span>(Mydata1, <span class="dt">percent =</span> <span class="ot">FALSE</span>, <span class="dt">mat =</span> <span class="ot">FALSE</span>)
-<span class="kw">hist</span>(distgenDISS)</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">distgenDISS &lt;-<span class="st"> </span><span class="kw">diss.dist</span>(Mydata1, <span class="dt">percent =</span> <span class="ot">FALSE</span>, <span class="dt">mat =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">hist</span>(distgenDISS)</a></code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Individual_dist_poppr-1.png" width="960" /></p>
 </div>
 <div id="section-5-conclusions-drawn-from-the-analysis" class="section level2">
 <h2>Section 5: Conclusions drawn from the analysis</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(distgenEUCL, distgenDIFF, distgenDISS)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">boxplot</span>(distgenEUCL, distgenDIFF, distgenDISS)</a></code></pre></div>
 <p><img src="2015-05-18-Dist-SNP_files/figure-html/Compare_dist-1.png" width="960" /></p>
 <p>The number of allelic differences between two individuals is a different measure from euclidean distance or number of locus differences between two individuals.</p>
 <p>Conclusion</p>
@@ -432,102 +550,116 @@ missing_data &lt;-<span class="st"> </span><span class="kw">info_table</span>(My
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
-<pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  setting  value                       
-##  version  R version 3.5.0 (2018-04-23)
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">session_info</span>()</a></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────
+##  setting  value                       
+##  version  R version 3.6.0 (2019-04-26)
+##  os       Debian GNU/Linux 9 (stretch)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
+##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2018-06-07</code></pre>
-<pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  package    * version date       source        
-##  ade4       * 1.7-11  2018-04-05 CRAN (R 3.5.0)
-##  adegenet   * 2.1.1   2018-02-02 CRAN (R 3.5.0)
-##  ape        * 5.1     2018-04-04 CRAN (R 3.5.0)
-##  assertthat   0.2.0   2017-04-11 CRAN (R 3.5.0)
-##  backports    1.1.2   2017-12-13 CRAN (R 3.5.0)
-##  base       * 3.5.0   2018-06-07 local         
-##  bindr        0.1.1   2018-03-13 CRAN (R 3.5.0)
-##  bindrcpp     0.2.2   2018-03-29 CRAN (R 3.5.0)
-##  boot         1.3-20  2017-07-30 CRAN (R 3.5.0)
-##  cluster      2.0.7-1 2018-04-09 CRAN (R 3.5.0)
-##  coda         0.19-1  2016-12-08 CRAN (R 3.5.0)
-##  colorspace   1.3-2   2016-12-14 CRAN (R 3.5.0)
-##  compiler     3.5.0   2018-06-07 local         
-##  datasets   * 3.5.0   2018-06-07 local         
-##  deldir       0.1-15  2018-04-01 CRAN (R 3.5.0)
-##  devtools     1.13.5  2018-02-18 CRAN (R 3.5.0)
-##  digest       0.6.15  2018-01-28 CRAN (R 3.5.0)
-##  dplyr        0.7.5   2018-05-19 CRAN (R 3.5.0)
-##  evaluate     0.10.1  2017-06-24 CRAN (R 3.5.0)
-##  expm         0.999-2 2017-03-29 CRAN (R 3.5.0)
-##  fastmatch    1.1-0   2017-01-28 CRAN (R 3.5.0)
-##  gdata        2.18.0  2017-06-06 CRAN (R 3.5.0)
-##  ggplot2      2.2.1   2016-12-30 CRAN (R 3.5.0)
-##  glue         1.2.0   2017-10-29 CRAN (R 3.5.0)
-##  gmodels      2.16.2  2015-07-22 CRAN (R 3.5.0)
-##  graphics   * 3.5.0   2018-06-07 local         
-##  grDevices  * 3.5.0   2018-06-07 local         
-##  grid         3.5.0   2018-06-07 local         
-##  gtable       0.2.0   2016-02-26 CRAN (R 3.5.0)
-##  gtools       3.5.0   2015-05-29 CRAN (R 3.5.0)
-##  htmltools    0.3.6   2017-04-28 CRAN (R 3.5.0)
-##  httpuv       1.4.3   2018-05-10 CRAN (R 3.5.0)
-##  igraph       1.2.1   2018-03-10 CRAN (R 3.5.0)
-##  knitr        1.20    2018-02-20 CRAN (R 3.5.0)
-##  later        0.7.2   2018-05-01 CRAN (R 3.5.0)
-##  lattice      0.20-35 2017-03-25 CRAN (R 3.5.0)
-##  lazyeval     0.2.1   2017-10-29 CRAN (R 3.5.0)
-##  LearnBayes   2.15.1  2018-03-18 CRAN (R 3.5.0)
-##  magrittr     1.5     2014-11-22 CRAN (R 3.5.0)
-##  MASS         7.3-50  2018-04-30 CRAN (R 3.5.0)
-##  Matrix       1.2-14  2018-04-09 CRAN (R 3.5.0)
-##  memoise      1.1.0   2017-04-21 CRAN (R 3.5.0)
-##  methods    * 3.5.0   2018-06-07 local         
-##  mgcv         1.8-23  2018-01-15 CRAN (R 3.5.0)
-##  mime         0.5     2016-07-07 CRAN (R 3.5.0)
-##  munsell      0.4.3   2016-02-13 CRAN (R 3.5.0)
-##  nlme         3.1-137 2018-04-07 CRAN (R 3.5.0)
-##  parallel     3.5.0   2018-06-07 local         
-##  pegas      * 0.10    2017-05-03 CRAN (R 3.5.0)
-##  permute      0.9-4   2016-09-09 CRAN (R 3.5.0)
-##  phangorn     2.4.0   2018-02-15 CRAN (R 3.5.0)
-##  pillar       1.2.3   2018-05-25 CRAN (R 3.5.0)
-##  pkgconfig    2.0.1   2017-03-21 CRAN (R 3.5.0)
-##  plyr         1.8.4   2016-06-08 CRAN (R 3.5.0)
-##  polysat      1.7-2   2017-08-17 CRAN (R 3.5.0)
-##  poppr      * 2.8.0   2018-05-19 CRAN (R 3.5.0)
-##  promises     1.0.1   2018-04-13 CRAN (R 3.5.0)
-##  purrr        0.2.5   2018-05-29 CRAN (R 3.5.0)
-##  quadprog     1.5-5   2013-04-17 CRAN (R 3.5.0)
-##  R6           2.2.2   2017-06-17 CRAN (R 3.5.0)
-##  Rcpp         0.12.17 2018-05-18 CRAN (R 3.5.0)
-##  reshape2     1.4.3   2017-12-11 CRAN (R 3.5.0)
-##  rlang        0.2.1   2018-05-30 CRAN (R 3.5.0)
-##  rmarkdown    1.9     2018-03-01 CRAN (R 3.5.0)
-##  rprojroot    1.3-2   2018-01-03 CRAN (R 3.5.0)
-##  scales       0.5.0   2017-08-24 CRAN (R 3.5.0)
-##  seqinr       3.4-5   2017-08-01 CRAN (R 3.5.0)
-##  shiny        1.1.0   2018-05-17 CRAN (R 3.5.0)
-##  sp           1.3-1   2018-06-05 CRAN (R 3.5.0)
-##  spData       0.2.8.3 2018-03-25 CRAN (R 3.5.0)
-##  spdep        0.7-7   2018-04-03 CRAN (R 3.5.0)
-##  splines      3.5.0   2018-06-07 local         
-##  stats      * 3.5.0   2018-06-07 local         
-##  stringi      1.2.2   2018-05-02 CRAN (R 3.5.0)
-##  stringr      1.3.1   2018-05-10 CRAN (R 3.5.0)
-##  tibble       1.4.2   2018-01-22 CRAN (R 3.5.0)
-##  tidyselect   0.2.4   2018-02-26 CRAN (R 3.5.0)
-##  tools        3.5.0   2018-06-07 local         
-##  utils      * 3.5.0   2018-06-07 local         
-##  vegan        2.5-2   2018-05-17 CRAN (R 3.5.0)
-##  withr        2.1.2   2018-03-15 CRAN (R 3.5.0)
-##  xtable       1.8-2   2016-02-05 CRAN (R 3.5.0)
-##  yaml         2.1.19  2018-05-01 CRAN (R 3.5.0)</code></pre>
+##  date     2019-05-11                  
+## 
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────
+##  package     * version  date       lib source        
+##  ade4        * 1.7-13   2018-08-31 [1] CRAN (R 3.6.0)
+##  adegenet    * 2.1.1    2018-02-02 [1] CRAN (R 3.6.0)
+##  ape         * 5.3      2019-03-17 [1] CRAN (R 3.6.0)
+##  assertthat    0.2.1    2019-03-21 [1] CRAN (R 3.6.0)
+##  backports     1.1.4    2019-04-10 [1] CRAN (R 3.6.0)
+##  boot          1.3-22   2019-04-02 [2] CRAN (R 3.6.0)
+##  callr         3.2.0    2019-03-15 [1] CRAN (R 3.6.0)
+##  class         7.3-15   2019-01-01 [2] CRAN (R 3.6.0)
+##  classInt      0.3-3    2019-04-26 [1] CRAN (R 3.6.0)
+##  cli           1.1.0    2019-03-19 [1] CRAN (R 3.6.0)
+##  cluster       2.0.8    2019-04-05 [2] CRAN (R 3.6.0)
+##  coda          0.19-2   2018-10-08 [1] CRAN (R 3.6.0)
+##  colorspace    1.4-1    2019-03-18 [1] CRAN (R 3.6.0)
+##  crayon        1.3.4    2017-09-16 [1] CRAN (R 3.6.0)
+##  DBI           1.0.0    2018-05-02 [1] CRAN (R 3.6.0)
+##  deldir        0.1-16   2019-01-04 [1] CRAN (R 3.6.0)
+##  desc          1.2.0    2018-05-01 [1] CRAN (R 3.6.0)
+##  devtools      2.0.2    2019-04-08 [1] CRAN (R 3.6.0)
+##  digest        0.6.18   2018-10-10 [1] CRAN (R 3.6.0)
+##  dplyr         0.8.0.1  2019-02-15 [1] CRAN (R 3.6.0)
+##  e1071         1.7-1    2019-03-19 [1] CRAN (R 3.6.0)
+##  evaluate      0.13     2019-02-12 [1] CRAN (R 3.6.0)
+##  expm          0.999-4  2019-03-21 [1] CRAN (R 3.6.0)
+##  fastmatch     1.1-0    2017-01-28 [1] CRAN (R 3.6.0)
+##  fs            1.3.1    2019-05-06 [1] CRAN (R 3.6.0)
+##  gdata         2.18.0   2017-06-06 [1] CRAN (R 3.6.0)
+##  ggplot2       3.1.1    2019-04-07 [1] CRAN (R 3.6.0)
+##  glue          1.3.1    2019-03-12 [1] CRAN (R 3.6.0)
+##  gmodels       2.18.1   2018-06-25 [1] CRAN (R 3.6.0)
+##  gtable        0.3.0    2019-03-25 [1] CRAN (R 3.6.0)
+##  gtools        3.8.1    2018-06-26 [1] CRAN (R 3.6.0)
+##  htmltools     0.3.6    2017-04-28 [1] CRAN (R 3.6.0)
+##  httpuv        1.5.1    2019-04-05 [1] CRAN (R 3.6.0)
+##  igraph        1.2.4.1  2019-04-22 [1] CRAN (R 3.6.0)
+##  KernSmooth    2.23-15  2015-06-29 [2] CRAN (R 3.6.0)
+##  knitr         1.22     2019-03-08 [1] CRAN (R 3.6.0)
+##  later         0.8.0    2019-02-11 [1] CRAN (R 3.6.0)
+##  lattice       0.20-38  2018-11-04 [2] CRAN (R 3.6.0)
+##  lazyeval      0.2.2    2019-03-15 [1] CRAN (R 3.6.0)
+##  LearnBayes    2.15.1   2018-03-18 [1] CRAN (R 3.6.0)
+##  magrittr      1.5      2014-11-22 [1] CRAN (R 3.6.0)
+##  MASS          7.3-51.4 2019-03-31 [2] CRAN (R 3.6.0)
+##  Matrix        1.2-17   2019-03-22 [2] CRAN (R 3.6.0)
+##  memoise       1.1.0    2017-04-21 [1] CRAN (R 3.6.0)
+##  mgcv          1.8-28   2019-03-21 [2] CRAN (R 3.6.0)
+##  mime          0.6      2018-10-05 [1] CRAN (R 3.6.0)
+##  munsell       0.5.0    2018-06-12 [1] CRAN (R 3.6.0)
+##  nlme          3.1-139  2019-04-09 [2] CRAN (R 3.6.0)
+##  pegas       * 0.11     2018-07-09 [1] CRAN (R 3.6.0)
+##  permute       0.9-5    2019-03-12 [1] CRAN (R 3.6.0)
+##  phangorn      2.5.3    2019-03-23 [1] CRAN (R 3.6.0)
+##  pillar        1.3.1    2018-12-15 [1] CRAN (R 3.6.0)
+##  pkgbuild      1.0.3    2019-03-20 [1] CRAN (R 3.6.0)
+##  pkgconfig     2.0.2    2018-08-16 [1] CRAN (R 3.6.0)
+##  pkgload       1.0.2    2018-10-29 [1] CRAN (R 3.6.0)
+##  plyr          1.8.4    2016-06-08 [1] CRAN (R 3.6.0)
+##  polysat       1.7-4    2019-03-06 [1] CRAN (R 3.6.0)
+##  poppr       * 2.8.2    2019-03-11 [1] CRAN (R 3.6.0)
+##  prettyunits   1.0.2    2015-07-13 [1] CRAN (R 3.6.0)
+##  processx      3.3.1    2019-05-08 [1] CRAN (R 3.6.0)
+##  promises      1.0.1    2018-04-13 [1] CRAN (R 3.6.0)
+##  ps            1.3.0    2018-12-21 [1] CRAN (R 3.6.0)
+##  purrr         0.3.2    2019-03-15 [1] CRAN (R 3.6.0)
+##  quadprog      1.5-7    2019-05-06 [1] CRAN (R 3.6.0)
+##  R6            2.4.0    2019-02-14 [1] CRAN (R 3.6.0)
+##  Rcpp          1.0.1    2019-03-17 [1] CRAN (R 3.6.0)
+##  remotes       2.0.4    2019-04-10 [1] CRAN (R 3.6.0)
+##  reshape2      1.4.3    2017-12-11 [1] CRAN (R 3.6.0)
+##  rlang         0.3.4    2019-04-07 [1] CRAN (R 3.6.0)
+##  rmarkdown     1.12     2019-03-14 [1] CRAN (R 3.6.0)
+##  rprojroot     1.3-2    2018-01-03 [1] CRAN (R 3.6.0)
+##  scales        1.0.0    2018-08-09 [1] CRAN (R 3.6.0)
+##  seqinr        3.4-5    2017-08-01 [1] CRAN (R 3.6.0)
+##  sessioninfo   1.1.1    2018-11-05 [1] CRAN (R 3.6.0)
+##  sf            0.7-4    2019-04-25 [1] CRAN (R 3.6.0)
+##  shiny         1.3.2    2019-04-22 [1] CRAN (R 3.6.0)
+##  sp            1.3-1    2018-06-05 [1] CRAN (R 3.6.0)
+##  spData        0.3.0    2019-01-07 [1] CRAN (R 3.6.0)
+##  spdep         1.1-2    2019-04-05 [1] CRAN (R 3.6.0)
+##  stringi       1.4.3    2019-03-12 [1] CRAN (R 3.6.0)
+##  stringr       1.4.0    2019-02-10 [1] CRAN (R 3.6.0)
+##  testthat      2.1.1    2019-04-23 [1] CRAN (R 3.6.0)
+##  tibble        2.1.1    2019-03-16 [1] CRAN (R 3.6.0)
+##  tidyselect    0.2.5    2018-10-11 [1] CRAN (R 3.6.0)
+##  units         0.6-3    2019-05-03 [1] CRAN (R 3.6.0)
+##  usethis       1.5.0    2019-04-07 [1] CRAN (R 3.6.0)
+##  vegan         2.5-4    2019-02-04 [1] CRAN (R 3.6.0)
+##  withr         2.1.2    2018-03-15 [1] CRAN (R 3.6.0)
+##  xfun          0.6      2019-04-02 [1] CRAN (R 3.6.0)
+##  xtable        1.8-4    2019-04-21 [1] CRAN (R 3.6.0)
+##  yaml          2.2.0    2018-07-25 [1] CRAN (R 3.6.0)
+## 
+## [1] /usr/local/lib/R/site-library
+## [2] /usr/local/lib/R/library</code></pre>
 </div>
 
 <!-- </div>

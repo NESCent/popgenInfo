@@ -93,43 +93,90 @@ body {
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -165,9 +212,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -186,25 +231,98 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -362,7 +480,7 @@ $(document).ready(function () {
 <blockquote>
 <p>If you have already forked and cloned the repository, go to Step 1.</p>
 </blockquote>
-<p>Go to <a href="https://github.com/NESCent/popgenInfo" class="uri">https://github.com/NESCent/popgenInfo</a> and <a href="https://help.github.com/articles/fork-a-repo/#fork-an-example-repository">click on the “Fork” button</a>. This will create a copy of the NESCent popgenInfo repository to your account. After you’ve forked the repository, you never have to fork it again!</p>
+<p>Go to <a href="https://github.com/NESCent/popgenInfo">https://github.com/NESCent/popgenInfo</a> and <a href="https://help.github.com/articles/fork-a-repo/#fork-an-example-repository">click on the “Fork” button</a>. This will create a copy of the NESCent popgenInfo repository to your account. After you’ve forked the repository, you never have to fork it again!</p>
 </div>
 <div id="step-ii-clone-your-fork-to-your-computer-do-once" class="section level1">
 <h1>Step ii: Clone your fork to your computer (DO ONCE)</h1>
@@ -375,13 +493,13 @@ $(document).ready(function () {
 <h2>Create your forks folder</h2>
 <p>First, we need to make sure that we are working in the folder where we want to set up our fork. In this tutorial, we will use <code>setwd()</code> to do this via the R console, but it is possible to do this via Rstudio.</p>
 <p>If you are using Windows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fork_dir &lt;-<span class="st"> &quot;~/forks&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">fork_dir &lt;-<span class="st"> &quot;~/forks&quot;</span></a></code></pre></div>
 <p>If you are using OSX:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fork_dir &lt;-<span class="st"> &quot;~/Documents/forks&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">fork_dir &lt;-<span class="st"> &quot;~/Documents/forks&quot;</span></a></code></pre></div>
 <p>Now, we create the directory and then move there:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(fork_dir)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">dir.create</span>(fork_dir)</a></code></pre></div>
 <p>We can use the function <code>list.files()</code> to see what’s inside the directory:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>()</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">list.files</span>()</a></code></pre></div>
 <pre><code>## character(0)</code></pre>
 <p>Currently, there’s nothing here. We will use the <code>clone()</code> function from <em>git2r</em> to make a copy of our repository. If you type <code>help(&quot;clone&quot;, &quot;git2r&quot;)</code> in your R console, you can see documentation about the function. We need two things from this function:</p>
 <ol style="list-style-type: decimal">
@@ -389,30 +507,30 @@ $(document).ready(function () {
 <li>The path to our folder where we want to store it</li>
 </ol>
 <p>The URL for the git repository is simply just the URL for your fork with <code>.git</code> at the end of it. For mine, it’s <code>https://github.com/zkamvar/popgenInfo.git</code>. To keep things simple, we will name the folder we want to put the repository in “popgenInfo”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>)
-<span class="kw">clone</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/zkamvar/popgenInfo.git&quot;</span>,
-      <span class="dt">local_path =</span> <span class="st">&quot;popgenInfo&quot;</span>)</code></pre></div>
-<pre><code>## cloning into &#39;/tmp/RtmpxxH0an/popgenInfo&#39;...
-## Receiving objects:   1% (25/2466),    9 kb
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">clone</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/zkamvar/popgenInfo.git&quot;</span>,</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">      <span class="dt">local_path =</span> <span class="st">&quot;popgenInfo&quot;</span>)</a></code></pre></div>
+<pre><code>## cloning into &#39;/tmp/RtmpGmju3g/popgenInfo&#39;...
+## Receiving objects:   1% (25/2466),    8 kb
 ## Receiving objects:  11% (272/2466),   64 kb
-## Receiving objects:  21% (518/2466),  104 kb
-## Receiving objects:  31% (765/2466),  889 kb
-## Receiving objects:  41% (1012/2466), 9847 kb
-## Receiving objects:  51% (1258/2466), 11712 kb
-## Receiving objects:  61% (1505/2466), 11752 kb
-## Receiving objects:  71% (1751/2466), 11784 kb
-## Receiving objects:  81% (1998/2466), 11832 kb
-## Receiving objects:  91% (2245/2466), 12032 kb
+## Receiving objects:  21% (518/2466),  105 kb
+## Receiving objects:  31% (765/2466), 1977 kb
+## Receiving objects:  41% (1012/2466), 7463 kb
+## Receiving objects:  51% (1258/2466), 11718 kb
+## Receiving objects:  61% (1505/2466), 11766 kb
+## Receiving objects:  71% (1751/2466), 11798 kb
+## Receiving objects:  81% (1998/2466), 11846 kb
+## Receiving objects:  91% (2245/2466), 12038 kb
 ## Receiving objects: 100% (2466/2466), 12039 kb, done.</code></pre>
-<pre><code>## Local:    master /tmp/RtmpxxH0an/popgenInfo/
+<pre><code>## Local:    master /tmp/RtmpGmju3g/popgenInfo
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [2cb0623] 2017-01-03: update DESCRIPTION</code></pre>
+## Head:     [2cb0623] 2017-01-04: update DESCRIPTION</code></pre>
 <p>Now when we look at our directory, we can see that we have one folder called “popgenInfo”:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>()</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">list.files</span>()</a></code></pre></div>
 <pre><code>## [1] &quot;popgenInfo&quot;</code></pre>
 <p>We can move into the folder with <code>setwd()</code> and look at all the files in there.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;popgenInfo&quot;</span>)
-<span class="kw">list.files</span>()</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&quot;popgenInfo&quot;</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">list.files</span>()</a></code></pre></div>
 <pre><code>##  [1] &quot;build&quot;                       &quot;circle.yml&quot;                 
 ##  [3] &quot;CONDUCT.md&quot;                  &quot;CONTRIBUTING_WITH_GIT2R.Rmd&quot;
 ##  [5] &quot;CONTRIBUTING.md&quot;             &quot;data&quot;                       
@@ -432,12 +550,12 @@ $(document).ready(function () {
 <div id="setting-up-your-clone" class="section level2">
 <h2>Setting up your clone</h2>
 <p>To access the repository, all you have to do is open it by double-clicking on the “popgenInfo.Rproj” file. This will open Rstudio to this folder and set it as the working directory. After that, in your R console, type:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>) <span class="co"># in case you&#39;re starting from here</span>
-repo &lt;-<span class="st"> </span><span class="kw">repository</span>()
-repo</code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpxxH0an/popgenInfo/
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>) <span class="co"># in case you&#39;re starting from here</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">repo &lt;-<span class="st"> </span><span class="kw">repository</span>()</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">repo</a></code></pre></div>
+<pre><code>## Local:    master /tmp/RtmpGmju3g/popgenInfo
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [2cb0623] 2017-01-03: update DESCRIPTION</code></pre>
+## Head:     [2cb0623] 2017-01-04: update DESCRIPTION</code></pre>
 <p>This tells R that you have a repository in this folder and that you are referring to it as <code>repo</code>. The output of <code>repo</code> is a summary of your repository:</p>
 <ul>
 <li><strong>Local</strong> This is the branch (master) and the path where the copy of your repository is.</li>
@@ -445,10 +563,10 @@ repo</code></pre></div>
 <li><strong>Head</strong> This is a summary of the last <em>commit</em> containing the date and a description.</li>
 </ul>
 <p>In order to be able to synch your clone with your fork, GitHub needs to know that you are really who you say you are. This means that you need to associate your name, email, and a secret token with this repository. The first two items are easily done within R. You can use the function <code>config()</code> to set and confirm your name and email:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">config</span>(repo, 
-       <span class="dt">user.name =</span> <span class="st">&quot;Zhian Kamvar&quot;</span>,
-       <span class="dt">user.email =</span> <span class="st">&quot;kamvarz@science.oregonstate.edu&quot;</span>)
-<span class="kw">config</span>(repo)</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">config</span>(repo, </a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">       <span class="dt">user.name =</span> <span class="st">&quot;Zhian Kamvar&quot;</span>,</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">       <span class="dt">user.email =</span> <span class="st">&quot;kamvarz@science.oregonstate.edu&quot;</span>)</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw">config</span>(repo)</a></code></pre></div>
 <pre><code>## system:
 ##         credential.helper=cache --timeout=3600
 ##         push.default=simple
@@ -469,12 +587,12 @@ repo</code></pre></div>
 <p>Once you have created your PAT, make a text file called <code>.Renviron</code> inside of the repository and paste your PAT in that file as shown above. This will not be tracked by git, and will only exist on your computer.</p>
 <p>The next time you open R from <code>popgenInfo.Rproj</code>, this token will be available for GitHub to ensure that you are who you say you are. It is important to note that, if you change or delete that PAT, you must replace it here.</p>
 <p>In the next step, we will ensure that our fork is up to date with NESCent. In order to do that, we need to tell our local copy that it can take updates from NESCent. We do this by adding NESCent as a <strong>remote</strong> called ‘upstream’ using the function <code>remote_add()</code> and checking to make sure it worked with the function <code>remotes()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">remote_add</span>(repo, 
-           <span class="dt">name =</span> <span class="st">&quot;upstream&quot;</span>, 
-           <span class="dt">url =</span> <span class="st">&quot;https://github.com/NESCent/popgenInfo.git&quot;</span>)
-
-<span class="co"># Check our remotes</span>
-<span class="kw">remotes</span>(repo)</code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">remote_add</span>(repo, </a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">           <span class="dt">name =</span> <span class="st">&quot;upstream&quot;</span>, </a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">           <span class="dt">url =</span> <span class="st">&quot;https://github.com/NESCent/popgenInfo.git&quot;</span>)</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="co"># Check our remotes</span></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="kw">remotes</span>(repo)</a></code></pre></div>
 <pre><code>## [1] &quot;origin&quot;   &quot;upstream&quot;</code></pre>
 <p>With all of this information set, we can begin working on our repository.</p>
 </div>
@@ -483,35 +601,36 @@ repo</code></pre></div>
 <h1>Step 1: Keeping your fork up to date</h1>
 <p>The first thing we need to do is make sure that our master branch is up to date. Since other people are also contributing to this project, it is possible for changes to be made even within seconds of you forking the repository. In this section we will show you how you can keep your master branch up to date in your local repository and your fork on github.</p>
 <p>Let’s assume that you’ve just opened a fresh Rstudio session with the <code>popgenInfo.Rproj</code> file. First, let’s load <em>git2r</em> and access our repository.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>)
-repo &lt;-<span class="st"> </span><span class="kw">repository</span>()</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">repo &lt;-<span class="st"> </span><span class="kw">repository</span>()</a></code></pre></div>
 <p>Now that we have our repository loaded, we should make sure that we are on the <strong>master branch</strong>. We can do this using the <code>checkout()</code> function from <em>git2r</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)
-repo</code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpxxH0an/popgenInfo/
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">repo</a></code></pre></div>
+<pre><code>## Local:    master /tmp/RtmpGmju3g/popgenInfo
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [2cb0623] 2017-01-03: update DESCRIPTION</code></pre>
+## Head:     [2cb0623] 2017-01-04: update DESCRIPTION</code></pre>
 <p>Now, whether or not we suspect changes from NESCent, it’s always good form to update your local repository before creating any new branches. We can do it this by first <strong>fetching</strong> ALL changes that have happened on the NESCent popgenInfo repository, and then <strong>merging</strong> the NESCent master branch into our master branch. We will use the <em>git2r</em> functions <code>fetch()</code> and <code>merge()</code> to accomplish this.</p>
 <p>First, we fetch all of the changes that have happened. If there are no changes, nothing will appear, but if there is new content on the master branch or new branches on the repository, they will be downloaded and each branch will be printed to your screen. For our purposes, we are only concerned with the changes on the <strong>master</strong> branch, which will look something like this: <code>## [new]    b62a78c1fcd384a3ea23 refs/remotes/upstream/master</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fetch</span>(repo, <span class="dt">name =</span> <span class="st">&quot;upstream&quot;</span>)</code></pre></div>
-<pre><code>## [new]     651b5abd9a538e5a939e refs/remotes/upstream/gh-pages
-## [new]     a26dff2b6f10426c4bc8 refs/remotes/upstream/master
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">fetch</span>(repo, <span class="dt">name =</span> <span class="st">&quot;upstream&quot;</span>)</a></code></pre></div>
+<pre><code>## [new]     2bf7239c6367e2f80cb0 refs/remotes/upstream/add-weekly-build
+## [new]     03fceec146202bb65a6e refs/remotes/upstream/gh-pages
+## [new]     2bf7239c6367e2f80cb0 refs/remotes/upstream/master
 ## [new]     baa1358367cedf7a7fda refs/remotes/upstream/site-images
 ## [new]     16b52608de7f5ed41d04 refs/remotes/upstream/summaryseqstats
 ## [new]     8840ff6e3782db926b03 refs/remotes/upstream/update-makefile-doc
 ## [new]     c7e4171b3786e398e39b refs/remotes/upstream/web-devel
 ## [new]     021b4de353dff06f0c44 refs/tags/v1.0.0</code></pre>
 <p>It’s important to note that our local repository is still unchanged at this point as we have just downloaded the updates from NESCent. To update our local repository, we should merge the changes from NESCent’s master branch into our master branch:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">merge</span>(repo, <span class="st">&quot;upstream/master&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">merge</span>(repo, <span class="st">&quot;upstream/master&quot;</span>)</a></code></pre></div>
 <pre><code>## Merge: Fast-forward</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo</code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpxxH0an/popgenInfo/
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">repo</a></code></pre></div>
+<pre><code>## Local:    master /tmp/RtmpGmju3g/popgenInfo
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [a26dff2] 2018-06-07: Need to attach workspace _before_ using it</code></pre>
+## Head:     [2bf7239] 2019-05-10: Removes feature branch and deploy step from weekly build</code></pre>
 <p>If there were any changes, the <strong>Head</strong> field will have a more current commit than when we intialized it above.</p>
 <p>Since we will never work directly on the master branch, there should be no conflicts from the NESCent branch and we now know that our branch is up to date. Assuming everything worked, we can push this to our fork on GitHub. We will use <em>git2r</em>’s <code>push()</code> function to do this. We also need to supply our PAT in order for this to work. To do so, we will use the <em>git2r</em> function <code>cred_token()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cred &lt;-<span class="st"> </span><span class="kw">cred_token</span>()
-<span class="kw">push</span>(repo, <span class="dt">credentials =</span> cred)</code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">cred &lt;-<span class="st"> </span><span class="kw">cred_token</span>()</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw">push</span>(repo, <span class="dt">credentials =</span> cred)</a></code></pre></div>
 <p>Now, when you check your fork, it should be updated with the most recent changes. From here, we can checkout a new branch and then proceed with adding our changes or new workflow.</p>
 </div>
 <div id="step-2-creating-a-new-branch" class="section level1">
@@ -520,16 +639,16 @@ repo</code></pre></div>
 <div id="setup" class="section level2">
 <h2>SETUP</h2>
 <p>Most importantly we need to make sure that we are on the master branch and it is up to date. To double plus make sure that you are on the master branch, check it out:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)
-repo</code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpxxH0an/popgenInfo/
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">repo</a></code></pre></div>
+<pre><code>## Local:    master /tmp/RtmpGmju3g/popgenInfo
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [a26dff2] 2018-06-07: Need to attach workspace _before_ using it</code></pre>
+## Head:     [2bf7239] 2019-05-10: Removes feature branch and deploy step from weekly build</code></pre>
 <p>For reasons that will reveal themselves later, please run these function definitions:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_branch &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">paste0</span>(<span class="st">&quot;refs/heads/&quot;</span>, x)
-my_origin &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">paste0</span>(<span class="st">&quot;origin/&quot;</span>, x)</code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">my_branch &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">paste0</span>(<span class="st">&quot;refs/heads/&quot;</span>, x)</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">my_origin &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">paste0</span>(<span class="st">&quot;origin/&quot;</span>, x)</a></code></pre></div>
 <p>And, of course, don’t forget your credentials:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cred &lt;-<span class="st"> </span><span class="kw">cred_token</span>()</code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">cred &lt;-<span class="st"> </span><span class="kw">cred_token</span>()</a></code></pre></div>
 </div>
 <div id="creation" class="section level2">
 <h2>Creation</h2>
@@ -542,23 +661,26 @@ my_origin &lt;-<span class="st"> </span><span class="cf">function</span>(x) <spa
 </ol>
 <p>In the first step, we want to name the branch. Since we are creating a new vignette, it’s ideal for the branch name to be the same as the vignette. As shown in the <a href="CONTRIBUTING.html#best-practices">Best Practices</a> guidelines, you should name this vignette with the date and the subject. Since we are contributing a vignette on spatial stats and committing for the first time on 2015-12-16, the new branch and vignette will be called “2015-12-16-spatial- stats”.</p>
 <p>In code, the steps above would look like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BRANCH &lt;-<span class="st"> &quot;2015-12-16-spatial-stats&quot;</span>                                         <span class="co"># 1</span>
-<span class="kw">checkout</span>(repo, BRANCH, <span class="dt">create =</span> <span class="ot">TRUE</span>)                                        <span class="co"># 2</span>
-<span class="kw">push</span>(repo, <span class="dt">name =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">refspec =</span> <span class="kw">my_branch</span>(BRANCH), <span class="dt">credentials =</span> cred) <span class="co"># 3</span>
-<span class="kw">branch_set_upstream</span>(<span class="kw">head</span>(repo), <span class="kw">my_origin</span>(BRANCH))                           <span class="co"># 4</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">BRANCH &lt;-<span class="st"> &quot;2015-12-16-spatial-stats&quot;</span>                                         <span class="co"># 1</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw">checkout</span>(repo, BRANCH, <span class="dt">create =</span> <span class="ot">TRUE</span>)                                        <span class="co"># 2</span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="kw">push</span>(repo, <span class="dt">name =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">refspec =</span> <span class="kw">my_branch</span>(BRANCH), <span class="dt">credentials =</span> cred) <span class="co"># 3</span></a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="kw">branch_set_upstream</span>(<span class="kw">head</span>(repo), <span class="kw">my_origin</span>(BRANCH))                           <span class="co"># 4</span></a></code></pre></div>
 <p>Let’s examine these one by one. First, you create a variable that will hold the name of the branch you want to create. We are using this convention to allow us to use this name multiple times. After that, we create that branch from our master branch. We can take a look at what our branch looks like at that point.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BRANCH &lt;-<span class="st"> &quot;2015-12-16-spatial-stats&quot;</span>  <span class="co"># 1</span>
-<span class="kw">checkout</span>(repo, BRANCH, <span class="dt">create =</span> <span class="ot">TRUE</span>) <span class="co"># 2</span>
-repo</code></pre></div>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpxxH0an/popgenInfo/
-## Head:     [a26dff2] 2018-06-07: Need to attach workspace _before_ using it</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">BRANCH &lt;-<span class="st"> &quot;2015-12-16-spatial-stats&quot;</span>  <span class="co"># 1</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="kw">checkout</span>(repo, BRANCH, <span class="dt">create =</span> <span class="ot">TRUE</span>) <span class="co"># 2</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">repo</a></code></pre></div>
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpGmju3g/popgenInfo
+## Head:     [2bf7239] 2019-05-10: Removes feature branch and deploy step from weekly build</code></pre>
+<pre><code>## Warning: &#39;head.git_repository&#39; is deprecated.
+## Use &#39;repository_head&#39; instead.
+## See help(&quot;Deprecated&quot;)</code></pre>
 <p>Notice here that you now only have two lines in the output, <strong>Local</strong> and <strong>Head</strong>. This is because the branch doesn’t exist on your GitHub fork. This is where the next two steps come in. We will push that branch and then make sure that our branch is tracking the copy on the fork.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">push</span>(repo, <span class="dt">name =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">refspec =</span> <span class="kw">my_branch</span>(BRANCH), <span class="dt">credentials =</span> cred) <span class="co"># 3</span>
-<span class="kw">branch_set_upstream</span>(<span class="kw">head</span>(repo), <span class="kw">my_origin</span>(BRANCH))                           <span class="co"># 4</span>
-repo</code></pre></div>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpxxH0an/popgenInfo/
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">push</span>(repo, <span class="dt">name =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">refspec =</span> <span class="kw">my_branch</span>(BRANCH), <span class="dt">credentials =</span> cred) <span class="co"># 3</span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">branch_set_upstream</span>(<span class="kw">head</span>(repo), <span class="kw">my_origin</span>(BRANCH))                           <span class="co"># 4</span></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3">repo</a></code></pre></div>
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpGmju3g/popgenInfo
 ## Remote:   2015-12-16-spatial-stats @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [a26dff2] 2018-06-07: Need to attach workspace _before_ using it</code></pre>
+## Head:     [2bf7239] 2019-05-10: Removes feature branch and deploy step from weekly build</code></pre>
 <p>We can now see from the output that we have a <strong>Remote</strong> set up. Once we have this, we can start making changes! If you are adding a new vignette, please copy <a href="https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd"><code>TEMPLATE.Rmd</code></a> to the <strong>use/</strong> directory and give it a new name that is meaningful to your contribution (good practice is to name it the same as your branch). If you are including any data, place it in the <strong>data/</strong> directory. Once you add these files, you need to to <strong>add</strong> these files and then you should <strong>commit</strong>, which we will show you how to do below.</p>
 </div>
 </div>
@@ -567,38 +689,38 @@ repo</code></pre></div>
 <p>If you are using Rstudio, you can use it to integrate with git. This allows you to do things like commit, push, and pull. Hadley Wickham, chief scientist at Rstudio has put up <a href="http://r-pkgs.had.co.nz/git.html#git-status">this helpful tutorial on using git through Rstudio</a>. If you aren’t using Rstudio, but you don’t want to access the terminal (command line), this section will show you basic git commands with <em>git2r</em> that will allow you to work on your vignette and keep it up to date.</p>
 <p>Recall that using git is analogous to keeping a good, detailed lab notebook. When you make any changes, you record those changes (<code>git add</code>) and then say <em>why</em> you made the changes (<code>git commit</code>).</p>
 <p>Let’s say you’ve already copied the <code>TEMPLATE.Rmd</code> file to the <strong>use/</strong> directory and renamed it to <code>2015-12-16-spatial-stats.Rmd</code> and added some data called <code>spatial_data.csv</code>. When you place a file in your repository, git will not pay attention to any changes you do until you specifically add it. Until then it is “Untracked”. You can see this by running <code>status()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">status</span>(repo)</code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">status</span>(repo)</a></code></pre></div>
 <pre><code>## Untracked files:
 ##  Untracked:  data/spatial_data.csv
 ##  Untracked:  use/2015-12-16-spatial-stats.Rmd</code></pre>
 <p>Since we’ve just added the files, we can use <code>add()</code> to tell git we want to stage them for committing.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">add</span>(repo, <span class="st">&quot;*&quot;</span>) <span class="co"># adding all new or changed files</span>
-<span class="kw">status</span>(repo)</code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">add</span>(repo, <span class="st">&quot;*&quot;</span>) <span class="co"># adding all new or changed files</span></a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="kw">status</span>(repo)</a></code></pre></div>
 <pre><code>## Staged changes:
 ##  New:        data/spatial_data.csv
 ##  New:        use/2015-12-16-spatial-stats.Rmd</code></pre>
 <p>When we have done this, we can commit to our changes by using <code>commit()</code>. A commit is basically placing a record of what you did and, importantly, why you did it. Your commit message should record this. Commit messages should be able to fit on a single line. Optionally, if you want to be able to add more detail, you can enter more lines below the message:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">msg &lt;-<span class="st"> &quot; started spatial stats vignette and added data</span>
-
-<span class="st">I copied the template to the use folder and placed</span>
-<span class="st">spatial data in the data folder.</span>
-<span class="st">&quot;</span>
-<span class="kw">commit</span>(repo, msg, <span class="dt">session =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## [b4186c0] 2018-06-07:  started spatial stats vignette and added data</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">status</span>(repo) <span class="co"># should return nothing</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">msg &lt;-<span class="st"> &quot; started spatial stats vignette and added data</span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="st">I copied the template to the use folder and placed</span></a>
+<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="st">spatial data in the data folder.</span></a>
+<a class="sourceLine" id="cb44-5" data-line-number="5"><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb44-6" data-line-number="6"><span class="kw">commit</span>(repo, msg, <span class="dt">session =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [c02ff1b] 2019-05-11:  started spatial stats vignette and added data</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">status</span>(repo) <span class="co"># should return nothing</span></a></code></pre></div>
 <pre><code>## working directory clean</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repo</code></pre></div>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpxxH0an/popgenInfo/
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">repo</a></code></pre></div>
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpGmju3g/popgenInfo
 ## Remote:   2015-12-16-spatial-stats @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [b4186c0] 2018-06-07:  started spatial stats vignette and added data</code></pre>
+## Head:     [c02ff1b] 2019-05-11:  started spatial stats vignette and added data</code></pre>
 <blockquote>
 <p>Note that we put <code>session = TRUE</code> in the commit function. This automatically puts your R session information in the commit, which gives more information about package versions you were working with when you were editing the vignette.</p>
 </blockquote>
 <p>You can see a summary of what you just did by looking at the summary of your commit:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">commits</span>(repo)[[<span class="dv">1</span>]])</code></pre></div>
-<pre><code>## Commit:  b4186c0a9ae7346315a1016099d18a0e133922cf
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">commits</span>(repo)[[<span class="dv">1</span>]])</a></code></pre></div>
+<pre><code>## Commit:  c02ff1b76c44f8e548b8f240f85ba5c4267f3b7a
 ## Author:  Zhian Kamvar &lt;kamvarz@science.oregonstate.edu&gt;
-## When:    2018-06-07 16:17:45
+## When:    2019-05-11 00:37:56
 ## 
 ##       started spatial stats vignette and added data
 ##      
@@ -607,13 +729,12 @@ repo</code></pre></div>
 ##      
 ##      
 ##      sessionInfo:
-##      R version 3.5.0 (2018-04-23)
+##      R version 3.6.0 (2019-04-26)
 ##      Platform: x86_64-pc-linux-gnu (64-bit)
 ##      Running under: Debian GNU/Linux 9 (stretch)
 ##      
 ##      Matrix products: default
-##      BLAS: /usr/lib/openblas-base/libblas.so.3
-##      LAPACK: /usr/lib/libopenblasp-r0.2.19.so
+##      BLAS/LAPACK: /usr/lib/libopenblasp-r0.2.19.so
 ##      
 ##      locale:
 ##       [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -627,18 +748,18 @@ repo</code></pre></div>
 ##      [1] stats     graphics  grDevices utils     datasets  methods   base     
 ##      
 ##      other attached packages:
-##      [1] git2r_0.21.0
+##      [1] git2r_0.25.2
 ##      
 ##      loaded via a namespace (and not attached):
-##       [1] compiler_3.5.0  backports_1.1.2 magrittr_1.5    rprojroot_1.3-2
-##       [5] tools_3.5.0     htmltools_0.3.6 yaml_2.1.19     Rcpp_0.12.17   
-##       [9] stringi_1.2.2   rmarkdown_1.9   knitr_1.20      stringr_1.3.1  
-##      [13] digest_0.6.15   evaluate_0.10.1
+##       [1] compiler_3.6.0  magrittr_1.5    tools_3.6.0     htmltools_0.3.6
+##       [5] yaml_2.2.0      Rcpp_1.0.1      stringi_1.4.3   rmarkdown_1.12 
+##       [9] knitr_1.22      stringr_1.4.0   xfun_0.6        digest_0.6.18  
+##      [13] evaluate_0.13  
 ## 2 files changed, 127 insertions, 0 deletions
 ## data/spatial_data.csv            | -0 +  6  in 1 hunk
 ## use/2015-12-16-spatial-stats.Rmd | -0 +121  in 1 hunk</code></pre>
 <p>Now you can see that your commit message was recorded in the repository. Since we see that there is a <strong>Remote</strong> associated with this fork, we can simply use <code>push()</code> to push our changes up to the fork.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">push</span>(repo, <span class="dt">credentials =</span> <span class="kw">cred_token</span>())</code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">push</span>(repo, <span class="dt">credentials =</span> <span class="kw">cred_token</span>())</a></code></pre></div>
 </div>
 <div id="step-4-pull-request-and-peer-review" class="section level1">
 <h1>Step 4: Pull Request and Peer Review</h1>
@@ -648,12 +769,12 @@ repo</code></pre></div>
 <div id="through-r" class="section level3">
 <h3>Through R</h3>
 <p>You can tell R to open a browser for you to create your pull request. The URL for this is in the form of <code>https://github.com/USER/popgenInfo/pull/new/BRANCH</code>. We can create this URL by using the function <code>paste()</code> to glue the pieces together and then use the <code>utils::browseURL()</code> function to open up a window. Note we are using the variable called <code>BRANCH</code> that we named above.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(my_account &lt;-<span class="st"> </span><span class="kw">dirname</span>(<span class="kw">remote_url</span>(repo, <span class="st">&quot;origin&quot;</span>)))</code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">(my_account &lt;-<span class="st"> </span><span class="kw">dirname</span>(<span class="kw">remote_url</span>(repo, <span class="st">&quot;origin&quot;</span>)))</a></code></pre></div>
 <pre><code>## [1] &quot;https://github.com/zkamvar&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(pull_request_url &lt;-<span class="st"> </span><span class="kw">paste</span>(my_account, <span class="st">&quot;popgenInfo/pull/new&quot;</span>, BRANCH, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>))</code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">(pull_request_url &lt;-<span class="st"> </span><span class="kw">paste</span>(my_account, <span class="st">&quot;popgenInfo/pull/new&quot;</span>, BRANCH, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>))</a></code></pre></div>
 <pre><code>## [1] &quot;https://github.com/zkamvar/popgenInfo/pull/new/2015-12-16-spatial-stats&quot;</code></pre>
 <p>Now that you have the URL, you can browse to it.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">utils<span class="op">::</span><span class="kw">browseURL</span>(pull_request_url)</code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">utils<span class="op">::</span><span class="kw">browseURL</span>(pull_request_url)</a></code></pre></div>
 </div>
 <div id="manually" class="section level3">
 <h3>Manually</h3>
@@ -702,44 +823,60 @@ repo</code></pre></div>
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
-<pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  setting  value                       
-##  version  R version 3.5.0 (2018-04-23)
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">session_info</span>()</a></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────
+##  setting  value                       
+##  version  R version 3.6.0 (2019-04-26)
+##  os       Debian GNU/Linux 9 (stretch)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
+##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2018-06-07</code></pre>
-<pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  package   * version date       source        
-##  backports   1.1.2   2017-12-13 CRAN (R 3.5.0)
-##  base      * 3.5.0   2018-06-07 local         
-##  compiler    3.5.0   2018-06-07 local         
-##  datasets  * 3.5.0   2018-06-07 local         
-##  devtools    1.13.5  2018-02-18 CRAN (R 3.5.0)
-##  digest      0.6.15  2018-01-28 CRAN (R 3.5.0)
-##  evaluate    0.10.1  2017-06-24 CRAN (R 3.5.0)
-##  git2r     * 0.21.0  2018-01-04 CRAN (R 3.5.0)
-##  graphics  * 3.5.0   2018-06-07 local         
-##  grDevices * 3.5.0   2018-06-07 local         
-##  htmltools   0.3.6   2017-04-28 CRAN (R 3.5.0)
-##  knitr       1.20    2018-02-20 CRAN (R 3.5.0)
-##  magrittr    1.5     2014-11-22 CRAN (R 3.5.0)
-##  memoise     1.1.0   2017-04-21 CRAN (R 3.5.0)
-##  methods   * 3.5.0   2018-06-07 local         
-##  Rcpp        0.12.17 2018-05-18 CRAN (R 3.5.0)
-##  rmarkdown   1.9     2018-03-01 CRAN (R 3.5.0)
-##  rprojroot   1.3-2   2018-01-03 CRAN (R 3.5.0)
-##  stats     * 3.5.0   2018-06-07 local         
-##  stringi     1.2.2   2018-05-02 CRAN (R 3.5.0)
-##  stringr     1.3.1   2018-05-10 CRAN (R 3.5.0)
-##  tools       3.5.0   2018-06-07 local         
-##  utils     * 3.5.0   2018-06-07 local         
-##  withr       2.1.2   2018-03-15 CRAN (R 3.5.0)
-##  yaml        2.1.19  2018-05-01 CRAN (R 3.5.0)</code></pre>
+##  date     2019-05-11                  
+## 
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────
+##  package     * version date       lib source        
+##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 3.6.0)
+##  backports     1.1.4   2019-04-10 [1] CRAN (R 3.6.0)
+##  callr         3.2.0   2019-03-15 [1] CRAN (R 3.6.0)
+##  cli           1.1.0   2019-03-19 [1] CRAN (R 3.6.0)
+##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.6.0)
+##  desc          1.2.0   2018-05-01 [1] CRAN (R 3.6.0)
+##  devtools      2.0.2   2019-04-08 [1] CRAN (R 3.6.0)
+##  digest        0.6.18  2018-10-10 [1] CRAN (R 3.6.0)
+##  evaluate      0.13    2019-02-12 [1] CRAN (R 3.6.0)
+##  fs            1.3.1   2019-05-06 [1] CRAN (R 3.6.0)
+##  git2r       * 0.25.2  2019-03-19 [1] CRAN (R 3.6.0)
+##  glue          1.3.1   2019-03-12 [1] CRAN (R 3.6.0)
+##  htmltools     0.3.6   2017-04-28 [1] CRAN (R 3.6.0)
+##  knitr         1.22    2019-03-08 [1] CRAN (R 3.6.0)
+##  magrittr      1.5     2014-11-22 [1] CRAN (R 3.6.0)
+##  memoise       1.1.0   2017-04-21 [1] CRAN (R 3.6.0)
+##  pkgbuild      1.0.3   2019-03-20 [1] CRAN (R 3.6.0)
+##  pkgload       1.0.2   2018-10-29 [1] CRAN (R 3.6.0)
+##  prettyunits   1.0.2   2015-07-13 [1] CRAN (R 3.6.0)
+##  processx      3.3.1   2019-05-08 [1] CRAN (R 3.6.0)
+##  ps            1.3.0   2018-12-21 [1] CRAN (R 3.6.0)
+##  R6            2.4.0   2019-02-14 [1] CRAN (R 3.6.0)
+##  Rcpp          1.0.1   2019-03-17 [1] CRAN (R 3.6.0)
+##  remotes       2.0.4   2019-04-10 [1] CRAN (R 3.6.0)
+##  rlang         0.3.4   2019-04-07 [1] CRAN (R 3.6.0)
+##  rmarkdown     1.12    2019-03-14 [1] CRAN (R 3.6.0)
+##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 3.6.0)
+##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.6.0)
+##  stringi       1.4.3   2019-03-12 [1] CRAN (R 3.6.0)
+##  stringr       1.4.0   2019-02-10 [1] CRAN (R 3.6.0)
+##  testthat      2.1.1   2019-04-23 [1] CRAN (R 3.6.0)
+##  usethis       1.5.0   2019-04-07 [1] CRAN (R 3.6.0)
+##  withr         2.1.2   2018-03-15 [1] CRAN (R 3.6.0)
+##  xfun          0.6     2019-04-02 [1] CRAN (R 3.6.0)
+##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.6.0)
+## 
+## [1] /usr/local/lib/R/site-library
+## [2] /usr/local/lib/R/library</code></pre>
 </div>
 
 <!-- </div>

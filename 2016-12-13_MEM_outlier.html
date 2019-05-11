@@ -93,43 +93,90 @@ body {
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -165,9 +212,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -186,25 +231,98 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -311,27 +429,27 @@ $(document).ready(function () {
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>The purpose of this vignette is to illustrate a new outlier detection method that uses genetic data and spatial coordinates to detect loci potentially under selection (Wagner et al. 2016). This method, which we call <strong>Moran spectral outlier detection (MSOD)</strong>, uses the power spectrum of <strong>Moran eigenvector maps (MEM)</strong> to quantify how variation in the frequency of an allele is distributed across a range of spatial scales defined by MEM spatial eigenvectors.</p>
+<p>The purpose of this vignette is to illustrate a new outlier detection method that uses genetic data and spatial coordinates to detect loci potentially under selection (Wagner et al. 2016). This method, which we call <strong>Moran spectral outlier detection (MSOD)</strong>, uses the power spectrum of <strong>Moran eigenvector maps (MEM)</strong> to quantify how variation in the frequency of an allele is distributed across a range of spatial scales defined by MEM spatial eigenvectors.</p>
 <p>The power spectrum for a locus is the squared correlation coefficient obtained by correlation of that locus with the MEM eigenvectors. By comparing the power spectrum of an individual locus to the average power spectrum of all of the loci, we can identify outlier loci that show a power spectrum that deviates from the average. This deviation reflects the spatial signature of selection, while the average power specturm (composed primarily of neutral loci) mainly reflects a spatial signature of gene flow. This approach can be used on individual or population based data sets.</p>
 <p>If environmental predictors are available, MSOD can be followed by a second step that uses <strong>Moran spectral randomization (MSR)</strong> to test associations between outlier loci and environmental predictors, while accounting for spatial autocorrelation.</p>
 </div>
 <div id="assumptions" class="section level2">
 <h2>Assumptions</h2>
-<p>MSOD relies on an assumption of normality under the null hypothesis that the distributions of loci are shaped by the same process (gene flow). Deviations from normality are likely under non-equilibrium and isolation by distance scenarios, which may increase false positive rates. MSR relies on stationarity assumptions, which means that p-values may be inflated if both variables have a linear trend. See Wagner et al. 2016 for more discussion of these assumptions, and how they impact outlier detection in a variety of simulation scenarios.</p>
+<p>MSOD relies on an assumption of normality under the null hypothesis that the distributions of loci are shaped by the same process (gene flow). Deviations from normality are likely under non-equilibrium and isolation by distance scenarios, which may increase false positive rates. MSR relies on stationarity assumptions, which means that p-values may be inflated if both variables have a linear trend. See Wagner et al. 2016 for more discussion of these assumptions, and how they impact outlier detection in a variety of simulation scenarios.</p>
 </div>
 <div id="data-packages" class="section level2">
 <h2>Data &amp; packages</h2>
-<p>In this vignette, we’ll walk through an MSOD/MSR example using part of an individual-based simulation data set from Forester et al. 2016. In this case, the genetic data are input as allele counts (i.e. 0/1/2) for each locus. For population-based data, you can input the genetic data as allele frequencies within demes.</p>
-<p>The example data provided here are simplified from a CDPOP (Landguth &amp; Cushman 2010) simulation output file. This particular simulation used an aggregated habitat surface (plotted below), a selection coefficient of 5%, and individual dispersal of 5% of the surface per generation. These data are from the first replicate of 10 for these simulations. The full simulation data set is available at <a href="http://datadryad.org/resource/doi:10.5061/dryad.v0c77">Dryad doi: 10.5061/dryad.v0c77</a>, with more information on the simulation scenarios in Forester et al. 2016.</p>
+<p>In this vignette, we’ll walk through an MSOD/MSR example using part of an individual-based simulation data set from Forester et al. 2016. In this case, the genetic data are input as allele counts (i.e. 0/1/2) for each locus. For population-based data, you can input the genetic data as allele frequencies within demes.</p>
+<p>The example data provided here are simplified from a CDPOP (Landguth &amp; Cushman 2010) simulation output file. This particular simulation used an aggregated habitat surface (plotted below), a selection coefficient of 5%, and individual dispersal of 5% of the surface per generation. These data are from the first replicate of 10 for these simulations. The full simulation data set is available at <a href="http://datadryad.org/resource/doi:10.5061/dryad.v0c77">Dryad doi: 10.5061/dryad.v0c77</a>, with more information on the simulation scenarios in Forester et al. 2016.</p>
 <p>Begin by installing the necessary packages, if you don’t already have them:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages(c(&quot;spdep&quot;,&quot;adespatial&quot;,&quot;raster&quot;), dependencies=TRUE)</span>
-
-<span class="co"># Load packages</span>
-<span class="co"># -------------</span>
-<span class="kw">library</span>(spdep)
-<span class="kw">library</span>(adespatial)
-<span class="kw">library</span>(raster)
-<span class="kw">library</span>(viridis)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages(c(&quot;spdep&quot;,&quot;adespatial&quot;,&quot;raster&quot;), dependencies=TRUE)</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co"># Load packages</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># -------------</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">library</span>(spdep)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">library</span>(adespatial)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">library</span>(viridis)</a></code></pre></div>
 </div>
 <div id="analysis" class="section level2">
 <h2>Analysis</h2>
@@ -339,158 +457,158 @@ $(document).ready(function () {
 <div id="section-1-load-and-inspect-the-data" class="section level2">
 <h2>Section 1: Load and inspect the data</h2>
 <p>The dimensions of our <a href="https://raw.githubusercontent.com/NESCent/popgenInfo/master/data/MSOD_vignette_data.csv">data frame</a> are 500 rows and 103 columns. Every row in the data frame contains information for one individual, so in this example we will be analyzing 500 individuals. Columns 1 and 2 are the X and Y UTM coordinates for each individual. Column 3 is a factor (“Env”) indicating what type of habitat an individual is located in. Columns 4 through 103 are genotypes at 100 loci for each individual. These genotypes are provided as allele counts (0/1/2). Locus 1 (L1) is the locus under selection (responsive to the habitat factor “Env”). The remainder of the loci are neutral (L2 - L100).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat   &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/MSOD_vignette_data.csv&quot;</span>) <span class="co"># All the data</span>
-
-Coord &lt;-<span class="st"> </span><span class="kw">data.matrix</span>(dat[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])   <span class="co"># The UTM coordinates of the 500 individuals</span>
-Env   &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(dat[,<span class="dv">3</span>])   <span class="co"># Habitat factor for the 500 individuals</span>
-Loci  &lt;-<span class="st"> </span><span class="kw">data.matrix</span>(dat[,<span class="dv">4</span><span class="op">:</span><span class="dv">103</span>]) <span class="co"># Genotypes at 100 loci for the 500 individuals</span></code></pre></div>
-<p>Now that we have loaded the data, our next task is to calculate the <strong>Moran eigenvector maps (MEM)</strong> from the XY coordinates of our 500 individuals. MEM are orthogonal synthetic variables that provide a decomposition of the spatial relationships among sampling sites based on a spatial weighting matrix (see Dray et al. 2006 and Wagner et al. 2016 for more information).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">dat   &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/MSOD_vignette_data.csv&quot;</span>) <span class="co"># All the data</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">Coord &lt;-<span class="st"> </span><span class="kw">data.matrix</span>(dat[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])   <span class="co"># The UTM coordinates of the 500 individuals</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">Env   &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(dat[,<span class="dv">3</span>])   <span class="co"># Habitat factor for the 500 individuals</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">Loci  &lt;-<span class="st"> </span><span class="kw">data.matrix</span>(dat[,<span class="dv">4</span><span class="op">:</span><span class="dv">103</span>]) <span class="co"># Genotypes at 100 loci for the 500 individuals</span></a></code></pre></div>
+<p>Now that we have loaded the data, our next task is to calculate the <strong>Moran eigenvector maps (MEM)</strong> from the XY coordinates of our 500 individuals. MEM are orthogonal synthetic variables that provide a decomposition of the spatial relationships among sampling sites based on a spatial weighting matrix (see Dray et al. 2006 and Wagner et al. 2016 for more information).</p>
 <p>In the code below, we begin by defining neighbors with a Gabriel graph using function <code>graph2nb</code>. Then we create a spatial weights matrix (object <code>listW</code>) so that neighbors receive a weight that is proportional to the inverse distance between a location and that neighbor. We use function <code>nbdists</code> to calculate Euclidean distances along the links. MEM are then extracted by eigenanalysis. This produces a set of eigenvalues (one for each MEM axis) that quantifies the spatial scale of that MEM. We also obtain the MEM eigenvectors, which are the MEM axes we’ll use for our analysis. In this case, we have 500 individuals sampled at 500 sets of XY coordinates, so we end up with 499 MEM axes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate MEM vectors and values</span>
-<span class="co"># --------------------------------</span>
-nb      &lt;-<span class="st"> </span><span class="kw">graph2nb</span>(<span class="kw">gabrielneigh</span>(Coord), <span class="dt">sym=</span><span class="ot">TRUE</span>)  <span class="co"># Gabriel graph: neighbor definition</span>
-listW   &lt;-<span class="st"> </span><span class="kw">nb2listw</span>(nb, <span class="dt">style=</span><span class="st">&quot;W&quot;</span>)                  <span class="co"># Spatial weights matrix</span>
-disttri &lt;-<span class="st"> </span><span class="kw">nbdists</span>(nb, Coord)                       <span class="co"># Add longlat=T for lat/long coordinates</span>
-fdist   &lt;-<span class="st"> </span><span class="kw">lapply</span>(disttri, <span class="cf">function</span>(x) x<span class="op">^</span>(<span class="op">-</span><span class="dv">1</span>))      <span class="co"># Use inverse distance weights</span>
-listW   &lt;-<span class="st"> </span><span class="kw">nb2listw</span>(nb, <span class="dt">glist=</span>fdist, <span class="dt">style=</span><span class="st">&quot;W&quot;</span>)     <span class="co"># Revised spatial weights matrix</span>
-tmp     &lt;-<span class="st"> </span><span class="kw">scores.listw</span>(listW, <span class="dt">MEM.autocor =</span> <span class="st">&quot;all&quot;</span>) <span class="co"># Eigenanalysis</span>
-
-mem     &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">vectors =</span> <span class="kw">as.matrix</span>(tmp), <span class="dt">values =</span> <span class="kw">attr</span>(tmp, <span class="st">&quot;values&quot;</span>)) <span class="co"># MEM eigenvectors and eigenvalues</span>
-mem<span class="op">$</span>values &lt;-<span class="st"> </span>mem<span class="op">$</span>values <span class="op">/</span><span class="st"> </span><span class="kw">abs</span>(<span class="kw">sum</span>(mem<span class="op">$</span>values))     <span class="co"># Rescale eigenvalues to Moran&#39;s I</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Calculate MEM vectors and values</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co"># --------------------------------</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">nb      &lt;-<span class="st"> </span><span class="kw">graph2nb</span>(<span class="kw">gabrielneigh</span>(Coord), <span class="dt">sym=</span><span class="ot">TRUE</span>)  <span class="co"># Gabriel graph: neighbor definition</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">listW   &lt;-<span class="st"> </span><span class="kw">nb2listw</span>(nb, <span class="dt">style=</span><span class="st">&quot;W&quot;</span>)                  <span class="co"># Spatial weights matrix</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">disttri &lt;-<span class="st"> </span><span class="kw">nbdists</span>(nb, Coord)                       <span class="co"># Add longlat=T for lat/long coordinates</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">fdist   &lt;-<span class="st"> </span><span class="kw">lapply</span>(disttri, <span class="cf">function</span>(x) x<span class="op">^</span>(<span class="op">-</span><span class="dv">1</span>))      <span class="co"># Use inverse distance weights</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">listW   &lt;-<span class="st"> </span><span class="kw">nb2listw</span>(nb, <span class="dt">glist=</span>fdist, <span class="dt">style=</span><span class="st">&quot;W&quot;</span>)     <span class="co"># Revised spatial weights matrix</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">tmp     &lt;-<span class="st"> </span><span class="kw">scores.listw</span>(listW, <span class="dt">MEM.autocor =</span> <span class="st">&quot;all&quot;</span>) <span class="co"># Eigenanalysis</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">mem     &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">vectors =</span> <span class="kw">as.matrix</span>(tmp), <span class="dt">values =</span> <span class="kw">attr</span>(tmp, <span class="st">&quot;values&quot;</span>)) <span class="co"># MEM eigenvectors and eigenvalues</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">mem<span class="op">$</span>values &lt;-<span class="st"> </span>mem<span class="op">$</span>values <span class="op">/</span><span class="st"> </span><span class="kw">abs</span>(<span class="kw">sum</span>(mem<span class="op">$</span>values))     <span class="co"># Rescale eigenvalues to Moran&#39;s I</span></a></code></pre></div>
 <p>Let’s plot the habitat selection surface, the 500 sampled individuals, and the Gabriel graph used to calculate the spatial weights matrix and MEM variables. First we need to download the ascii Habitat file from the Dryad upload:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Access the Habitat file</span>
-<span class="co"># -----------------------</span>
-temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
-<span class="kw">download.file</span>(<span class="st">&quot;http://datadryad.org/bitstream/handle/10255/dryad.102458/Surfaces_Sample.zip&quot;</span>, temp)
-zipd &lt;-<span class="st"> </span><span class="kw">tempdir</span>()
-<span class="kw">unzip</span>(temp, <span class="dt">exdir=</span>zipd)
-Habitat &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">paste0</span>(zipd,<span class="st">&quot;/L10H5R1_aa.asc&quot;</span>))     <span class="co"># The Habitat ascii file</span>
-
-<span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))
-<span class="kw">plot</span>(Habitat, <span class="dt">axes=</span>F, <span class="dt">legend=</span>F, <span class="dt">box=</span>F,                 <span class="co"># Plot the selection surface</span>
-     <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;gray70&quot;</span>,<span class="st">&quot;gray98&quot;</span>)) 
-<span class="kw">plot</span>(nb, <span class="dt">coords=</span>Coord, <span class="dt">col=</span><span class="dv">1</span>, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">cex=</span><span class="fl">0.8</span>, <span class="dt">add=</span>T)  <span class="co"># Add the individuals and Gabriel graph</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># Access the Habitat file</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co"># -----------------------</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">download.file</span>(<span class="st">&quot;http://datadryad.org/bitstream/handle/10255/dryad.102458/Surfaces_Sample.zip&quot;</span>, temp)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">zipd &lt;-<span class="st"> </span><span class="kw">tempdir</span>()</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw">unzip</span>(temp, <span class="dt">exdir=</span>zipd)</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">Habitat &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">paste0</span>(zipd,<span class="st">&quot;/L10H5R1_aa.asc&quot;</span>))     <span class="co"># The Habitat ascii file</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw">plot</span>(Habitat, <span class="dt">axes=</span>F, <span class="dt">legend=</span>F, <span class="dt">box=</span>F,                 <span class="co"># Plot the selection surface</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">     <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;gray70&quot;</span>,<span class="st">&quot;gray98&quot;</span>)) </a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="kw">plot</span>(nb, <span class="dt">coords=</span>Coord, <span class="dt">col=</span><span class="dv">1</span>, <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">cex=</span><span class="fl">0.8</span>, <span class="dt">add=</span>T)  <span class="co"># Add the individuals and Gabriel graph</span></a></code></pre></div>
 <p><img src="2016-12-13_MEM_outlier_files/figure-html/habitat_plot-1.png" width="960" /></p>
 </div>
 <div id="section-2-moran-spectral-outlier-detection-msod" class="section level2">
 <h2>Section 2: Moran spectral outlier detection (MSOD)</h2>
 <p>Now that we have all of the necessary data, we’ll calculate a MEM power spectrum for each of our 100 loci. We do this by calculating correlations R.YV between allele counts (or frequencies) at each locus and all 499 MEM eigenvectors. Note that the square of R.YV for each locus is its power spectrum.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Correlations between the Loci and MEM axes</span>
-<span class="co"># ------------------------------------------</span>
-<span class="co"># Calculate R.YV, which contains for each locus the vector of its correlations with all MEM axes. </span>
-R.YV &lt;-<span class="st"> </span><span class="kw">cor</span>(Loci, mem<span class="op">$</span>vectors, <span class="dt">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>) <span class="co"># R.YV = Correlation with MEM axes     </span>
-S    &lt;-<span class="st"> </span><span class="kw">apply</span>(R.YV<span class="op">^</span><span class="dv">2</span>, <span class="dv">2</span>, mean)                              <span class="co"># S = Average power spectrum</span>
-
-<span class="co"># Plot power spectra</span>
-<span class="co"># ------------------</span>
-<span class="kw">barplot</span>((R.YV<span class="op">^</span><span class="dv">2</span>)[<span class="dv">1</span>,], <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.12</span>))  <span class="co"># First locus (under selection)</span>
-<span class="kw">barplot</span>((R.YV<span class="op">^</span><span class="dv">2</span>)[<span class="dv">2</span>,], <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.12</span>))  <span class="co"># Second locus (neutral)</span>
-<span class="kw">barplot</span>(S, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.12</span>))             <span class="co"># Average power spectrum (all 100 loci)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Correlations between the Loci and MEM axes</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># ------------------------------------------</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co"># Calculate R.YV, which contains for each locus the vector of its correlations with all MEM axes. </span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">R.YV &lt;-<span class="st"> </span><span class="kw">cor</span>(Loci, mem<span class="op">$</span>vectors, <span class="dt">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>) <span class="co"># R.YV = Correlation with MEM axes     </span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">S    &lt;-<span class="st"> </span><span class="kw">apply</span>(R.YV<span class="op">^</span><span class="dv">2</span>, <span class="dv">2</span>, mean)                              <span class="co"># S = Average power spectrum</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># Plot power spectra</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co"># ------------------</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="kw">barplot</span>((R.YV<span class="op">^</span><span class="dv">2</span>)[<span class="dv">1</span>,], <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.12</span>))  <span class="co"># First locus (under selection)</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">barplot</span>((R.YV<span class="op">^</span><span class="dv">2</span>)[<span class="dv">2</span>,], <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.12</span>))  <span class="co"># Second locus (neutral)</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="kw">barplot</span>(S, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.12</span>))             <span class="co"># Average power spectrum (all 100 loci)</span></a></code></pre></div>
 <p><img src="2016-12-13_MEM_outlier_files/figure-html/msod-1.png" width="960" /></p>
 <p>Compare the power spectra plots for the locus under selection (top) and a neutral locus (middle). The average power spectrum across all 100 loci is shown at the bottom.</p>
 <p>Next, we’ll calculate a z-score for each locus, based on deviation from the average power spectrum. Then we’ll compare outlier detection based on three cutoff options.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cutoffs &lt;-<span class="st"> </span><span class="kw">abs</span>(<span class="kw">qnorm</span>(<span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.01</span>, <span class="fl">0.001</span>)<span class="op">/</span><span class="dv">2</span>))  <span class="co"># Cutoffs (can be modified!)</span>
-
-<span class="co"># Calculate z-scores for power spectra</span>
-<span class="co"># ------------------------------------</span>
-Dev &lt;-<span class="st"> </span><span class="kw">sweep</span>(R.YV<span class="op">^</span><span class="dv">2</span>, <span class="dv">2</span>, S, <span class="st">&quot;/&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>            <span class="co"># Subtract average power spectrum from each locus.</span>
-Dev[Dev <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span>                              <span class="co"># Set positive deviations to zero.</span>
-Dev &lt;-<span class="st"> </span><span class="kw">apply</span>(Dev, <span class="dv">1</span>, sum)                      <span class="co"># Sum of negative deviations</span>
-z &lt;-<span class="st"> </span><span class="kw">scale</span>(Dev)                                <span class="co"># Standardize</span>
-
-<span class="co"># Plot z-scores for power spectra</span>
-<span class="co"># -------------------------------</span>
-<span class="kw">plot</span>(z, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">5</span>))                          <span class="co"># Plot the z-scores</span>
-<span class="kw">points</span>(<span class="dv">1</span>, z[<span class="dv">1</span>], <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)             <span class="co"># The locus under selection</span>
-<span class="cf">for</span>(h <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cutoffs))                    <span class="co"># Add lines for the three cutoffs</span>
-{
-  <span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="kw">rep</span>(cutoffs[h],<span class="dv">2</span>), <span class="dt">lty=</span>h)
-  <span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="kw">rep</span>(<span class="op">-</span>cutoffs[h],<span class="dv">2</span>), <span class="dt">lty=</span>h)
-}</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">cutoffs &lt;-<span class="st"> </span><span class="kw">abs</span>(<span class="kw">qnorm</span>(<span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.01</span>, <span class="fl">0.001</span>)<span class="op">/</span><span class="dv">2</span>))  <span class="co"># Cutoffs (can be modified!)</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co"># Calculate z-scores for power spectra</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># ------------------------------------</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">Dev &lt;-<span class="st"> </span><span class="kw">sweep</span>(R.YV<span class="op">^</span><span class="dv">2</span>, <span class="dv">2</span>, S, <span class="st">&quot;/&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>            <span class="co"># Subtract average power spectrum from each locus.</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">Dev[Dev <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span>                              <span class="co"># Set positive deviations to zero.</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">Dev &lt;-<span class="st"> </span><span class="kw">apply</span>(Dev, <span class="dv">1</span>, sum)                      <span class="co"># Sum of negative deviations</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">z &lt;-<span class="st"> </span><span class="kw">scale</span>(Dev)                                <span class="co"># Standardize</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co"># Plot z-scores for power spectra</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co"># -------------------------------</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="kw">plot</span>(z, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">5</span>))                          <span class="co"># Plot the z-scores</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="kw">points</span>(<span class="dv">1</span>, z[<span class="dv">1</span>], <span class="dt">pch=</span><span class="dv">16</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)             <span class="co"># The locus under selection</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="cf">for</span>(h <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cutoffs))                    <span class="co"># Add lines for the three cutoffs</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb6-16" data-line-number="16">  <span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="kw">rep</span>(cutoffs[h],<span class="dv">2</span>), <span class="dt">lty=</span>h)</a>
+<a class="sourceLine" id="cb6-17" data-line-number="17">  <span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="kw">rep</span>(<span class="op">-</span>cutoffs[h],<span class="dv">2</span>), <span class="dt">lty=</span>h)</a>
+<a class="sourceLine" id="cb6-18" data-line-number="18">}</a></code></pre></div>
 <p><img src="2016-12-13_MEM_outlier_files/figure-html/msod_zscores-1.png" width="960" /></p>
 <p>This plot shows the standardized z-scores for the 100 loci (locus under selection in red), along with the three outlier cutoffs. You can see that two loci would be detected as false positives using the most liberal cutoff of 0.05. We’ll continue and just use the middle cutoff of 0.01:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Apply cutoff to determine outliers</span>
-<span class="co"># ----------------------------------</span>
-cutoff.msod &lt;-<span class="st"> </span>cutoffs[<span class="dv">2</span>]                              <span class="co"># Just the middle cutoff of 0.01</span>
-
-Candidates.msod &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>)[<span class="kw">abs</span>(z)<span class="op">&gt;</span>cutoff.msod]        <span class="co"># Candidate loci at this cutoff</span>
-TPR.msod &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">is.element</span>(<span class="dv">1</span>, Candidates.msod)) <span class="co"># True positive rate (is the first locus detected?)</span>
-<span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;True positive rate: &quot;</span>, TPR.msod))         <span class="co"># Yes!</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># Apply cutoff to determine outliers</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co"># ----------------------------------</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">cutoff.msod &lt;-<span class="st"> </span>cutoffs[<span class="dv">2</span>]                              <span class="co"># Just the middle cutoff of 0.01</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">Candidates.msod &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>)[<span class="kw">abs</span>(z)<span class="op">&gt;</span>cutoff.msod]        <span class="co"># Candidate loci at this cutoff</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">TPR.msod &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">is.element</span>(<span class="dv">1</span>, Candidates.msod)) <span class="co"># True positive rate (is the first locus detected?)</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;True positive rate: &quot;</span>, TPR.msod))         <span class="co"># Yes!</span></a></code></pre></div>
 <pre><code>## [1] &quot;True positive rate:  1&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">FPR.msod &lt;-<span class="st"> </span>(<span class="kw">length</span>(Candidates.msod) <span class="op">-</span><span class="st"> </span>TPR.msod)<span class="op">/</span><span class="dv">99</span>    <span class="co"># False pos. rate (# false detections/99 neutral loci)</span>
-<span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;False positive rate: &quot;</span>, <span class="kw">round</span>(FPR.msod, <span class="dv">3</span>)))</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">FPR.msod &lt;-<span class="st"> </span>(<span class="kw">length</span>(Candidates.msod) <span class="op">-</span><span class="st"> </span>TPR.msod)<span class="op">/</span><span class="dv">99</span>    <span class="co"># False pos. rate (# false detections/99 neutral loci)</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;False positive rate: &quot;</span>, <span class="kw">round</span>(FPR.msod, <span class="dv">3</span>)))</a></code></pre></div>
 <pre><code>## [1] &quot;False positive rate:  0.01&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Falsly identified outlier loci (ID): &quot;</span>,
-      <span class="kw">rownames</span>(R.YV)[Candidates.msod[Candidates.msod <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>]])) <span class="co"># One false positive</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Falsly identified outlier loci (ID): &quot;</span>,</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">      <span class="kw">rownames</span>(R.YV)[Candidates.msod[Candidates.msod <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>]])) <span class="co"># One false positive</span></a></code></pre></div>
 <pre><code>## [1] &quot;Falsly identified outlier loci (ID):  L90&quot;</code></pre>
 <p>Notice how true and false positive rates change based on the cutoff. Setting a cutoff and deciding on a correction for multiple tests depends on your question and your tolerance for false positives and false negatives.</p>
 </div>
 <div id="section-3-moran-spectral-randomization-msr" class="section level2">
 <h2>Section 3: Moran spectral randomization (MSR)</h2>
-<p>This step is used as an optional post-MSOD test for association between candidate outliers and environmental predictors. MSR calculates correlations between loci and an environmental predictor while accounting for spatial autocorrelation in both data sets. A randomization approach is used to build a null hypothesis of no correlation, given the power spectra of the candidate outlier and the environmental predictor. See Wagner et al. 2016 for more information on MSR and relevant citations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set a cutoff &amp; number of permutations for MSR</span>
-<span class="co"># ---------------------------------------------</span>
-cutoff.msr &lt;-<span class="st"> </span><span class="fl">0.05</span>    <span class="co"># Set a less stringent cutoff</span>
-nPerm &lt;-<span class="st"> </span><span class="dv">199</span>          <span class="co"># Set number of permutations for MSR test (may choose e.g. 499 or 999)</span>
-
-<span class="co"># MEM correlations for Env and coordinates (as spurious predictors)</span>
-<span class="co"># -----------------------------------------------------------------</span>
-R.XV.Env &lt;-<span class="st"> </span><span class="kw">cor</span>(Env, mem<span class="op">$</span>vectors)
-R.XV.xcoord &lt;-<span class="st"> </span><span class="kw">cor</span>(Coord[,<span class="dv">1</span>], mem<span class="op">$</span>vectors)
-R.XV.ycoord &lt;-<span class="st"> </span><span class="kw">cor</span>(Coord[,<span class="dv">2</span>], mem<span class="op">$</span>vectors)</code></pre></div>
+<p>This step is used as an optional post-MSOD test for association between candidate outliers and environmental predictors. MSR calculates correlations between loci and an environmental predictor while accounting for spatial autocorrelation in both data sets. A randomization approach is used to build a null hypothesis of no correlation, given the power spectra of the candidate outlier and the environmental predictor. See Wagner et al. 2016 for more information on MSR and relevant citations.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># Set a cutoff &amp; number of permutations for MSR</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co"># ---------------------------------------------</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">cutoff.msr &lt;-<span class="st"> </span><span class="fl">0.05</span>    <span class="co"># Set a less stringent cutoff</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">nPerm &lt;-<span class="st"> </span><span class="dv">199</span>          <span class="co"># Set number of permutations for MSR test (may choose e.g. 499 or 999)</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co"># MEM correlations for Env and coordinates (as spurious predictors)</span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co"># -----------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">R.XV.Env &lt;-<span class="st"> </span><span class="kw">cor</span>(Env, mem<span class="op">$</span>vectors)</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9">R.XV.xcoord &lt;-<span class="st"> </span><span class="kw">cor</span>(Coord[,<span class="dv">1</span>], mem<span class="op">$</span>vectors)</a>
+<a class="sourceLine" id="cb13-10" data-line-number="10">R.XV.ycoord &lt;-<span class="st"> </span><span class="kw">cor</span>(Coord[,<span class="dv">2</span>], mem<span class="op">$</span>vectors)</a></code></pre></div>
 <p>For these simulations, we use the UTM coordinates as spurious environmental predictors. You can think of them as environmental variables that are correlated with latitude and longitude. The correct predictor driving selection at the locus under selection (L1) is “Env”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Function to perform MSR test</span>
-<span class="co"># ----------------------------</span>
-get.pvalue.msr &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">r.XV=</span>R.XV, <span class="dt">r.YV=</span>R.YV, <span class="dt">nPerm=</span><span class="dv">199</span>)
-{
-  R.XV.rand &lt;-<span class="st"> </span><span class="kw">matrix</span>(r.XV, nPerm, <span class="kw">ncol</span>(r.XV), <span class="dt">byrow=</span><span class="ot">TRUE</span>) 
-  R.XV.rand &lt;-<span class="st"> </span>R.XV.rand <span class="op">*</span><span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="kw">length</span>(R.XV.rand), <span class="dt">replace=</span><span class="ot">TRUE</span>)
-  Cor.obs &lt;-<span class="st"> </span><span class="kw">abs</span>(<span class="kw">as.vector</span>(r.YV <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(r.XV)))
-  Cor.rand &lt;-<span class="st"> </span><span class="kw">abs</span>(r.YV <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(R.XV.rand))
-  P.values.MSR &lt;-<span class="st"> </span><span class="kw">apply</span>((<span class="kw">cbind</span>(Cor.obs,Cor.rand) <span class="op">&gt;=</span><span class="st"> </span>Cor.obs), <span class="dv">1</span>, mean)
-  P.values.MSR
-}
-
-<span class="co"># MSR test for candidate outlier loci detected by MSOD</span>
-<span class="co"># ----------------------------------------------------</span>
-b.Env &lt;-<span class="st"> </span><span class="kw">get.pvalue.msr</span>(<span class="dt">r.XV=</span>R.XV.Env, <span class="dt">r.YV=</span>R.YV[Candidates.msod,], <span class="dt">nPerm=</span>nPerm)
-b.X &lt;-<span class="st"> </span><span class="kw">get.pvalue.msr</span>(<span class="dt">r.XV=</span>R.XV.xcoord, <span class="dt">r.YV=</span>R.YV[Candidates.msod,], <span class="dt">nPerm=</span>nPerm)
-b.Y &lt;-<span class="st"> </span><span class="kw">get.pvalue.msr</span>(<span class="dt">r.XV=</span>R.XV.ycoord, <span class="dt">r.YV=</span>R.YV[Candidates.msod,], <span class="dt">nPerm=</span>nPerm)
-
-<span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Loci significantly associated with Env: &quot;</span>, <span class="kw">names</span>(b.Env)[b.Env <span class="op">&lt;</span><span class="st"> </span>cutoff.msr]))</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># Function to perform MSR test</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co"># ----------------------------</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">get.pvalue.msr &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">r.XV=</span>R.XV, <span class="dt">r.YV=</span>R.YV, <span class="dt">nPerm=</span><span class="dv">199</span>)</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">  R.XV.rand &lt;-<span class="st"> </span><span class="kw">matrix</span>(r.XV, nPerm, <span class="kw">ncol</span>(r.XV), <span class="dt">byrow=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">  R.XV.rand &lt;-<span class="st"> </span>R.XV.rand <span class="op">*</span><span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="kw">length</span>(R.XV.rand), <span class="dt">replace=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">  Cor.obs &lt;-<span class="st"> </span><span class="kw">abs</span>(<span class="kw">as.vector</span>(r.YV <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(r.XV)))</a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">  Cor.rand &lt;-<span class="st"> </span><span class="kw">abs</span>(r.YV <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(R.XV.rand))</a>
+<a class="sourceLine" id="cb14-9" data-line-number="9">  P.values.MSR &lt;-<span class="st"> </span><span class="kw">apply</span>((<span class="kw">cbind</span>(Cor.obs,Cor.rand) <span class="op">&gt;=</span><span class="st"> </span>Cor.obs), <span class="dv">1</span>, mean)</a>
+<a class="sourceLine" id="cb14-10" data-line-number="10">  P.values.MSR</a>
+<a class="sourceLine" id="cb14-11" data-line-number="11">}</a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co"># MSR test for candidate outlier loci detected by MSOD</span></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co"># ----------------------------------------------------</span></a>
+<a class="sourceLine" id="cb14-15" data-line-number="15">b.Env &lt;-<span class="st"> </span><span class="kw">get.pvalue.msr</span>(<span class="dt">r.XV=</span>R.XV.Env, <span class="dt">r.YV=</span>R.YV[Candidates.msod,], <span class="dt">nPerm=</span>nPerm)</a>
+<a class="sourceLine" id="cb14-16" data-line-number="16">b.X &lt;-<span class="st"> </span><span class="kw">get.pvalue.msr</span>(<span class="dt">r.XV=</span>R.XV.xcoord, <span class="dt">r.YV=</span>R.YV[Candidates.msod,], <span class="dt">nPerm=</span>nPerm)</a>
+<a class="sourceLine" id="cb14-17" data-line-number="17">b.Y &lt;-<span class="st"> </span><span class="kw">get.pvalue.msr</span>(<span class="dt">r.XV=</span>R.XV.ycoord, <span class="dt">r.YV=</span>R.YV[Candidates.msod,], <span class="dt">nPerm=</span>nPerm)</a>
+<a class="sourceLine" id="cb14-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb14-19" data-line-number="19"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Loci significantly associated with Env: &quot;</span>, <span class="kw">names</span>(b.Env)[b.Env <span class="op">&lt;</span><span class="st"> </span>cutoff.msr]))</a></code></pre></div>
 <pre><code>## [1] &quot;Loci significantly associated with Env:  L1&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Loci significantly associated with X: &quot;</span>, <span class="kw">names</span>(b.X)[b.X <span class="op">&lt;</span><span class="st"> </span>cutoff.msr]))</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Loci significantly associated with X: &quot;</span>, <span class="kw">names</span>(b.X)[b.X <span class="op">&lt;</span><span class="st"> </span>cutoff.msr]))</a></code></pre></div>
 <pre><code>## [1] &quot;Loci significantly associated with X:  L90&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Loci significantly associated with Y: &quot;</span>, <span class="kw">names</span>(b.Y)[b.Y <span class="op">&lt;</span><span class="st"> </span>cutoff.msr]))</code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&quot;Loci significantly associated with Y: &quot;</span>, <span class="kw">names</span>(b.Y)[b.Y <span class="op">&lt;</span><span class="st"> </span>cutoff.msr]))</a></code></pre></div>
 <pre><code>## [1] &quot;Loci significantly associated with Y:  L1&quot;</code></pre>
 <p>For this simulation and cutoff, MSOD (Section 2) detected two loci as potentially under selection - one was a correct true positive detection (L1), while the other was a false positive detection (L90). Using MSR (Section 3), we found that our false positive was significantly associated with the spurious “X” predictor, while the true positive detection (L1) was significantly associated with both the driving environmental predictor, “Env”, as well as the spurious “Y” predictor.</p>
 <p>Let’s plot the two detected loci and a random neutral locus to visualize the spatial distribution of alleles across the Gabriel graph. In these plots, individuals with no copies of the reference allele (“0”) are purple, indivdiduals with one copy (heterozygotes, coded “1”) are teal, and individuals with two copies (“2”) are yellow.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot the spatial distribution of alleles</span>
-<span class="co"># ----------------------------------------</span>
-allele_colors &lt;-<span class="st"> </span><span class="kw">viridis</span>(<span class="dv">3</span>)          <span class="co"># Set allele colors</span>
-<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))
-
-<span class="kw">plot</span>(Habitat, <span class="dt">axes=</span>F, <span class="dt">legend=</span>F, <span class="dt">box=</span>F, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;gray70&quot;</span>,<span class="st">&quot;gray98&quot;</span>)) 
-<span class="kw">plot</span>(nb, <span class="dt">coords=</span>Coord, <span class="dt">add=</span>T) 
-<span class="kw">points</span>(Coord, <span class="dt">col =</span> allele_colors[Loci[,<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">pch=</span><span class="dv">20</span>)
-<span class="kw">title</span>(<span class="st">&quot;L1 - True Positive Detection&quot;</span>)
-
-<span class="kw">plot</span>(Habitat, <span class="dt">axes=</span>F, <span class="dt">legend=</span>F, <span class="dt">box=</span>F, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;gray70&quot;</span>,<span class="st">&quot;gray98&quot;</span>))
-<span class="kw">plot</span>(nb, <span class="dt">coords=</span>Coord, <span class="dt">add=</span>T)
-<span class="kw">points</span>(Coord, <span class="dt">col =</span> allele_colors[Loci[,<span class="dv">90</span>] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">pch=</span><span class="dv">20</span>)
-<span class="kw">title</span>(<span class="st">&quot;L90 - False Positive Detection&quot;</span>) 
-
-<span class="kw">plot</span>(Habitat, <span class="dt">axes=</span>F, <span class="dt">legend=</span>F, <span class="dt">box=</span>F, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;gray70&quot;</span>,<span class="st">&quot;gray98&quot;</span>))
-<span class="kw">plot</span>(nb, <span class="dt">coords=</span>Coord, <span class="dt">add=</span>T)
-<span class="kw">points</span>(Coord, <span class="dt">col =</span> allele_colors[Loci[,<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">pch=</span><span class="dv">20</span>)
-<span class="kw">title</span>(<span class="st">&quot;L2 - True Negative Detection&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># Plot the spatial distribution of alleles</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="co"># ----------------------------------------</span></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">allele_colors &lt;-<span class="st"> </span><span class="kw">viridis</span>(<span class="dv">3</span>)          <span class="co"># Set allele colors</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="kw">plot</span>(Habitat, <span class="dt">axes=</span>F, <span class="dt">legend=</span>F, <span class="dt">box=</span>F, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;gray70&quot;</span>,<span class="st">&quot;gray98&quot;</span>)) </a>
+<a class="sourceLine" id="cb20-7" data-line-number="7"><span class="kw">plot</span>(nb, <span class="dt">coords=</span>Coord, <span class="dt">add=</span>T) </a>
+<a class="sourceLine" id="cb20-8" data-line-number="8"><span class="kw">points</span>(Coord, <span class="dt">col =</span> allele_colors[Loci[,<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">pch=</span><span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb20-9" data-line-number="9"><span class="kw">title</span>(<span class="st">&quot;L1 - True Positive Detection&quot;</span>)</a>
+<a class="sourceLine" id="cb20-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb20-11" data-line-number="11"><span class="kw">plot</span>(Habitat, <span class="dt">axes=</span>F, <span class="dt">legend=</span>F, <span class="dt">box=</span>F, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;gray70&quot;</span>,<span class="st">&quot;gray98&quot;</span>))</a>
+<a class="sourceLine" id="cb20-12" data-line-number="12"><span class="kw">plot</span>(nb, <span class="dt">coords=</span>Coord, <span class="dt">add=</span>T)</a>
+<a class="sourceLine" id="cb20-13" data-line-number="13"><span class="kw">points</span>(Coord, <span class="dt">col =</span> allele_colors[Loci[,<span class="dv">90</span>] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">pch=</span><span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb20-14" data-line-number="14"><span class="kw">title</span>(<span class="st">&quot;L90 - False Positive Detection&quot;</span>) </a>
+<a class="sourceLine" id="cb20-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb20-16" data-line-number="16"><span class="kw">plot</span>(Habitat, <span class="dt">axes=</span>F, <span class="dt">legend=</span>F, <span class="dt">box=</span>F, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;gray70&quot;</span>,<span class="st">&quot;gray98&quot;</span>))</a>
+<a class="sourceLine" id="cb20-17" data-line-number="17"><span class="kw">plot</span>(nb, <span class="dt">coords=</span>Coord, <span class="dt">add=</span>T)</a>
+<a class="sourceLine" id="cb20-18" data-line-number="18"><span class="kw">points</span>(Coord, <span class="dt">col =</span> allele_colors[Loci[,<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>], <span class="dt">pch=</span><span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb20-19" data-line-number="19"><span class="kw">title</span>(<span class="st">&quot;L2 - True Negative Detection&quot;</span>)</a></code></pre></div>
 <p><img src="2016-12-13_MEM_outlier_files/figure-html/locus_plots-1.png" width="100%" /></p>
 <p>The association of L1 with habitat is clear (left plot). The correlation of habitat (and allele counts) with the y-axis illustrates why the spurious predictor “Y” is also detected as significantly associated with L1. Note also how individual dispersal (up to 5% of the surface per generation in this simulation) means that individuals with maladapted genotypes will sometimes end up in the wrong habitat type; this is not unusual when selection is moderate and habitat is fragmented.</p>
 <p>The distribution of alleles for L90 (center plot) is coincident with the x-axis, illustrating how detection associated with the spurious predictor “X” produced a false positive in this case. Lastly, the clearly neutral L2 locus (right plot) shows no association with either habitat, latitude, or longitude.</p>
 </div>
 <div id="conclusions" class="section level2">
 <h2>Conclusions</h2>
-<p>In summary, <strong>Moran spectral outlier detection (MSOD)</strong> can be used to reliably identify outlier loci based on their unusual spatial signature, without reference to environmental data. Follow-up analyses using <strong>Moran spectral randomization (MSR)</strong> can be used to identify potential drivers of selection at these candidate loci, while accounting for spatial autocorrelation. These methods can be used on either individual or population-level samples, and are robust to a variety of sampling designs and sample sizes (Wagner et al. 2016).</p>
+<p>In summary, <strong>Moran spectral outlier detection (MSOD)</strong> can be used to reliably identify outlier loci based on their unusual spatial signature, without reference to environmental data. Follow-up analyses using <strong>Moran spectral randomization (MSR)</strong> can be used to identify potential drivers of selection at these candidate loci, while accounting for spatial autocorrelation. These methods can be used on either individual or population-level samples, and are robust to a variety of sampling designs and sample sizes (Wagner et al. 2016).</p>
 </div>
 <div id="contributors" class="section level2">
 <h2>Contributors</h2>
@@ -511,116 +629,130 @@ allele_colors &lt;-<span class="st"> </span><span class="kw">viridis</span>(<spa
 </div>
 <div id="session-information" class="section level2">
 <h2>Session Information</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
-<pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  setting  value                       
-##  version  R version 3.5.0 (2018-04-23)
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">session_info</span>()</a></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────
+##  setting  value                       
+##  version  R version 3.6.0 (2019-04-26)
+##  os       Debian GNU/Linux 9 (stretch)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
+##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2018-06-07</code></pre>
-<pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  package      * version   date       source        
-##  ade4           1.7-11    2018-04-05 CRAN (R 3.5.0)
-##  adegenet       2.1.1     2018-02-02 CRAN (R 3.5.0)
-##  adegraphics    1.0-10    2018-04-05 CRAN (R 3.5.0)
-##  adephylo       1.1-11    2017-12-18 CRAN (R 3.5.0)
-##  adespatial   * 0.2-0     2018-05-23 CRAN (R 3.5.0)
-##  ape            5.1       2018-04-04 CRAN (R 3.5.0)
-##  assertthat     0.2.0     2017-04-11 CRAN (R 3.5.0)
-##  backports      1.1.2     2017-12-13 CRAN (R 3.5.0)
-##  base         * 3.5.0     2018-06-07 local         
-##  bindr          0.1.1     2018-03-13 CRAN (R 3.5.0)
-##  bindrcpp       0.2.2     2018-03-29 CRAN (R 3.5.0)
-##  boot           1.3-20    2017-07-30 CRAN (R 3.5.0)
-##  cluster        2.0.7-1   2018-04-09 CRAN (R 3.5.0)
-##  coda           0.19-1    2016-12-08 CRAN (R 3.5.0)
-##  colorspace     1.3-2     2016-12-14 CRAN (R 3.5.0)
-##  compiler       3.5.0     2018-06-07 local         
-##  datasets     * 3.5.0     2018-06-07 local         
-##  deldir         0.1-15    2018-04-01 CRAN (R 3.5.0)
-##  devtools       1.13.5    2018-02-18 CRAN (R 3.5.0)
-##  digest         0.6.15    2018-01-28 CRAN (R 3.5.0)
-##  dplyr          0.7.5     2018-05-19 CRAN (R 3.5.0)
-##  evaluate       0.10.1    2017-06-24 CRAN (R 3.5.0)
-##  expm           0.999-2   2017-03-29 CRAN (R 3.5.0)
-##  gdata          2.18.0    2017-06-06 CRAN (R 3.5.0)
-##  ggplot2        2.2.1     2016-12-30 CRAN (R 3.5.0)
-##  glue           1.2.0     2017-10-29 CRAN (R 3.5.0)
-##  gmodels        2.16.2    2015-07-22 CRAN (R 3.5.0)
-##  graphics     * 3.5.0     2018-06-07 local         
-##  grDevices    * 3.5.0     2018-06-07 local         
-##  grid           3.5.0     2018-06-07 local         
-##  gridExtra      2.3       2017-09-09 CRAN (R 3.5.0)
-##  gtable         0.2.0     2016-02-26 CRAN (R 3.5.0)
-##  gtools         3.5.0     2015-05-29 CRAN (R 3.5.0)
-##  htmltools      0.3.6     2017-04-28 CRAN (R 3.5.0)
-##  httpuv         1.4.3     2018-05-10 CRAN (R 3.5.0)
-##  httr           1.3.1     2017-08-20 CRAN (R 3.5.0)
-##  igraph         1.2.1     2018-03-10 CRAN (R 3.5.0)
-##  KernSmooth     2.23-15   2015-06-29 CRAN (R 3.5.0)
-##  knitr          1.20      2018-02-20 CRAN (R 3.5.0)
-##  later          0.7.2     2018-05-01 CRAN (R 3.5.0)
-##  lattice        0.20-35   2017-03-25 CRAN (R 3.5.0)
-##  latticeExtra   0.6-28    2016-02-09 CRAN (R 3.5.0)
-##  lazyeval       0.2.1     2017-10-29 CRAN (R 3.5.0)
-##  LearnBayes     2.15.1    2018-03-18 CRAN (R 3.5.0)
-##  magrittr       1.5       2014-11-22 CRAN (R 3.5.0)
-##  MASS           7.3-50    2018-04-30 CRAN (R 3.5.0)
-##  Matrix       * 1.2-14    2018-04-09 CRAN (R 3.5.0)
-##  memoise        1.1.0     2017-04-21 CRAN (R 3.5.0)
-##  methods      * 3.5.0     2018-06-07 local         
-##  mgcv           1.8-23    2018-01-15 CRAN (R 3.5.0)
-##  mime           0.5       2016-07-07 CRAN (R 3.5.0)
-##  munsell        0.4.3     2016-02-13 CRAN (R 3.5.0)
-##  nlme           3.1-137   2018-04-07 CRAN (R 3.5.0)
-##  parallel       3.5.0     2018-06-07 local         
-##  permute        0.9-4     2016-09-09 CRAN (R 3.5.0)
-##  phylobase      0.8.4     2017-04-21 CRAN (R 3.5.0)
-##  pillar         1.2.3     2018-05-25 CRAN (R 3.5.0)
-##  pkgconfig      2.0.1     2017-03-21 CRAN (R 3.5.0)
-##  plyr           1.8.4     2016-06-08 CRAN (R 3.5.0)
-##  prettyunits    1.0.2     2015-07-13 CRAN (R 3.5.0)
-##  progress       1.1.2     2016-12-14 CRAN (R 3.5.0)
-##  promises       1.0.1     2018-04-13 CRAN (R 3.5.0)
-##  purrr          0.2.5     2018-05-29 CRAN (R 3.5.0)
-##  R6             2.2.2     2017-06-17 CRAN (R 3.5.0)
-##  raster       * 2.6-7     2017-11-13 CRAN (R 3.5.0)
-##  RColorBrewer   1.1-2     2014-12-07 CRAN (R 3.5.0)
-##  Rcpp           0.12.17   2018-05-18 CRAN (R 3.5.0)
-##  reshape2       1.4.3     2017-12-11 CRAN (R 3.5.0)
-##  rlang          0.2.1     2018-05-30 CRAN (R 3.5.0)
-##  rmarkdown      1.9       2018-03-01 CRAN (R 3.5.0)
-##  rncl           0.8.2     2016-12-16 CRAN (R 3.5.0)
-##  RNeXML         2.1.1     2018-05-07 CRAN (R 3.5.0)
-##  rprojroot      1.3-2     2018-01-03 CRAN (R 3.5.0)
-##  scales         0.5.0     2017-08-24 CRAN (R 3.5.0)
-##  seqinr         3.4-5     2017-08-01 CRAN (R 3.5.0)
-##  shiny          1.1.0     2018-05-17 CRAN (R 3.5.0)
-##  sp           * 1.3-1     2018-06-05 CRAN (R 3.5.0)
-##  spData       * 0.2.8.3   2018-03-25 CRAN (R 3.5.0)
-##  spdep        * 0.7-7     2018-04-03 CRAN (R 3.5.0)
-##  splines        3.5.0     2018-06-07 local         
-##  stats        * 3.5.0     2018-06-07 local         
-##  stringi        1.2.2     2018-05-02 CRAN (R 3.5.0)
-##  stringr        1.3.1     2018-05-10 CRAN (R 3.5.0)
-##  tibble         1.4.2     2018-01-22 CRAN (R 3.5.0)
-##  tidyr          0.8.1     2018-05-18 CRAN (R 3.5.0)
-##  tidyselect     0.2.4     2018-02-26 CRAN (R 3.5.0)
-##  tools          3.5.0     2018-06-07 local         
-##  utils        * 3.5.0     2018-06-07 local         
-##  uuid           0.1-2     2015-07-28 CRAN (R 3.5.0)
-##  vegan          2.5-2     2018-05-17 CRAN (R 3.5.0)
-##  viridis      * 0.5.1     2018-03-29 CRAN (R 3.5.0)
-##  viridisLite  * 0.3.0     2018-02-01 CRAN (R 3.5.0)
-##  withr          2.1.2     2018-03-15 CRAN (R 3.5.0)
-##  XML            3.98-1.11 2018-04-16 CRAN (R 3.5.0)
-##  xml2           1.2.0     2018-01-24 CRAN (R 3.5.0)
-##  xtable         1.8-2     2016-02-05 CRAN (R 3.5.0)
-##  yaml           2.1.19    2018-05-01 CRAN (R 3.5.0)</code></pre>
+##  date     2019-05-11                  
+## 
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────
+##  package      * version   date       lib source        
+##  ade4           1.7-13    2018-08-31 [1] CRAN (R 3.6.0)
+##  adegenet       2.1.1     2018-02-02 [1] CRAN (R 3.6.0)
+##  adegraphics    1.0-15    2018-12-18 [1] CRAN (R 3.6.0)
+##  adephylo       1.1-11    2017-12-18 [1] CRAN (R 3.6.0)
+##  adespatial   * 0.3-4     2019-02-27 [1] CRAN (R 3.6.0)
+##  ape            5.3       2019-03-17 [1] CRAN (R 3.6.0)
+##  assertthat     0.2.1     2019-03-21 [1] CRAN (R 3.6.0)
+##  backports      1.1.4     2019-04-10 [1] CRAN (R 3.6.0)
+##  boot           1.3-22    2019-04-02 [2] CRAN (R 3.6.0)
+##  callr          3.2.0     2019-03-15 [1] CRAN (R 3.6.0)
+##  class          7.3-15    2019-01-01 [2] CRAN (R 3.6.0)
+##  classInt       0.3-3     2019-04-26 [1] CRAN (R 3.6.0)
+##  cli            1.1.0     2019-03-19 [1] CRAN (R 3.6.0)
+##  cluster        2.0.8     2019-04-05 [2] CRAN (R 3.6.0)
+##  coda           0.19-2    2018-10-08 [1] CRAN (R 3.6.0)
+##  codetools      0.2-16    2018-12-24 [2] CRAN (R 3.6.0)
+##  colorspace     1.4-1     2019-03-18 [1] CRAN (R 3.6.0)
+##  crayon         1.3.4     2017-09-16 [1] CRAN (R 3.6.0)
+##  DBI            1.0.0     2018-05-02 [1] CRAN (R 3.6.0)
+##  deldir         0.1-16    2019-01-04 [1] CRAN (R 3.6.0)
+##  desc           1.2.0     2018-05-01 [1] CRAN (R 3.6.0)
+##  devtools       2.0.2     2019-04-08 [1] CRAN (R 3.6.0)
+##  digest         0.6.18    2018-10-10 [1] CRAN (R 3.6.0)
+##  dplyr          0.8.0.1   2019-02-15 [1] CRAN (R 3.6.0)
+##  e1071          1.7-1     2019-03-19 [1] CRAN (R 3.6.0)
+##  evaluate       0.13      2019-02-12 [1] CRAN (R 3.6.0)
+##  expm           0.999-4   2019-03-21 [1] CRAN (R 3.6.0)
+##  fs             1.3.1     2019-05-06 [1] CRAN (R 3.6.0)
+##  gdata          2.18.0    2017-06-06 [1] CRAN (R 3.6.0)
+##  ggplot2        3.1.1     2019-04-07 [1] CRAN (R 3.6.0)
+##  glue           1.3.1     2019-03-12 [1] CRAN (R 3.6.0)
+##  gmodels        2.18.1    2018-06-25 [1] CRAN (R 3.6.0)
+##  gridExtra      2.3       2017-09-09 [1] CRAN (R 3.6.0)
+##  gtable         0.3.0     2019-03-25 [1] CRAN (R 3.6.0)
+##  gtools         3.8.1     2018-06-26 [1] CRAN (R 3.6.0)
+##  hms            0.4.2     2018-03-10 [1] CRAN (R 3.6.0)
+##  htmltools      0.3.6     2017-04-28 [1] CRAN (R 3.6.0)
+##  httpuv         1.5.1     2019-04-05 [1] CRAN (R 3.6.0)
+##  httr           1.4.0     2018-12-11 [1] CRAN (R 3.6.0)
+##  igraph         1.2.4.1   2019-04-22 [1] CRAN (R 3.6.0)
+##  KernSmooth     2.23-15   2015-06-29 [2] CRAN (R 3.6.0)
+##  knitr          1.22      2019-03-08 [1] CRAN (R 3.6.0)
+##  later          0.8.0     2019-02-11 [1] CRAN (R 3.6.0)
+##  lattice        0.20-38   2018-11-04 [2] CRAN (R 3.6.0)
+##  latticeExtra   0.6-28    2016-02-09 [1] CRAN (R 3.6.0)
+##  lazyeval       0.2.2     2019-03-15 [1] CRAN (R 3.6.0)
+##  LearnBayes     2.15.1    2018-03-18 [1] CRAN (R 3.6.0)
+##  magrittr       1.5       2014-11-22 [1] CRAN (R 3.6.0)
+##  MASS           7.3-51.4  2019-03-31 [2] CRAN (R 3.6.0)
+##  Matrix         1.2-17    2019-03-22 [2] CRAN (R 3.6.0)
+##  memoise        1.1.0     2017-04-21 [1] CRAN (R 3.6.0)
+##  mgcv           1.8-28    2019-03-21 [2] CRAN (R 3.6.0)
+##  mime           0.6       2018-10-05 [1] CRAN (R 3.6.0)
+##  munsell        0.5.0     2018-06-12 [1] CRAN (R 3.6.0)
+##  nlme           3.1-139   2019-04-09 [2] CRAN (R 3.6.0)
+##  permute        0.9-5     2019-03-12 [1] CRAN (R 3.6.0)
+##  phylobase      0.8.6     2019-02-02 [1] CRAN (R 3.6.0)
+##  pillar         1.3.1     2018-12-15 [1] CRAN (R 3.6.0)
+##  pkgbuild       1.0.3     2019-03-20 [1] CRAN (R 3.6.0)
+##  pkgconfig      2.0.2     2018-08-16 [1] CRAN (R 3.6.0)
+##  pkgload        1.0.2     2018-10-29 [1] CRAN (R 3.6.0)
+##  plyr           1.8.4     2016-06-08 [1] CRAN (R 3.6.0)
+##  prettyunits    1.0.2     2015-07-13 [1] CRAN (R 3.6.0)
+##  processx       3.3.1     2019-05-08 [1] CRAN (R 3.6.0)
+##  progress       1.2.0     2018-06-14 [1] CRAN (R 3.6.0)
+##  promises       1.0.1     2018-04-13 [1] CRAN (R 3.6.0)
+##  ps             1.3.0     2018-12-21 [1] CRAN (R 3.6.0)
+##  purrr          0.3.2     2019-03-15 [1] CRAN (R 3.6.0)
+##  R6             2.4.0     2019-02-14 [1] CRAN (R 3.6.0)
+##  raster       * 2.8-19    2019-01-30 [1] CRAN (R 3.6.0)
+##  RColorBrewer   1.1-2     2014-12-07 [1] CRAN (R 3.6.0)
+##  Rcpp           1.0.1     2019-03-17 [1] CRAN (R 3.6.0)
+##  remotes        2.0.4     2019-04-10 [1] CRAN (R 3.6.0)
+##  reshape2       1.4.3     2017-12-11 [1] CRAN (R 3.6.0)
+##  rlang          0.3.4     2019-04-07 [1] CRAN (R 3.6.0)
+##  rmarkdown      1.12      2019-03-14 [1] CRAN (R 3.6.0)
+##  rncl           0.8.3     2018-07-27 [1] CRAN (R 3.6.0)
+##  RNeXML         2.3.0     2019-01-24 [1] CRAN (R 3.6.0)
+##  rprojroot      1.3-2     2018-01-03 [1] CRAN (R 3.6.0)
+##  scales         1.0.0     2018-08-09 [1] CRAN (R 3.6.0)
+##  seqinr         3.4-5     2017-08-01 [1] CRAN (R 3.6.0)
+##  sessioninfo    1.1.1     2018-11-05 [1] CRAN (R 3.6.0)
+##  sf           * 0.7-4     2019-04-25 [1] CRAN (R 3.6.0)
+##  shiny          1.3.2     2019-04-22 [1] CRAN (R 3.6.0)
+##  sp           * 1.3-1     2018-06-05 [1] CRAN (R 3.6.0)
+##  spData       * 0.3.0     2019-01-07 [1] CRAN (R 3.6.0)
+##  spdep        * 1.1-2     2019-04-05 [1] CRAN (R 3.6.0)
+##  stringi        1.4.3     2019-03-12 [1] CRAN (R 3.6.0)
+##  stringr        1.4.0     2019-02-10 [1] CRAN (R 3.6.0)
+##  testthat       2.1.1     2019-04-23 [1] CRAN (R 3.6.0)
+##  tibble         2.1.1     2019-03-16 [1] CRAN (R 3.6.0)
+##  tidyr          0.8.3     2019-03-01 [1] CRAN (R 3.6.0)
+##  tidyselect     0.2.5     2018-10-11 [1] CRAN (R 3.6.0)
+##  units          0.6-3     2019-05-03 [1] CRAN (R 3.6.0)
+##  usethis        1.5.0     2019-04-07 [1] CRAN (R 3.6.0)
+##  uuid           0.1-2     2015-07-28 [1] CRAN (R 3.6.0)
+##  vegan          2.5-4     2019-02-04 [1] CRAN (R 3.6.0)
+##  viridis      * 0.5.1     2018-03-29 [1] CRAN (R 3.6.0)
+##  viridisLite  * 0.3.0     2018-02-01 [1] CRAN (R 3.6.0)
+##  withr          2.1.2     2018-03-15 [1] CRAN (R 3.6.0)
+##  xfun           0.6       2019-04-02 [1] CRAN (R 3.6.0)
+##  XML            3.98-1.19 2019-03-06 [1] CRAN (R 3.6.0)
+##  xml2           1.2.0     2018-01-24 [1] CRAN (R 3.6.0)
+##  xtable         1.8-4     2019-04-21 [1] CRAN (R 3.6.0)
+##  yaml           2.2.0     2018-07-25 [1] CRAN (R 3.6.0)
+## 
+## [1] /usr/local/lib/R/site-library
+## [2] /usr/local/lib/R/library</code></pre>
 </div>
 
 <!-- </div>

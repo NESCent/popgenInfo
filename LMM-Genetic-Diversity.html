@@ -93,43 +93,90 @@ body {
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -165,9 +212,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -186,25 +231,98 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -334,7 +452,7 @@ $(document).ready(function () {
 <h1>Resources</h1>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<p>As an example we’ll use the comparison in Allelic Richness among populations of the orchid bee <em>Euglossa dilemma</em> in the Yucatan peninsula (Soro et al. submitted). Specifically we ask whether the magnitute of isolation could affect the genetic diversity of <em>E. dilemma</em>.The 24 sites where populations were sampled were assigned to 4 categories corresponding to different habitats:</p>
+<p>As an example we’ll use the comparison in Allelic Richness among populations of the orchid bee <em>Euglossa dilemma</em> in the Yucatan peninsula (Soro et al. submitted). Specifically we ask whether the magnitute of isolation could affect the genetic diversity of <em>E. dilemma</em>.The 24 sites where populations were sampled were assigned to 4 categories corresponding to different habitats:</p>
 <ol style="list-style-type: decimal">
 <li>Natural (N)</li>
 <li>Disturbed (D)</li>
@@ -352,9 +470,9 @@ $(document).ready(function () {
 <li><em>MuMIn</em>: Package mainly used for model selection and model averaging based on information criteria. Here we use the <code>r.squaredGLMM()</code> function to calculate conditional and marginal coefficient of determination.</li>
 <li><em>multcomp</em>: Package used for simultaneous inference in general parametric models. The <code>glht()</code> function can be used for multiple comparisons in linear mixed effects models.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;lme4&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;MuMIn&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;multcomp&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;lme4&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;MuMIn&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;multcomp&quot;</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="analysis" class="section level1">
@@ -362,8 +480,8 @@ $(document).ready(function () {
 <div id="section-1-load-the-data" class="section level2">
 <h2>Section 1: Load the data</h2>
 <p>At first we need to load our dataset. We will import “GenDivEuglossa.txt”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GenDivEuglossa &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;GenDivEuglossa.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(GenDivEuglossa)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">GenDivEuglossa &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;GenDivEuglossa.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">summary</span>(GenDivEuglossa)</a></code></pre></div>
 <pre><code>##                                      Locality    Locus    Habitat
 ##  Bethania_N_Campeche                     : 5   ann04:24   C:25   
 ##  CampecheCity_C_Campeche                 : 5   ann08:24   D:50   
@@ -380,7 +498,7 @@ $(document).ready(function () {
 ##  3rd Qu.: 6.143  
 ##  Max.   :12.820  
 ## </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(GenDivEuglossa)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">str</span>(GenDivEuglossa)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    120 obs. of  4 variables:
 ##  $ Locality       : Factor w/ 24 levels &quot;Bethania_N_Campeche&quot;,..: 6 6 6 6 6 14 14 14 14 14 ...
 ##  $ Locus          : Factor w/ 5 levels &quot;ann04&quot;,&quot;ann08&quot;,..: 5 4 3 1 2 5 4 3 1 2 ...
@@ -391,8 +509,8 @@ $(document).ready(function () {
 <h2>Section 2: Data analysis/Checking assumptions</h2>
 <p>Second, we build our model using the function <code>lmer()</code> from the <em>lme4</em> package. With this command, we create a model with Allelic Richness as response with habitat and locus as fixed and random effects factors respectively. We modeled “habitat” as fixed because the four levels we chose (Natural, Disturbed, City and Island) correspond to four levels of progressive level of “isolation”, whose effect on the genetic diversity of <em>E. dilemma</em>, we are interested in. Locus is our random factor since we are only interested to account for its variation. Locus has bee modeled as random because the five markers we used are a random sample of the theoretically many markers we could have used.</p>
 <p>Now lets look at the summary of our model. First we get several measures of model fit, including AIC, BIC, log likelihood and deviance. Then we get an estimate of the variance explained by the random effect (Locus). As you can see it is quite different from zero and thus important for our model. Next we have estimates of the fixed effects, with standard errors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelMANAG &lt;-<span class="st"> </span><span class="kw">lmer</span>(AllelicRichness <span class="op">~</span><span class="st"> </span>Habitat <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Locus), GenDivEuglossa, <span class="dt">REML =</span> <span class="ot">FALSE</span>)
-<span class="kw">summary</span>(modelMANAG)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">modelMANAG &lt;-<span class="st"> </span><span class="kw">lmer</span>(AllelicRichness <span class="op">~</span><span class="st"> </span>Habitat <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Locus), GenDivEuglossa, <span class="dt">REML =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">summary</span>(modelMANAG)</a></code></pre></div>
 <pre><code>## Linear mixed model fit by maximum likelihood  [&#39;lmerMod&#39;]
 ## Formula: AllelicRichness ~ Habitat + (1 | Locus)
 ##    Data: GenDivEuglossa
@@ -423,15 +541,15 @@ $(document).ready(function () {
 ## HabitatI -0.046  0.436       
 ## HabitatN -0.065  0.624  0.408</code></pre>
 <p>Now, we check our model assumptions. We check for normality and homogeneity by inspecting the residual plot. This plot depicts fitted values on the x-axis and residuals on the y-axis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(modelMANAG)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">plot</span>(modelMANAG)</a></code></pre></div>
 <p><img src="LMM-Genetic-Diversity_files/figure-html/unnamed-chunk-5-1.png" width="960" /></p>
 </div>
 <div id="section-3-summary-statistics" class="section level2">
 <h2>Section 3: Summary statistics</h2>
 <p>In order to test the effect of our fixed factor ‘Habitat’, we run a likelihood ratio test, comparing our model (modelMANAG), which includes the fixed factor “Habitat”, with a model (modelNULL) that excludes it.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelMANAG&lt;-<span class="kw">lmer</span>(AllelicRichness <span class="op">~</span><span class="st"> </span>Habitat <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Locus), GenDivEuglossa, <span class="dt">REML =</span> <span class="ot">FALSE</span>)
-modelNULL&lt;-<span class="kw">lmer</span>(AllelicRichness <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Locus), GenDivEuglossa, <span class="dt">REML =</span> <span class="ot">FALSE</span>)
-<span class="kw">anova</span>(modelMANAG, modelNULL)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">modelMANAG&lt;-<span class="kw">lmer</span>(AllelicRichness <span class="op">~</span><span class="st"> </span>Habitat <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Locus), GenDivEuglossa, <span class="dt">REML =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">modelNULL&lt;-<span class="kw">lmer</span>(AllelicRichness <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Locus), GenDivEuglossa, <span class="dt">REML =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">anova</span>(modelMANAG, modelNULL)</a></code></pre></div>
 <pre><code>## Data: GenDivEuglossa
 ## Models:
 ## modelNULL: AllelicRichness ~ 1 + (1 | Locus)
@@ -442,12 +560,14 @@ modelNULL&lt;-<span class="kw">lmer</span>(AllelicRichness <span class="op">~</s
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>As a goodness of fit measure of our model, we computed both the conditional and marginal coefficient of determination. We quantify the variance accounted by “Habitat” alone (marginal R2 (Nakagawa and Schielzeth 2013)) and the variance accounted for by marker variability (conditional R2 (Nakagawa and Schielzeth 2013)).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">r.squaredGLMM</span>(modelMANAG)</code></pre></div>
-<pre><code>##         R2m         R2c 
-## 0.003800717 0.964593519</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">r.squaredGLMM</span>(modelMANAG)</a></code></pre></div>
+<pre><code>## Warning: &#39;r.squaredGLMM&#39; now calculates a revised statistic. See the help
+## page.</code></pre>
+<pre><code>##              R2m       R2c
+## [1,] 0.003800714 0.9645935</code></pre>
 <p>Finally we test for differences in Allelic Richness among different habitat types by Tukey HSD post-hoc comparisons. From the results we see that <em>E. dilemma</em> is particularly resilient to loss of natural habitat and only on islands did <em>E. dilemma</em> show significantly reduced genetic diversity.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">posthoc &lt;-<span class="st"> </span><span class="kw">glht</span>(modelMANAG, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">Habitat =</span> <span class="st">&quot;Tukey&quot;</span>))
-<span class="kw">summary</span>(posthoc)</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">posthoc &lt;-<span class="st"> </span><span class="kw">glht</span>(modelMANAG, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">Habitat =</span> <span class="st">&quot;Tukey&quot;</span>))</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">summary</span>(posthoc)</a></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -460,10 +580,10 @@ modelNULL&lt;-<span class="kw">lmer</span>(AllelicRichness <span class="op">~</s
 ## Linear Hypotheses:
 ##            Estimate Std. Error z value Pr(&gt;|z|)   
 ## D - C == 0  -0.0312     0.1546  -0.202  0.99698   
-## I - C == 0  -0.6464     0.2362  -2.737  0.03043 * 
-## N - C == 0   0.1613     0.1653   0.976  0.75671   
-## I - D == 0  -0.6152     0.2187  -2.813  0.02420 * 
-## N - D == 0   0.1925     0.1391   1.384  0.50001   
+## I - C == 0  -0.6464     0.2362  -2.737  0.03031 * 
+## N - C == 0   0.1613     0.1653   0.976  0.75670   
+## I - D == 0  -0.6152     0.2187  -2.813  0.02385 * 
+## N - D == 0   0.1925     0.1391   1.384  0.50007   
 ## N - I == 0   0.8077     0.2264   3.568  0.00185 **
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
@@ -495,61 +615,75 @@ modelNULL&lt;-<span class="kw">lmer</span>(AllelicRichness <span class="op">~</s
 <div id="session-information" class="section level1">
 <h1>Session Information</h1>
 <p>This shows us useful information for reproducibility. Of particular importance are the versions of R and the packages used to create this workflow. It is considered good practice to record this information with every analysis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)
-devtools<span class="op">::</span><span class="kw">session_info</span>()</code></pre></div>
-<pre><code>## Session info --------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  setting  value                       
-##  version  R version 3.5.0 (2018-04-23)
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">session_info</span>()</a></code></pre></div>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────
+##  setting  value                       
+##  version  R version 3.6.0 (2019-04-26)
+##  os       Debian GNU/Linux 9 (stretch)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
+##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2018-06-07</code></pre>
-<pre><code>## Packages ------------------------------------------------------------------------------------------</code></pre>
-<pre><code>##  package   * version date       source        
-##  backports   1.1.2   2017-12-13 CRAN (R 3.5.0)
-##  base      * 3.5.0   2018-06-07 local         
-##  codetools   0.2-15  2016-10-05 CRAN (R 3.5.0)
-##  compiler    3.5.0   2018-06-07 local         
-##  datasets  * 3.5.0   2018-06-07 local         
-##  devtools    1.13.5  2018-02-18 CRAN (R 3.5.0)
-##  digest      0.6.15  2018-01-28 CRAN (R 3.5.0)
-##  evaluate    0.10.1  2017-06-24 CRAN (R 3.5.0)
-##  graphics  * 3.5.0   2018-06-07 local         
-##  grDevices * 3.5.0   2018-06-07 local         
-##  grid        3.5.0   2018-06-07 local         
-##  htmltools   0.3.6   2017-04-28 CRAN (R 3.5.0)
-##  knitr       1.20    2018-02-20 CRAN (R 3.5.0)
-##  lattice     0.20-35 2017-03-25 CRAN (R 3.5.0)
-##  lme4      * 1.1-17  2018-04-03 CRAN (R 3.5.0)
-##  magrittr    1.5     2014-11-22 CRAN (R 3.5.0)
-##  MASS      * 7.3-50  2018-04-30 CRAN (R 3.5.0)
-##  Matrix    * 1.2-14  2018-04-09 CRAN (R 3.5.0)
-##  memoise     1.1.0   2017-04-21 CRAN (R 3.5.0)
-##  methods   * 3.5.0   2018-06-07 local         
-##  minqa       1.2.4   2014-10-09 CRAN (R 3.5.0)
-##  multcomp  * 1.4-8   2017-11-08 CRAN (R 3.5.0)
-##  MuMIn     * 1.40.4  2018-01-30 CRAN (R 3.5.0)
-##  mvtnorm   * 1.0-8   2018-05-31 CRAN (R 3.5.0)
-##  nlme        3.1-137 2018-04-07 CRAN (R 3.5.0)
-##  nloptr      1.0.4   2017-08-22 CRAN (R 3.5.0)
-##  Rcpp        0.12.17 2018-05-18 CRAN (R 3.5.0)
-##  rmarkdown   1.9     2018-03-01 CRAN (R 3.5.0)
-##  rprojroot   1.3-2   2018-01-03 CRAN (R 3.5.0)
-##  sandwich    2.4-0   2017-07-26 CRAN (R 3.5.0)
-##  splines     3.5.0   2018-06-07 local         
-##  stats     * 3.5.0   2018-06-07 local         
-##  stats4      3.5.0   2018-06-07 local         
-##  stringi     1.2.2   2018-05-02 CRAN (R 3.5.0)
-##  stringr     1.3.1   2018-05-10 CRAN (R 3.5.0)
-##  survival  * 2.42-3  2018-04-16 CRAN (R 3.5.0)
-##  TH.data   * 1.0-8   2017-01-23 CRAN (R 3.5.0)
-##  tools       3.5.0   2018-06-07 local         
-##  utils     * 3.5.0   2018-06-07 local         
-##  withr       2.1.2   2018-03-15 CRAN (R 3.5.0)
-##  yaml        2.1.19  2018-05-01 CRAN (R 3.5.0)
-##  zoo         1.8-1   2018-01-08 CRAN (R 3.5.0)</code></pre>
+##  date     2019-05-11                  
+## 
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────
+##  package     * version  date       lib source        
+##  assertthat    0.2.1    2019-03-21 [1] CRAN (R 3.6.0)
+##  backports     1.1.4    2019-04-10 [1] CRAN (R 3.6.0)
+##  boot          1.3-22   2019-04-02 [2] CRAN (R 3.6.0)
+##  callr         3.2.0    2019-03-15 [1] CRAN (R 3.6.0)
+##  cli           1.1.0    2019-03-19 [1] CRAN (R 3.6.0)
+##  codetools     0.2-16   2018-12-24 [2] CRAN (R 3.6.0)
+##  crayon        1.3.4    2017-09-16 [1] CRAN (R 3.6.0)
+##  desc          1.2.0    2018-05-01 [1] CRAN (R 3.6.0)
+##  devtools      2.0.2    2019-04-08 [1] CRAN (R 3.6.0)
+##  digest        0.6.18   2018-10-10 [1] CRAN (R 3.6.0)
+##  evaluate      0.13     2019-02-12 [1] CRAN (R 3.6.0)
+##  fs            1.3.1    2019-05-06 [1] CRAN (R 3.6.0)
+##  glue          1.3.1    2019-03-12 [1] CRAN (R 3.6.0)
+##  htmltools     0.3.6    2017-04-28 [1] CRAN (R 3.6.0)
+##  knitr         1.22     2019-03-08 [1] CRAN (R 3.6.0)
+##  lattice       0.20-38  2018-11-04 [2] CRAN (R 3.6.0)
+##  lme4        * 1.1-21   2019-03-05 [1] CRAN (R 3.6.0)
+##  magrittr      1.5      2014-11-22 [1] CRAN (R 3.6.0)
+##  MASS        * 7.3-51.4 2019-03-31 [2] CRAN (R 3.6.0)
+##  Matrix      * 1.2-17   2019-03-22 [2] CRAN (R 3.6.0)
+##  memoise       1.1.0    2017-04-21 [1] CRAN (R 3.6.0)
+##  minqa         1.2.4    2014-10-09 [1] CRAN (R 3.6.0)
+##  multcomp    * 1.4-10   2019-03-05 [1] CRAN (R 3.6.0)
+##  MuMIn       * 1.43.6   2019-04-09 [1] CRAN (R 3.6.0)
+##  mvtnorm     * 1.0-10   2019-03-05 [1] CRAN (R 3.6.0)
+##  nlme          3.1-139  2019-04-09 [2] CRAN (R 3.6.0)
+##  nloptr        1.2.1    2018-10-03 [1] CRAN (R 3.6.0)
+##  pkgbuild      1.0.3    2019-03-20 [1] CRAN (R 3.6.0)
+##  pkgload       1.0.2    2018-10-29 [1] CRAN (R 3.6.0)
+##  prettyunits   1.0.2    2015-07-13 [1] CRAN (R 3.6.0)
+##  processx      3.3.1    2019-05-08 [1] CRAN (R 3.6.0)
+##  ps            1.3.0    2018-12-21 [1] CRAN (R 3.6.0)
+##  R6            2.4.0    2019-02-14 [1] CRAN (R 3.6.0)
+##  Rcpp          1.0.1    2019-03-17 [1] CRAN (R 3.6.0)
+##  remotes       2.0.4    2019-04-10 [1] CRAN (R 3.6.0)
+##  rlang         0.3.4    2019-04-07 [1] CRAN (R 3.6.0)
+##  rmarkdown     1.12     2019-03-14 [1] CRAN (R 3.6.0)
+##  rprojroot     1.3-2    2018-01-03 [1] CRAN (R 3.6.0)
+##  sandwich      2.5-1    2019-04-06 [1] CRAN (R 3.6.0)
+##  sessioninfo   1.1.1    2018-11-05 [1] CRAN (R 3.6.0)
+##  stringi       1.4.3    2019-03-12 [1] CRAN (R 3.6.0)
+##  stringr       1.4.0    2019-02-10 [1] CRAN (R 3.6.0)
+##  survival    * 2.44-1.1 2019-04-01 [2] CRAN (R 3.6.0)
+##  testthat      2.1.1    2019-04-23 [1] CRAN (R 3.6.0)
+##  TH.data     * 1.0-10   2019-01-21 [1] CRAN (R 3.6.0)
+##  usethis       1.5.0    2019-04-07 [1] CRAN (R 3.6.0)
+##  withr         2.1.2    2018-03-15 [1] CRAN (R 3.6.0)
+##  xfun          0.6      2019-04-02 [1] CRAN (R 3.6.0)
+##  yaml          2.2.0    2018-07-25 [1] CRAN (R 3.6.0)
+##  zoo           1.8-5    2019-03-21 [1] CRAN (R 3.6.0)
+## 
+## [1] /usr/local/lib/R/site-library
+## [2] /usr/local/lib/R/library</code></pre>
 </div>
 
 <!-- </div>
