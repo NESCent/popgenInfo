@@ -57,13 +57,9 @@ workflows:
                     branches:
                         only: 
                             - master
-                            - add-weekly-build
         jobs:
             - build:
                 filters:
                     branches:
                         ignore: gh-pages
-            - deploy:
-                requires:
-                    - build
 
