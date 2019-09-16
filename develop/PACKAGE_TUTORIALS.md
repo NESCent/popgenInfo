@@ -31,6 +31,7 @@ Below are some resources that can get you started writing R packages.
  - [S4 Classes in detail](http://adv-r.had.co.nz/S4.html)
  - [S3 Classes in detail](http://adv-r.had.co.nz/S3.html)
  - [A not so short introduction to S4](http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf)
+ - [rOpenSci's Developer's Guide](https://devguide.ropensci.org/building.html)
 
 
 # Tutorials
@@ -40,8 +41,4 @@ Below are some resources that can get you started writing R packages.
 If you are a package developer and would like to contribute a workflow about
 package development, classes, or methods to this website, please see our
 documentation on [contributing workflow vignettes](CONTRIBUTING.html).
-
-## Basics
-
-* [Creating a new R package for population genetics](package_basics.html)
 
