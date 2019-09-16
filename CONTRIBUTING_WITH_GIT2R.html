@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -169,7 +170,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -226,7 +227,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -299,18 +299,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -510,19 +498,19 @@ $(document).ready(function () {
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">clone</span>(<span class="dt">url =</span> <span class="st">&quot;https://github.com/zkamvar/popgenInfo.git&quot;</span>,</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3">      <span class="dt">local_path =</span> <span class="st">&quot;popgenInfo&quot;</span>)</a></code></pre></div>
-<pre><code>## cloning into &#39;/tmp/RtmpGmju3g/popgenInfo&#39;...
-## Receiving objects:   1% (25/2466),    8 kb
+<pre><code>## cloning into &#39;/tmp/RtmpdYbN3L/popgenInfo&#39;...
+## Receiving objects:   1% (25/2466),    9 kb
 ## Receiving objects:  11% (272/2466),   64 kb
-## Receiving objects:  21% (518/2466),  105 kb
-## Receiving objects:  31% (765/2466), 1977 kb
-## Receiving objects:  41% (1012/2466), 7463 kb
-## Receiving objects:  51% (1258/2466), 11718 kb
-## Receiving objects:  61% (1505/2466), 11766 kb
-## Receiving objects:  71% (1751/2466), 11798 kb
-## Receiving objects:  81% (1998/2466), 11846 kb
-## Receiving objects:  91% (2245/2466), 12038 kb
+## Receiving objects:  21% (518/2466),  104 kb
+## Receiving objects:  31% (765/2466), 1984 kb
+## Receiving objects:  41% (1012/2466), 7470 kb
+## Receiving objects:  51% (1258/2466), 11709 kb
+## Receiving objects:  61% (1505/2466), 11757 kb
+## Receiving objects:  71% (1751/2466), 11789 kb
+## Receiving objects:  81% (1998/2466), 11837 kb
+## Receiving objects:  91% (2245/2466), 12039 kb
 ## Receiving objects: 100% (2466/2466), 12039 kb, done.</code></pre>
-<pre><code>## Local:    master /tmp/RtmpGmju3g/popgenInfo
+<pre><code>## Local:    master /tmp/RtmpdYbN3L/popgenInfo
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
 ## Head:     [2cb0623] 2017-01-04: update DESCRIPTION</code></pre>
 <p>Now when we look at our directory, we can see that we have one folder called “popgenInfo”:</p>
@@ -553,7 +541,7 @@ $(document).ready(function () {
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;git2r&quot;</span>) <span class="co"># in case you&#39;re starting from here</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">repo &lt;-<span class="st"> </span><span class="kw">repository</span>()</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3">repo</a></code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpGmju3g/popgenInfo
+<pre><code>## Local:    master /tmp/RtmpdYbN3L/popgenInfo
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
 ## Head:     [2cb0623] 2017-01-04: update DESCRIPTION</code></pre>
 <p>This tells R that you have a repository in this folder and that you are referring to it as <code>repo</code>. The output of <code>repo</code> is a summary of your repository:</p>
@@ -606,27 +594,28 @@ $(document).ready(function () {
 <p>Now that we have our repository loaded, we should make sure that we are on the <strong>master branch</strong>. We can do this using the <code>checkout()</code> function from <em>git2r</em>.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)</a>
 <a class="sourceLine" id="cb21-2" data-line-number="2">repo</a></code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpGmju3g/popgenInfo
+<pre><code>## Local:    master /tmp/RtmpdYbN3L/popgenInfo
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
 ## Head:     [2cb0623] 2017-01-04: update DESCRIPTION</code></pre>
 <p>Now, whether or not we suspect changes from NESCent, it’s always good form to update your local repository before creating any new branches. We can do it this by first <strong>fetching</strong> ALL changes that have happened on the NESCent popgenInfo repository, and then <strong>merging</strong> the NESCent master branch into our master branch. We will use the <em>git2r</em> functions <code>fetch()</code> and <code>merge()</code> to accomplish this.</p>
 <p>First, we fetch all of the changes that have happened. If there are no changes, nothing will appear, but if there is new content on the master branch or new branches on the repository, they will be downloaded and each branch will be printed to your screen. For our purposes, we are only concerned with the changes on the <strong>master</strong> branch, which will look something like this: <code>## [new]    b62a78c1fcd384a3ea23 refs/remotes/upstream/master</code>.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">fetch</span>(repo, <span class="dt">name =</span> <span class="st">&quot;upstream&quot;</span>)</a></code></pre></div>
 <pre><code>## [new]     2bf7239c6367e2f80cb0 refs/remotes/upstream/add-weekly-build
-## [new]     03fceec146202bb65a6e refs/remotes/upstream/gh-pages
-## [new]     2bf7239c6367e2f80cb0 refs/remotes/upstream/master
+## [new]     e0b711a1189af7cc2b58 refs/remotes/upstream/gh-pages
+## [new]     b3aad3d976eac71bc4ad refs/remotes/upstream/master
 ## [new]     baa1358367cedf7a7fda refs/remotes/upstream/site-images
 ## [new]     16b52608de7f5ed41d04 refs/remotes/upstream/summaryseqstats
 ## [new]     8840ff6e3782db926b03 refs/remotes/upstream/update-makefile-doc
 ## [new]     c7e4171b3786e398e39b refs/remotes/upstream/web-devel
+## [new]     04853f9353448f1b002c refs/remotes/upstream/zkamvar-patch-1
 ## [new]     021b4de353dff06f0c44 refs/tags/v1.0.0</code></pre>
 <p>It’s important to note that our local repository is still unchanged at this point as we have just downloaded the updates from NESCent. To update our local repository, we should merge the changes from NESCent’s master branch into our master branch:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">merge</span>(repo, <span class="st">&quot;upstream/master&quot;</span>)</a></code></pre></div>
 <pre><code>## Merge: Fast-forward</code></pre>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">repo</a></code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpGmju3g/popgenInfo
+<pre><code>## Local:    master /tmp/RtmpdYbN3L/popgenInfo
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [2bf7239] 2019-05-10: Removes feature branch and deploy step from weekly build</code></pre>
+## Head:     [b3aad3d] 2019-09-16: Merge pull request #218 from NESCent/zkamvar-patch-1</code></pre>
 <p>If there were any changes, the <strong>Head</strong> field will have a more current commit than when we intialized it above.</p>
 <p>Since we will never work directly on the master branch, there should be no conflicts from the NESCent branch and we now know that our branch is up to date. Assuming everything worked, we can push this to our fork on GitHub. We will use <em>git2r</em>’s <code>push()</code> function to do this. We also need to supply our PAT in order for this to work. To do so, we will use the <em>git2r</em> function <code>cred_token()</code>:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">cred &lt;-<span class="st"> </span><span class="kw">cred_token</span>()</a>
@@ -641,9 +630,9 @@ $(document).ready(function () {
 <p>Most importantly we need to make sure that we are on the master branch and it is up to date. To double plus make sure that you are on the master branch, check it out:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">checkout</span>(repo, <span class="st">&quot;master&quot;</span>)</a>
 <a class="sourceLine" id="cb30-2" data-line-number="2">repo</a></code></pre></div>
-<pre><code>## Local:    master /tmp/RtmpGmju3g/popgenInfo
+<pre><code>## Local:    master /tmp/RtmpdYbN3L/popgenInfo
 ## Remote:   master @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [2bf7239] 2019-05-10: Removes feature branch and deploy step from weekly build</code></pre>
+## Head:     [b3aad3d] 2019-09-16: Merge pull request #218 from NESCent/zkamvar-patch-1</code></pre>
 <p>For reasons that will reveal themselves later, please run these function definitions:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">my_branch &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">paste0</span>(<span class="st">&quot;refs/heads/&quot;</span>, x)</a>
 <a class="sourceLine" id="cb32-2" data-line-number="2">my_origin &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">paste0</span>(<span class="st">&quot;origin/&quot;</span>, x)</a></code></pre></div>
@@ -669,8 +658,8 @@ $(document).ready(function () {
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">BRANCH &lt;-<span class="st"> &quot;2015-12-16-spatial-stats&quot;</span>  <span class="co"># 1</span></a>
 <a class="sourceLine" id="cb35-2" data-line-number="2"><span class="kw">checkout</span>(repo, BRANCH, <span class="dt">create =</span> <span class="ot">TRUE</span>) <span class="co"># 2</span></a>
 <a class="sourceLine" id="cb35-3" data-line-number="3">repo</a></code></pre></div>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpGmju3g/popgenInfo
-## Head:     [2bf7239] 2019-05-10: Removes feature branch and deploy step from weekly build</code></pre>
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpdYbN3L/popgenInfo
+## Head:     [b3aad3d] 2019-09-16: Merge pull request #218 from NESCent/zkamvar-patch-1</code></pre>
 <pre><code>## Warning: &#39;head.git_repository&#39; is deprecated.
 ## Use &#39;repository_head&#39; instead.
 ## See help(&quot;Deprecated&quot;)</code></pre>
@@ -678,9 +667,9 @@ $(document).ready(function () {
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">push</span>(repo, <span class="dt">name =</span> <span class="st">&quot;origin&quot;</span>, <span class="dt">refspec =</span> <span class="kw">my_branch</span>(BRANCH), <span class="dt">credentials =</span> cred) <span class="co"># 3</span></a>
 <a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">branch_set_upstream</span>(<span class="kw">head</span>(repo), <span class="kw">my_origin</span>(BRANCH))                           <span class="co"># 4</span></a>
 <a class="sourceLine" id="cb38-3" data-line-number="3">repo</a></code></pre></div>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpGmju3g/popgenInfo
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpdYbN3L/popgenInfo
 ## Remote:   2015-12-16-spatial-stats @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [2bf7239] 2019-05-10: Removes feature branch and deploy step from weekly build</code></pre>
+## Head:     [b3aad3d] 2019-09-16: Merge pull request #218 from NESCent/zkamvar-patch-1</code></pre>
 <p>We can now see from the output that we have a <strong>Remote</strong> set up. Once we have this, we can start making changes! If you are adding a new vignette, please copy <a href="https://github.com/nescent/popgenInfo/tree/master/TEMPLATE.Rmd"><code>TEMPLATE.Rmd</code></a> to the <strong>use/</strong> directory and give it a new name that is meaningful to your contribution (good practice is to name it the same as your branch). If you are including any data, place it in the <strong>data/</strong> directory. Once you add these files, you need to to <strong>add</strong> these files and then you should <strong>commit</strong>, which we will show you how to do below.</p>
 </div>
 </div>
@@ -706,21 +695,21 @@ $(document).ready(function () {
 <a class="sourceLine" id="cb44-4" data-line-number="4"><span class="st">spatial data in the data folder.</span></a>
 <a class="sourceLine" id="cb44-5" data-line-number="5"><span class="st">&quot;</span></a>
 <a class="sourceLine" id="cb44-6" data-line-number="6"><span class="kw">commit</span>(repo, msg, <span class="dt">session =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## [c02ff1b] 2019-05-11:  started spatial stats vignette and added data</code></pre>
+<pre><code>## [14881ea] 2019-09-16:  started spatial stats vignette and added data</code></pre>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">status</span>(repo) <span class="co"># should return nothing</span></a></code></pre></div>
 <pre><code>## working directory clean</code></pre>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">repo</a></code></pre></div>
-<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpGmju3g/popgenInfo
+<pre><code>## Local:    2015-12-16-spatial-stats /tmp/RtmpdYbN3L/popgenInfo
 ## Remote:   2015-12-16-spatial-stats @ origin (https://github.com/zkamvar/popgenInfo.git)
-## Head:     [c02ff1b] 2019-05-11:  started spatial stats vignette and added data</code></pre>
+## Head:     [14881ea] 2019-09-16:  started spatial stats vignette and added data</code></pre>
 <blockquote>
 <p>Note that we put <code>session = TRUE</code> in the commit function. This automatically puts your R session information in the commit, which gives more information about package versions you were working with when you were editing the vignette.</p>
 </blockquote>
 <p>You can see a summary of what you just did by looking at the summary of your commit:</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">commits</span>(repo)[[<span class="dv">1</span>]])</a></code></pre></div>
-<pre><code>## Commit:  c02ff1b76c44f8e548b8f240f85ba5c4267f3b7a
+<pre><code>## Commit:  14881ea668e07d9483287feb9ad2de4851136e20
 ## Author:  Zhian Kamvar &lt;kamvarz@science.oregonstate.edu&gt;
-## When:    2019-05-11 00:37:56
+## When:    2019-09-16 00:36:03
 ## 
 ##       started spatial stats vignette and added data
 ##      
@@ -729,7 +718,7 @@ $(document).ready(function () {
 ##      
 ##      
 ##      sessionInfo:
-##      R version 3.6.0 (2019-04-26)
+##      R version 3.6.1 (2019-07-05)
 ##      Platform: x86_64-pc-linux-gnu (64-bit)
 ##      Running under: Debian GNU/Linux 9 (stretch)
 ##      
@@ -748,13 +737,13 @@ $(document).ready(function () {
 ##      [1] stats     graphics  grDevices utils     datasets  methods   base     
 ##      
 ##      other attached packages:
-##      [1] git2r_0.25.2
+##      [1] git2r_0.26.1
 ##      
 ##      loaded via a namespace (and not attached):
-##       [1] compiler_3.6.0  magrittr_1.5    tools_3.6.0     htmltools_0.3.6
-##       [5] yaml_2.2.0      Rcpp_1.0.1      stringi_1.4.3   rmarkdown_1.12 
-##       [9] knitr_1.22      stringr_1.4.0   xfun_0.6        digest_0.6.18  
-##      [13] evaluate_0.13  
+##       [1] compiler_3.6.1  magrittr_1.5    tools_3.6.1     htmltools_0.3.6
+##       [5] yaml_2.2.0      Rcpp_1.0.2      stringi_1.4.3   rmarkdown_1.15 
+##       [9] knitr_1.24      stringr_1.4.0   xfun_0.9        digest_0.6.20  
+##      [13] evaluate_0.14  
 ## 2 files changed, 127 insertions, 0 deletions
 ## data/spatial_data.csv            | -0 +  6  in 1 hunk
 ## use/2015-12-16-spatial-stats.Rmd | -0 +121  in 1 hunk</code></pre>
@@ -827,7 +816,7 @@ $(document).ready(function () {
 <a class="sourceLine" id="cb58-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">session_info</span>()</a></code></pre></div>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────────────────────────
 ##  setting  value                       
-##  version  R version 3.6.0 (2019-04-26)
+##  version  R version 3.6.1 (2019-07-05)
 ##  os       Debian GNU/Linux 9 (stretch)
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
@@ -835,45 +824,48 @@ $(document).ready(function () {
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2019-05-11                  
+##  date     2019-09-16                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────────────────────────
 ##  package     * version date       lib source        
-##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 3.6.0)
-##  backports     1.1.4   2019-04-10 [1] CRAN (R 3.6.0)
-##  callr         3.2.0   2019-03-15 [1] CRAN (R 3.6.0)
-##  cli           1.1.0   2019-03-19 [1] CRAN (R 3.6.0)
-##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.6.0)
-##  desc          1.2.0   2018-05-01 [1] CRAN (R 3.6.0)
-##  devtools      2.0.2   2019-04-08 [1] CRAN (R 3.6.0)
-##  digest        0.6.18  2018-10-10 [1] CRAN (R 3.6.0)
-##  evaluate      0.13    2019-02-12 [1] CRAN (R 3.6.0)
-##  fs            1.3.1   2019-05-06 [1] CRAN (R 3.6.0)
-##  git2r       * 0.25.2  2019-03-19 [1] CRAN (R 3.6.0)
-##  glue          1.3.1   2019-03-12 [1] CRAN (R 3.6.0)
-##  htmltools     0.3.6   2017-04-28 [1] CRAN (R 3.6.0)
-##  knitr         1.22    2019-03-08 [1] CRAN (R 3.6.0)
-##  magrittr      1.5     2014-11-22 [1] CRAN (R 3.6.0)
-##  memoise       1.1.0   2017-04-21 [1] CRAN (R 3.6.0)
-##  pkgbuild      1.0.3   2019-03-20 [1] CRAN (R 3.6.0)
-##  pkgload       1.0.2   2018-10-29 [1] CRAN (R 3.6.0)
-##  prettyunits   1.0.2   2015-07-13 [1] CRAN (R 3.6.0)
-##  processx      3.3.1   2019-05-08 [1] CRAN (R 3.6.0)
-##  ps            1.3.0   2018-12-21 [1] CRAN (R 3.6.0)
-##  R6            2.4.0   2019-02-14 [1] CRAN (R 3.6.0)
-##  Rcpp          1.0.1   2019-03-17 [1] CRAN (R 3.6.0)
-##  remotes       2.0.4   2019-04-10 [1] CRAN (R 3.6.0)
-##  rlang         0.3.4   2019-04-07 [1] CRAN (R 3.6.0)
-##  rmarkdown     1.12    2019-03-14 [1] CRAN (R 3.6.0)
-##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 3.6.0)
-##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.6.0)
-##  stringi       1.4.3   2019-03-12 [1] CRAN (R 3.6.0)
-##  stringr       1.4.0   2019-02-10 [1] CRAN (R 3.6.0)
-##  testthat      2.1.1   2019-04-23 [1] CRAN (R 3.6.0)
-##  usethis       1.5.0   2019-04-07 [1] CRAN (R 3.6.0)
-##  withr         2.1.2   2018-03-15 [1] CRAN (R 3.6.0)
-##  xfun          0.6     2019-04-02 [1] CRAN (R 3.6.0)
-##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.6.0)
+##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 3.6.1)
+##  backports     1.1.4   2019-04-10 [1] CRAN (R 3.6.1)
+##  callr         3.3.1   2019-07-18 [1] CRAN (R 3.6.1)
+##  cli           1.1.0   2019-03-19 [1] CRAN (R 3.6.1)
+##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.6.1)
+##  desc          1.2.0   2018-05-01 [1] CRAN (R 3.6.1)
+##  devtools      2.2.0   2019-09-07 [1] CRAN (R 3.6.1)
+##  digest        0.6.20  2019-07-04 [1] CRAN (R 3.6.1)
+##  DT            0.8     2019-08-07 [1] CRAN (R 3.6.1)
+##  ellipsis      0.2.0.1 2019-07-02 [1] CRAN (R 3.6.1)
+##  evaluate      0.14    2019-05-28 [1] CRAN (R 3.6.1)
+##  fs            1.3.1   2019-05-06 [1] CRAN (R 3.6.1)
+##  git2r       * 0.26.1  2019-06-29 [1] CRAN (R 3.6.1)
+##  glue          1.3.1   2019-03-12 [1] CRAN (R 3.6.1)
+##  htmltools     0.3.6   2017-04-28 [1] CRAN (R 3.6.1)
+##  htmlwidgets   1.3     2018-09-30 [1] CRAN (R 3.6.1)
+##  knitr         1.24    2019-08-08 [1] CRAN (R 3.6.1)
+##  magrittr      1.5     2014-11-22 [1] CRAN (R 3.6.1)
+##  memoise       1.1.0   2017-04-21 [1] CRAN (R 3.6.1)
+##  pkgbuild      1.0.5   2019-08-26 [1] CRAN (R 3.6.1)
+##  pkgload       1.0.2   2018-10-29 [1] CRAN (R 3.6.1)
+##  prettyunits   1.0.2   2015-07-13 [1] CRAN (R 3.6.1)
+##  processx      3.4.1   2019-07-18 [1] CRAN (R 3.6.1)
+##  ps            1.3.0   2018-12-21 [1] CRAN (R 3.6.1)
+##  R6            2.4.0   2019-02-14 [1] CRAN (R 3.6.1)
+##  Rcpp          1.0.2   2019-07-25 [1] CRAN (R 3.6.1)
+##  remotes       2.1.0   2019-06-24 [1] CRAN (R 3.6.1)
+##  rlang         0.4.0   2019-06-25 [1] CRAN (R 3.6.1)
+##  rmarkdown     1.15    2019-08-21 [1] CRAN (R 3.6.1)
+##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 3.6.1)
+##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.6.1)
+##  stringi       1.4.3   2019-03-12 [1] CRAN (R 3.6.1)
+##  stringr       1.4.0   2019-02-10 [1] CRAN (R 3.6.1)
+##  testthat      2.2.1   2019-07-25 [1] CRAN (R 3.6.1)
+##  usethis       1.5.1   2019-07-04 [1] CRAN (R 3.6.1)
+##  withr         2.1.2   2018-03-15 [1] CRAN (R 3.6.1)
+##  xfun          0.9     2019-08-21 [1] CRAN (R 3.6.1)
+##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.6.1)
 ## 
 ## [1] /usr/local/lib/R/site-library
 ## [2] /usr/local/lib/R/library</code></pre>
@@ -900,6 +892,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

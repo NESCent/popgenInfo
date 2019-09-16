@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -136,7 +137,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -209,18 +209,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -326,9 +314,7 @@ $(document).ready(function () {
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#a-word-on-modularity">A word on modularity</a></li>
 <li><a href="#resources-for-writing-r-packages">Resources for writing R packages</a></li>
-<li><a href="#tutorials">Tutorials</a><ul>
-<li><a href="#basics">Basics</a></li>
-</ul></li>
+<li><a href="#tutorials">Tutorials</a></li>
 </ul>
 </div>
 
@@ -349,6 +335,7 @@ $(document).ready(function () {
 <li><a href="http://adv-r.had.co.nz/S4.html">S4 Classes in detail</a></li>
 <li><a href="http://adv-r.had.co.nz/S3.html">S3 Classes in detail</a></li>
 <li><a href="http://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf">A not so short introduction to S4</a></li>
+<li><a href="https://devguide.ropensci.org/building.html">rOpenSci’s Developer’s Guide</a></li>
 </ul>
 </div>
 <div id="tutorials" class="section level1">
@@ -357,12 +344,6 @@ $(document).ready(function () {
 <p>A number of additional tutorials have been <a href="https://github.com/NESCent/popgenInfo/issues?utf8=✓&amp;q=is%3Aopen+label%3A%22help+wanted%22+label%3Adocumentation">tagged as candidates for community contribution</a>.</p>
 </blockquote>
 <p>If you are a package developer and would like to contribute a workflow about package development, classes, or methods to this website, please see our documentation on <a href="CONTRIBUTING.html">contributing workflow vignettes</a>.</p>
-<div id="basics" class="section level2">
-<h2>Basics</h2>
-<ul>
-<li><a href="package_basics.html">Creating a new R package for population genetics</a></li>
-</ul>
-</div>
 </div>
 
 <!-- </div>
@@ -386,6 +367,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
